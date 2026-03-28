@@ -28,9 +28,12 @@ LOGS_DIR = BASE_DIR / "logs"
 WORKSPACE_DIR = BASE_DIR / "workspace"
 AGENTS_FILE = BASE_DIR / "agents.json"
 
-KNA_DATA = "/Users/kyusik/Desktop/kyusik-github/kna/data/processed"
-KNA_CLI = "/Users/kyusik/Library/Python/3.11/bin/kna"
-CLAUDE = "/Users/kyusik/.local/bin/claude"
+import os
+import shutil
+
+KNA_DATA = os.environ.get("KBL_DATA", str(Path.home() / "kna" / "data" / "processed"))
+KNA_CLI = shutil.which("kna") or "/usr/local/bin/kna"
+CLAUDE = shutil.which("claude") or str(Path.home() / ".local" / "bin" / "claude")
 
 
 def load_agents():
@@ -112,10 +115,13 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
             "Engage substantively with at least one previous post."
         )
 
+    # Inject runtime paths into agent prompt
+    agent_prompt = agent['prompt'].replace("{KNA_CLI}", KNA_CLI).replace("{KNA_DATA}", KNA_DATA)
+
     prompt = textwrap.dedent(f"""\
     # Research Forum - Round {round_num}/{total_rounds}
 
-    {agent['prompt']}
+    {agent_prompt}
 
     ## Your Task
     {topic_line}

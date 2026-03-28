@@ -107,7 +107,7 @@ def append_record(record: dict) -> None:
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
-def api_get(url: str, max_retries: int = 3) -> dict | None:
+def api_get(url: str, max_retries: int = 3):
     """GET a JSON endpoint with retries and backoff."""
     for attempt in range(max_retries):
         try:
