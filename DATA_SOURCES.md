@@ -216,92 +216,12 @@ Each result includes: `title` (often bilingual), `author`, `container-title` (jo
 
 ---
 
-## 4. KCI API (Korean Citation Index)
-
-**Source:** [KCI](https://www.kci.go.kr/) (한국학술지인용색인, operated by NRF)
-**Access:** REST API, requires free API key
-**Coverage:** All KCI-indexed Korean journals (broadest Korean academic coverage)
-
-### How to Get a KCI API Key
-
-1. Create an account at [kci.go.kr](https://www.kci.go.kr) (회원가입)
-2. Go to [Open API key request](https://www.kci.go.kr/kciportal/po/openapi/openApiKeyRequest.kci)
-3. Apply for an authentication key (free)
-4. Once issued, set it in `agents.json` under `forum_config.kci_api_key`
-
-Alternative path: Apply via [data.go.kr](https://www.data.go.kr) (공공데이터포털) for the same data with auto-approval for development accounts (5,000 calls/day).
-
-### Endpoints
-
-```bash
-# Article search by keyword
-GET https://open.kci.go.kr/po/openapi/openApiSearch.kci
-  ?apiCode=articleSearch
-  &key=YOUR_KEY
-  &keyword=국회+입법
-  &displayCount=20
-
-# Article search by title
-  &title=정당+분극화
-
-# Article search by author
-  &author=홍길동
-
-# Article search by journal
-  &journal=한국정치학회보
-
-# Date range filter
-  &dateFrom=202301
-  &dateTo=202612
-
-# Article detail
-  ?apiCode=articleDetail
-  &key=YOUR_KEY
-  &id=ART002358582
-
-# Reference search
-  ?apiCode=referenceSearch
-  &key=YOUR_KEY
-  &keyword=국회
-```
-
-### Available apiCode Values
-
-| apiCode | Purpose | Key Parameters |
-|---------|---------|----------------|
-| `articleSearch` | Search papers | `title`, `author`, `journal`, `keyword`, `abstract`, `doi`, `dateFrom`/`dateTo` (YYYYMM) |
-| `articleDetail` | Paper detail | `id` (e.g., ART002358582) |
-| `referenceSearch` | Search references | `title`, `author`, `keyword`, `pubiYr` |
-| `citationDetail` | Journal citation metrics | `id` (journal control number), `year` |
-
-### Why KCI Matters
-
-KCI has the **broadest coverage** of Korean academic journals:
-- Korean-language political science journals that don't deposit DOIs (not in Crossref)
-- Citation networks within Korean academia
-- NRF journal rating data
-- Full historical coverage back to the 1990s
-
-Without KCI, Scout relies on Crossref (good but incomplete) and OpenAlex (aggregates Crossref + others). With KCI, Scout can comprehensively track Korean political science.
-
-### Using KCI in the Forum
-
-When `KCI_KEY` is set in the environment, Scout will include KCI searches alongside OpenAlex and Crossref. The orchestrator passes the key via environment variable:
-
-```bash
-export KCI_KEY=your_key_here
-python3 run_forum.py --topic "위원회 정치"
-```
-
----
-
 ## Data Access Summary
 
-| Source | Access | Auth | Korean Coverage | Agent |
-|--------|--------|------|-----------------|-------|
+| Source | Access | Auth | Coverage | Agent |
+|--------|--------|------|----------|-------|
 | KNA bills | CLI + parquet | None (local) | 110K bills, 17-22nd Assembly | Analyst |
 | KNA votes | parquet | None (local) | 2.4M member-level votes | Analyst |
 | KNA ideal points | CSV | None (local) | 936 DW-NOMINATE estimates | Analyst |
-| OpenAlex | REST API | None | Good (international + some Korean) | Scout, Critic |
-| Crossref | REST API | None | Good (Korean journals with DOIs) | Scout, Critic |
-| KCI | REST API | API key (free) | Best (all KCI-indexed journals) | Scout |
+| OpenAlex | REST API | None | 250M+ works, international + Korean | Scout, Critic |
+| Crossref | REST API | None | Korean journals with DOIs (의정연구, 한국정치학회보, etc.) | Scout, Critic |
