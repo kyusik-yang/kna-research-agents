@@ -1,19 +1,32 @@
 ---
 round: 2
-date: "2026-03-28 12:01"
-topic: "legislative polarization and party discipline in roll call voting"
+date: "2026-03-28 14:47"
+topic: "continuing discussion"
 ---
 
 # Round 2 Summary
 
-The forum pivoted from committee gatekeeping to ask whether polarization and party discipline explain the patterns observed in Round 1. Analyst uncovered a striking paradox: 87-92% of KNA floor votes show near-zero partisan disagreement, yet DW-NOMINATE ideal points reveal the inter-party gap nearly doubled (0.72 to 1.24) across the 20th-22nd Assemblies, with ideological overlap collapsing to zero. Scout diagnosed the theoretical linchpin - roll-call selection bias created by committee gatekeeping - while Critic judged the causal mechanism asserted but untested, proposing a two-stage design using fast-tracked bills as a natural experiment.
+Scout proposed Krutz's (2005) "winnowing under bounded rationality" as a third framework beyond the strategic-vs-capacity dichotomy, and Analyst ran five discriminating tests on 40,551 member bills. The headline: no partisan bias in committee processing under unified government, but a striking 10.9 percentage-point ruling-party advantage emerges under divided government - a pattern that fits neither pure capacity overflow nor standard Cox-McCubbins gatekeeping. Critic upgraded the verdict from **revise** to **pursue** and proposed splitting the project into two papers.
 
 ## Key Quotes
 
-> **Scout**: "We estimate legislator ideology from roll calls on bills that committees allowed through, then use those ideology estimates to study committee gatekeeping - if committees block bills that would reveal intra-party divisions, roll-call-based ideal points will overestimate party cohesion."
+> **Scout**: "The winnowing literature suggests a third framework - cue-based triage under bounded rationality - that is both more theoretically grounded and more testable with KNA data."
 
-> **Analyst**: "The 'bridge builders' disappeared: by the 22nd Assembly, a 0.67-unit gap separates the two parties' nearest members, within-party SD collapsed by over 60%, and the conservative bloc maintains a persistent 40% absence rate across all three assemblies regardless of government status."
+> **Analyst**: "Bills introduced in Year 1 receive decisions at 42.7% versus 27.5% in Year 4 - the largest predictor of committee action, far larger than any partisan or cue-based effect."
 
-> **Critic**: "The consensus-floor-plus-polarized-ideal-points paradox is the forum's most publishable finding, but the causal mechanism connecting committee gatekeeping to floor consensus is asserted rather than identified."
+> **Critic**: "The project has matured from a descriptive finding into two distinct research contributions: a winnowing paper with a committee-capacity threshold, and an executive-legislative coordination paper exploiting the unified-to-divided government transition."
 
-**Verdict**: Revise | **Next**: Test the gatekeeping-consensus mechanism causally using fast-tracked bills as a natural experiment, and resolve whether the within-party collapse reflects sorting or discipline.
+## Findings Status
+
+| Finding | Status |
+|---------|--------|
+| 79.9% of failed bills die from committee inaction | confirmed |
+| 대안반영폐기 does not inflate the graveyard count | confirmed |
+| No partisan bias in committee processing (pooled) | confirmed |
+| Arrival timing is the dominant triage predictor (15.2pp gradient) | preliminary |
+| Ruling-party advantage (10.9pp) emerges under divided government | preliminary |
+| Committee processing hits a capacity floor at ~300-700 bills/term | preliminary |
+| Cosponsor count carries no predictive power in KNA winnowing | preliminary |
+| No comparative dual-gatekeeper quantitative studies exist | confirmed |
+
+**Verdict**: Pursue (upgraded from Revise); two-paper split proposed | **Next**: Round 3 should construct the committee chair party variable and decompose the divided-government gap by committee to distinguish executive coordination from majority-party obstruction.

