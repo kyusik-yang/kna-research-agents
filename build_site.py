@@ -841,58 +841,47 @@ def build_index(posts):
 
     if posts:
         messages = []
-        current_round = 0
         n_agents = 3
         max_round = (len(posts) - 1) // n_agents + 1
+
+        # Group posts by round
+        rounds_data = {}
         for i, p in enumerate(posts):
             rnd = (i // n_agents) + 1
-            if rnd > current_round:
-                # Close previous round
-                if current_round > 0:
-                    # Insert summary for previous round
-                    if current_round in round_summaries:
-                        s = round_summaries[current_round]
-                        topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
-                        messages.append(
-                            f'<div class="round-summary">'
-                            f'<div class="summary-header">'
-                            f'<div class="summary-icon">R{current_round}</div>'
-                            f'<div><div class="summary-title">Round {current_round} Summary</div>'
-                            f'{topic_line}</div></div>'
-                            f'{s["html"]}</div>'
-                        )
-                    messages.append('</details>')  # close previous round
-                current_round = rnd
-                # Open new round (most recent open, older collapsed)
-                open_attr = " open" if rnd == max_round else ""
-                topic_hint = ""
-                if rnd in round_summaries and round_summaries[rnd].get("topic"):
-                    topic_hint = f' - {round_summaries[rnd]["topic"]}'
-                messages.append(
-                    f'<details class="forum-round"{open_attr}>'
-                    f'<summary class="round-divider" style="cursor:pointer;list-style:none;">'
-                    f'Round {rnd}{topic_hint}</summary>'
-                )
+            rounds_data.setdefault(rnd, []).append(p)
 
-            short = AGENT_SHORT.get(p["agent_id"], "")
-            initial = AGENT_INITIALS.get(p["agent_id"], "?")
-            label = AGENT_COLORS.get(p["agent_id"], {}).get("label", "")
+        # Render in REVERSE order (most recent first)
+        for rnd in sorted(rounds_data.keys(), reverse=True):
+            round_posts = rounds_data[rnd]
+            open_attr = " open" if rnd == max_round else ""
+            topic_hint = ""
+            if rnd in round_summaries and round_summaries[rnd].get("topic"):
+                topic_hint = f' - {round_summaries[rnd]["topic"]}'
+            messages.append(
+                f'<details class="forum-round"{open_attr}>'
+                f'<summary class="round-divider" style="cursor:pointer;list-style:none;">'
+                f'Round {rnd}{topic_hint}</summary>'
+            )
 
-            # Preview: first 200 chars of body, stripped of markdown
-            preview = re.sub(r"[#*`\[\]()]", "", p["body_md"])
-            preview = re.sub(r"\n+", " ", preview).strip()[:200] + "..."
+            for p in round_posts:
+                short = AGENT_SHORT.get(p["agent_id"], "")
+                initial = AGENT_INITIALS.get(p["agent_id"], "?")
+                label = AGENT_COLORS.get(p["agent_id"], {}).get("label", "")
 
-            refs_html = ""
-            if p["references"]:
-                ref_links = []
-                for r in p["references"][:3]:
-                    if r.endswith(".md"):
-                        ref_links.append(f'<a href="{r.replace(".md", ".html")}">{r}</a>')
-                    else:
-                        ref_links.append(r)
-                refs_html = f'<div class="msg-refs">refs: {", ".join(ref_links)}</div>'
+                preview = re.sub(r"[#*`\[\]()]", "", p["body_md"])
+                preview = re.sub(r"\n+", " ", preview).strip()[:200] + "..."
 
-            messages.append(f"""\
+                refs_html = ""
+                if p["references"]:
+                    ref_links = []
+                    for r in p["references"][:3]:
+                        if r.endswith(".md"):
+                            ref_links.append(f'<a href="{r.replace(".md", ".html")}">{r}</a>')
+                        else:
+                            ref_links.append(r)
+                    refs_html = f'<div class="msg-refs">refs: {", ".join(ref_links)}</div>'
+
+                messages.append(f"""\
 <div class="message">
   <div class="avatar {short}">{initial}</div>
   <div class="msg-content">
@@ -906,20 +895,19 @@ def build_index(posts):
     {refs_html}
   </div>
 </div>""")
-        # Close and append summary for the last round
-        if current_round > 0:
-            if current_round in round_summaries:
-                s = round_summaries[current_round]
+            # (round posts rendered above, now close with summary)
+            if rnd in round_summaries:
+                s = round_summaries[rnd]
                 topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
                 messages.append(
                     f'<div class="round-summary">'
                     f'<div class="summary-header">'
-                    f'<div class="summary-icon">R{current_round}</div>'
-                    f'<div><div class="summary-title">Round {current_round} Summary</div>'
+                    f'<div class="summary-icon">R{rnd}</div>'
+                    f'<div><div class="summary-title">Round {rnd} Summary</div>'
                     f'{topic_line}</div></div>'
                     f'{s["html"]}</div>'
                 )
-            messages.append('</details>')  # close last round
+            messages.append('</details>')  # close round
         feed = "\n".join(messages)
     else:
         feed = '<p style="padding:2rem;color:var(--muted)"><em>No posts yet. Run the orchestrator to start the discussion.</em></p>'
@@ -1212,8 +1200,11 @@ for rigor and novelty, connects patterns to political science theory, and propos
 research agendas.</p>
 
 <p style="color:var(--muted); font-size:0.85rem; margin-top:1rem; padding:0.6rem 0.8rem; border-left:2px solid var(--border);">
-More specialized agents will be added as the forum evolves. A companion project,
-<strong>Yeouido Agora</strong> (여의도광장), simulates 25 Korean citizen personas reacting to
+This is an evolving project. More specialized agents will be added as the forum develops,
+including a <strong>Korean Politics Scholar</strong> (RAG-powered over the 641-paper abstract corpus),
+a <strong>Research Designer</strong> (proposing identification strategies), and a
+<strong>Replication Agent</strong> (cross-checking results with alternative specifications).
+A companion project, <strong>Yeouido Agora</strong> (여의도광장), simulates 25 Korean citizen personas reacting to
 research findings and political news. This creates a bidirectional loop: academic agents
 produce findings (top-down), citizen agents evaluate and surface new research demands
 (bottom-up) - bridging the gap between what political scientists study and what citizens
