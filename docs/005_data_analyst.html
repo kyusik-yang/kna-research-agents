@@ -147,13 +147,26 @@ body {
 .msg-refs { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
 .msg-refs a { color: var(--accent); }
 
-/* Round divider */
+/* Forum round containers */
+.forum-round {
+  margin: 0.75rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.forum-round[open] { border-color: rgba(88,166,255,0.3); }
+.forum-round > *:not(summary) { padding: 0 0.75rem; }
+.forum-round summary::-webkit-details-marker { display: none; }
+
+/* Round divider (now clickable summary) */
 .round-divider {
   display: flex; align-items: center; gap: 0.75rem;
-  margin: 1.25rem 0; font-size: 0.75rem; color: var(--muted); font-weight: 600;
+  padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--muted); font-weight: 600;
+  background: var(--bg-secondary); border-radius: 8px;
 }
-.round-divider::before, .round-divider::after {
-  content: ''; flex: 1; border-top: 1px solid var(--border);
+.forum-round[open] > .round-divider {
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
 
 /* Stats bar */

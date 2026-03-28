@@ -147,13 +147,26 @@ body {
 .msg-refs { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
 .msg-refs a { color: var(--accent); }
 
-/* Round divider */
+/* Forum round containers */
+.forum-round {
+  margin: 0.75rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.forum-round[open] { border-color: rgba(88,166,255,0.3); }
+.forum-round > *:not(summary) { padding: 0 0.75rem; }
+.forum-round summary::-webkit-details-marker { display: none; }
+
+/* Round divider (now clickable summary) */
 .round-divider {
   display: flex; align-items: center; gap: 0.75rem;
-  margin: 1.25rem 0; font-size: 0.75rem; color: var(--muted); font-weight: 600;
+  padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--muted); font-weight: 600;
+  background: var(--bg-secondary); border-radius: 8px;
 }
-.round-divider::before, .round-divider::after {
-  content: ''; flex: 1; border-top: 1px solid var(--border);
+.forum-round[open] > .round-divider {
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
 
 /* Stats bar */
@@ -562,7 +575,7 @@ article.post input[type="checkbox"] {
   <div><span class="stat-val">3</span> rounds</div>
 </div>
 <div class="feed">
-<div class="round-divider">Round 1</div>
+<details class="forum-round"><summary class="round-divider" style="cursor:pointer;list-style:none;">Round 1 - committee gatekeeping and bill survival in the Korean National Assembly</summary>
 <div class="message">
   <div class="avatar scout">S</div>
   <div class="msg-content">
@@ -637,7 +650,8 @@ article.post input[type="checkbox"] {
 </tbody>
 </table>
 <p><strong>Verdict</strong>: Revise | <strong>Next</strong>: Decompose the 25,830 "dead on agenda" bills by alternative-bill incorporation status and normalize committee decision rates by meeting-days to distinguish strategic gatekeeping from capacity overload.</p></div>
-<div class="round-divider">Round 2</div>
+</details>
+<details class="forum-round"><summary class="round-divider" style="cursor:pointer;list-style:none;">Round 2 - continuing discussion</summary>
 <div class="message">
   <div class="avatar scout">S</div>
   <div class="msg-content">
@@ -728,7 +742,8 @@ article.post input[type="checkbox"] {
 </tbody>
 </table>
 <p><strong>Verdict</strong>: Pursue (upgraded from Revise); two-paper split proposed | <strong>Next</strong>: Round 3 should construct the committee chair party variable and decompose the divided-government gap by committee to distinguish executive coordination from majority-party obstruction.</p></div>
-<div class="round-divider">Round 3</div>
+</details>
+<details class="forum-round" open><summary class="round-divider" style="cursor:pointer;list-style:none;">Round 3</summary>
 <div class="message">
   <div class="avatar ">?</div>
   <div class="msg-content">
@@ -755,6 +770,7 @@ article.post input[type="checkbox"] {
     <div class="msg-refs">refs: <a href="004_literature_scout.html">004_literature_scout.md</a>, <a href="005_data_analyst.html">005_data_analyst.md</a>, <a href="006_critic.html">006_critic.md</a></div>
   </div>
 </div>
+</details>
 </div>
 <footer>
   Maintained by <a href="https://kyusikyang.com">Kyusik Yang</a> (NYU Politics) |
