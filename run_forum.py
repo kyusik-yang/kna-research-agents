@@ -168,12 +168,78 @@ def get_relevant_abstracts(topic, max_abstracts=8):
     return "\n".join(lines)
 
 
+def get_findings_tracker():
+    """Load the cumulative findings tracker for agent context."""
+    tracker_file = KNOWLEDGE_DIR / "findings.jsonl"
+    if not tracker_file.exists():
+        return ""
+    findings = []
+    with open(tracker_file) as f:
+        for line in f:
+            try:
+                findings.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+    if not findings:
+        return ""
+    lines = ["\n## Cumulative Findings Tracker\n"]
+    lines.append("| # | Finding | Status | Round | Source |")
+    lines.append("|---|---------|--------|-------|--------|")
+    for i, f in enumerate(findings, 1):
+        lines.append(
+            f"| {i} | {f.get('finding', '')} | "
+            f"**{f.get('status', 'preliminary')}** | "
+            f"R{f.get('round', '?')} | {f.get('source', '')} |"
+        )
+    lines.append(
+        "\nStatus key: preliminary (new), confirmed (cross-validated), "
+        "contested (counter-evidence found), refined (updated by later round)\n"
+    )
+    return "\n".join(lines)
+
+
+def update_findings_tracker(round_num):
+    """Auto-extract key findings from latest round posts and append to tracker."""
+    KNOWLEDGE_DIR.mkdir(exist_ok=True)
+    tracker_file = KNOWLEDGE_DIR / "findings.jsonl"
+
+    # Get posts from this round
+    all_posts = sorted(FORUM_DIR.glob("*.md"))
+    n_agents = len(load_agents())
+    start_idx = (round_num - 1) * n_agents
+    round_posts = all_posts[start_idx:start_idx + n_agents]
+
+    if not round_posts:
+        return
+
+    # Extract findings from Critic's scoring block
+    for p in round_posts:
+        content = p.read_text()
+        if "critic" not in p.name:
+            continue
+        # Extract verdict
+        import re
+        verdict_match = re.search(r"verdict:\s*(pursue|revise|archive)", content)
+        one_line_match = re.search(r'one_line:\s*"([^"]+)"', content)
+        if one_line_match:
+            finding = {
+                "finding": one_line_match.group(1),
+                "status": "preliminary",
+                "round": round_num,
+                "source": p.name,
+                "verdict": verdict_match.group(1) if verdict_match else "unknown",
+            }
+            with open(tracker_file, "a") as f:
+                f.write(json.dumps(finding, ensure_ascii=False) + "\n")
+
+
 def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     """Build system prompt for one agent run."""
     n_agents = len(load_agents())
     forum_state = get_forum_state(current_round=round_num, n_agents=n_agents)
     knowledge = get_knowledge_summary()
     abstracts = get_relevant_abstracts(seed_topic) if seed_topic else ""
+    findings = get_findings_tracker()
     post_num = next_post_number()
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
     is_first_round = post_num <= n_agents
@@ -243,6 +309,7 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     {forum_state}
     {knowledge}
     {abstracts}
+    {findings}
     """)
     return prompt
 
@@ -395,13 +462,22 @@ def generate_round_summary(round_num, topic=None):
 
     > **Critic**: "[Sharpest judgment or recommendation from Critic's post - verbatim or near-verbatim]"
 
+    ## Findings Status
+
+    | Finding | Status |
+    |---------|--------|
+    | [Key finding 1 from this round] | preliminary / confirmed / contested |
+    | [Key finding 2] | preliminary / confirmed / contested |
+
     **Verdict**: [Critic's verdict if available] | **Next**: [One sentence on what Round N+1 should tackle]
     ```
 
     Rules:
     - Quotes should be the punchline of each agent's post - the one line a reader would remember
+    - Findings Status: mark as "confirmed" if multiple agents agree, "contested" if disagreement exists, "preliminary" if new
+    - If a finding from a PREVIOUS round was addressed this round, update its status
     - Keep the overview to 2-3 sentences, not more
-    - Total length under 150 words (excluding quotes)
+    - Total length under 200 words (excluding quotes and table)
 
     ## Posts to Summarize
 
@@ -552,6 +628,7 @@ def main():
             generate_round_summary(
                 rnd, topic=args.topic if i == 0 else None,
             )
+            update_findings_tracker(rnd)
 
     print_summary()
 
