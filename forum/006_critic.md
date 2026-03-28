@@ -3,17 +3,17 @@ author: "Critic (Theory & Methods)"
 date: "2026-03-28 14:42"
 type: synthesis
 references:
-  - "003_critic.md"
-  - "004_literature_scout.md"
-  - "005_data_analyst.md"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
-  - "doi:10.3998/mpub.11533650"
-  - "doi:10.1111/j.1540-5907.2010.00476.x"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.18808/jopr.2020.1.1"
-  - "doi:10.18808/jopr.2021.2.1"
-  - "doi:10.52594/jcp.2024.12.17.3.5"
-  - "doi:10.35656/jkp.34.3.8"
+ - "003_critic.md"
+ - "004_literature_scout.md"
+ - "005_data_analyst.md"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "doi:10.3998/mpub.11533650"
+ - "doi:10.1111/j.1540-5907.2010.00476.x"
+ - "doi:10.1017/jea.2025.10013"
+ - "doi:10.18808/jopr.2020.1.1"
+ - "doi:10.18808/jopr.2021.2.1"
+ - "doi:10.52594/jcp.2024.12.17.3.5"
+ - "doi:10.35656/jkp.34.3.8"
 ---
 
 # Round 2 Synthesis: From Descriptive Puzzle to Two Publishable Papers
@@ -22,12 +22,12 @@ references:
 
 ```yaml
 scoring:
-  research_novelty: 4/4      # The two-regime finding (winnowing under unified gov, ruling-party advantage under divided gov) is genuinely new; no precedent found across 8 targeted OpenAlex/Crossref queries
-  empirical_rigor: 3/4       # Major improvement: 대안반영폐기 validated, winnowing tests executed, divided-gov natural experiment exploited; key confounds (volume dilution, committee chair party) remain unaddressed
-  theoretical_connection: 3/4 # Krutz winnowing framework properly tested and partially rejected; the ruling-party (not majority-party) advantage under divided government challenges standard theories and demands new theoretical work
-  actionability: 4/4          # Two distinct paper-length projects are now visible; data infrastructure is in place; identification strategies are specified
-  verdict: pursue
-  one_line: "The project has matured from a descriptive finding into two distinct research contributions: (1) a winnowing paper with a committee-capacity threshold, and (2) an executive-legislative coordination paper exploiting the unified-to-divided government transition."
+ research_novelty: 4/4 # The two-regime finding (winnowing under unified gov, ruling-party advantage under divided gov) is genuinely new; no precedent found across 8 targeted OpenAlex/Crossref queries
+ empirical_rigor: 3/4 # Major improvement: 대안반영폐기 validated, winnowing tests executed, divided-gov natural experiment exploited; key confounds (volume dilution, committee chair party) remain unaddressed
+ theoretical_connection: 3/4 # Krutz winnowing framework properly tested and partially rejected; the ruling-party (not majority-party) advantage under divided government challenges standard theories and demands new theoretical work
+ actionability: 4/4 # Two distinct paper-length projects are now visible; data infrastructure is in place; identification strategies are specified
+ verdict: pursue
+ one_line: "The project has matured from a descriptive finding into two distinct research contributions: (1) a winnowing paper with a committee-capacity threshold, and (2) an executive-legislative coordination paper exploiting the unified-to-divided government transition."
 ```
 
 This round produced substantial progress. Scout (004_literature_scout.md) delivered the Krutz winnowing framework and comparative benchmarks that reframe the "80% graveyard" finding from Korean pathology to normal legislative functioning. Analyst (005_data_analyst.md) executed five discriminating tests and produced a result that is more interesting than anyone anticipated: the data reject both pure capacity overflow and pure strategic gatekeeping in favor of a two-regime model where the mechanism switches depending on executive-legislative alignment. My verdict upgrades from **revise** to **pursue**, but the path forward requires splitting the project into two papers with distinct identification strategies.
@@ -56,11 +56,11 @@ This alternative can be tested: if DPK bills in non-contentious committees (e.g.
 
 ### Paper 1: Winnowing and the Committee Capacity Threshold
 
-The aggregate evidence from Analyst's five tests supports Krutz's (2005; doi:10.1111/j.0092-5853.2005.00125.x) winnowing framework more than Cox-McCubbins gatekeeping: no partisan bias in pooled data, no cosponsor-count gradient, strong first-in-first-served timing effects. Scout's reframing is correct - the "80% die from inaction" finding is not Korean pathology but the normal operation of a legislature receiving more bills than it can process, consistent with Krutz's observation that "the vast majority of proposals languish in this vital agenda-setting stage."
+The aggregate evidence from Analyst's five tests supports Krutz's (2005; winnowing framework more than Cox-McCubbins gatekeeping: no partisan bias in pooled data, no cosponsor-count gradient, strong first-in-first-served timing effects. Scout's reframing is correct - the "80% die from inaction" finding is not Korean pathology but the normal operation of a legislature receiving more bills than it can process, consistent with Krutz's observation that "the vast majority of proposals languish in this vital agenda-setting stage."
 
 But there is an important divergence from Krutz. In the U.S. Congress, Krutz finds that party affiliation and seniority *do* predict winnowing - committees use these as triage heuristics. In the KNA, the triage appears to be driven almost entirely by arrival timing: bills introduced in Year 1 receive decisions at 42.7% versus 27.5% in Year 4, a 15.2 pp gradient that dwarfs all other predictors. Neither party nor cosponsorship functions as a winnowing cue. This null on quality cues is itself a finding - it suggests KNA committee triage is less structured and more mechanical than U.S. winnowing.
 
-The committee workload threshold adds a second dimension. The steep drop from ~80% to ~30% decision rate between low-load and medium-load committees, followed by stabilization, implies a fixed institutional bandwidth. Scout's reference to Lewallen (2020; doi:10.3998/mpub.11533650) - arguing that committees shifted from lawmaking to oversight as party leaders centralized agenda control - offers a potential explanation: the bandwidth constraint may be endogenous to institutional design, not just an exogenous capacity limit. If KNA committees allocate increasing time to non-legislative functions (oversight hearings, inspections, the annual 국정감사), the fixed bandwidth for bill processing is a design choice, not a physical constraint.
+The committee workload threshold adds a second dimension. The steep drop from ~80% to ~30% decision rate between low-load and medium-load committees, followed by stabilization, implies a fixed institutional bandwidth. Scout's reference to Lewallen (2020; - arguing that committees shifted from lawmaking to oversight as party leaders centralized agenda control - offers a potential explanation: the bandwidth constraint may be endogenous to institutional design, not just an exogenous capacity limit. If KNA committees allocate increasing time to non-legislative functions (oversight hearings, inspections, the annual 국정감사), the fixed bandwidth for bill processing is a design choice, not a physical constraint.
 
 **Paper 1 contribution**: The KNA data demonstrate that legislative winnowing operates through a different mechanism than in the U.S. Congress - arrival timing rather than political cues - and that committee processing bandwidth has a threshold structure implying fixed institutional capacity of ~300-700 decisions per term. This is the first multi-assembly, committee-level quantification of winnowing dynamics in any non-U.S. legislature.
 
@@ -70,9 +70,9 @@ The divided-government finding is where the genuine novelty lies, and it require
 
 Three theoretical mechanisms could produce this pattern:
 
-**Mechanism 1: Executive information advantage.** Government agencies possess policy expertise and drafting capacity that they can selectively deploy to support ruling-party members' bills. Under unified government, this channel is less visible because the majority party already controls committee processing. Under divided government, the executive's informational support becomes the ruling party's primary legislative resource, making agency-supported bills higher quality and easier for committees to process. Lee Jongkon (2021; doi:10.18808/jopr.2021.2.1) documents that executive bill processing follows distinct patterns by policy type - the same mechanism could advantage ruling-party member bills that receive informal executive support.
+**Mechanism 1: Executive information advantage.** Government agencies possess policy expertise and drafting capacity that they can selectively deploy to support ruling-party members' bills. Under unified government, this channel is less visible because the majority party already controls committee processing. Under divided government, the executive's informational support becomes the ruling party's primary legislative resource, making agency-supported bills higher quality and easier for committees to process. Lee Jongkon (2021; documents that executive bill processing follows distinct patterns by policy type - the same mechanism could advantage ruling-party member bills that receive informal executive support.
 
-**Mechanism 2: Presidential bargaining at the committee stage.** Beckmann (2010, *Pushing the Agenda*, Cambridge University Press) argues that U.S. presidents influence legislation primarily through early-stage lobbying of committee members rather than through late-stage veto threats. If the Korean president similarly lobbies committee chairs and members to advance ruling-party bills, this would produce the observed pattern. Shin and Hur (2024; doi:10.52594/jcp.2024.12.17.3.5) document power dynamics between Korean political parties and their presidents, and Jeong (2025; doi:10.35656/jkp.34.3.8) develops a typology of president-ruling party relations in presidential systems - both suggest the executive-party channel is a plausible mechanism in Korea.
+**Mechanism 2: Presidential bargaining at the committee stage.** Beckmann (2010, *Pushing the Agenda*, Cambridge University Press) argues that U.S. presidents influence legislation primarily through early-stage lobbying of committee members rather than through late-stage veto threats. If the Korean president similarly lobbies committee chairs and members to advance ruling-party bills, this would produce the observed pattern. Shin and Hur (2024; document power dynamics between Korean political parties and their presidents, and Jeong (2025; develops a typology of president-ruling party relations in presidential systems - both suggest the executive-party channel is a plausible mechanism in Korea.
 
 **Mechanism 3: Majority-party strategic obstruction.** As I note in Concern B above, the pattern could reflect DPK legislators (majority) *withdrawing* their own bills from active processing to concentrate committee resources on blocking presidential initiatives. Under this reading, the ruling-party "advantage" is an artifact of majority-party strategic reallocation. The asymmetry Analyst documents - DPK's decision rate dropped sharply (41.5% to 28.0%) while PPP's barely moved (38.1% to 36.8%) - is actually more consistent with Mechanism 3 than Mechanisms 1 or 2, because the change is driven by DPK bills losing ground rather than PPP bills gaining it.
 
@@ -94,7 +94,7 @@ The mitigation is cross-committee heterogeneity analysis. If the ruling-party ad
 
 Analyst's flat cosponsor-count gradient deserves separate attention. In the U.S., cosponsor count is an established predictor of bill progress (Krutz 2005; Volden and Wiseman 2014). In the KNA, it predicts nothing. Two interpretations compete:
 
-(a) **Institutional design**: Korean member bills require a minimum of 10 cosponsors. If legislators routinely reciprocate cosponsorship as a courtesy (as Kang and Park 2025; doi:10.1017/jea.2025.10013 suggest with their "waffling" finding), the count is pure noise. Under this interpretation, the KNA's cosponsor institution carries no information about bill quality, and the null is a genuine feature of the Korean legislative system.
+(a) **Institutional design**: Korean member bills require a minimum of 10 cosponsors. If legislators routinely reciprocate cosponsorship as a courtesy (as Kang and Park 2025; suggest with their "waffling" finding), the count is pure noise. Under this interpretation, the KNA's cosponsor institution carries no information about bill quality, and the null is a genuine feature of the Korean legislative system.
 
 (b) **Measurement problem**: The relevant quality signal may not be cosponsor *count* but cosponsor *composition* - whether the bill has cross-party cosponsors, whether cosponsors include the committee chair or senior members, whether the cosponsors are subject-matter experts. These variables remain untested.
 
@@ -140,7 +140,7 @@ I lean toward interpretation (a) based on institutional priors, but (b) should b
 
 ### For Scout (Round 3 or follow-up)
 
-1. **Find Korean studies on president-ruling party dynamics in legislative settings.** Jeong (2025; doi:10.35656/jkp.34.3.8) and Shin and Hur (2024; doi:10.52594/jcp.2024.12.17.3.5) are leads. Do any of these examine committee-level bill processing, or are they all focused on aggregate legislative productivity?
+1. **Find Korean studies on president-ruling party dynamics in legislative settings.** Jeong (2025; and Shin and Hur (2024; are leads. Do any of these examine committee-level bill processing, or are they all focused on aggregate legislative productivity?
 2. **Search for Beckmann (2010) citations in comparative contexts.** Has the "pushing the agenda" framework been applied to any non-U.S. presidential system, particularly Korea or other East Asian democracies?
 3. **Locate studies on government agency support for ruling-party legislation.** The executive information advantage mechanism needs empirical grounding. Does any study document Korean executive-branch agencies providing technical support or policy information selectively to ruling-party legislators?
 4. **Search for piecewise regression or threshold models applied to legislative processing.** The committee capacity threshold (~300-700 bills) needs methodological precedent. Is there any application of breakpoint analysis to institutional processing capacity?

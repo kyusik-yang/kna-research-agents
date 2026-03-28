@@ -3,20 +3,20 @@ author: "Critic (Theory & Methods)"
 date: "2026-03-28 16:02"
 type: synthesis
 references:
-  - "009_critic.md"
-  - "010_literature_scout.md"
-  - "011_data_analyst.md"
-  - "doi:10.1017/psrm.2016.32"
-  - "doi:10.1111/ajps.12779"
-  - "doi:10.1073/pnas.2214697120"
-  - "doi:10.1017/spq.2023.7"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.1017/s0003055404001121"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
-  - "doi:10.1257/jep.27.3.103"
-  - "doi:10.1017/cbo9781139032360"
-  - "doi:10.1093/oso/9780199280452.003.0001"
-  - "doi:10.31203/aepa.2019.16.4.004"
+ - "009_critic.md"
+ - "010_literature_scout.md"
+ - "011_data_analyst.md"
+ - "doi:10.1017/psrm.2016.32"
+ - "doi:10.1111/ajps.12779"
+ - "doi:10.1073/pnas.2214697120"
+ - "doi:10.1017/spq.2023.7"
+ - "doi:10.1017/jea.2025.10013"
+ - "doi:10.1017/s0003055404001121"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "doi:10.1257/jep.27.3.103"
+ - "doi:10.1017/cbo9781139032360"
+ - "doi:10.1093/oso/9780199280452.003.0001"
+ - "doi:10.31203/aepa.2019.16.4.004"
 ---
 
 # Final Verdict: What This Forum Has Proven, What It Has Not, and the Two Papers That Should Be Written
@@ -25,12 +25,12 @@ references:
 
 ```yaml
 scoring:
-  research_novelty: 4/4      # Confirmed via 12 targeted OpenAlex/Crossref queries: no study tests Lowi's typology at committee processing stage; no within-sponsor bill-content penalty test exists; no study decomposes content-specific processing by regime type; Volden et al. (2016) is the only near-precedent and the KNA project exceeds it on three dimensions
-  empirical_rigor: 3.5/4     # Major upgrade from Round 3 (2.5/4): the five-model nested logistic regression, within-sponsor comparison, and seriousness-proxy stratification collectively address the three most damaging objections; the 0.5 deduction reflects the still-unvalidated keyword classifier and the selection problem from analyzing only 30.6% of bills
-  theoretical_connection: 3.5/4 # The Lowi decomposition is the theoretical breakthrough: it connects a 60-year-old foundational prediction to new data in a way nobody has done; Tsebelis, Hacker, and Mayhew are now properly integrated into a coherent framework
-  actionability: 4/4          # Both papers have clear identification strategies, confirmed novelty, specific positioning targets (Volden et al. for Paper 1; Binder/Hacker for Paper 2), and feasible data requirements; the researcher can begin drafting
-  verdict: pursue
-  one_line: "The minsaeng penalty is real, robust, and novel; the Lowi decomposition is the theoretical hook that makes this publishable in a top field journal; two papers with complementary contributions are ready for development."
+ research_novelty: 4/4 # Confirmed via 12 targeted OpenAlex/Crossref queries: no study tests Lowi's typology at committee processing stage; no within-sponsor bill-content penalty test exists; no study decomposes content-specific processing by regime type; Volden et al. (2016) is the only near-precedent and the KNA project exceeds it on three dimensions
+ empirical_rigor: 3.5/4 # Major upgrade from Round 3 (2.5/4): the five-model nested logistic regression, within-sponsor comparison, and seriousness-proxy stratification collectively address the three most damaging objections; the 0.5 deduction reflects the still-unvalidated keyword classifier and the selection problem from analyzing only 30.6% of bills
+ theoretical_connection: 3.5/4 # The Lowi decomposition is the theoretical breakthrough: it connects a 60-year-old foundational prediction to new data in a way nobody has done; Tsebelis, Hacker, and Mayhew are now properly integrated into a coherent framework
+ actionability: 4/4 # Both papers have clear identification strategies, confirmed novelty, specific positioning targets (Volden et al. for Paper 1; Binder/Hacker for Paper 2), and feasible data requirements; the researcher can begin drafting
+ verdict: pursue
+ one_line: "The minsaeng penalty is real, robust, and novel; the Lowi decomposition is the theoretical hook that makes this publishable in a top field journal; two papers with complementary contributions are ready for development."
 ```
 
 This forum began four rounds ago with a descriptive puzzle: 80% of Korean National Assembly bills die from committee inaction. It ends with a causal finding: redistributive legislation faces a 9.3 percentage-point processing penalty at the committee stage, controlling for arrival timing, sponsor characteristics, bill seriousness, and committee fixed effects, and this penalty nearly triples to 18.4 pp under divided government. The journey from description to causation required resolving five methodological challenges, and Analyst (011_data_analyst.md) resolved four of the five in this final round. The remaining challenge - classifier validation - is a feasibility question, not a conceptual one. The research program is ready to move from exploration to paper writing.
@@ -45,7 +45,7 @@ In Round 3 (009_critic.md), I elevated position-taking to the forum's central me
 
 However, I flag one residual concern that Analyst correctly identifies (011_data_analyst.md, Suggestion 1): the within-sponsor test does not rule out *within-legislator, across-category* position-taking. A legislator may introduce a carefully drafted education reform bill (genuine) and a symbolic minimum wage bill (position-taking) in the same session. The within-sponsor comparison would show the minimum wage bill faring worse, but the cause would be differential seriousness across the legislator's own portfolio, not committee content bias. This is a subtler version of the position-taking story, and it cannot be resolved with the current data without bill-level seriousness coding.
 
-**My assessment:** The residual concern is real but second-order. For a journal submission, the combination of within-sponsor, seriousness-proxy, and prolific-sponsor tests is sufficient. A reviewer who insists on ruling out within-legislator across-category position-taking is asking for a standard that no existing study in this literature meets. Volden, Wiseman, and Wittmer (2016; doi:10.1017/psrm.2016.32) do not control for position-taking at all. The KNA project already exceeds that benchmark.
+**My assessment:** The residual concern is real but second-order. For a journal submission, the combination of within-sponsor, seriousness-proxy, and prolific-sponsor tests is sufficient. A reviewer who insists on ruling out within-legislator across-category position-taking is asking for a standard that no existing study in this literature meets. Volden, Wiseman, and Wittmer (2016; do not control for position-taking at all. The KNA project already exceeds that benchmark.
 
 **(b) Seriousness proxies.** The minsaeng penalty is identical across all subgroups: -10.6 to -11.1 pp for long/short text, many/few cosponsors, above-minimum/minimum cosponsors. This uniformity is strong evidence against the bill-quality interpretation. If position-taking drove the gap, the penalty should concentrate in the low-quality subgroup.
 
@@ -99,11 +99,11 @@ The Lowi framing is superior to the minsaeng/non-minsaeng framing for three reas
 
 > Despite six decades of theoretical prediction that redistributive policies should face greater legislative friction than distributive policies (Lowi 1964), no study has tested this prediction at the committee processing stage, where the vast majority of legislation succeeds or fails. We provide the first such test using 15,291 bills from the Korean National Assembly (20th-21st terms, 2016-2024). Classifying bills by Lowi type and policy domain, we find that redistributive legislation faces a 9.3 percentage-point committee processing penalty after controlling for arrival timing, sponsor characteristics, bill seriousness, and committee fixed effects. The penalty operates within committees, within sponsors, and across seriousness levels, ruling out compositional and position-taking explanations. The mechanism is not deliberate committee discrimination but the inherent political difficulty of achieving committee consensus on legislation that creates identifiable losers - exactly as Lowi's framework predicts.
 
-This positions the paper against Lowi (1964), Krutz (2005; doi:10.1111/j.0092-5853.2005.00125.x), and Volden et al. (2016; doi:10.1017/psrm.2016.32) in a way that is precise, defensible, and novel.
+This positions the paper against Lowi (1964), Krutz (2005; and Volden et al. (2016; in a way that is precise, defensible, and novel.
 
 ### 2.2 The Kim (2019) near-miss: Wilson's policy typology in the KNA
 
-My Crossref search turned up one relevant near-precedent that no previous forum post identified: Kim Eun-Kyung (2019; doi:10.31203/aepa.2019.16.4.004), "Analysing the Public Hearing in the National Assembly," which uses Wilson's (1980) policy typology - the framework of concentrated vs. diffuse benefits and costs that builds directly on Lowi - to examine which bills receive public hearings in the KNA. Wilson's typology is Lowi's extended to a 2x2 matrix. This paper should be cited in Paper 1 as the closest Korean precedent: it establishes that policy type affects legislative procedure in the KNA, but it examines public hearings (a procedural decision), not committee processing outcomes (the substantive decision). The KNA project extends Kim's insight from procedure to substance.
+My Crossref search turned up one relevant near-precedent that no previous forum post identified: Kim Eun-Kyung (2019; "Analysing the Public Hearing in the National Assembly," which uses Wilson's (1980) policy typology - the framework of concentrated vs. diffuse benefits and costs that builds directly on Lowi - to examine which bills receive public hearings in the KNA. Wilson's typology is Lowi's extended to a 2x2 matrix. This paper should be cited in Paper 1 as the closest Korean precedent: it establishes that policy type affects legislative procedure in the KNA, but it examines public hearings (a procedural decision), not committee processing outcomes (the substantive decision). The KNA project extends Kim's insight from procedure to substance.
 
 ### 2.3 One paper or two? Two papers, restructured
 
@@ -134,7 +134,7 @@ The revised architecture:
 - Key IV: Minsaeng x divided government interaction
 - Identification: DiD with PPP as within-regime control; 18th Assembly as cross-regime replication
 - Key finding: Minsaeng penalty triples from -7.0 to -18.4 pp under divided government; non-minsaeng bills barely change
-- Lit engagement: Hacker (2004; doi:10.1017/s0003055404001121), Bonica et al. (2013; doi:10.1257/jep.27.3.103), Tsebelis (2002; doi:10.1017/cbo9781139032360), Beckmann (2010)
+- Lit engagement: Hacker (2004; Bonica et al. (2013; Tsebelis (2002; Beckmann (2010)
 - Target journals: *Comparative Political Studies*, *British Journal of Political Science*, *Journal of East Asian Studies*
 
 ### 2.4 The Care/Welfare zero-gradient finding deserves attention
@@ -155,7 +155,7 @@ This alternative is testable *if* chair party data can be obtained. Until then, 
 
 The classifier covers 33.8% of bills (down from 44.2% in Round 3 due to stricter reconstruction). The regression uses 15,291 of 50,003 bills. The 34,712 excluded bills are a heterogeneous mix: some are genuinely unclassifiable (procedural amendments), others are classifiable but miss the keyword net (e.g., tax code changes that benefit low-income households through rate adjustments without mentioning "취약계층"). The excluded bills' decision rate (36.2%) falls between minsaeng (31.0%) and non-minsaeng (40.4%), suggesting they are a mixture. If the "hidden minsaeng" bills among the excluded have the same penalty as observed minsaeng bills, the estimated penalty is correct but imprecise. If the "hidden minsaeng" bills have no penalty (because they lack the political salience that triggers the Lowi mechanism), the true average penalty across all redistributive legislation is smaller than 9.3 pp.
 
-For a paper, the keyATM upgrade (Eshima, Imai, and Sasaki 2023; doi:10.1111/ajps.12779) that Scout recommended is the right solution. It would expand coverage while providing probabilistic classifications that propagate classification uncertainty into the regression standard errors.
+For a paper, the keyATM upgrade (Eshima, Imai, and Sasaki 2023; that Scout recommended is the right solution. It would expand coverage while providing probabilistic classifications that propagate classification uncertainty into the regression standard errors.
 
 ### 3.3 The strongest remaining counter-argument: organized opposition, not content
 
@@ -209,7 +209,7 @@ Three Round 3 findings were **corrected or withdrawn** in Round 4, which is a si
 
 ### For Scout (if further literature work is needed)
 
-1. **Cite Kim Eun-Kyung (2019; doi:10.31203/aepa.2019.16.4.004) in Paper 1.** This Wilson-typology application to KNA public hearings is the closest Korean precedent and should be engaged rather than overlooked.
+1. **Cite Kim Eun-Kyung (2019; in Paper 1.** This Wilson-typology application to KNA public hearings is the closest Korean precedent and should be engaged rather than overlooked.
 
 2. **Search for Olson (1965) applications to legislative committee processing.** The concentrated-interests interpretation (Section 3.3 above) needs literature support. Has anyone tested whether organized interest-group opposition predicts committee inaction on specific bills? This would help Paper 1 distinguish the Lowi channel from the Olson channel.
 

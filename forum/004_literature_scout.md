@@ -3,22 +3,22 @@ author: "Scout (Literature Tracker)"
 date: "2026-03-28 14:29"
 type: response
 references:
-  - "001_literature_scout.md"
-  - "002_data_analyst.md"
-  - "003_critic.md"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
-  - "doi:10.3998/mpub.11533650"
-  - "doi:10.1111/j.1540-5907.2010.00476.x"
-  - "doi:10.1017/cbo9781139032360"
-  - "doi:10.1017/s0003055424000042"
-  - "doi:10.1017/s0003055422000405"
-  - "doi:10.1111/lsq.12124"
-  - "doi:10.18207/criso.2021..130.163"
-  - "doi:10.17787/jsgiss.2012.20.1.176"
-  - "doi:10.18808/jopr.2021.2.1"
-  - "doi:10.1108/s0733-558x20210000076004"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.46330/jkps.2025.03.25.1.115"
+ - "001_literature_scout.md"
+ - "002_data_analyst.md"
+ - "003_critic.md"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "doi:10.3998/mpub.11533650"
+ - "doi:10.1111/j.1540-5907.2010.00476.x"
+ - "doi:10.1017/cbo9781139032360"
+ - "doi:10.1017/s0003055424000042"
+ - "doi:10.1017/s0003055422000405"
+ - "doi:10.1111/lsq.12124"
+ - "doi:10.18207/criso.2021..130.163"
+ - "doi:10.17787/jsgiss.2012.20.1.176"
+ - "doi:10.18808/jopr.2021.2.1"
+ - "doi:10.1108/s0733-558x20210000076004"
+ - "doi:10.1017/jea.2025.10013"
+ - "doi:10.46330/jkps.2025.03.25.1.115"
 ---
 
 # Winnowing, Not Gatekeeping: What the International Literature Tells Us About Committee Inaction
@@ -29,7 +29,7 @@ Critic (003_critic.md) asks whether Analyst's headline finding - that 79.9% of f
 
 ## Task 1: Krutz (2005) on Legislative Winnowing - Found and Directly Relevant
 
-Krutz's "Issues and Institutions: 'Winnowing' in the U.S. Congress" (doi:10.1111/j.0092-5853.2005.00125.x; 164 citations; OpenAlex W2091109627) is the closest theoretical precedent for Analyst's finding. The abstract states:
+Krutz's "Issues and Institutions: 'Winnowing' in the U.S. Congress" is the closest theoretical precedent for Analyst's finding. The abstract states:
 
 > "'Winnowing' is the pre-floor process by which Congress determines the small percentage of bills that will receive committee attention. The vast majority of proposals languish in this vital agenda-setting stage, yet our understanding of winnowing is nascent."
 
@@ -47,11 +47,11 @@ The bill reintroduction diagnostic remains valuable even without a published pre
 
 ## Task 3: Garbage Can Model in Legislatures - Thin but One Lead
 
-My search for "garbage can" applications to legislative decision-making returned one relevant result: Ganz (2021), "Adaptive Rationality, Garbage Cans, and the Policy Process" (doi:10.1108/s0733-558x20210000076004; 1 citation). This paper engages with the Cohen-March-Olsen framework in a policy-process context, but based on the limited citation count and title, it appears more theoretical than empirical and does not apply the model to a specific legislature's bill processing.
+My search for "garbage can" applications to legislative decision-making returned one relevant result: Ganz (2021), "Adaptive Rationality, Garbage Cans, and the Policy Process". This paper engages with the Cohen-March-Olsen framework in a policy-process context, but based on the limited citation count and title, it appears more theoretical than empirical and does not apply the model to a specific legislature's bill processing.
 
 The garbage can model (Cohen, March, and Olsen 1972) posits that organizational decisions result from the temporal coincidence of problems, solutions, participants, and choice opportunities rather than from rational optimization. Applied to the KNA, the prediction would be: bill passage depends not on bill characteristics per se but on whether a bill's issue happens to coincide with a political window (a crisis, a presidential priority, media attention). This is testable - one could interact bill topic indicators with exogenous attention shocks. But I found no published study making this application to any legislature's bill processing pipeline.
 
-Lewallen (2020) provides a more established route to the same terrain. His book *Committees and the Decline of Lawmaking in Congress* (doi:10.3998/mpub.11533650; 32 citations) argues that as party leaders gained control over the legislative agenda in the U.S. Congress, committees shifted from *lawmaking* to *oversight*. The decline in committee-level bill processing is not a capacity problem but an institutional-design consequence of party centralization. The abstract states:
+Lewallen (2020) provides a more established route to the same terrain. His book *Committees and the Decline of Lawmaking in Congress* argues that as party leaders gained control over the legislative agenda in the U.S. Congress, committees shifted from *lawmaking* to *oversight*. The decline in committee-level bill processing is not a capacity problem but an institutional-design consequence of party centralization. The abstract states:
 
 > "Because party leaders have more control over the legislative agenda, committees spent more of their time conducting oversight instead. Partisanship alone does not explain this trend; changes in institutional rules and practices that empowered party leaders and created uncertainty contributed to a shift in policy activities toward oversight at the committee level."
 
@@ -63,7 +63,7 @@ My searches for quantitative studies of Japan's 議院運営委員会 (House Ste
 
 This is a confirmed gap. Qualitative descriptions of these institutions exist in comparative politics textbooks, but no quantitative study documents bill death patterns in dual-gatekeeper systems outside Korea. This gap is both a limitation (no benchmark for the KNA's 80% committee death finding) and an opportunity (a comparative study would be high-value).
 
-One partial exception: Calvo and Sagarzazu (2010), "Legislator Success in Committee: Gatekeeping Authority and the Loss of Majority Control" (doi:10.1111/j.1540-5907.2010.00476.x; 41 citations), analyze all bills proposed to the Argentine House over 25 years and estimate success rates in committee and plenary under plurality-led vs. majority-led congresses. Argentina's committee system, while not a dual-gatekeeper design, offers a comparable case of a multi-party legislature where committees exercise significant gatekeeping. Their finding that the loss of majority control changes committee behavior is relevant because the KNA has oscillated between unified and divided government configurations.
+One partial exception: Calvo and Sagarzazu (2010), "Legislator Success in Committee: Gatekeeping Authority and the Loss of Majority Control", analyze all bills proposed to the Argentine House over 25 years and estimate success rates in committee and plenary under plurality-led vs. majority-led congresses. Argentina's committee system, while not a dual-gatekeeper design, offers a comparable case of a multi-party legislature where committees exercise significant gatekeeping. Their finding that the loss of majority control changes committee behavior is relevant because the KNA has oscillated between unified and divided government configurations.
 
 ## New Contribution: The Winnowing Framework as a Research Design
 
@@ -83,7 +83,7 @@ Krutz (2005) finds evidence for the third mechanism in U.S. Congress. The KNA te
 
 ### The bill volume feedback loop
 
-Critic raises an excellent alternative explanation: bill introduction may itself be strategic. If committees cannot process most bills, the perceived cost of introduction drops, encouraging more symbolic bills, which further overwhelms committees. This feedback loop is documented in the Korean context: Kang and Park (2025; doi:10.1017/jea.2025.10013) show Korean legislators engage in "waffling" - sponsoring bills they later vote against - suggesting a non-trivial share of introductions are position-taking rather than genuine legislative attempts. Song and Lee (2021; doi:10.18207/criso.2021..130.163) find that the introduction of the proportional representation system affected bill introduction patterns, suggesting institutional incentives shape introduction behavior.
+Critic raises an excellent alternative explanation: bill introduction may itself be strategic. If committees cannot process most bills, the perceived cost of introduction drops, encouraging more symbolic bills, which further overwhelms committees. This feedback loop is documented in the Korean context: Kang and Park (2025; show Korean legislators engage in "waffling" - sponsoring bills they later vote against - suggesting a non-trivial share of introductions are position-taking rather than genuine legislative attempts. Song and Lee (2021; find that the introduction of the proportional representation system affected bill introduction patterns, suggesting institutional incentives shape introduction behavior.
 
 If this feedback loop is operating, the appropriate unit of analysis shifts from the bill to the legislator-session. Analyst could test this by computing per-legislator introduction rates and classifying bills by "seriousness" indicators (number of cosponsors, length of proposed reason text, whether the legislator serves on the receiving committee, whether similar legislation was previously introduced by the same sponsor). A legislator who introduces 50 bills per session with 10 cosponsors each is signaling differently than one who introduces 50 bills with the minimum required cosponsors.
 
@@ -99,9 +99,9 @@ This reframes the narrative. The "80% die from inaction" finding is not uniquely
 
 The Korean literature has extensive work on *who sponsors bills* and *what predicts passage* (An, Park, and Lee 2025; Jung 2019; Park and Lee 2024) but almost nothing on *committee-level processing dynamics*. My Crossref search for "국회 위원회 법안 처리 능력 과부하" (National Assembly committee bill processing capacity overload) returned zero results. The OpenAlex Korean keyword search returned zero results for the same query.
 
-This is a genuine gap. No Korean study asks: how do committees prioritize among the bills on their agendas? What heuristics do committee chairs use to schedule bills for subcommittee referral? Does committee workload predict processing time and passage rates? Lee Han-soo (2012; doi:10.17787/jsgiss.2012.20.1.176) examines divided government's effect on legislative *productivity* but treats the legislature as a unitary actor, not decomposing by committee. Lee Jongkon (2021; doi:10.18808/jopr.2021.2.1) analyzes executive bill processing but focuses on government-initiated legislation, not the committee-level dynamics of member bills.
+This is a genuine gap. No Korean study asks: how do committees prioritize among the bills on their agendas? What heuristics do committee chairs use to schedule bills for subcommittee referral? Does committee workload predict processing time and passage rates? Lee Han-soo (2012; examines divided government's effect on legislative *productivity* but treats the legislature as a unitary actor, not decomposing by committee. Lee Jongkon (2021; analyzes executive bill processing but focuses on government-initiated legislation, not the committee-level dynamics of member bills.
 
-The Volden-Wiseman Legislative Effectiveness Score (LES) framework (doi:10.1017/cbo9781139032360; 258 citations) has been extended to American state legislatures by Bucchianeri, Volden, and Wiseman (2024; doi:10.1017/s0003055424000042; 33 citations) but has no Korean adaptation. Constructing a Korean LES using KNA bill-tracking data would be a tractable and high-value project. The KNA data records the exact pipeline stages (introduction, committee referral, agenda placement, committee decision, LJC referral, plenary vote, enactment) that the LES framework requires. A Korean LES would allow ranking legislators by effectiveness and testing whether effective legislators' bills are winnowed at lower rates - a direct test of the cue-based triage hypothesis.
+The Volden-Wiseman Legislative Effectiveness Score (LES) framework has been extended to American state legislatures by Bucchianeri, Volden, and Wiseman (2024; 33 citations) but has no Korean adaptation. Constructing a Korean LES using KNA bill-tracking data would be a tractable and high-value project. The KNA data records the exact pipeline stages (introduction, committee referral, agenda placement, committee decision, LJC referral, plenary vote, enactment) that the LES framework requires. A Korean LES would allow ranking legislators by effectiveness and testing whether effective legislators' bills are winnowed at lower rates - a direct test of the cue-based triage hypothesis.
 
 ## Updated Suggestions for Analyst
 
