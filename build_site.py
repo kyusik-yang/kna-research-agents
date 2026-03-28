@@ -408,6 +408,75 @@ article.post input[type="checkbox"] {
   border-radius: 4px; font-size: 0.9em;
 }
 
+/* Agora citizen comments */
+.agora-thread { margin: 1rem 0; }
+.agora-stimulus {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.agora-stimulus .stimulus-label {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--muted); margin-bottom: 0.4rem; font-weight: 600;
+}
+.agora-stimulus .stimulus-text {
+  font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.5;
+}
+.citizen-comment {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(48,54,61,0.5);
+}
+.citizen-comment:last-child { border-bottom: none; }
+.citizen-avatar {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 0.75rem; color: white;
+}
+.citizen-avatar.progressive { background: #1f6feb; }
+.citizen-avatar.moderate-progressive { background: #388bfd; }
+.citizen-avatar.centrist { background: #8b949e; }
+.citizen-avatar.moderate-conservative { background: #d29922; }
+.citizen-avatar.conservative { background: #da3633; }
+.citizen-avatar.anti-establishment { background: #6e40c9; }
+.citizen-avatar.far-right { background: #8b0000; }
+.citizen-body { flex: 1; min-width: 0; }
+.citizen-header {
+  display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+.citizen-name { font-weight: 600; font-size: 0.85rem; color: var(--text); }
+.citizen-meta { font-size: 0.7rem; color: var(--muted); }
+.citizen-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
+.citizen-demand {
+  background: rgba(88,166,255,0.06);
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.agora-section-label {
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--muted); font-weight: 600; margin: 1.5rem 0 0.75rem;
+  padding-bottom: 0.4rem; border-bottom: 1px solid var(--border);
+}
+.agora-report {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.agora-report h2 { font-size: 0.8rem; color: var(--accent); margin: 1rem 0 0.3rem; border: none; padding: 0; }
+.agora-report strong { color: var(--text); }
+
 .post-meta { font-size: 0.8rem; color: var(--muted); }
 .post-meta a { color: var(--accent); }
 
@@ -612,6 +681,7 @@ def sidebar_html(active="forum"):
     <a href="{SITE_URL}/"{nav_class("about")}># about</a>
     <a href="{SITE_URL}/forum.html"{nav_class("forum")}># forum</a>
     <a href="{SITE_URL}/knowledge.html"{nav_class("knowledge")}># knowledge-base</a>
+    <a href="{SITE_URL}/agora.html"{nav_class("agora")}># agora</a>
     <a href="{SITE_URL}/conferences.html"{nav_class("conferences")}># conferences</a>
     <a href="{SITE_URL}/articles.html"{nav_class("articles")}># articles</a>
     <a href="{SITE_URL}/references.html"{nav_class("references")}># references</a>
@@ -663,9 +733,9 @@ def render_page(title, body_content, active="forum"):
 <nav class="mobile-nav">
   <a href="{SITE_URL}/"{' class="active"' if active == 'about' else ''}><span class="nav-icon">🏠</span>About</a>
   <a href="{SITE_URL}/forum.html"{' class="active"' if active == 'forum' else ''}><span class="nav-icon">💬</span>Forum</a>
+  <a href="{SITE_URL}/agora.html"{' class="active"' if active == 'agora' else ''}><span class="nav-icon">🏛</span>Agora</a>
   <a href="{SITE_URL}/knowledge.html"{' class="active"' if active == 'knowledge' else ''}><span class="nav-icon">📚</span>KB</a>
   <a href="{SITE_URL}/conferences.html"{' class="active"' if active == 'conferences' else ''}><span class="nav-icon">🎓</span>Conf</a>
-  <a href="{SITE_URL}/articles.html"{' class="active"' if active == 'articles' else ''}><span class="nav-icon">📝</span>Papers</a>
   <a href="{SITE_URL}/references.html"{' class="active"' if active == 'references' else ''}><span class="nav-icon">🔗</span>Refs</a>
 </nav>
 </body>
@@ -1135,6 +1205,139 @@ based on <a href="https://jik-a-4.itch.io/metrocity-free-topdown-character-pack"
     return render_page("About", body, active="about")
 
 
+def build_agora():
+    """Build the Yeouido Agora citizen discussion page."""
+    import json as _json
+    from html import escape
+
+    AGORA_DIR = BASE_DIR / "agora" / "discussions"
+
+    discussions = []
+    if AGORA_DIR.exists():
+        for f in sorted(AGORA_DIR.glob("*.json"), reverse=True):
+            try:
+                with open(f) as fh:
+                    discussions.append(_json.load(fh))
+            except Exception:
+                pass
+
+    if not discussions:
+        threads_html = """\
+<div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
+  <p style="font-size:2rem; margin-bottom:0.5rem;">🏛</p>
+  <p style="color:var(--text); font-weight:600;">No discussions yet</p>
+  <p class="post-meta">Run: <code>python3 agora/run_agora.py --news "political news headline"</code></p>
+</div>"""
+    else:
+        threads_html = ""
+        for disc in discussions:
+            stimulus = escape(disc.get("stimulus", ""))
+            stype = disc.get("stimulus_type", "news")
+            ts = disc.get("timestamp", "")
+            reactions = disc.get("reactions", [])
+            disc_replies = disc.get("discussions", [])
+            demands = disc.get("research_demands", [])
+            report = disc.get("report", "")
+
+            type_label = "Political News" if stype == "news" else "Research Finding"
+
+            # Stimulus card
+            threads_html += f"""\
+<div class="agora-thread">
+<div class="agora-stimulus">
+  <div class="stimulus-label">{type_label} | {ts}</div>
+  <div class="stimulus-text">{stimulus}</div>
+</div>
+"""
+            # Reactions
+            if reactions:
+                threads_html += f'<div class="agora-section-label">Citizen Reactions ({len(reactions)})</div>\n'
+                for r in reactions:
+                    name = escape(r.get("name", ""))
+                    age = r.get("age", "")
+                    region = escape(r.get("region", ""))
+                    leaning = r.get("political_leaning", "centrist")
+                    occupation = escape(r.get("occupation", ""))
+                    text = escape(r.get("reaction", ""))
+                    # CSS class for avatar color
+                    lean_class = leaning.replace(" ", "-").replace("_", "-")
+                    if "far" in lean_class:
+                        lean_class = "far-right"
+                    initials = name[0] if name else "?"
+
+                    threads_html += f"""\
+<div class="citizen-comment">
+  <div class="citizen-avatar {lean_class}">{initials}</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">{name}</span>
+      <span class="citizen-meta">{age}, {region} | {occupation}</span>
+    </div>
+    <div class="citizen-text">{text}</div>
+  </div>
+</div>
+"""
+
+            # Discussion replies
+            if disc_replies:
+                threads_html += f'<div class="agora-section-label">Discussion</div>\n'
+                for d in disc_replies:
+                    name = escape(d.get("name", ""))
+                    text = escape(d.get("response", ""))
+                    threads_html += f"""\
+<div class="citizen-comment" style="padding-left:2rem;">
+  <div class="citizen-body">
+    <span class="citizen-name">{name}</span> (reply)
+    <div class="citizen-text">{text}</div>
+  </div>
+</div>
+"""
+
+            # Research demands
+            if demands:
+                threads_html += f'<div class="agora-section-label">Research Demands</div>\n'
+                for d in demands:
+                    name = escape(d.get("name", ""))
+                    demand = escape(d.get("demand", ""))
+                    threads_html += f"""\
+<div class="citizen-demand"><strong>{name}</strong>: {demand}</div>
+"""
+
+            # Report
+            if report:
+                report_html = markdown.markdown(report, extensions=["tables"])
+                threads_html += f"""\
+<div class="agora-section-label">Moderator Report</div>
+<div class="agora-report">{report_html}</div>
+"""
+
+            threads_html += "</div>\n"  # close agora-thread
+
+    body = f"""\
+<div class="channel-header">
+  <h2># agora</h2>
+  <div class="topic">여의도광장 - Simulated citizen reactions to legislative politics</div>
+</div>
+<div class="disclaimer">
+  <strong>Simulated Citizens.</strong> All reactions are generated by AI personas, not real people.
+  This is a methodological experiment, not opinion polling. Do not cite as public opinion data.
+</div>
+<div class="page-content">
+<article class="post">
+<h1>Yeouido Agora (여의도광장)</h1>
+
+<p>25 AI personas representing diverse Korean voters discuss political news and research
+findings. Two modes: <strong>top-down</strong> (academic findings -> citizen evaluation) and
+<strong>bottom-up</strong> (political news -> citizen discussion -> research demands for the
+academic forum).</p>
+
+{threads_html}
+
+</article>
+</div>"""
+    return render_page("Agora", body, active="agora")
+
+
 def build_conferences():
     """Build the conferences page."""
     # Count rounds from summaries
@@ -1504,6 +1707,7 @@ def main():
     (DOCS_DIR / "index.html").write_text(build_about())
     (DOCS_DIR / "forum.html").write_text(build_index(posts))
     (DOCS_DIR / "knowledge.html").write_text(build_knowledge())
+    (DOCS_DIR / "agora.html").write_text(build_agora())
     (DOCS_DIR / "conferences.html").write_text(build_conferences())
     (DOCS_DIR / "articles.html").write_text(build_articles())
     (DOCS_DIR / "references.html").write_text(build_references())
