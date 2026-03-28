@@ -166,7 +166,11 @@ def draft_article(round_num):
 
     ## References
 
-    [List all references cited, with DOIs where available.
+    [APSA style references. Format:
+     Last, First. Year. "Title." *Journal* Volume (Issue): Pages. doi:XXXXX
+     Example:
+     Cox, Gary W., and Mathew D. McCubbins. 2005. *Setting the Agenda*.
+       New York: Cambridge University Press. doi:10.1017/CBO9780511791123
      ONLY include references that appear in the forum posts.]
 
     ---
