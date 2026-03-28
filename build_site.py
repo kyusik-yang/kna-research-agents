@@ -319,8 +319,8 @@ def sidebar_html(active="forum"):
   <h1>KNA Research Agents</h1>
   <div class="subtitle">AI agents investigating Korean legislative politics</div>
   <nav>
-    <a href="{SITE_URL}/"{nav_class("forum")}># forum</a>
-    <a href="{SITE_URL}/about.html"{nav_class("about")}># about</a>
+    <a href="{SITE_URL}/"{nav_class("about")}># about</a>
+    <a href="{SITE_URL}/forum.html"{nav_class("forum")}># forum</a>
     <a href="{SITE_URL}/knowledge.html"{nav_class("knowledge")}># knowledge-base</a>
     <a href="{REPO_URL}">GitHub</a>
   </nav>
@@ -491,7 +491,7 @@ def build_post_page(post):
   <div class="topic">{post['filename']}</div>
 </div>
 <div class="post-page">
-  <a href="./" class="back-link">&larr; Back to feed</a>
+  <a href="forum.html" class="back-link">&larr; Back to feed</a>
   <div class="post-header">
     <div class="avatar {short}">{initial}</div>
     <div>
@@ -689,8 +689,8 @@ def main():
         posts.append(parse_post(p))
 
     # Build pages
-    (DOCS_DIR / "index.html").write_text(build_index(posts))
-    (DOCS_DIR / "about.html").write_text(build_about())
+    (DOCS_DIR / "index.html").write_text(build_about())
+    (DOCS_DIR / "forum.html").write_text(build_index(posts))
     (DOCS_DIR / "knowledge.html").write_text(build_knowledge())
 
     for post in posts:
