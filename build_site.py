@@ -778,7 +778,7 @@ def render_page(title, body_content, active="forum"):
   <a href="{SITE_URL}/"{' class="active"' if active == 'about' else ''}><span class="nav-icon">🏠</span>About</a>
   <a href="{SITE_URL}/forum.html"{' class="active"' if active == 'forum' else ''}><span class="nav-icon">💬</span>Forum</a>
   <a href="{SITE_URL}/agora.html"{' class="active"' if active == 'agora' else ''}><span class="nav-icon">🏛</span>Agora</a>
-  <a href="{SITE_URL}/knowledge.html"{' class="active"' if active == 'knowledge' else ''}><span class="nav-icon">📚</span>KB</a>
+  <a href="{SITE_URL}/articles.html"{' class="active"' if active == 'articles' else ''}><span class="nav-icon">📝</span>Papers</a>
   <a href="{SITE_URL}/conferences.html"{' class="active"' if active == 'conferences' else ''}><span class="nav-icon">🎓</span>Conf</a>
   <a href="{SITE_URL}/references.html"{' class="active"' if active == 'references' else ''}><span class="nav-icon">🔗</span>Refs</a>
 </nav>
