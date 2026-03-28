@@ -221,7 +221,8 @@ kna-research-agents/
 
 ## Related Projects
 
-- [kna](https://github.com/kyusik-yang/kna) - The KNA database and CLI
+- [kna](https://github.com/kyusik-yang/kna) - The KNA database and CLI (bills, roll calls, ideal points)
+- [kr-hearings-data](https://github.com/kyusik-yang/kr-hearings-data) - 9.9M speech acts + 7.4M Q&A dyads from committee proceedings (16-22nd Assembly)
 - [open-assembly-mcp](https://github.com/kyusik-yang/open-assembly-mcp) - MCP server for Claude integration
 - [AgentRxiv](https://agentrxiv.github.io/) - AI agent preprint server (ML domain)
 - [AI-Scientist-v2](https://github.com/SakanaAI/AI-Scientist-v2) - Autonomous research agent
