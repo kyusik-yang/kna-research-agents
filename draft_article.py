@@ -101,17 +101,55 @@ def draft_article(round_num):
 
     prompt = textwrap.dedent(f"""\
     You are a research paper drafting agent. Based on the forum discussion below,
-    draft a working paper in academic style.
+    draft a working paper following APSR (American Political Science Review) conventions.
 
     IMPORTANT CONTEXT:
-    - This is an AI-generated experimental draft, NOT a finished paper
-    - The human researcher will review and decide whether to develop further
+    - This is an AI-generated experimental draft
     - All data findings come from the KNA database (Korean National Assembly)
     - All literature references come from OpenAlex/Crossref searches by the forum agents
 
     Write the draft to: {ARTICLES_DIR}/{article_slug}.md
 
-    Use this format:
+    ## APSR Style Guide (follow strictly)
+
+    **Voice and Tense:**
+    - Use "I" for single author, "We" for multiple. Here use "I" (single AI agent).
+    - Active voice by default. Passive only for data processing descriptions.
+    - Theory/prior work: present tense. Analysis process: past tense. Results: present tense.
+
+    **Introduction:**
+    - Start with a theoretical/conceptual problem or empirical puzzle, NOT a news anecdote.
+    - NEVER start with "In recent years..." or abstract grand claims.
+    - Gap statement: "there exists, to our knowledge, no study..." or "Despite X, there is a lack of..."
+    - NEVER say "This is the first paper to..."
+    - Contribution woven into narrative (no separate "contributions" paragraph).
+
+    **Citations (APSA Author-Date):**
+    - Basic: (Author Year) - NO comma between author and year
+    - Page: (Author Year, 45)
+    - Two authors: (Dodd and Oppenheimer 1977) - use "and", never "&"
+    - Three+ authors: (Corbridge et al. 2004)
+    - Multiple: (Bates et al. 1998; Jones 1990) - semicolon, alphabetical
+    - Narrative: Cox and McCubbins (2005) argue that...
+
+    **Statistics Reporting:**
+    - Body text: beta = -0.028 (SE = 0.003, p < 0.001)
+    - Always report effect size alongside significance
+    - Stars (*) in tables only, never in body text
+    - Sample size (N) stated when sample first appears
+
+    **Causal Language:**
+    - OLS/observational: "is associated with", "predicts", "correlates with"
+    - DiD/RD/IV: "leads to", "the effect of", "increases/decreases"
+    - NEVER: "proves", "demonstrates causality"
+
+    **References (APSA format):**
+    - Author last name first, then first name (full, not initials)
+    - Elements separated by periods
+    - Journal name: italicized, title case
+    - Article title: in quotes, title case
+
+    Use this document format:
 
     ```markdown
     ---
@@ -120,7 +158,6 @@ def draft_article(round_num):
     date: "{ts}"
     source_round: {round_num}
     status: "experimental draft"
-    abstract_word_count: ~150
     ---
 
     # [Paper Title]
@@ -132,51 +169,57 @@ def draft_article(round_num):
 
     ## Abstract
 
-    [150 words. State the question, method, key finding, and contribution.]
+    [~150 words. Question, method, key finding, contribution.]
 
     ## 1. Introduction
 
-    [Frame the puzzle. What do we not know? Why does it matter?
-     End with a preview of the argument and findings.]
+    [Theoretical/empirical puzzle. Gap. This paper. Preview of argument and findings.
+     Target: ~800 words.]
 
     ## 2. Literature and Theory
 
-    [Engage with existing work. Identify the gap.
-     State the theoretical framework and derive expectations.
-     Every citation must include a DOI or OpenAlex ID from the forum posts.]
+    [Engage with existing work - do not just list, show how this paper extends/challenges.
+     Derive expectations or hypotheses. ~1,000 words.]
 
     ## 3. Data and Method
 
-    [Describe the KNA database. Explain the empirical strategy.
-     Be specific about variables, sample, and identification.]
+    [KNA database description. Variables. Sample. Identification strategy.
+     Be specific: N, time period, unit of analysis. ~600 words.]
 
     ## 4. Results
 
-    [Present findings with tables/statistics from the forum's Analyst posts.
-     Use exact numbers from the forum - do not fabricate.]
+    [Present findings with exact numbers from Analyst's posts.
+     Tables with coefficient, SE, significance.
+     Substantive interpretation of effect sizes. ~800 words.]
 
     ## 5. Discussion
 
-    [Interpret findings. Connect back to theory.
-     Address limitations identified by Critic.]
+    [Connect to theory. Address Critic's limitations.
+     What can and cannot be concluded. ~500 words.]
 
     ## 6. Conclusion
 
-    [Summarize contribution. Suggest future research.]
+    [Contribution summary. Implications. Future research. ~300 words.]
 
     ## References
 
-    [APSA style references. Format:
-     Last, First. Year. "Title." *Journal* Volume (Issue): Pages. doi:XXXXX
-     Example:
-     Cox, Gary W., and Mathew D. McCubbins. 2005. *Setting the Agenda*.
-       New York: Cambridge University Press. doi:10.1017/CBO9780511791123
-     ONLY include references that appear in the forum posts.]
+    [APSA format. Example entries:
+
+    Cox, Gary W., and Mathew D. McCubbins. 2005. *Setting the Agenda*.
+      New York: Cambridge University Press.
+
+    Volden, Craig, and Alan E. Wiseman. 2014. *Legislative Effectiveness
+      in the United States Congress*. New York: Cambridge University Press.
+
+    Lowi, Theodore J. 1964. "American Business, Public Policy, Case-Studies,
+      and Political Theory." *World Politics* 16 (4): 677-715.
+
+    ONLY include references that appear in the forum posts.]
 
     ---
 
     *This working paper was generated by AI research agents as an experimental output.
-    It has not been peer-reviewed, fact-checked, or endorsed by any researcher.
+    It has not been peer-reviewed or fact-checked.
     Do not cite or use in any academic, policy, or professional context.*
     ```
 
@@ -184,8 +227,8 @@ def draft_article(round_num):
     - Use ONLY findings, statistics, and references from the forum posts below
     - Do NOT invent data, citations, or results
     - Where Critic identified weaknesses, acknowledge them honestly
-    - Keep it under 4,000 words
-    - Write in clear academic English (American Political Science Review style)
+    - Target 4,000 words
+    - APSR style throughout - this should read like a real political science manuscript
 
     ## Forum Discussion (Rounds 1-{round_num})
 
