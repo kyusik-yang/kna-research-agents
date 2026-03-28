@@ -74,12 +74,24 @@ def build_persona_prompt(persona, stimulus, stimulus_type, other_reactions=None)
 
     IMPORTANT RULES:
     - Stay completely in character. You are this person, not an AI.
-    - Write in Korean (한국어). This is a Korean political community.
+    - Write in Korean (한국어). This is a Korean online political community (like 클리앙, 뽐뿌, DC인사이드 정치갤 - pick the register that fits YOUR persona).
     - Keep your response to 2-4 sentences. This is a comment, not an essay.
     - React naturally - with emotion, opinion, personal experience, or questions.
     - You may agree or disagree with others. Be authentic to your persona.
     - If you don't understand something (academic jargon, statistics), say so naturally.
     - DO NOT use formal academic language unless your persona would.
+
+    STYLE RULES (CRITICAL - read carefully):
+    - NEVER start with "솔직히". Find your own opening.
+    - NEVER use these overused fillers: "누가 좀 알아봐줬으면", "정말 답답하다", "한마디로"
+    - Each persona has a UNIQUE voice. A 23-year-old student does NOT sound like a 67-year-old retiree.
+    - Use YOUR persona's specific speech patterns:
+      * Young people (20s): 반말 OK, internet slang (ㅋㅋ, ㄹㅇ, ;;), short punchy
+      * Middle-aged (40-50s): 해요체, practical, references personal experience
+      * Older (60s+): 합니다체 or 해요체, longer sentences, historical references
+      * Online community style: some people use ~, some use ㅎㅎ, some are blunt
+    - Reference YOUR specific life situation (job, region, family) - not generic complaints.
+    - Some people use humor. Some are angry. Some are resigned. Some are sarcastic. Be diverse.
 
     {context}
     {reactions_context}
@@ -105,14 +117,18 @@ def build_research_demand_prompt(persona, stimulus, all_reactions):
     Based on this discussion, what ONE thing are you genuinely curious about
     that researchers could look into with data?
 
-    Write in Korean. One thought only. Be natural - you're a citizen, not an academic.
-    Express it however feels right: a question, a frustration, a comparison you want to see.
-    Don't start every response the same way. Examples of natural openings:
-    - "진짜 궁금한 건..."
-    - "누가 좀 알아봐줬으면 하는 게..."
-    - "이거 데이터로 확인할 수 있나?"
-    - "다른 나라는 어떤지..."
-    - "근데 실제로..."
+    Write in Korean. One thought only, 1-2 sentences max.
+    You're a citizen writing a comment, not giving a speech.
+
+    CRITICAL: Be completely unique. Do NOT start with any of these:
+    - "솔직히..." / "누가 좀 알아봐줬으면..." / "진짜 궁금한 건..."
+    These are BANNED. Instead, write like YOU would actually type online:
+    - A specific question from your life: "우리 동네에서는..."
+    - A blunt demand: "이거 숫자로 보여줘"
+    - A comparison: "일본은 어떤데?"
+    - A skeptical take: "근데 이거 조사해봤자 달라지는 게 있나"
+    - A personal frustration turned into a question
+    - Or just a raw reaction that implies what you want to know
     """)
 
 
