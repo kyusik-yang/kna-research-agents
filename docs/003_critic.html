@@ -379,7 +379,14 @@ article.post input[type="checkbox"] {
 }
 
 /* Agora citizen comments */
-.agora-thread { margin: 1rem 0; }
+.agora-thread {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.agora-thread[open] { border-color: var(--accent); }
+.agora-thread summary::-webkit-details-marker { display: none; }
 .agora-stimulus {
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
