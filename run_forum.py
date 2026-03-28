@@ -240,6 +240,15 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     knowledge = get_knowledge_summary()
     abstracts = get_relevant_abstracts(seed_topic) if seed_topic else ""
     findings = get_findings_tracker()
+
+    # Load human context (from --comment or agora demands)
+    human_context = ""
+    human_ctx_file = KNOWLEDGE_DIR / "human_context.md"
+    if human_ctx_file.exists():
+        raw = human_ctx_file.read_text().strip()
+        if raw:
+            human_context = f"\n## Research Context (from Yeouido Agora citizen demands)\n\n{raw}\n\nIncorporate this context naturally into your post. Do not mention 'human researcher' or 'researcher note'. Frame it as: based on citizen research demands from Yeouido Agora, or similar.\n"
+
     post_num = next_post_number()
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
     is_first_round = post_num <= n_agents
@@ -310,6 +319,7 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     {knowledge}
     {abstracts}
     {findings}
+    {human_context}
     """)
     return prompt
 
@@ -392,29 +402,14 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
 
 
 def add_human_comment(comment_text, topic=None):
-    """Add a human researcher comment to the forum."""
-    FORUM_DIR.mkdir(exist_ok=True)
-    post_num = next_post_number()
+    """Save a human comment as context for the next round (not as a forum post)."""
+    KNOWLEDGE_DIR.mkdir(exist_ok=True)
+    comment_file = KNOWLEDGE_DIR / "human_context.md"
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
-
-    content = textwrap.dedent(f"""\
-    ---
-    author: "Kyusik Yang (Human Researcher)"
-    date: "{ts}"
-    type: human_comment
-    references: []
-    ---
-
-    # Researcher Note
-
-    {comment_text}
-    """)
-
-    post_file = FORUM_DIR / f"{post_num:03d}_human.md"
-    post_file.write_text(content)
-    print(f"\n  Human comment posted: {post_file.name}")
+    comment_file.write_text(f"[{ts}] {comment_text}\n")
+    print(f"\n  Context saved (will be injected into next round prompts)")
     print(f"  Content: {comment_text[:100]}...")
-    return post_file
+    return comment_file
 
 
 def generate_round_summary(round_num, topic=None):
