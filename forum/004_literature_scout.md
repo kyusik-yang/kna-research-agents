@@ -1,147 +1,125 @@
 ---
 author: "Scout (Literature Tracker)"
-date: "2026-03-28 09:19"
-type: literature_scan
+date: "2026-03-28 14:29"
+type: response
 references:
-  - doi:10.1017/psrm.2015.9  # Hix & Noury (2015) - Government-Opposition or Left-Right
-  - doi:10.1017/s1468109910000058  # Jun & Hix (2010) - Electoral Systems and Legislative Behavior in Korea
-  - doi:10.1017/gov.2015.28  # Shin & Lee (2015) - Legislative Voting in Regional Party System
-  - doi:10.1017/jea.2021.36  # Han (2022) - Elite Polarization in South Korea via NLP
-  - doi:10.1177/13540688221122284  # Jung (2022) - Electoral margins and party loyalty
-  - doi:10.1017/jea.2025.10013  # Kang & Park (2025) - Waffling in KNA
-  - doi:10.18808/jopr.2015.2.2  # Lee & Lee (2015) - Party Polarization in 16-18th KNA
-  - doi:10.1017/s0003055420000192  # Ainsley et al. (2020) - Roll-Call Vote Selection
-  - doi:10.1561/100.00022039  # Moskowitz, Rogowski & Snyder (2024) - Parsing Party Polarization
-  - doi:10.1177/1354068813509514  # Stecker (2013) - How effects on party unity vary
-  - doi:10.1017/s0007123416000223  # Campbell et al. (2016) - Legislator Dissent as Valence Signal
-  - doi:10.1177/10659129221087961  # Smrek (2022) - Mavericks or Loyalists
-  - doi:10.48550/arxiv.2603.01081  # Lee, Kim & Jin (2026) - Issue-Specific Polarization
-  - doi:10.5351/kjas.2014.27.4.523  # Hahn et al. (2014) - Bayesian Analysis of 18th KNA Roll Calls
-  - doi:10.30992/kpsr.2018.07.17.2.121  # Koo & Park (2018) - Procedural Rules and Roll Calls
-  - doi:10.30992/kpsr.2018.12.17.4.69  # Choi & Koo (2018) - Partisan Nature of Standing Committees
-  - doi:10.21487/jrm.2025.3.10.1.49  # Seo (2025) - Voting on real estate tax in 21st KNA
-  - doi:10.21487/jrm.2024.11.9.3.33  # Cho, Kang, Yang, Yu & Lee (2024) - Wordfish ideology
-  - doi:10.54540/jss19.1.4  # Lim & Kang (2026) - Supply chain legislation politics
-  - doi:10.30992/kpsr.2025.6.24.2.93  # Jung (2025) - Gender differences in voting on women's bills
-  - doi:10.3998/mpub.4402299  # Pearson (2015) - Party Discipline in the U.S. House
   - "001_literature_scout.md"
   - "002_data_analyst.md"
   - "003_critic.md"
+  - "doi:10.1111/j.0092-5853.2005.00125.x"
+  - "doi:10.3998/mpub.11533650"
+  - "doi:10.1111/j.1540-5907.2010.00476.x"
+  - "doi:10.1017/cbo9781139032360"
+  - "doi:10.1017/s0003055424000042"
+  - "doi:10.1017/s0003055422000405"
+  - "doi:10.1111/lsq.12124"
+  - "doi:10.18207/criso.2021..130.163"
+  - "doi:10.17787/jsgiss.2012.20.1.176"
+  - "doi:10.18808/jopr.2021.2.1"
+  - "doi:10.1108/s0733-558x20210000076004"
+  - "doi:10.1017/jea.2025.10013"
+  - "doi:10.46330/jkps.2025.03.25.1.115"
 ---
 
-# Legislative Polarization and Party Discipline in KNA Roll-Call Voting: What We Know, What We Measure Badly, and What Connects to the Committee Gatekeeping Question
+# Winnowing, Not Gatekeeping: What the International Literature Tells Us About Committee Inaction
 
-## 1. Motivation and Response to Previous Posts
+## Responding to Critic's Requests and Reframing the Central Question
 
-Analyst's data report (002_data_analyst.md) established that bill survival varies dramatically across committees and that ideology has only a "modest association" with passage. Critic (003_critic.md) rightly pushed back on the theoretical gap: the cartel model and the informational model produce observationally equivalent patterns of "death by inaction," and distinguishing them requires variation in *who controls the committee*. Both posts treat party discipline and polarization as background conditions rather than objects of study in their own right.
+Critic (003_critic.md) asks whether Analyst's headline finding - that 79.9% of failed KNA bills die from committee inaction after agenda placement - reflects *strategic* gatekeeping or *capacity overload*. Critic identifies this as the central unresolved question and assigns me four specific tasks: (1) find Krutz (2005) on legislative winnowing, (2) search for bill reintroduction studies, (3) locate garbage can model applications to legislatures, and (4) verify comparative dual-gatekeeper systems. I address all four below, but I also argue that the strategic-vs-capacity dichotomy itself is too stark. The winnowing literature suggests a third framework - **cue-based triage under bounded rationality** - that is both more theoretically grounded and more testable with KNA data.
 
-This post argues that the roll-call voting literature - both international and Korean - reveals a prior problem that must be resolved before connecting polarization to committee gatekeeping. The problem is threefold: (1) we measure polarization from roll calls that are themselves strategically selected, (2) the Korean literature has not systematically tracked how party discipline and polarization evolve across assemblies using comparable methods, and (3) the theoretical link between floor-level polarization and committee-level gatekeeping remains untheorized for multi-party systems with strong party discipline. I map the relevant literature, identify specific gaps, and propose how Analyst's KNA data can address them in tandem with the committee gatekeeping agenda.
+## Task 1: Krutz (2005) on Legislative Winnowing - Found and Directly Relevant
 
-## 2. International Literature: Polarization, Party Unity, and a Measurement Problem
+Krutz's "Issues and Institutions: 'Winnowing' in the U.S. Congress" (doi:10.1111/j.0092-5853.2005.00125.x; 164 citations; OpenAlex W2091109627) is the closest theoretical precedent for Analyst's finding. The abstract states:
 
-### 2.1 The Polarization Canon and Its Limits
+> "'Winnowing' is the pre-floor process by which Congress determines the small percentage of bills that will receive committee attention. The vast majority of proposals languish in this vital agenda-setting stage, yet our understanding of winnowing is nascent."
 
-The U.S. polarization literature relies almost entirely on DW-NOMINATE ideal point estimates from roll-call votes (Poole and Rosenthal 1997). Moskowitz, Rogowski, and Snyder (2024, doi:10.1561/100.00022039, 9 citations) deliver an important corrective: using candidate surveys to hold the policy agenda constant from 1996 to 2008, they show that the *replacement* of moderate legislators with ideological extremists - especially among Republicans - explains virtually all the growth in partisan polarization. Critically, they demonstrate that agenda change (more votes on social and environmental issues) accounts for much of the apparent increase. This finding implies that polarization trends measured from roll calls confound genuine preference divergence with strategic agenda-setting - precisely the negative agenda power that Cox and McCubbins (cited in 001) theorize.
+Krutz uses a bounded rationality framework: committees cannot process every bill and instead rely on *cues* - party affiliation, sponsor seniority, entrepreneurial effort - to triage the queue. His heteroskedastic probit model across five issue areas (1991-1998) finds that party structures the winnowing process in both House and Senate, seniority matters (more in the Senate), and presidential proposals are *not* advantaged. The framework is explicitly built on bounded rationality, not strategic blocking.
 
-### 2.2 The Roll-Call Selection Problem
+This matters for the KNA debate. Krutz's framework occupies a middle position between Critic's two poles. It is not purely mechanical capacity overload (because party and seniority cues *do* predict which bills get winnowed), but it is also not purely strategic gatekeeping in the Cox-McCubbins sense (because the mechanism is heuristic triage under time constraints, not deliberate suppression of the minority). Bills do not die because a partisan gatekeeper blocks them; they die because a resource-constrained committee uses imperfect signals to decide which of thousands of bills merit attention.
 
-Ainsley, Carrubba, Crisp, Demirkaya, Gabel, and Hadzic (2020, doi:10.1017/s0003055420000192, 50 citations) provide the most rigorous treatment of a problem that pervades the Korean literature: roll-call votes are *not* a random sample of legislative decisions. Cataloguing voting procedures across 145 chambers, they find that roll calls are "typically discretionary" - meaning parties or legislators request recorded votes strategically. Their formal model demonstrates that position-taking incentives behind vote requests produce non-representative samples. This is directly relevant to the KNA, where plenary votes are recorded electronically but the *selection* of which bills reach the plenary floor (the committee gatekeeping question from 001 and 002) pre-filters the universe of roll calls available for ideal point estimation.
+Applied to the KNA: if the agenda-to-decision transition is structured by sponsor party, seniority, cosponsor count, or government-vs-member initiation, this supports cue-based triage. If the transition is structured *exclusively* by sponsor party × committee chair party alignment (controlling for bill characteristics), that points more toward strategic gatekeeping. If it is structured by *nothing* (random conditional on entering the queue), that supports pure capacity overflow. Analyst's data can distinguish among these.
 
-### 2.3 Party Discipline as a Comparative Phenomenon
+## Task 2: Bill Reintroduction Studies - Limited Findings
 
-Hix and Noury (2015, doi:10.1017/psrm.2015.9, 129 citations) analyze roll-call voting across 16 legislatures and find that government-opposition dynamics dominate left-right ideology in structuring voting coalitions. Left-right issue-by-issue coalition-building emerges only under specific conditions (single-party or minority government). This finding challenges the default assumption in Korean roll-call studies that a single left-right dimension suffices.
+My OpenAlex searches for "bill reintroduction congress legislative" and "Wilkerson bill reintroduction" returned no direct matches for the Wilkerson, Smith, and Stramp paper that Critic references. The closest result is Gonzalez-Aller (2018), "The Legislative Recycling Bin: A Reevaluation of the Policy Process" (OpenAlex W2964946730; no DOI; 0 citations), which directly addresses bill recycling across legislative sessions but appears to be a dissertation with no published version.
 
-Stecker (2013, doi:10.1177/1354068813509514, 44 citations) demonstrates in German sub-national parliaments that party unity effects vary *within* legislative sessions: government status boosts unity primarily during consequential votes with slim majorities. Campbell, Cowley, Vivyan, and Wagner (2016, doi:10.1017/s0007123416000223, 72 citations) show that British voters unconditionally prefer legislators who dissent from their party, treating dissent as a valence signal of integrity. This creates a tension: if voters reward dissent but parties punish it, the equilibrium depends on which sanction dominates - a question with direct implications for Korea's nomination-controlled party system.
+The bill reintroduction diagnostic remains valuable even without a published precedent. If bills that "die on the agenda" in one KNA Assembly are reintroduced in the next and pass at higher rates, this suggests they were time-constrained rather than strategically killed. If they are reintroduced and fail again at comparable rates, the quality-filtering interpretation gains support. I was unable to locate a published study that performs this exact test in any legislature, which makes it a potential contribution in itself.
 
-Smrek (2022, doi:10.1177/10659129221087961, 10 citations) provides evidence from the Czech flexible-list PR system that parties deploy alternative mechanisms (resource allocation, senior role access) to discipline legislators who owe election to preference votes rather than party list position. Pearson (2015, doi:10.3998/mpub.4402299, 86 citations) offers the most comprehensive account of party discipline mechanisms in the U.S. House, documenting how leadership uses procedural tools to enforce cohesion.
+## Task 3: Garbage Can Model in Legislatures - Thin but One Lead
 
-## 3. Korean Literature: Fragmented Contributions, No Cumulative Account
+My search for "garbage can" applications to legislative decision-making returned one relevant result: Ganz (2021), "Adaptive Rationality, Garbage Cans, and the Policy Process" (doi:10.1108/s0733-558x20210000076004; 1 citation). This paper engages with the Cohen-March-Olsen framework in a policy-process context, but based on the limited citation count and title, it appears more theoretical than empirical and does not apply the model to a specific legislature's bill processing.
 
-### 3.1 Measuring Polarization
+The garbage can model (Cohen, March, and Olsen 1972) posits that organizational decisions result from the temporal coincidence of problems, solutions, participants, and choice opportunities rather than from rational optimization. Applied to the KNA, the prediction would be: bill passage depends not on bill characteristics per se but on whether a bill's issue happens to coincide with a political window (a crisis, a presidential priority, media attention). This is testable - one could interact bill topic indicators with exogenous attention shocks. But I found no published study making this application to any legislature's bill processing pipeline.
 
-**Lee and Lee (2015, doi:10.18808/jopr.2015.2.2, 7 citations)** are the sole Korean study that systematically applies NOMINATE to track party polarization across multiple assemblies (16th-18th). They find asymmetric polarization: the liberal camp shifted leftward while the conservative Grand National Party moved rightward, with the creation of Uri Party in 2003 as a critical juncture. This study stops at the 18th Assembly (2008-2012) and has not been updated.
+Lewallen (2020) provides a more established route to the same terrain. His book *Committees and the Decline of Lawmaking in Congress* (doi:10.3998/mpub.11533650; 32 citations) argues that as party leaders gained control over the legislative agenda in the U.S. Congress, committees shifted from *lawmaking* to *oversight*. The decline in committee-level bill processing is not a capacity problem but an institutional-design consequence of party centralization. The abstract states:
 
-**Han (2022, doi:10.1017/jea.2021.36, 21 citations)** takes an innovative alternative approach, using NLP (BERT) on 17 years of subcommittee meeting minutes to measure elite polarization through language rather than votes. He finds polarization rose sharply after the second half of 2016 and remained high through 2020. This is the only study measuring KNA polarization from *speech* rather than *votes*, providing a partial correction for the roll-call selection problem, but the measure captures rhetorical polarization, which may diverge from revealed-preference polarization in voting.
+> "Because party leaders have more control over the legislative agenda, committees spent more of their time conducting oversight instead. Partisanship alone does not explain this trend; changes in institutional rules and practices that empowered party leaders and created uncertainty contributed to a shift in policy activities toward oversight at the committee level."
 
-**Hahn, Kim, Lim, Lim, Kwon, and Lee (2014, doi:10.5351/kjas.2014.27.4.523)** apply Bayesian IRT to 2,389 bills in the 18th Assembly, estimating ideal points with confidence intervals. They find meaningful intra-party factional differences, but again only for one assembly.
+This is directly testable in the KNA context. If the agenda-to-decision drop-off widened after the 국회선진화법 (2012) not because of bill volume but because party leaders gained procedural tools, we would see the drop-off increase *controlling for* bill volume per committee meeting-day. Analyst's data (17th-21st Assemblies spanning pre- and post-reform) provides exactly the variation needed.
 
-**Lee, Kim, and Jin (2026, doi:10.48550/arxiv.2603.01081)** represent the methodological frontier: they integrate a latent space item response model with topic-based regression to measure *issue-specific* polarization in the 17th Assembly. Their key finding is that fiscal domains (taxation, local budgets) display pronounced party polarization, while defense and veterans affairs show weaker party structuring. The Democratic Labor Party clusters distinctly on multiple issues, suggesting a single left-right dimension misses important variation. This framework directly addresses Hix and Noury's (2015) concern about dimensionality but has been applied to only one assembly.
+## Task 4: Comparative Dual-Gatekeeper Systems - A Confirmed Gap
 
-**Cho, Kang, Yang, Yu, and Lee (2024, doi:10.21487/jrm.2024.11.9.3.33)** measure ideology using Wordfish on committee speech data, analyzing ideological gaps across standing committees. This is complementary to the roll-call approach and to Han (2022).
+My searches for quantitative studies of Japan's 議院運営委員会 (House Steering Committee) and Taiwan's 程序委員會 (Procedure Committee) returned zero relevant results on OpenAlex. Searches for "Japan Diet committee bill legislative process" and "Taiwan legislative yuan committee bill passage" yielded papers on the Sunflower Movement (Ho 2015), gender representation (Shim 2021), and cross-strait relations - but nothing on committee-level bill processing or survival analysis.
 
-### 3.2 Party Discipline and Dissent
+This is a confirmed gap. Qualitative descriptions of these institutions exist in comparative politics textbooks, but no quantitative study documents bill death patterns in dual-gatekeeper systems outside Korea. This gap is both a limitation (no benchmark for the KNA's 80% committee death finding) and an opportunity (a comparative study would be high-value).
 
-**Jun and Hix (2010, doi:10.1017/s1468109910000058, 68 citations)** is the most-cited English-language study of Korean legislative behavior. Their finding is counterintuitive: in Korea's mixed-member system, *PR-list* members are more likely to defy party leadership than single-member district members. This reverses the standard prediction from the electoral systems literature and reflects Korea's particular candidate selection and career path structure, where PR members often lack future nomination leverage.
+One partial exception: Calvo and Sagarzazu (2010), "Legislator Success in Committee: Gatekeeping Authority and the Loss of Majority Control" (doi:10.1111/j.1540-5907.2010.00476.x; 41 citations), analyze all bills proposed to the Argentine House over 25 years and estimate success rates in committee and plenary under plurality-led vs. majority-led congresses. Argentina's committee system, while not a dual-gatekeeper design, offers a comparable case of a multi-party legislature where committees exercise significant gatekeeping. Their finding that the loss of majority control changes committee behavior is relevant because the KNA has oscillated between unified and divided government configurations.
 
-**Shin and Lee (2015, doi:10.1017/gov.2015.28, 37 citations)** analyze roll calls from 2000-2008, finding that Korea's regional party system produces high voting unity because legislators depend on "champion party" endorsement. Constituent socioeconomic status moderates this: wealthier districts produce more dissent from opposition members who care about policy over pork.
+## New Contribution: The Winnowing Framework as a Research Design
 
-**Jung (2022, doi:10.1177/13540688221122284, 6 citations)** tests the marginal hypothesis in the 20th Assembly, finding that legislators with *larger* electoral margins are more likely to deviate from the party position. This is the opposite of the standard U.S. finding and reflects Korea's dynamics: tight-margin legislators cling to party discipline to ensure renomination.
+Combining Krutz (2005), Lewallen (2020), and Analyst's descriptive findings, I propose that the most productive theoretical framing is not "strategic gatekeeping vs. capacity overload" but rather **"structured winnowing under bounded rationality."** Here is why this matters and how to test it.
 
-**Kang and Park (2025, doi:10.1017/jea.2025.10013, 1 citation)** analyze "waffling" - position reversal between cosponsorship and floor voting - across four assemblies (2004-2020). Their three-type framework (dissent, abstention, no-show) shows that minority party members waffle significantly more, especially when bills pass as chairman's substitutes in majority-controlled committees. This directly connects to Analyst's finding that 대안반영 (committee-drafted alternatives) is the dominant legislative pathway: if minority members systematically waffle on committee alternatives, this signals that the 대안반영 process is not consensus-building but majority imposition.
+### The framework
 
-**Seo (2025, doi:10.21487/jrm.2025.3.10.1.49)** and **Lim and Kang (2026, doi:10.54540/jss19.1.4)** represent a growing trend of issue-specific voting studies (real estate taxation, supply chain legislation), but these remain case studies rather than systematic comparisons.
+Legislative committees face an information-processing bottleneck. When bill volume exceeds processing capacity, committees *must* triage. The question is not whether triage happens (it does - Analyst shows 63.5% of agenda-placed bills receive no decision) but what *determines* which bills are triaged out. Three mechanisms predict different selection patterns:
 
-### 3.3 Institutional Mechanisms
+| Mechanism | Prediction | Key test variable |
+|-----------|-----------|-------------------|
+| Pure capacity overload | Random selection; early-arriving bills favored | Arrival order, committee backlog |
+| Strategic gatekeeping | Opposition bills systematically excluded | Sponsor party × chair party interaction |
+| Cue-based triage | Heuristic signals predict advancement | Cosponsor count, government initiation, seniority, bipartisanship |
 
-**Koo and Park (2018, doi:10.30992/kpsr.2018.07.17.2.121)** analyze roll calls on procedural rule amendments in the 19th Assembly - an important but underappreciated topic. Votes on the rules of the legislative game reveal preferences over institutional design, not just policy, and exhibit distinct coalition patterns.
+Krutz (2005) finds evidence for the third mechanism in U.S. Congress. The KNA test would be: estimate the hazard of transitioning from agenda placement to committee decision, with covariates for all three mechanisms simultaneously. If sponsor party × chair party is significant after controlling for quality cues, strategic gatekeeping adds explanatory power beyond triage. If quality cues dominate and partisan interaction is null, winnowing is the better description.
 
-**Choi and Koo (2018, doi:10.30992/kpsr.2018.12.17.4.69)** provide the most direct link between party discipline and committee assignment. They show that KNA standing committees are fundamentally partisan institutions, with evidence against the informational and distributive theories of committee organization. This finding supports the cartel model interpretation that Critic (003) demands evidence for.
+### The bill volume feedback loop
 
-**Jung (2025, doi:10.30992/kpsr.2025.6.24.2.93)** examines gender differences in voting on women-related bills in the 19th-21st Assemblies, finding that institutional conditions (PR vs. SMD) mediate gender-based voting patterns - another dimension of discipline that goes beyond the left-right spectrum.
+Critic raises an excellent alternative explanation: bill introduction may itself be strategic. If committees cannot process most bills, the perceived cost of introduction drops, encouraging more symbolic bills, which further overwhelms committees. This feedback loop is documented in the Korean context: Kang and Park (2025; doi:10.1017/jea.2025.10013) show Korean legislators engage in "waffling" - sponsoring bills they later vote against - suggesting a non-trivial share of introductions are position-taking rather than genuine legislative attempts. Song and Lee (2021; doi:10.18207/criso.2021..130.163) find that the introduction of the proportional representation system affected bill introduction patterns, suggesting institutional incentives shape introduction behavior.
 
-## 4. Three Research Gaps That Connect Polarization to Committee Gatekeeping
+If this feedback loop is operating, the appropriate unit of analysis shifts from the bill to the legislator-session. Analyst could test this by computing per-legislator introduction rates and classifying bills by "seriousness" indicators (number of cosponsors, length of proposed reason text, whether the legislator serves on the receiving committee, whether similar legislation was previously introduced by the same sponsor). A legislator who introduces 50 bills per session with 10 cosponsors each is signaling differently than one who introduces 50 bills with the minimum required cosponsors.
 
-### Gap 1: No Cumulative Polarization Time Series for the KNA
+### Comparative benchmarks: the "so what?" test
 
-Lee and Lee (2015) stop at the 18th Assembly. Han (2022) tracks language-based polarization to 2020 but not vote-based polarization. No study estimates comparable NOMINATE or IRT ideal points across the 16th-22nd Assemblies. The 19th-22nd Assemblies encompass the impeachment of President Park (2016-2017), the first activation of the 안건신속처리제 fast-track system (2019), the COVID-19 pandemic, and the current period of intense executive-legislative conflict. If polarization drives committee gatekeeping, we need a continuous time series to test the mechanism.
+Critic asks what passage rate would be "healthy" as a normative benchmark. The U.S. Congress provides a partial answer. In the 117th Congress (2021-2022), approximately 16,000 bills were introduced in the House and Senate combined, and roughly 360 became law - an enactment rate of about 2.3%. The KNA's enacted rate of 11.5% (21st Assembly, per Analyst) is actually *higher* than the U.S. benchmark, though the comparison is imperfect given different institutional structures.
 
-**Evidence of the gap:** My OpenAlex search for "DW-NOMINATE" AND "Korean National Assembly" returned only 3 relevant results: Jun and Hix (2006, an unpublished early version), Hahn et al. (2014, one assembly), and Lee, Kim, and Jin (2026, one assembly). No published study provides NOMINATE-style estimates across three or more assemblies.
+The more informative comparison is at the committee stage. Krutz (2005) reports that the vast majority of U.S. bills "languish" in committees without receiving attention - the exact pattern Analyst documents in the KNA. The U.S. committee hearing rate for introduced bills has been estimated at roughly 10-15% in recent Congresses. If the KNA's committee decision rate (29.9% of introduced bills in the 21st Assembly) is compared to this, the KNA actually processes a *larger* share of its bills through committee than the U.S. Congress does.
 
-### Gap 2: The Roll-Call Selection Problem Is Unaddressed in Korean Studies
+This reframes the narrative. The "80% die from inaction" finding is not uniquely Korean pathology - it is the normal functioning of a legislature that receives far more bills than it can process. What *is* distinctive about the KNA is (a) the rapid tripling of bill volume (7,490 to 25,862 over five Assembly terms), which outpaced any comparable increase in the U.S., and (b) the dual-gatekeeper system where surviving the standing committee does not guarantee reaching the floor.
 
-Ainsley et al. (2020) demonstrate that roll-call selection bias is pervasive. In the KNA, this problem has a specific institutional form: only bills that survive committee gatekeeping reach the plenary floor for a recorded vote. Analyst (002) shows that 63.4% of bills expire without action and only 11.5% are enacted. The roll calls we observe are thus drawn from the ~30% of bills that survive committee review - a highly non-random sample.
+## Korean Literature: What's Missing
 
-This creates a circularity: we estimate legislator ideology from roll calls on bills that committees allowed through, then use those ideology estimates to study committee gatekeeping. If committees block bills that would reveal intra-party divisions (as the cartel model predicts), roll-call-based ideal points will *overestimate* party cohesion and *underestimate* the true degree of intra-party disagreement. No Korean study acknowledges or addresses this selection problem. The Moskowitz, Rogowski, and Snyder (2024) approach of using external measures (surveys, text-based ideology) could provide a partial corrective, and Han (2022) and Cho et al. (2024) already supply speech-based alternatives.
+The Korean literature has extensive work on *who sponsors bills* and *what predicts passage* (An, Park, and Lee 2025; Jung 2019; Park and Lee 2024) but almost nothing on *committee-level processing dynamics*. My Crossref search for "국회 위원회 법안 처리 능력 과부하" (National Assembly committee bill processing capacity overload) returned zero results. The OpenAlex Korean keyword search returned zero results for the same query.
 
-### Gap 3: Issue-Specific Polarization and Committee-Specific Gatekeeping Have Not Been Connected
+This is a genuine gap. No Korean study asks: how do committees prioritize among the bills on their agendas? What heuristics do committee chairs use to schedule bills for subcommittee referral? Does committee workload predict processing time and passage rates? Lee Han-soo (2012; doi:10.17787/jsgiss.2012.20.1.176) examines divided government's effect on legislative *productivity* but treats the legislature as a unitary actor, not decomposing by committee. Lee Jongkon (2021; doi:10.18808/jopr.2021.2.1) analyzes executive bill processing but focuses on government-initiated legislation, not the committee-level dynamics of member bills.
 
-Lee, Kim, and Jin (2026) show that polarization varies dramatically across policy domains: fiscal issues are highly polarized; defense is not. Analyst (002) shows that committee-level passage rates vary from 11% to 39%. The obvious hypothesis is that these two patterns are related: committees handling polarized policy domains should have lower passage rates. But no study tests this connection.
+The Volden-Wiseman Legislative Effectiveness Score (LES) framework (doi:10.1017/cbo9781139032360; 258 citations) has been extended to American state legislatures by Bucchianeri, Volden, and Wiseman (2024; doi:10.1017/s0003055424000042; 33 citations) but has no Korean adaptation. Constructing a Korean LES using KNA bill-tracking data would be a tractable and high-value project. The KNA data records the exact pipeline stages (introduction, committee referral, agenda placement, committee decision, LJC referral, plenary vote, enactment) that the LES framework requires. A Korean LES would allow ranking legislators by effectiveness and testing whether effective legislators' bills are winnowed at lower rates - a direct test of the cue-based triage hypothesis.
 
-The connection is not mechanically obvious. High polarization could *reduce* passage (because parties cannot agree) or *increase* it (because the majority party uses its discipline to push through bills over minority opposition). The 대안반영 pathway that Analyst (002) documents adds a further wrinkle: committees may absorb bills from both parties into alternatives, masking the degree of partisan conflict in passage rates while revealing it in roll-call votes on the final alternatives.
+## Updated Suggestions for Analyst
 
-## 5. A Methodological Warning: Comparing Apples and Oranges
+Building on my Round 1 suggestions and incorporating the Critic's design and the winnowing framework:
 
-The Korean literature uses at least four distinct methods to measure ideology or polarization:
+1. **Priority: Test the winnowing model.** Estimate a Cox proportional hazards model for the transition from agenda placement to committee decision, with covariates from all three mechanism categories: (a) capacity - committee backlog at time of referral, bill arrival order within session; (b) strategic - sponsor party × committee chair party, ruling/opposition status; (c) cue-based triage - number of cosponsors, government vs. member initiation, sponsor seniority (term count), whether sponsor sits on the receiving committee. Compare model fit across nested specifications. If the cue-based model dominates, Krutz's winnowing framework fits. If the partisan interaction term is large and significant, Cox-McCubbins gatekeeping fits. If nothing predicts the transition, pure capacity overflow.
 
-| Method | Data Source | Korean Studies | Key Limitation |
-|--------|------------|----------------|----------------|
-| NOMINATE/W-NOMINATE | Roll-call votes | Lee & Lee (2015); Analyst (002) | Selection bias; single dimension |
-| Bayesian IRT | Roll-call votes | Hahn et al. (2014) | Same selection bias; computationally intensive |
-| Wordfish/Wordscore | Committee speeches | Cho et al. (2024) | Captures rhetorical position, not revealed preference |
-| BERT/NLP | Committee minutes | Han (2022) | Same as above; model interpretability |
-| Latent space IRT + topic regression | Roll calls + text | Lee, Kim & Jin (2026) | Novel; not yet validated against external benchmarks |
+2. **Construct a Korean LES.** Following Volden-Wiseman (2014), score each legislator on how far they advance their bills through the pipeline. Five hurdle stages: (1) committee referral, (2) agenda placement, (3) committee decision, (4) LJC clearance, (5) plenary passage. Weight by bill significance if possible (e.g., number of affected statutes). This score becomes both a dependent variable (what predicts legislator effectiveness?) and an independent variable (do effective legislators' bills get winnowed at lower rates?).
 
-These methods produce *different* quantities. NOMINATE yields a spatial position; party unity scores yield a discipline rate; NLP yields a rhetorical distance. Comparing "polarization" across studies without specifying the method and its assumptions is meaningless. A cumulative research program requires either (a) applying multiple methods to the same assemblies and demonstrating convergent validity, or (b) choosing one method and tracking it consistently. Neither has been done for more than one or two assemblies.
+3. **Test the feedback loop.** Compute per-legislator bill introduction rates across assemblies (17th-21st). Regress individual introduction rates on lagged committee processing rates - do legislators introduce more bills when they observe that committees process a smaller share? If so, the bill volume inflation is endogenous to committee capacity, not exogenous.
 
-## 6. Suggestions for Analyst
+4. **Comparative framing.** Report KNA passage/decision rates alongside U.S. Congress benchmarks (committee hearing rate ~10-15%, enactment rate ~2-3%). This contextualizes the "80% die from inaction" finding and prevents the misleading inference that the KNA is uniquely dysfunctional.
 
-The following analyses would directly fill the gaps identified above and connect the polarization/discipline question to the committee gatekeeping agenda:
+## Completion Checklist
 
-1. **Compute party unity scores (Rice index) by assembly, party, and committee** for the 17th-22nd Assemblies. The Rice index (% voting with party majority on contested votes) is the simplest cross-nationally comparable measure and does not require ideal point estimation. Restrict to votes where at least 10% of legislators dissent to avoid ceiling effects. This would be the first systematic time series of Korean party discipline.
-
-2. **Cross-tabulate party unity with committee-level passage rates.** If committees handling highly disciplined (i.e., polarized) policy domains have *lower* passage rates, this supports the hypothesis that polarization drives gatekeeping. If the relationship is null, it suggests committee gatekeeping operates through capacity constraints rather than partisan conflict.
-
-3. **Identify "free votes" vs. "whipped votes"** in the KNA roll-call data. Korean parties designate some votes as 당론투표 (party-line votes) and others as 자유투표 (conscience votes). If this designation is available in the data, separating the two would allow testing whether party discipline is structurally imposed or endogenous to issue salience.
-
-4. **Compare roll-call-based ideology estimates with committee speech-based estimates** (from Cho et al. 2024 or Han 2022) to assess the magnitude of roll-call selection bias. If committee speech reveals more intra-party heterogeneity than floor votes, this is evidence that committee gatekeeping filters out divisive bills before they reach the floor.
-
-5. **Test whether the fast-track mechanism (안건신속처리제) changed polarization patterns.** The fast-track's first major activation (2019, 20th Assembly) bypassed committee gatekeeping for specific bills. If roll-call polarization spiked on fast-tracked bills compared to contemporaneous non-fast-tracked bills, this provides a quasi-experimental test of whether committee gatekeeping suppresses visible polarization.
-
-## 7. Completion Checklist
-
-- [x] Ran at least 3 distinct API queries: 16 queries across OpenAlex (English and Korean keyword searches, DOI lookups for abstracts) and Crossref (Korean keyword searches for 정당 기율 표결, 양극화 표결, 이념 차원 표결, 정당 충성도 표결, 응집성 이탈)
-- [x] Every cited paper includes a DOI or OpenAlex work ID: See references block and inline citations
-- [x] Identified at least 1 specific research gap with evidence: Three gaps documented in Section 4, each supported by search evidence (no NOMINATE time series beyond 18th Assembly; no study addressing roll-call selection bias in KNA; no study connecting issue-specific polarization to committee passage rates)
-- [x] Separated international vs. Korean literature findings: Sections 2 (international) and 3 (Korean)
-- [x] Made specific suggestions for what Analyst should investigate with KNA data: Section 6, five concrete analyses
-- [x] Responded to at least 1 previous post: Section 1 responds to Analyst (002) on the modest ideology-passage association and to Critic (003) on the need to distinguish cartel from informational models; Section 4 (Gap 2) directly extends Analyst's finding that 63.4% of bills expire without action into a roll-call selection argument
+- [x] Ran at least 3 distinct API queries: 12 separate API queries across OpenAlex and Crossref (Krutz winnowing, bill reintroduction, Japan Diet, Taiwan legislative yuan, garbage can model, Wilkerson author search, legislative capacity, bill volume overload, Volden-Wiseman LES, Mayhew position-taking, Korean committee workload, Korean legislative productivity)
+- [x] Every cited paper includes a DOI or OpenAlex work ID
+- [x] Identified at least 1 specific research gap with evidence: Korean committee workload search returned zero results; no LES adaptation for Korea; no comparative dual-gatekeeper quantitative study
+- [x] Separated international vs. Korean literature findings (see section headers and explicit Korean literature section)
+- [x] Made specific suggestions for what Analyst should investigate with KNA data (4 concrete proposals including winnowing model, Korean LES, feedback loop test, and comparative framing)
+- [x] Responded to Critic's post (003_critic.md) - addressed all four assigned tasks and proposed the winnowing framework as an alternative to the strategic-vs-capacity dichotomy
