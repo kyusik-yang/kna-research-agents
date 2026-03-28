@@ -12,6 +12,7 @@ Usage:
     python3 run_forum.py --topic "legislative polarization in Korea"
     python3 run_forum.py --resume              # Continue from existing posts
     python3 run_forum.py --dry-run             # Preview prompts only
+    python3 run_forum.py --comment "Focus on committee gatekeeping next"
 """
 
 import argparse
@@ -27,6 +28,8 @@ FORUM_DIR = BASE_DIR / "forum"
 LOGS_DIR = BASE_DIR / "logs"
 WORKSPACE_DIR = BASE_DIR / "workspace"
 AGENTS_FILE = BASE_DIR / "agents.json"
+SUMMARIES_DIR = BASE_DIR / "summaries"
+KNOWLEDGE_DIR = BASE_DIR / "knowledge"
 
 import os
 import shutil
@@ -47,14 +50,44 @@ def get_forum_posts():
     return posts
 
 
-def get_forum_state():
-    """Compile full forum state as text."""
+def get_forum_state(current_round=1, n_agents=3):
+    """Compile forum state with context compression for older rounds.
+
+    Recent 2 rounds: full text. Older rounds: summary only.
+    """
     posts = get_forum_posts()
     if not posts:
         return "(No posts yet. You are starting the discussion.)"
+
     parts = []
-    for p in posts:
-        parts.append(f"--- {p.name} ---\n{p.read_text()}")
+    for i, p in enumerate(posts):
+        post_round = (i // n_agents) + 1
+        content = p.read_text()
+
+        if post_round >= current_round - 1:
+            # Recent: full text
+            parts.append(f"--- {p.name} ---\n{content}")
+        else:
+            # Old: compressed summary (title + first 200 chars)
+            title = "Untitled"
+            for line in content.split("\n"):
+                if line.startswith("# ") and "---" not in line:
+                    title = line[2:].strip()
+                    break
+            # Strip frontmatter for preview
+            body = content
+            if content.startswith("---"):
+                end = content.find("---", 3)
+                if end > 0:
+                    body = content[end + 3:].strip()
+            preview = body[:300].replace("\n", " ").strip()
+            parts.append(
+                f"--- {p.name} (SUMMARY) ---\n"
+                f"# {title}\n"
+                f"{preview}...\n"
+                f"(Full post available in forum/{p.name})"
+            )
+
     return "\n\n".join(parts)
 
 
@@ -64,7 +97,7 @@ def next_post_number():
 
 def get_knowledge_summary():
     """Summarize the literature knowledge base for agents."""
-    log_file = BASE_DIR / "knowledge" / "literature_log.jsonl"
+    log_file = KNOWLEDGE_DIR / "literature_log.jsonl"
     if not log_file.exists():
         return ""
     entries = []
@@ -76,23 +109,73 @@ def get_knowledge_summary():
                 pass
     if not entries:
         return ""
-    # Show recent 30 entries as context
     recent = entries[-30:]
     lines = ["\n## Literature Knowledge Base (recent entries)\n"]
     for e in recent:
         authors = ", ".join(e.get("authors", [])[:2])
-        lines.append(f"- [{e.get('year','')}] {e.get('title','')} ({authors}) [{e.get('source','')}]")
+        doi = e.get("doi", "")
+        doi_str = f" doi:{doi}" if doi else ""
+        lines.append(f"- [{e.get('year','')}] {e.get('title','')} ({authors}) [{e.get('source','')}]{doi_str}")
     lines.append(f"\n(Total: {len(entries)} entries in knowledge base)\n")
+    return "\n".join(lines)
+
+
+def get_relevant_abstracts(topic, max_abstracts=8):
+    """Find abstracts relevant to the current topic via keyword matching."""
+    abstracts_file = KNOWLEDGE_DIR / "abstracts.jsonl"
+    if not abstracts_file.exists():
+        return ""
+
+    records = []
+    with open(abstracts_file) as f:
+        for line in f:
+            try:
+                records.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+
+    if not records or not topic:
+        return ""
+
+    # Simple keyword matching
+    topic_words = set(topic.lower().split())
+    scored = []
+    for r in records:
+        title = (r.get("title", "") or "").lower()
+        abstract = (r.get("abstract", "") or "").lower()
+        text = title + " " + abstract
+        score = sum(1 for w in topic_words if w in text)
+        if score > 0:
+            scored.append((score, r))
+
+    scored.sort(key=lambda x: -x[0])
+    top = scored[:max_abstracts]
+
+    if not top:
+        return ""
+
+    lines = ["\n## Relevant Abstracts from Knowledge Base\n"]
+    for _, r in top:
+        authors = ", ".join(r.get("authors", [])[:3])
+        doi = r.get("doi", "")
+        doi_str = f" (doi:{doi})" if doi else ""
+        abstract = r.get("abstract", "")[:300]
+        lines.append(
+            f"### {r.get('title', '')} ({r.get('year', '?')})\n"
+            f"*{authors}* - {r.get('journal', '')}{doi_str}\n"
+            f"{abstract}...\n"
+        )
     return "\n".join(lines)
 
 
 def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     """Build system prompt for one agent run."""
-    forum_state = get_forum_state()
+    n_agents = len(load_agents())
+    forum_state = get_forum_state(current_round=round_num, n_agents=n_agents)
     knowledge = get_knowledge_summary()
+    abstracts = get_relevant_abstracts(seed_topic) if seed_topic else ""
     post_num = next_post_number()
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
-    n_agents = len(load_agents())
     is_first_round = post_num <= n_agents
 
     topic_line = ""
@@ -116,7 +199,7 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
         )
 
     # Inject runtime paths into agent prompt
-    agent_prompt = agent['prompt'].replace("{KNA_CLI}", KNA_CLI).replace("{KNA_DATA}", KNA_DATA)
+    agent_prompt = agent["prompt"].replace("{KNA_CLI}", KNA_CLI).replace("{KNA_DATA}", KNA_DATA)
 
     prompt = textwrap.dedent(f"""\
     # Research Forum - Round {round_num}/{total_rounds}
@@ -153,11 +236,13 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     - When responding to another agent, reference their post filename.
     - Focus on what's INTERESTING, what's MISSING, and what's DOABLE.
     - Write in English. Korean terms (bill names, committee names, politician names) are fine.
+    - Complete ALL items in your Completion Checklist before finishing.
 
     ## Current Forum State
 
     {forum_state}
     {knowledge}
+    {abstracts}
     """)
     return prompt
 
@@ -168,17 +253,21 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
     post_num = next_post_number()
     label = f"{agent['name']}"
 
+    # Agent-specific tool restrictions
+    tools = agent.get("allowed_tools", ["Bash", "Read", "Write", "Glob", "Grep"])
+    tools_str = ",".join(tools)
+
     sep = "=" * 60
     print(f"\n{sep}")
     print(f"  {label}")
     print(f"  Round {round_num}/{total_rounds} | Post #{post_num}")
+    print(f"  Tools: {tools_str}")
     print(f"{sep}")
 
     if dry_run:
         print(prompt_text[:600] + "\n  ... (truncated)")
         return
 
-    # Write prompt to temp file (avoids shell escaping)
     prompt_file = WORKSPACE_DIR / f"_prompt_{agent['id']}.md"
     prompt_file.write_text(prompt_text)
 
@@ -187,7 +276,7 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
     cmd = [
         CLAUDE,
         "-p",
-        "--allowedTools", "Bash", "Read", "Write", "Glob", "Grep",
+        "--allowedTools", tools_str,
         "--dangerously-skip-permissions",
         "--system-prompt-file", str(prompt_file),
         "--output-format", "text",
@@ -200,7 +289,7 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
             cmd,
             capture_output=True,
             text=True,
-            timeout=600,  # 10 min max
+            timeout=600,
             cwd=str(WORKSPACE_DIR),
         )
         log_file.write_text(
@@ -218,7 +307,6 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
             print(f"  Posted: {expected.name} ({word_count} words)")
             print(f"  {title}")
         else:
-            # Check for any new post
             all_posts = sorted(FORUM_DIR.glob(f"{post_num:03d}_*.md"))
             if all_posts:
                 print(f"  Posted: {all_posts[0].name}")
@@ -236,14 +324,36 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
         log_file.write_text(f"ERROR: {e}")
 
 
-SUMMARIES_DIR = BASE_DIR / "summaries"
+def add_human_comment(comment_text, topic=None):
+    """Add a human researcher comment to the forum."""
+    FORUM_DIR.mkdir(exist_ok=True)
+    post_num = next_post_number()
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    content = textwrap.dedent(f"""\
+    ---
+    author: "Kyusik Yang (Human Researcher)"
+    date: "{ts}"
+    type: human_comment
+    references: []
+    ---
+
+    # Researcher Note
+
+    {comment_text}
+    """)
+
+    post_file = FORUM_DIR / f"{post_num:03d}_human.md"
+    post_file.write_text(content)
+    print(f"\n  Human comment posted: {post_file.name}")
+    print(f"  Content: {comment_text[:100]}...")
+    return post_file
 
 
 def generate_round_summary(round_num, topic=None):
     """Generate a summary for a completed round using Claude."""
     SUMMARIES_DIR.mkdir(exist_ok=True)
 
-    # Collect posts from this round
     all_posts = sorted(FORUM_DIR.glob("*.md"))
     n_agents = len(load_agents())
     start_idx = (round_num - 1) * n_agents
@@ -356,6 +466,7 @@ def main():
           python3 run_forum.py --topic "committee gatekeeping in the 22nd Assembly"
           python3 run_forum.py --rounds 2 --topic "polarization trends"
           python3 run_forum.py --agent critic --resume
+          python3 run_forum.py --comment "Focus on party discipline next round"
         """),
     )
     parser.add_argument("--rounds", type=int, default=1)
@@ -363,10 +474,18 @@ def main():
     parser.add_argument("--topic", type=str, default=None, help="Seed topic for round 1")
     parser.add_argument("--resume", action="store_true", help="Keep existing posts")
     parser.add_argument("--dry-run", action="store_true", help="Preview prompts only")
+    parser.add_argument("--comment", type=str, default=None, help="Add a human researcher comment")
     args = parser.parse_args()
 
-    for d in (FORUM_DIR, LOGS_DIR, WORKSPACE_DIR):
+    for d in (FORUM_DIR, LOGS_DIR, WORKSPACE_DIR, SUMMARIES_DIR):
         d.mkdir(exist_ok=True)
+
+    # Handle human comment
+    if args.comment:
+        add_human_comment(args.comment, topic=args.topic)
+        if args.rounds == 1 and not args.agent:
+            print("  Comment added. Run with --resume to continue the forum.")
+            return
 
     agents = load_agents()
 
@@ -378,13 +497,12 @@ def main():
 
     # Handle existing posts
     existing = list(FORUM_DIR.glob("*.md"))
-    if existing and not args.resume and not args.dry_run:
+    if existing and not args.resume and not args.dry_run and not args.comment:
         print(f"\n  {len(existing)} existing posts found.")
         resp = input("  Clear for fresh start? (y/N): ").strip().lower()
         if resp == "y":
             for f in existing:
                 f.unlink()
-            # Also clear logs
             for f in LOGS_DIR.glob("*.log"):
                 f.unlink()
             print("  Cleared.")
@@ -392,12 +510,13 @@ def main():
             print("  Keeping. Use --resume to skip this prompt.")
 
     agent_names = ", ".join(a["name"] for a in agents)
+    tools_info = " | ".join(f"{a['id']}:{','.join(a.get('allowed_tools', []))}" for a in agents)
     print(f"\n  Research Forum")
     print(f"  Agents: {agent_names}")
+    print(f"  Tools:  {tools_info}")
     print(f"  Rounds: {args.rounds}")
     if args.topic:
         print(f"  Topic:  {args.topic}")
-    print(f"  APIs:   OpenAlex, Crossref")
     print()
 
     for rnd in range(1, args.rounds + 1):
