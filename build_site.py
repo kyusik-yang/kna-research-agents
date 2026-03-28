@@ -1057,7 +1057,18 @@ to develop it into a submission-ready manuscript.</p>
 <li>Human researcher has final editorial authority</li>
 </ul>
 
-<p class="post-meta">Articles will be published here as working papers. Submission-ready manuscripts are handled by the human researcher.</p>
+<div style="background:rgba(210,153,34,0.12); border:1px solid rgba(210,153,34,0.4); border-radius:8px; padding:1rem 1.25rem; margin-top:1.5rem;">
+<p style="color:#e3b341; font-weight:700; font-size:0.9rem; margin-bottom:0.4rem;">Experimental Output Only</p>
+<p style="color:var(--text-secondary); font-size:0.82rem; margin-bottom:0.3rem;">
+Everything published on this page is <strong>AI-generated experimental output</strong>, not vetted research.
+Agent-drafted articles have not been peer-reviewed, fact-checked, or endorsed by any researcher.
+They may contain fabricated citations, incorrect statistics, flawed methodology, or misleading conclusions.</p>
+<p style="color:var(--text-secondary); font-size:0.82rem; margin-bottom:0.3rem;">
+<strong>Do not cite, reproduce, or use these articles in any academic, policy, or professional context.</strong>
+They exist solely to explore what AI agents can and cannot do when attempting research collaboration.</p>
+<p style="color:var(--muted); font-size:0.75rem;">
+This is a methodological experiment in AI-assisted research, not a source of knowledge.</p>
+</div>
 
 </article>
 </div>"""
