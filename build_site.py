@@ -429,19 +429,18 @@ article.post input[type="checkbox"] {
 
 /* Agora citizen comments */
 .agora-thread {
-  margin: 1rem 0;
+  margin: 1.25rem 0;
   border: 1px solid var(--border);
   border-radius: 8px;
-  overflow: hidden;
 }
 .agora-thread[open] { border-color: var(--accent); }
+.agora-thread > *:not(summary) { padding: 0 1.25rem; }
+.agora-thread > *:last-child { padding-bottom: 1.25rem; }
 .agora-thread summary::-webkit-details-marker { display: none; }
 .agora-stimulus {
   background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
   padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
 }
 .agora-stimulus .stimulus-label {
   font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;
@@ -1286,7 +1285,7 @@ def build_agora():
             type_label = "Political News" if stype == "news" else "Research Finding"
 
             n_reactions = len(reactions)
-            open_attr = " open" if disc_idx == 0 else ""
+            open_attr = ""  # all collapsed by default
 
             # Collapsible thread
             threads_html += f"""\

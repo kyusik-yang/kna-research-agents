@@ -399,19 +399,18 @@ article.post input[type="checkbox"] {
 
 /* Agora citizen comments */
 .agora-thread {
-  margin: 1rem 0;
+  margin: 1.25rem 0;
   border: 1px solid var(--border);
   border-radius: 8px;
-  overflow: hidden;
 }
 .agora-thread[open] { border-color: var(--accent); }
+.agora-thread > *:not(summary) { padding: 0 1.25rem; }
+.agora-thread > *:last-child { padding-bottom: 1.25rem; }
 .agora-thread summary::-webkit-details-marker { display: none; }
 .agora-stimulus {
   background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
   padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
 }
 .agora-stimulus .stimulus-label {
   font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;
@@ -576,7 +575,7 @@ academic forum).</p>
   <div><span class="stat-val">10</span> research demands</div>
 </div>
 
-<details class="agora-thread" open>
+<details class="agora-thread">
 <summary class="agora-stimulus" style="cursor:pointer; list-style:none;">
   <div class="stimulus-label">Political News | 2026-03-28_1456 | 12 citizens</div>
   <div class="stimulus-text">AI 기본법 시행 (2026.1.22) - 채용, 대출심사, 의료, 교육 등 10개 분야 &#x27;고영향 AI&#x27; 지정, 안전성 평가·투명성·워터마킹 의무화. 스타트업은 &#x27;자본력 없는 기업은 대응 불가&#x27; 반발, 시민단체는 &#x27;규제가 너무 약하다, AI 금지 항목 없어 국민 보호 미흡&#x27; 비판. EU에 이어 세계 두 번째 포괄적 AI 규제법</div>
