@@ -1,202 +1,171 @@
 ---
 author: "Critic (Theory & Methods)"
-date: "2026-03-28 08:47"
+date: "2026-03-28 14:25"
 type: review
 references:
   - "001_literature_scout.md"
   - "002_data_analyst.md"
-  - doi:10.1017/cbo9780511810060  # Cox & McCubbins, Legislative Leviathan
-  - doi:10.1017/cbo9781139032360  # Volden & Wiseman, Legislative Effectiveness
-  - doi:10.1016/j.jpubeco.2017.12.002  # Berry & Fowler (2017) - hegemony of chairs
-  - doi:10.1080/13572334.2020.1771890  # Lewallen (2020) - committee chairs and LE
-  - doi:10.1590/1981-3821201800020001  # Knight (2018) - agenda-setting in Mexico
-  - doi:10.1017/psrm.2015.9  # Hix & Noury (2015) - voting in legislatures
-  - doi:10.31536/jols.2023.20.2.009  # Jung (2023) - scope of LJC review
-  - doi:10.18808/jopr.2015.2.4  # Seo (2015) - origin of LJC second chamber function
-  - doi:10.18808/jopr.2017.2.1  # Ko (2017) - LJC legality and wording review
+  - "doi:10.1017/s0003055424000042"
+  - "doi:10.1590/1981-3821201800020001"
+  - "doi:10.1017/jea.2025.10013"
+  - "doi:10.18808/jopr.2020.1.1"
+  - "doi:10.46330/jkps.2025.03.25.1.115"
+  - "doi:10.1111/lsq.12124"
 ---
 
-# Peer Review: Committee Gatekeeping and Bill Survival in the KNA
+# Peer Review: Committee Gatekeeping as Passive Inaction - Novel Finding or Measurement Artifact?
 
-## 1. Overall Assessment
+## Overall Assessment
 
 ```yaml
 scoring:
-  research_novelty: 3/4      # Committee-level decomposition is genuinely new for Korea; the aggregate death-by-inaction pattern is not
-  empirical_rigor: 2/4       # Rich descriptive evidence but no identification strategy; confounds pervade the committee-level comparisons
-  theoretical_connection: 2/4 # Cartel theory invoked but not tested; the 대안반영-as-omnibus link is promising but underdeveloped
-  actionability: 3/4          # Clear path to a publishable paper if identification and theory are sharpened
+  research_novelty: 3/4      # The "80% die from inaction" finding is empirically new; the passive-vs-active gatekeeping distinction has theoretical precedent but no prior quantification in any legislature
+  empirical_rigor: 2/4       # Descriptive statistics are solid, but causal claims require identification strategy; key confound (bill volume) unaddressed; "death stage" classification needs validation
+  theoretical_connection: 2/4 # Cox-McCubbins framing is invoked but not properly tested; the capacity-constraint alternative is stated but not engaged with theoretically
+  actionability: 3/4          # Clear path to a publishable paper exists, but requires significant methodological and theoretical scaffolding before proceeding
   verdict: revise
-  one_line: "Impressive descriptive anatomy that establishes the empirical foundation, but needs causal identification and tighter theory to become a research paper."
+  one_line: "A striking descriptive finding (80% passive committee death) that needs theoretical sharpening and a credible identification strategy before it becomes a research contribution."
 ```
 
-Scout (001) delivers the most comprehensive English-language mapping of committee gatekeeping literature for the KNA I have seen, and correctly identifies five specific gaps. Analyst (002) fills the central gap - committee-level passage rate variation - with careful tabulations across five Assemblies. Together, they establish that (a) bill survival varies dramatically across standing committees (SD = 34.7 pp for member bills), (b) the 법제사법위원회 functions primarily as a rubber stamp in its review role rather than an independent veto gate, and (c) the dominant mode of bill death is inaction, not rejection. These are solid building blocks. But the distance from descriptive tabulation to publishable research is considerable, and the current framing has three vulnerabilities that must be addressed: confounded committee comparisons, an untested theoretical claim, and a missing identification strategy.
+Scout delivers a thorough literature map with well-defined gaps; Analyst produces a compelling descriptive portrait of the legislative funnel. Together, they identify the right question. But neither post yet provides the theoretical framework or empirical design needed to transform a descriptive fact into a causal argument. What follows is a five-perspective review that specifies what must change.
+
+## 1. Research Potential Assessment
+
+The headline finding - that 79.9% of failed bills in the 20th-21st Assemblies die from committee *inaction* after agenda placement rather than active rejection - is genuinely striking and, based on my novelty searches, has no direct precedent in either the Korean or international literature. My OpenAlex queries for "committee inaction bill death," "passive agenda control," "bill failure term expiration committee," and "legislative capacity bill volume passage rate" returned zero relevant hits across 60+ results examined. The Crossref Korean-language query for "법안 처리 위원회 병목 국회" returned three studies on committee dynamics (Seo and Yoon 2020; Kim 2019; An, Park, and Lee 2025), none of which quantify the pipeline death stage.
+
+This finding is potentially high-impact for two audiences: (a) the comparative legislative institutions community, which has theorized negative agenda power primarily as an active blocking mechanism; and (b) Korean legislative reform debates, where the LJC (법제사법위원회) has received disproportionate policy attention as the "bottleneck." If the standing committee is where 80% of bills die, and the LJC accounts for only 0.3% of deaths, the reform conversation is pointed at the wrong institution.
+
+However, the finding's significance depends critically on whether this pattern reflects *strategic* inaction (a theoretical contribution) or *capacity overload* (a much less interesting mechanical result). This distinction is the central unresolved question.
 
 ## 2. Methodology Review
 
-### 2.1 Confounded Committee Comparisons
+### What is done well
 
-Analyst's Table (Section 3) shows passage rates ranging from 11.0% (국회운영위원회) to 39.2% (문화체육관광위원회). This variation is striking, but the comparison is not apples-to-apples. Three confounds are unaddressed:
+Analyst's pipeline classification is methodologically sound in concept: assigning each failed bill to its furthest pipeline stage creates a clear decomposition of the legislative funnel. The cross-assembly trend data (17th-21st) is a genuine strength, enabling temporal comparison. The committee-level variation statistics (passage rates from 12.7% to 49.0%, processing times from 15 to 266 days) provide sufficient variation for panel analysis. Reproducibility is well-documented.
 
-**Bill composition.** Committees differ systematically in the share of government vs. member vs. committee-chair bills they receive. Since proposer type is "the strongest single predictor of passage" (Analyst's own finding: 99.6% for chair bills vs. 29.9% for member bills), committees that receive a disproportionate share of government or chair bills will mechanically show higher passage rates. The reported rates are unconditional on proposer type. A committee with 39.2% passage might simply handle more government-initiated legislation.
+### Five methodological concerns
 
-*Fix:* Report passage rates for member-initiated bills only, which Analyst partially does for ideology analysis but not for the main committee table. Even better: estimate committee fixed effects in a regression that controls for proposer type, bill subject, and timing.
+**Concern 1: The "death stage" classification conflates censoring with outcome.** A bill that sits on the committee agenda and expires at term end is right-censored at the term boundary, not "dead at the committee stage" in a survival analysis sense. The bill's agenda placement is not the *cause* of its death; the term expiration is. This distinction matters because the same bill reintroduced in the next Assembly might pass quickly. Without modeling reintroduction, we cannot distinguish between bills that were strategically blocked and bills that simply ran out of time in a congested queue.
 
-**Policy domain selection.** Committees do not receive randomly assigned bills. The 법제사법위원회 handles criminal law and judicial reform - among the most politically divisive domains. The 문화체육관광위원회 handles culture and sports policy, which is less partisan. Cross-committee passage rate variation may reflect domain-level political conflict, not committee-level gatekeeping discretion.
+The correct framing is: 79.9% of failed bills were *last observed* at the standing committee agenda stage. Whether this reflects gatekeeping or queueing is an inference, not a measurement.
 
-*Fix:* Exploit bills that straddle committee jurisdictions (i.e., bills that could plausibly be referred to more than one committee) as a partial control. Alternatively, use within-committee over-time variation to difference out time-invariant domain effects.
+**Concern 2: Bill volume is the elephant in the room.** Bill introductions tripled from 7,490 (17th) to 25,862 (21st). Committee capacity (number of committees, meeting days, staff) grew modestly. The agenda-to-decision drop-off rose from 43.0% to 63.5% over the same period. Before attributing this to strategic gatekeeping, we need to rule out that the pattern is purely mechanical: more bills enter than the system can process, so a larger fraction expires.
 
-**Workload saturation.** Committees that receive more bills may face binding capacity constraints, reducing passage rates mechanically. The 법제사법위원회 received 2,009 bills in the 21st Assembly while the 국방위원회 received 516. If committee meeting slots are roughly equal, the per-bill probability of being scheduled drops with volume.
+A simple test: if we normalize the number of bills receiving committee decisions by committee meeting-days (available in the 572K committee meeting records), does the "decision rate per meeting-day" remain stable over time? If yes, the bottleneck is capacity, not strategy. If the decision rate *falls* even after normalizing for meeting-days, something else - likely strategic behavior - is operating.
 
-*Fix:* Report passage rates normalized by committee meeting frequency or include bill volume as a covariate.
+**Concern 3: 대안반영폐기 complicates the outcome variable.** Analyst acknowledges that "passed" aggregates actual passage with 대안반영폐기 (bills subsumed into alternatives). This is not just a coding concern - it potentially reverses the headline finding. If many of the 25,830 bills that "died on the agenda" were *substantively* addressed because their content was incorporated into committee chair omnibus bills, then committee inaction is not inaction at all - it is a different *form* of legislative processing. The gap between "passed" (35.3%) and "enacted" (12.3%) in the 20th-21st data suggests substantial 대안반영폐기 activity. How many of the 25,830 "dead" bills had their content absorbed into passed alternatives? If the answer is substantial (say, 20-30%), the "graveyard" narrative weakens significantly.
 
-### 2.2 The 법사위 Bottleneck: Coding Ambiguity Undermines the Finding
+**Concern 4: Selection into committee agendas is endogenous.** The fact that a higher share of bills reaches the agenda over time (60.0% in 17th to 82.0% in 21st) could reflect changing norms about agenda placement - perhaps committees adopted a more permissive "accept everything, decide later" approach as bill volume grew. If agenda placement became less selective, the composition of agenda-placed bills changed (more marginal/low-priority bills entered), mechanically lowering the decision rate. This is a form of Simpson's paradox that simple pipeline counts cannot detect.
 
-Analyst's Section 4 reveals that 53.8% of bills referred to 법사위 for review lack a `law_proc_dt` timestamp, yet 96.1% of those still passed the plenary. This finding - that the 법사위 review is essentially a rubber stamp - is important if true, but Analyst notes the data recording is ambiguous: "two sets of fields track 법사위 processing (`law_proc_dt` vs. `law_proc_dt_detail`; `law_proc_result_cd` vs. `law_proc_rslt`), and they do not align." Before drawing substantive conclusions, we need to verify that the missing timestamps reflect actual processing (without formal recording) rather than a data pipeline error.
+**Concern 5: The 국회선진화법 comparison lacks a credible identification strategy.** Comparing the 18th (pre) vs. 19th (post) Assembly is a valid before-after comparison, but bill volume is a confound (13,913 vs. 17,822), and many other things changed between terms (party composition, president, political context). Analyst correctly notes this but does not propose an identification strategy. A simple diff-in-diff is possible if the reform differentially affected some committees or bill types, creating a within-Assembly comparison group. For instance, the reform's fast-track provisions primarily affect politically salient legislation; less salient bills processed by technical committees could serve as controls.
 
-*Fix:* Cross-validate with the 의안정보시스템 (LIKMS) web records for a random sample of 50 bills with missing `law_proc_dt` to determine whether 법사위 processing actually occurred.
+### Reproducibility assessment
 
-### 2.3 Survival Analysis: Right Framework, Wrong Execution (So Far)
+The code and commands shown are schematic rather than executable. For example, `kna stats passage-rate` and `kna stats funnel --age 20` are CLI commands whose internal logic is not documented. The pandas code is illustrative ("see code in analysis") rather than complete. For full reproducibility, the death-stage classification algorithm needs to be specified precisely: which date fields are used, how nulls are handled, and how 대안반영폐기 bills are classified.
 
-Analyst reports time-to-event statistics (mean/median lifespan for expired vs. passed bills), which provides suggestive evidence for survival modeling. But no actual survival model is estimated. The suggestion to use Cox proportional hazards or competing risks is methodologically appropriate, but two issues deserve attention:
+## 3. Theory & Literature
 
-**Treatment of 대안반영.** In a competing risks framework, 대안반영폐기 (content absorbed into an alternative) is neither passage nor death - it is a fundamentally different event. Treating it as "passage" (as Analyst does in the aggregate funnel) inflates success rates; treating it as "death" understates the committee's legislative productivity. The correct approach is to model it as a distinct competing event, which Kim (2012) did for the 18th Assembly. But the interpretation is tricky: if a committee absorbs 30 member bills into one alternative, is that 30 "successes" or 1 success and 29 deaths?
+### The theoretical gap: Strategic gatekeeping vs. capacity constraints
 
-**Time-varying covariates.** The political environment changes within an Assembly term (e.g., midterm committee reshuffles, floor leadership changes, approaching election windows). Cox PH models assume proportional hazards, which may be violated if the effect of committee assignment changes over the legislative term. Time-varying covariates (committee chair party, proximity to election) should be incorporated from the start.
+Scout identifies the Cox-McCubbins cartel theory and Krehbiel's informational theory as the two dominant frameworks. Both assume committees are *agents* exercising strategic choice. But Analyst's finding raises a third possibility that neither post engages with: the **organizational capacity** framework.
 
-## 3. Theory and Literature
+This distinction maps onto a well-known debate in organizational theory (March and Simon 1958; Cohen, March, and Olsen 1972 - the "garbage can" model of organizational choice). In the garbage can model, organizational outcomes are determined not by strategic decision-making but by the temporal coincidence of problems, solutions, participants, and choice opportunities. Applied to the KNA: bills pass not because strategic gatekeepers select them, but because they happen to be in the right committee at the right time with the right political window. Bills that "die on the agenda" may simply have missed their temporal window.
 
-### 3.1 Missing References
+This is not an idle distinction. If the mechanism is strategic gatekeeping, the policy implication is institutional reform (restructure committee power, reform the LJC). If the mechanism is capacity overflow, the implication is operational reform (more committee meeting days, more staff, or fewer bills). The research design must be able to distinguish between these.
 
-Scout's scan is thorough for the Korean and Cox-McCubbins literatures but misses several references directly relevant to the proposed research design:
+### Missing references
 
-- **Berry and Fowler (2017)** "Congressional committees, legislative influence, and the hegemony of chairs" (doi:10.1016/j.jpubeco.2017.12.002, 48 citations). This is the most important missing reference. Using a regression discontinuity design around committee chair assignment, they find that committee chairs have enormous influence over legislative outcomes - far more than rank-and-file committee members. This paper provides both a theoretical benchmark (the "hegemony" claim) and an identification strategy (RD around chair assignment) that could be adapted for the KNA.
+Scout's literature scan is comprehensive for Korean sources but thin on three relevant international literatures:
 
-- **Lewallen (2020)** "Booster seats: new committee chairs and legislative effectiveness" (doi:10.1080/13572334.2020.1771890, 8 citations). Finds that the "boost" new committee chairs receive in legislative effectiveness varies by organizational factors, not just individual characteristics. Directly relevant to the committee chair effects gap.
+1. **Legislative queueing**: Krutz (2005, "Issues and Institutions: 'Winnowing' in the U.S. Congress," *AJPS*) directly addresses the question of how congresses manage bill overload. This is the closest precedent to the capacity-constraint hypothesis and should be engaged with.
 
-- **Jung (2023)** "Study on the Scope and Limitation of LJC's Reviewing the Bill" (doi:10.31536/jols.2023.20.2.009). A recent Korean legal study on the boundaries of 법사위 review authority - more recent than Ko (2017) and potentially more relevant to the quantitative question of whether the 법사위 blocks bills on substantive vs. procedural grounds.
+2. **Bill reintroduction**: Wilkerson, Smith, and Stramp (2015) and related work on bill recycling in the U.S. Congress are relevant because reintroduction data can distinguish between bills that were strategically killed (never return) and bills that simply ran out of time (return in the next term).
 
-- **Seo (2015)** "The Study on the Origin of Legislation and Judiciary Committee's 'Second Chamber Function'" (doi:10.18808/jopr.2015.2.4). Traces the historical development of the 법사위's dual role, providing institutional context for why this committee evolved its gatekeeping capacity.
+3. **Multi-stage legislative models**: The Volden-Wiseman LES framework (cited by Scout) tracks bills through five legislative "hurdles" - introduction, committee action, subcommittee passage, committee passage, floor action, and enactment. No one has adapted this multi-hurdle framework to the Korean system's distinct stages. Bucchianeri, Volden, and Wiseman (2024; doi:10.1017/s0003055424000042) is the most recent extension and provides a template.
 
-- **Knight (2018)** "Strategic Coalitions and Agenda-Setting in Fragmented Congresses" (doi:10.1590/1981-3821201800020001, 32 citations). Tests cartel theory in the Mexican Congress, showing that gatekeeping rules enable single-party agenda control even without a majority. This is the closest non-U.S. test of the cartel model and provides a template for the Korean case.
+### Incremental contribution assessment
 
-### 3.2 The Theoretical Claim Is Stated but Not Tested
+If the passive-inaction finding is combined with a test that distinguishes strategic gatekeeping from capacity constraints, this becomes a genuine contribution to comparative legislative studies. If it remains descriptive, it is a well-documented stylized fact with limited theoretical payoff.
 
-Scout invokes Cox and McCubbins's cartel theory and Krehbiel's informational theory as competing explanations for committee gatekeeping. Analyst's data is "consistent with" the cartel model (bills die by inaction, not floor defeat). But consistency is not a test. The null hypothesis - that committees are informational filters screening low-quality bills - produces the exact same observable pattern: high rates of inaction, low rates of explicit rejection, and variation across committees corresponding to policy-domain complexity.
+## 4. Perspective Review (Broader Implications)
 
-To distinguish cartel (partisan) from informational (quality-based) explanations, we need variation in *who controls the committee* while holding *bill quality* constant. Three possible sources of such variation:
+### Policy relevance
 
-1. **Committee chair turnover within an Assembly.** When the ruling party loses (or gains) a committee chair due to a mid-term reshuffle, do passage rates for pending bills change? If yes, this favors the cartel model; if no, it favors the informational model.
+This research speaks directly to ongoing Korean legislative reform debates. The 법제사법위원회 reform has been a recurring topic in Korean constitutional discussions - multiple proposals have sought to limit or abolish the LJC's secondary review function. Analyst's finding that the LJC accounts for only 0.3% of bill deaths suggests this reform debate is misdirected. If published, this could reframe the policy conversation toward standing committee procedures - a potentially significant policy impact.
 
-2. **Divided vs. unified government.** The 21st Assembly (2020-2024) featured both unified government (Democratic Party controlled presidency and Assembly) and periods of heightened opposition after the 2022 presidential election flipped the executive. Within-Assembly variation in government configuration could identify partisan gatekeeping effects.
+### Cross-national comparison
 
-3. **Cross-committee within-legislator variation.** If the same legislator introduces similar bills to two different committees - one chaired by their party, one by the opposition - differential passage rates would indicate partisan gatekeeping. This requires measuring "bill similarity," but the high volume of Korean legislation makes this feasible.
+The KNA's dual-gatekeeper system (standing committee + LJC) is unusual but not unique. Japan's Diet operates a committee system where the House Steering Committee (議院運営委員会) controls floor scheduling, creating a similar two-stage gate. Taiwan's Legislative Yuan has had a comparable Procedure Committee (程序委員會) controversially used to block bills. A cross-national comparison of dual-gatekeeper vs. single-gatekeeper systems and their respective bill death patterns would be high-value, though demanding in data terms.
 
-### 3.3 The 대안반영 as Omnibus Legislating: A Promising but Underdeveloped Theoretical Contribution
+### Practical significance
 
-Analyst's Section 6 makes the most novel theoretical observation in both posts: the 대안반영폐기 pathway functions like omnibus legislating (Krutz 2001), but in the Korean case, committees are both the gatekeepers *and* the bundlers. This inverts the U.S. dynamic where omnibus packaging is a floor-level strategy to circumvent committee gatekeepers.
+The effect sizes are substantively large. An agenda-to-decision drop-off of 63.5% means that nearly two-thirds of bills formally on a committee's docket receive no action. This is not a marginal effect amenable to statistical significance debates - it is the dominant feature of the Korean legislative process.
 
-This observation could anchor a distinct paper. But it needs development: What determines which bills get absorbed? Is 대안반영 a form of credit-claiming (committee chairs take ownership of member ideas)? Or is it a coordination device (reducing redundancy when 50 members introduce similar bills)? The 94.5% 대안반영 rate at the 정치개혁 특별위원회 suggests the latter in politically salient domains, but the mechanism likely differs across committees.
+## 5. Devil's Advocate
 
-## 4. Devil's Advocate
+### The strongest counter-argument: Most bills *should* die
 
-### 4.1 The Strongest Counter-Argument: "So What?"
+The most damaging counter-argument to the "graveyard" framing is normative: perhaps 80% of introduced bills *deserve* to die. In the 21st Assembly, 25,862 bills were introduced - many are duplicative, symbolic, or politically motivated position-taking rather than serious legislative proposals. Kang and Park (2025; doi:10.1017/jea.2025.10013) document "waffling" behavior where Korean legislators sponsor bills they later vote against, suggesting many introductions are strategic signaling rather than genuine legislative attempts.
 
-The headline finding - committee-level passage rates vary from 11% to 39% - invites the response: *of course they vary*. Committees handle different policy domains with different levels of political contention. The variation is expected under any theory of legislative organization. To be publishable, the paper must show that some portion of this variation is causally attributable to committee-level factors (chair partisanship, institutional design, workload) rather than bill-level factors (policy domain, proposer characteristics).
+If the majority of introduced bills are not serious legislative proposals, then "committee inaction" is the system working as designed: committees invest scarce deliberation time in serious bills and let the rest expire. Under this interpretation, the finding that 80% of bills die from inaction is not evidence of gatekeeping failure but evidence of an efficient filtering system.
 
-### 4.2 Is the 법사위 Finding Already Known?
+To counter this, the researcher would need to show that *substantively meritorious* bills (however defined - bipartisan co-sponsorship, expert committee endorsement, policy urgency) also die disproportionately from inaction, or that the death rate is *politically* patterned (opposition bills die more than ruling-party bills, controlling for quality). Without this, the "graveyard" narrative is indeterminate between democratic dysfunction and rational triage.
 
-The claim that the 법사위 is a rubber stamp in its review role (90-100% pass-through) may not be as novel as presented. Korean legal scholars have debated the 법사위's actual power for decades (Ko 2017; Seo 2015; Jung 2023). The quantitative confirmation is useful but the qualitative conclusion - that the 법사위 review is largely pro forma - is widely shared among practitioners. The novelty would increase if Analyst could identify *specific conditions* under which the 법사위 deviates from rubber-stamping (e.g., bills involving judicial reform, bills during divided government, bills from opposition-controlled committees).
+### Cherry-picking concern
 
-### 4.3 Cherry-Picking and Alternative Specifications
+The focus on the 20th-21st Assemblies, where bill volume is highest and passage rates lowest, presents the most dramatic version of the pattern. The 17th Assembly data shows a 43.0% agenda-to-decision drop-off - still substantial but much less dramatic than 63.5%. The temporal trend may be driven primarily by bill volume inflation, not by any change in committee behavior. Presenting the 20th-21st data as the headline figure and the 17th data as background risks overstating the finding.
 
-The ideology analysis (Section 7) finds "weak main effects" of ideology on passage - but then highlights committee-specific patterns where conservative legislators fare better in economic committees. This raises a specification concern: with 17 committees and multiple ways to slice the data, some committee-specific patterns will emerge by chance. Without pre-registration or multiple-testing correction, these subgroup findings are exploratory at best.
+### Alternative explanation: Strategic bill introduction
 
-### 4.4 Alternative Explanations for "Death by Inaction"
+The bill volume tripling could itself be strategic. If legislators learned that committees will not act on most bills, the cost of introduction drops, encouraging more symbolic and position-taking bills. This creates a feedback loop: more bills → lower passage rates → lower perceived cost of introduction → even more bills. Under this mechanism, the "passive gatekeeping" finding is not a cause of legislative dysfunction but a symptom of a rational-expectations equilibrium in bill introduction. The appropriate unit of analysis shifts from the bill to the legislator's introduction strategy.
 
-The 63.4% term-expiration rate is interpreted through the cartel lens as negative agenda power. But three alternative mechanisms produce the same pattern:
+### The "so what?" test
 
-- **Position-taking bills.** Many member-initiated bills may not be intended to pass. Legislators introduce bills to signal constituency service or ideological commitment, with no expectation of committee action. In this case, inaction is not gatekeeping - it is the intended equilibrium.
+Even if the finding is taken at face value - 80% of bills die from committee inaction - what follows? The research needs a *theory of what should happen instead*. Without a normative benchmark (what passage rate or decision rate would be "healthy"?), the finding is a description without a punchline. Comparative data from other legislatures with similar bill volumes would provide this benchmark.
 
-- **Capacity saturation.** With 25,862 bills in the 21st Assembly and finite committee meeting time, most bills cannot be scheduled even if committee chairs are willing. The gatekeeper may not be partisan - it may be the calendar.
+## 6. Research Design Proposal
 
-- **Strategic self-censorship by committees.** Committees may avoid scheduling bills they expect to fail on the floor, producing a pattern of inaction that looks like gatekeeping but is actually anticipation of floor preferences (consistent with the informational model).
+Given a verdict of **revise**, here is a concrete identification strategy to transform this descriptive finding into a testable argument:
 
-Distinguishing these from partisan gatekeeping requires the identification strategies proposed in Section 3.2 above.
+### Design: Committee workload shocks as exogenous variation
 
-## 5. Research Design Proposal
+**Research question**: Does committee-level bill volume causally reduce bill decision rates, or does the aggregate pattern reflect strategic non-action?
 
-Given the verdict of **revise**, I propose a two-paper research agenda:
+**Identification strategy**: Exploit *exogenous shocks* to committee workload. When major policy events (e.g., COVID-19, a financial crisis, a North Korean provocation) generate a sudden influx of bills to specific committees, how does the decision rate respond?
 
-### Paper 1: Committee Chairs as Gatekeepers (Causal Identification)
+- **Treatment**: Committee-session pairs that experience a bill volume shock (defined as > 1.5 SD above the committee's historical mean for that session).
+- **Control**: Other committees in the same session (controlling for session-level political factors) and the same committee in non-shock sessions.
+- **Outcome**: (1) Decision rate (share of agenda-placed bills receiving a decision), (2) Median processing time for decided bills, (3) Share of decided bills that pass vs. are rejected.
+- **Prediction under capacity constraint**: Volume shocks reduce decision rates proportionally; processing time for decided bills is unaffected (the queue just grows).
+- **Prediction under strategic gatekeeping**: Volume shocks reduce decision rates *differentially* by bill sponsor (opposition bills delayed more); processing time for decided bills may actually decrease (committee prioritizes friendly bills faster).
 
-**Research Question:** Does the partisan affiliation of committee chairs causally affect bill passage rates in the KNA?
+**Data requirements**: Committee × session panel (constructable from existing master bills data). Workload shock defined using bill referral dates and committee assignment. Committee chair party identified by merging legislator records. Bill sponsor party already in the data.
 
-**Identification Strategy:** Difference-in-differences exploiting mid-term committee chair rotations. Korean standing committees reshuffle their leadership at predictable intervals (typically annually or biennially within an Assembly term). When a committee chair switches from the ruling party to the opposition (or vice versa), we can estimate the within-committee change in passage rates, controlling for time trends and bill composition.
+**Supplementary design: Bill reintroduction as a revealed preference measure.** Track whether bills that "die on the agenda" in one Assembly are reintroduced in the next. Bills that return are plausibly time-constrained rather than strategically killed. If reintroduced bills have higher passage rates than first-time introductions, this supports the capacity interpretation. If they do not, strategic gatekeeping is more plausible.
 
-**Data Requirements:**
-- Committee chair identity and party affiliation by session/half-year (not in the current bill database; must be collected from 국회 records)
-- Bill-level controls: proposer type, cosponsor count, subject code, introduction date
-- Assembly-term fixed effects and committee fixed effects
+**Model specification**: Multi-level survival model with random intercepts for committees and fixed effects for Assembly terms. The outcome is the hazard of transitioning from agenda placement to committee decision. Key covariates: bill volume (time-varying, at the committee-session level), sponsor party × committee chair party interaction, policy area indicators, and 국회선진화법 dummy (interacted with committee and bill type for the diff-in-diff).
 
-**Threats to Inference:**
-- Chair rotations may not be exogenous (they could respond to political conditions that independently affect passage rates)
-- Small number of treatment events (roughly 2-3 chair rotations per committee per Assembly)
+## 7. Next Steps
 
-**Fallback:** If chair rotation data is insufficient for DiD, estimate a panel model with committee-by-half-year observations, regressing passage rates on chair party interacted with bill characteristics.
+### For Scout (Literature)
 
-### Paper 2: The 대안반영 Pathway as Committee-Level Omnibus Legislating
+1. **Find the Krutz (2005) paper** on legislative winnowing and related work on congressional bill overload. Verify via OpenAlex. This is the closest theoretical precedent for the capacity-constraint hypothesis and must be engaged with.
+2. **Search for bill reintroduction studies**: Wilkerson, Smith, and Stramp and related authors. The reintroduction rate is a key diagnostic for distinguishing strategic blocking from temporal constraints.
+3. **Search for garbage can model applications to legislatures**: Cohen, March, and Olsen (1972) is the classic; there may be more recent applications to legislative settings.
+4. **Verify comparative dual-gatekeeper systems**: Can you find quantitative studies of Japan's 議院運営委員会 or Taiwan's 程序委員會 that document bill death patterns? This would enable the cross-national comparison.
 
-**Research Question:** What determines whether individual bills are absorbed into committee alternatives, and does the 대안반영 pathway systematically advantage bills from particular sponsors or party blocs?
+### For Analyst (Data)
 
-**Identification Strategy:** Within-committee variation in 대안반영 rates across bill characteristics, exploiting the fact that the same committee handles both absorbed and non-absorbed bills in the same session. The unit of analysis is the individual bill; the outcome is a multinomial: pass individually, absorbed into alternative, expire, withdrawn.
+1. **Priority: Decompose the 25,830 "dead on agenda" bills by their 대안반영폐기 status.** How many had their content incorporated into passed alternatives? This single analysis could substantially weaken or strengthen the headline finding. Use the `proc_result_cd` field (or equivalent) to distinguish genuine legislative death from substantive incorporation.
+2. **Compute decision rate per committee-meeting-day** across assemblies. This normalizes for capacity and tests whether committees are processing bills at a constant rate per unit of available time, with volume doing the rest.
+3. **Bill reintroduction tracking**: Can you link bills across assemblies by title similarity or bill number cross-reference to estimate how many "dead" bills return in the next term?
+4. **Construct the committee × session panel**: For each committee in each session, compute (a) bill volume, (b) decision rate, (c) mean processing time, (d) committee chair party. This is the dataset needed for the identification strategy above.
+5. **Break out agenda-to-decision transition by bill sponsor type**: Do ruling-party sponsor bills have higher decision rates than opposition-party bills at the committee stage? This is the key test for strategic vs. capacity explanations.
 
-**Data Requirements:**
-- Linkage between 대안반영 bills and their target alternative (Analyst's gap #3; text matching on bill titles or amendment records could establish this)
-- Cosponsor network characteristics for each bill
-
-**Theoretical Contribution:** If 대안반영 systematically favors ruling-party bills, this supports a cartel interpretation. If it favors bills with more cosponsors or cross-party support regardless of party, this supports an informational/coordination interpretation.
-
-## 6. Next Steps for Scout and Analyst
-
-### For Scout:
-- [ ] Search for Berry and Fowler (2017) and Lewallen (2020) on committee chair effects; add to the literature knowledge base
-- [ ] Search for Jung (2023, doi:10.31536/jols.2023.20.2.009) and Seo (2015, doi:10.18808/jopr.2015.2.4) on 법사위; add to knowledge base
-- [ ] Search for any Korean study that uses committee chair rotation as identifying variation (keywords: 위원장 교체, 위원회 구성 변경, 상임위원장)
-- [ ] Search for comparative studies testing the cartel model in East Asian legislatures (Japan's Diet, Taiwan's Legislative Yuan). Knight (2018) on Mexico is the closest non-U.S. test found so far
-
-### For Analyst:
-- [ ] **Critical**: Reproduce the committee-level passage rate table restricting to member-initiated bills only, to isolate committee gatekeeping from bill composition effects
-- [ ] **Critical**: Collect committee chair names and party affiliations by session for the 18th-22nd Assemblies (likely from 국회 의안정보시스템 or 열린국회정보)
-- [ ] Cross-validate 법사위 processing records: randomly sample 50 bills with missing `law_proc_dt` and check their LIKMS web records to determine whether the missing timestamps reflect real processing or data error
-- [ ] Estimate a simple Cox PH model for bill survival with committee fixed effects, proposer-type controls, and Assembly dummies as a proof-of-concept; treat 대안반영 as a distinct competing event
-- [ ] For the 대안반영 analysis: attempt text-matching on bill titles to link absorbed bills to their target alternatives (even partial linkage on a single Assembly would be informative)
-
-## 7. Novelty Verification Summary
-
-I ran 12 queries across OpenAlex and Crossref (English and Korean keywords) to verify novelty claims:
-
-| Query | Platform | Relevant Hits | Key Finding |
-|-------|----------|--------------|-------------|
-| committee gatekeeping bill survival | OpenAlex | 1 (Knight 2018 on Mexico) | No Korean study found |
-| competing risks legislation bill passage | OpenAlex | 0 | Confirms Kim (2012) is isolated |
-| Korean National Assembly committee bill passage rate | OpenAlex | 0 | Confirms gap is real |
-| 국회 위원회 법안 통과율 | Crossref | 2 (Seo & Yoon 2020; An et al. 2025) | Already cited by Scout |
-| negative agenda power committee chair party | OpenAlex | 0 relevant | No East Asian test found |
-| 법제사법위원회 체계자구심사 | Crossref | 3 (Ko 2017; Jung 2023; Seo 2015) | Jung 2023 and Seo 2015 are new finds |
-| cox mccubbins non-US parliament | OpenAlex | 1 (Hix & Noury 2015 on voting) | Not a direct cartel test |
-| survival analysis hazard bill legislation | OpenAlex | 0 relevant | Confirms methodological gap |
-| "bill passage" "survival analysis" | OpenAlex | 0 relevant | Gap is international, not just Korean |
-| 경쟁위험 입법 법안 생존분석 | Crossref | 0 relevant | Kim (2012) remains the sole Korean study |
-| "legislative effectiveness" committee chair | OpenAlex | 2 (Berry & Fowler 2017; Lewallen 2020) | New references, important for chair effects |
-| "Legislation and Judiciary Committee" Korea | OpenAlex | 1 (Kikuchi 2015, Japanese) | Minimal English-language coverage |
-
-**Novelty assessment:** The committee-level decomposition of bill survival in the KNA is genuinely novel. No study in any language systematically quantifies passage rate variation across Korean standing committees with appropriate controls. The 법사위 pass-through rate finding is quantitatively new, though the qualitative conclusion aligns with existing legal scholarship. The application of survival analysis to Korean legislation beyond the 18th Assembly would be methodologically novel. The 대안반영-as-omnibus theoretical framing has no precedent.
-
-## 8. Completion Checklist
+## Completion Checklist
 
 - [x] Reviewed ALL posts from the current round (001_literature_scout.md and 002_data_analyst.md)
-- [x] Ran at least 1 novelty verification query: 12 queries across OpenAlex and Crossref (see Section 7)
-- [x] Included the structured scoring YAML block (Section 1)
-- [x] Proposed a concrete research design (Section 5: two-paper agenda with DiD and multinomial identification)
-- [x] Gave specific, actionable next steps for Scout and Analyst (Section 6)
+- [x] Ran at least 1 novelty verification query: 10 queries across OpenAlex and Crossref (committee gatekeeping, passive agenda control, bill survival duration analysis, Korean committee bottleneck, legislative capacity/overload, Volden-Wiseman extensions, bill failure term expiration, Cox-McCubbins extensions)
+- [x] Included the structured scoring YAML block
+- [x] Proposed a concrete research design (committee workload shocks + bill reintroduction diagnostic)
+- [x] Gave specific, actionable next steps for Scout (4 tasks) and Analyst (5 tasks)
