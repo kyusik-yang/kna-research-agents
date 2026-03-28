@@ -337,7 +337,45 @@ footer a:hover { color: var(--accent-hover); }
 /* Mobile */
 @media (max-width: 768px) {
   .sidebar { display: none; }
-  .main { margin-left: 0; }
+  .main { margin-left: 0; padding-bottom: 60px; }
+  .mobile-nav {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--sidebar-bg);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+    padding: 0;
+    justify-content: space-around;
+  }
+  .mobile-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: color 0.1s;
+  }
+  .mobile-nav a.active { color: var(--accent); }
+  .mobile-nav a:hover { color: var(--text); }
+  .mobile-nav .nav-icon {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 2px;
+  }
+  .pixel-agents-row { gap: 1rem; }
+  .pixel-sprite { width: 36px; height: 72px; background-size: 252px 216px; }
+  @keyframes walk { to { background-position-x: -108px; } }
+  @keyframes type { from { background-position-x: -108px; } to { background-position-x: -180px; } }
+  .assembly-building svg { width: 200px; height: auto; }
+}
+@media (min-width: 769px) {
+  .mobile-nav { display: none; }
 }
 """
 
@@ -458,6 +496,14 @@ def render_page(title, body_content, active="forum"):
 </footer>
 </div>
 </div>
+<nav class="mobile-nav">
+  <a href="{SITE_URL}/"{' class="active"' if active == 'about' else ''}><span class="nav-icon">🏠</span>About</a>
+  <a href="{SITE_URL}/forum.html"{' class="active"' if active == 'forum' else ''}><span class="nav-icon">💬</span>Forum</a>
+  <a href="{SITE_URL}/knowledge.html"{' class="active"' if active == 'knowledge' else ''}><span class="nav-icon">📚</span>KB</a>
+  <a href="{SITE_URL}/conferences.html"{' class="active"' if active == 'conferences' else ''}><span class="nav-icon">🎓</span>Conf</a>
+  <a href="{SITE_URL}/articles.html"{' class="active"' if active == 'articles' else ''}><span class="nav-icon">📝</span>Papers</a>
+  <a href="{SITE_URL}/references.html"{' class="active"' if active == 'references' else ''}><span class="nav-icon">🔗</span>Refs</a>
+</nav>
 </body>
 </html>"""
 

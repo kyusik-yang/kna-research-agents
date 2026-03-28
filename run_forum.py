@@ -369,18 +369,13 @@ def generate_round_summary(round_num, topic=None):
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     prompt = textwrap.dedent(f"""\
-    You are a research forum moderator. Summarize Round {round_num} of the research discussion.
+    You are a research forum moderator. Summarize Round {round_num}.
 
-    Write a concise summary (200-400 words) that:
-    1. States the round's topic or focus
-    2. Highlights each agent's key finding or contribution (2-3 sentences each)
-    3. Notes points of agreement and disagreement between agents
-    4. Lists the most promising research directions identified
-    5. Identifies what remains unresolved
+    Write a SHORT summary (100-150 words max) followed by one punchline quote per agent.
 
     Write the summary to: {SUMMARIES_DIR}/round_{round_num:02d}.md
 
-    Use this format:
+    Use this EXACT format:
     ```
     ---
     round: {round_num}
@@ -390,8 +385,23 @@ def generate_round_summary(round_num, topic=None):
 
     # Round {round_num} Summary
 
-    [Your summary]
+    [2-3 sentence overview of the round. What was the main question? What was discovered? What's unresolved?]
+
+    ## Key Quotes
+
+    > **Scout**: "[Most important single sentence from Scout's post - verbatim or near-verbatim]"
+
+    > **Analyst**: "[Most striking finding or number from Analyst's post - verbatim or near-verbatim]"
+
+    > **Critic**: "[Sharpest judgment or recommendation from Critic's post - verbatim or near-verbatim]"
+
+    **Verdict**: [Critic's verdict if available] | **Next**: [One sentence on what Round N+1 should tackle]
     ```
+
+    Rules:
+    - Quotes should be the punchline of each agent's post - the one line a reader would remember
+    - Keep the overview to 2-3 sentences, not more
+    - Total length under 150 words (excluding quotes)
 
     ## Posts to Summarize
 
@@ -509,31 +519,38 @@ def main():
         else:
             print("  Keeping. Use --resume to skip this prompt.")
 
+    # Detect starting round from existing posts
+    n_agents_full = len(load_agents())
+    existing_posts = list(FORUM_DIR.glob("*.md"))
+    existing_agent_posts = [p for p in existing_posts if not p.name.startswith(".")]
+    start_round = (len(existing_agent_posts) // n_agents_full) + 1 if existing_agent_posts else 1
+
     agent_names = ", ".join(a["name"] for a in agents)
     tools_info = " | ".join(f"{a['id']}:{','.join(a.get('allowed_tools', []))}" for a in agents)
     print(f"\n  Research Forum")
     print(f"  Agents: {agent_names}")
     print(f"  Tools:  {tools_info}")
-    print(f"  Rounds: {args.rounds}")
+    print(f"  Rounds: {args.rounds} (starting from round {start_round})")
     if args.topic:
         print(f"  Topic:  {args.topic}")
     print()
 
-    for rnd in range(1, args.rounds + 1):
+    for i in range(args.rounds):
+        rnd = start_round + i
         print(f"\n{'#' * 60}")
-        print(f"  ROUND {rnd}/{args.rounds}")
+        print(f"  ROUND {rnd}")
         print(f"{'#' * 60}")
 
         for agent in agents:
             run_agent(
-                agent, rnd, args.rounds,
-                seed_topic=args.topic if rnd == 1 else None,
+                agent, rnd, start_round + args.rounds - 1,
+                seed_topic=args.topic if i == 0 else None,
                 dry_run=args.dry_run,
             )
 
         if not args.dry_run:
             generate_round_summary(
-                rnd, topic=args.topic if rnd == 1 else None,
+                rnd, topic=args.topic if i == 0 else None,
             )
 
     print_summary()
