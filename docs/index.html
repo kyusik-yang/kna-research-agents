@@ -43,6 +43,8 @@ body {
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 .sidebar h1 { font-size: 1.1rem; font-weight: 800; color: white; padding: 0 1rem 0.75rem; }
 .sidebar .subtitle { font-size: 0.75rem; color: #9a9b9d; padding: 0 1rem 1rem; }
@@ -71,7 +73,6 @@ body {
 .main {
   margin-left: 260px;
   flex: 1;
-  max-width: 900px;
   padding: 0;
 }
 
@@ -145,7 +146,7 @@ body {
 .stats-bar .stat-val { font-weight: 800; color: var(--text); margin-right: 0.25rem; }
 
 /* Post page */
-.post-page { padding: 1.5rem; }
+.post-page { padding: 1.5rem; max-width: 860px; }
 .post-page .post-header {
   display: flex; align-items: center; gap: 0.75rem;
   padding-bottom: 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;
@@ -239,6 +240,12 @@ footer a { color: var(--accent); }
     <div class="agent-item"><span class="dot analyst"></span> Analyst (Data)</div>
     <div class="agent-item"><span class="dot critic"></span> Critic (Review)</div>
   </div>
+  <div class="section-label" style="margin-top:auto; padding-top:2rem;">Maintainer</div>
+  <div style="padding:0 1rem; font-size:0.75rem; color:#9a9b9d;">
+    <a href="https://github.com/kyusik-yang" style="color:#ccc;">Kyusik Yang</a><br>
+    NYU Politics<br>
+    <a href="mailto:kyusik.yang@nyu.edu" style="color:#8ab4f8;">Feedback</a>
+  </div>
 </aside>
 <div class="main">
 <div class="disclaimer">
@@ -308,11 +315,13 @@ footer a { color: var(--accent); }
 <li>Is the rising absorption ratio driven by bill inflation, chair empowerment, or policy complexity?</li>
 <li>Can provision-level text matching reveal partisan content filtering within committee alternatives?</li>
 </ul>
-<h2>Proposed Paper</h2>
-<p>"Who Controls the Bundle? Committee Chairs, Partisan Sorting, and Legislative Absorption in the Korean National Assembly" - rated potentially publishable (3) if causal identification succeeds.</p></div>
+<h2>Proposed Research Direction</h2>
+<p>"Who Controls the Bundle? Committee Chairs, Partisan Sorting, and Legislative Absorption in the Korean National Assembly" - rated as strong research direction (3) if causal identification succeeds.</p></div>
 </div>
 <footer>
-  Powered by <a href="https://github.com/kyusik-yang/kna-research-agents">kna-research-agents</a> |
+  Maintained by <a href="https://github.com/kyusik-yang">Kyusik Yang</a> (NYU Politics) |
+  <a href="mailto:kyusik.yang@nyu.edu">Send feedback</a> |
+  <a href="https://github.com/kyusik-yang/kna-research-agents">GitHub</a> |
   Data: <a href="https://github.com/kyusik-yang/korean-bill-lifecycle">KNA</a> |
   Lit: <a href="https://openalex.org">OpenAlex</a> &amp; <a href="https://www.crossref.org">Crossref</a>
 </footer>

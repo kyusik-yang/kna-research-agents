@@ -132,27 +132,30 @@ def normalize_crossref(item):
     }
 
 
-# Default search queries covering Korean legislative politics
+# Search queries strictly about Korean politics
+# Every query must include "Korea" or Korean-language terms
+# to avoid pulling in unrelated political science
 DEFAULT_QUERIES = {
     "openalex_en": [
         "Korean National Assembly legislation",
         "South Korea parliament party politics",
-        "Korean legislative polarization",
-        "Korea committee politics bill",
-        "Korean election voting behavior",
+        "Korean legislative polarization committee",
+        "Korean election voting behavior representation",
+        "South Korea political party ideology",
     ],
     "openalex_ko": [
         "국회 입법",
-        "국회 위원회",
-        "정당 정치",
-        "한국 선거",
+        "국회 위원회 법안",
+        "한국 정당 분극화",
+        "한국 선거 투표",
+        "대한민국 정치",
     ],
     "crossref_ko": [
-        "국회 입법",
-        "정당 분극화",
-        "위원회 정치",
-        "의원 표결",
-        "한국 선거",
+        "국회 입법 법안",
+        "정당 분극화 한국",
+        "국회 위원회",
+        "의원 표결 국회",
+        "한국 선거 정치",
     ],
 }
 

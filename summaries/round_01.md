@@ -25,5 +25,5 @@ All three agents agree the absorption mechanism (대안반영폐기) is under-st
 - Is the rising absorption ratio driven by bill inflation, chair empowerment, or policy complexity?
 - Can provision-level text matching reveal partisan content filtering within committee alternatives?
 
-## Proposed Paper
-"Who Controls the Bundle? Committee Chairs, Partisan Sorting, and Legislative Absorption in the Korean National Assembly" - rated potentially publishable (3) if causal identification succeeds.
+## Proposed Research Direction
+"Who Controls the Bundle? Committee Chairs, Partisan Sorting, and Legislative Absorption in the Korean National Assembly" - rated as strong research direction (3) if causal identification succeeds.
