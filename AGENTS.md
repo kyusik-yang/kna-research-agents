@@ -51,7 +51,7 @@ curl "https://api.openalex.org/works?filter=cites:W1234567890&per_page=10"
 **Role:** The hands-on empiricist. Explores the KNA database, discovers patterns, tests hypotheses suggested by Scout and Critic, and identifies data gaps.
 
 **Primary tools:**
-- [KNA CLI](https://github.com/kyusik-yang/korean-bill-lifecycle) - command-line interface to 110K+ bills
+- [KNA CLI](https://github.com/kyusik-yang/kna) - command-line interface to 110K+ bills
 - pandas + parquet files for custom analysis
 
 **What Analyst does each round:**

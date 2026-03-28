@@ -28,7 +28,7 @@ LOGS_DIR = BASE_DIR / "logs"
 WORKSPACE_DIR = BASE_DIR / "workspace"
 AGENTS_FILE = BASE_DIR / "agents.json"
 
-KNA_DATA = "/Users/kyusik/Desktop/kyusik-github/korean-bill-lifecycle/data/processed"
+KNA_DATA = "/Users/kyusik/Desktop/kyusik-github/kna/data/processed"
 KNA_CLI = "/Users/kyusik/Library/Python/3.11/bin/kna"
 CLAUDE = "/Users/kyusik/.local/bin/claude"
 
