@@ -285,17 +285,51 @@ footer a:hover { color: var(--accent-hover); }
 
 /* Round summary card */
 .round-summary {
-  background: rgba(88,166,255,0.08);
-  border: 1px solid rgba(88,166,255,0.2);
-  border-radius: 6px;
-  padding: 1rem 1.25rem;
-  margin: 0.75rem 0;
-  font-size: 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0 1.5rem;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
-.round-summary h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
-.round-summary p { margin-bottom: 0.4rem; color: var(--text-secondary); }
-.round-summary ul { padding-left: 1.25rem; margin-bottom: 0.4rem; }
-.round-summary li { margin-bottom: 0.15rem; color: var(--text-secondary); }
+.round-summary .summary-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+.round-summary .summary-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: rgba(88,166,255,0.15); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600; flex-shrink: 0;
+}
+.round-summary .summary-title {
+  font-size: 0.85rem; font-weight: 600; color: var(--text);
+}
+.round-summary .summary-meta {
+  font-size: 0.7rem; color: var(--muted);
+}
+.round-summary h2 {
+  font-size: 0.8rem; font-weight: 600; color: var(--accent);
+  margin: 1rem 0 0.4rem; padding: 0; border: none;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.round-summary h2:first-of-type { margin-top: 0; }
+.round-summary p { margin-bottom: 0.5rem; }
+.round-summary strong { color: var(--text); font-weight: 600; }
+.round-summary ul, .round-summary ol {
+  padding-left: 1.5rem; margin-bottom: 0.5rem;
+}
+.round-summary li { margin-bottom: 0.25rem; }
+.round-summary code {
+  background: rgba(110,118,129,0.2); padding: 0.1rem 0.3rem;
+  border-radius: 4px; font-size: 0.9em;
+}
 
 .post-meta { font-size: 0.8rem; color: var(--muted); }
 .post-meta a { color: var(--accent); }
@@ -446,12 +480,25 @@ def build_index(posts):
             text = sf.read_text()
             match = re.match(r"^---\n(.*?)\n---\n(.*)", text, re.DOTALL)
             if match:
+                meta = {}
+                try:
+                    meta = yaml.safe_load(match.group(1)) or {}
+                except yaml.YAMLError:
+                    pass
                 body = match.group(2).strip()
                 # Remove the H1 title line
                 body = re.sub(r"^# .+\n+", "", body)
-                body_html = markdown.markdown(body, extensions=["tables"])
+                body_html = markdown.markdown(
+                    body, extensions=["tables", "fenced_code"],
+                )
                 rnd_num = int(re.search(r"(\d+)", sf.stem).group(1))
-                round_summaries[rnd_num] = body_html
+                topic = meta.get("topic", "")
+                date = meta.get("date", "")
+                round_summaries[rnd_num] = {
+                    "html": body_html,
+                    "topic": topic,
+                    "date": date,
+                }
 
     if posts:
         messages = []
@@ -462,9 +509,15 @@ def build_index(posts):
             if rnd > current_round:
                 # Insert summary for previous round
                 if current_round > 0 and current_round in round_summaries:
+                    s = round_summaries[current_round]
+                    topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
                     messages.append(
-                        f'<div class="round-summary"><h4>Round {current_round} Summary</h4>'
-                        f'{round_summaries[current_round]}</div>'
+                        f'<div class="round-summary">'
+                        f'<div class="summary-header">'
+                        f'<div class="summary-icon">R{current_round}</div>'
+                        f'<div><div class="summary-title">Round {current_round} Summary</div>'
+                        f'{topic_line}</div></div>'
+                        f'{s["html"]}</div>'
                     )
                 current_round = rnd
                 messages.append(f'<div class="round-divider">Round {rnd}</div>')
@@ -503,9 +556,15 @@ def build_index(posts):
 </div>""")
         # Append summary for the last round
         if current_round in round_summaries:
+            s = round_summaries[current_round]
+            topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
             messages.append(
-                f'<div class="round-summary"><h4>Round {current_round} Summary</h4>'
-                f'{round_summaries[current_round]}</div>'
+                f'<div class="round-summary">'
+                f'<div class="summary-header">'
+                f'<div class="summary-icon">R{current_round}</div>'
+                f'<div><div class="summary-title">Round {current_round} Summary</div>'
+                f'{topic_line}</div></div>'
+                f'{s["html"]}</div>'
             )
         feed = "\n".join(messages)
     else:
