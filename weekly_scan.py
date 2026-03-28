@@ -38,9 +38,60 @@ TOPIC_FILTER = (
     "primary_topic.subfield.id:"
     "https://openalex.org/subfields/3320"   # Political Science and International Relations
     "|https://openalex.org/subfields/3312"  # Sociology and Political Science
-    "|https://openalex.org/subfields/2002"  # Economics and Econometrics
-    "|https://openalex.org/subfields/3308"  # Law
 )
+
+# Journal patterns for Korean political science (case-insensitive partial match)
+POLSCI_JOURNAL_PATTERNS = [
+    # Korean political science
+    "정치학회보", "의정연구", "의정논총", "정당학회보", "국제정치논총",
+    "한국과 국제정치", "입법학연구", "입법과 정책", "현대정치연구",
+    "선거연구", "한국정치연구", "정치학회", "정치외교사", "세계정치",
+    "한국정치", "정치정보연구",
+    # Korean public admin / policy
+    "행정학보", "정책학회보", "정부학연구", "행정논총", "행정논집",
+    "행정연구", "지방행정", "지방자치", "지방정부",
+    # Korean social science (broad)
+    "사회과학연구", "한국사회학",
+    # English-language
+    "political science", "political studies", "politics",
+    "legislative", "parliamentary", "electoral studies",
+    "public administration", "public policy", "governance",
+    "asian survey", "pacific review", "pacific affairs",
+    "korea observer", "korean studies", "east asian",
+    "democratization", "party politics", "comparative politic",
+    "journal of politics", "government and opposition",
+]
+
+KOREA_TITLE_TERMS = [
+    "korea", "korean", "한국", "국회", "대한민국", "south korea",
+    "national assembly",
+]
+
+POLSCI_TITLE_TERMS = [
+    "legislat", "parliament", "party", "politic", "election", "voter",
+    "voting", "democrat", "ideolog", "polariz", "committee", "congress",
+    "bureaucra", "입법", "정당", "선거", "위원회", "정치", "의원", "법안",
+    "표결", "투표", "행정", "정책",
+]
+
+
+def is_relevant_paper(title, journal=""):
+    """Check if a paper is relevant to Korean political science.
+
+    Korea mention in title is ALWAYS required.
+    Known polsci journals: Korea terms sufficient.
+    Unknown journals: Korea + polsci terms both required.
+    """
+    j = (journal or "").lower()
+    t = (title or "").lower()
+    has_korea = any(term in t for term in KOREA_TITLE_TERMS)
+    if not has_korea:
+        return False
+    for pat in POLSCI_JOURNAL_PATTERNS:
+        if pat.lower() in j:
+            return True
+    has_polsci = any(term in t for term in POLSCI_TITLE_TERMS)
+    return has_polsci
 
 
 def search_openalex(query, from_date, per_page=50):
@@ -189,35 +240,53 @@ def run_scan(days=7, custom_query=None):
 
     print(f"  Scanning literature from {from_date.strftime('%Y-%m-%d')} to now...")
 
-    # OpenAlex English
+    # OpenAlex English (title-only Korea filter; topic name is NOT a journal)
     for q in queries["openalex_en"]:
         print(f"  OpenAlex (EN): {q}")
         works = search_openalex(q, from_date)
+        filtered = 0
         for w in works:
             n = normalize_openalex(w)
             if n["title"].lower().strip() not in seen_titles and n["title"]:
+                if not is_relevant_paper(n["title"]):
+                    filtered += 1
+                    continue
                 all_results.append(n)
                 seen_titles.add(n["title"].lower().strip())
+        if filtered:
+            print(f"    (filtered {filtered} non-Korea papers)")
 
-    # OpenAlex Korean
+    # OpenAlex Korean (title-only Korea filter)
     for q in queries["openalex_ko"]:
         print(f"  OpenAlex (KO): {q}")
         works = search_openalex(q, from_date)
+        filtered = 0
         for w in works:
             n = normalize_openalex(w)
             if n["title"].lower().strip() not in seen_titles and n["title"]:
+                if not is_relevant_paper(n["title"]):
+                    filtered += 1
+                    continue
                 all_results.append(n)
                 seen_titles.add(n["title"].lower().strip())
+        if filtered:
+            print(f"    (filtered {filtered} non-Korea papers)")
 
-    # Crossref Korean
+    # Crossref Korean (with relevance filter)
     for q in queries["crossref_ko"]:
         print(f"  Crossref (KO): {q}")
         items = search_crossref(q, from_date)
+        filtered = 0
         for item in items:
             n = normalize_crossref(item)
             if n["title"].lower().strip() not in seen_titles and n["title"]:
+                if not is_relevant_paper(n["title"], n.get("journal", "")):
+                    filtered += 1
+                    continue
                 all_results.append(n)
                 seen_titles.add(n["title"].lower().strip())
+        if filtered:
+            print(f"    (filtered {filtered} non-polsci papers)")
 
     # Append new results to log
     new_count = 0
