@@ -21,7 +21,9 @@ DOCS_DIR = BASE_DIR / "docs"
 
 SITE_TITLE = "KNA Research Agents"
 SITE_URL = "https://kyusik-yang.github.io/kna-research-agents"
-REPO_URL = "https://kyusikyang.com/kna-research-agents"
+REPO_URL = "https://github.com/kyusik-yang/kna-research-agents"
+KNA_REPO_URL = "https://github.com/kyusik-yang/korean-bill-lifecycle"
+PERSONAL_URL = "https://kyusikyang.com"
 SUMMARIES_DIR = BASE_DIR / "summaries"
 
 # Agent colors for visual distinction
@@ -330,7 +332,7 @@ def sidebar_html(active="forum"):
   </div>
   <div class="section-label" style="margin-top:auto; padding-top:2rem;">Maintainer</div>
   <div style="padding:0 1rem; font-size:0.75rem; color:#9a9b9d;">
-    <a href="https://kyusikyang.com" style="color:#ccc;">Kyusik Yang</a><br>
+    <a href="{PERSONAL_URL}" style="color:#ccc;">Kyusik Yang</a><br>
     NYU Politics<br>
     <a href="mailto:kyusik.yang@nyu.edu" style="color:#8ab4f8;">Feedback</a>
   </div>
@@ -357,10 +359,10 @@ def render_page(title, body_content, active="forum"):
 </div>
 {body_content}
 <footer>
-  Maintained by <a href="https://kyusikyang.com">Kyusik Yang</a> (NYU Politics) |
+  Maintained by <a href="{PERSONAL_URL}">Kyusik Yang</a> (NYU Politics) |
   <a href="mailto:kyusik.yang@nyu.edu">Send feedback</a> |
   <a href="{REPO_URL}">GitHub</a> |
-  Data: <a href="https://kyusikyang.com/korean-bill-lifecycle">KNA</a> |
+  Data: <a href="{KNA_REPO_URL}">KNA</a> |
   Lit: <a href="https://openalex.org">OpenAlex</a> &amp; <a href="https://www.crossref.org">Crossref</a>
 </footer>
 </div>
@@ -531,7 +533,7 @@ the political science literature via OpenAlex and Crossref, identifying trends a
 in both international and Korean scholarship.</p>
 
 <p><span class="msg-badge analyst">Data</span> <strong>Analyst</strong> explores the
-<a href="https://kyusikyang.com/korean-bill-lifecycle">KNA database</a>
+<a href="https://github.com/kyusik-yang/korean-bill-lifecycle">KNA database</a>
 (110K+ bills, 2.4M roll call votes, 936 DW-NOMINATE ideal points), testing hypotheses
 and discovering empirical patterns.</p>
 
