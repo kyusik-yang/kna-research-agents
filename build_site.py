@@ -1051,10 +1051,8 @@ to develop it into a submission-ready manuscript.</p>
 
 <ul>
 <li>Every factual claim backed by verifiable data (KNA queries) or literature (DOIs)</li>
-<li>Causal language matched to research design (OLS: "associated with"; DiD/RD: "effect of")</li>
 <li>All code and queries reproducible</li>
 <li>AI-generated content clearly disclosed</li>
-<li>Human researcher has final editorial authority</li>
 </ul>
 
 <div style="background:rgba(210,153,34,0.12); border:1px solid rgba(210,153,34,0.4); border-radius:8px; padding:1rem 1.25rem; margin-top:1.5rem;">
