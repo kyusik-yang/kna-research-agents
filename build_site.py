@@ -270,6 +270,83 @@ footer {
 footer a { color: var(--accent); }
 footer a:hover { color: var(--accent-hover); }
 
+/* Scoring card (Critic YAML block) */
+article.post pre:has(code) {
+  position: relative;
+}
+.scoring-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0 1.5rem;
+  font-size: 13px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 2rem;
+}
+.scoring-card .sc-title {
+  grid-column: 1 / -1;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+.scoring-card .sc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.scoring-card .sc-label { color: var(--muted); }
+.scoring-card .sc-value { font-weight: 600; color: var(--text); }
+.scoring-card .sc-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg);
+  flex: 1;
+  margin: 0 0.5rem;
+  overflow: hidden;
+}
+.scoring-card .sc-fill { height: 100%; border-radius: 2px; }
+.scoring-card .sc-verdict {
+  grid-column: 1 / -1;
+  margin-top: 0.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  font-weight: 600;
+}
+.scoring-card .verdict-pursue { color: var(--analyst); }
+.scoring-card .verdict-revise { color: var(--critic); }
+.scoring-card .verdict-archive { color: var(--muted); }
+.scoring-card .sc-oneline {
+  grid-column: 1 / -1;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.82rem;
+}
+
+/* Key finding highlight */
+article.post blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.4rem 0 0.4rem 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  background: rgba(88,166,255,0.04);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Completion checklist styling */
+article.post li:has(input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.5rem;
+}
+article.post input[type="checkbox"] {
+  accent-color: var(--analyst);
+  margin-right: 0.4rem;
+}
+
 /* AI Disclaimer banner */
 .disclaimer {
   background: rgba(210,153,34,0.1);
@@ -380,6 +457,88 @@ footer a:hover { color: var(--accent-hover); }
 """
 
 
+def _render_scoring_cards(html):
+    """Replace YAML scoring code blocks with visual score cards."""
+    import re as _re
+
+    def _make_card(match):
+        block = match.group(1)
+        scores = {}
+        verdict = ""
+        one_line = ""
+        for line in block.split("\n"):
+            line = line.strip()
+            # Parse "key: X/4" patterns
+            m = _re.match(r"(\w+):\s*(\d)/4", line)
+            if m:
+                scores[m.group(1)] = int(m.group(2))
+            # Parse verdict
+            m = _re.match(r"verdict:\s*(pursue|revise|archive)", line)
+            if m:
+                verdict = m.group(1)
+            # Parse one_line
+            m = _re.match(r'one_line:\s*"(.+)"', line)
+            if m:
+                one_line = m.group(1)
+
+        if not scores:
+            return match.group(0)  # Not a scoring block, return as-is
+
+        label_map = {
+            "research_novelty": "Research Novelty",
+            "empirical_rigor": "Empirical Rigor",
+            "theoretical_connection": "Theory Connection",
+            "actionability": "Actionability",
+        }
+        color_map = {0: "#8b949e", 1: "#f85149", 2: "#d29922", 3: "#58a6ff", 4: "#3fb950"}
+
+        rows = ""
+        for key, label in label_map.items():
+            val = scores.get(key, 0)
+            color = color_map.get(val, "#8b949e")
+            pct = val / 4 * 100
+            rows += (
+                f'<div class="sc-row">'
+                f'<span class="sc-label">{label}</span>'
+                f'<div class="sc-bar"><div class="sc-fill" style="width:{pct}%;background:{color}"></div></div>'
+                f'<span class="sc-value">{val}/4</span>'
+                f'</div>'
+            )
+
+        verdict_class = f"verdict-{verdict}" if verdict else ""
+        verdict_html = (
+            f'<div class="sc-verdict {verdict_class}">Verdict: {verdict}</div>'
+            if verdict else ""
+        )
+        oneline_html = (
+            f'<div class="sc-oneline">{one_line}</div>'
+            if one_line else ""
+        )
+
+        return (
+            f'<div class="scoring-card">'
+            f'<div class="sc-title">Critic Assessment</div>'
+            f'{rows}{verdict_html}{oneline_html}'
+            f'</div>'
+        )
+
+    # Match ```yaml ... scoring: ... ``` blocks
+    html = _re.sub(
+        r'<code[^>]*>scoring:\n(.*?)</code>',
+        lambda m: _make_card(m),
+        html,
+        flags=_re.DOTALL,
+    )
+    # Also try matching <pre><code> blocks containing "scoring:"
+    html = _re.sub(
+        r'<pre><code[^>]*>scoring:\n(.*?)</code></pre>',
+        lambda m: _make_card(m),
+        html,
+        flags=_re.DOTALL,
+    )
+    return html
+
+
 def parse_post(path):
     """Parse a forum post markdown file with YAML frontmatter."""
     text = path.read_text()
@@ -405,6 +564,14 @@ def parse_post(path):
             agent_id = aid
             break
 
+    body_html = markdown.markdown(
+        body,
+        extensions=["tables", "fenced_code", "codehilite"],
+    )
+
+    # Post-process: convert Critic YAML scoring blocks into visual cards
+    body_html = _render_scoring_cards(body_html)
+
     return {
         "path": path,
         "filename": path.name,
@@ -416,10 +583,7 @@ def parse_post(path):
         "references": meta.get("references", []),
         "agent_id": agent_id,
         "body_md": body,
-        "body_html": markdown.markdown(
-            body,
-            extensions=["tables", "fenced_code", "codehilite"],
-        ),
+        "body_html": body_html,
     }
 
 
