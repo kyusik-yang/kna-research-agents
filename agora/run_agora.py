@@ -102,10 +102,17 @@ def build_research_demand_prompt(persona, stimulus, all_reactions):
     The community discussed:
     {reactions_text}
 
-    Based on this discussion, what ONE question would you want political scientists
-    to investigate? Something you're genuinely curious about that data could answer.
+    Based on this discussion, what ONE thing are you genuinely curious about
+    that researchers could look into with data?
 
-    Write in Korean. One question only. Start with "정치학자들한테 물어보고 싶은 건..."
+    Write in Korean. One thought only. Be natural - you're a citizen, not an academic.
+    Express it however feels right: a question, a frustration, a comparison you want to see.
+    Don't start every response the same way. Examples of natural openings:
+    - "진짜 궁금한 건..."
+    - "누가 좀 알아봐줬으면 하는 게..."
+    - "이거 데이터로 확인할 수 있나?"
+    - "다른 나라는 어떤지..."
+    - "근데 실제로..."
     """)
 
 

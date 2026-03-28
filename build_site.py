@@ -407,6 +407,25 @@ article.post input[type="checkbox"] {
   background: rgba(110,118,129,0.2); padding: 0.1rem 0.3rem;
   border-radius: 4px; font-size: 0.9em;
 }
+/* Findings Status table in summaries */
+.round-summary table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 12px; }
+.round-summary th {
+  text-align: left; padding: 0.4rem 0.6rem; font-weight: 600;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.round-summary td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(48,54,61,0.4); color: var(--text-secondary); }
+/* Blockquote styling in summaries (punchline quotes) */
+.round-summary blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.3rem 0 0.3rem 0.75rem;
+  margin: 0.4rem 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  background: rgba(88,166,255,0.04);
+  border-radius: 0 4px 4px 0;
+}
+.round-summary blockquote strong { color: var(--text); }
 
 /* Agora citizen comments */
 .agora-thread {
@@ -785,6 +804,19 @@ def build_index(posts):
                 body_html = markdown.markdown(
                     body, extensions=["tables", "fenced_code"],
                 )
+                # Add color badges to finding statuses
+                status_colors = {
+                    "preliminary": "#d29922",
+                    "confirmed": "#3fb950",
+                    "contested": "#f85149",
+                    "refined": "#58a6ff",
+                }
+                for status, color in status_colors.items():
+                    body_html = body_html.replace(
+                        f"<td>{status}</td>",
+                        f'<td><span style="background:{color}22;color:{color};padding:0.15rem 0.4rem;'
+                        f'border-radius:10px;font-size:0.75rem;font-weight:600;">{status}</span></td>',
+                    )
                 rnd_num = int(re.search(r"(\d+)", sf.stem).group(1))
                 topic = meta.get("topic", "")
                 date = meta.get("date", "")
