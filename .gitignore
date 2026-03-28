@@ -1,0 +1,21 @@
+# Agent workspace (scratch files)
+workspace/
+
+# Logs
+logs/
+
+# Prompt temp files
+_prompt_*.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store
+
+# Data (too large for git)
+*.parquet
+*.csv
+!forum/**/*.csv
