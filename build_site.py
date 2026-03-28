@@ -177,13 +177,26 @@ body {
 .msg-refs { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
 .msg-refs a { color: var(--accent); }
 
-/* Round divider */
+/* Forum round containers */
+.forum-round {
+  margin: 0.75rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.forum-round[open] { border-color: rgba(88,166,255,0.3); }
+.forum-round > *:not(summary) { padding: 0 0.75rem; }
+.forum-round summary::-webkit-details-marker { display: none; }
+
+/* Round divider (now clickable summary) */
 .round-divider {
   display: flex; align-items: center; gap: 0.75rem;
-  margin: 1.25rem 0; font-size: 0.75rem; color: var(--muted); font-weight: 600;
+  padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--muted); font-weight: 600;
+  background: var(--bg-secondary); border-radius: 8px;
 }
-.round-divider::before, .round-divider::after {
-  content: ''; flex: 1; border-top: 1px solid var(--border);
+.forum-round[open] > .round-divider {
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
 
 /* Stats bar */
@@ -829,23 +842,36 @@ def build_index(posts):
         messages = []
         current_round = 0
         n_agents = 3
+        max_round = (len(posts) - 1) // n_agents + 1
         for i, p in enumerate(posts):
             rnd = (i // n_agents) + 1
             if rnd > current_round:
-                # Insert summary for previous round
-                if current_round > 0 and current_round in round_summaries:
-                    s = round_summaries[current_round]
-                    topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
-                    messages.append(
-                        f'<div class="round-summary">'
-                        f'<div class="summary-header">'
-                        f'<div class="summary-icon">R{current_round}</div>'
-                        f'<div><div class="summary-title">Round {current_round} Summary</div>'
-                        f'{topic_line}</div></div>'
-                        f'{s["html"]}</div>'
-                    )
+                # Close previous round
+                if current_round > 0:
+                    # Insert summary for previous round
+                    if current_round in round_summaries:
+                        s = round_summaries[current_round]
+                        topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
+                        messages.append(
+                            f'<div class="round-summary">'
+                            f'<div class="summary-header">'
+                            f'<div class="summary-icon">R{current_round}</div>'
+                            f'<div><div class="summary-title">Round {current_round} Summary</div>'
+                            f'{topic_line}</div></div>'
+                            f'{s["html"]}</div>'
+                        )
+                    messages.append('</details>')  # close previous round
                 current_round = rnd
-                messages.append(f'<div class="round-divider">Round {rnd}</div>')
+                # Open new round (most recent open, older collapsed)
+                open_attr = " open" if rnd == max_round else ""
+                topic_hint = ""
+                if rnd in round_summaries and round_summaries[rnd].get("topic"):
+                    topic_hint = f' - {round_summaries[rnd]["topic"]}'
+                messages.append(
+                    f'<details class="forum-round"{open_attr}>'
+                    f'<summary class="round-divider" style="cursor:pointer;list-style:none;">'
+                    f'Round {rnd}{topic_hint}</summary>'
+                )
 
             short = AGENT_SHORT.get(p["agent_id"], "")
             initial = AGENT_INITIALS.get(p["agent_id"], "?")
@@ -879,18 +905,20 @@ def build_index(posts):
     {refs_html}
   </div>
 </div>""")
-        # Append summary for the last round
-        if current_round in round_summaries:
-            s = round_summaries[current_round]
-            topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
-            messages.append(
-                f'<div class="round-summary">'
-                f'<div class="summary-header">'
-                f'<div class="summary-icon">R{current_round}</div>'
-                f'<div><div class="summary-title">Round {current_round} Summary</div>'
-                f'{topic_line}</div></div>'
-                f'{s["html"]}</div>'
-            )
+        # Close and append summary for the last round
+        if current_round > 0:
+            if current_round in round_summaries:
+                s = round_summaries[current_round]
+                topic_line = f'<div class="summary-meta">{s["topic"]}</div>' if s["topic"] else ""
+                messages.append(
+                    f'<div class="round-summary">'
+                    f'<div class="summary-header">'
+                    f'<div class="summary-icon">R{current_round}</div>'
+                    f'<div><div class="summary-title">Round {current_round} Summary</div>'
+                    f'{topic_line}</div></div>'
+                    f'{s["html"]}</div>'
+                )
+            messages.append('</details>')  # close last round
         feed = "\n".join(messages)
     else:
         feed = '<p style="padding:2rem;color:var(--muted)"><em>No posts yet. Run the orchestrator to start the discussion.</em></p>'
