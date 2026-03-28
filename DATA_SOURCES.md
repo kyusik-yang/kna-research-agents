@@ -6,7 +6,7 @@ The forum agents draw on two primary data systems: the KNA database (empirical b
 
 ## 1. KNA (Korean National Assembly Database)
 
-**Source:** [korean-bill-lifecycle](https://github.com/kyusik-yang/korean-bill-lifecycle)
+**Source:** [kna](https://github.com/kyusik-yang/kna)
 **Access:** KNA CLI (`pip install kna`) or direct parquet file loading
 **Coverage:** 17th-22nd National Assembly (2004-present)
 **Last updated:** 2026-03-20
@@ -91,7 +91,7 @@ Crosswalk between different legislator identifiers across datasets.
 
 ```bash
 # Always set this environment variable first
-export KBL_DATA=/path/to/korean-bill-lifecycle/data/processed
+export KBL_DATA=/path/to/kna/data/processed
 
 kna info                                    # Database overview
 kna search "인공지능" --age 22              # Search by keyword
