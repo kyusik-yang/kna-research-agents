@@ -409,7 +409,14 @@ article.post input[type="checkbox"] {
 }
 
 /* Agora citizen comments */
-.agora-thread { margin: 1rem 0; }
+.agora-thread {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.agora-thread[open] { border-color: var(--accent); }
+.agora-thread summary::-webkit-details-marker { display: none; }
 .agora-stimulus {
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
@@ -1235,7 +1242,7 @@ def build_agora():
 </div>"""
     else:
         threads_html = ""
-        for disc in discussions:
+        for disc_idx, disc in enumerate(discussions):
             stimulus = escape(disc.get("stimulus", ""))
             stype = disc.get("stimulus_type", "news")
             ts = disc.get("timestamp", "")
@@ -1246,13 +1253,16 @@ def build_agora():
 
             type_label = "Political News" if stype == "news" else "Research Finding"
 
-            # Stimulus card
+            n_reactions = len(reactions)
+            open_attr = " open" if disc_idx == 0 else ""
+
+            # Collapsible thread
             threads_html += f"""\
-<div class="agora-thread">
-<div class="agora-stimulus">
-  <div class="stimulus-label">{type_label} | {ts}</div>
+<details class="agora-thread"{open_attr}>
+<summary class="agora-stimulus" style="cursor:pointer; list-style:none;">
+  <div class="stimulus-label">{type_label} | {ts} | {n_reactions} citizens</div>
   <div class="stimulus-text">{stimulus}</div>
-</div>
+</summary>
 """
             # Reactions
             if reactions:
@@ -1316,7 +1326,7 @@ def build_agora():
 <div class="agora-report">{report_html}</div>
 """
 
-            threads_html += "</div>\n"  # close agora-thread
+            threads_html += "</details>\n"  # close agora-thread
 
     body = f"""\
 <div class="channel-header">
@@ -1335,6 +1345,12 @@ def build_agora():
 findings. Two modes: <strong>top-down</strong> (academic findings -> citizen evaluation) and
 <strong>bottom-up</strong> (political news -> citizen discussion -> research demands for the
 academic forum).</p>
+
+<div class="stats-bar" style="margin-bottom:1rem; border-radius:6px;">
+  <div><span class="stat-val">{len(discussions)}</span> discussions</div>
+  <div><span class="stat-val">{sum(len(d.get('reactions',[])) for d in discussions)}</span> reactions</div>
+  <div><span class="stat-val">{sum(len(d.get('research_demands',[])) for d in discussions)}</span> research demands</div>
+</div>
 
 {threads_html}
 
