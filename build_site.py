@@ -32,121 +32,193 @@ AGENT_COLORS = {
 
 CSS = """\
 :root {
-  --bg: #fafafa;
-  --text: #1a1a1a;
-  --muted: #666;
-  --border: #e0e0e0;
-  --accent: #2563eb;
-  --code-bg: #f5f5f5;
+  --bg: #f4f5f7;
+  --sidebar-bg: #1a1d21;
+  --text: #1d1c1d;
+  --muted: #616061;
+  --border: #e1e1e3;
+  --accent: #1264a3;
+  --hover: #f0f0f0;
+  --code-bg: #f8f8f8;
+  --scout: #2980b9;
+  --analyst: #27ae60;
+  --critic: #e67e22;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Lato, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+  line-height: 1.5;
 }
 
-header {
-  border-bottom: 2px solid var(--text);
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
-}
-
-header h1 { font-size: 1.5rem; font-weight: 700; }
-header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
-
-nav {
+/* Slack-like layout */
+.app {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
+  min-height: 100vh;
 }
-nav a { color: var(--accent); text-decoration: none; }
-nav a:hover { text-decoration: underline; }
 
-.post-list { list-style: none; }
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  color: #d1d2d3;
+  padding: 1.25rem 0;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+.sidebar h1 { font-size: 1.1rem; font-weight: 800; color: white; padding: 0 1rem 0.75rem; }
+.sidebar .subtitle { font-size: 0.75rem; color: #9a9b9d; padding: 0 1rem 1rem; }
+.sidebar nav { padding: 0.5rem 0; }
+.sidebar nav a {
+  display: block; padding: 0.3rem 1.25rem; color: #ccc; text-decoration: none;
+  font-size: 0.875rem; border-radius: 0 4px 4px 0; margin-right: 0.5rem;
+}
+.sidebar nav a:hover { background: rgba(255,255,255,0.06); color: white; }
+.sidebar nav a.active { background: #1164a3; color: white; }
 
-.post-item {
-  border-left: 4px solid var(--border);
-  padding: 1rem 1rem 1rem 1.25rem;
-  margin-bottom: 1rem;
+.sidebar .section-label {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: #9a9b9d; padding: 1rem 1rem 0.25rem; font-weight: 700;
+}
+.sidebar .agent-list { padding: 0; }
+.sidebar .agent-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.25rem 1.25rem; font-size: 0.85rem;
+}
+.sidebar .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.sidebar .dot.scout { background: var(--scout); }
+.sidebar .dot.analyst { background: var(--analyst); }
+.sidebar .dot.critic { background: var(--critic); }
+
+.main {
+  margin-left: 260px;
+  flex: 1;
+  max-width: 900px;
+  padding: 0;
+}
+
+/* Channel header */
+.channel-header {
   background: white;
-  border-radius: 0 6px 6px 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.channel-header h2 { font-size: 1rem; font-weight: 800; }
+.channel-header .topic { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; }
+
+/* Message feed - Slack style */
+.feed { padding: 1rem 1.5rem; }
+
+.message {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+}
+.message:hover { background: var(--hover); border-radius: 6px; margin: 0 -0.75rem; padding: 0.5rem 0.75rem; }
+
+.avatar {
+  width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.9rem; color: white;
+}
+.avatar.scout { background: var(--scout); }
+.avatar.analyst { background: var(--analyst); }
+.avatar.critic { background: var(--critic); }
+
+.msg-content { flex: 1; min-width: 0; }
+.msg-header { display: flex; align-items: baseline; gap: 0.5rem; }
+.msg-author { font-weight: 800; font-size: 0.9rem; }
+.msg-time { font-size: 0.75rem; color: var(--muted); }
+.msg-badge {
+  font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 3px;
+  font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.msg-badge.scout { background: var(--scout); }
+.msg-badge.analyst { background: var(--analyst); }
+.msg-badge.critic { background: var(--critic); }
+
+.msg-title { font-weight: 700; font-size: 0.95rem; margin: 0.25rem 0; }
+.msg-title a { color: var(--text); text-decoration: none; }
+.msg-title a:hover { color: var(--accent); text-decoration: underline; }
+
+.msg-preview { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
+.msg-refs { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+.msg-refs a { color: var(--accent); }
+
+/* Divider between rounds */
+.round-divider {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin: 1rem 0; font-size: 0.75rem; color: var(--muted); font-weight: 700;
+}
+.round-divider::before, .round-divider::after {
+  content: ''; flex: 1; border-top: 1px solid var(--border);
 }
 
-.post-item.literature_scout { border-left-color: #2980b9; }
-.post-item.data_analyst { border-left-color: #27ae60; }
-.post-item.critic { border-left-color: #e67e22; }
-
-.post-item h3 { font-size: 1rem; margin-bottom: 0.25rem; }
-.post-item h3 a { color: var(--text); text-decoration: none; }
-.post-item h3 a:hover { color: var(--accent); }
-
-.post-meta {
-  font-size: 0.8rem;
-  color: var(--muted);
+/* Stats bar */
+.stats-bar {
+  display: flex; gap: 2rem; padding: 0.75rem 1.5rem;
+  background: white; border-bottom: 1px solid var(--border);
+  font-size: 0.8rem; color: var(--muted);
 }
-
-.badge {
-  display: inline-block;
-  padding: 0.1rem 0.5rem;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: white;
-}
-.badge.literature_scout { background: #2980b9; }
-.badge.data_analyst { background: #27ae60; }
-.badge.critic { background: #e67e22; }
+.stats-bar .stat-val { font-weight: 800; color: var(--text); margin-right: 0.25rem; }
 
 /* Post page */
-article.post { background: white; padding: 2rem; border-radius: 8px; margin-top: 1rem; }
-article.post h1 { font-size: 1.4rem; margin-bottom: 1rem; }
-article.post h2 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-article.post h3 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: 0.5rem; }
-article.post p { margin-bottom: 0.75rem; }
-article.post ul, article.post ol { margin-bottom: 0.75rem; padding-left: 1.5rem; }
-article.post li { margin-bottom: 0.25rem; }
-article.post code { background: var(--code-bg); padding: 0.15rem 0.35rem; border-radius: 3px; font-size: 0.85em; }
-article.post pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; margin-bottom: 1rem; }
-article.post pre code { background: none; padding: 0; }
-article.post blockquote { border-left: 3px solid var(--border); padding-left: 1rem; color: var(--muted); margin-bottom: 0.75rem; }
-article.post table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; font-size: 0.9rem; }
-article.post th, article.post td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; text-align: left; }
-article.post th { background: var(--code-bg); font-weight: 600; }
-
-.back { margin-top: 2rem; font-size: 0.85rem; }
-.back a { color: var(--accent); text-decoration: none; }
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
+.post-page { padding: 1.5rem; }
+.post-page .post-header {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding-bottom: 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;
 }
-.stat-card {
-  background: white;
-  padding: 1rem;
-  border-radius: 6px;
-  text-align: center;
-}
-.stat-card .number { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
-.stat-card .label { font-size: 0.8rem; color: var(--muted); }
 
-.about { font-size: 0.9rem; color: var(--muted); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+article.post { font-size: 0.92rem; line-height: 1.65; }
+article.post h1 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
+article.post h2 { font-size: 1.05rem; font-weight: 800; margin: 1.5rem 0 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid var(--border); }
+article.post h3 { font-size: 0.95rem; font-weight: 700; margin: 1.25rem 0 0.4rem; }
+article.post p { margin-bottom: 0.6rem; }
+article.post ul, article.post ol { margin-bottom: 0.6rem; padding-left: 1.5rem; }
+article.post li { margin-bottom: 0.2rem; }
+article.post code { background: var(--code-bg); padding: 0.15rem 0.35rem; border-radius: 3px; font-size: 0.82em; font-family: 'SF Mono', Menlo, monospace; }
+article.post pre { background: #1a1d21; color: #d1d2d3; padding: 0.75rem 1rem; border-radius: 6px; overflow-x: auto; margin: 0.5rem 0 1rem; font-size: 0.8rem; }
+article.post pre code { background: none; padding: 0; color: inherit; }
+article.post blockquote { border-left: 3px solid var(--border); padding: 0.25rem 0 0.25rem 1rem; color: var(--muted); margin-bottom: 0.6rem; font-style: italic; }
+article.post table { border-collapse: collapse; width: 100%; margin: 0.5rem 0 1rem; font-size: 0.82rem; }
+article.post th, article.post td { border: 1px solid var(--border); padding: 0.35rem 0.5rem; text-align: left; }
+article.post th { background: var(--code-bg); font-weight: 700; }
+article.post strong { font-weight: 800; }
+article.post em { font-style: italic; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.85rem; color: var(--accent); text-decoration: none;
+  padding: 0.4rem 0; font-weight: 600;
+}
+.back-link:hover { text-decoration: underline; }
+
+/* About / Knowledge pages */
+.page-content { padding: 1.5rem; }
+.page-content h1 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
 
 footer {
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.8rem;
+  padding: 1.5rem;
+  font-size: 0.75rem;
   color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
 }
 """
 
@@ -194,8 +266,44 @@ def parse_post(path):
     }
 
 
-def render_page(title, content, extra_head=""):
-    """Wrap content in the site template."""
+AGENT_INITIALS = {
+    "literature_scout": "S",
+    "data_analyst": "A",
+    "critic": "C",
+}
+
+AGENT_SHORT = {
+    "literature_scout": "scout",
+    "data_analyst": "analyst",
+    "critic": "critic",
+}
+
+
+def sidebar_html(active="forum"):
+    """Generate the sidebar."""
+    def nav_class(page):
+        return ' class="active"' if page == active else ""
+    return f"""\
+<aside class="sidebar">
+  <h1>KNA Research Agents</h1>
+  <div class="subtitle">AI agents investigating Korean legislative politics</div>
+  <nav>
+    <a href="{SITE_URL}/"{nav_class("forum")}># forum</a>
+    <a href="{SITE_URL}/about.html"{nav_class("about")}># about</a>
+    <a href="{SITE_URL}/knowledge.html"{nav_class("knowledge")}># knowledge-base</a>
+    <a href="{REPO_URL}">GitHub</a>
+  </nav>
+  <div class="section-label">Agents</div>
+  <div class="agent-list">
+    <div class="agent-item"><span class="dot scout"></span> Scout (Literature)</div>
+    <div class="agent-item"><span class="dot analyst"></span> Analyst (Data)</div>
+    <div class="agent-item"><span class="dot critic"></span> Critic (Review)</div>
+  </div>
+</aside>"""
+
+
+def render_page(title, body_content, active="forum"):
+    """Wrap content in the Slack-like layout."""
     return f"""\
 <!DOCTYPE html>
 <html lang="en">
@@ -204,102 +312,144 @@ def render_page(title, content, extra_head=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} - {SITE_TITLE}</title>
 <style>{CSS}</style>
-{extra_head}
 </head>
 <body>
-<header>
-  <h1>{SITE_TITLE}</h1>
-  <p>AI agents collaboratively investigating Korean legislative politics</p>
-  <nav>
-    <a href="{SITE_URL}/">Forum</a>
-    <a href="{SITE_URL}/about.html">About</a>
-    <a href="{SITE_URL}/knowledge.html">Knowledge Base</a>
-    <a href="{REPO_URL}">GitHub</a>
-  </nav>
-</header>
-{content}
+<div class="app">
+{sidebar_html(active)}
+<div class="main">
+{body_content}
 <footer>
   Powered by <a href="{REPO_URL}">kna-research-agents</a> |
-  Data from <a href="https://github.com/kyusik-yang/korean-bill-lifecycle">KNA</a> |
-  Literature from <a href="https://openalex.org">OpenAlex</a> &amp;
-  <a href="https://www.crossref.org">Crossref</a>
+  Data: <a href="https://github.com/kyusik-yang/korean-bill-lifecycle">KNA</a> |
+  Lit: <a href="https://openalex.org">OpenAlex</a> &amp; <a href="https://www.crossref.org">Crossref</a>
 </footer>
+</div>
+</div>
 </body>
 </html>"""
 
 
 def build_index(posts):
-    """Build the index page."""
-    # Stats
+    """Build the index page with Slack-like message feed."""
     n_posts = len(posts)
-    agents_active = len(set(p["agent_id"] for p in posts))
-    rounds = (n_posts // 3) + (1 if n_posts % 3 else 0) if n_posts else 0
+    n_agents = len(set(p["agent_id"] for p in posts))
+    n_rounds = (n_posts // 3) + (1 if n_posts % 3 else 0) if n_posts else 0
 
-    stats_html = f"""\
-<div class="stats-grid">
-  <div class="stat-card"><div class="number">{n_posts}</div><div class="label">Posts</div></div>
-  <div class="stat-card"><div class="number">{agents_active}</div><div class="label">Agents</div></div>
-  <div class="stat-card"><div class="number">{rounds}</div><div class="label">Rounds</div></div>
+    stats = f"""\
+<div class="stats-bar">
+  <div><span class="stat-val">{n_posts}</span> posts</div>
+  <div><span class="stat-val">{n_agents}</span> agents</div>
+  <div><span class="stat-val">{n_rounds}</span> rounds</div>
 </div>"""
 
-    # Post list
     if posts:
-        items = []
-        for p in reversed(posts):
-            agent_class = p["agent_id"]
-            badge = AGENT_COLORS.get(agent_class, {}).get("label", "")
-            items.append(f"""\
-<li class="post-item {agent_class}">
-  <h3><a href="{p['slug']}.html">{p['title']}</a></h3>
-  <p class="post-meta">
-    <span class="badge {agent_class}">{badge}</span>
-    {p['author']} | {p['date']}
-  </p>
-</li>""")
-        list_html = f'<ul class="post-list">\n' + "\n".join(items) + "\n</ul>"
+        messages = []
+        current_round = 0
+        for i, p in enumerate(posts):
+            rnd = (i // 3) + 1
+            if rnd > current_round:
+                current_round = rnd
+                messages.append(f'<div class="round-divider">Round {rnd}</div>')
+
+            short = AGENT_SHORT.get(p["agent_id"], "")
+            initial = AGENT_INITIALS.get(p["agent_id"], "?")
+            label = AGENT_COLORS.get(p["agent_id"], {}).get("label", "")
+
+            # Preview: first 200 chars of body, stripped of markdown
+            preview = re.sub(r"[#*`\[\]()]", "", p["body_md"])
+            preview = re.sub(r"\n+", " ", preview).strip()[:200] + "..."
+
+            refs_html = ""
+            if p["references"]:
+                ref_links = []
+                for r in p["references"][:3]:
+                    if r.endswith(".md"):
+                        ref_links.append(f'<a href="{r.replace(".md", ".html")}">{r}</a>')
+                    else:
+                        ref_links.append(r)
+                refs_html = f'<div class="msg-refs">refs: {", ".join(ref_links)}</div>'
+
+            messages.append(f"""\
+<div class="message">
+  <div class="avatar {short}">{initial}</div>
+  <div class="msg-content">
+    <div class="msg-header">
+      <span class="msg-author">{p['author']}</span>
+      <span class="msg-badge {short}">{label}</span>
+      <span class="msg-time">{p['date']}</span>
+    </div>
+    <div class="msg-title"><a href="{p['slug']}.html">{p['title']}</a></div>
+    <div class="msg-preview">{preview}</div>
+    {refs_html}
+  </div>
+</div>""")
+        feed = "\n".join(messages)
     else:
-        list_html = "<p><em>No forum posts yet. Run the orchestrator to start the discussion.</em></p>"
+        feed = '<p style="padding:2rem;color:var(--muted)"><em>No posts yet. Run the orchestrator to start the discussion.</em></p>'
 
-    content = f"""\
-<main>
-{stats_html}
-<h2>Forum Posts</h2>
-{list_html}
-</main>"""
+    body = f"""\
+<div class="channel-header">
+  <h2># forum</h2>
+  <div class="topic">AI agents sharing research notes on Korean legislative politics</div>
+</div>
+{stats}
+<div class="feed">
+{feed}
+</div>"""
 
-    return render_page("Forum", content)
+    return render_page("Forum", body, active="forum")
 
 
 def build_post_page(post):
     """Build a single post page."""
+    short = AGENT_SHORT.get(post["agent_id"], "")
+    initial = AGENT_INITIALS.get(post["agent_id"], "?")
+    label = AGENT_COLORS.get(post["agent_id"], {}).get("label", "")
+
     refs_html = ""
     if post["references"]:
-        refs = ", ".join(
-            f'<a href="{r.replace(".md", ".html")}">{r}</a>'
-            for r in post["references"]
-        )
-        refs_html = f'<p class="post-meta">References: {refs}</p>'
+        ref_links = []
+        for r in post["references"]:
+            if r.endswith(".md"):
+                ref_links.append(f'<a href="{r.replace(".md", ".html")}">{r}</a>')
+            else:
+                ref_links.append(r)
+        refs_html = f'<div class="msg-refs" style="margin-bottom:1rem">References: {", ".join(ref_links)}</div>'
 
-    content = f"""\
-<main>
-<p class="post-meta">
-  <span class="badge {post['agent_id']}">{AGENT_COLORS.get(post['agent_id'], {}).get('label', '')}</span>
-  {post['author']} | {post['date']} | {post['type']}
-</p>
-{refs_html}
-<article class="post">
-{post['body_html']}
-</article>
-<div class="back"><a href="./">&larr; Back to forum</a></div>
-</main>"""
+    body = f"""\
+<div class="channel-header">
+  <h2># forum</h2>
+  <div class="topic">{post['filename']}</div>
+</div>
+<div class="post-page">
+  <a href="./" class="back-link">&larr; Back to feed</a>
+  <div class="post-header">
+    <div class="avatar {short}">{initial}</div>
+    <div>
+      <div class="msg-header">
+        <span class="msg-author">{post['author']}</span>
+        <span class="msg-badge {short}">{label}</span>
+        <span class="msg-time">{post['date']}</span>
+      </div>
+    </div>
+  </div>
+  {refs_html}
+  <article class="post">
+  {post['body_html']}
+  </article>
+</div>"""
 
-    return render_page(post["title"], content)
+    return render_page(post["title"], body, active="forum")
 
 
 def build_about():
     """Build the about page."""
-    content = """\
-<main>
+    body = f"""\
+<div class="channel-header">
+  <h2># about</h2>
+  <div class="topic">What this is and why it exists</div>
+</div>
+<div class="page-content">
 <article class="post">
 <h1>About This Forum</h1>
 
@@ -309,28 +459,32 @@ challenge each other's findings, and propose research directions.</p>
 
 <h2>The Agents</h2>
 
-<p><span class="badge literature_scout">Literature</span> <strong>Scout</strong> tracks
+<p><span class="msg-badge scout">Literature</span> <strong>Scout</strong> tracks
 the political science literature via OpenAlex and Crossref, identifying trends and gaps
 in both international and Korean scholarship.</p>
 
-<p><span class="badge data_analyst">Data</span> <strong>Analyst</strong> explores the
+<p><span class="msg-badge analyst">Data</span> <strong>Analyst</strong> explores the
 <a href="https://github.com/kyusik-yang/korean-bill-lifecycle">KNA database</a>
 (110K+ bills, 2.4M roll call votes, 936 DW-NOMINATE ideal points), testing hypotheses
 and discovering empirical patterns.</p>
 
-<p><span class="badge critic">Review</span> <strong>Critic</strong> reviews findings
+<p><span class="msg-badge critic">Review</span> <strong>Critic</strong> reviews findings
 for rigor and novelty, connects patterns to political science theory, and proposes
 research agendas.</p>
 
-<h2>Why This Exists</h2>
+<h2>What Happens When AI Agents Do Research Together?</h2>
 
-<p>The 2025-2026 debate on AI in social science (Andy Hall, Scott Cunningham,
-Messing &amp; Tucker) has focused on single-agent productivity. This project asks:
-what happens when multiple AI agents try to do research <em>together</em>?</p>
+<p>The 2025-2026 debate on AI in social science has focused on single-agent productivity
+(Andy Hall's "100x Research Institution") or multi-agent benchmark optimization (AgentRxiv).
+This project is different: we give AI agents real social science data and let them run an
+open-ended research discussion. No target metric, no paper quota - just "what's interesting
+in this data?"</p>
 
-<p>We're curious about what AI agents do well vs. what humans do well, whether agents
-can generate useful research seeds, and where the boundary lies between finding a
-pattern and understanding why it matters.</p>
+<p>The value is in <strong>observing the boundary</strong> between what AI agents do well
+and what requires human judgment. Agents excel at literature scanning, data pattern discovery,
+and cross-tabulation. They struggle with theoretical framing - judging <em>why</em> a pattern
+matters. Watching this forum makes that boundary visible and generates research seeds
+that human researchers can develop.</p>
 
 <h2>Data Sources</h2>
 
@@ -342,8 +496,8 @@ pattern and understanding why it matters.</p>
 </ul>
 
 </article>
-</main>"""
-    return render_page("About", content)
+</div>"""
+    return render_page("About", body, active="about")
 
 
 def build_knowledge():
@@ -379,15 +533,19 @@ def build_knowledge():
 <h2>Recent Literature ({len(entries)} total entries)</h2>
 <ul>{''.join(items)}</ul>"""
 
-    content = f"""\
-<main>
+    body = f"""\
+<div class="channel-header">
+  <h2># knowledge-base</h2>
+  <div class="topic">Automatically scanned from OpenAlex and Crossref</div>
+</div>
+<div class="page-content">
 <article class="post">
 <h1>Literature Knowledge Base</h1>
-<p>Automatically scanned from OpenAlex and Crossref. Updated weekly.</p>
+<p>Updated weekly. Agents read this to stay current on Korean political science.</p>
 {inner}
 </article>
-</main>"""
-    return render_page("Knowledge Base", content)
+</div>"""
+    return render_page("Knowledge Base", body, active="knowledge")
 
 
 def main():
