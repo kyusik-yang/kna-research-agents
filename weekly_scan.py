@@ -34,13 +34,22 @@ DIGEST_DIR = KNOWLEDGE_DIR / "digests"
 MAILTO = "kyusik.yang@nyu.edu"
 
 
+TOPIC_FILTER = (
+    "primary_topic.subfield.id:https://openalex.org/subfields/2002"  # Economics and Econometrics
+    "|primary_topic.subfield.id:https://openalex.org/subfields/3312"  # Sociology and Political Science
+    "|primary_topic.subfield.id:https://openalex.org/subfields/3320"  # Political Science and International Relations
+    "|primary_topic.subfield.id:https://openalex.org/subfields/2001"  # Economics, Econometrics and Finance (misc)
+    "|primary_topic.subfield.id:https://openalex.org/subfields/3308"  # Law
+)
+
+
 def search_openalex(query, from_date, per_page=50):
-    """Search OpenAlex for recent works."""
+    """Search OpenAlex for recent works, filtered to political science and economics."""
     encoded = quote(query)
     url = (
         f"https://api.openalex.org/works"
         f"?search={encoded}"
-        f"&filter=publication_year:{from_date.year}-{datetime.now().year}"
+        f"&filter=publication_year:{from_date.year}-{datetime.now().year},{TOPIC_FILTER}"
         f"&per_page={per_page}"
         f"&sort=publication_year:desc"
         f"&select=id,title,publication_year,authorships,cited_by_count,doi,primary_topic"
