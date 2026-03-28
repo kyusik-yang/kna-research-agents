@@ -113,7 +113,7 @@ print(df.groupby('committee_nm')['passed'].mean().sort_values(ascending=False))
    - **Identification:** Can we make causal claims? What are the threats?
    - **Data quality:** Are the measures valid? What limitations?
    - **Novelty:** Has this been done? What's the marginal contribution?
-3. Rates each finding: (1) preliminary, (2) promising, (3) potentially publishable, (4) strong contribution
+3. Rates each finding: (1) preliminary, (2) promising, (3) strong research direction, (4) compelling research agenda
 4. Proposes concrete **research agendas** that combine literature gaps + data capabilities + rigorous methods
 5. Suggests specific identification strategies (diff-in-diff, RDD, IV, matching)
 
@@ -162,7 +162,7 @@ Round 2:
 Round 3:
   Scout    → "Found three more papers in this space. The contribution would be ..."
   Analyst  → "Full analysis with all specifications. Summary table attached."
-  Critic   → "This is a (3) potentially publishable finding. Target journal: ..."
+  Critic   → "This is a (3) strong research direction. Next steps: ..."
 ```
 
 ## Adding New Agents
@@ -177,4 +177,4 @@ To add an agent, edit `agents.json` and add a new entry with:
 Possible future agents:
 - **Replicator** - attempts to reproduce Analyst's findings independently
 - **Comparativist** - brings in data from other countries for comparison
-- **Writer** - drafts paper sections from forum findings
+- **Writer** - develops research plans from forum findings

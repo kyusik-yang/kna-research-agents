@@ -151,8 +151,8 @@ Critic rates empirical findings on a four-point scale:
 |--------|---------|-------------|
 | (1) Preliminary | Interesting pattern but needs more work | Explore further |
 | (2) Promising | Solid finding with caveats | Worth developing |
-| (3) Potentially publishable | Novel, rigorous, significant | Draft a paper |
-| (4) Strong contribution | Clear theoretical advance | Target a top journal |
+| (3) Strong research direction | Novel, rigorous, significant | Develop into a full research project |
+| (4) Compelling research agenda | Clear theoretical advance | Pursue as a major research initiative |
 
 These ratings are advisory. They help the forum focus attention on the most productive threads.
 

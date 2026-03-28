@@ -71,6 +71,8 @@ body {
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 .sidebar h1 { font-size: 1.1rem; font-weight: 800; color: white; padding: 0 1rem 0.75rem; }
 .sidebar .subtitle { font-size: 0.75rem; color: #9a9b9d; padding: 0 1rem 1rem; }
@@ -99,7 +101,6 @@ body {
 .main {
   margin-left: 260px;
   flex: 1;
-  max-width: 900px;
   padding: 0;
 }
 
@@ -173,7 +174,7 @@ body {
 .stats-bar .stat-val { font-weight: 800; color: var(--text); margin-right: 0.25rem; }
 
 /* Post page */
-.post-page { padding: 1.5rem; }
+.post-page { padding: 1.5rem; max-width: 860px; }
 .post-page .post-header {
   display: flex; align-items: center; gap: 0.75rem;
   padding-bottom: 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;
@@ -327,6 +328,12 @@ def sidebar_html(active="forum"):
     <div class="agent-item"><span class="dot analyst"></span> Analyst (Data)</div>
     <div class="agent-item"><span class="dot critic"></span> Critic (Review)</div>
   </div>
+  <div class="section-label" style="margin-top:auto; padding-top:2rem;">Maintainer</div>
+  <div style="padding:0 1rem; font-size:0.75rem; color:#9a9b9d;">
+    <a href="https://github.com/kyusik-yang" style="color:#ccc;">Kyusik Yang</a><br>
+    NYU Politics<br>
+    <a href="mailto:kyusik.yang@nyu.edu" style="color:#8ab4f8;">Feedback</a>
+  </div>
 </aside>"""
 
 
@@ -350,7 +357,9 @@ def render_page(title, body_content, active="forum"):
 </div>
 {body_content}
 <footer>
-  Powered by <a href="{REPO_URL}">kna-research-agents</a> |
+  Maintained by <a href="https://github.com/kyusik-yang">Kyusik Yang</a> (NYU Politics) |
+  <a href="mailto:kyusik.yang@nyu.edu">Send feedback</a> |
+  <a href="{REPO_URL}">GitHub</a> |
   Data: <a href="https://github.com/kyusik-yang/korean-bill-lifecycle">KNA</a> |
   Lit: <a href="https://openalex.org">OpenAlex</a> &amp; <a href="https://www.crossref.org">Crossref</a>
 </footer>
@@ -559,9 +568,9 @@ that human researchers can develop.</p>
 
 
 def build_knowledge():
-    """Build the knowledge base page showing literature scan results."""
+    """Build the knowledge base page with summary stats and highlights."""
     log_file = KNOWLEDGE_DIR / "literature_log.jsonl"
-    digest_dir = KNOWLEDGE_DIR / "digests"
+    abstracts_file = KNOWLEDGE_DIR / "abstracts.jsonl"
 
     entries = []
     if log_file.exists():
@@ -573,33 +582,88 @@ def build_knowledge():
                 except Exception:
                     pass
 
-    digests = sorted(digest_dir.glob("*.md"), reverse=True) if digest_dir.exists() else []
+    abstracts_count = 0
+    if abstracts_file.exists():
+        import json
+        with open(abstracts_file) as f:
+            abstracts_count = sum(1 for _ in f)
 
-    if not entries and not digests:
+    if not entries:
         inner = "<p><em>No literature scans yet. Run <code>python3 weekly_scan.py</code> to start.</em></p>"
     else:
-        items = []
-        for e in reversed(entries[-50:]):
+        # Compute stats
+        years = [e.get("year") for e in entries if e.get("year")]
+        year_range = f"{min(years)}-{max(years)}" if years else "N/A"
+
+        by_source = {}
+        for e in entries:
+            s = e.get("source", "unknown")
+            by_source[s] = by_source.get(s, 0) + 1
+
+        journals = {}
+        for e in entries:
+            j = e.get("journal") or e.get("topic") or ""
+            if j:
+                journals[j] = journals.get(j, 0) + 1
+        top_journals = sorted(journals.items(), key=lambda x: -x[1])[:10]
+
+        # Recent highlights (last 15, most cited)
+        recent = sorted(
+            [e for e in entries if e.get("cited_by", 0) > 0],
+            key=lambda x: -x.get("cited_by", 0),
+        )[:15]
+        if not recent:
+            recent = entries[-15:]
+
+        stats_html = f"""\
+<div class="stats-bar" style="margin-bottom:1rem; border-radius:6px;">
+  <div><span class="stat-val">{len(entries)}</span> papers tracked</div>
+  <div><span class="stat-val">{abstracts_count}</span> abstracts collected</div>
+  <div><span class="stat-val">{year_range}</span> year range</div>
+  <div><span class="stat-val">{len(journals)}</span> journals/topics</div>
+</div>"""
+
+        source_html = " | ".join(f"{k}: {v}" for k, v in sorted(by_source.items()))
+
+        journal_rows = ""
+        for j, c in top_journals:
+            journal_rows += f"<tr><td>{j}</td><td>{c}</td></tr>"
+        journal_html = f"""\
+<h2>Top Journals / Topics</h2>
+<table><tr><th>Journal / Topic</th><th>Papers</th></tr>{journal_rows}</table>""" if top_journals else ""
+
+        highlight_items = []
+        for e in recent:
             authors = ", ".join(e.get("authors", [])[:2])
             doi = e.get("doi", "")
-            doi_link = f' | <a href="https://doi.org/{doi}">{doi}</a>' if doi else ""
-            items.append(
-                f"<li><strong>{e.get('title','')}</strong> ({e.get('year','?')})<br>"
-                f"<span class='post-meta'>{authors} | {e.get('source','')}{doi_link}</span></li>"
+            doi_link = f' <a href="https://doi.org/{doi}" style="font-size:0.75rem;">[DOI]</a>' if doi else ""
+            cited = f' (cited: {e["cited_by"]})' if e.get("cited_by") else ""
+            highlight_items.append(
+                f"<li><strong>{e.get('title','')}</strong> ({e.get('year','?')}){cited}<br>"
+                f"<span class='post-meta'>{authors}{doi_link}</span></li>"
             )
+
         inner = f"""\
-<h2>Recent Literature ({len(entries)} total entries)</h2>
-<ul>{''.join(items)}</ul>"""
+{stats_html}
+<p class="post-meta">Sources: {source_html}</p>
+
+{journal_html}
+
+<h2>Highlights</h2>
+<p class="post-meta">Most-cited papers in the knowledge base</p>
+<ul>{''.join(highlight_items)}</ul>
+
+<p class="post-meta" style="margin-top:1.5rem;">Full data: <code>knowledge/literature_log.jsonl</code> ({len(entries)} entries) | <code>knowledge/abstracts.jsonl</code> ({abstracts_count} abstracts)</p>"""
 
     body = f"""\
 <div class="channel-header">
   <h2># knowledge-base</h2>
-  <div class="topic">Automatically scanned from OpenAlex and Crossref</div>
+  <div class="topic">Korean politics literature tracked from OpenAlex and Crossref</div>
 </div>
 <div class="page-content">
 <article class="post">
 <h1>Literature Knowledge Base</h1>
-<p>Updated weekly. Agents read this to stay current on Korean political science.</p>
+<p>Automatically scanned weekly. Agents read this knowledge base to stay current on Korean political science research.</p>
 {inner}
 </article>
 </div>"""
