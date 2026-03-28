@@ -630,92 +630,141 @@ and load parquet files directly via pandas. The database covers
 
 
 def build_knowledge():
-    """Build the knowledge base page with summary stats and highlights."""
+    """Build the knowledge base page with summary stats and full paper list."""
+    import json
+    from html import escape
+
     log_file = KNOWLEDGE_DIR / "literature_log.jsonl"
     abstracts_file = KNOWLEDGE_DIR / "abstracts.jsonl"
 
-    entries = []
-    if log_file.exists():
-        import json
-        with open(log_file) as f:
+    # Load abstracts (main corpus)
+    abstracts = []
+    if abstracts_file.exists():
+        with open(abstracts_file) as f:
             for line in f:
                 try:
-                    entries.append(json.loads(line))
+                    abstracts.append(json.loads(line))
                 except Exception:
                     pass
 
-    abstracts_count = 0
-    if abstracts_file.exists():
-        import json
-        with open(abstracts_file) as f:
-            abstracts_count = sum(1 for _ in f)
+    # Load literature log (recent scan)
+    log_entries = []
+    if log_file.exists():
+        with open(log_file) as f:
+            for line in f:
+                try:
+                    log_entries.append(json.loads(line))
+                except Exception:
+                    pass
 
-    if not entries:
-        inner = "<p><em>No literature scans yet. Run <code>python3 weekly_scan.py</code> to start.</em></p>"
+    if not abstracts and not log_entries:
+        inner = "<p><em>No literature scans yet. Run <code>python3 weekly_scan.py</code> and <code>python3 collect_abstracts.py</code> to start.</em></p>"
     else:
-        # Compute stats
-        years = [e.get("year") for e in entries if e.get("year")]
+        # Stats from abstracts (main corpus)
+        all_papers = abstracts if abstracts else log_entries
+        years = [e.get("year") for e in all_papers if e.get("year")]
         year_range = f"{min(years)}-{max(years)}" if years else "N/A"
 
+        journals = {}
+        for e in all_papers:
+            j = e.get("journal", "") or ""
+            if j:
+                journals[j] = journals.get(j, 0) + 1
+        top_journals = sorted(journals.items(), key=lambda x: -x[1])[:15]
+
         by_source = {}
-        for e in entries:
+        for e in all_papers:
             s = e.get("source", "unknown")
             by_source[s] = by_source.get(s, 0) + 1
 
-        journals = {}
-        for e in entries:
-            j = e.get("journal") or e.get("topic") or ""
-            if j:
-                journals[j] = journals.get(j, 0) + 1
-        top_journals = sorted(journals.items(), key=lambda x: -x[1])[:10]
-
-        # Recent highlights (last 15, most cited)
-        recent = sorted(
-            [e for e in entries if e.get("cited_by", 0) > 0],
-            key=lambda x: -x.get("cited_by", 0),
-        )[:15]
-        if not recent:
-            recent = entries[-15:]
-
         stats_html = f"""\
 <div class="stats-bar" style="margin-bottom:1rem; border-radius:6px;">
-  <div><span class="stat-val">{len(entries)}</span> papers tracked</div>
-  <div><span class="stat-val">{abstracts_count}</span> abstracts collected</div>
+  <div><span class="stat-val">{len(all_papers)}</span> papers</div>
   <div><span class="stat-val">{year_range}</span> year range</div>
-  <div><span class="stat-val">{len(journals)}</span> journals/topics</div>
+  <div><span class="stat-val">{len(journals)}</span> journals</div>
+  <div><span class="stat-val">{" | ".join(f"{k}: {v}" for k, v in sorted(by_source.items()))}</span></div>
 </div>"""
 
-        source_html = " | ".join(f"{k}: {v}" for k, v in sorted(by_source.items()))
-
+        # Top journals table
         journal_rows = ""
         for j, c in top_journals:
-            journal_rows += f"<tr><td>{j}</td><td>{c}</td></tr>"
+            journal_rows += f"<tr><td>{escape(j)}</td><td>{c}</td></tr>"
         journal_html = f"""\
-<h2>Top Journals / Topics</h2>
-<table><tr><th>Journal / Topic</th><th>Papers</th></tr>{journal_rows}</table>""" if top_journals else ""
+<h2>Top Journals</h2>
+<table><tr><th>Journal</th><th>Papers</th></tr>{journal_rows}</table>"""
 
-        highlight_items = []
-        for e in recent:
-            authors = ", ".join(e.get("authors", [])[:2])
-            doi = e.get("doi", "")
-            doi_link = f' <a href="https://doi.org/{doi}" style="font-size:0.75rem;">[DOI]</a>' if doi else ""
-            cited = f' (cited: {e["cited_by"]})' if e.get("cited_by") else ""
-            highlight_items.append(
-                f"<li><strong>{e.get('title','')}</strong> ({e.get('year','?')}){cited}<br>"
-                f"<span class='post-meta'>{authors}{doi_link}</span></li>"
-            )
+        # Full paper list grouped by year (descending)
+        by_year = {}
+        for e in all_papers:
+            y = e.get("year", 0) or 0
+            by_year.setdefault(y, []).append(e)
+
+        paper_list_html = "<h2>Papers</h2>\n"
+        for y in sorted(by_year.keys(), reverse=True):
+            if y == 0:
+                continue
+            papers = sorted(by_year[y], key=lambda x: x.get("title", "").lower())
+            items = []
+            for e in papers:
+                title = escape(e.get("title", ""))
+                authors_list = e.get("authors", [])
+                if len(authors_list) > 3:
+                    authors = escape(", ".join(authors_list[:3])) + " et al."
+                else:
+                    authors = escape(", ".join(authors_list))
+                journal = escape(e.get("journal", ""))
+                doi = e.get("doi", "")
+                abstract = escape(e.get("abstract", ""))
+
+                # Title with optional DOI link
+                if doi:
+                    title_html = f'<a href="https://doi.org/{escape(doi)}">{title}</a>'
+                else:
+                    title_html = f"<strong>{title}</strong>"
+
+                # Journal badge
+                journal_html_item = f' <span class="post-meta">{journal}</span>' if journal else ""
+
+                # Abstract preview (collapsible)
+                abstract_html = ""
+                if abstract:
+                    short = abstract[:200] + "..." if len(abstract) > 200 else abstract
+                    abstract_html = f'\n<details><summary class="post-meta">Abstract</summary><p class="post-meta" style="margin:0.3rem 0 0.5rem;">{abstract}</p></details>'
+
+                items.append(
+                    f'<li style="margin-bottom:0.6rem;">{title_html}{journal_html_item}'
+                    f'<br><span class="post-meta">{authors}</span>'
+                    f'{abstract_html}</li>'
+                )
+
+            paper_list_html += f"""\
+<details{"" if y < sorted(by_year.keys(), reverse=True)[0] else " open"}>
+<summary><strong>{y}</strong> <span class="post-meta">({len(papers)} papers)</span></summary>
+<ul style="margin:0.5rem 0 1rem;">{''.join(items)}</ul>
+</details>\n"""
+
+        # Papers with year=0 (unknown)
+        if 0 in by_year and by_year[0]:
+            papers = by_year[0]
+            items = []
+            for e in papers:
+                title = escape(e.get("title", ""))
+                authors = escape(", ".join(e.get("authors", [])[:3]))
+                doi = e.get("doi", "")
+                title_html = f'<a href="https://doi.org/{escape(doi)}">{title}</a>' if doi else f"<strong>{title}</strong>"
+                items.append(f'<li style="margin-bottom:0.4rem;">{title_html}<br><span class="post-meta">{authors}</span></li>')
+            paper_list_html += f"""\
+<details>
+<summary><strong>Year unknown</strong> <span class="post-meta">({len(papers)} papers)</span></summary>
+<ul style="margin:0.5rem 0 1rem;">{''.join(items)}</ul>
+</details>\n"""
 
         inner = f"""\
 {stats_html}
-<p class="post-meta">Sources: {source_html}</p>
 
 {journal_html}
 
-<h2>Highlights</h2>
-<p class="post-meta">Most-cited papers in the knowledge base</p>
-<ul>{''.join(highlight_items)}</ul>
-
-<p class="post-meta" style="margin-top:1.5rem;">Full data: <code>knowledge/literature_log.jsonl</code> ({len(entries)} entries) | <code>knowledge/abstracts.jsonl</code> ({abstracts_count} abstracts)</p>"""
+{paper_list_html}"""
 
     body = f"""\
 <div class="channel-header">
@@ -725,7 +774,7 @@ def build_knowledge():
 <div class="page-content">
 <article class="post">
 <h1>Literature Knowledge Base</h1>
-<p>Automatically scanned weekly. Agents read this knowledge base to stay current on Korean political science research.</p>
+<p>Automatically collected from OpenAlex and Crossref. Agents read this to stay current on Korean political science research.</p>
 {inner}
 </article>
 </div>"""
