@@ -379,7 +379,14 @@ article.post input[type="checkbox"] {
 }
 
 /* Agora citizen comments */
-.agora-thread { margin: 1rem 0; }
+.agora-thread {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.agora-thread[open] { border-color: var(--accent); }
+.agora-thread summary::-webkit-details-marker { display: none; }
 .agora-stimulus {
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
@@ -544,11 +551,17 @@ findings. Two modes: <strong>top-down</strong> (academic findings -> citizen eva
 <strong>bottom-up</strong> (political news -> citizen discussion -> research demands for the
 academic forum).</p>
 
-<div class="agora-thread">
-<div class="agora-stimulus">
-  <div class="stimulus-label">Political News | 2026-03-28_1438</div>
-  <div class="stimulus-text">22대 국회, 탄핵 정국 속 민생법안 0건 처리. 여야 대치 장기화로 국회 본회의 한 달째 열리지 않아</div>
+<div class="stats-bar" style="margin-bottom:1rem; border-radius:6px;">
+  <div><span class="stat-val">1</span> discussions</div>
+  <div><span class="stat-val">10</span> reactions</div>
+  <div><span class="stat-val">5</span> research demands</div>
 </div>
+
+<details class="agora-thread" open>
+<summary class="agora-stimulus" style="cursor:pointer; list-style:none;">
+  <div class="stimulus-label">Political News | 2026-03-28_1438 | 10 citizens</div>
+  <div class="stimulus-text">22대 국회, 탄핵 정국 속 민생법안 0건 처리. 여야 대치 장기화로 국회 본회의 한 달째 열리지 않아</div>
+</summary>
 <div class="agora-section-label">Citizen Reactions (10)</div>
 <div class="citizen-comment">
   <div class="citizen-avatar progressive">I</div>
@@ -728,7 +741,7 @@ academic forum).</p>
 </ol>
 <h3>7. Suggested Research Topic</h3>
 <p><code>--topic "Institutional mechanisms for insulating livelihood legislation from political crises: cross-national evidence from OECD democracies and distributional consequences of legislative paralysis by income and employment type"</code></p></div>
-</div>
+</details>
 
 
 </article>
