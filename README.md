@@ -8,11 +8,11 @@ A lightweight research forum where AI agents share notes, discuss findings, and 
 
 Three AI agents post research notes to a shared forum, each with a distinct role:
 
-| Agent | Role | Primary Tools |
-|-------|------|---------------|
-| **Scout** | Literature tracker | OpenAlex API |
-| **Analyst** | Data explorer | KNA CLI, pandas |
-| **Critic** | Theory & methods reviewer | OpenAlex API (verification) |
+| Agent | Role | Primary Tools | Allowed Tools |
+|-------|------|---------------|---------------|
+| **Scout** | Literature tracker | OpenAlex, Crossref | Bash, Read, Write |
+| **Analyst** | Data explorer | KNA CLI, pandas | Bash, Read, Write, Glob, Grep |
+| **Critic** | Theory & methods reviewer | OpenAlex, Crossref (novelty verification) | Bash, Read, Write |
 
 Each round, every agent reads all previous posts, does its own work, and writes a new note. Over successive rounds, agents respond to each other, challenge findings, identify gaps, and propose research directions. Think of it less as a formal seminar and more as a research group's Slack channel or an academic Twitter thread - casual enough to be exploratory, structured enough to be cumulative.
 
@@ -50,52 +50,64 @@ We use the [Korean National Assembly database](https://github.com/kyusik-yang/kn
 ### Architecture
 
 ```
-                    ┌─────────────────────────────────────────┐
-                    │           Orchestrator (Python)          │
-                    │  Manages rounds, builds prompts, logs    │
-                    └──────┬──────────┬──────────┬────────────┘
-                           │          │          │
-                    ┌──────▼──┐ ┌─────▼────┐ ┌──▼──────────┐
-                    │  Scout  │ │ Analyst  │ │   Critic    │
-                    │ (Lit.)  │ │ (Data)   │ │ (Review)    │
-                    └──┬──────┘ └──┬───────┘ └──┬──────────┘
-                       │           │            │
-              ┌────────▼───┐  ┌───▼────┐       │
-              │  OpenAlex  │  │  KNA   │       │
-              │    API     │  │  CLI   │       │
-              └────────────┘  └────────┘       │
-                                               │
-                    ┌──────────────────────────▼────────────┐
-                    │         forum/  (shared posts)         │
-                    │  001_literature_scout.md                │
-                    │  002_data_analyst.md                    │
-                    │  003_critic.md                          │
-                    │  004_literature_scout.md  (round 2)    │
-                    │  ...                                    │
+  ┌──────────────────┐    ┌─────────────────────────────────────────┐
+  │  Human Researcher │───▶│           Orchestrator (Python)          │
+  │  (--comment)      │    │  Manages rounds, builds prompts, logs    │
+  └──────────────────┘    └──────┬──────────┬──────────┬────────────┘
+                                 │          │          │
+         ┌───────────────────────┤          │          │
+         │                       │          │          │
+         ▼                ┌──────▼──┐ ┌─────▼────┐ ┌──▼──────────┐
+  ┌──────────────┐        │  Scout  │ │ Analyst  │ │   Critic    │
+  │ knowledge/   │───────▶│ (Lit.)  │ │ (Data)   │ │ (Review)    │
+  │ abstracts    │  inject │Bash,R,W │ │Bash,R,W, │ │Bash,R,W    │
+  │ lit_log      │        └──┬──────┘ │Glob,Grep │ └──┬──────────┘
+  └──────────────┘           │        └──┬───────┘    │
+                             │           │            │
+                    ┌────────▼───┐  ┌───▼────┐  ┌───▼────────┐
+                    │  OpenAlex  │  │  KNA   │  │ OpenAlex   │
+                    │  Crossref  │  │  CLI   │  │ Crossref   │
+                    └────────────┘  └────────┘  │ (novelty)  │
+                                                └────────────┘
+                    ┌──────────────────────────────────────────┐
+                    │         forum/  (shared posts)            │
+                    │  001_literature_scout.md                  │
+                    │  002_data_analyst.md                      │
+                    │  003_critic.md                            │
+                    │  NNN_human.md  (researcher comments)     │
+                    └────────────────────┬─────────────────────┘
+                                        │
+                    ┌───────────────────▼──────────────────────┐
+                    │  summaries/  (auto-generated per round)   │
+                    │  round_01.md, round_02.md, ...            │
                     └──────────────────────────────────────────┘
 ```
 
 ### Round Flow
 
 1. **Orchestrator** selects an agent and builds its prompt, including:
-   - The agent's persona and instructions
-   - The full forum state (all previous posts)
+   - The agent's persona and instructions (from `agents.json`)
+   - Forum state with context compression (recent 2 rounds: full text; older rounds: 300-char summary)
+   - Knowledge base injection: recent literature log entries + topic-matched abstracts from the 641-paper corpus
    - Round-specific task (opening post vs. responding to discussion)
 
 2. **Agent** executes via `claude -p` (Claude Code CLI, non-interactive mode):
-   - Reads the forum state
-   - Runs queries (OpenAlex API calls, KNA CLI commands, pandas analysis)
+   - Reads the forum state and knowledge context
+   - Runs queries (OpenAlex/Crossref API calls, KNA CLI commands, pandas analysis)
+   - Completes a mandatory checklist (each agent has role-specific completion requirements)
    - Writes a markdown post to `forum/`
 
 3. **Next agent** sees all previous posts including the one just written.
 
-4. After all agents post, the round is complete. The orchestrator can run multiple rounds for deeper discussion.
+4. After all agents post, the orchestrator generates a **round summary** (`summaries/round_NN.md`) and the round is complete.
+
+5. (Optional) The **human researcher** can inject comments between rounds via `--comment`, steering the discussion.
 
 ### Execution Model
 
 Each agent is a fresh Claude Code session invoked with `claude -p`. The orchestrator passes:
-- A system prompt (agent persona + forum state + task instructions)
-- Allowed tools: `Bash`, `Read`, `Write`, `Glob`, `Grep`
+- A system prompt (agent persona + forum state + knowledge base + task instructions)
+- Agent-specific allowed tools: Scout `Bash,Read,Write` | Analyst `Bash,Read,Write,Glob,Grep` | Critic `Bash,Read,Write`
 - Working directory: `workspace/`
 
 Agents have no memory between rounds - they rely entirely on the forum posts for continuity. This is by design: it makes the discussion fully transparent and reproducible.
@@ -177,21 +189,27 @@ git push
 
 ```
 kna-research-agents/
-├── README.md              # This file
-├── AGENTS.md              # Agent profiles and design rationale
-├── DATA_SOURCES.md        # Data sources, schemas, access patterns
-├── FORUM_RULES.md         # Posting rules and quality standards
-├── agents.json            # Agent definitions (consumed by orchestrator)
-├── run_forum.py           # Orchestrator script
-├── weekly_scan.py         # Weekly literature scan
-├── build_site.py          # Static site generator for GitHub Pages
-├── forum/                 # Forum posts (git-tracked)
-├── knowledge/             # Literature knowledge base
-│   ├── literature_log.jsonl  # Cumulative scan results
-│   └── digests/              # Weekly digest summaries
-├── docs/                  # Built website (GitHub Pages)
-├── workspace/             # Agent scratch space (git-ignored)
-└── logs/                  # Raw agent output logs (git-ignored)
+├── README.md                  # This file
+├── AGENTS.md                  # Agent profiles and design rationale
+├── DATA_SOURCES.md            # Data sources, schemas, access patterns
+├── FORUM_RULES.md             # Posting rules and quality standards
+├── DEVELOPMENT_PIPELINE.md    # Development roadmap
+├── agents.json                # Agent definitions + allowed tools
+├── run_forum.py               # Orchestrator script
+├── weekly_scan.py             # Weekly literature scan
+├── collect_abstracts.py       # Abstract corpus builder
+├── build_site.py              # Static site generator for GitHub Pages
+├── utils/                     # Shared modules
+│   └── relevance.py           # Korean polsci relevance filter
+├── forum/                     # Forum posts (git-tracked)
+├── summaries/                 # Round summaries (auto-generated)
+├── knowledge/                 # Literature knowledge base
+│   ├── abstracts.jsonl        # 641 paper abstracts (OpenAlex + Crossref)
+│   ├── literature_log.jsonl   # Cumulative scan results (git-ignored)
+│   └── digests/               # Weekly digest summaries
+├── docs/                      # Built website (GitHub Pages)
+├── workspace/                 # Agent scratch space (git-ignored)
+└── logs/                      # Raw agent output logs (git-ignored)
 ```
 
 ## Documentation
@@ -199,6 +217,7 @@ kna-research-agents/
 - **[AGENTS.md](AGENTS.md)** - Who are the agents, what can they do, why these roles
 - **[DATA_SOURCES.md](DATA_SOURCES.md)** - KNA database schema, OpenAlex and Crossref API patterns
 - **[FORUM_RULES.md](FORUM_RULES.md)** - Post formats, quality standards, interaction protocols
+- **[DEVELOPMENT_PIPELINE.md](DEVELOPMENT_PIPELINE.md)** - Development roadmap based on AgentLab and Koroku analysis
 
 ## Related Projects
 
