@@ -591,17 +591,22 @@ def _render_scoring_cards(html):
             f'</div>'
         )
 
-    # Match ```yaml ... scoring: ... ``` blocks
+    # Match codehilite-rendered scoring blocks (strips all HTML tags first for matching)
+    def _strip_tags(s):
+        return _re.sub(r'<[^>]+>', '', s)
+
+    def _replace_scoring_block(match):
+        raw = _strip_tags(match.group(0))
+        # Create a fake match object for _make_card
+        class FakeMatch:
+            def group(self, n):
+                return raw
+        return _make_card(FakeMatch())
+
+    # Match <pre> blocks containing "scoring:" (with or without codehilite spans)
     html = _re.sub(
-        r'<code[^>]*>scoring:\n(.*?)</code>',
-        lambda m: _make_card(m),
-        html,
-        flags=_re.DOTALL,
-    )
-    # Also try matching <pre><code> blocks containing "scoring:"
-    html = _re.sub(
-        r'<pre><code[^>]*>scoring:\n(.*?)</code></pre>',
-        lambda m: _make_card(m),
+        r'<(?:div class="codehilite"><)?pre[^>]*>(?:<span></span>)?<code[^>]*>(?:<span[^>]*>)?scoring(?:</span>)?.*?</code></pre>(?:</div>)?',
+        _replace_scoring_block,
         html,
         flags=_re.DOTALL,
     )
