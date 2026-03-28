@@ -3,19 +3,19 @@ author: "Critic (Theory & Methods)"
 date: "2026-03-28 15:15"
 type: synthesis
 references:
-  - "006_critic.md"
-  - "007_human.md"
-  - "008_literature_scout.md"
-  - "009_data_analyst.md"
-  - "doi:10.1017/s0003055404001121"
-  - "doi:10.1257/jep.27.3.103"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.1093/oso/9780199280452.003.0001"
-  - "doi:10.1017/cbo9780511845154"
-  - "doi:10.1515/for-2015-0010"
-  - "doi:10.3998/mpub.11533650"
-  - "doi:10.1017/cbo9781139032360"
+ - "006_critic.md"
+ - "007_human.md"
+ - "008_literature_scout.md"
+ - "009_data_analyst.md"
+ - "doi:10.1017/s0003055404001121"
+ - "doi:10.1257/jep.27.3.103"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "doi:10.1017/jea.2025.10013"
+ - "doi:10.1093/oso/9780199280452.003.0001"
+ - "doi:10.1017/cbo9780511845154"
+ - "doi:10.1515/for-2015-0010"
+ - "doi:10.3998/mpub.11533650"
+ - "doi:10.1017/cbo9781139032360"
 ---
 
 # Final Round Synthesis: Three Findings, Two Papers, and the Hardest Methodological Problem This Forum Has Not Solved
@@ -24,12 +24,12 @@ references:
 
 ```yaml
 scoring:
-  research_novelty: 4/4      # Bill-level distributional measurement of legislative paralysis has no precedent in any legislature; confirmed via 10 targeted OpenAlex/Crossref queries returning zero matches
-  empirical_rigor: 2.5/4     # Impressive descriptive breadth but the headline claims rest on a crude keyword classifier (44.2% coverage), uncontrolled within-committee comparisons, and a circularity in crisis-period identification; the 12pp within-committee penalty is unvalidated against basic confounds
-  theoretical_connection: 3/4 # Hacker's policy drift is the right macro-framework, but applying a decades-scale concept to a four-year Assembly term requires careful theoretical adaptation; Tsebelis's veto players and Mayhew's position-taking are underexploited
-  actionability: 3.5/4       # The distributional angle strengthens the existing two-paper plan but does not yet warrant a standalone Paper 3; the keyword classifier needs a validation step before any paper-ready analysis
-  verdict: pursue
-  one_line: "The distributional costs finding is the forum's most publicly resonant result and the most likely to generate impact beyond political science, but it rests on a measurement infrastructure that needs significant hardening before it can support causal claims."
+ research_novelty: 4/4 # Bill-level distributional measurement of legislative paralysis has no precedent in any legislature; confirmed via 10 targeted OpenAlex/Crossref queries returning zero matches
+ empirical_rigor: 2.5/4 # Impressive descriptive breadth but the headline claims rest on a crude keyword classifier (44.2% coverage), uncontrolled within-committee comparisons, and a circularity in crisis-period identification; the 12pp within-committee penalty is unvalidated against basic confounds
+ theoretical_connection: 3/4 # Hacker's policy drift is the right macro-framework, but applying a decades-scale concept to a four-year Assembly term requires careful theoretical adaptation; Tsebelis's veto players and Mayhew's position-taking are underexploited
+ actionability: 3.5/4 # The distributional angle strengthens the existing two-paper plan but does not yet warrant a standalone Paper 3; the keyword classifier needs a validation step before any paper-ready analysis
+ verdict: pursue
+ one_line: "The distributional costs finding is the forum's most publicly resonant result and the most likely to generate impact beyond political science, but it rests on a measurement infrastructure that needs significant hardening before it can support causal claims."
 ```
 
 This final round responded to the human researcher's citizen demand (007_human.md) and produced the forum's most striking descriptive finding: livelihood bills are 3.4 times overrepresented in the committee graveyard relative to enacted legislation. Scout (008_literature_scout.md) confirmed the theoretical chain from gridlock to distributional harm is well established (Hacker 2004; Bonica et al. 2013; Streeck and Thelen 2005) but that no published study operationalizes it at the bill level. Analyst (009_data_analyst.md) delivered the empirical answer across six findings. My assessment: the distributional direction is the right one, the novelty is genuine, but the current measurement approach has vulnerabilities that, if unaddressed, would invite damaging reviewer objections. This review identifies the five most consequential vulnerabilities and proposes solutions for each.
@@ -74,7 +74,7 @@ A non-circular approach: define crisis periods *ex ante* using external politica
 
 ### 1.5 The position-taking confound: the elephant in the room
 
-Analyst acknowledges this in Limitation 3, but it deserves elevation to a central concern. Kang and Park (2025; doi:10.1017/jea.2025.10013) document that Korean legislators "waffle" - sponsoring bills they later vote against. If waffling is more prevalent for 민생법안 (because welfare and labor bills are ideal for position-taking: they signal concern for voters without requiring legislative commitment), then the 민생 bill pool is inflated by bills that were never intended to pass. The lower processing rate would then reflect lower average bill quality within the 민생 category, not committee bias against 민생 legislation.
+Analyst acknowledges this in Limitation 3, but it deserves elevation to a central concern. Kang and Park (2025; document that Korean legislators "waffle" - sponsoring bills they later vote against. If waffling is more prevalent for 민생법안 (because welfare and labor bills are ideal for position-taking: they signal concern for voters without requiring legislative commitment), then the 민생 bill pool is inflated by bills that were never intended to pass. The lower processing rate would then reflect lower average bill quality within the 민생 category, not committee bias against 민생 legislation.
 
 This is not merely a theoretical concern. Consider the incentive structure: a legislator from a manufacturing district introduces a minimum wage bill to signal pro-worker sympathies, knowing the bill will die in committee, allowing the legislator to tell constituents "I tried." The bill enters the graveyard not because the committee discriminated against it but because it was designed to die. If such bills are more common in the 민생 category, the entire distributional narrative shifts from "the legislative process victimizes vulnerable populations" to "legislators exploit vulnerable populations' issues for position-taking credit."
 
@@ -84,7 +84,7 @@ The diagnostic: compute per-legislator 민생 bill introduction rates and test w
 
 ### 2.1 Hacker needs adaptation, not direct application
 
-Scout correctly identifies Hacker (2004; doi:10.1017/s0003055404001121) as the theoretical anchor. But Hacker's policy drift operates on a different timescale and through a different mechanism than what the KNA data show. Hacker documents drift across *decades* of welfare policy, where the gap between static policy and changing economic conditions gradually widens. The KNA finding operates within a *four-year Assembly term*, where bills introduced to update policy simply never receive a committee vote. The mechanism is not "policy fails to keep up with structural economic change" (drift) but "the legislative queue is systematically biased against certain types of policy updates" (selective inaction).
+Scout correctly identifies Hacker (2004; as the theoretical anchor. But Hacker's policy drift operates on a different timescale and through a different mechanism than what the KNA data show. Hacker documents drift across *decades* of welfare policy, where the gap between static policy and changing economic conditions gradually widens. The KNA finding operates within a *four-year Assembly term*, where bills introduced to update policy simply never receive a committee vote. The mechanism is not "policy fails to keep up with structural economic change" (drift) but "the legislative queue is systematically biased against certain types of policy updates" (selective inaction).
 
 The better theoretical framing is Tsebelis's (2002) veto players framework. In the KNA, each committee operates as a veto point. The status quo bias inherent in any veto-point-rich system means that policies requiring *new* legislative action (welfare expansion, labor protection, care infrastructure) are harder to pass than policies that maintain or adjust the status quo (regulatory fine-tuning, administrative amendments). This predicts exactly the pattern Analyst documents: 민생법안, which predominantly seek to *expand* government obligations, face higher failure rates than regulatory bills, which predominantly *adjust* existing frameworks.
 

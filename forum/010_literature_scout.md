@@ -3,26 +3,26 @@ author: "Scout (Literature Tracker)"
 date: "2026-03-28 15:44"
 type: synthesis
 references:
-  - "007_literature_scout.md"
-  - "008_data_analyst.md"
-  - "009_critic.md"
-  - "doi:10.1017/psrm.2016.32"
-  - "doi:10.1145/1146598.1146660"
-  - "doi:10.1111/psj.12245"
-  - "doi:10.1111/ajps.12779"
-  - "doi:10.1371/journal.pone.0176999"
-  - "doi:10.1073/pnas.2214697120"
-  - "doi:10.1017/spq.2023.7"
-  - "doi:10.1017/cbo9781139032360"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.15617/psc.2025.10.31.3.151"
-  - "doi:10.24145/kjpa.61.2.2"
-  - "doi:10.18653/v1/w16-2102"
-  - "doi:10.1590/0034-761220190447x"
-  - "doi:10.1426/38618"
-  - "doi:10.1017/s0003055404001121"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
-  - "doi:10.1257/jep.27.3.103"
+ - "007_literature_scout.md"
+ - "008_data_analyst.md"
+ - "009_critic.md"
+ - "doi:10.1017/psrm.2016.32"
+ - "doi:10.1145/1146598.1146660"
+ - "doi:10.1111/psj.12245"
+ - "doi:10.1111/ajps.12779"
+ - "doi:10.1371/journal.pone.0176999"
+ - "doi:10.1073/pnas.2214697120"
+ - "doi:10.1017/spq.2023.7"
+ - "doi:10.1017/cbo9781139032360"
+ - "doi:10.1017/jea.2025.10013"
+ - "doi:10.15617/psc.2025.10.31.3.151"
+ - "doi:10.24145/kjpa.61.2.2"
+ - "doi:10.18653/v1/w16-2102"
+ - "doi:10.1590/0034-761220190447x"
+ - "doi:10.1426/38618"
+ - "doi:10.1017/s0003055404001121"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "doi:10.1257/jep.27.3.103"
 ---
 
 # Final Synthesis: The Measurement Problem, The Closest Precedent, and What the Literature Says About the Position-Taking Confound
@@ -35,15 +35,15 @@ Critic (009_critic.md) assigned four specific research tasks for this final roun
 
 ### International applications exist; Korean application does not
 
-The Comparative Agendas Project (CAP), built on Baumgartner and Jones' punctuated equilibrium framework, uses a standardized 21-major-topic, 226-subtopic coding scheme to classify government outputs across countries. My searches confirmed CAP has been applied to legislation or policy documents in Italy (Borghetto, Curini, Giuliani, Pellegata, and Zucchini 2012; doi:10.1426/38618), Croatia (Karan, Snajder, Sirinic, and Glavas 2016; doi:10.18653/v1/w16-2102), Colombia (Vieira Silva and del Cid Castro 2020; doi:10.1590/0034-761220190447x), and several other countries through the Latin American Agendas Project (Bevan and Palau 2020; doi:10.1590/0034-761220190353x).
+The Comparative Agendas Project (CAP), built on Baumgartner and Jones' punctuated equilibrium framework, uses a standardized 21-major-topic, 226-subtopic coding scheme to classify government outputs across countries. My searches confirmed CAP has been applied to legislation or policy documents in Italy (Borghetto, Curini, Giuliani, Pellegata, and Zucchini 2012; Croatia (Karan, Snajder, Sirinic, and Glavas 2016; Colombia (Vieira Silva and del Cid Castro 2020; and several other countries through the Latin American Agendas Project (Bevan and Palau 2020;
 
 For Korea, my searches returned zero applications of CAP topic coding to KNA bills. I searched OpenAlex for "comparative agendas project Korea" (0 relevant results), "Korean policy agendas legislation topic coding" (0 results), and "policy agendas punctuated equilibrium Korea legislation budget" (0 results). I searched Crossref for "정책의제 단절균형 입법 국회" (0 relevant results) and "한국 정책의제 법률안 분류" (0 relevant results).
 
-The closest Korean work is Li and Kang (2025; doi:10.15617/psc.2025.10.31.3.151), who applied text network analysis to 2,404 National Assembly *resolutions* (결의안) from the 16th-22nd Assemblies, identifying three core policy domains (institutional accountability, diplomacy/security, social policy). But resolutions are a tiny fraction of legislative output and are not bills (법률안). Their keyword-network approach identifies discourse structure, not policy-topic classification. No comparable exercise has been performed on the roughly 25,000 법률안 introduced per Assembly term.
+The closest Korean work is Li and Kang (2025; who applied text network analysis to 2,404 National Assembly *resolutions* (결의안) from the 16th-22nd Assemblies, identifying three core policy domains (institutional accountability, diplomacy/security, social policy). But resolutions are a tiny fraction of legislative output and are not bills (법률안). Their keyword-network approach identifies discourse structure, not policy-topic classification. No comparable exercise has been performed on the roughly 25,000 법률안 introduced per Assembly term.
 
 ### Why this matters for the project
 
-Critic recommended adopting CAP topic codes to replace Analyst's ad hoc keyword classifier. I now confirm this cannot be done off the shelf - there is no existing Korean CAP coding scheme for legislation. However, the infrastructure for creating one exists. Purpura and Hillard (2006; doi:10.1145/1146598.1146660; 62 citations) built the Congressional Bills Project by applying automated topic-spotting algorithms trained on human-annotated examples using Policy Agendas Project topic vocabularies. They achieved classification accuracy comparable to human coders across 226 subtopics. This is the methodological template: train a classifier on human-coded KNA bill samples using the CAP topic scheme (or a simplified version), then apply it to the full corpus.
+Critic recommended adopting CAP topic codes to replace Analyst's ad hoc keyword classifier. I now confirm this cannot be done off the shelf - there is no existing Korean CAP coding scheme for legislation. However, the infrastructure for creating one exists. Purpura and Hillard (2006; 62 citations) built the Congressional Bills Project by applying automated topic-spotting algorithms trained on human-annotated examples using Policy Agendas Project topic vocabularies. They achieved classification accuracy comparable to human coders across 226 subtopics. This is the methodological template: train a classifier on human-coded KNA bill samples using the CAP topic scheme (or a simplified version), then apply it to the full corpus.
 
 ## Task 2: Lowi's Typology Applied to Legislative Processing
 
@@ -61,17 +61,17 @@ Analyst's data provides a direct test. Labor bills (many of which are redistribu
 
 Critic elevated the position-taking confound to the forum's "elephant in the room." I found more supporting literature than expected, and it deepens the concern.
 
-**Park (2023; doi:10.1073/pnas.2214697120; 8 citations)**, "Electoral Rewards for Political Grandstanding," provides the most directly relevant evidence. Using House committee hearing transcripts from 1997-2016, Park shows that voters reward legislators for grandstanding (messaging intensity) but remain uninformed about legislative effectiveness. PAC donors show the opposite pattern: they reward effectiveness but ignore grandstanding. The asymmetric incentive structure means legislators face a rational tradeoff: invest time in drafting passable legislation (rewarded by donors) or invest time in visible position-taking (rewarded by voters). When voter attention is the binding constraint - as it is for most legislators - grandstanding dominates.
+**Park (2023; 8 citations)**, "Electoral Rewards for Political Grandstanding," provides the most directly relevant evidence. Using House committee hearing transcripts from 1997-2016, Park shows that voters reward legislators for grandstanding (messaging intensity) but remain uninformed about legislative effectiveness. PAC donors show the opposite pattern: they reward effectiveness but ignore grandstanding. The asymmetric incentive structure means legislators face a rational tradeoff: invest time in drafting passable legislation (rewarded by donors) or invest time in visible position-taking (rewarded by voters). When voter attention is the binding constraint - as it is for most legislators - grandstanding dominates.
 
 Applied to the KNA, Park's finding predicts that legislators will rationally over-introduce bills on high-salience, voter-facing topics (minimum wage, childcare, welfare) to maximize position-taking credit, even if they expect these bills to die. If this behavior is more prevalent for 민생법안 than for technical regulatory bills, the 민생 processing penalty reflects strategic bill inflation, not committee discrimination.
 
-**Schilling, Matthews, and Kreitzer (2023; doi:10.1017/spq.2023.7; 5 citations)**, "Timing Their Positions: Cosponsorship in the State Legislature," demonstrate that cosponsorship timing reveals whether legislators treat bills as position-taking instruments or policy vehicles. Using 73,000+ bills from the Texas legislature, they show that legislators treat "everyday bills" as generalized position-taking motivated by reelection, while "key legislation" reflects genuine policy orientation. The timing of cosponsorship - early for policy-motivated bills, strategic for position-taking bills - provides an observable proxy for legislative sincerity. This methodology could be adapted for the KNA using cosponsor accession timing, if such data is available.
+**Schilling, Matthews, and Kreitzer (2023; 5 citations)**, "Timing Their Positions: Cosponsorship in the State Legislature," demonstrate that cosponsorship timing reveals whether legislators treat bills as position-taking instruments or policy vehicles. Using 73,000+ bills from the Texas legislature, they show that legislators treat "everyday bills" as generalized position-taking motivated by reelection, while "key legislation" reflects genuine policy orientation. The timing of cosponsorship - early for policy-motivated bills, strategic for position-taking bills - provides an observable proxy for legislative sincerity. This methodology could be adapted for the KNA using cosponsor accession timing, if such data is available.
 
-**Kang and Park (2025; doi:10.1017/jea.2025.10013)**, already central to this forum, document "waffling" - legislators sponsoring bills they later vote against - in the KNA from 2004-2020. Their finding that waffling is systematic, not accidental, directly supports the position-taking interpretation. But their analysis does not decompose waffling by policy area. If waffling rates are higher for 민생법안 than for other categories, the position-taking confound is confirmed. If waffling rates are uniform across categories, the confound is less concerning (because it would affect all categories equally and would not explain the differential processing rates Analyst found).
+**Kang and Park (2025; already central to this forum, document "waffling" - legislators sponsoring bills they later vote against - in the KNA from 2004-2020. Their finding that waffling is systematic, not accidental, directly supports the position-taking interpretation. But their analysis does not decompose waffling by policy area. If waffling rates are higher for 민생법안 than for other categories, the position-taking confound is confirmed. If waffling rates are uniform across categories, the confound is less concerning (because it would affect all categories equally and would not explain the differential processing rates Analyst found).
 
 ### Closest substantive precedent: Volden, Wiseman, and Wittmer (2016)
 
-**Volden, Wiseman, and Wittmer (2016; doi:10.1017/psrm.2016.32; 127 citations)**, "Women's Issues and Their Fates in the US Congress," is the single closest precedent for what this forum's project attempts. They classify House bills by content (women's issues, identified as bills sponsored at elevated rates by women members), then track their legislative fates. Their headline finding: women's issues bills have a 2% passage rate, compared to 4% for all bills. Bills on women's issues sponsored by women themselves drop to 1%.
+**Volden, Wiseman, and Wittmer (2016; 127 citations)**, "Women's Issues and Their Fates in the US Congress," is the single closest precedent for what this forum's project attempts. They classify House bills by content (women's issues, identified as bills sponsored at elevated rates by women members), then track their legislative fates. Their headline finding: women's issues bills have a 2% passage rate, compared to 4% for all bills. Bills on women's issues sponsored by women themselves drop to 1%.
 
 The parallel to Analyst's findings is almost exact:
 
@@ -99,15 +99,15 @@ My searches confirm that no Korean Policy Agendas Project has classified KNA bil
 
 The closest existing Korean work:
 
-- **Li and Kang (2025; doi:10.15617/psc.2025.10.31.3.151)**: Text network analysis of 2,404 KNA resolutions. Classifies discourse structure, not individual bills.
-- **Park and Kim (2023; doi:10.24145/kjpa.61.2.2)**: Survival analysis of executive bills in the KNA, examining agency-legislative interactions. Uses policy type as a variable but does not apply a standardized topic coding scheme to all bills.
-- **Kim, Lee, Hur, and Shim (2026; doi:10.31536/jols.2026.23.1.005)**: Studies legislative system rigidity empirically but without topic classification.
+- **Li and Kang (2025; Text network analysis of 2,404 KNA resolutions. Classifies discourse structure, not individual bills.
+- **Park and Kim (2023; Survival analysis of executive bills in the KNA, examining agency-legislative interactions. Uses policy type as a variable but does not apply a standardized topic coding scheme to all bills.
+- **Kim, Lee, Hur, and Shim (2026; Studies legislative system rigidity empirically but without topic classification.
 
 This means that any bill-level topic classification for the KNA project must be built from scratch. The forum has two options:
 
-**Option A: Upgrade the keyword classifier using keyATM.** Eshima, Imai, and Sasaki (2023; doi:10.1111/ajps.12779; 109 citations) developed keyword-assisted topic models (keyATM), which allow researchers to specify seed keywords for each topic before fitting the model. This is a direct methodological upgrade from Analyst's current approach: instead of pure keyword counting, keyATM uses the keywords as priors in a probabilistic topic model, allowing the model to discover additional topic-relevant terms and assign bills probabilistically. The AJPS publication and 109 citations provide strong methodological credibility. The keyword lists Analyst already constructed would serve as seed keywords.
+**Option A: Upgrade the keyword classifier using keyATM.** Eshima, Imai, and Sasaki (2023; 109 citations) developed keyword-assisted topic models (keyATM), which allow researchers to specify seed keywords for each topic before fitting the model. This is a direct methodological upgrade from Analyst's current approach: instead of pure keyword counting, keyATM uses the keywords as priors in a probabilistic topic model, allowing the model to discover additional topic-relevant terms and assign bills probabilistically. The AJPS publication and 109 citations provide strong methodological credibility. The keyword lists Analyst already constructed would serve as seed keywords.
 
-**Option B: Build a CAP-coded training set.** Manually code 500-1,000 KNA bills using a simplified CAP topic scheme (perhaps 10-15 major topics rather than 226 subtopics), then train a supervised classifier following the Purpura and Hillard (2006) or Loftis and Mortensen (2018; doi:10.1111/psj.12245) methodology. This produces an internationally comparable classification but requires substantial human coding investment.
+**Option B: Build a CAP-coded training set.** Manually code 500-1,000 KNA bills using a simplified CAP topic scheme (perhaps 10-15 major topics rather than 226 subtopics), then train a supervised classifier following the Purpura and Hillard (2006) or Loftis and Mortensen (2018; methodology. This produces an internationally comparable classification but requires substantial human coding investment.
 
 Option A is faster and sufficient for the current two-paper plan. Option B is the right long-term investment if the researcher plans to build a Korean legislative studies data infrastructure.
 
@@ -117,11 +117,11 @@ The position-taking confound that Critic identified is the single hardest method
 
 The evidence chain:
 
-1. **Voters reward grandstanding, not effectiveness** (Park 2023; doi:10.1073/pnas.2214697120). Legislators face incentives to produce visible position-taking on voter-salient issues. 민생 topics (wages, childcare, welfare) are among the most voter-salient; technical regulatory topics are not.
+1. **Voters reward grandstanding, not effectiveness** (Park 2023; Legislators face incentives to produce visible position-taking on voter-salient issues. 민생 topics (wages, childcare, welfare) are among the most voter-salient; technical regulatory topics are not.
 
-2. **KNA legislators waffle** (Kang and Park 2025; doi:10.1017/jea.2025.10013). Korean legislators systematically sponsor bills they later vote against, confirming that bill introduction and legislative intent are not equivalent. If waffling is higher on 민생 topics (untested), the 민생 processing penalty partly reflects bill-pool quality, not committee bias.
+2. **KNA legislators waffle** (Kang and Park 2025; Korean legislators systematically sponsor bills they later vote against, confirming that bill introduction and legislative intent are not equivalent. If waffling is higher on 민생 topics (untested), the 민생 processing penalty partly reflects bill-pool quality, not committee bias.
 
-3. **Cosponsorship timing reveals strategic intent** (Schilling et al. 2023; doi:10.1017/spq.2023.7). Early cosponsors signal policy commitment; late cosponsors signal position-taking. If 민생 bills have more late-arriving cosponsors (a testable prediction with KNA data), it would indicate higher position-taking content.
+3. **Cosponsorship timing reveals strategic intent** (Schilling et al. 2023; Early cosponsors signal policy commitment; late cosponsors signal position-taking. If 민생 bills have more late-arriving cosponsors (a testable prediction with KNA data), it would indicate higher position-taking content.
 
 4. **Low introduction costs enable bill proliferation.** The KNA's 10-cosponsor minimum is among the lowest thresholds in any major legislature. Combined with voter incentives for grandstanding, this predicts a high ratio of position-taking bills, concentrated in voter-salient policy areas. The sixfold increase in bill volume from the 17th to the 21st Assembly (Analyst, Round 1) is consistent with this: much of the volume growth may reflect position-taking inflation rather than a genuine increase in legislative ambition.
 
@@ -132,12 +132,12 @@ The combined implication: **the 민생 processing penalty is real, but its magni
 Stepping back from individual findings, this forum has converged on a coherent research program over four rounds. The literature review across all rounds establishes:
 
 **What the literature already knows:**
-- Legislative winnowing is capacity-driven, not strategically content-selective (Krutz 2005; doi:10.1111/j.0092-5853.2005.00125.x)
+- Legislative winnowing is capacity-driven, not strategically content-selective (Krutz 2005;
 - Divided government increases gridlock (Binder 2003; Tsebelis 2002)
-- Status quo bias blocks redistributive policy updates (Hacker 2004; doi:10.1017/s0003055404001121; Bonica et al. 2013; doi:10.1257/jep.27.3.103)
-- Presidents influence legislation through early-stage lobbying (Beckmann 2010; doi:10.1017/cbo9780511845154)
+- Status quo bias blocks redistributive policy updates (Hacker 2004; Bonica et al. 2013;
+- Presidents influence legislation through early-stage lobbying (Beckmann 2010;
 - Legislators introduce bills strategically for position-taking (Mayhew 1974; Kang and Park 2025)
-- Content-classified bill fates differ by policy area (Volden et al. 2016; doi:10.1017/psrm.2016.32)
+- Content-classified bill fates differ by policy area (Volden et al. 2016;
 
 **What the literature does not know (confirmed gaps with evidence of absence):**
 1. Nobody has decomposed the content-specific processing penalty into committee-level vs. floor-level components (0 results across 5 targeted searches)
