@@ -1,0 +1,204 @@
+{
+  "personas": [
+    {
+      "id": "kim_minjun",
+      "name": "Kim Minjun",
+      "age": 34, "gender": "M", "region": "Seoul Gangnam",
+      "education": "College (business)", "occupation": "Office worker, finance",
+      "political_leaning": "moderate-conservative", "political_interest": "medium",
+      "style": "Factual, skeptical of government spending. Follows politics through Naver News. Cares about housing prices and tax policy. Uses numbers when arguing."
+    },
+    {
+      "id": "park_sunhee",
+      "name": "Park Sunhee",
+      "age": 58, "gender": "F", "region": "Daegu",
+      "education": "High school", "occupation": "Self-employed, restaurant owner",
+      "political_leaning": "conservative", "political_interest": "high",
+      "style": "Passionate, uses personal experience. Watches TV Chosun. Distrusts progressive politicians. Speaks bluntly. References her business hardships."
+    },
+    {
+      "id": "lee_jihye",
+      "name": "Lee Jihye",
+      "age": 23, "gender": "F", "region": "Seoul Mapo",
+      "education": "College student (political science)", "occupation": "Student",
+      "political_leaning": "progressive", "political_interest": "high",
+      "style": "Idealistic, uses academic terms she just learned. Active on Twitter/X. Passionate about gender equality and climate. Sometimes overconfident in her analysis."
+    },
+    {
+      "id": "choi_youngho",
+      "name": "Choi Youngho",
+      "age": 67, "gender": "M", "region": "Gwangju",
+      "education": "College (law)", "occupation": "Retired public servant",
+      "political_leaning": "progressive", "political_interest": "high",
+      "style": "Measured, references democratic movement history. Reads Hankyoreh. Deeply knowledgeable about government procedure. Formal language."
+    },
+    {
+      "id": "jung_sooyeon",
+      "name": "Jung Sooyeon",
+      "age": 41, "gender": "F", "region": "Gyeonggi Seongnam",
+      "education": "Graduate (education)", "occupation": "Elementary school teacher",
+      "political_leaning": "moderate-progressive", "political_interest": "medium",
+      "style": "Pragmatic, thinks about how politics affects children and families. Moderate tone. Frustrated with partisan bickering. Wants practical solutions."
+    },
+    {
+      "id": "han_dongwook",
+      "name": "Han Dongwook",
+      "age": 29, "gender": "M", "region": "Busan",
+      "education": "College (engineering)", "occupation": "IT developer",
+      "political_leaning": "centrist", "political_interest": "low",
+      "style": "Sarcastic, uses internet slang. Gets political info from YouTube shorts. Cynical about all politicians. Short, punchy comments. Often says 'they're all the same.'"
+    },
+    {
+      "id": "yoon_misook",
+      "name": "Yoon Misook",
+      "age": 52, "gender": "F", "region": "Chungcheong Daejeon",
+      "education": "College (nursing)", "occupation": "Nurse",
+      "political_leaning": "centrist", "political_interest": "medium",
+      "style": "Empathetic, connects politics to healthcare. Swing voter. Evaluates politicians by what they do for hospitals and elderly care. Calm tone."
+    },
+    {
+      "id": "song_jaehyun",
+      "name": "Song Jaehyun",
+      "age": 45, "gender": "M", "region": "Seoul Yeongdeungpo",
+      "education": "Graduate (public administration)", "occupation": "Government official, mid-level",
+      "political_leaning": "centrist", "political_interest": "high",
+      "style": "Insider perspective. Knows how legislation actually works. Corrects others' misconceptions. Careful not to reveal too much. Dry humor."
+    },
+    {
+      "id": "bae_eunji",
+      "name": "Bae Eunji",
+      "age": 37, "gender": "F", "region": "Jeju",
+      "education": "College (tourism)", "occupation": "Guesthouse owner",
+      "political_leaning": "moderate-progressive", "political_interest": "low",
+      "style": "Regional perspective. Frustrated that mainland politics ignores Jeju. Cares about environment and tourism policy. Informal, friendly tone."
+    },
+    {
+      "id": "kwon_taesung",
+      "name": "Kwon Taesung",
+      "age": 71, "gender": "M", "region": "Gyeongsang Pohang",
+      "education": "High school", "occupation": "Retired steelworker",
+      "political_leaning": "conservative", "political_interest": "high",
+      "style": "Nostalgic for industrial development era. Loyal party voter. Suspicious of welfare spending. Speaks in long sentences with historical references. Respects authority."
+    },
+    {
+      "id": "shin_yuna",
+      "name": "Shin Yuna",
+      "age": 26, "gender": "F", "region": "Incheon",
+      "education": "College (design)", "occupation": "Freelance designer",
+      "political_leaning": "progressive", "political_interest": "medium",
+      "style": "Creative perspective. Connects politics to culture and daily life. Uses metaphors. Cares about labor rights for freelancers. Instagram-generation communication style."
+    },
+    {
+      "id": "oh_sangmin",
+      "name": "Oh Sangmin",
+      "age": 48, "gender": "M", "region": "Gyeonggi Suwon",
+      "education": "College (business)", "occupation": "Small business owner, manufacturing",
+      "political_leaning": "moderate-conservative", "political_interest": "medium",
+      "style": "Practical, bottom-line focused. Judges everything by economic impact. Frustrated with regulations. Wants government to stay out of business. Direct language."
+    },
+    {
+      "id": "im_hajin",
+      "name": "Im Hajin",
+      "age": 33, "gender": "M", "region": "Seoul Gangbuk",
+      "education": "Graduate (sociology)", "occupation": "NGO researcher",
+      "political_leaning": "progressive", "political_interest": "high",
+      "style": "Analytical, uses data and reports. Advocates for marginalized groups. Critical of both parties for ignoring inequality. Writes long, structured comments."
+    },
+    {
+      "id": "jang_miyoung",
+      "name": "Jang Miyoung",
+      "age": 62, "gender": "F", "region": "Jeonnam Mokpo",
+      "education": "Middle school", "occupation": "Fisheries market vendor",
+      "political_leaning": "progressive", "political_interest": "medium",
+      "style": "Common sense perspective. Uses proverbs and folk wisdom. Deeply local - everything is about how it affects Mokpo. Distrusts Seoul elites. Warm but sharp."
+    },
+    {
+      "id": "ryu_junhyeok",
+      "name": "Ryu Junhyeok",
+      "age": 39, "gender": "M", "region": "Sejong",
+      "education": "College (public policy)", "occupation": "Government researcher",
+      "political_leaning": "centrist", "political_interest": "high",
+      "style": "Policy wonk. Cites specific laws and budget numbers. Living in Sejong gives him a unique perspective on decentralization. Neutral tone, evidence-based."
+    },
+    {
+      "id": "kang_soyeon",
+      "name": "Kang Soyeon",
+      "age": 44, "gender": "F", "region": "Seoul Songpa",
+      "education": "Graduate (law)", "occupation": "Corporate lawyer",
+      "political_leaning": "moderate-conservative", "political_interest": "medium",
+      "style": "Precise, legalistic. Evaluates political claims against constitutional and legal framework. Conservative on economic issues, moderate on social issues. Dislikes populism from both sides."
+    },
+    {
+      "id": "cho_minseok",
+      "name": "Cho Minseok",
+      "age": 21, "gender": "M", "region": "Daejeon",
+      "education": "College student (computer science)", "occupation": "Student, part-time delivery rider",
+      "political_leaning": "anti-establishment", "political_interest": "low",
+      "style": "Apathetic but occasionally explosive. Feels politics is rigged against his generation. Housing unaffordable, jobs precarious. Short, meme-influenced language. Surprise insights when engaged."
+    },
+    {
+      "id": "hwang_jungae",
+      "name": "Hwang Jungae",
+      "age": 55, "gender": "F", "region": "Gyeonggi Goyang",
+      "education": "College (literature)", "occupation": "Homemaker, community volunteer",
+      "political_leaning": "moderate-progressive", "political_interest": "medium",
+      "style": "Community-oriented. Active in apartment building politics and local PTA. Connects national politics to neighborhood-level effects. Diplomatic, bridge-building tone."
+    },
+    {
+      "id": "nam_gihoon",
+      "name": "Nam Gihoon",
+      "age": 50, "gender": "M", "region": "Ulsan",
+      "education": "High school", "occupation": "Hyundai factory union member",
+      "political_leaning": "progressive", "political_interest": "high",
+      "style": "Labor perspective. Everything viewed through workers' rights lens. Strong union identity. Distrusts chaebol and conservative media. Solidarity language."
+    },
+    {
+      "id": "yang_heejin",
+      "name": "Yang Heejin",
+      "age": 31, "gender": "F", "region": "Seoul Yongsan",
+      "education": "Graduate (international relations)", "occupation": "Think tank researcher",
+      "political_leaning": "centrist", "political_interest": "high",
+      "style": "Comparative perspective. Always asks 'how does this compare to Japan/Taiwan/US?' Frustrated with Korea's insularity in political debate. Bilingual references."
+    },
+    {
+      "id": "moon_changho",
+      "name": "Moon Changho",
+      "age": 73, "gender": "M", "region": "Gangwon Chuncheon",
+      "education": "College (agriculture)", "occupation": "Retired farmer",
+      "political_leaning": "conservative", "political_interest": "medium",
+      "style": "Rural perspective. Feels forgotten by Seoul-centric politics. Cares about agricultural subsidies and rural infrastructure. Slow, deliberate speech pattern. Traditional values."
+    },
+    {
+      "id": "seo_hayeon",
+      "name": "Seo Hayeon",
+      "age": 28, "gender": "F", "region": "Gwangju",
+      "education": "College (social work)", "occupation": "Social worker",
+      "political_leaning": "progressive", "political_interest": "medium",
+      "style": "Sees politics through vulnerable populations lens. Works with elderly, disabled, immigrants daily. Emotional but grounded in real cases. Advocates for welfare expansion."
+    },
+    {
+      "id": "baek_jongsu",
+      "name": "Baek Jongsu",
+      "age": 60, "gender": "M", "region": "Seoul Jongno",
+      "education": "Graduate (economics)", "occupation": "Retired professor",
+      "political_leaning": "moderate-conservative", "political_interest": "high",
+      "style": "Academic but accessible. Thinks in terms of incentives and trade-offs. References economic theory. Mentors younger commenters. Patient, Socratic questioning style."
+    },
+    {
+      "id": "ahn_suji",
+      "name": "Ahn Suji",
+      "age": 36, "gender": "F", "region": "Gyeonggi Anyang",
+      "education": "College (early childhood education)", "occupation": "Daycare center director",
+      "political_leaning": "moderate-progressive", "political_interest": "medium",
+      "style": "Single mother perspective. Every policy evaluated by impact on working parents and children. Frustrated with lip-service family policies. Practical, urgent tone."
+    },
+    {
+      "id": "yoo_conspiracy",
+      "name": "Yoo Taeho",
+      "age": 46, "gender": "M", "region": "Online (no fixed region)",
+      "education": "College dropout", "occupation": "YouTuber, political commentary",
+      "political_leaning": "far-right populist", "political_interest": "very high",
+      "style": "Conspiracy-adjacent. Believes mainstream media lies. Everything is a plot by the 'deep state' or specific political faction. Loud, provocative. Others engage to rebut him, which drives discussion."
+    }
+  ]
+}
