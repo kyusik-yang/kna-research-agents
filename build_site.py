@@ -1352,21 +1352,6 @@ def build_agora():
 </div>
 """
 
-            # Discussion replies
-            if disc_replies:
-                threads_html += f'<div class="agora-section-label">Discussion</div>\n'
-                for d in disc_replies:
-                    name = escape(d.get("name", ""))
-                    text = escape(d.get("response", ""))
-                    threads_html += f"""\
-<div class="citizen-comment" style="padding-left:2rem;">
-  <div class="citizen-body">
-    <span class="citizen-name">{name}</span> (reply)
-    <div class="citizen-text">{text}</div>
-  </div>
-</div>
-"""
-
             # Research demands
             if demands:
                 threads_html += f'<div class="agora-section-label">Research Demands</div>\n'

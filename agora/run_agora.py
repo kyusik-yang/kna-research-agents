@@ -221,24 +221,10 @@ def run_discussion(stimulus, stimulus_type="news", n_personas=10, dry_run=False)
         })
         print("done")
 
-    # Phase 2: Discussion (each persona responds to 1-2 others)
-    print(f"\n  Phase 2: Discussion (responding to each other)")
-    discussions = []
-    for i, persona in enumerate(personas[:min(n_personas, 8)]):
-        # Show them 3-4 random other reactions
-        others = [r for r in reactions if r["name"] != persona["name"]]
-        sample = random.sample(others, min(3, len(others)))
-        print(f"    [{i+1}] {persona['name']} responds...", end=" ", flush=True)
-        prompt = build_persona_prompt(persona, stimulus, stimulus_type, other_reactions=sample)
-        response = run_persona(persona, prompt, dry_run)
-        discussions.append({
-            "name": persona["name"],
-            "response": response,
-        })
-        print("done")
+    discussions = []  # removed - replies were repetitive
 
-    # Phase 3: Research demands (bottom-up)
-    print(f"\n  Phase 3: Research demands")
+    # Phase 2: Research demands (bottom-up)
+    print(f"\n  Phase 2: Research demands")
     demands = []
     demand_personas = random.sample(personas, min(5, n_personas))
     for persona in demand_personas:
@@ -251,8 +237,8 @@ def run_discussion(stimulus, stimulus_type="news", n_personas=10, dry_run=False)
         })
         print("done")
 
-    # Phase 4: Report
-    print(f"\n  Phase 4: Generating report...")
+    # Phase 3: Report
+    print(f"\n  Phase 3: Generating report...")
     report_prompt = build_report_prompt(stimulus, stimulus_type, reactions, demands)
     report_file = LOGS_DIR / "_prompt_report.md"
     report_file.write_text(report_prompt)
