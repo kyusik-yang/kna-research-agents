@@ -1,0 +1,194 @@
+# yeouido-agora: Citizen Simulation for Legislative Research
+
+> Simulated Korean voter personas react to academic research findings from kna-research-agents.
+> Planned as a separate project. Pre-requisite: kna-research-agents reaches 10+ forum rounds.
+
+## Concept
+
+A simulated public forum where 20-30 AI agents representing diverse Korean voter demographics
+evaluate, question, and discuss academic findings about the Korean National Assembly. The goal
+is to surface the gap between what political scientists study and what citizens care about.
+
+Inspired by:
+- [Moltbook](https://www.moltbook.com/) - AI agent social network
+- [MiroFish](https://github.com/666ghj/MiroFish) - Swarm intelligence prediction via agent social simulation
+- [OASIS](https://github.com/camel-ai/oasis) - Open Agent Social Interaction Simulations (CAMEL-AI)
+
+## Architecture
+
+```
+kna-research-agents (academic forum)
+        |
+        v  findings feed (JSON)
++-------------------------------+
+|     yeouido-agora             |
+|                               |
+|  Orchestrator                 |
+|    |                          |
+|    v                          |
+|  Persona Engine (20-30 agents)|
+|    - demographics from KGSS   |
+|    - consistent personality   |
+|    - political knowledge base |
+|                               |
+|  Dual Platform Simulation     |
+|  +----------+ +-------------+ |
+|  | Quickpost | | Deep Forum  | |
+|  | (twitter) | | (reddit)    | |
+|  | short     | | threaded    | |
+|  | reactions | | discussion  | |
+|  +----------+ +-------------+ |
+|                               |
+|  Sentiment / Opinion Tracker  |
+|    - per persona over time    |
+|    - consensus / polarization |
+|                               |
+|  Report Generator             |
+|    - citizen reception summary|
+|    - framing recommendations  |
+|    - unexpected questions     |
++-------------------------------+
+        |
+        v  citizen feedback
+kna-research-agents
+(agents read citizen reactions in next round)
+```
+
+## Persona Design
+
+### Demographics (calibrated to KGSS / 한국종합사회조사)
+
+| Dimension | Categories | Distribution Source |
+|-----------|-----------|-------------------|
+| Age | 20s, 30s, 40s, 50s, 60s+ | Census proportional |
+| Region | Seoul, Gyeonggi, Yeongnam, Honam, Chungcheong, other | Census proportional |
+| Gender | M/F | 50/50 |
+| Political leaning | Progressive, moderate-progressive, centrist, moderate-conservative, conservative | KGSS self-placement |
+| Education | High school, college, graduate | KGSS distribution |
+| Occupation | Student, office worker, self-employed, public servant, homemaker, retired | KGSS distribution |
+| Political interest | High, medium, low | KGSS "interest in politics" |
+
+### Persona Template (MiroFish pattern)
+
+```yaml
+name: "Kim Minjun"
+age: 34
+gender: M
+region: Seoul Gangnam
+education: College (business)
+occupation: Office worker (finance)
+political_leaning: Moderate-conservative
+political_interest: Medium
+personality: ISTJ
+communication_style: "Factual, skeptical of government spending, uses numbers.
+  Follows politics through Naver News and YouTube. Voted PPP in 2024.
+  Cares about: housing prices, tax policy, economic growth.
+  Less interested in: foreign policy, minority rights."
+knowledge_level: "Knows party names and major politicians. Does not know
+  how committees work or what DW-NOMINATE means. Understands basic
+  statistics (percentages, trends) but not regression or causal inference."
+```
+
+### Target: 25 personas covering
+
+- 5 age groups x 2 genders = 10 base combinations
+- Distributed across 5 regions
+- Political leaning roughly: 5 progressive, 5 moderate-prog, 5 centrist, 5 moderate-con, 5 conservative
+- 3-5 "outlier" personas: political science student, retired assembly staffer, civic activist, apolitical young person, conspiracy-minded elder
+
+## Simulation Flow
+
+### Input: Research Finding
+
+From kna-research-agents forum, extract a finding. Example:
+
+> "63.4% of bills in the 21st Assembly died by term expiration without any committee action.
+> Explicit rejection was vanishingly rare (0.04%). Committees kill bills by inaction, not votes."
+
+### Phase 1: Initial Reactions (Quickpost / Twitter-style)
+
+Each persona independently generates a 1-2 sentence reaction. No inter-agent interaction yet.
+
+Examples:
+- **Kim Minjun, 34, Seoul**: "63%? That means over half the bills our tax money paid to draft just got thrown away. What are these committee members doing all day?"
+- **Park Sunhee, 58, Daegu**: "Some bills deserve to die. Not every proposal deserves a vote. Committees should filter out the populist garbage."
+- **Lee Jihye, 23, Seoul (student)**: "I didn't even know committees could just... not do anything? Isn't there a deadline or something?"
+
+### Phase 2: Discussion (Deep Forum / Reddit-style)
+
+Personas read each other's reactions and respond. Threaded discussion.
+- Orchestrator injects the original finding + all Phase 1 reactions
+- Each persona generates a response to 1-2 other personas
+- 2-3 rounds of threaded discussion
+
+### Phase 3: Follow-up Questions
+
+Each persona generates 1 question they would ask a legislator about this finding.
+These questions become input for the next kna-research-agents round.
+
+### Phase 4: Report
+
+Automated summary:
+- Sentiment distribution (positive/negative/neutral by demographic)
+- Key themes (what resonated, what confused, what angered)
+- Communication gaps (what academics assume citizens know but they don't)
+- Citizen-generated research questions
+- Framing recommendations (how to present this finding to the public)
+
+## Technical Design
+
+### Stack
+- Python orchestrator (same pattern as kna-research-agents run_forum.py)
+- claude -p for persona agents (Haiku for cost efficiency, 25 agents x 2-3 turns each)
+- Static site output (GitHub Pages, same dark theme as kna-research-agents)
+- JSONL for simulation logs
+
+### Cost Model (per finding simulation)
+- 25 personas x 1 initial reaction (Haiku): ~25 calls
+- 25 personas x 2 discussion turns (Haiku): ~50 calls
+- 25 personas x 1 follow-up question (Haiku): ~25 calls
+- 1 report generation (Sonnet): ~1 call
+- Total: ~100 Haiku calls + 1 Sonnet call per finding
+- Estimated: runs within Max subscription limits
+
+### Model Tiering
+- Persona agents: Haiku (fast, cheap, personality-consistent at short form)
+- Report generator: Sonnet (synthesis, analysis)
+- Persona generation: Opus (one-time, needs nuance for realistic personas)
+
+## Ethical Considerations
+
+### Must Do
+- Clear "SIMULATED - NOT REAL OPINION DATA" disclaimer on every page
+- Never present as representative of actual Korean public opinion
+- Disclose persona generation methodology and LLM limitations
+- Cannot be used for policy advocacy or political campaigns
+
+### Must Avoid
+- Regional/age stereotyping (e.g., "all Honam voters think X")
+- Generating hateful or extremist speech even as "simulation"
+- Simulating named real people
+- Claiming predictive validity for election outcomes
+
+### Academic Framing
+- This is a tool for researchers to pre-test how findings might be received
+- Comparable to focus group simulation, not opinion polling
+- Value is in surfacing blind spots, not measuring sentiment
+
+## Timeline
+
+| Phase | When | What |
+|-------|------|------|
+| 0 | After kna-research-agents Round 10 | Design persona set, calibrate to KGSS |
+| 1 | +1 week | Build orchestrator, test with 5 personas on 1 finding |
+| 2 | +2 weeks | Scale to 25 personas, build static site |
+| 3 | +3 weeks | Connect to kna-research-agents findings feed |
+| 4 | Ongoing | Run after each kna-research-agents round |
+
+## Open Questions
+
+1. Should personas evolve over time (learn from previous findings) or reset each simulation?
+2. How to validate persona realism? Compare simulated reactions to real Naver News comments on similar topics?
+3. Should the academic agents (Scout, Analyst, Critic) be able to "respond" to citizen questions, creating a dialogue?
+4. Korean vs. English: personas should react in Korean for realism, but the research forum is in English. Bilingual output?
+5. How to handle the inevitable "AI personas agree with each other too much" problem? Adversarial persona injection?
