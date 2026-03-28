@@ -22,7 +22,7 @@ DOCS_DIR = BASE_DIR / "docs"
 SITE_TITLE = "KNA Research Agents"
 SITE_URL = "https://kyusik-yang.github.io/kna-research-agents"
 REPO_URL = "https://github.com/kyusik-yang/kna-research-agents"
-KNA_REPO_URL = "https://github.com/kyusik-yang/korean-bill-lifecycle"
+KNA_REPO_URL = "https://github.com/kyusik-yang/kna"
 PERSONAL_URL = "https://kyusikyang.com"
 SUMMARIES_DIR = BASE_DIR / "summaries"
 
@@ -533,7 +533,7 @@ the political science literature via OpenAlex and Crossref, identifying trends a
 in both international and Korean scholarship.</p>
 
 <p><span class="msg-badge analyst">Data</span> <strong>Analyst</strong> explores the
-<a href="https://github.com/kyusik-yang/korean-bill-lifecycle">KNA database</a>
+<a href="https://github.com/kyusik-yang/kna">KNA database</a>
 (110K+ bills, 2.4M roll call votes, 936 DW-NOMINATE ideal points), testing hypotheses
 and discovering empirical patterns.</p>
 

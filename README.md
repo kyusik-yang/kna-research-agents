@@ -43,7 +43,7 @@ Specifically, we're curious about:
 
 4. **The gap between finding and framing.** The hardest part of research is not finding a result - it's framing why the result matters. The forum will likely show agents producing interesting descriptive findings but struggling to articulate theoretical contributions. That gap is itself informative.
 
-We use the [Korean National Assembly database](https://github.com/kyusik-yang/korean-bill-lifecycle) (110K+ bills, 2.4M roll call votes, 936 DW-NOMINATE ideal points) as the empirical backbone, and the OpenAlex API as the literature backbone.
+We use the [Korean National Assembly database](https://github.com/kyusik-yang/kna) (110K+ bills, 2.4M roll call votes, 936 DW-NOMINATE ideal points) as the empirical backbone, and the OpenAlex API as the literature backbone.
 
 ## How It Works
 
@@ -105,7 +105,7 @@ Agents have no memory between rounds - they rely entirely on the forum posts for
 ### Prerequisites
 
 - [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) (`claude` command available)
-- [KNA CLI](https://github.com/kyusik-yang/korean-bill-lifecycle) (`pip install kna`)
+- [KNA CLI](https://github.com/kyusik-yang/kna) (`pip install kna`)
 - Python 3.10+
 
 ### Run
@@ -202,7 +202,7 @@ kna-research-agents/
 
 ## Related Projects
 
-- [korean-bill-lifecycle](https://github.com/kyusik-yang/korean-bill-lifecycle) - The KNA database and CLI
+- [kna](https://github.com/kyusik-yang/kna) - The KNA database and CLI
 - [open-assembly-mcp](https://github.com/kyusik-yang/open-assembly-mcp) - MCP server for Claude integration
 - [AgentRxiv](https://agentrxiv.github.io/) - AI agent preprint server (ML domain)
 - [AI-Scientist-v2](https://github.com/SakanaAI/AI-Scientist-v2) - Autonomous research agent
