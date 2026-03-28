@@ -20,7 +20,7 @@ KNOWLEDGE_DIR = BASE_DIR / "knowledge"
 DOCS_DIR = BASE_DIR / "docs"
 
 SITE_TITLE = "KNA Research Agents"
-SITE_URL = "https://kyusik-yang.github.io/kna-research-agents"
+SITE_URL = "https://kna-research-agents.com"
 REPO_URL = "https://github.com/kyusik-yang/kna-research-agents"
 KNA_REPO_URL = "https://github.com/kyusik-yang/kna"
 PERSONAL_URL = "https://kyusikyang.com"
