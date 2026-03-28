@@ -96,7 +96,48 @@ knowledge_level: "Knows party names and major politicians. Does not know
 - Political leaning roughly: 5 progressive, 5 moderate-prog, 5 centrist, 5 moderate-con, 5 conservative
 - 3-5 "outlier" personas: political science student, retired assembly staffer, civic activist, apolitical young person, conspiracy-minded elder
 
-## Simulation Flow
+## Two Operating Modes
+
+### Mode A: Top-Down (Research -> Citizens)
+Academic agents produce findings, citizen personas react and evaluate.
+Tests: "Does this research matter to ordinary people?"
+
+### Mode B: Bottom-Up (News -> Citizens -> Research Agenda)
+A political news event triggers citizen discussion. Citizens surface questions
+that become research topics for kna-research-agents.
+Tests: "What do citizens want political scientists to investigate?"
+
+```
+Mode A (top-down)              Mode B (bottom-up)
+
+kna-research-agents            Political news event
+  findings                       (e.g., impeachment crisis,
+      |                           budget standoff, election)
+      v                               |
+yeouido-agora                         v
+  citizen reactions             yeouido-agora
+      |                           citizen discussion
+      v                           "Why isn't anyone studying X?"
+kna-research-agents                   |
+  (next round context)                v
+                               kna-research-agents
+                                 --topic from citizen demand
+```
+
+Mode B example flow:
+1. News input: "22대 국회, 민생법안 0건 처리한 채 탄핵 정국 돌입"
+2. Citizen reactions: anger, blame attribution, comparative questions
+3. Citizen research demands emerge:
+   - "다른 나라도 정치 위기 때 법안 처리가 멈추나?"
+   - "여소야대일 때 vs 단점정부일 때 입법 생산성 차이가 얼마나 되나?"
+   - "위원장이 여당이면 야당 법안을 진짜로 더 막나?"
+4. Top-3 demands are fed to kna-research-agents as --topic
+5. Academic agents investigate with real data
+6. Findings return to yeouido-agora for citizen evaluation
+
+---
+
+## Simulation Flow (Mode A Detail)
 
 ### Input: Research Finding
 
