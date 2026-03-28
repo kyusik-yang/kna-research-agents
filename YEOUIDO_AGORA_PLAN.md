@@ -139,22 +139,33 @@ Automated summary:
 
 ### Stack
 - Python orchestrator (same pattern as kna-research-agents run_forum.py)
-- claude -p for persona agents (Haiku for cost efficiency, 25 agents x 2-3 turns each)
+- `claude -p` (Claude Code CLI, headless mode) for ALL agent invocations
 - Static site output (GitHub Pages, same dark theme as kna-research-agents)
 - JSONL for simulation logs
 
-### Cost Model (per finding simulation)
-- 25 personas x 1 initial reaction (Haiku): ~25 calls
-- 25 personas x 2 discussion turns (Haiku): ~50 calls
-- 25 personas x 1 follow-up question (Haiku): ~25 calls
-- 1 report generation (Sonnet): ~1 call
-- Total: ~100 Haiku calls + 1 Sonnet call per finding
-- Estimated: runs within Max subscription limits
+### Execution Model
 
-### Model Tiering
-- Persona agents: Haiku (fast, cheap, personality-consistent at short form)
-- Report generator: Sonnet (synthesis, analysis)
-- Persona generation: Opus (one-time, needs nuance for realistic personas)
+**CRITICAL: No Anthropic API calls. All execution via Claude Code CLI (`claude -p`) under Max subscription.**
+
+All agents run the same way as kna-research-agents:
+```bash
+claude -p --allowedTools Bash,Read,Write \
+  --dangerously-skip-permissions \
+  --system-prompt-file persona_prompt.md \
+  --output-format text \
+  "Generate your reaction to the research finding."
+```
+
+- Persona agents: `claude -p` with persona system prompt (short output, fast)
+- Report generator: `claude -p` with synthesis system prompt
+- Persona generation: `claude -p` with detailed generation prompt (one-time)
+
+No `anthropic` SDK import, no `ANTHROPIC_API_KEY`, no direct API endpoint calls.
+
+### Batch Strategy
+- 25 personas per finding, each a separate `claude -p` invocation
+- Sequential execution (same as kna-research-agents forum rounds)
+- Estimated: ~30 min per finding simulation (25 reactions + discussion + report)
 
 ## Ethical Considerations
 
