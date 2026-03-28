@@ -19,3 +19,6 @@ __pycache__/
 *.parquet
 *.csv
 !forum/**/*.csv
+
+# Knowledge base (large, auto-generated)
+knowledge/literature_log.jsonl

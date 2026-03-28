@@ -16,7 +16,6 @@ Usage:
 
 import argparse
 import json
-import os
 import subprocess
 import sys
 import textwrap
@@ -32,7 +31,6 @@ AGENTS_FILE = BASE_DIR / "agents.json"
 KNA_DATA = "/Users/kyusik/Desktop/kyusik-github/korean-bill-lifecycle/data/processed"
 KNA_CLI = "/Users/kyusik/Library/Python/3.11/bin/kna"
 CLAUDE = "/Users/kyusik/.local/bin/claude"
-KCI_KEY = os.environ.get("KCI_KEY", "")
 
 
 def load_agents():
@@ -61,9 +59,34 @@ def next_post_number():
     return len(get_forum_posts()) + 1
 
 
+def get_knowledge_summary():
+    """Summarize the literature knowledge base for agents."""
+    log_file = BASE_DIR / "knowledge" / "literature_log.jsonl"
+    if not log_file.exists():
+        return ""
+    entries = []
+    with open(log_file) as f:
+        for line in f:
+            try:
+                entries.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+    if not entries:
+        return ""
+    # Show recent 30 entries as context
+    recent = entries[-30:]
+    lines = ["\n## Literature Knowledge Base (recent entries)\n"]
+    for e in recent:
+        authors = ", ".join(e.get("authors", [])[:2])
+        lines.append(f"- [{e.get('year','')}] {e.get('title','')} ({authors}) [{e.get('source','')}]")
+    lines.append(f"\n(Total: {len(entries)} entries in knowledge base)\n")
+    return "\n".join(lines)
+
+
 def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     """Build system prompt for one agent run."""
     forum_state = get_forum_state()
+    knowledge = get_knowledge_summary()
     post_num = next_post_number()
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
     n_agents = len(load_agents())
@@ -128,6 +151,7 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     ## Current Forum State
 
     {forum_state}
+    {knowledge}
     """)
     return prompt
 
@@ -166,16 +190,12 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
 
     print(f"  Running...")
     try:
-        env = os.environ.copy()
-        if KCI_KEY:
-            env["KCI_KEY"] = KCI_KEY
         result = subprocess.run(
             cmd,
             capture_output=True,
             text=True,
             timeout=600,  # 10 min max
             cwd=str(WORKSPACE_DIR),
-            env=env,
         )
         log_file.write_text(
             f"EXIT CODE: {result.returncode}\n\n"
@@ -292,9 +312,7 @@ def main():
     print(f"  Rounds: {args.rounds}")
     if args.topic:
         print(f"  Topic:  {args.topic}")
-    print(f"  APIs:   OpenAlex, Crossref{', KCI' if KCI_KEY else ''}")
-    if not KCI_KEY:
-        print(f"  Note:   KCI disabled (set KCI_KEY env var to enable)")
+    print(f"  APIs:   OpenAlex, Crossref")
     print()
 
     for rnd in range(1, args.rounds + 1):
