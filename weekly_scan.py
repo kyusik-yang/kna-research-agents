@@ -35,11 +35,11 @@ MAILTO = "kyusik.yang@nyu.edu"
 
 
 TOPIC_FILTER = (
-    "primary_topic.subfield.id:https://openalex.org/subfields/2002"  # Economics and Econometrics
-    "|primary_topic.subfield.id:https://openalex.org/subfields/3312"  # Sociology and Political Science
-    "|primary_topic.subfield.id:https://openalex.org/subfields/3320"  # Political Science and International Relations
-    "|primary_topic.subfield.id:https://openalex.org/subfields/2001"  # Economics, Econometrics and Finance (misc)
-    "|primary_topic.subfield.id:https://openalex.org/subfields/3308"  # Law
+    "primary_topic.subfield.id:"
+    "https://openalex.org/subfields/3320"   # Political Science and International Relations
+    "|https://openalex.org/subfields/3312"  # Sociology and Political Science
+    "|https://openalex.org/subfields/2002"  # Economics and Econometrics
+    "|https://openalex.org/subfields/3308"  # Law
 )
 
 

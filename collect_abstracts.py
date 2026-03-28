@@ -29,12 +29,9 @@ OUTPUT_PATH = Path(__file__).parent / "knowledge" / "abstracts.jsonl"
 OPENALEX_SUBFIELD_FILTER = (
     "primary_topic.subfield.id:"
     "https://openalex.org/subfields/3320"  # Political Science
-    "|primary_topic.subfield.id:"
-    "https://openalex.org/subfields/3312"  # Sociology and Political Science
-    "|primary_topic.subfield.id:"
-    "https://openalex.org/subfields/2002"  # Economics and Econometrics
-    "|primary_topic.subfield.id:"
-    "https://openalex.org/subfields/3308"  # Law
+    "|https://openalex.org/subfields/3312"  # Sociology and Political Science
+    "|https://openalex.org/subfields/2002"  # Economics and Econometrics
+    "|https://openalex.org/subfields/3308"  # Law
 )
 
 # Default search queries
