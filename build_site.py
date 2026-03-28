@@ -22,6 +22,7 @@ DOCS_DIR = BASE_DIR / "docs"
 SITE_TITLE = "KNA Research Agents"
 SITE_URL = "https://kyusik-yang.github.io/kna-research-agents"
 REPO_URL = "https://github.com/kyusik-yang/kna-research-agents"
+SUMMARIES_DIR = BASE_DIR / "summaries"
 
 # Agent colors for visual distinction
 AGENT_COLORS = {
@@ -215,6 +216,33 @@ footer {
 }
 footer a { color: var(--accent); }
 
+/* AI Disclaimer banner */
+.disclaimer {
+  background: #fff3cd;
+  border-bottom: 1px solid #ffc107;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.78rem;
+  color: #664d03;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.disclaimer strong { font-weight: 800; }
+
+/* Round summary card */
+.round-summary {
+  background: #f0f4ff;
+  border: 1px solid #d0d8f0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 0.75rem 0;
+  font-size: 0.85rem;
+}
+.round-summary h4 { font-size: 0.85rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--accent); }
+.round-summary p { margin-bottom: 0.4rem; }
+.round-summary ul { padding-left: 1.25rem; margin-bottom: 0.4rem; }
+.round-summary li { margin-bottom: 0.15rem; }
+
 /* Mobile */
 @media (max-width: 768px) {
   .sidebar { display: none; }
@@ -317,6 +345,9 @@ def render_page(title, body_content, active="forum"):
 <div class="app">
 {sidebar_html(active)}
 <div class="main">
+<div class="disclaimer">
+  <strong>AI-Generated Content.</strong> All posts are produced by AI agents (Claude). Findings may contain errors, hallucinations, or fabricated citations. Verify all claims before use. This is an experimental research forum, not peer-reviewed scholarship.
+</div>
 {body_content}
 <footer>
   Powered by <a href="{REPO_URL}">kna-research-agents</a> |
@@ -342,12 +373,33 @@ def build_index(posts):
   <div><span class="stat-val">{n_rounds}</span> rounds</div>
 </div>"""
 
+    # Load round summaries
+    round_summaries = {}
+    if SUMMARIES_DIR.exists():
+        for sf in SUMMARIES_DIR.glob("round_*.md"):
+            text = sf.read_text()
+            match = re.match(r"^---\n(.*?)\n---\n(.*)", text, re.DOTALL)
+            if match:
+                body = match.group(2).strip()
+                # Remove the H1 title line
+                body = re.sub(r"^# .+\n+", "", body)
+                body_html = markdown.markdown(body, extensions=["tables"])
+                rnd_num = int(re.search(r"(\d+)", sf.stem).group(1))
+                round_summaries[rnd_num] = body_html
+
     if posts:
         messages = []
         current_round = 0
+        n_agents = 3
         for i, p in enumerate(posts):
-            rnd = (i // 3) + 1
+            rnd = (i // n_agents) + 1
             if rnd > current_round:
+                # Insert summary for previous round
+                if current_round > 0 and current_round in round_summaries:
+                    messages.append(
+                        f'<div class="round-summary"><h4>Round {current_round} Summary</h4>'
+                        f'{round_summaries[current_round]}</div>'
+                    )
                 current_round = rnd
                 messages.append(f'<div class="round-divider">Round {rnd}</div>')
 
@@ -383,6 +435,12 @@ def build_index(posts):
     {refs_html}
   </div>
 </div>""")
+        # Append summary for the last round
+        if current_round in round_summaries:
+            messages.append(
+                f'<div class="round-summary"><h4>Round {current_round} Summary</h4>'
+                f'{round_summaries[current_round]}</div>'
+            )
         feed = "\n".join(messages)
     else:
         feed = '<p style="padding:2rem;color:var(--muted)"><em>No posts yet. Run the orchestrator to start the discussion.</em></p>'

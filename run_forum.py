@@ -230,6 +230,84 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
         log_file.write_text(f"ERROR: {e}")
 
 
+SUMMARIES_DIR = BASE_DIR / "summaries"
+
+
+def generate_round_summary(round_num, topic=None):
+    """Generate a summary for a completed round using Claude."""
+    SUMMARIES_DIR.mkdir(exist_ok=True)
+
+    # Collect posts from this round
+    all_posts = sorted(FORUM_DIR.glob("*.md"))
+    n_agents = len(load_agents())
+    start_idx = (round_num - 1) * n_agents
+    end_idx = round_num * n_agents
+    round_posts = all_posts[start_idx:end_idx]
+
+    if not round_posts:
+        return
+
+    forum_text = "\n\n".join(
+        f"--- {p.name} ---\n{p.read_text()}" for p in round_posts
+    )
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    prompt = textwrap.dedent(f"""\
+    You are a research forum moderator. Summarize Round {round_num} of the research discussion.
+
+    Write a concise summary (200-400 words) that:
+    1. States the round's topic or focus
+    2. Highlights each agent's key finding or contribution (2-3 sentences each)
+    3. Notes points of agreement and disagreement between agents
+    4. Lists the most promising research directions identified
+    5. Identifies what remains unresolved
+
+    Write the summary to: {SUMMARIES_DIR}/round_{round_num:02d}.md
+
+    Use this format:
+    ```
+    ---
+    round: {round_num}
+    date: "{ts}"
+    topic: "{topic or 'continuing discussion'}"
+    ---
+
+    # Round {round_num} Summary
+
+    [Your summary]
+    ```
+
+    ## Posts to Summarize
+
+    {forum_text}
+    """)
+
+    prompt_file = WORKSPACE_DIR / "_prompt_summary.md"
+    prompt_file.write_text(prompt)
+
+    cmd = [
+        CLAUDE, "-p",
+        "--allowedTools", "Write",
+        "--dangerously-skip-permissions",
+        "--system-prompt-file", str(prompt_file),
+        "--output-format", "text",
+        "Write the round summary now.",
+    ]
+
+    print(f"\n  Generating Round {round_num} summary...")
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=120, cwd=str(WORKSPACE_DIR),
+        )
+        summary_file = SUMMARIES_DIR / f"round_{round_num:02d}.md"
+        if summary_file.exists():
+            print(f"  Summary: {summary_file.name}")
+        else:
+            print(f"  WARNING: Summary not generated")
+    except subprocess.TimeoutExpired:
+        print(f"  Summary generation timed out")
+
+
 def print_summary():
     """Print forum table of contents."""
     posts = get_forum_posts()
@@ -260,6 +338,7 @@ def print_summary():
 
     print(f"\n  Posts: {FORUM_DIR}/")
     print(f"  Logs:  {LOGS_DIR}/")
+    print(f"  Summaries: {SUMMARIES_DIR}/")
 
 
 def main():
@@ -325,6 +404,11 @@ def main():
                 agent, rnd, args.rounds,
                 seed_topic=args.topic if rnd == 1 else None,
                 dry_run=args.dry_run,
+            )
+
+        if not args.dry_run:
+            generate_round_summary(
+                rnd, topic=args.topic if rnd == 1 else None,
             )
 
     print_summary()
