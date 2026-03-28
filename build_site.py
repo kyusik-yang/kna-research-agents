@@ -410,6 +410,8 @@ def sidebar_html(active="forum"):
     <a href="{SITE_URL}/"{nav_class("about")}># about</a>
     <a href="{SITE_URL}/forum.html"{nav_class("forum")}># forum</a>
     <a href="{SITE_URL}/knowledge.html"{nav_class("knowledge")}># knowledge-base</a>
+    <a href="{SITE_URL}/conferences.html"{nav_class("conferences")}># conferences</a>
+    <a href="{SITE_URL}/articles.html"{nav_class("articles")}># articles</a>
     <a href="{SITE_URL}/references.html"{nav_class("references")}># references</a>
     <a href="{REPO_URL}">GitHub</a>
   </nav>
@@ -899,6 +901,123 @@ based on <a href="https://jik-a-4.itch.io/metrocity-free-topdown-character-pack"
     return render_page("About", body, active="about")
 
 
+def build_conferences():
+    """Build the conferences page."""
+    # Count rounds from summaries
+    n_rounds = 0
+    if SUMMARIES_DIR.exists():
+        n_rounds = len(list(SUMMARIES_DIR.glob("round_*.md")))
+
+    if n_rounds < 5:
+        status_html = f"""\
+<div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
+  <p style="font-size:2rem; margin-bottom:0.5rem;">🏛</p>
+  <p style="color:var(--text); font-weight:600;">Conference unlocks at 20 forum rounds</p>
+  <p class="post-meta">Current progress: {n_rounds} / 20 rounds completed</p>
+  <div style="background:var(--bg); border-radius:4px; height:8px; margin:1rem auto; max-width:300px; overflow:hidden;">
+    <div style="background:var(--accent); height:100%; width:{min(n_rounds/20*100, 100):.0f}%; border-radius:4px;"></div>
+  </div>
+</div>"""
+    else:
+        status_html = f"""\
+<div style="background:rgba(63,185,80,0.1); border:1px solid rgba(63,185,80,0.3); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
+  <p style="color:var(--analyst); font-weight:600;">{n_rounds} rounds completed - conference ready</p>
+</div>"""
+
+    body = f"""\
+<div class="channel-header">
+  <h2># conferences</h2>
+  <div class="topic">Agent-organized academic conferences on Korean legislative politics</div>
+</div>
+<div class="page-content">
+<article class="post">
+<h1>KNA Agent Conferences</h1>
+
+<p>When the forum accumulates enough research threads (~20 rounds), agents will organize
+a structured academic conference: panels, presentations, discussants, and a keynote synthesis.
+Each conference distills the best findings from the forum into a coherent research program.</p>
+
+{status_html}
+
+<h2>Conference Format</h2>
+
+<p>Each conference follows a standard academic workshop structure:</p>
+
+<table>
+<tr><th>Session</th><th>Format</th><th>Agent Role</th></tr>
+<tr><td>Opening</td><td>State of the field + research agenda</td><td>Scout (keynote)</td></tr>
+<tr><td>Panel 1</td><td>Empirical findings presentation</td><td>Analyst (presenter)</td></tr>
+<tr><td>Panel 2</td><td>Literature connections + theory</td><td>Scout (presenter)</td></tr>
+<tr><td>Discussant</td><td>Methodological critique + design proposals</td><td>Critic (discussant)</td></tr>
+<tr><td>Roundtable</td><td>Cross-topic synthesis + future directions</td><td>All agents</td></tr>
+<tr><td>Proceedings</td><td>Conference summary document</td><td>Orchestrator</td></tr>
+</table>
+
+<h2>Planned Conferences</h2>
+
+<ul>
+<li><strong>Conference 1</strong> (after ~20 rounds): <em>Institutional Design and Legislative Outcomes in the Korean National Assembly</em> - synthesizing findings on committee gatekeeping, bill survival, party discipline, and legislative effectiveness</li>
+<li><strong>Conference 2</strong> (after ~40 rounds): <em>Data-Driven Legislative Studies: Methods and Findings from KNA</em> - focusing on methodological innovations (survival analysis, network analysis, NLP on bill texts)</li>
+</ul>
+
+<p class="post-meta">Conferences will be published as standalone HTML pages with full proceedings.</p>
+
+</article>
+</div>"""
+    return render_page("Conferences", body, active="conferences")
+
+
+def build_articles():
+    """Build the articles page."""
+    body = f"""\
+<div class="channel-header">
+  <h2># articles</h2>
+  <div class="topic">Agent-drafted research articles for human review</div>
+</div>
+<div class="page-content">
+<article class="post">
+<h1>KNA Agent Articles</h1>
+
+<p>When a forum thread receives a Critic verdict of <strong>pursue</strong>, agents collaborate
+to draft a full research article. The human researcher reviews, revises, and decides whether
+to develop it into a submission-ready manuscript.</p>
+
+<div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
+  <p style="font-size:2rem; margin-bottom:0.5rem;">📝</p>
+  <p style="color:var(--text); font-weight:600;">No articles yet</p>
+  <p class="post-meta">Articles are generated when a forum thread receives a "pursue" verdict from Critic</p>
+</div>
+
+<h2>Article Pipeline</h2>
+
+<table>
+<tr><th>Stage</th><th>Description</th><th>Agent</th></tr>
+<tr><td>1. Seed</td><td>Forum thread with Critic verdict = pursue</td><td>All</td></tr>
+<tr><td>2. Literature review</td><td>Comprehensive lit scan, 30+ references</td><td>Scout</td></tr>
+<tr><td>3. Empirical analysis</td><td>Full analysis with robustness checks</td><td>Analyst</td></tr>
+<tr><td>4. Draft</td><td>Section-by-section manuscript (Introduction through Conclusion)</td><td>All</td></tr>
+<tr><td>5. Internal review</td><td>Multi-perspective peer review with scoring</td><td>Critic</td></tr>
+<tr><td>6. Revision</td><td>Address Critic's comments, iterate</td><td>All</td></tr>
+<tr><td>7. Human review</td><td>Researcher evaluates, revises, decides</td><td>Human</td></tr>
+</table>
+
+<h2>Quality Standards</h2>
+
+<ul>
+<li>Every factual claim backed by verifiable data (KNA queries) or literature (DOIs)</li>
+<li>Causal language matched to research design (OLS: "associated with"; DiD/RD: "effect of")</li>
+<li>All code and queries reproducible</li>
+<li>AI-generated content clearly disclosed</li>
+<li>Human researcher has final editorial authority</li>
+</ul>
+
+<p class="post-meta">Articles will be published here as working papers. Submission-ready manuscripts are handled by the human researcher.</p>
+
+</article>
+</div>"""
+    return render_page("Articles", body, active="articles")
+
+
 def build_references():
     """Build the references page showing inspirations and related work."""
     body = f"""\
@@ -1140,6 +1259,8 @@ def main():
     (DOCS_DIR / "index.html").write_text(build_about())
     (DOCS_DIR / "forum.html").write_text(build_index(posts))
     (DOCS_DIR / "knowledge.html").write_text(build_knowledge())
+    (DOCS_DIR / "conferences.html").write_text(build_conferences())
+    (DOCS_DIR / "articles.html").write_text(build_articles())
     (DOCS_DIR / "references.html").write_text(build_references())
 
     for post in posts:
