@@ -13,17 +13,25 @@ cd /Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents
 
 MODE="${1:-forum}"  # "forum" or "agora"
 LOG="/tmp/kna-auto-${MODE}.log"
-DAY_OF_YEAR=$(date +%j)
+LAST_RUN_FILE="/tmp/kna-last-${MODE}.txt"
+NOW=$(date +%s)
 
-# Frequency check: forum every 4 days, agora every 2 days
-if [ "$MODE" = "forum" ] && [ $((DAY_OF_YEAR % 4)) -ne 0 ]; then
-    echo "$(date): Skipping forum (not a 4-day interval)" >> "$LOG"
-    exit 0
+# Check interval since last run (catches up if computer was off)
+if [ -f "$LAST_RUN_FILE" ]; then
+    LAST_RUN=$(cat "$LAST_RUN_FILE")
+    ELAPSED=$(( (NOW - LAST_RUN) / 86400 ))
+    if [ "$MODE" = "forum" ] && [ "$ELAPSED" -lt 4 ]; then
+        echo "$(date): Skipping forum (${ELAPSED}d since last, need 4d)" >> "$LOG"
+        exit 0
+    fi
+    if [ "$MODE" = "agora" ] && [ "$ELAPSED" -lt 2 ]; then
+        echo "$(date): Skipping agora (${ELAPSED}d since last, need 2d)" >> "$LOG"
+        exit 0
+    fi
 fi
-if [ "$MODE" = "agora" ] && [ $((DAY_OF_YEAR % 2)) -ne 0 ]; then
-    echo "$(date): Skipping agora (not a 2-day interval)" >> "$LOG"
-    exit 0
-fi
+
+# Record this run
+echo "$NOW" > "$LAST_RUN_FILE"
 
 echo "$(date): Starting ${MODE} run" >> "$LOG"
 
@@ -31,9 +39,12 @@ if [ "$MODE" = "forum" ]; then
     # Forum: 1 round, resume from existing, agents pick topic
     python3 run_forum.py --rounds 1 --resume >> "$LOG" 2>&1
 
+    # Check for pursue verdicts -> auto-draft articles
+    python3 draft_article.py >> "$LOG" 2>&1
+
     # Build site and push
     python3 build_site.py >> "$LOG" 2>&1
-    git add forum/ summaries/ knowledge/ docs/ && \
+    git add forum/ summaries/ knowledge/ articles/ docs/ && \
     git commit -m "Auto: Forum round $(ls forum/*.md 2>/dev/null | grep -v gitkeep | wc -l | tr -d ' ') posts" && \
     git push origin main >> "$LOG" 2>&1
 

@@ -1461,6 +1461,59 @@ Each conference distills the best findings from the forum into a coherent resear
     return render_page("Conferences", body, active="conferences")
 
 
+def _build_article_list():
+    """Generate HTML for articles from articles/ directory."""
+    articles_dir = BASE_DIR / "articles"
+    if not articles_dir.exists():
+        articles_dir.mkdir(exist_ok=True)
+
+    articles = sorted(articles_dir.glob("*.md"), reverse=True)
+    if not articles:
+        return """\
+<div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
+  <p style="font-size:2rem; margin-bottom:0.5rem;">📝</p>
+  <p style="color:var(--text); font-weight:600;">No articles yet</p>
+  <p class="post-meta">Articles auto-generate when Critic gives a "pursue" verdict</p>
+</div>"""
+
+    from html import escape
+    items = []
+    for a in articles:
+        content = a.read_text()
+        meta = {}
+        body = content
+        match = re.match(r"^---\n(.*?)\n---\n(.*)", content, re.DOTALL)
+        if match:
+            try:
+                meta = yaml.safe_load(match.group(1)) or {}
+            except yaml.YAMLError:
+                pass
+            body = match.group(2)
+
+        title = meta.get("title", a.stem)
+        date = meta.get("date", "")
+        source = meta.get("source_round", "?")
+        wc = len(body.split())
+
+        # Check for PDF
+        pdf = a.with_suffix(".pdf")
+        pdf_link = f' | <a href="articles/{pdf.name}" style="color:var(--analyst);">PDF</a>' if pdf.exists() else ""
+
+        items.append(f"""\
+<div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem 1.25rem; margin:0.75rem 0;">
+  <div style="font-weight:600; color:var(--text); margin-bottom:0.3rem;">{escape(str(title))}</div>
+  <div class="post-meta">Round {source} | {date} | {wc} words{pdf_link}</div>
+  <details style="margin-top:0.5rem;">
+    <summary class="post-meta" style="cursor:pointer;">Read draft</summary>
+    <article class="post" style="margin-top:0.75rem;">
+    {markdown.markdown(body[:8000], extensions=['tables', 'fenced_code'])}
+    </article>
+  </details>
+</div>""")
+
+    return "\n".join(items)
+
+
 def build_articles():
     """Build the articles page."""
     body = f"""\
@@ -1476,11 +1529,7 @@ def build_articles():
 to draft a full research article. The human researcher reviews, revises, and decides whether
 to develop it into a submission-ready manuscript.</p>
 
-<div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
-  <p style="font-size:2rem; margin-bottom:0.5rem;">📝</p>
-  <p style="color:var(--text); font-weight:600;">No articles yet</p>
-  <p class="post-meta">Articles are generated when a forum thread receives a "pursue" verdict from Critic</p>
-</div>
+{_build_article_list()}
 
 <h2>Article Pipeline</h2>
 
@@ -1492,7 +1541,6 @@ to develop it into a submission-ready manuscript.</p>
 <tr><td>4. Draft</td><td>Section-by-section manuscript (Introduction through Conclusion)</td><td>All</td></tr>
 <tr><td>5. Internal review</td><td>Multi-perspective peer review with scoring</td><td>Critic</td></tr>
 <tr><td>6. Revision</td><td>Address Critic's comments, iterate</td><td>All</td></tr>
-<tr><td>7. Human review</td><td>Researcher evaluates, revises, decides</td><td>Human</td></tr>
 </table>
 
 <h2>Quality Standards</h2>
