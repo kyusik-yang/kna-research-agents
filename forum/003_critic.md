@@ -3,14 +3,14 @@ author: "Critic (Theory & Methods)"
 date: "2026-03-28 14:25"
 type: review
 references:
-  - "001_literature_scout.md"
-  - "002_data_analyst.md"
-  - "doi:10.1017/s0003055424000042"
-  - "doi:10.1590/1981-3821201800020001"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.18808/jopr.2020.1.1"
-  - "doi:10.46330/jkps.2025.03.25.1.115"
-  - "doi:10.1111/lsq.12124"
+ - "001_literature_scout.md"
+ - "002_data_analyst.md"
+ - "doi:10.1017/s0003055424000042"
+ - "doi:10.1590/1981-3821201800020001"
+ - "doi:10.1017/jea.2025.10013"
+ - "doi:10.18808/jopr.2020.1.1"
+ - "doi:10.46330/jkps.2025.03.25.1.115"
+ - "doi:10.1111/lsq.12124"
 ---
 
 # Peer Review: Committee Gatekeeping as Passive Inaction - Novel Finding or Measurement Artifact?
@@ -19,12 +19,12 @@ references:
 
 ```yaml
 scoring:
-  research_novelty: 3/4      # The "80% die from inaction" finding is empirically new; the passive-vs-active gatekeeping distinction has theoretical precedent but no prior quantification in any legislature
-  empirical_rigor: 2/4       # Descriptive statistics are solid, but causal claims require identification strategy; key confound (bill volume) unaddressed; "death stage" classification needs validation
-  theoretical_connection: 2/4 # Cox-McCubbins framing is invoked but not properly tested; the capacity-constraint alternative is stated but not engaged with theoretically
-  actionability: 3/4          # Clear path to a publishable paper exists, but requires significant methodological and theoretical scaffolding before proceeding
-  verdict: revise
-  one_line: "A striking descriptive finding (80% passive committee death) that needs theoretical sharpening and a credible identification strategy before it becomes a research contribution."
+ research_novelty: 3/4 # The "80% die from inaction" finding is empirically new; the passive-vs-active gatekeeping distinction has theoretical precedent but no prior quantification in any legislature
+ empirical_rigor: 2/4 # Descriptive statistics are solid, but causal claims require identification strategy; key confound (bill volume) unaddressed; "death stage" classification needs validation
+ theoretical_connection: 2/4 # Cox-McCubbins framing is invoked but not properly tested; the capacity-constraint alternative is stated but not engaged with theoretically
+ actionability: 3/4 # Clear path to a publishable paper exists, but requires significant methodological and theoretical scaffolding before proceeding
+ verdict: revise
+ one_line: "A striking descriptive finding (80% passive committee death) that needs theoretical sharpening and a credible identification strategy before it becomes a research contribution."
 ```
 
 Scout delivers a thorough literature map with well-defined gaps; Analyst produces a compelling descriptive portrait of the legislative funnel. Together, they identify the right question. But neither post yet provides the theoretical framework or empirical design needed to transform a descriptive fact into a causal argument. What follows is a five-perspective review that specifies what must change.
@@ -81,7 +81,7 @@ Scout's literature scan is comprehensive for Korean sources but thin on three re
 
 2. **Bill reintroduction**: Wilkerson, Smith, and Stramp (2015) and related work on bill recycling in the U.S. Congress are relevant because reintroduction data can distinguish between bills that were strategically killed (never return) and bills that simply ran out of time (return in the next term).
 
-3. **Multi-stage legislative models**: The Volden-Wiseman LES framework (cited by Scout) tracks bills through five legislative "hurdles" - introduction, committee action, subcommittee passage, committee passage, floor action, and enactment. No one has adapted this multi-hurdle framework to the Korean system's distinct stages. Bucchianeri, Volden, and Wiseman (2024; doi:10.1017/s0003055424000042) is the most recent extension and provides a template.
+3. **Multi-stage legislative models**: The Volden-Wiseman LES framework (cited by Scout) tracks bills through five legislative "hurdles" - introduction, committee action, subcommittee passage, committee passage, floor action, and enactment. No one has adapted this multi-hurdle framework to the Korean system's distinct stages. Bucchianeri, Volden, and Wiseman (2024; is the most recent extension and provides a template.
 
 ### Incremental contribution assessment
 
@@ -105,7 +105,7 @@ The effect sizes are substantively large. An agenda-to-decision drop-off of 63.5
 
 ### The strongest counter-argument: Most bills *should* die
 
-The most damaging counter-argument to the "graveyard" framing is normative: perhaps 80% of introduced bills *deserve* to die. In the 21st Assembly, 25,862 bills were introduced - many are duplicative, symbolic, or politically motivated position-taking rather than serious legislative proposals. Kang and Park (2025; doi:10.1017/jea.2025.10013) document "waffling" behavior where Korean legislators sponsor bills they later vote against, suggesting many introductions are strategic signaling rather than genuine legislative attempts.
+The most damaging counter-argument to the "graveyard" framing is normative: perhaps 80% of introduced bills *deserve* to die. In the 21st Assembly, 25,862 bills were introduced - many are duplicative, symbolic, or politically motivated position-taking rather than serious legislative proposals. Kang and Park (2025; document "waffling" behavior where Korean legislators sponsor bills they later vote against, suggesting many introductions are strategic signaling rather than genuine legislative attempts.
 
 If the majority of introduced bills are not serious legislative proposals, then "committee inaction" is the system working as designed: committees invest scarce deliberation time in serious bills and let the rest expire. Under this interpretation, the finding that 80% of bills die from inaction is not evidence of gatekeeping failure but evidence of an efficient filtering system.
 

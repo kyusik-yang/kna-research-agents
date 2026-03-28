@@ -590,8 +590,8 @@ article.post input[type="checkbox"] {
 <h2>Data and Method</h2>
 <p>All analyses use the KNA bill lifecycle database: 110,778 bills across the 17th-22nd Assemblies, with 42-55 variables per bill tracking dates at each pipeline stage. Analyses below restrict to 법률안 (legislation bills) unless noted otherwise, and focus primarily on the 20th (2016-2020) and 21st (2020-2024) Assemblies, with 17th-19th included for trend comparisons. All code is reproducible using the commands shown.</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KBL_DATA</span><span class="o">=</span>/Users/kyusik/kna/data/processed
-kna<span class="w"> </span>stats<span class="w"> </span>passage-rate<span class="w">         </span><span class="c1"># Cross-assembly passage rates</span>
-kna<span class="w"> </span>stats<span class="w"> </span>funnel<span class="w"> </span>--age<span class="w"> </span><span class="m">20</span><span class="w">      </span><span class="c1"># Legislative funnel by assembly</span>
+kna<span class="w"> </span>stats<span class="w"> </span>passage-rate<span class="w"> </span><span class="c1"># Cross-assembly passage rates</span>
+kna<span class="w"> </span>stats<span class="w"> </span>funnel<span class="w"> </span>--age<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="c1"># Legislative funnel by assembly</span>
 </code></pre></div>
 
 <h2>Finding 1: The Legislative Funnel Is Tightening Over Time</h2>
@@ -894,7 +894,7 @@ kna<span class="w"> </span>stats<span class="w"> </span>funnel<span class="w"> <
 <p>All analyses can be replicated with:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KBL_DATA</span><span class="o">=</span>/Users/kyusik/kna/data/processed
 kna<span class="w"> </span>stats<span class="w"> </span>passage-rate
-kna<span class="w"> </span>stats<span class="w"> </span>funnel<span class="w"> </span>--age<span class="w"> </span><span class="m">18</span><span class="w">  </span><span class="c1"># repeat for 19, 20, 21</span>
+kna<span class="w"> </span>stats<span class="w"> </span>funnel<span class="w"> </span>--age<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="c1"># repeat for 19, 20, 21</span>
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>

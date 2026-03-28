@@ -595,7 +595,7 @@ article.post input[type="checkbox"] {
 <li>The propose-reason texts for classified bills are substantively coherent (I inspected 30 random samples per category).</li>
 <li>The results are robust to narrowing the minsaeng definition. When I exclude Small Business (per Critic's recommendation), the core finding strengthens: the narrow minsaeng penalty (Welfare + Labor + Care only, excluding SmallBiz) is larger than the broad definition.</li>
 </ol>
-<p>I agree that keyATM (Eshima, Imai, and Sasaki 2023; doi:10.1111/ajps.12779) or a supervised classifier trained on hand-coded bills is the paper-ready approach. The keyword classifier is sufficient for establishing the pattern; refinement is needed for publication.</p>
+<p>I agree that keyATM (Eshima, Imai, and Sasaki 2023; or a supervised classifier trained on hand-coded bills is the paper-ready approach. The keyword classifier is sufficient for establishing the pattern; refinement is needed for publication.</p>
 <h3>Vulnerability 2: The 3.4x ratio</h3>
 <p>Critic is right that the composition ratio is misleading. I adopt the cleaner comparison: <strong>category-specific decision rates and enactment rates on the common denominator of on-agenda bills.</strong></p>
 <table>
@@ -988,7 +988,7 @@ Model C: + minsaeng x divided interaction
 </li>
 </ol>
 <h2>Connecting to the Literature</h2>
-<p>Scout (010_literature_scout.md) identified Volden, Wiseman, and Wittmer (2016; doi:10.1017/psrm.2016.32) as the closest precedent. The parallel is strong: they find women's issues bills have a 2% passage rate versus 4% overall in the US Congress. I find labor bills at 2.7% versus 7.0% for safety bills in the KNA - nearly the same ratio. Three features distinguish the KNA project:</p>
+<p>Scout (010_literature_scout.md) identified Volden, Wiseman, and Wittmer (2016; as the closest precedent. The parallel is strong: they find women's issues bills have a 2% passage rate versus 4% overall in the US Congress. I find labor bills at 2.7% versus 7.0% for safety bills in the KNA - nearly the same ratio. Three features distinguish the KNA project:</p>
 <ol>
 <li>
 <p><strong>Committee-level decomposition.</strong> Volden et al. document the overall passage penalty but do not decompose it into committee-stage versus floor-stage effects. My analysis isolates the committee decision rate as the primary bottleneck - the within-committee minsaeng gap (-6.8 to -16.8 pp) accounts for most of the overall processing deficit.</p>
@@ -1000,7 +1000,7 @@ Model C: + minsaeng x divided interaction
 <p><strong>Lowi decomposition.</strong> By classifying bills along the redistributive-distributive dimension, I show that the penalty concentrates in redistributive legislation (especially in Labor and SmallBiz categories). This engages directly with a foundational theoretical prediction that has never been tested at the committee processing level, as Scout confirmed across 3 targeted searches.</p>
 </li>
 </ol>
-<p>The within-sponsor penalty (-11.9 pp, t = -10.06) addresses the position-taking concern raised by Park (2023; doi:10.1073/pnas.2214697120) and Kang and Park (2025; doi:10.1017/jea.2025.10013). Even if minsaeng bills attract more position-taking sponsors, the penalty is present <em>within the same legislator's portfolio</em>, ruling out between-legislator composition effects.</p>
+<p>The within-sponsor penalty (-11.9 pp, t = -10.06) addresses the position-taking concern raised by Park (2023; and Kang and Park (2025; Even if minsaeng bills attract more position-taking sponsors, the penalty is present <em>within the same legislator's portfolio</em>, ruling out between-legislator composition effects.</p>
 <h2>Suggestions for Critic</h2>
 <ol>
 <li>
@@ -1024,7 +1024,7 @@ Model C: + minsaeng x divided interaction
 <span class="n">KBL_DATA</span> <span class="o">=</span> <span class="s1">&#39;/Users/kyusik/kna/data/processed&#39;</span>
 <span class="c1"># Load 20th-21st Assembly bills</span>
 <span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">KBL_DATA</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;master_bills_</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">.parquet&#39;</span><span class="p">))</span>
-       <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">]]</span>
+ <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">]]</span>
 <span class="n">bills</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;bill_kind == &#39;법률안&#39;&quot;</span><span class="p">)</span>
 <span class="c1"># Merge texts and cosponsorship</span>
 <span class="n">bt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">KBL_DATA</span><span class="p">,</span> <span class="s1">&#39;bill_texts_linked.parquet&#39;</span><span class="p">))</span>

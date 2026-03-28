@@ -3,16 +3,16 @@ author: "Analyst (KNA Data Expert)"
 date: "2026-03-28 15:52"
 type: response
 references:
-  - "008_data_analyst.md"
-  - "009_critic.md"
-  - "010_literature_scout.md"
-  - "doi:10.1017/s0003055404001121"
-  - "doi:10.1257/jep.27.3.103"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.1017/psrm.2016.32"
-  - "doi:10.1073/pnas.2214697120"
-  - "doi:10.1017/cbo9781139032360"
+ - "008_data_analyst.md"
+ - "009_critic.md"
+ - "010_literature_scout.md"
+ - "doi:10.1017/s0003055404001121"
+ - "doi:10.1257/jep.27.3.103"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "doi:10.1017/jea.2025.10013"
+ - "doi:10.1017/psrm.2016.32"
+ - "doi:10.1073/pnas.2214697120"
+ - "doi:10.1017/cbo9781139032360"
 ---
 
 # Stress-Testing the Distributional Penalty: Five Robustness Checks and Three Corrections
@@ -31,7 +31,7 @@ Critic correctly notes that the 44.2% classification rate is low. My rebuilt cla
 2. The propose-reason texts for classified bills are substantively coherent (I inspected 30 random samples per category).
 3. The results are robust to narrowing the minsaeng definition. When I exclude Small Business (per Critic's recommendation), the core finding strengthens: the narrow minsaeng penalty (Welfare + Labor + Care only, excluding SmallBiz) is larger than the broad definition.
 
-I agree that keyATM (Eshima, Imai, and Sasaki 2023; doi:10.1111/ajps.12779) or a supervised classifier trained on hand-coded bills is the paper-ready approach. The keyword classifier is sufficient for establishing the pattern; refinement is needed for publication.
+I agree that keyATM (Eshima, Imai, and Sasaki 2023; or a supervised classifier trained on hand-coded bills is the paper-ready approach. The keyword classifier is sufficient for establishing the pattern; refinement is needed for publication.
 
 ### Vulnerability 2: The 3.4x ratio
 
@@ -208,7 +208,7 @@ Critic asked three questions about the 31 minimum wage bills. The answers:
 
 ## Connecting to the Literature
 
-Scout (010_literature_scout.md) identified Volden, Wiseman, and Wittmer (2016; doi:10.1017/psrm.2016.32) as the closest precedent. The parallel is strong: they find women's issues bills have a 2% passage rate versus 4% overall in the US Congress. I find labor bills at 2.7% versus 7.0% for safety bills in the KNA - nearly the same ratio. Three features distinguish the KNA project:
+Scout (010_literature_scout.md) identified Volden, Wiseman, and Wittmer (2016; as the closest precedent. The parallel is strong: they find women's issues bills have a 2% passage rate versus 4% overall in the US Congress. I find labor bills at 2.7% versus 7.0% for safety bills in the KNA - nearly the same ratio. Three features distinguish the KNA project:
 
 1. **Committee-level decomposition.** Volden et al. document the overall passage penalty but do not decompose it into committee-stage versus floor-stage effects. My analysis isolates the committee decision rate as the primary bottleneck - the within-committee minsaeng gap (-6.8 to -16.8 pp) accounts for most of the overall processing deficit.
 
@@ -216,7 +216,7 @@ Scout (010_literature_scout.md) identified Volden, Wiseman, and Wittmer (2016; d
 
 3. **Lowi decomposition.** By classifying bills along the redistributive-distributive dimension, I show that the penalty concentrates in redistributive legislation (especially in Labor and SmallBiz categories). This engages directly with a foundational theoretical prediction that has never been tested at the committee processing level, as Scout confirmed across 3 targeted searches.
 
-The within-sponsor penalty (-11.9 pp, t = -10.06) addresses the position-taking concern raised by Park (2023; doi:10.1073/pnas.2214697120) and Kang and Park (2025; doi:10.1017/jea.2025.10013). Even if minsaeng bills attract more position-taking sponsors, the penalty is present *within the same legislator's portfolio*, ruling out between-legislator composition effects.
+The within-sponsor penalty (-11.9 pp, t = -10.06) addresses the position-taking concern raised by Park (2023; and Kang and Park (2025; Even if minsaeng bills attract more position-taking sponsors, the penalty is present *within the same legislator's portfolio*, ruling out between-legislator composition effects.
 
 ## Suggestions for Critic
 
@@ -239,7 +239,7 @@ from statsmodels.formula.api import logit
 KBL_DATA = '/Users/kyusik/kna/data/processed'
 # Load 20th-21st Assembly bills
 dfs = [pd.read_parquet(os.path.join(KBL_DATA, f'master_bills_{a}.parquet'))
-       .assign(age=a) for a in [20, 21]]
+ .assign(age=a) for a in [20, 21]]
 bills = pd.concat(dfs).query("bill_kind == '법률안'")
 # Merge texts and cosponsorship
 bt = pd.read_parquet(os.path.join(KBL_DATA, 'bill_texts_linked.parquet'))

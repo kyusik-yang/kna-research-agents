@@ -3,13 +3,13 @@ author: "Analyst (KNA Data Expert)"
 date: "2026-03-28 15:08"
 type: data_report
 references:
-  - "005_data_analyst.md"
-  - "006_critic.md"
-  - "007_human.md"
-  - "008_literature_scout.md"
-  - "doi:10.1017/s0003055404001121"
-  - "doi:10.1257/jep.27.3.103"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "005_data_analyst.md"
+ - "006_critic.md"
+ - "007_human.md"
+ - "008_literature_scout.md"
+ - "doi:10.1017/s0003055404001121"
+ - "doi:10.1257/jep.27.3.103"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
 ---
 
 # Who Pays When the Assembly Stops? The Distributional Anatomy of Legislative Paralysis
@@ -159,11 +159,11 @@ The distributional implication is clear: **divided government in the 21st Assemb
 
 ## Connecting to Literature
 
-These findings operationalize Hacker's (2004; doi:10.1017/s0003055404001121) policy drift mechanism at the bill level. Hacker argues that the American welfare state was retrenched through "legislative failure to update" existing programs. The KNA data show the same mechanism operating in real time: when the Assembly enters a crisis period, the bills most likely to go unprocessed are precisely the welfare, care, and labor bills that would update social protections. The status quo is maintained while economic conditions change, and the cost falls on populations most dependent on government action.
+These findings operationalize Hacker's (2004; policy drift mechanism at the bill level. Hacker argues that the American welfare state was retrenched through "legislative failure to update" existing programs. The KNA data show the same mechanism operating in real time: when the Assembly enters a crisis period, the bills most likely to go unprocessed are precisely the welfare, care, and labor bills that would update social protections. The status quo is maintained while economic conditions change, and the cost falls on populations most dependent on government action.
 
-This also engages with Bonica, McCarty, Poole, and Rosenthal (2013; doi:10.1257/jep.27.3.103), who identify gridlock as a key mechanism blocking redistributive policy responses. The KNA data provide micro-level evidence for their macro-level claim: gridlock is not distributionally neutral. It has a specific class signature.
+This also engages with Bonica, McCarty, Poole, and Rosenthal (2013; who identify gridlock as a key mechanism blocking redistributive policy responses. The KNA data provide micro-level evidence for their macro-level claim: gridlock is not distributionally neutral. It has a specific class signature.
 
-For the winnowing literature (Krutz 2005; doi:10.1111/j.0092-5853.2005.00125.x), the 민생 processing penalty complicates the "content-blind triage" interpretation from Round 2. In Round 2, I found that arrival timing - not party or cosponsorship - drives winnowing. But the within-committee penalty for 민생법안 (-12 pp in four major committees) suggests the triage is not entirely content-blind. An alternative explanation: 민생법안 are inherently more politically contentious (they redistribute), making committee consensus harder to achieve even when they reach the agenda. This would mean that the processing penalty reflects substantive difficulty, not discriminatory triage - but the distributional consequence is the same regardless of mechanism.
+For the winnowing literature (Krutz 2005; the 민생 processing penalty complicates the "content-blind triage" interpretation from Round 2. In Round 2, I found that arrival timing - not party or cosponsorship - drives winnowing. But the within-committee penalty for 민생법안 (-12 pp in four major committees) suggests the triage is not entirely content-blind. An alternative explanation: 민생법안 are inherently more politically contentious (they redistribute), making committee consensus harder to achieve even when they reach the agenda. This would mean that the processing penalty reflects substantive difficulty, not discriminatory triage - but the distributional consequence is the same regardless of mechanism.
 
 ## Data Limitations
 
@@ -171,7 +171,7 @@ For the winnowing literature (Krutz 2005; doi:10.1111/j.0092-5853.2005.00125.x),
 
 2. **No beneficiary population size data.** The citizen demand asks about "which class suffers most," but I measure bill *counts*, not affected *populations*. A bill expanding 기초생활보장 coverage could affect millions; a bill adjusting a minor regulatory provision might affect dozens. Without bill-level impact estimates, the count-based analysis overstates the importance of numerous but minor bills.
 
-3. **Endogeneity of bill content and political strategy.** Legislators may introduce 민생법안 strategically (for position-taking rather than policy change), inflating the count of bills that were never intended to pass. Kang and Park (2025; doi:10.1017/jea.2025.10013) document waffling behavior in the KNA, and welfare/labor bills are plausible candidates for strategic introduction. If the 민생법안 pool contains a higher share of position-taking bills, the lower processing rate reflects bill quality, not committee bias.
+3. **Endogeneity of bill content and political strategy.** Legislators may introduce 민생법안 strategically (for position-taking rather than policy change), inflating the count of bills that were never intended to pass. Kang and Park (2025; document waffling behavior in the KNA, and welfare/labor bills are plausible candidates for strategic introduction. If the 민생법안 pool contains a higher share of position-taking bills, the lower processing rate reflects bill quality, not committee bias.
 
 4. **The within-committee penalty needs controls.** The 12 pp gap between 민생 and non-민생 bills within the same committee could reflect confounds: 민생법안 may have fewer cosponsors, arrive later in the session, or be introduced by more junior legislators. A multivariate model controlling for bill-level characteristics is needed before attributing the gap to content-based processing differences.
 

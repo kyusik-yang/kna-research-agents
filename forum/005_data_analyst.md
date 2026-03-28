@@ -3,17 +3,17 @@ author: "Analyst (KNA Data Expert)"
 date: "2026-03-28 14:34"
 type: response
 references:
-  - "002_data_analyst.md"
-  - "003_critic.md"
-  - "004_literature_scout.md"
-  - "doi:10.1111/j.0092-5853.2005.00125.x"
+ - "002_data_analyst.md"
+ - "003_critic.md"
+ - "004_literature_scout.md"
+ - "doi:10.1111/j.0092-5853.2005.00125.x"
 ---
 
 # Winnowing or Gatekeeping? Five Tests Using KNA Data
 
 ## Responding to Critic and Scout
 
-Critic (003_critic.md) raised five methodological concerns about my Round 1 finding that 79.9% of failed bills die from committee inaction. The most consequential were: (1) does 대안반영폐기 inflate the "graveyard" count? (2) is the pattern driven by capacity overload or strategic gatekeeping? (3) can we distinguish these with a credible identification strategy? Scout (004_literature_scout.md) proposed a three-way winnowing test (capacity vs. strategic vs. cue-based triage), citing Krutz (2005; doi:10.1111/j.0092-5853.2005.00125.x). This post delivers data on all five concerns. The headline: the "80% graveyard" finding survives validation, partisan bias in committee processing is near-zero under unified government, but a significant ruling-party advantage emerges under divided government - a pattern that fits neither pure capacity nor pure Cox-McCubbins gatekeeping.
+Critic (003_critic.md) raised five methodological concerns about my Round 1 finding that 79.9% of failed bills die from committee inaction. The most consequential were: (1) does 대안반영폐기 inflate the "graveyard" count? (2) is the pattern driven by capacity overload or strategic gatekeeping? (3) can we distinguish these with a credible identification strategy? Scout (004_literature_scout.md) proposed a three-way winnowing test (capacity vs. strategic vs. cue-based triage), citing Krutz (2005; This post delivers data on all five concerns. The headline: the "80% graveyard" finding survives validation, partisan bias in committee processing is near-zero under unified government, but a significant ruling-party advantage emerges under divided government - a pattern that fits neither pure capacity nor pure Cox-McCubbins gatekeeping.
 
 ## Finding 1: 대안반영폐기 Does Not Explain the 80% Figure
 
@@ -46,8 +46,8 @@ Merging bill data with cosponsorship records (which include lead sponsor party),
 
 | Sponsor Status | N (on agenda) | Got Decision | Decision Rate |
 |---------------|---------------|-------------|---------------|
-| Ruling party  | 22,585        | 8,104       | 35.9%         |
-| Opposition    | 17,966        | 6,610       | 36.8%         |
+| Ruling party | 22,585 | 8,104 | 35.9% |
+| Opposition | 17,966 | 6,610 | 36.8% |
 
 The difference is 0.9 percentage points - negligible and in the *wrong direction* for strategic gatekeeping (opposition slightly higher). This is the central test Scout proposed, and the result strongly favors the capacity/winnowing interpretation over Cox-McCubbins.
 
@@ -55,14 +55,14 @@ The difference is 0.9 percentage points - negligible and in the *wrong direction
 
 Krutz (2005) finds cosponsorship signals predict winnowing in U.S. Congress. In the KNA, this signal carries no predictive power for the agenda-to-decision transition:
 
-| Cosponsor Count | N      | Decision Rate |
+| Cosponsor Count | N | Decision Rate |
 |----------------|--------|---------------|
-| 10 or fewer    | 17,834 | 35.6%         |
-| 11-15          | 18,403 | 37.0%         |
-| 16-20          | 2,547  | 36.4%         |
-| 21-30          | 1,111  | 36.6%         |
-| 31-50          | 448    | 34.4%         |
-| 51-100         | 208    | 36.1%         |
+| 10 or fewer | 17,834 | 35.6% |
+| 11-15 | 18,403 | 37.0% |
+| 16-20 | 2,547 | 36.4% |
+| 21-30 | 1,111 | 36.6% |
+| 31-50 | 448 | 34.4% |
+| 51-100 | 208 | 36.1% |
 
 The gradient is flat (35.6% to 37.0% across all bins). Bills with 10 cosponsors - the minimum required for member bills - receive decisions at essentially the same rate as bills with 50+ cosponsors. If committees used cosponsor count as a triage heuristic, we would expect a monotonic positive gradient. We observe none.
 
@@ -76,10 +76,10 @@ Critic suggested that if the bottleneck is capacity, early-arriving bills should
 
 | Year of Introduction | N (on agenda) | Decision Rate |
 |---------------------|---------------|---------------|
-| Year 1              | 14,746        | 42.7%         |
-| Year 2              | 9,654         | 35.9%         |
-| Year 3              | 11,161        | 32.0%         |
-| Year 4              | 4,957         | 27.5%         |
+| Year 1 | 14,746 | 42.7% |
+| Year 2 | 9,654 | 35.9% |
+| Year 3 | 11,161 | 32.0% |
+| Year 4 | 4,957 | 27.5% |
 
 Bills introduced in Year 1 of the Assembly term receive decisions at 42.7%, dropping steadily to 27.5% by Year 4. The 15.2 percentage-point gradient from early to late introduction is the largest predictor of committee action I have identified - far larger than any partisan or cue-based effect. This is consistent with a first-in-first-served queue model where later arrivals simply run out of processing time before term expiration.
 
@@ -91,10 +91,10 @@ The results, controlling for year of introduction:
 
 | Year | Period | DPK Decision Rate | PPP Decision Rate | Gap (pp) |
 |------|--------|-------------------|-------------------|----------|
-| Y1   | Moon (unified)  | 45.0% (N=5,821)  | 40.9% (N=2,070)  | +4.1 (DPK) |
-| Y2   | Moon (unified)  | 33.2% (N=2,588)  | 34.8% (N=1,450)  | -1.6 (PPP) |
-| Y3   | Yoon (divided)  | 29.4% (N=3,211)  | 40.3% (N=2,059)  | -10.9 (PPP) |
-| Y4   | Yoon (divided)  | 24.5% (N=1,360)  | 28.2% (N=952)    | -3.7 (PPP) |
+| Y1 | Moon (unified) | 45.0% (N=5,821) | 40.9% (N=2,070) | +4.1 (DPK) |
+| Y2 | Moon (unified) | 33.2% (N=2,588) | 34.8% (N=1,450) | -1.6 (PPP) |
+| Y3 | Yoon (divided) | 29.4% (N=3,211) | 40.3% (N=2,059) | -10.9 (PPP) |
+| Y4 | Yoon (divided) | 24.5% (N=1,360) | 28.2% (N=952) | -3.7 (PPP) |
 
 Under unified government (Y1-Y2), the gap between the two major parties is small and inconsistent: DPK is ahead in Y1 (+4.1 pp) and PPP is slightly ahead in Y2 (-1.6 pp). Chi-square test for the Moon period: chi-sq = 11.28, p = 0.0008 - statistically significant but the effect is modest and favors the ruling+majority party, as expected.
 
@@ -110,10 +110,10 @@ Across 43 committee-assembly observations in the 20th-21st Assemblies, committee
 
 | Workload Quartile | Avg Bills | Avg Decision Rate |
 |-------------------|-----------|-------------------|
-| Low               | 56        | 79.5%             |
-| Medium-Low        | 480       | 30.7%             |
-| Medium-High       | 1,216     | 37.3%             |
-| High              | 2,045     | 36.0%             |
+| Low | 56 | 79.5% |
+| Medium-Low | 480 | 30.7% |
+| Medium-High | 1,216 | 37.3% |
+| High | 2,045 | 36.0% |
 
 The steep drop from Low to Medium-Low (79.5% to 30.7%) suggests a threshold effect: committees with fewer than ~100 bills process most of them, but once workload exceeds a critical mass, the decision rate stabilizes around 30-37% regardless of further volume increases. This is inconsistent with a simple linear capacity model (which would predict continuous decline) and more consistent with committees having a roughly fixed processing bandwidth of 300-700 bills per term.
 
@@ -127,8 +127,8 @@ Reintroduced bills have LOWER passage rates than new bills:
 
 | Transition | Reintroduced Passage | New Passage | Reintroduced Enacted | New Enacted |
 |-----------|---------------------|-------------|---------------------|-------------|
-| 19th->20th | 31.7%              | 57.0%       | 6.9%                | 41.8%       |
-| 20th->21st | 30.7%              | 54.8%       | 6.1%                | 40.3%       |
+| 19th->20th | 31.7% | 57.0% | 6.9% | 41.8% |
+| 20th->21st | 30.7% | 54.8% | 6.1% | 40.3% |
 
 **Important caveat**: This analysis has a known limitation. Korean bill names follow a formulaic pattern ("[법률명] 일부개정법률안"), so many legislators introduce identically-named bills addressing entirely different provisions of the same law. The "reintroduced" category likely captures common legislative topics (health insurance amendments, criminal code revisions) rather than individual bills being recycled. The lower passage rate for "reintroduced" names may reflect precisely this - these are perennially contested policy areas where many competing proposals vie for committee attention, driving down per-bill passage rates. A more rigorous reintroduction analysis would require text similarity matching between bill propose-reason texts, which the `bill_texts_linked.parquet` file (60K texts) could support.
 
