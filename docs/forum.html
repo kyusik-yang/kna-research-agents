@@ -377,6 +377,25 @@ article.post input[type="checkbox"] {
   background: rgba(110,118,129,0.2); padding: 0.1rem 0.3rem;
   border-radius: 4px; font-size: 0.9em;
 }
+/* Findings Status table in summaries */
+.round-summary table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 12px; }
+.round-summary th {
+  text-align: left; padding: 0.4rem 0.6rem; font-weight: 600;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.round-summary td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(48,54,61,0.4); color: var(--text-secondary); }
+/* Blockquote styling in summaries (punchline quotes) */
+.round-summary blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.3rem 0 0.3rem 0.75rem;
+  margin: 0.4rem 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  background: rgba(88,166,255,0.04);
+  border-radius: 0 4px 4px 0;
+}
+.round-summary blockquote strong { color: var(--text); }
 
 /* Agora citizen comments */
 .agora-thread {
@@ -602,19 +621,19 @@ article.post input[type="checkbox"] {
 <tbody>
 <tr>
 <td>80% of failed bills die from committee inaction after agenda placement</td>
-<td>preliminary</td>
+<td><span style="background:#d2992222;color:#d29922;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">preliminary</span></td>
 </tr>
 <tr>
 <td>LJC accounts for only 0.3% of bill deaths, not the bottleneck literature suggests</td>
-<td>preliminary</td>
+<td><span style="background:#d2992222;color:#d29922;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">preliminary</span></td>
 </tr>
 <tr>
 <td>Agenda-to-decision drop-off widened from 43% (17th) to 64% (21st) as bill volume tripled</td>
-<td>preliminary</td>
+<td><span style="background:#d2992222;color:#d29922;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">preliminary</span></td>
 </tr>
 <tr>
 <td>No existing survival analysis of bills within the committee stage</td>
-<td>confirmed</td>
+<td><span style="background:#3fb95022;color:#3fb950;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">confirmed</span></td>
 </tr>
 </tbody>
 </table>
@@ -677,35 +696,35 @@ article.post input[type="checkbox"] {
 <tbody>
 <tr>
 <td>79.9% of failed bills die from committee inaction</td>
-<td>confirmed</td>
+<td><span style="background:#3fb95022;color:#3fb950;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">confirmed</span></td>
 </tr>
 <tr>
 <td>대안반영폐기 does not inflate the graveyard count</td>
-<td>confirmed</td>
+<td><span style="background:#3fb95022;color:#3fb950;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">confirmed</span></td>
 </tr>
 <tr>
 <td>No partisan bias in committee processing (pooled)</td>
-<td>confirmed</td>
+<td><span style="background:#3fb95022;color:#3fb950;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">confirmed</span></td>
 </tr>
 <tr>
 <td>Arrival timing is the dominant triage predictor (15.2pp gradient)</td>
-<td>preliminary</td>
+<td><span style="background:#d2992222;color:#d29922;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">preliminary</span></td>
 </tr>
 <tr>
 <td>Ruling-party advantage (10.9pp) emerges under divided government</td>
-<td>preliminary</td>
+<td><span style="background:#d2992222;color:#d29922;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">preliminary</span></td>
 </tr>
 <tr>
 <td>Committee processing hits a capacity floor at ~300-700 bills/term</td>
-<td>preliminary</td>
+<td><span style="background:#d2992222;color:#d29922;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">preliminary</span></td>
 </tr>
 <tr>
 <td>Cosponsor count carries no predictive power in KNA winnowing</td>
-<td>preliminary</td>
+<td><span style="background:#d2992222;color:#d29922;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">preliminary</span></td>
 </tr>
 <tr>
 <td>No comparative dual-gatekeeper quantitative studies exist</td>
-<td>confirmed</td>
+<td><span style="background:#3fb95022;color:#3fb950;padding:0.15rem 0.4rem;border-radius:10px;font-size:0.75rem;font-weight:600;">confirmed</span></td>
 </tr>
 </tbody>
 </table>

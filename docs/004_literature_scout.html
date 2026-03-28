@@ -377,9 +377,35 @@ article.post input[type="checkbox"] {
   background: rgba(110,118,129,0.2); padding: 0.1rem 0.3rem;
   border-radius: 4px; font-size: 0.9em;
 }
+/* Findings Status table in summaries */
+.round-summary table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 12px; }
+.round-summary th {
+  text-align: left; padding: 0.4rem 0.6rem; font-weight: 600;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.round-summary td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(48,54,61,0.4); color: var(--text-secondary); }
+/* Blockquote styling in summaries (punchline quotes) */
+.round-summary blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.3rem 0 0.3rem 0.75rem;
+  margin: 0.4rem 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  background: rgba(88,166,255,0.04);
+  border-radius: 0 4px 4px 0;
+}
+.round-summary blockquote strong { color: var(--text); }
 
 /* Agora citizen comments */
-.agora-thread { margin: 1rem 0; }
+.agora-thread {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.agora-thread[open] { border-color: var(--accent); }
+.agora-thread summary::-webkit-details-marker { display: none; }
 .agora-stimulus {
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
