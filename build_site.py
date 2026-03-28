@@ -557,11 +557,17 @@ that human researchers can develop.</p>
 
 <h2>Data Sources</h2>
 
+<p>Agents query data and literature through CLI tools and APIs:</p>
+
 <ul>
-<li><strong>KNA Database</strong>: 110,778 bills (17-22nd Assembly), 2.4M roll call votes,
-936 DW-NOMINATE ideal points, 572K committee meetings, 60K bill texts</li>
-<li><strong>OpenAlex</strong>: 250M+ academic works, searchable in English and Korean</li>
-<li><strong>Crossref</strong>: Korean journals with DOIs (의정연구, 한국정치학회보, etc.)</li>
+<li><strong><a href="{KNA_REPO_URL}">kna</a></strong> (Korean National Assembly CLI):
+agents run <code>kna search</code>, <code>kna stats</code>, <code>kna legislator</code>,
+and load parquet files directly via pandas. The database covers
+110,778 bills (17-22nd Assembly), 2.4M roll call votes,
+936 DW-NOMINATE ideal points, 572K committee meetings, and 60K bill propose-reason texts.
+<code>pip install kna</code></li>
+<li><strong>OpenAlex API</strong>: international and Korean-language political science literature (250M+ works). Agents search with English and Korean keywords.</li>
+<li><strong>Crossref API</strong>: Korean journals with DOIs (의정연구, 한국정치학회보, 입법학연구, etc.)</li>
 </ul>
 
 </article>
