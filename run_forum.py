@@ -51,42 +51,32 @@ def get_forum_posts():
 
 
 def get_forum_state(current_round=1, n_agents=3):
-    """Compile forum state with context compression for older rounds.
+    """Compile forum state with aggressive context compression.
 
-    Recent 2 rounds: full text. Older rounds: summary only.
+    Strategy (keeps context small even at 20+ rounds):
+    - Current round (N): full text of all posts so far in this round
+    - Previous round (N-1): full text (agents need recent context)
+    - Rounds N-3 to N-2: round SUMMARY only (from summaries/ dir)
+    - Rounds 1 to N-4: omitted entirely (findings tracker covers key results)
     """
     posts = get_forum_posts()
     if not posts:
         return "(No posts yet. You are starting the discussion.)"
 
     parts = []
+
+    # 1. Include round summaries for N-3 and N-2 only
+    if SUMMARIES_DIR.exists():
+        for sf in sorted(SUMMARIES_DIR.glob("round_*.md")):
+            rnd_num = int(re.search(r"(\d+)", sf.stem).group(1))
+            if current_round - 3 <= rnd_num <= current_round - 2:
+                parts.append(f"--- Round {rnd_num} Summary ---\n{sf.read_text()}")
+
+    # 2. Full text for current and previous round only
     for i, p in enumerate(posts):
         post_round = (i // n_agents) + 1
-        content = p.read_text()
-
         if post_round >= current_round - 1:
-            # Recent: full text
-            parts.append(f"--- {p.name} ---\n{content}")
-        else:
-            # Old: compressed summary (title + first 200 chars)
-            title = "Untitled"
-            for line in content.split("\n"):
-                if line.startswith("# ") and "---" not in line:
-                    title = line[2:].strip()
-                    break
-            # Strip frontmatter for preview
-            body = content
-            if content.startswith("---"):
-                end = content.find("---", 3)
-                if end > 0:
-                    body = content[end + 3:].strip()
-            preview = body[:300].replace("\n", " ").strip()
-            parts.append(
-                f"--- {p.name} (SUMMARY) ---\n"
-                f"# {title}\n"
-                f"{preview}...\n"
-                f"(Full post available in forum/{p.name})"
-            )
+            parts.append(f"--- {p.name} ---\n{p.read_text()}")
 
     return "\n\n".join(parts)
 
