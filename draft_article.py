@@ -368,7 +368,8 @@ def compile_tex(tex_file):
     # Run xelatex twice (for references/cross-refs)
     for i in range(2):
         result = _sp.run(
-            ["xelatex", "-interaction=nonstopmode", "-halt-on-error", tex_file.name],
+            [str(Path.home() / "Library/TinyTeX/bin/universal-darwin/xelatex"),
+             "-interaction=nonstopmode", "-halt-on-error", tex_file.name],
             capture_output=True, text=True, timeout=120, cwd=str(tex_dir),
         )
         if result.returncode != 0 and i == 0:
