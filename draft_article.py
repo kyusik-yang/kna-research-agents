@@ -25,6 +25,7 @@ FORUM_DIR = BASE_DIR / "forum"
 ARTICLES_DIR = BASE_DIR / "articles"
 KNOWLEDGE_DIR = BASE_DIR / "knowledge"
 WORKSPACE_DIR = BASE_DIR / "workspace"
+SUMMARIES_DIR = BASE_DIR / "summaries"
 
 import os
 import shutil
@@ -61,25 +62,25 @@ def get_round_posts(round_num):
 
 
 def get_all_forum_context(up_to_round):
-    """Get compressed forum context up to a specific round."""
+    """Get compressed forum context. Full text for last 2 rounds, summaries for older."""
     posts = sorted(FORUM_DIR.glob("*.md"))
     n_agents = 3
     context = []
+
+    # Include round summaries for older rounds (much shorter than full posts)
+    for sf in sorted(SUMMARIES_DIR.glob("round_*.md")):
+        rnd_num = int(re.search(r"(\d+)", sf.stem).group(1))
+        if rnd_num <= up_to_round - 2:
+            context.append(f"--- Round {rnd_num} Summary ---\n{sf.read_text()}")
+
+    # Full text for last 2 rounds only
     for i, p in enumerate(posts):
         rnd = (i // n_agents) + 1
         if rnd > up_to_round:
             break
-        content = p.read_text()
-        # Last 2 rounds full, older compressed
         if rnd >= up_to_round - 1:
-            context.append(f"--- {p.name} ---\n{content}")
-        else:
-            title = "Untitled"
-            for line in content.split("\n"):
-                if line.startswith("# ") and "---" not in line:
-                    title = line[2:].strip()
-                    break
-            context.append(f"--- {p.name} (summary) ---\n# {title}\n(See full post in forum/)")
+            context.append(f"--- {p.name} ---\n{p.read_text()}")
+
     return "\n\n".join(context)
 
 
@@ -92,160 +93,155 @@ def draft_article(round_num):
     forum_context = get_all_forum_context(round_num)
 
     # Check for existing articles to avoid duplicates
-    existing = list(ARTICLES_DIR.glob(f"*_r{round_num}_*.md"))
+    existing = list(ARTICLES_DIR.glob(f"*_r{round_num}.tex")) + list(ARTICLES_DIR.glob(f"*_r{round_num}.md"))
+    existing = [e for e in existing if "template" not in e.name and "content" not in e.name]
     if existing:
         print(f"  Article for round {round_num} already exists: {existing[0].name}")
         return existing[0]
 
     article_slug = f"{ts}_r{round_num}"
+    tex_file = ARTICLES_DIR / f"{article_slug}.tex"
+    content_file = ARTICLES_DIR / f"{article_slug}_content.tex"
 
     prompt = textwrap.dedent(f"""\
     You are a research paper drafting agent. Based on the forum discussion below,
-    draft a working paper following APSR (American Political Science Review) conventions.
+    draft a working paper as a LaTeX document body following APSR conventions.
 
-    IMPORTANT CONTEXT:
-    - This is an AI-generated experimental draft
-    - All data findings come from the KNA database (Korean National Assembly)
-    - All literature references come from OpenAlex/Crossref searches by the forum agents
+    IMPORTANT: Write ONLY the LaTeX body content (from \\title to the bibliography).
+    Do NOT include \\documentclass, \\usepackage, or \\begin{{document}}.
+    The template handles those.
 
-    Write the draft to: {ARTICLES_DIR}/{article_slug}.md
+    Write the content to: {content_file}
 
-    ## APSR Style Guide (follow strictly)
+    ## OUTPUT FORMAT (LaTeX body only)
 
-    **Voice and Tense:**
-    - Use "I" for single author, "We" for multiple. Here use "I" (single AI agent).
-    - Active voice by default. Passive only for data processing descriptions.
-    - Theory/prior work: present tense. Analysis process: past tense. Results: present tense.
+    Write this exact structure:
 
-    **Introduction:**
-    - Start with a theoretical/conceptual problem or empirical puzzle, NOT a news anecdote.
-    - NEVER start with "In recent years..." or abstract grand claims.
-    - Gap statement: "there exists, to our knowledge, no study..." or "Despite X, there is a lack of..."
-    - NEVER say "This is the first paper to..."
-    - Contribution woven into narrative (no separate "contributions" paragraph).
+    \\title{{[Paper Title]}}
+    \\author{{KNA Research Agents (AI-generated)}}
+    \\affil{{Experimental Output --- kna-research-agents.com}}
+    \\date{{\\today}}
+    \\maketitle
+    \\thispagestyle{{empty}}
 
-    **Citations (APSA Author-Date):**
-    - Basic: (Author Year) - NO comma between author and year
-    - Page: (Author Year, 45)
-    - Two authors: (Dodd and Oppenheimer 1977) - use "and", never "&"
-    - Three+ authors: (Corbridge et al. 2004)
-    - Multiple: (Bates et al. 1998; Jones 1990) - semicolon, alphabetical
-    - Narrative: Cox and McCubbins (2005) argue that...
+    \\begin{{abstract}}
+    \\noindent [150 words. Question, method, key finding, contribution.]
+    \\end{{abstract}}
 
-    **Statistics Reporting:**
-    - Body text: beta = -0.028 (SE = 0.003, p < 0.001)
-    - Always report effect size alongside significance
-    - Stars (*) in tables only, never in body text
-    - Sample size (N) stated when sample first appears
+    \\bigskip
+    \\setcounter{{page}}{{0}}
+    \\clearpage
 
-    **Causal Language:**
-    - OLS/observational: "is associated with", "predicts", "correlates with"
-    - DiD/RD/IV: "leads to", "the effect of", "increases/decreases"
-    - NEVER: "proves", "demonstrates causality"
+    \\section{{Introduction}}
+    [~1000 words. Theoretical puzzle, gap, this paper, preview.]
 
-    **References (APSA format):**
-    - Author last name first, then first name (full, not initials)
-    - Elements separated by periods
-    - Journal name: italicized, title case
-    - Article title: in quotes, title case
+    \\section{{Literature and Theory}}
+    [~1200 words. Engage with work, derive expectations.]
 
-    Use this document format:
+    \\section{{Data and Method}}
+    [~800 words. KNA database, variables, identification.]
 
-    ```markdown
-    ---
-    title: "[Paper title]"
-    authors: "KNA Research Agents (AI-generated draft)"
-    date: "{ts}"
-    source_round: {round_num}
-    status: "experimental draft"
-    ---
+    \\subsection{{Data}}
+    [Describe KNA: N bills, time period, unit of analysis.]
 
-    # [Paper Title]
+    \\subsection{{Identification Strategy}}
+    [Formal equation + variable definitions.]
 
-    **KNA Research Agents** | AI-Generated Working Paper | {ts}
-    Source: Forum Round {round_num} | Status: Experimental Draft
+    \\section{{Results}}
+    [~1000 words. Tables + interpretation.]
 
-    ---
+    \\section{{Discussion}}
+    [~600 words. Theory connection, limitations.]
 
-    ## Abstract
+    \\section{{Conclusion}}
+    [~400 words. Contribution, implications.]
 
-    [~150 words. Question, method, key finding, contribution.]
+    \\bigskip
+    \\noindent\\textit{{This working paper was generated by AI research agents as an
+    experimental output. It has not been peer-reviewed or fact-checked.
+    Do not cite or use in any academic, policy, or professional context.}}
 
-    ## 1. Introduction
+    ## APSR STYLE (strict)
 
-    [Theoretical/empirical puzzle. Gap. This paper. Preview of argument and findings.
-     Target: ~800 words.]
+    **Voice**: Use "I" throughout. Active voice. Theory=present, analysis=past, results=present.
+    **Introduction**: Start with theoretical puzzle. NEVER "In recent years..." NEVER "This is the first paper to..."
+    **Gap**: "there exists, to our knowledge, no study..." or "Despite X, there is a lack of..."
 
-    ## 2. Literature and Theory
+    **Citations (natbib commands):**
+    - Narrative: \\citet{{cox2005}} = Cox and McCubbins (2005)
+    - Parenthetical: \\citep{{lowi1964}} = (Lowi 1964)
+    - Multiple: \\citep{{bates1998, jones1990}} = (Bates et al. 1998; Jones 1990)
+    - With page: \\citep[45]{{author2005}} = (Author 2005, 45)
+    - Since we have no .bib file, FAKE the citations by writing them manually:
+      Instead of \\citet{{cox2005}}, write: Cox and McCubbins (2005)
+      Instead of \\citep{{lowi1964}}, write: (Lowi 1964)
 
-    [Engage with existing work - do not just list, show how this paper extends/challenges.
-     Derive expectations or hypotheses. ~1,000 words.]
+    **Equations (amsmath):**
+    Inline: $\\beta_1$, $p < 0.001$
+    Display:
+    \\begin{{equation}}
+    \\Pr(\\text{{Decision}}_i = 1) = \\Lambda(\\beta_1 \\text{{Minsaeng}}_i + \\mathbf{{X}}_i \\boldsymbol{{\\gamma}} + \\delta_c + \\epsilon_i)
+    \\label{{eq:main}}
+    \\end{{equation}}
+    Reference: Equation~\\ref{{eq:main}}
 
-    ## 3. Data and Method
+    **Tables (booktabs, MANDATORY at least 2):**
+    \\begin{{table}}[H]
+    \\centering
+    \\caption{{Descriptive Statistics}}
+    \\label{{tab:desc}}
+    \\begin{{tabular}}{{lcccc}}
+    \\toprule
+    Variable & N & Mean & SD & Range \\\\
+    \\midrule
+    ... & ... & ... & ... & ... \\\\
+    \\bottomrule
+    \\end{{tabular}}
+    \\end{{table}}
 
-    [KNA database description. Variables. Sample. Identification strategy.
-     Be specific: N, time period, unit of analysis. ~600 words.]
+    Regression table:
+    \\begin{{table}}[H]
+    \\centering
+    \\caption{{Main Results: Committee Processing of Bills}}
+    \\label{{tab:main}}
+    \\begin{{tabular}}{{lccc}}
+    \\toprule
+    & (1) & (2) & (3) \\\\
+    & Baseline & Controls & FE \\\\
+    \\midrule
+    Minsaeng & $-0.093^{{***}}$ & $-0.085^{{***}}$ & $-0.078^{{***}}$ \\\\
+    & (0.008) & (0.009) & (0.010) \\\\
+    ... \\\\
+    \\midrule
+    N & 50,003 & 50,003 & 50,003 \\\\
+    Committee FE & No & No & Yes \\\\
+    Pseudo $R^2$ & 0.04 & 0.08 & 0.12 \\\\
+    \\bottomrule
+    \\multicolumn{{4}}{{l}}{{\\footnotesize $^*p<0.10$, $^{{**}}p<0.05$, $^{{***}}p<0.01$. SE in parentheses.}} \\\\
+    \\end{{tabular}}
+    \\end{{table}}
 
-    ## 4. Results
+    **Statistics in text:**
+    $\\beta = -0.093$ (SE $= 0.008$, $p < 0.001$)
 
-    [Present findings with exact numbers from Analyst's posts.
-     Tables with coefficient, SE, significance.
-     Substantive interpretation of effect sizes. ~800 words.]
+    **Causal language:**
+    OLS: "is associated with". DiD/RD: "the effect of". NEVER "proves".
 
-    ## 5. Discussion
-
-    [Connect to theory. Address Critic's limitations.
-     What can and cannot be concluded. ~500 words.]
-
-    ## 6. Conclusion
-
-    [Contribution summary. Implications. Future research. ~300 words.]
-
-    ## References
-
-    [APSA format. Example entries:
-
-    Cox, Gary W., and Mathew D. McCubbins. 2005. *Setting the Agenda*.
-      New York: Cambridge University Press.
-
-    Volden, Craig, and Alan E. Wiseman. 2014. *Legislative Effectiveness
-      in the United States Congress*. New York: Cambridge University Press.
-
-    Lowi, Theodore J. 1964. "American Business, Public Policy, Case-Studies,
-      and Political Theory." *World Politics* 16 (4): 677-715.
-
-    ONLY include references that appear in the forum posts.]
-
-    ---
-
-    *This working paper was generated by AI research agents as an experimental output.
-    It has not been peer-reviewed or fact-checked.
-    Do not cite or use in any academic, policy, or professional context.*
-    ```
+    **References section:**
+    Since no .bib file, write references manually at the end:
+    \\section*{{References}}
+    \\begin{{description}}
+    \\item Cox, Gary W., and Mathew D. McCubbins. 2005. \\textit{{Setting the Agenda}}. New York: Cambridge University Press.
+    \\item Lowi, Theodore J. 1964. ``American Business, Public Policy, Case-Studies, and Political Theory.'' \\textit{{World Politics}} 16 (4): 677--715.
+    \\end{{description}}
+    ONLY include references from the forum posts.
 
     RULES:
-    - Use ONLY findings, statistics, and references from the forum posts below
-    - Do NOT invent data, citations, or results
-    - Where Critic identified weaknesses, acknowledge them honestly
+    - ONLY use findings/statistics/references from the forum posts below
+    - Do NOT invent data or citations
+    - Acknowledge Critic's limitations honestly
     - Target 5,000-6,000 words
-    - APSR style throughout - this should read like a real political science manuscript
-
-    **Math and Equations:**
-    - Use LaTeX notation: inline $\beta_1$ and display $$\Pr(Y_i = 1) = \Lambda(\mathbf{{X}}_i \boldsymbol{{\beta}} + \delta_c)$$
-    - Every regression specification must be written as a formal equation
-    - Define all variables after the equation
-
-    **Tables (MANDATORY - include at least 2):**
-    - Table 1: Descriptive statistics (N, mean, SD for key variables)
-    - Table 2: Main regression results (coefficients, SE in parentheses, stars, N, R2)
-    - Use markdown tables with clear column headers
-    - Stars: * p<0.10, ** p<0.05, *** p<0.01 (in table footnote)
-    - SE in parentheses below coefficients
-    - Bottom rows: N, R-squared/Pseudo-R2, Fixed Effects (Yes/No)
-
-    **Figures (if data supports):**
-    - Describe figures in text: "Figure 1 shows..." with a markdown placeholder
-    - Coefficient plots, event study plots, or distribution comparisons
+    - Valid LaTeX that compiles with xelatex
 
     ## Forum Discussion (Rounds 1-{round_num})
 
@@ -256,7 +252,7 @@ def draft_article(round_num):
     prompt_file.write_text(prompt)
 
     print(f"\n  Drafting article from Round {round_num}...")
-    print(f"  Output: {ARTICLES_DIR}/{article_slug}.md")
+    print(f"  Output: {tex_file}")
 
     cmd = [
         CLAUDE, "-p",
@@ -269,21 +265,48 @@ def draft_article(round_num):
 
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=900,
+            cmd, capture_output=True, text=True, timeout=1200,
             cwd=str(WORKSPACE_DIR),
         )
-        article_file = ARTICLES_DIR / f"{article_slug}.md"
-        if article_file.exists():
-            wc = len(article_file.read_text().split())
-            print(f"  Draft complete: {article_file.name} ({wc} words)")
+        if content_file.exists():
+            content = content_file.read_text()
+            wc = len(content.split())
+            print(f"  Content generated: {wc} words")
 
-            # Generate PDF via playwright
+            # Merge with template
+            template = (ARTICLES_DIR / "template.tex").read_text()
+            # Extract title for markdown version
+            import re as _re
+            title_match = _re.search(r'\\title\{(.+?)\}', content)
+            title = title_match.group(1) if title_match else "Untitled"
+
+            full_tex = template.replace("%%TITLE%%", "").replace("%%CONTENT%%", content)
+            tex_file.write_text(full_tex)
+            print(f"  LaTeX: {tex_file.name}")
+
+            # Also save a markdown version for the website
+            md_file = ARTICLES_DIR / f"{article_slug}.md"
+            md_file.write_text(
+                f"---\ntitle: \"{title}\"\nauthors: \"KNA Research Agents\"\n"
+                f"date: \"{ts}\"\nsource_round: {round_num}\nstatus: \"experimental draft\"\n"
+                f"tex_file: \"{tex_file.name}\"\n---\n\n"
+                f"# {title}\n\n"
+                f"**KNA Research Agents** | AI-Generated Working Paper | {ts}\n\n"
+                f"Source: Forum Round {round_num} | Status: Experimental Draft\n\n"
+                f"[View LaTeX source]({tex_file.name}) | "
+                f"[Download PDF]({article_slug}.pdf)\n\n---\n\n"
+                f"*See PDF for full paper with equations, tables, and references.*\n"
+            )
+
+            # Compile with xelatex
             try:
-                generate_pdf(article_file)
+                compile_tex(tex_file)
             except Exception as e:
-                print(f"  PDF generation skipped: {e}")
+                print(f"  PDF compilation failed: {e}")
 
-            return article_file
+            # Clean up content file
+            content_file.unlink()
+            return tex_file
         else:
             print(f"  WARNING: Article not generated")
             return None
@@ -292,71 +315,41 @@ def draft_article(round_num):
         return None
 
 
-def generate_pdf(md_file):
-    """Convert article markdown to PDF via HTML rendering."""
-    import markdown
+def compile_tex(tex_file):
+    """Compile LaTeX to PDF using xelatex."""
+    import subprocess as _sp
 
-    content = md_file.read_text()
-    # Strip frontmatter
-    match = re.match(r"^---\n(.*?)\n---\n(.*)", content, re.DOTALL)
-    if match:
-        body = match.group(2)
+    tex_dir = tex_file.parent
+    print(f"  Compiling {tex_file.name} with xelatex...")
+
+    # Run xelatex twice (for references/cross-refs)
+    for i in range(2):
+        result = _sp.run(
+            ["xelatex", "-interaction=nonstopmode", "-halt-on-error", tex_file.name],
+            capture_output=True, text=True, timeout=120, cwd=str(tex_dir),
+        )
+        if result.returncode != 0 and i == 0:
+            # First pass may fail on refs, try once more
+            continue
+        elif result.returncode != 0 and i == 1:
+            print(f"  xelatex error (pass {i+1})")
+            # Save error log
+            log = tex_dir / tex_file.stem
+            err_lines = result.stdout.split("\n")
+            errors = [l for l in err_lines if l.startswith("!") or "Error" in l]
+            for e in errors[:5]:
+                print(f"    {e}")
+
+    pdf_file = tex_file.with_suffix(".pdf")
+    if pdf_file.exists():
+        print(f"  PDF: {pdf_file.name} ({pdf_file.stat().st_size // 1024} KB)")
+        # Clean aux files
+        for ext in [".aux", ".log", ".out", ".toc"]:
+            f = tex_file.with_suffix(ext)
+            if f.exists():
+                f.unlink()
     else:
-        body = content
-
-    html_body = markdown.markdown(body, extensions=["tables", "fenced_code"])
-
-    html = f"""\
-<!DOCTYPE html>
-<html><head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-<style>
-  body {{ font-family: 'Times New Roman', Georgia, serif; max-width: 680px; margin: 2.5cm auto;
-         font-size: 12pt; line-height: 1.7; color: #1a1a1a; }}
-  h1 {{ font-size: 16pt; text-align: center; margin-bottom: 0.3cm; font-weight: bold; }}
-  h2 {{ font-size: 13pt; margin-top: 1.2cm; margin-bottom: 0.4cm; font-weight: bold; }}
-  h3 {{ font-size: 12pt; font-weight: bold; margin-top: 0.8cm; }}
-  table {{ border-collapse: collapse; width: 100%; margin: 0.6cm 0; font-size: 10pt; }}
-  th, td {{ padding: 4px 8px; text-align: left; }}
-  thead th {{ border-top: 2px solid #000; border-bottom: 1px solid #000; font-weight: bold; }}
-  tbody td {{ border-bottom: none; }}
-  tbody tr:last-child td {{ border-bottom: 2px solid #000; }}
-  tfoot td {{ border-top: 1px solid #000; font-size: 9pt; color: #555; }}
-  code {{ font-family: 'Courier New', monospace; font-size: 10pt; }}
-  blockquote {{ border-left: 2px solid #ccc; padding-left: 1em; color: #555; font-style: italic; }}
-  em {{ font-style: italic; }}
-  hr {{ border: none; border-top: 0.5px solid #999; margin: 1cm 0; }}
-  p {{ margin-bottom: 0.4cm; text-align: justify; }}
-  .katex-display {{ margin: 0.8cm 0; }}
-</style>
-</head><body>
-{html_body}
-<script>renderMathInElement(document.body,{{delimiters:[{{left:'$$',right:'$$',display:true}},{{left:'$',right:'$',display:false}}]}});</script>
-</body></html>"""
-
-    html_file = md_file.with_suffix(".html")
-    html_file.write_text(html)
-
-    pdf_file = md_file.with_suffix(".pdf")
-    try:
-        from playwright.sync_api import sync_playwright
-        with sync_playwright() as p:
-            browser = p.chromium.launch()
-            page = browser.new_page()
-            page.goto(f"file://{html_file.resolve()}")
-            page.pdf(path=str(pdf_file), format="A4", margin={
-                "top": "2cm", "bottom": "2cm", "left": "2.5cm", "right": "2.5cm"
-            })
-            browser.close()
-        print(f"  PDF: {pdf_file.name}")
-        html_file.unlink()  # clean up temp HTML
-    except Exception as e:
-        print(f"  PDF skipped: {e}")
-        if html_file.exists():
-            html_file.unlink()
+        print(f"  WARNING: PDF not generated")
 
 
 def main():
