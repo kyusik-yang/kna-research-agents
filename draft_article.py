@@ -105,13 +105,51 @@ def draft_article(round_num):
 
     prompt = textwrap.dedent(f"""\
     You are a research paper drafting agent. Based on the forum discussion below,
-    draft a working paper as a LaTeX document body following APSR conventions.
+    draft a working paper as a LaTeX document body following APSR conventions
+    and the academic writing style guide below.
 
     IMPORTANT: Write ONLY the LaTeX body content (from \\title to the bibliography).
     Do NOT include \\documentclass, \\usepackage, or \\begin{{document}}.
     The template handles those.
 
     Write the content to: {content_file}
+
+    ## ACADEMIC WRITING STYLE GUIDE (mandatory, enforce strictly)
+
+    **Anti-AI-Tell Rules (CRITICAL):**
+    Inline coefficient reporting ($\\beta = ..., p < ...$) is the #1 marker of AI-generated prose.
+    - Introduction: NEVER inline coefficients. Substantive framing only.
+    - Literature Review: NEVER. Summarize findings narratively.
+    - Results: MAX 1-2 key estimates, ALWAYS with table reference. E.g., "The effect is
+      substantively large and robust across specifications (Table 2)."
+    - Discussion: NEVER. Describe substantive magnitude and direction, reference tables.
+    - Conclusion: NEVER. High-level takeaway only.
+    FORBIDDEN: Serial listing of coefficients. Repeating beta/SE/p triplets. "($\\beta = 1.23$, $t = 36.9$)".
+    PREFERRED: "a 12 percentage-point increase", "roughly twice as likely", "explains about 3\\% of the variation".
+
+    **Formatting:**
+    - No em dashes or double hyphens. Use a comma, semicolon, colon, or rephrase.
+    - No contractions (don't -> do not, it's -> it is).
+    - No slashes (and/or -> "and" or "or").
+    - No rhetorical questions. Use declarative statements.
+    - Numbers: spell out zero through nine, numerals for 10 and above.
+    - "Who" for people, not "that". Hyphenate compound modifiers before nouns.
+
+    **Hedging and Caution:**
+    - Never state absolute certainty. Use "may," "could," "suggests," "appears to."
+    - "These findings suggest that..." NOT "These findings prove that..."
+    - "A possible explanation for this might be that..."
+
+    **Section Structure:**
+    - Introduction: CARS model (establish territory, identify niche, occupy niche). No news anecdotes.
+    - Literature: Engage, compare, synthesize. "Smith (2004) found..." "Unlike Smith, Jones argues..."
+    - Results: Location statement (Table X shows) + highlighting (significant data). Reserve commentary for Discussion.
+    - Discussion: Result -> comparison with prior work -> explanation -> implications. Tentative language.
+    - Conclusion: Summarize, significance, limitations, future research.
+
+    **Tables and Figures:**
+    - Number each in own sequence. Refer to EVERY table/figure in text before it appears.
+    - NEVER "Table ??" or broken references. Use \\label and \\ref.
 
     ## OUTPUT FORMAT (LaTeX body only)
 
@@ -306,6 +344,11 @@ def draft_article(round_num):
 
             # Clean up content file
             content_file.unlink()
+
+            # Step 2: Review and revise
+            print(f"\n  Running paper reviewer + auto-revision...")
+            review_and_revise(tex_file)
+
             return tex_file
         else:
             print(f"  WARNING: Article not generated")
@@ -350,6 +393,145 @@ def compile_tex(tex_file):
                 f.unlink()
     else:
         print(f"  WARNING: PDF not generated")
+
+
+def review_and_revise(tex_file):
+    """Run paper-reviewer on the article and auto-revise."""
+    WORKSPACE_DIR.mkdir(exist_ok=True)
+
+    content = tex_file.read_text()
+
+    # Step 1: Review
+    review_prompt = textwrap.dedent(f"""\
+    You are a rigorous academic paper reviewer for a top political science journal (APSR/AJPS).
+    Review the LaTeX paper below and produce a structured review.
+
+    Evaluate on these dimensions:
+    1. **AI-Tell Detection**: Are there inline coefficients in Intro/Discussion/Conclusion?
+       Serial beta/SE/p listings? Generic AI prose patterns?
+    2. **Writing Quality**: Contractions? Slashes? Rhetorical questions? Em dashes?
+       Vague "this" without referent? Excessive passive voice?
+    3. **Structure**: Does Introduction follow CARS model? Does Discussion interpret (not re-list)?
+       Are all tables/figures referenced in text? Any broken \\ref links?
+    4. **Equations/Tables**: Are equations properly formatted? Do tables have booktabs
+       (toprule/midrule/bottomrule)? Are stars footnoted?
+    5. **Citations**: APSA author-date format? No numbered citations?
+    6. **Hedging**: Are claims appropriately hedged? Any overclaiming?
+    7. **LaTeX Errors**: Any syntax that would not compile? Missing braces, unmatched environments?
+
+    Write your review to: {WORKSPACE_DIR}/_review.md
+
+    Format:
+    ## Review Summary
+    [2-3 sentences overall assessment]
+
+    ## Critical Issues (must fix)
+    1. [issue + location + fix]
+    2. ...
+
+    ## Minor Issues
+    1. [issue + fix]
+    2. ...
+
+    ## LaTeX Compilation Concerns
+    1. [issue]
+
+    ## Paper:
+    {content[:30000]}
+    """)
+
+    review_file = WORKSPACE_DIR / "_prompt_review.md"
+    review_file.write_text(review_prompt)
+
+    print(f"  Step 1: Reviewing article...")
+    cmd = [
+        CLAUDE, "-p",
+        "--allowedTools", "Write",
+        "--dangerously-skip-permissions",
+        "--system-prompt-file", str(review_file),
+        "--output-format", "text",
+        "Review the paper now. Be strict.",
+    ]
+
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300, cwd=str(WORKSPACE_DIR))
+    except subprocess.TimeoutExpired:
+        print(f"  Review timed out")
+        return
+
+    review_output = WORKSPACE_DIR / "_review.md"
+    if not review_output.exists():
+        review_output.write_text(result.stdout[:5000])
+
+    review_text = review_output.read_text() if review_output.exists() else result.stdout[:5000]
+    print(f"  Review complete ({len(review_text)} chars)")
+
+    # Step 2: Revise based on review
+    revise_prompt = textwrap.dedent(f"""\
+    You are revising a LaTeX paper based on reviewer feedback.
+    Apply ALL critical and minor fixes from the review below.
+
+    IMPORTANT RULES:
+    - Output the COMPLETE revised LaTeX body (everything between \\begin{{document}} and \\end{{document}})
+    - Do NOT include \\documentclass or preamble
+    - Fix every issue the reviewer identified
+    - Preserve all content, equations, tables, and references
+    - If the reviewer found inline coefficients in wrong sections, rewrite those sentences
+      to use substantive magnitude + table references instead
+
+    Write the revised content to: {tex_file.stem}_revised_content.tex
+    (in the same directory as the original: {ARTICLES_DIR}/)
+
+    ## Reviewer Feedback:
+    {review_text}
+
+    ## Original Paper:
+    {content}
+    """)
+
+    revise_file = WORKSPACE_DIR / "_prompt_revise.md"
+    revise_file.write_text(revise_prompt)
+
+    print(f"  Step 2: Revising article based on review...")
+    cmd = [
+        CLAUDE, "-p",
+        "--allowedTools", "Write",
+        "--dangerously-skip-permissions",
+        "--system-prompt-file", str(revise_file),
+        "--output-format", "text",
+        "Revise the paper now. Fix all issues.",
+    ]
+
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=1200, cwd=str(WORKSPACE_DIR))
+    except subprocess.TimeoutExpired:
+        print(f"  Revision timed out")
+        return
+
+    revised_content_file = ARTICLES_DIR / f"{tex_file.stem}_revised_content.tex"
+    if revised_content_file.exists():
+        # Merge revised content with template
+        template = (ARTICLES_DIR / "template.tex").read_text()
+        revised_content = revised_content_file.read_text()
+
+        # Extract content between \begin{document} and \end{document} if present
+        m = re.search(r'\\begin\{document\}(.*?)\\end\{document\}', revised_content, re.DOTALL)
+        if m:
+            revised_content = m.group(1).strip()
+
+        full_tex = template.replace("%%CONTENT%%", revised_content)
+        tex_file.write_text(full_tex)
+        revised_content_file.unlink()
+
+        # Recompile
+        try:
+            compile_tex(tex_file)
+        except Exception as e:
+            print(f"  Recompilation failed: {e}")
+
+        print(f"  Revision complete. Article updated.")
+    else:
+        print(f"  WARNING: Revised content not generated")
 
 
 def main():
