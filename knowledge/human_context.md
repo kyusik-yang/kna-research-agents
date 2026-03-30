@@ -1,6 +1,6 @@
-[2026-03-28] Citizen feedback from Yeouido Agora on the auto-generated article (minsaeng bill processing penalty):
-1. 위원회 자동상정 제도 도입 이후에도 민생법안 심사율이 변하지 않았다면, 위원장의 안건 편성 재량권 자체가 문제 (Choi Youngho)
-2. 프리랜서 노동권 법안 vs 정규직 노동법안 위원회 심사율 비교 요청 - 같은 '노동' 카테고리 내에서도 격차가 있는지 (Shin Yuna)
-3. 일본/대만과 cross-national comparison 요청 - 재분배 vs 산업 법안 위원회 처리율 격차가 한국만의 현상인지 (Yang Heejin)
-4. 지역 법안(제주 관광 등) vs 수도권 산업 법안 처리율 비교 요청 (Bae Eunji)
-5. 선거철 법안 발의 후 본인이 위원회 심사 요청을 실제로 했는지 추적 요청 - position-taking 가설 검증 (Park Sunhee)
+[2026-03-30] Citizen feedback from Yeouido Agora on regionalism and local elections:
+1. 지역주의 타파 후보가 당선된 지역에서 실제 보육/돌봄 예산이 달라졌는지 데이터 요청 (Ahn Suji)
+2. 부산 20대 투표율이 바닥인데 지역주의 완화가 실제 청년 투표 행태 변화인지 단순 무관심인지 (Han Dongwook)
+3. 세종시가 탈지역주의 실험도시로서 선거 결과 추이 - 출신 지역별 투표 패턴 분석 요청 (Ryu Junhyeok)
+4. 양당 교차 출마 후보의 지역 맞춤 공약 vs 중앙당 공약 복붙 비교 요청 (Kang Soyeon)
+5. 대구-부산-서울 청년 유출과 지역주의 변화의 관계 (Shin Yuna)
