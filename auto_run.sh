@@ -36,11 +36,44 @@ echo "$NOW" > "$LAST_RUN_FILE"
 echo "$(date): Starting ${MODE} run" >> "$LOG"
 
 if [ "$MODE" = "forum" ]; then
-    # Forum: 1 round, resume from existing, agents pick topic
-    python3 run_forum.py --rounds 1 --resume >> "$LOG" 2>&1
+    # Check if last round produced an article (pursue -> article published)
+    # If so, start a NEW topic thread (archive old forum, fresh start)
+    ARTICLE_MARKER="/tmp/kna-article-published.txt"
+    if [ -f "$ARTICLE_MARKER" ]; then
+        echo "$(date): Article was published. Starting new topic thread." >> "$LOG"
+        # Archive current forum to a timestamped directory
+        ARCHIVE="forum_archive/$(date +%Y%m%d_%H%M)"
+        mkdir -p "$ARCHIVE"
+        mv forum/0*.md "$ARCHIVE/" 2>/dev/null
+        mv summaries/round_*.md "$ARCHIVE/" 2>/dev/null
+        # Clear findings for fresh thread
+        : > knowledge/findings.jsonl
+        rm -f knowledge/human_context.md
+        rm "$ARTICLE_MARKER"
+        echo "$(date): Archived to $ARCHIVE. Fresh forum start." >> "$LOG"
+
+        # Pick a new topic via Claude (based on recent agora demands or autonomous)
+        NEW_TOPIC=$(claude -p --output-format text \
+            "You are a political science research agenda setter. Based on Korean legislative politics, suggest ONE specific research question that would make a good forum topic. Focus on the Korean National Assembly. Be specific and empirical. One sentence only. English." \
+            2>/dev/null | tail -1)
+        python3 run_forum.py --topic "$NEW_TOPIC" --rounds 1 >> "$LOG" 2>&1
+    else
+        # Continue existing thread
+        python3 run_forum.py --rounds 1 --resume >> "$LOG" 2>&1
+    fi
 
     # Check for pursue verdicts -> auto-draft articles
     python3 draft_article.py >> "$LOG" 2>&1
+
+    # If a new article was just created, mark it for next run
+    LATEST_ARTICLE=$(ls -t articles/*.md 2>/dev/null | head -1)
+    if [ -n "$LATEST_ARTICLE" ]; then
+        ARTICLE_AGE=$(( ($(date +%s) - $(stat -f %m "$LATEST_ARTICLE")) / 60 ))
+        if [ "$ARTICLE_AGE" -lt 30 ]; then
+            touch "$ARTICLE_MARKER"
+            echo "$(date): Article published, next run will start fresh topic." >> "$LOG"
+        fi
+    fi
 
     # Build site and push
     python3 build_site.py >> "$LOG" 2>&1
