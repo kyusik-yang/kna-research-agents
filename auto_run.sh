@@ -75,9 +75,18 @@ if [ "$MODE" = "forum" ]; then
         fi
     fi
 
+    # Check cumulative rounds for conference trigger (every 20 rounds)
+    TOTAL_ROUNDS=$(ls forum_archive/*/0*_critic.md 2>/dev/null summaries/round_*.md 2>/dev/null | wc -l | tr -d ' ')
+    LAST_CONF=$(ls articles/conference_*.md 2>/dev/null | wc -l | tr -d ' ')
+    CONF_THRESHOLD=$(( (LAST_CONF + 1) * 20 ))
+    if [ "$TOTAL_ROUNDS" -ge "$CONF_THRESHOLD" ]; then
+        echo "$(date): ${TOTAL_ROUNDS} cumulative rounds - generating conference #$((LAST_CONF + 1))" >> "$LOG"
+        python3 generate_conference.py >> "$LOG" 2>&1
+    fi
+
     # Build site and push
     python3 build_site.py >> "$LOG" 2>&1
-    git add forum/ summaries/ knowledge/ articles/ docs/ && \
+    git add forum/ summaries/ knowledge/ articles/ docs/ forum_archive/ && \
     git commit -m "Auto: Forum round $(ls forum/*.md 2>/dev/null | grep -v gitkeep | wc -l | tr -d ' ') posts" && \
     git push origin main >> "$LOG" 2>&1
 
