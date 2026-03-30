@@ -366,7 +366,7 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
             cmd,
             capture_output=True,
             text=True,
-            timeout=1200,  # 20 min
+            timeout=3600,  # 1 hour
             cwd=str(WORKSPACE_DIR),
         )
         log_file.write_text(
@@ -394,7 +394,7 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
             print(f"  Exit code: {result.returncode}")
 
     except subprocess.TimeoutExpired:
-        print(f"  TIMEOUT (>20 min)")
+        print(f"  TIMEOUT (>1 hour)")
         log_file.write_text("TIMEOUT after 600s")
     except Exception as e:
         print(f"  ERROR: {e}")
