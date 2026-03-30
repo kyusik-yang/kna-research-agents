@@ -227,8 +227,25 @@ def draft_article(round_num):
     - Use ONLY findings, statistics, and references from the forum posts below
     - Do NOT invent data, citations, or results
     - Where Critic identified weaknesses, acknowledge them honestly
-    - Target 4,000 words
+    - Target 5,000-6,000 words
     - APSR style throughout - this should read like a real political science manuscript
+
+    **Math and Equations:**
+    - Use LaTeX notation: inline $\beta_1$ and display $$\Pr(Y_i = 1) = \Lambda(\mathbf{{X}}_i \boldsymbol{{\beta}} + \delta_c)$$
+    - Every regression specification must be written as a formal equation
+    - Define all variables after the equation
+
+    **Tables (MANDATORY - include at least 2):**
+    - Table 1: Descriptive statistics (N, mean, SD for key variables)
+    - Table 2: Main regression results (coefficients, SE in parentheses, stars, N, R2)
+    - Use markdown tables with clear column headers
+    - Stars: * p<0.10, ** p<0.05, *** p<0.01 (in table footnote)
+    - SE in parentheses below coefficients
+    - Bottom rows: N, R-squared/Pseudo-R2, Fixed Effects (Yes/No)
+
+    **Figures (if data supports):**
+    - Describe figures in text: "Figure 1 shows..." with a markdown placeholder
+    - Coefficient plots, event study plots, or distribution comparisons
 
     ## Forum Discussion (Rounds 1-{round_num})
 
@@ -252,7 +269,7 @@ def draft_article(round_num):
 
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=600,
+            cmd, capture_output=True, text=True, timeout=900,
             cwd=str(WORKSPACE_DIR),
         )
         article_file = ARTICLES_DIR / f"{article_slug}.md"
@@ -293,22 +310,32 @@ def generate_pdf(md_file):
 <!DOCTYPE html>
 <html><head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 <style>
-  body {{ font-family: 'Times New Roman', serif; max-width: 700px; margin: 2cm auto;
-         font-size: 12pt; line-height: 1.6; color: #1a1a1a; }}
-  h1 {{ font-size: 16pt; text-align: center; margin-bottom: 0.5cm; }}
-  h2 {{ font-size: 13pt; margin-top: 1cm; border-bottom: 0.5px solid #ccc; padding-bottom: 3px; }}
-  h3 {{ font-size: 12pt; }}
-  table {{ border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10pt; }}
-  th, td {{ border: 1px solid #ccc; padding: 4px 8px; text-align: left; }}
-  th {{ background: #f5f5f5; }}
-  code {{ font-family: monospace; font-size: 10pt; background: #f5f5f5; padding: 1px 4px; }}
-  blockquote {{ border-left: 2px solid #ccc; padding-left: 1em; color: #555; }}
+  body {{ font-family: 'Times New Roman', Georgia, serif; max-width: 680px; margin: 2.5cm auto;
+         font-size: 12pt; line-height: 1.7; color: #1a1a1a; }}
+  h1 {{ font-size: 16pt; text-align: center; margin-bottom: 0.3cm; font-weight: bold; }}
+  h2 {{ font-size: 13pt; margin-top: 1.2cm; margin-bottom: 0.4cm; font-weight: bold; }}
+  h3 {{ font-size: 12pt; font-weight: bold; margin-top: 0.8cm; }}
+  table {{ border-collapse: collapse; width: 100%; margin: 0.6cm 0; font-size: 10pt; }}
+  th, td {{ padding: 4px 8px; text-align: left; }}
+  thead th {{ border-top: 2px solid #000; border-bottom: 1px solid #000; font-weight: bold; }}
+  tbody td {{ border-bottom: none; }}
+  tbody tr:last-child td {{ border-bottom: 2px solid #000; }}
+  tfoot td {{ border-top: 1px solid #000; font-size: 9pt; color: #555; }}
+  code {{ font-family: 'Courier New', monospace; font-size: 10pt; }}
+  blockquote {{ border-left: 2px solid #ccc; padding-left: 1em; color: #555; font-style: italic; }}
   em {{ font-style: italic; }}
   hr {{ border: none; border-top: 0.5px solid #999; margin: 1cm 0; }}
-  p {{ margin-bottom: 0.4cm; }}
+  p {{ margin-bottom: 0.4cm; text-align: justify; }}
+  .katex-display {{ margin: 0.8cm 0; }}
 </style>
-</head><body>{html_body}</body></html>"""
+</head><body>
+{html_body}
+<script>renderMathInElement(document.body,{{delimiters:[{{left:'$$',right:'$$',display:true}},{{left:'$',right:'$',display:false}}]}});</script>
+</body></html>"""
 
     html_file = md_file.with_suffix(".html")
     html_file.write_text(html)
