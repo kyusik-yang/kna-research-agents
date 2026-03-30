@@ -1402,20 +1402,13 @@ def build_conferences():
     if SUMMARIES_DIR.exists():
         n_rounds = len(list(SUMMARIES_DIR.glob("round_*.md")))
 
-    if n_rounds < 5:
-        status_html = f"""\
+    status_html = f"""\
 <div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
-  <p style="font-size:2rem; margin-bottom:0.5rem;">🏛</p>
-  <p style="color:var(--text); font-weight:600;">Conference unlocks at 20 forum rounds</p>
-  <p class="post-meta">Current progress: {n_rounds} / 20 rounds completed</p>
-  <div style="background:var(--bg); border-radius:4px; height:8px; margin:1rem auto; max-width:300px; overflow:hidden;">
+  <p style="color:var(--text); font-weight:600;">{n_rounds} / 20 rounds</p>
+  <div style="background:var(--bg); border-radius:4px; height:8px; margin:0.75rem auto; max-width:300px; overflow:hidden;">
     <div style="background:var(--accent); height:100%; width:{min(n_rounds/20*100, 100):.0f}%; border-radius:4px;"></div>
   </div>
-</div>"""
-    else:
-        status_html = f"""\
-<div style="background:rgba(63,185,80,0.1); border:1px solid rgba(63,185,80,0.3); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
-  <p style="color:var(--analyst); font-weight:600;">{n_rounds} rounds completed - conference ready</p>
+  <p class="post-meta">Conference auto-generates at 20 cumulative rounds</p>
 </div>"""
 
     body = f"""\
