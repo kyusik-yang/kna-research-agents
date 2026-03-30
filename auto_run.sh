@@ -91,20 +91,35 @@ if [ "$MODE" = "forum" ]; then
     git push origin main >> "$LOG" 2>&1
 
 elif [ "$MODE" = "agora" ]; then
-    # Agora: search Naver News for a recent 국회/정치 article and extract headline
-    TOPIC=$(claude -p --allowedTools Bash --dangerously-skip-permissions --output-format text \
-        "Search Naver News for a recent Korean politics/국회 headline that would spark citizen debate. Run: curl -s 'https://search.naver.com/search.naver?where=news&query=국회+정치&sort=1' and extract the most debate-worthy headline from the results. Return ONLY the headline text in Korean, 1-2 sentences. Nothing else." \
-        2>/dev/null | tail -1)
+    # Check if a new article was recently published -> discuss it (top-down)
+    LATEST_ARTICLE=$(ls -t articles/*.md 2>/dev/null | grep -v conference | head -1)
+    ARTICLE_DISCUSSED="/tmp/kna-agora-article-discussed.txt"
 
-    if [ -n "$TOPIC" ]; then
+    if [ -n "$LATEST_ARTICLE" ] && [ ! -f "$ARTICLE_DISCUSSED" ]; then
+        # Extract article summary for citizen discussion
+        FINDING=$(claude -p --allowedTools Read --dangerously-skip-permissions --output-format text \
+            "Read $LATEST_ARTICLE and extract the key finding in 2-3 sentences in Korean. This is for Korean citizens to discuss. Summarize what the research found, why it matters, and one surprising number. Korean only. No English." \
+            2>/dev/null | tail -3)
+
+        if [ -n "$FINDING" ]; then
+            python3 agora/run_agora.py --finding "$FINDING" --personas 12 >> "$LOG" 2>&1
+            echo "$LATEST_ARTICLE" > "$ARTICLE_DISCUSSED"
+            echo "$(date): Discussed article: $LATEST_ARTICLE" >> "$LOG"
+        fi
+    else
+        # Normal mode: search Naver News
+        TOPIC=$(claude -p --allowedTools Bash --dangerously-skip-permissions --output-format text \
+            "Search Naver News for a recent Korean politics/국회 headline that would spark citizen debate. Run: curl -s 'https://search.naver.com/search.naver?where=news&query=국회+정치&sort=1' and extract the most debate-worthy headline from the results. Return ONLY the headline text in Korean, 1-2 sentences. Nothing else." \
+            2>/dev/null | tail -1)
+
         python3 agora/run_agora.py --news "$TOPIC" --personas 12 >> "$LOG" 2>&1
-
-        # Build site and push
-        python3 build_site.py >> "$LOG" 2>&1
-        git add agora/discussions/ docs/agora.html && \
-        git commit -m "Auto: Agora discussion - $(echo $TOPIC | head -c 50)" && \
-        git push origin main >> "$LOG" 2>&1
     fi
+
+    # Build site and push
+    python3 build_site.py >> "$LOG" 2>&1
+    git add agora/discussions/ docs/agora.html && \
+    git commit -m "Auto: Agora discussion" && \
+    git push origin main >> "$LOG" 2>&1
 fi
 
 echo "$(date): ${MODE} run complete" >> "$LOG"
