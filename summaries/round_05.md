@@ -1,16 +1,18 @@
 ---
 round: 5
-date: "2026-03-28 19:00"
+date: "2026-03-30 18:58"
 topic: "position-taking vs genuine legislating: do sponsors actually push their own bills through committee?"
 ---
 
 # Round 5 Summary
 
-Scout uncovered three overlooked Korean papers on sponsor-level bill success determinants (Kim and Lee 2023; An et al. 2025; Yoon and Shin 2023) and proposed a Lowi-Volden synthesis: legislative effectiveness should be measured at the bill level, not just the legislator level, because policy type conditions how far sponsors can push their bills. Critic endorsed this as the forum's most important theoretical contribution, upgrading the theory score to 4/4, but designated the sponsor-committee match test - whether sponsors who sit on the reviewing committee still face the minsaeng penalty - as the single highest-priority robustness check before any paper draft begins.
+Scout uncovered three overlooked Korean papers on sponsor-level bill success and proposed a "Lowi-Volden synthesis" - that legislative effectiveness is conditioned by policy type, not just legislator attributes. Analyst ran Critic's highest-priority robustness check: the minsaeng penalty survives the sponsor-committee match test with only 14.3% attenuation (AME = -5.0 pp), but the Round 4 divided-government interaction - Paper 2's centerpiece - fails to replicate (β = -0.096, p = 0.281). The forum closes with Paper 1 cleared for drafting and Paper 2 requiring reassessment.
 
 ## Key Quotes
 
-> **Scout**: "Existing Korean studies ask 'what kind of legislator succeeds?' while the forum asks 'what kind of legislation succeeds?'"
+> **Scout**: "Existing Korean studies ask 'what kind of legislator succeeds?' We ask 'what kind of legislation succeeds?' - and no Korean study has tested whether policy content independently predicts committee processing."
+
+> **Analyst**: "The minsaeng penalty survives the sponsor-committee match test with only 14.3% attenuation - but I must correct a Round 4 finding: the divided-government interaction does not replicate (β = -0.096, p = 0.281 vs R4's β = -0.536, p < 0.001)."
 
 > **Critic**: "The research program is publication-ready; the critical remaining task is the sponsor-committee match test that would separate the Lowi content penalty from institutional access effects."
 
@@ -18,11 +20,12 @@ Scout uncovered three overlooked Korean papers on sponsor-level bill success det
 
 | Finding | Status |
 |---------|--------|
-| No Korean study tests policy content as independent predictor of committee processing | confirmed |
-| Lowi-Volden synthesis: effectiveness is policy-type-conditioned | preliminary |
-| Sponsor-committee membership may confound the minsaeng penalty (Kim and Lee 2023) | contested |
-| Position-taking ruled out by five independent tests (Rounds 3-5) | confirmed |
-| Committee chair partisan gatekeeping as alternative mechanism | preliminary |
-| Pseudo-R2 of 0.046 is consistent with bill-level modeling standards | confirmed |
+| Minsaeng content penalty survives sponsor-level controls (AME = -5.0 pp) | confirmed |
+| Sponsor-committee match is strongest single predictor (AME = +16.6 pp) | preliminary |
+| Within-committee-insider gap persists (-8.9 pp, t = -4.21) | preliminary |
+| 133% of penalty operates within committees (Oaxaca decomposition) | preliminary |
+| Divided-government interaction triples penalty (R4 finding) | contested |
+| Election-season minsaeng share does not spike (weakens position-taking) | preliminary |
+| Lowi-Volden synthesis: effectiveness is policy-type-conditioned | confirmed |
 
-**Verdict**: Pursue (scores: novelty 4, rigor 3.5, theory 4, actionability 4) | **Next**: Run sponsor-committee match test and obtain An et al. (2025) to verify Paper 1's novelty claim before drafting.
+**Verdict**: Pursue (Paper 1 draft-ready; Paper 2 needs new identification or expanded sample) | **Next**: Obtain An et al. (2025) to verify novelty claim; acquire committee chair party data to resolve the last major confound.
