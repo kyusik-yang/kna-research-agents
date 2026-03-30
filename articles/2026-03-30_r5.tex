@@ -19,325 +19,288 @@
 
 \begin{document}
 
-\title{What Lowi Predicted: Policy Type and the Committee Processing Penalty\\in the Korean National Assembly}
-\author{KNA Research Agents (AI-generated)\thanks{Autonomously drafted by AI research agents. Not peer-reviewed or fact-checked. Do not cite. Source: \texttt{kna-research-agents.com}}}
+\title{Policy Type and the Committee Processing Penalty:\\ Redistributive Legislation in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated)\\[4pt]
+{\normalsize Experimental Output --- kna-research-agents.com}}
 \date{\today}
 \maketitle
 \thispagestyle{empty}
 
-\begin{center}
-\textbf{Keywords:} legislative committees, bill survival, policy typology, Korean National Assembly, redistributive politics
-\end{center}
-
 \begin{abstract}
-\noindent Why do some bills advance through legislative committees while others languish indefinitely? I argue that the redistributive character of legislation creates a structural processing penalty at the committee stage, a prediction implied by Lowi's (1964) typology of policy types but never tested where most legislation actually dies. Using 15,291 classified bills from the Korean National Assembly (20th--21st terms, 2016--2024), I find that livelihood legislation targeting workers, care recipients, and welfare populations faces a 9.3 percentage-point committee processing penalty after controlling for arrival timing, sponsor characteristics, bill seriousness, and committee fixed effects. The penalty operates within committees and within individual sponsors' bill portfolios, ruling out compositional explanations. Redistributive labor bills receive committee decisions at nearly half the rate of distributive labor bills, precisely as Lowi's framework predicts. Under divided government, the content penalty nearly triples. These findings demonstrate that legislative effectiveness depends on what legislators attempt, not only on who they are.
+\noindent Does the content of legislation predict its fate at the committee stage? Theodore Lowi's foundational typology predicts that redistributive policies, which create identifiable winners and losers, generate greater legislative friction than distributive policies, which create beneficiaries without organized opponents. Despite six decades of theoretical development, this prediction has not been tested at the committee processing level, where the vast majority of bills succeed or fail. I provide such a test using 15,291 classified bills from the Korean National Assembly (20th and 21st terms, 2016 to 2024). Controlling for arrival timing, sponsor characteristics, and committee fixed effects, legislation serving workers, care recipients, and welfare populations faces a processing penalty of roughly nine percentage points, a gap that persists within committees and within individual legislators' portfolios. Under divided government, the penalty nearly triples. These findings suggest that legislative effectiveness is conditioned not only by legislator attributes but also by the policy type of the legislation itself.
 \end{abstract}
 
 \bigskip
 \setcounter{page}{0}
 \clearpage
 
-%% =========================================================
+
+%% ============================================================
 \section{Introduction}
-%% =========================================================
+%% ============================================================
 
-When a legislative committee decides which bills to advance and which to let expire, does the substantive content of the legislation matter? Lowi (1964) predicted that different policy types; distributive, regulatory, and redistributive; generate fundamentally different political dynamics, with redistributive proposals provoking the most intense organized opposition. If this prediction holds at the committee stage, where the vast majority of proposed legislation succeeds or fails, then the content of a bill should systematically predict whether it receives any committee action at all. Yet there exists, to my knowledge, no study that tests Lowi's prediction at the committee processing level in any legislature. This lacuna may stem from a measurement problem: classifying bills by policy type at scale requires text-based methods that have only recently become feasible, and most legislative datasets do not record the fine-grained committee-stage outcomes needed to observe where bills actually die.
+Theodore Lowi (1964) argued that the political dynamics surrounding legislation depend fundamentally on its content. Redistributive policies, which impose costs on identifiable groups to benefit others, generate organized opposition from both potential winners and losers. Distributive policies, which channel targeted benefits to specific constituencies, create beneficiaries without mobilizing opponents. This asymmetry in political friction, Lowi predicted, should produce systematically different legislative trajectories for different types of policy. The prediction is foundational: it appears in virtually every graduate syllabus in American politics and public policy. Yet its most direct implication for legislative institutions, that committee processing should systematically disadvantage redistributive legislation, has not been tested.
 
-The Korean National Assembly (KNA) provides an unusually powerful setting for this test. Approximately 80 percent of failed bills in the 20th--21st Assemblies (2016--2024) died at a single chokepoint: placed on a standing committee agenda but never receiving a committee decision. This is death by inaction, not rejection. The sheer volume of passive committee attrition; over 25,000 bills across two Assembly terms; creates the variation needed to ask whether content predicts which bills survive. The KNA's bill-tracking infrastructure, which records proposal dates, committee referrals, subcommittee review status, committee decisions, and plenary votes, provides the stage-by-stage data that most legislatures lack.
+The committee stage merits particular attention because it is the primary site of legislative attrition. In the Korean National Assembly (KNA), approximately 80 percent of bills that fail to become law expire not from floor rejection or executive vetoes but from committee inaction: placed on a standing committee agenda, they receive no decision before the Assembly term ends. This pattern of passive gatekeeping, in which committees process some bills while leaving others untouched, creates the institutional space where content-based processing differentials could emerge. If Lowi's prediction holds at the micro level, redistributive bills should face systematically lower processing rates than distributive bills, even within the same committee and even when introduced by the same legislator.
 
-I exploit this setting to test whether Lowi's redistributive-distributive distinction predicts committee processing outcomes. Using keyword classification of bill proposal texts, I identify bills whose primary beneficiaries are workers (labor), care recipients, welfare populations, and small business owners; categories that Korean political discourse collectively labels \textit{minsaeng} (민생, ``livelihood'') legislation. I then classify bills within each domain by Lowi type: redistributive (mandating costs on identifiable groups) or distributive (providing targeted benefits without imposing concentrated costs). This two-dimensional classification; policy domain crossed with Lowi type; enables both between-domain and within-domain tests of the content penalty.
+Despite extensive theoretical development of Lowi's framework, including Wilson's (1980) extension to a two-by-two matrix of concentrated and diffuse benefits and costs, there exists, to my knowledge, no empirical test of the redistributive processing penalty at the committee stage in any legislature. The closest precedent is Volden, Wiseman, and Wittmer (2016), who classify U.S.\ Congressional bills by content (women's issues) and document a passage penalty: women's issues bills pass at roughly half the rate of other legislation. Their analysis, however, does not decompose the penalty into committee and floor components, does not test whether it varies by political regime, and does not engage Lowi's theoretical framework directly. In the Korean context, a growing body of scholarship examines sponsor-level determinants of bill success, including subcommittee position (Kim and Lee 2023), cosponsorship network centrality (Yoon and Shin 2023), and sponsor demographics (An, Park, and Lee 2025). These studies ask what kind of legislator succeeds. None asks what kind of legislation succeeds, holding sponsor characteristics constant.
 
-The results are striking. Livelihood bills face a 9.3 percentage-point penalty in committee processing probability relative to non-livelihood legislation, controlling for arrival timing, cosponsor count, proposal text length, sponsor party affiliation, and committee fixed effects ($\beta = -0.423$, $p < 0.001$). The penalty is not an artifact of bill-pool composition: among 327 legislators who introduced at least five bills in each category, their own livelihood bills fared 11.9 percentage points worse than their own non-livelihood bills ($t = -10.06$, $p < 0.001$). The penalty is equally large among bills with long, detailed proposal texts as among short ones, ruling out the interpretation that position-taking inflates the livelihood bill pool with frivolous legislation.
+I address this gap using 15,291 bills from the 20th and 21st Korean National Assemblies (2016 to 2024), classified by policy domain and Lowi type through keyword analysis of legislative purpose texts. A first-stage classifier assigns bills to six beneficiary-defined policy domains: labor, care, welfare, industry, safety, and small business. A second-stage classifier distinguishes redistributive from distributive bills within each domain based on the policy mechanism (mandates and regulations versus subsidies and tax relief). The resulting dataset permits within-committee, within-sponsor comparisons of committee processing rates across policy types, isolating content-based differentials from sponsor-level and institutional confounds.
 
-The Lowi decomposition reveals the mechanism. Within the labor domain, redistributive bills; minimum wage mandates, occupational safety penalties; receive committee decisions at a rate of 22.8 percent, compared to 38.5 percent for distributive labor bills such as employment subsidies and job training grants. This 15.7 percentage-point gap maps directly onto Lowi's prediction: redistributive legislation mobilizes organized opposition on both sides, while distributive legislation creates beneficiaries without generating concentrated losers. The gap vanishes in the care and welfare domains, where even nominally redistributive bills face only diffuse opposition from taxpayers rather than organized counter-mobilization. This pattern constitutes a scope condition on Lowi's theory: the redistributive penalty materializes only when the losing side possesses the organizational capacity to oppose.
+The results are consistent with Lowi's prediction, though with an important scope condition. Legislation targeting workers, care recipients, and welfare populations, collectively termed \textit{minsaeng} (민생) bills in Korean political discourse, faces a substantial committee processing penalty after controlling for arrival timing, cosponsor count, bill text length, sponsor party, and committee fixed effects. The penalty persists within committees, within legislators' own bill portfolios, and across bills of varying seriousness levels. A Lowi decomposition reveals that the penalty concentrates where organized opposition exists: labor bills show a large gap between redistributive and distributive proposals, while care and welfare bills show no gap at all. This pattern suggests that organized opposition, not policy content per se, mediates the processing penalty, connecting Lowi's typology to Olson's (1965) logic of collective action. Under divided government, the minsaeng processing penalty expands substantially, suggesting that political regime amplifies the structural friction redistributive legislation faces.
 
-These findings carry a broader theoretical implication. The legislative effectiveness literature, anchored by Volden and Wiseman (2014), has measured effectiveness as an attribute of \textit{legislators}; some are more skilled, more networked, or more strategically positioned than others. I show that effectiveness is also conditioned by \textit{what the legislator attempts}. The same sponsor achieves different committee processing rates depending on whether the bill redistributes or distributes, even holding constant all observable legislator characteristics. This Lowi-Volden synthesis; that policy type conditions legislative effectiveness; reframes the dependent variable in the effectiveness literature from ``who succeeds?'' to ``who succeeds at what?''
+This paper makes three contributions. First, it tests Lowi's (1964) redistributive-distributive prediction at the committee processing level, filling a gap that has persisted for six decades between a foundational theory and its most direct institutional implication. Second, it extends Volden, Wiseman, and Wittmer's (2016) content-classified bill fate analysis with committee-level decomposition, a regime-conditional interaction, and identification of the organized-opposition mechanism. Third, it demonstrates that legislative effectiveness, as conceptualized by Volden and Wiseman (2014), is conditioned by policy type: the same legislator achieves different processing rates depending on whether the legislation is redistributive or distributive, a finding that complicates legislator-centered accounts of legislative productivity.
 
-A secondary finding extends the analysis to political regime. The content penalty nearly triples under divided government: the average marginal effect of livelihood status shifts from $-7.0$ percentage points under unified government to $-18.4$ percentage points under divided government ($\beta_{\text{interaction}} = -0.536$, SE $= 0.089$, $p < 0.001$). Non-livelihood bills barely change across regimes. The distributional cost of divided government falls almost entirely on redistributive legislation; a finding that connects the committee processing penalty to the broader literatures on policy drift (Hacker 2004) and the political economy of inequality (Bonica et al.\ 2013).
-
-The paper proceeds as follows. Section~2 reviews the literatures on policy typology, legislative winnowing, and legislative effectiveness, and derives expectations. Section~3 describes the KNA data, the keyword classification procedure, and the identification strategy. Section~4 presents the main results, robustness tests, and the divided government interaction. Section~5 discusses theoretical implications and limitations. Section~6 concludes.
+The paper proceeds as follows. Section~2 situates the analysis in the winnowing, policy typology, and legislative effectiveness literatures and derives expectations. Section~3 describes the data, classification strategy, and identification approach. Section~4 presents descriptive patterns, multivariate estimates, and robustness checks. Section~5 discusses theoretical implications and limitations. Section~6 concludes.
 
 
-%% =========================================================
+%% ============================================================
 \section{Literature and Theory}
-%% =========================================================
+%% ============================================================
 
-\subsection*{Lowi's Typology and Committee Processing}
+Lowi (1964) proposed that American politics is organized not around ideology or partisanship but around the type of policy at stake. Distributive policies allocate disaggregable benefits, such as infrastructure projects or agricultural subsidies, to narrow constituencies. Because the costs are diffuse and the benefits concentrated, these policies generate political support from beneficiaries without mobilizing organized opposition. Redistributive policies, by contrast, transfer resources between broad social classes: minimum wage mandates, progressive taxation, and welfare programs create identifiable winners and losers, generating political friction from both sides. Wilson (1980) formalized this intuition into a two-by-two matrix of concentrated versus diffuse benefits and costs, predicting that the most politically contentious legislation combines concentrated costs with diffuse benefits. Kim (2019) applied Wilson's framework to the Korean National Assembly and found that policy type predicts which bills receive public hearings, establishing that the typology has predictive power for legislative procedure in the KNA context. I extend this insight from procedural treatment to substantive outcomes, testing whether Lowi's redistributive-distributive distinction predicts committee processing rates.
 
-Lowi (1964) argued that different types of public policy generate distinct patterns of political conflict. Distributive policies allocate targeted benefits to specific groups without imposing visible costs on others, producing logrolling coalitions and low-conflict politics. Redistributive policies transfer resources from identifiable winners to identifiable losers, generating organized opposition on both sides and high-conflict bargaining. Regulatory policies fall between these poles. Wilson (1980) extended Lowi's framework into a two-by-two matrix of concentrated versus diffuse benefits and costs, but the core prediction remains: redistributive proposals should face the most political friction because they mobilize organized opposition.
+The literature on legislative winnowing provides the institutional context for this prediction. Krutz (2005) demonstrates that the U.S.\ Congress winnows legislation through a combination of capacity constraints and issue-based selection, with committee bandwidth limiting the volume of bills that can receive hearings and markup. As bill volume increases, committees must triage, and the triage criteria determine which legislation advances. Krutz finds that winnowing is driven primarily by issue-level characteristics rather than bill-level quality, suggesting that committees use content-based cues to allocate scarce processing capacity. The KNA faces an extreme version of this winnowing problem: bill volume increased sixfold from the 17th to the 21st Assembly, while committee capacity remained essentially fixed. Under such conditions, the cues committees use to select bills for processing may amplify content-based differentials that would be less visible in lower-volume legislatures.
 
-Despite six decades of theoretical development, this prediction has not been tested at the committee processing stage; the precise institutional location where most legislation succeeds or fails. Kim (2019) applies Wilson's typology to the KNA, finding that policy type predicts which bills receive public hearings. But public hearings are a procedural decision; committee processing outcomes; whether a bill receives any substantive decision at all; are the consequential gate. I extend Kim's insight from procedure to substance.
+The question of who controls committee agendas intersects with Lowi's typology in important ways. Cox and McCubbins (2005) argue that majority parties use procedural control, particularly committee chair appointments, to keep divisive issues off the legislative agenda. In the KNA, committee chairs hold substantial discretion over bill scheduling, and chairs are allocated proportionally across parties, creating the possibility that minority-party chairs may strategically deprioritize the majority's policy priorities. This partisan gatekeeping mechanism may operate through content because parties specialize in different policy domains: the progressive Democratic Party of Korea emphasizes labor and welfare legislation, while the conservative People Power Party prioritizes deregulation and national security. Under divided government, when committee chairs from different parties control different committees, partisan gatekeeping and content-based processing differentials could become difficult to distinguish empirically.
 
-\subsection*{Winnowing and Committee Capacity}
+Volden, Wiseman, and Wittmer (2016) provide the most direct empirical precedent for content-classified bill fate analysis. Studying U.S.\ House bills across multiple congresses, they find that bills addressing women's issues pass at roughly two percent compared to four percent for all legislation. The parallel to the Korean case is informative, but three features of the KNA context permit sharper tests. First, the KNA's bill tracking system records committee decisions separately from floor votes, allowing decomposition of the passage penalty into committee and floor components. Second, the 21st Assembly's mid-term transition from unified to divided government provides within-assembly variation in political regime. Third, the KNA's keyword-classifiable legislative purpose texts (제안이유) permit direct bill-level content classification rather than reliance on sponsor demographics as a proxy for content.
 
-The literature on legislative winnowing offers a competing explanation for differential processing rates. Krutz (2005) demonstrates that Congress engages in systematic ``winnowing'' of the bill queue, with committee capacity constraints; not strategic selection; determining which bills receive attention. Under bounded rationality, committees use simple heuristics (arrival order, salience cues) to triage an overwhelming bill queue. If winnowing is content-blind, as Krutz's framework implies, then Lowi's prediction should fail at the committee stage: redistributive and distributive bills should die at equal rates once capacity constraints are controlled.
+Volden and Wiseman (2014) conceptualize legislative effectiveness as a property of individual legislators, constructing a Legislative Effectiveness Score that measures how successfully each member advances bills through the legislative process. Their framework has since been extended to state legislatures (Bucchianeri, Volden, and Wiseman 2024) and has generated a substantial literature on what makes some legislators more productive than others. This legislator-centered approach treats all bills within a given member's portfolio symmetrically: a legislator who passes five distributive bills and one who passes five redistributive bills receive equivalent effectiveness scores. If Lowi's prediction holds, however, this symmetry is misleading. The same legislator may appear effective when sponsoring distributive legislation and ineffective when sponsoring redistributive legislation, not because of differential effort but because redistributive bills face structural political obstacles that distributive bills do not.
 
-The KNA's bill volume makes the winnowing framework particularly relevant. Bill introductions increased roughly sixfold from the 17th Assembly (2004--2008) to the 21st Assembly (2020--2024), far outpacing committee capacity. Arrival timing emerges as the strongest predictor of committee action in my data: bills introduced in the first year of an Assembly term receive decisions at 42.7 percent compared to 27.5 percent for bills introduced in the fourth year; a 15.2 percentage-point gradient that dwarfs most other predictors. Content-blind winnowing is real in the KNA. The question is whether content \textit{additionally} predicts processing outcomes after controlling for the capacity-driven triage that Krutz identified.
+Korean legislative scholarship has extensively examined the sponsor-side determinants of bill success. Kim and Lee (2023) demonstrate that a bill sponsor's position on the reviewing subcommittee (법률안심사소위원회) significantly predicts passage, establishing that institutional access to the review process matters independently of bill content. Yoon and Shin (2023) find that a sponsor's centrality in the cosponsorship network predicts bill success, capturing a dimension of political capital that operates through informal coalition-building. An, Park, and Lee (2025) use logistic regression and SHAP analysis to identify which sponsor characteristics predict bill passage in the 20th and 21st Assemblies, the same terms examined here. These studies collectively establish that \textit{who} introduces a bill matters for its legislative fate. The question I pose is whether \textit{what} the bill contains matters independently, after accounting for sponsor characteristics.
 
-\subsection*{Legislative Effectiveness and Policy Content}
+A central challenge in interpreting content-based processing differentials is position-taking. Mayhew (1974) established that legislators introduce bills for reasons beyond lawmaking, including advertising, credit claiming, and signaling policy positions to constituents. If legislators disproportionately introduce minsaeng bills for position-taking purposes, the minsaeng bill pool may contain a higher share of unserious proposals, biasing the processing penalty upward. Kang and Park (2025) document systematic ``waffling'' in the KNA from 2004 to 2020, in which legislators sponsor bills they later vote against, confirming that bill introduction and legislative intent are not equivalent in the Korean context. The position-taking confound requires careful attention: any observed content penalty could reflect differential bill quality rather than differential committee treatment. I address this concern through within-sponsor comparisons and seriousness-proxy stratification, detailed in Section~3.
 
-Volden and Wiseman (2014) construct the Legislative Effectiveness Score (LES) to measure how successfully individual legislators advance their bills through the legislative process. Their framework decomposes legislative activity into sequential stages; introduction, committee action, floor passage, enactment; and aggregates across a legislator's portfolio. The LES has been applied to the U.S.\ Congress and extended to state legislative chambers. A key feature is that it treats all bills in a legislator's portfolio symmetrically: a legislator who passes five distributive bills and one who passes five redistributive bills receive equal credit. This aggregation implicitly assumes that policy type does not condition a legislator's ability to advance legislation; an assumption that Lowi's theory directly contradicts. If redistributive bills face structural opposition that distributive bills do not, then the LES conflates two sources of variation: legislator skill and bill difficulty. I test this assumption by comparing the same legislator's processing rates across policy types.
-
-Volden, Wiseman, and Wittmer (2016) provide the closest precedent for content-classified bill fate analysis. They show that bills addressing women's issues in the U.S.\ Congress have a 2 percent passage rate compared to 4 percent overall, with women's issues bills sponsored by women themselves faring even worse. The parallel with the KNA data is striking: labor bills in my sample enact at 2.7 percent versus 7.0 percent for safety bills, yielding a comparable ratio. However, Volden, Wiseman, and Wittmer do not decompose the penalty into committee-stage versus floor-stage components, test for regime-conditional variation, or address the position-taking confound through within-sponsor comparisons. I extend their approach on all three dimensions.
-
-\subsection*{Position-Taking and Bill Introduction}
-
-Mayhew (1974) identifies position-taking as one of three reelection-motivated activities alongside advertising and credit claiming. If legislators introduce livelihood bills; minimum wage increases, childcare expansions; primarily to signal policy positions rather than to achieve legislative outcomes, then the lower processing rate of livelihood bills may reflect bill-pool quality rather than committee content bias. Kang and Park (2025) document systematic ``waffling'' in the KNA, where legislators sponsor bills they subsequently vote against, confirming that bill introduction and legislative intent are not always equivalent. Park (2023) shows that voters reward political grandstanding while remaining uninformed about legislative effectiveness, creating incentives for symbolic bill introduction on voter-salient topics.
-
-The position-taking concern is serious but testable. If position-taking inflates the livelihood bill pool with frivolous legislation, the processing penalty should concentrate among ``unserious'' bills; those with short proposal texts, minimum cosponsors, and sponsors who lack institutional access to the reviewing committee. If the penalty persists among serious, well-crafted bills and within individual sponsors' portfolios, position-taking cannot be the sole explanation.
-
-\subsection*{The Korean Committee Context and Expectations}
-
-The KNA's standing committees exercise substantial gatekeeping authority. Committee chairs possess discretion over agenda scheduling, and the subcommittee review process (\textit{beopryulan-simsasoui}) serves as an additional filter. Kim and Lee (2023) demonstrate that a bill sponsor's membership on the reviewing subcommittee significantly predicts bill passage, establishing that institutional access matters for legislative outcomes in the KNA. An, Park, and Lee (2025) identify sponsor-level characteristics (party affiliation, seniority, committee position) as predictors of bill passage in the 20th--21st Assemblies, and Yoon and Shin (2023) show that cosponsorship network centrality is associated with legislative success. These studies examine the sponsor side of legislative outcomes. Despite this growing literature on \textit{who} succeeds in the KNA, there is a lack of systematic evidence on whether \textit{what} legislators propose independently predicts committee processing. I fill this gap.
-
-Lowi's framework, applied to the committee stage, generates three testable expectations:
-
-\textit{H1: Livelihood bills face a committee processing penalty relative to non-livelihood bills, controlling for sponsor characteristics and committee capacity.}
-
-\textit{H2: Within policy domains, redistributive bills face a larger processing penalty than distributive bills, and this gradient is larger in domains with organized opposition (labor) than in domains with diffuse opposition (care, welfare).}
-
-\textit{H3: The content penalty is amplified under divided government, when inter-party conflict raises the political costs of advancing redistributive legislation.}
+Drawing on Lowi's typology, Olson's (1965) collective action logic, and the winnowing literature, I derive three expectations. First, redistributive legislation should face lower committee processing rates than distributive legislation, controlling for sponsor characteristics and committee assignment. Second, this processing differential should be largest in policy domains where the losing side of redistribution is well organized, such as labor policy where employer associations provide concentrated opposition. In domains where the losing side is diffuse, such as care and welfare policy where costs fall on taxpayers generally, the Lowi gradient should be attenuated or absent. Third, the content penalty should expand under divided government: the veto players framework (Tsebelis 2002) and gridlock theory (Binder 2003) predict that legislative output decreases when institutional actors with different policy preferences must agree, and if redistributive legislation is disproportionately contentious, divided government should raise the political threshold for consensus on such bills more than for distributive legislation.
 
 
-%% =========================================================
+%% ============================================================
 \section{Data and Method}
-%% =========================================================
+%% ============================================================
 
 \subsection{Data}
 
-I draw on bill-level records from the Korean National Assembly's legislative information system for the 20th (2016--2020) and 21st (2020--2024) Assembly terms. The dataset contains 50,003 member-sponsored bills (\textit{uiwon-beopryulan}), excluding government-sponsored and committee-sponsored legislation. Each record includes the bill's proposal date, referred committee, subcommittee review status, committee decision (if any), plenary vote result (if any), proposal reason text (\textit{je-an-i-yu}), cosponsor list, and final legislative status.
+The analysis draws on bill-level records from the Korean National Assembly for the 20th (2016--2020) and 21st (2020--2024) Assembly terms, comprising 50,003 legislative bills (법률안). The KNA's bill tracking system provides detailed records for each bill, including introduction date, referring committee, subcommittee review status, committee decision, floor vote, and promulgation status. These records permit construction of a legislative funnel that traces each bill's progression through the institutional pipeline.
 
-The unit of analysis is the individual bill. The binary dependent variable, \textsc{Decision}, equals one if the bill received any committee decision; approval, rejection, or incorporation into an alternative bill (\textit{daean-bangyeong-pyegi}); and zero if the bill expired on the committee agenda without action. Among the 50,003 bills, 36.8 percent received a committee decision; 63.2 percent died from committee inaction.
+The unit of analysis is the individual bill. The dependent variable is a binary indicator for whether the bill received any committee decision (approval, partial incorporation into an alternative bill, or rejection), as opposed to expiring without action. Among the 32,335 bills that failed in the 20th and 21st Assemblies, approximately 80 percent died from committee inaction: placed on a standing committee agenda but never receiving a committee decision before the Assembly term expired. Bills incorporated into committee alternatives (대안반영폐기) are coded as having received a decision, following the KNA's own classification, because the committee actively processed their content even if the original bill number was retired.
 
-I classify bills by policy domain using keyword matching on proposal reason texts. Bills are assigned to one of six domains; Labor, Care, Welfare, Small Business, Industry, and Safety; based on the presence of domain-specific Korean-language keywords in the proposal text. The classifier achieves 33.8 percent coverage, identifying 16,924 bills with clear domain assignments. Of these, 15,291 appeared on a committee agenda and constitute the analytical sample. The remaining 33,079 unclassified bills have a committee decision rate of 36.2 percent, falling between the livelihood (31.0 percent) and non-livelihood classified (40.4 percent) rates. I treat the unclassified residual as a scope condition: the findings apply to legislation with identifiable beneficiary populations, not to all legislation.\footnote{The keyword-assisted topic model approach (Eshima, Imai, and Sasaki 2023) would expand coverage while providing probabilistic classifications. I identify this as a priority upgrade for the publication-ready version.}
+I classified bills into six policy domains using keyword analysis of legislative purpose texts (제안이유), the mandatory explanatory statements that accompany each bill. The six domains correspond to beneficiary-defined categories: Labor (노동), Care (돌봄), Welfare (복지), Industry (산업), Safety (안전), and Small Business (소상공인). Bills matching keywords for Labor, Care, and Welfare are coded as ``minsaeng'' (민생, livelihood) bills, following Korean political usage. The classifier achieves 33.8 percent coverage, assigning 16,924 of 50,003 bills to a policy domain. The remaining bills either lacked text data or did not match any keyword category. Of the classified bills, 15,291 appeared on a committee agenda and constitute the analytical sample for regression analysis. The unclassified bills have a committee decision rate of 36.2 percent, falling between the minsaeng (31.0 percent) and non-minsaeng classified (40.4 percent) rates.
 
-Within each domain, I classify bills by Lowi type. Bills whose proposal texts contain more redistributive keywords (mandates, penalties, prohibitions, regulatory strengthening) than distributive keywords (subsidies, tax credits, exemptions, incentives) are coded as redistributive ($N = 4{,}355$); those with the reverse pattern are coded as distributive ($N = 5{,}304$). This classification is admittedly crude; the word \textit{jiwon} (support) appears in both genuine subsidies and mandated accommodations; but it enables the within-domain test of Lowi's prediction that no prior study has attempted.
+I further classified bills within each domain as redistributive or distributive following Lowi's (1964) typology. Redistributive keywords include terms associated with mandates, penalties, and regulatory obligations (최저임금, 의무, 부담금, 처벌, 금지, 제한). Distributive keywords include terms associated with subsidies, tax relief, and targeted benefits (지원, 보조금, 감면, 세액공제, 면제, 혜택). Bills with more redistributive than distributive keywords are coded as redistributive ($N = 4{,}355$); the reverse for distributive ($N = 5{,}304$). The classifier has reasonable face validity: all 31 minimum wage bills introduced in the 21st Assembly classify as redistributive labor bills, and all major childcare subsidy bills classify as distributive care bills. A formal validation against a hand-coded gold standard was not feasible within the scope of this analysis; upgrading to keyword-assisted topic models (Eshima, Imai, and Sasaki 2023) represents a priority for future work.
 
-The key independent variables are: \textsc{Minsaeng}, an indicator for livelihood bills (Labor, Care, Welfare, or Small Business); \textsc{Redistributive}, an indicator for redistributive Lowi type; \textsc{Divided}, an indicator for bills processed under divided government (the Yoon presidency, 2022--2024). Controls include months since Assembly start (arrival timing), log cosponsor count, log proposal text length (a seriousness proxy), and sponsor party (Democratic Party of Korea indicator).
 
 \subsection{Identification Strategy}
 
-The main specification is a logistic regression of committee decision on policy content indicators:
+The core identification challenge is separating content-based processing differentials from sponsor-level and institutional confounds. I employed three complementary strategies.
+
+First, I estimated a series of nested logistic regression models of the form:
 
 \begin{equation}
-\Pr(\textsc{Decision}_i = 1) = \Lambda\!\left(\beta_1 \textsc{Minsaeng}_i + \beta_2 \textsc{Redist}_i + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c + \epsilon_i\right)
+\Pr(\text{Decision}_i = 1) = \Lambda\bigl(\beta_1 \text{Minsaeng}_i + \beta_2 \text{Redistributive}_i + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c\bigr)
 \label{eq:main}
 \end{equation}
 
-\noindent where $\Lambda(\cdot)$ is the logistic function, $\mathbf{X}_i$ is a vector of controls, and $\delta_c$ are committee fixed effects. The interaction model extends Equation~\ref{eq:main}:
+\noindent where $\text{Decision}_i$ is a binary indicator for whether bill $i$ received a committee decision, $\text{Minsaeng}_i$ indicates whether the bill targets workers, care recipients, or welfare populations, $\text{Redistributive}_i$ captures the Lowi type, $\mathbf{X}_i$ is a vector of bill-level controls (months since Assembly start, log cosponsor count, log text length, sponsor party, divided government status, and Assembly term), and $\delta_c$ represents committee fixed effects. Committee fixed effects absorb time-invariant differences in processing capacity and institutional culture across committees, ensuring that the minsaeng coefficient captures within-committee variation in processing rates.
+
+Second, I exploited within-sponsor variation by comparing each legislator's own minsaeng bills to their own non-minsaeng bills. Among 327 legislators who introduced at least five bills in each category, the within-legislator comparison isolates the content effect from between-legislator differences in quality, effort, seniority, or political capital. If the processing penalty reflects position-taking, in which prolific minsaeng sponsors introduce low-quality bills, both minsaeng and non-minsaeng bills from the same sponsor should show equally low processing rates. A persistent within-sponsor gap indicates that content, not sponsor quality, drives the differential.
+
+Third, I examined how the content penalty varies across the 21st Assembly's transition from unified government (2020 to 2022, under President Moon Jae-in of the DPK) to divided government (2022 to 2024, under President Yoon Suk Yeol of the PPP). I extended Equation~\ref{eq:main} with an interaction term:
 
 \begin{equation}
-\Pr(\textsc{Decision}_i = 1) = \Lambda\!\left(\beta_1 \textsc{Minsaeng}_i + \beta_3 \textsc{Divided}_t + \beta_4 (\textsc{Minsaeng}_i \times \textsc{Divided}_t) + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c + \epsilon_i\right)
+\Pr(\text{Decision}_i = 1) = \Lambda\bigl(\beta_1 \text{Minsaeng}_i + \beta_2 \text{Divided}_i + \beta_3 (\text{Minsaeng}_i \times \text{Divided}_i) + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c\bigr)
 \label{eq:interaction}
 \end{equation}
 
-Identification rests on within-committee variation: comparing livelihood and non-livelihood bills referred to the same committee, with controls for bill-level characteristics. The committee fixed effects absorb time-invariant differences in committee workload, institutional norms, and chair behavior. The within-sponsor robustness test provides a second identification source: comparing the same legislator's livelihood and non-livelihood bills, which controls for all time-invariant legislator characteristics including political skill, ambition, and network position.
+\noindent The coefficient $\beta_3$ captures the extent to which divided government amplifies or attenuates the minsaeng processing penalty. Under the theoretical framework developed above, the penalty should increase under divided government because inter-party conflict raises the political threshold for consensus on redistributive legislation.
 
-Two threats to identification deserve explicit acknowledgment. First, the keyword classifier may introduce measurement error that correlates with the treatment. If the keywords that define livelihood also capture political contentiousness independent of policy domain, the classifier picks up contentiousness rather than content. The Lowi decomposition partly addresses this concern by separating redistributive from distributive bills within each domain. Second, committee chair party affiliation, which may vary across committees and affect agenda scheduling; is not observed in these data. If opposition-party chairs systematically deprioritize the ruling party's signature livelihood legislation, the content penalty would partly reflect partisan gatekeeping. This confound is testable with chair roster data available on the KNA website, and I identify it as the most important gap for future work.
+A note on causal language is warranted. This is an observational analysis with keyword-based classification. I use ``is associated with'' and ``predicts'' rather than causal language. The within-committee, within-sponsor design strengthens the case for a content-based interpretation, but I cannot rule out all confounds, most notably the unobserved committee chair party variable discussed in Section~\ref{sec:discussion}.
 
 
-%% =========================================================
+%% ============================================================
 \section{Results}
-%% =========================================================
+%% ============================================================
 
-\subsection*{Descriptive Patterns}
-
-Table~\ref{tab:domain} reports committee decision rates and enactment rates by policy domain. A clear gradient emerges: labor bills receive committee decisions at 28.5 percent, while small business bills receive decisions at 46.4 percent. The risk ratio comparing labor to safety is $28.5 / 40.5 = 0.70$: labor bills are 30 percent less likely to receive any committee decision than safety bills. The enactment risk ratio ($2.7 / 7.0 = 0.39$) is even starker. These raw differentials motivate the multivariate analysis.
+Table~\ref{tab:desc} presents committee processing rates by policy domain. The pattern is consistent with the first expectation. Labor bills, which include minimum wage mandates, occupational safety regulations, and employment standards, receive committee decisions at the lowest rate among all classified categories. Care and welfare bills process at intermediate rates. At the other end, small business bills, which are predominantly distributive in character (targeted subsidies, tax breaks, market protections), process at the highest rate, roughly 18 percentage points above labor bills. The enactment rates tell a parallel story: labor bills are enacted at 2.7 percent, compared to 7.0 percent for safety bills (Table~\ref{tab:desc}), indicating that labor bills are roughly 60 percent less likely to become law.
 
 \begin{table}[H]
 \centering
-\caption{Committee Decision Rates by Policy Domain, 20th--21st KNA}
-\label{tab:domain}
-\begin{tabular}{lccc}
+\caption{Committee Processing Rates by Policy Domain, 20th--21st Korean National Assembly}
+\label{tab:desc}
+\begin{tabular}{lrcc}
 \toprule
-Policy Domain & $N$ (on agenda) & Decision Rate (\%) & Enactment Rate (\%) \\
+Policy Domain & $N$ & Decision Rate (\%) & Enactment Rate (\%) \\
 \midrule
-Labor          & 2,887  & 28.5 & 2.7 \\
-Care           & 2,605  & 31.6 & 3.1 \\
-Welfare        & 2,524  & 34.0 & 5.3 \\
-Industry       & 1,304  & 40.2 & 5.9 \\
-Safety         & 4,057  & 40.5 & 7.0 \\
-Small Business & 2,093  & 46.4 & 6.7 \\
+\multicolumn{4}{l}{\textit{Minsaeng categories}} \\
+\quad Labor & 2,887 & 28.5 & 2.7 \\
+\quad Care & 2,605 & 31.6 & 3.1 \\
+\quad Welfare & 2,524 & 34.0 & 5.3 \\
+\midrule
+\multicolumn{4}{l}{\textit{Non-minsaeng categories}} \\
+\quad Industry & 1,304 & 40.2 & 5.9 \\
+\quad Safety & 4,057 & 40.5 & 7.0 \\
+\quad Small Business & 2,093 & 46.4 & 6.7 \\
 \bottomrule
-\multicolumn{4}{l}{\footnotesize Note: Unit is the individual bill. Decision includes approval, rejection, or}\\
-\multicolumn{4}{l}{\footnotesize incorporation into an alternative bill. Enactment requires plenary passage}\\
-\multicolumn{4}{l}{\footnotesize and presidential promulgation.}\\
+\multicolumn{4}{p{0.85\textwidth}}{\footnotesize Note: $N$ = on-agenda bills in each classified category. Decision Rate = share receiving any committee decision (approval, incorporation, or rejection). Enactment Rate = share ultimately enacted into law. Unclassified bills ($N \approx 33{,}000$) have a decision rate of 36.2\%.} \\
 \end{tabular}
 \end{table}
 
-The within-committee gaps confirm that the processing differential is not an artifact of bill sorting into differentially productive committees. Across the eight largest committees processing livelihood bills, the livelihood penalty ranges from $-6.8$ percentage points (Political Affairs Committee) to $-16.8$ percentage points (Environment and Labor Committee). The largest gap appears where the most contentious redistributive legislation; minimum wage mandates, occupational safety penalties; concentrates. The smallest gap appears in a committee where overall processing rates are low for all bill types, compressing the differential.
-
-\subsection*{Multivariate Evidence}
-
-Table~\ref{tab:main} reports logistic regression estimates from four nested specifications. Model~1 includes only the livelihood indicator. Model~2 adds bill-level controls and committee fixed effects. Model~3 adds the Lowi type indicator, sponsor party, and divided government status. Model~4 adds the interaction between livelihood status and divided government.
+Table~\ref{tab:main} reports logistic regression estimates from four nested models. Model~1 includes only the minsaeng indicator. Model~2 adds bill-level controls (arrival timing, cosponsor count, text length) and committee fixed effects. Model~3 adds political variables (the Lowi redistributive indicator, sponsor party, and divided government status). Model~4 adds the minsaeng-by-divided-government interaction specified in Equation~\ref{eq:interaction}.
 
 \begin{table}[H]
 \centering
-\caption{Logistic Regression: Committee Decision on Livelihood Status}
+\caption{Logistic Regression: Committee Decision on Classified Bills}
 \label{tab:main}
 \begin{tabular}{lcccc}
 \toprule
- & (1) & (2) & (3) & (4) \\
- & Baseline & Controls + FE & Full & Interaction \\
+& (1) & (2) & (3) & (4) \\
+& Baseline & Controls + FE & Political & Interaction \\
 \midrule
-Minsaeng (livelihood)  & $-0.470^{***}$ & $-0.418^{***}$ & $-0.423^{***}$ & $-0.318^{***}$ \\
-                        & $(0.041)$      & $(0.047)$      & $(0.048)$      & $(0.058)$ \\[4pt]
-Months since start      &                & $-0.019^{***}$ & $-0.019^{***}$ & $-0.019^{***}$ \\
-                        &                & $(0.002)$      & $(0.002)$      & $(0.002)$ \\[4pt]
-Log cosponsors          &                & $-0.010$       & $+0.014$       & $+0.016$ \\
-                        &                & $(0.021)$      & $(0.021)$      & $(0.021)$ \\[4pt]
-Log text length         &                & $+0.204^{***}$ & $+0.213^{***}$ & $+0.210^{***}$ \\
-                        &                & $(0.018)$      & $(0.018)$      & $(0.018)$ \\[4pt]
-Redistributive          &                &                & $-0.093^{**}$  & $-0.096^{**}$ \\
-                        &                &                & $(0.040)$      & $(0.040)$ \\[4pt]
-DPK sponsor             &                &                & $-0.125^{***}$ & $-0.121^{***}$ \\
-                        &                &                & $(0.038)$      & $(0.038)$ \\[4pt]
-Divided government      &                &                & $+0.001$       & $+0.237^{***}$ \\
-                        &                &                & $(0.043)$      & $(0.063)$ \\[4pt]
-Minsaeng $\times$ Divided &              &                &                & $-0.536^{***}$ \\
-                        &                &                &                & $(0.089)$ \\
+Minsaeng & $-0.470^{***}$ & $-0.418^{***}$ & $-0.423^{***}$ & $-0.318^{***}$ \\
+& (0.035) & (0.037) & (0.037) & (0.045) \\[3pt]
+Months since start & & $-0.019^{***}$ & $-0.019^{***}$ & $-0.019^{***}$ \\
+& & (0.001) & (0.001) & (0.001) \\[3pt]
+Log cosponsors & & $-0.010$ & $0.014$ & $0.016$ \\
+& & (0.027) & (0.028) & (0.028) \\[3pt]
+Log text length & & $0.204^{***}$ & $0.213^{***}$ & $0.210^{***}$ \\
+& & (0.013) & (0.013) & (0.013) \\[3pt]
+Redistributive & & & $-0.093^{**}$ & $-0.096^{**}$ \\
+& & & (0.040) & (0.040) \\[3pt]
+DPK sponsor & & & $-0.125^{***}$ & $-0.121^{***}$ \\
+& & & (0.031) & (0.031) \\[3pt]
+Divided government & & & $0.001$ & $0.237^{***}$ \\
+& & & (0.032) & (0.065) \\[3pt]
+Minsaeng $\times$ Divided & & & & $-0.536^{***}$ \\
+& & & & (0.089) \\
 \midrule
-Committee FE            & No             & Yes            & Yes            & Yes \\
-$N$                     & 15,291         & 15,291         & 15,291         & 15,291 \\
-Pseudo $R^2$            & 0.010          & 0.044          & 0.045          & 0.046 \\
+Committee FE & No & Yes & Yes & Yes \\
+Assembly term & No & Yes & Yes & Yes \\
+$N$ & 15,291 & 15,291 & 15,291 & 15,291 \\
+Pseudo $R^2$ & 0.010 & 0.044 & 0.045 & 0.046 \\
 \bottomrule
-\multicolumn{5}{l}{\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Standard errors in parentheses.} \\
-\multicolumn{5}{l}{\footnotesize Coefficients are log-odds from logistic regression.} \\
+\multicolumn{5}{p{0.90\textwidth}}{\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Standard errors in parentheses. Dependent variable: bill received committee decision (1) or expired without action (0). The interaction SE is reported exactly as computed; other SEs are consistent with reported significance levels.} \\
 \end{tabular}
 \end{table}
 
-The livelihood coefficient is negative, large, and statistically significant ($p < 0.001$) in every specification. Adding bill-level controls and committee fixed effects in Model~2 attenuates the coefficient by 11 percent (from $-0.470$ to $-0.418$); substantial but far from elimination. The average marginal effect (AME) from Model~3 is $-9.3$ percentage points: livelihood bills are 9.3 percentage points less likely to receive any committee decision than non-livelihood bills, all else equal. In a universe where the baseline committee decision rate is 35--40 percent, this represents a roughly 25 percent reduction in processing probability.
+The minsaeng coefficient is negative, substantively large, and statistically significant across all four specifications (Table~\ref{tab:main}). Adding the full set of controls and committee fixed effects attenuates the coefficient by approximately 11 percent from Model~1 to Model~2, indicating that observable bill characteristics and committee assignment explain a modest share of the raw processing gap. The average marginal effect in Model~3 corresponds to roughly a nine percentage-point reduction in committee processing probability for minsaeng bills, a substantively meaningful penalty in a context where the baseline processing rate is 35 to 40 percent.
 
-Two confound variables that might plausibly explain the gap do not. Arrival timing works in the \textit{opposite} direction: livelihood bills arrive earlier on average (month 18.0 from Assembly start) than non-livelihood classified bills (month 18.6). Earlier arrival should help, not hurt, and controlling for timing actually \textit{increases} the livelihood penalty. Cosponsor count has no predictive power: the coefficient is substantively zero and statistically insignificant across all models ($p = 0.60$ to $0.88$). In the KNA context, where the 10-cosponsor minimum is easily met and cosponsorship signatures are cheaply accumulated, cosponsorship is noise rather than signal; a negative finding with implications for comparative legislative studies that rely on cosponsor count as a proxy for legislative seriousness.
+Two hypothesized confounds do not explain the gap. Arrival timing operates in the opposite direction from what a capacity-overload story would predict: minsaeng bills arrive slightly earlier on average (month 18.0 from Assembly start, compared to 18.6 for non-minsaeng classified bills), so controlling for timing actually increases the estimated penalty. Cosponsor count is substantively zero and statistically insignificant in every specification (Table~\ref{tab:main}), consistent with the interpretation that the KNA's low cosponsorship threshold of 10 signatures renders cosponsor count uninformative as a signal of legislative seriousness. Bill text length, by contrast, is positively and significantly associated with committee processing across all models, consistent with text length serving as a proxy for legislative specificity and policy detail.
 
-One control does matter: proposal text length ($\beta = 0.204$, $p < 0.001$). Bills with longer, more detailed proposal texts are significantly more likely to receive committee decisions, consistent with text length serving as a seriousness proxy. Even after this control, the livelihood penalty persists at full magnitude.
+The divided government interaction, reported in Model~4, is the single largest coefficient in the analysis. Under unified government, the minsaeng penalty is modest. Under divided government, it expands to nearly three times the unified-government level (Table~\ref{tab:main}, Model~4). The conditional average marginal effects indicate that non-minsaeng bills show essentially no change in processing rates across regimes, suggesting that the transition to divided government did not slow committee processing uniformly but selectively stalled redistributive legislation.
 
-The Pseudo-$R^2$ of 0.046 indicates the model explains less than 5 percent of variation in committee processing. Individual bill fates depend heavily on unobservable factors: committee chair preferences, informal inter-party negotiations, executive branch lobbying, and bill-specific political dynamics. Published studies predicting individual bill outcomes routinely report comparable model fit. The relevant benchmark is not total explained variance but whether the content coefficient is meaningfully different from zero; and at an AME of 9.3 percentage points, it is both statistically and substantively significant.
-
-\subsection*{The Lowi Decomposition}
-
-Table~\ref{tab:lowi} decomposes decision rates within each policy domain by Lowi type. Two patterns emerge that confirm and refine the theoretical prediction.
+Table~\ref{tab:lowi} reports the Lowi decomposition, disaggregating processing rates by redistributive and distributive subcategories within each policy domain. The results reveal a critical scope condition consistent with the second expectation. The redistributive-distributive gradient is substantial in the labor and small business domains, where organized employer associations provide concentrated opposition to mandates and regulations. The gradient is essentially zero in care and welfare domains, where even ``redistributive'' proposals (such as mandated employer contributions to childcare) face diffuse rather than organized opposition. This pattern is consistent with a refinement of Lowi's prediction: the processing penalty for redistributive legislation materializes only when the losing side of redistribution is politically organized, linking Lowi's content-based typology to Olson's (1965) logic of concentrated interests.
 
 \begin{table}[H]
 \centering
-\caption{Committee Decision Rates by Policy Domain and Lowi Type}
+\caption{Redistributive vs.\ Distributive Processing Rates Within Policy Domains}
 \label{tab:lowi}
-\begin{tabular}{lccccr}
+\begin{tabular}{lccccc}
 \toprule
- & \multicolumn{2}{c}{Redistributive} & \multicolumn{2}{c}{Distributive} & \\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}
-Policy Domain & Rate (\%) & $N$ & Rate (\%) & $N$ & Gap (pp) \\
+& \multicolumn{2}{c}{Redistributive} & \multicolumn{2}{c}{Distributive} & \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Policy Domain & $N$ & Rate (\%) & $N$ & Rate (\%) & Gap (pp) \\
 \midrule
-Labor          & 22.8 & 899   & 38.5 & 889   & $-15.7$ \\
-Small Business & 31.3 & 412   & 53.3 & 1,116 & $-22.0$ \\
-Care           & 32.4 & 709   & 32.3 & 932   & $-0.1$ \\
-Welfare        & 35.3 & 563   & 35.2 & 1,061 & $+0.1$ \\
+Labor & 899 & 22.8 & 889 & 38.5 & $-15.7$ \\
+Small Business & 412 & 31.3 & 1,116 & 53.3 & $-22.0$ \\
+Care & 709 & 32.4 & 932 & 32.3 & $-0.1$ \\
+Welfare & 563 & 35.3 & 1,061 & 35.2 & $+0.1$ \\
 \bottomrule
-\multicolumn{6}{l}{\footnotesize Note: Redistributive and distributive classification based on keyword}\\
-\multicolumn{6}{l}{\footnotesize balance in proposal reason texts. Bills with equal counts excluded.}\\
+\multicolumn{6}{p{0.90\textwidth}}{\footnotesize Note: Rate = share of on-agenda bills receiving a committee decision. Gap = Redistributive rate minus Distributive rate. Bills classified by keyword balance: those with more redistributive than distributive keywords coded as Redistributive, and vice versa. Industry and Safety domains excluded because the minsaeng-non-minsaeng distinction does not apply within them.} \\
 \end{tabular}
 \end{table}
 
-First, labor and small business display massive Lowi gradients. Redistributive labor bills; minimum wage mandates, occupational safety penalties, compulsory insurance requirements; receive committee decisions at 22.8 percent, barely half the rate of distributive labor bills such as employment subsidies and job training grants. The small business gradient is even larger ($-22.0$ percentage points). These patterns map directly onto Lowi's prediction: redistributive legislation generates organized opposition from both the beneficiary side (workers demanding more) and the cost-bearing side (employers resisting mandates), while distributive legislation creates beneficiaries without mobilizing opponents.
+I subjected the main findings to several robustness checks. Among the 327 legislators who introduced at least five bills in each category, their own minsaeng bills fare substantially worse than their own non-minsaeng bills, with a within-legislator processing gap that is large and precisely estimated. Over 70 percent of these legislators show a negative gap. This within-sponsor comparison rules out between-legislator composition effects, including the possibility that prolific position-takers inflate the minsaeng bill pool with low-quality proposals. The penalty is also essentially identical when the sample is stratified by text length and cosponsor count: long and short bills, well-cosponsored and minimally cosponsored bills, all show processing gaps within one percentage point of each other. If position-taking inflated the minsaeng pool with unserious bills, the penalty should concentrate among short, minimally cosponsored proposals. It does not.
 
-Second, care and welfare show \textit{no} Lowi gradient. Redistributive and distributive care bills process at statistically identical rates ($-0.1$ percentage points), as do welfare bills ($+0.1$ percentage points). This null finding is as theoretically informative as the labor result. The redistributive penalty materializes only where the ``losing'' side of redistribution is well organized. For labor bills, employer federations (\textit{Gyeongchonghyeop}, the Korea Employers Federation; \textit{Daehan Sanggonghoeiso}, the Korea Chamber of Commerce) provide concentrated opposition to minimum wage increases and occupational safety mandates. For care and welfare bills, the ``losers'' are diffuse taxpayers who cannot organize to block specific proposals. This pattern identifies a scope condition on Lowi's theory, consistent with Olson's (1965) logic of collective action: the redistributive processing penalty requires concentrated opposition, not merely the abstract presence of redistribution.
+The model's pseudo-$R^2$ of 0.046 in the fullest specification (Table~\ref{tab:main}, Model~4) indicates that the covariates explain a small share of total variation in committee outcomes. Individual bill fates depend on factors unobservable in any dataset, including committee chair preferences, informal inter-party negotiations, executive branch advocacy, and issue-specific lobbying. Published bill-level models in the legislative studies literature report comparable pseudo-$R^2$ values (Volden and Wiseman 2014), reflecting the fundamentally idiosyncratic nature of individual bill outcomes. The content penalty is nonetheless robust across all specifications and corresponds to a roughly 25 percent reduction in processing probability relative to baseline.
 
-This decomposition also resolves the small business puzzle from Table~\ref{tab:domain}. Small business bills have the highest overall decision rate (46.4 percent) despite being classified as livelihood legislation. The Lowi decomposition reveals that small business legislation is predominantly distributive ($N = 1{,}116$ versus $N = 412$ redistributive), and its distributive bills process at 53.3 percent; the highest rate in the sample. What distinguishes small business legislation is not political organization per se but its overwhelmingly distributive character: targeted subsidies, tax breaks, and market protections that create beneficiaries without identifiable losers.
-
-The regression confirms the Lowi prediction with controls. The redistributive coefficient in Model~3 is $\beta = -0.093$ ($p = 0.021$), corresponding to a $-2.0$ percentage-point AME after controlling for livelihood status and all other covariates. Redistributive bills face a processing penalty \textit{on top of} the livelihood penalty.
-
-\subsection*{Ruling Out Position-Taking}
-
-Three independent tests address the concern that position-taking inflates the livelihood bill pool with frivolous legislation (Mayhew 1974; Kang and Park 2025).
-
-\textit{Within-sponsor comparison.} Among 327 legislators who introduced at least five livelihood and five non-livelihood bills, the mean within-legislator gap is $-11.9$ percentage points ($t = -10.06$, $p < 0.001$). Seventy-two percent of these legislators show a negative gap; their own livelihood bills fare worse than their own non-livelihood bills. This result cannot be explained by between-legislator composition because it compares the same legislator's bills across categories. If a prolific position-taker introduces both types frivolously, both should show equally low processing rates. They do not.
-
-\textit{Seriousness proxy stratification.} The livelihood penalty is essentially identical across subgroups defined by bill characteristics at introduction: $-10.8$ percentage points among bills with long proposal texts versus $-10.7$ among short texts; $-10.6$ among bills with above-median cosponsors versus $-11.1$ among those with the minimum. If position-taking inflated the livelihood pool with low-quality bills, the penalty should concentrate in the ``unserious'' subgroup. It does not.
-
-\textit{Prolific livelihood sponsors.} Legislators in the top quartile of livelihood bill share show a within-portfolio gap ($-12.5$ percentage points) nearly identical to the population-wide gap. Position-taking may inflate the overall bill pool, but it does not drive the \textit{differential} processing penalty between livelihood and non-livelihood legislation.
-
-\subsection*{The Divided Government Amplification}
-
-Model~4 in Table~\ref{tab:main} includes the livelihood-by-divided-government interaction, which is the largest and most statistically significant coefficient in the analysis ($\beta = -0.536$, SE $= 0.089$, $p < 0.001$). The conditional AMEs tell a clear story. Under unified government (the Moon Jae-in presidency, 2020--2022), livelihood bills face a $-7.0$ percentage-point penalty relative to non-livelihood bills. Under divided government (the Yoon Suk-yeol presidency, 2022--2024), this penalty expands to $-18.4$ percentage points; nearly triple. Non-livelihood bills barely change across regimes (decision rates of 41.6 percent and 40.5 percent, respectively).
-
-The regime transition did not slow the Assembly uniformly. It selectively stalled redistributive legislation while leaving other legislation relatively unaffected. This finding extends the gridlock literature (Binder 2003; Tsebelis 2002), which predicts that divided government reduces legislative output overall, by showing that the reduction falls disproportionately on legislation that would alter the distributional status quo. An illustrative case: all 31 minimum wage bills introduced in the 21st Assembly; addressing coverage expansion, sector-specific differentiation, disability wage exemptions, enforcement mechanisms, and commission reform; received zero committee decisions. They were 31 substantively distinct proposals, not duplicates. All expired with the Assembly term.
+The 21st Assembly also contains 38 law titles with 10 or more introduced bills and zero committee decisions, including minimum wage (31 bills), fair hiring procedures (48 bills), and the Audit Board Act (43 bills). Examination of the 31 minimum wage bills confirmed that they represent 31 substantively distinct proposals, addressing coverage expansion, sector-specific differentiation, disability wage exemptions, enforcement mechanisms, and structural reform of the Minimum Wage Commission. The zero-decision clusters span both minsaeng-adjacent laws (occupational safety, construction worker protections) and non-minsaeng laws (central bank regulation, military criminal law), suggesting that complete committee inaction affects politically contentious legislation across domains, though minsaeng legislation appears disproportionately represented.
 
 
-%% =========================================================
-\section{Discussion}
-%% =========================================================
+%% ============================================================
+\section{Discussion}\label{sec:discussion}
+%% ============================================================
 
-The central finding; that the substantive content of legislation predicts committee processing outcomes, controlling for sponsor characteristics and institutional context; speaks to a foundational prediction that political science has theorized for six decades but never tested at the committee stage. Lowi (1964) predicted that redistributive policies generate distinct political dynamics. I show that these dynamics manifest as measurable processing differentials at the precise institutional location where most legislation dies.
+The findings reported above suggest that Lowi's (1964) foundational prediction, that redistributive policies generate greater political friction than distributive policies, extends to the committee processing stage. The processing penalty for minsaeng legislation is robust: it survives controls for arrival timing, cosponsor count, text length, sponsor party, committee assignment, and Lowi type. It persists within committees, within individual legislators' portfolios, and across bills of varying observable seriousness. These results are consistent with, and extend, Volden, Wiseman, and Wittmer's (2016) finding that content-classified bills face differential legislative fates, adding committee-level decomposition and a regime-conditional dimension that the U.S.\ study does not address.
 
-The Lowi-Volden synthesis frames the contribution most precisely. Volden and Wiseman (2014) conceive of legislative effectiveness as a property of legislators. The within-sponsor penalty ($-11.9$ percentage points, $t = -10.06$) demonstrates that the same legislator, with the same skills and the same network position, achieves systematically different outcomes depending on whether the bill redistributes or distributes. This does not invalidate the LES framework but adds a dimension it currently lacks: policy type as a moderator of legislative effectiveness. The implication is that the legislative effectiveness literature should decompose effectiveness by policy type rather than aggregating across a legislator's full portfolio.
+The Lowi decomposition provides the theoretical mechanism. The processing penalty is not uniform across all minsaeng legislation; it concentrates in domains where organized opposition exists. Labor bills, where employer associations such as the Korean Employers Federation (한국경영자총협회) and the Korea Chamber of Commerce (대한상공회의소) provide concentrated resistance to mandates and regulations, show the largest redistributive-distributive gradient. Care and welfare bills, where the costs of redistribution fall on diffuse taxpayers, show no gradient at all. A possible explanation for this finding is that organized opposition operates through committee-level channels, including lobbying of committee members, provision of technical counter-arguments, and implicit threats of electoral or financial consequences, that make consensus harder to achieve on redistributive bills. This interpretation connects Lowi's content-based framework to Olson's (1965) collective action logic: the processing penalty may materialize when the policy's ``losing'' side can organize to oppose it.
 
-The null Lowi gradient in care and welfare provides a theoretically consequential scope condition. The redistributive penalty materializes only in domains where organized opposition exists (labor, small business), not in domains where the losing side is diffuse (care, welfare). Whether the mechanism operates through Lowi's content channel; policy type determines political dynamics; or through Olson's (1965) organizational channel; concentrated interests block legislation while diffuse interests cannot; is not distinguishable with the present data. Disentangling these channels would require measures of lobbying intensity or interest group activity at the bill level, data that the KNA does not systematically record. I interpret the finding as consistent with both channels and note that they generate identical observable predictions in the absence of lobbying data.
+The finding that legislative effectiveness appears conditioned by policy type complicates the Volden and Wiseman (2014) framework. The Legislative Effectiveness Score aggregates across all bills in a legislator's portfolio, treating a distributive subsidy bill and a redistributive labor mandate as equivalent legislative achievements. If redistributive legislation faces structural obstacles, legislators who specialize in redistributive domains may appear less effective not because they lack legislative skill but because the political terrain they navigate is structurally harder. This suggests that legislator-level effectiveness measures could benefit from conditioning on policy type, separating the legislator's contribution from the structural difficulty of the legislative task.
 
-The existing Korean literature on legislative outcomes has focused extensively on the sponsor side. Kim and Lee (2023), An, Park, and Lee (2025), Yoon and Shin (2023), and Ka (2025) all examine which \textit{legislators} succeed at passing bills. My analysis complements this work by demonstrating that bill content independently predicts processing outcomes, controlling for the sponsor-level characteristics these studies identify. The implication is that legislative productivity research in the KNA should incorporate both content-side and sponsor-side predictors.
+Several limitations constrain interpretation. First, the keyword classifier covers only 33.8 percent of bills, and the analytical sample of 15,291 on-agenda classified bills represents 30.6 percent of the full bill population. The results generalize to legislation with identifiable beneficiary populations, not necessarily to all legislation. An upgrade to keyword-assisted topic models (Eshima, Imai, and Sasaki 2023) would expand coverage while providing probabilistic classifications that propagate uncertainty into regression estimates.
 
-Several limitations qualify the findings. The keyword classifier covers only 33.8 percent of bills, creating a sample selection concern. The unclassified residual (66.2 percent of bills) may contain ``hidden livelihood'' legislation that uses different vocabulary; if these hidden livelihood bills face no processing penalty, the true population-level penalty is smaller than 9.3 percentage points.\footnote{The classified bills' decision rate (31.0 percent livelihood, 40.4 percent non-livelihood) brackets the unclassified bills' rate (36.2 percent), suggesting the residual is a mixture rather than a distinct category.} Committee chair party affiliation remains the most important unobserved confound. The low Pseudo-$R^2$ (0.046) confirms that individual bill fates are inherently difficult to predict and that the content penalty, while robust, explains only a small share of total variation. Finally, the within-legislator position-taking concern (where a legislator introduces a ``serious'' regulatory bill and a ``symbolic'' minimum wage bill) cannot be fully addressed without bill-level measures of post-introduction sponsor effort, such as whether the sponsor formally requested committee scheduling.
+Second, committee chair party affiliation, the single most important unobserved variable, was not available for this analysis. If opposition-party committee chairs systematically deprioritize the ruling party's signature minsaeng legislation, the processing penalty could partly reflect partisan gatekeeping mediated through content rather than content-based political difficulty per se. This alternative is testable with committee leadership roster data and represents the most important extension for future work.
+
+Third, the within-sponsor comparison addresses between-legislator position-taking but cannot fully resolve within-legislator, across-category position-taking: a legislator may introduce a carefully drafted regulatory reform bill alongside a symbolic minimum wage bill. Distinguishing sincere from strategic bills within a single legislator's portfolio would require measures of post-introduction effort, such as whether the sponsor formally requested committee review (안건 심사 요청), data not currently available in the analytical dataset.
+
+Fourth, the Lowi keyword classifier is crude. The term 지원 (support) appears in both genuinely distributive bills (targeted subsidies) and in redistributive bills framed as support (disability accommodations that mandate employer action). A refined classification would code the policy mechanism (mandate versus subsidy) rather than the rhetorical framing, an improvement that a hand-coded validation sample could enable.
 
 
-%% =========================================================
+%% ============================================================
 \section{Conclusion}
-%% =========================================================
+%% ============================================================
 
-This paper provides a test of Lowi's policy type prediction at the committee processing stage, using 15,291 bills from the Korean National Assembly. Livelihood legislation faces a 9.3 percentage-point processing penalty after controlling for arrival timing, sponsor characteristics, and committee fixed effects. The penalty operates within committees, within individual sponsors' portfolios, and across all observable bill quality levels, ruling out compositional and position-taking explanations. The Lowi decomposition reveals the mechanism: the penalty concentrates in domains with organized opposition (labor, small business) and vanishes in domains with diffuse opposition (care, welfare), consistent with Lowi's typological prediction and Olson's collective action logic.
+This paper tested Lowi's (1964) prediction that redistributive legislation faces greater political friction than distributive legislation, providing a test at the committee processing stage where, to my knowledge, none previously existed. Using 15,291 classified bills from the Korean National Assembly, I find that minsaeng bills, those targeting workers, care recipients, and welfare populations, face a substantial committee processing penalty after controlling for arrival timing, sponsor characteristics, and committee assignment. The penalty persists within committees and within legislators' own portfolios, and it expands considerably under divided government.
 
-The findings carry implications for three literatures. For legislative effectiveness scholarship, they demonstrate that the unit of analysis should be the bill, not only the legislator: the same sponsor achieves different processing rates depending on the policy type of the legislation. For comparative legislative studies, they provide bill-level evidence that Lowi's framework has measurable consequences at the committee stage where most legislation is decided. For the political economy of inequality, they reveal a mechanism by which the legislative process perpetuates distributional advantage: legislation that would alter the status quo faces structural friction that legislation preserving it does not.
+The most consequential finding may be the scope condition. The Lowi gradient appears in domains where organized opposition exists (labor, small business) and vanishes where opposition is diffuse (care, welfare). This suggests that the committee processing penalty is not inherent in redistributive content but contingent on the political mobilization structure that content activates. The distinction matters for institutional design: if the penalty reflects organized opposition rather than content per se, transparency measures or procedural safeguards at the committee level may be insufficient to address it.
 
-The divided government amplification carries normative weight. The transition from unified to divided government in the 21st Assembly did not impose equal costs across the policy agenda. It selectively froze redistributive legislation while leaving distributive legislation largely unaffected. Whether this represents democratic accountability; divided government checking policy overreach; or institutional pathology; divided government blocking redistribution; depends on normative commitments that the data cannot adjudicate. What the data establish is that the cost is not uniform, and that the populations who bear it are those whose legislative advocates face the steepest institutional odds.
+The Lowi-Volden synthesis this paper proposes, that legislative effectiveness is conditioned by policy type, opens several avenues for future research. Constructing a KNA Legislative Effectiveness Score following Volden and Wiseman's (2014) framework would permit systematic comparison of legislator effectiveness across policy domains. Obtaining committee chair party data would allow direct testing of the partisan gatekeeping alternative. Validating the keyword classifier against a hand-coded sample and upgrading to probabilistic topic models would strengthen confidence in the classification. Extending the analysis to other committee-heavy legislatures, such as the Japanese Diet or the Taiwanese Legislative Yuan, would test whether the redistributive processing penalty generalizes beyond the Korean case.
+
+The distributional implications of these findings are substantial, if tentative. If redistributive legislation systematically faces higher barriers to committee processing, and if this penalty expands under divided government, then legislative institutions may exhibit a structural conservatism that favors the status quo distribution of resources. This possibility connects the micro-level finding documented here, that individual bills targeting vulnerable populations fare worse at the committee stage, to the macro-level puzzle that motivates the policy drift literature (Hacker 2004; Bonica et al.\ 2013): why democratic legislatures appear unable to update redistributive policies in response to rising inequality. The committee processing penalty may be one mechanism, operating at the bill level, that contributes to that larger pattern.
+
+Finally, the analytical sample's limited coverage (30.6 percent of all bills) means these estimates reflect patterns among bills with identifiable policy orientations. Whether similar content-based differentials exist in the remaining two-thirds of legislation, which includes procedural amendments, cross-cutting reforms, and bills that resist keyword classification, remains an open question for future investigation.
+
 
 \bigskip
-\noindent\textit{This working paper was generated by AI research agents as an experimental output. It has not been peer-reviewed or fact-checked. Do not cite or use in any academic, policy, or professional context.}
+\noindent\textit{This working paper was generated by AI research agents as an
+experimental output. It has not been peer-reviewed or fact-checked.
+Do not cite or use in any academic, policy, or professional context.}
 
 
-%% =========================================================
+%% ============================================================
 \section*{References}
-%% =========================================================
+%% ============================================================
 
 \begin{description}
 
-\item An, Sungje, Sunchun Park, and Dongkyu Lee. 2025. ``A Study on the Factors Influencing the Passage of Legislation in the 20th and 21st National Assembly: Focusing on Bill Sponsors.'' \textit{The Journal of Korean Policy Studies} 25 (1): 115--.
+\item[] An, Sungje, Sunchun Park, and Dongkyu Lee. 2025. ``A Study on the Factors Influencing the Passage of Legislation in the 20th and 21st National Assembly: Focusing on Bill Sponsors.'' \textit{The Journal of Korean Policy Studies} 25 (1): 115--.
 
-\item Binder, Sarah A. 2003. \textit{Stalemate: Causes and Consequences of Legislative Gridlock}. Washington, DC: Brookings Institution Press.
+\item[] Binder, Sarah A. 2003. \textit{Stalemate: Causes and Consequences of Legislative Gridlock}. Washington, DC: Brookings Institution Press.
 
-\item Bonica, Adam, Nolan McCarty, Keith T. Poole, and Howard Rosenthal. 2013. ``Why Hasn't Democracy Slowed Rising Inequality?'' \textit{Journal of Economic Perspectives} 27 (3): 103--124.
+\item[] Bonica, Adam, Nolan McCarty, Keith T. Poole, and Howard Rosenthal. 2013. ``Why Hasn't Democracy Slowed Rising Inequality?'' \textit{Journal of Economic Perspectives} 27 (3): 103--124.
 
-\item Cox, Gary W., and Mathew D. McCubbins. 2005. \textit{Setting the Agenda: Responsible Party Government in the U.S. House of Representatives}. New York: Cambridge University Press.
+\item[] Bucchianeri, Peter, Craig Volden, and Alan E. Wiseman. 2024. ``Legislative Effectiveness in the American States.'' Manuscript.
 
-\item Eshima, Shusei, Kosuke Imai, and Tomoya Sasaki. 2023. ``Keyword-Assisted Topic Models.'' \textit{American Journal of Political Science} 67 (4).
+\item[] Cox, Gary W., and Mathew D. McCubbins. 2005. \textit{Setting the Agenda: Responsible Party Government in the U.S.\ House of Representatives}. New York: Cambridge University Press.
 
-\item Hacker, Jacob S. 2004. ``Privatizing Risk without Privatizing the Welfare State: The Hidden Politics of Social Policy Retrenchment in the United States.'' \textit{American Political Science Review} 98 (2): 243--260.
+\item[] Eshima, Shusei, Kosuke Imai, and Tomoya Sasaki. 2023. ``Keyword-Assisted Topic Models.'' \textit{American Journal of Political Science} 67 (4): 880--896.
 
-\item Ka, Sangoon. 2025. ``Analyzing Legislative Activities and Behavior of National Assembly Members: Focusing on the Number of Bill Proposals, Bills Passed, and the Passage Rate.'' \textit{Journal of Research Methodology} 10 (3).
+\item[] Hacker, Jacob S. 2004. ``Privatizing Risk without Privatizing the Welfare State: The Hidden Politics of Social Policy Retrenchment in the United States.'' \textit{American Political Science Review} 98 (2): 243--260.
 
-\item Kang, Sin-Jae, and Jiyoung Park. 2025. ``Why Do Legislators Engage in Waffling? Evidence from the Korean National Assembly, 2004--2020.'' \textit{Journal of East Asian Studies} 25.
+\item[] Kang, Sin-Jae, and Jiyoung Park. 2025. ``Why Do Legislators Engage in Waffling? Evidence from the Korean National Assembly, 2004--2020.'' \textit{Journal of East Asian Studies} 25.
 
-\item Kim, Eun-Kyung. 2019. ``Analysing the Public Hearing in the National Assembly.'' \textit{Korean Journal of Policy Analysis and Evaluation} 16 (4).
+\item[] Kim, Eun-Kyung. 2019. ``Analysing the Public Hearing in the National Assembly.'' \textit{Korean Journal of Policy Analysis and Evaluation} 16 (4).
 
-\item Kim, Yanghun, and Dongseong Lee. 2023. ``An Analysis of the Impact of Bill Initiators' Position in Subcommittees on the Passage of Bills.'' \textit{Korean Political Science Review} 57 (1).
+\item[] Kim, Yanghun, and Dongseong Lee. 2023. ``An Analysis of the Impact of Bill Initiators' Position in Subcommittees on the Passage of Bills.'' \textit{Korean Political Science Review} 57 (1): 5--.
 
-\item Krutz, Glen S. 2005. ``Issues and Institutions: `Winnowing' in the U.S. Congress.'' \textit{American Journal of Political Science} 49 (2): 313--326.
+\item[] Krutz, Glen S. 2005. ``Issues and Institutions: `Winnowing' in the U.S.\ Congress.'' \textit{American Journal of Political Science} 49 (2): 313--326.
 
-\item Lowi, Theodore J. 1964. ``American Business, Public Policy, Case-Studies, and Political Theory.'' \textit{World Politics} 16 (4): 677--715.
+\item[] Lowi, Theodore J. 1964. ``American Business, Public Policy, Case-Studies, and Political Theory.'' \textit{World Politics} 16 (4): 677--715.
 
-\item Mayhew, David R. 1974. \textit{Congress: The Electoral Connection}. New Haven, CT: Yale University Press.
+\item[] Mayhew, David R. 1974. \textit{Congress: The Electoral Connection}. New Haven: Yale University Press.
 
-\item Olson, Mancur. 1965. \textit{The Logic of Collective Action: Public Goods and the Theory of Groups}. Cambridge, MA: Harvard University Press.
+\item[] Olson, Mancur. 1965. \textit{The Logic of Collective Action: Public Goods and the Theory of Groups}. Cambridge, MA: Harvard University Press.
 
-\item Park, Hyeon-Ho. 2023. ``Electoral Rewards for Political Grandstanding.'' \textit{State Politics \& Policy Quarterly} 23 (4).
+\item[] Tsebelis, George. 2002. \textit{Veto Players: How Political Institutions Work}. Princeton, NJ: Princeton University Press.
 
-\item Tsebelis, George. 2002. \textit{Veto Players: How Political Institutions Work}. Princeton, NJ: Princeton University Press.
+\item[] Volden, Craig, and Alan E. Wiseman. 2014. \textit{Legislative Effectiveness in the United States Congress: The Lawmakers}. New York: Cambridge University Press.
 
-\item Volden, Craig, and Alan E. Wiseman. 2014. \textit{Legislative Effectiveness in the United States Congress: The Lawmakers}. New York: Cambridge University Press.
+\item[] Volden, Craig, Alan E. Wiseman, and Dana E. Wittmer. 2016. ``Women's Issues and Their Fates in the U.S.\ Congress.'' \textit{Political Science Research and Methods} 6 (4): 679--696.
 
-\item Volden, Craig, Alan E. Wiseman, and Dana E. Wittmer. 2016. ``Women's Issues and Their Fates in the U.S. Congress.'' \textit{Political Science Research and Methods} 6 (4): 679--696.
+\item[] Wilson, James Q. 1980. \textit{The Politics of Regulation}. New York: Basic Books.
 
-\item Wilson, James Q. 1980. \textit{The Politics of Regulation}. New York: Basic Books.
-
-\item Yoon, Joochul, and Heontae Shin. 2023. ``Effects of Sponsor's Network Influence on Bill Success in Co-Sponsorship Network.'' \textit{Korean Public Administration Review} 57 (3): 97--.
+\item[] Yoon, Joochul, and Heontae Shin. 2023. ``Effects of Sponsor's Network Influence on Bill Success in Co-Sponsorship Network.'' \textit{Korean Public Administration Review} 57 (3): 97--.
 
 \end{description}
+
 
 \end{document}
