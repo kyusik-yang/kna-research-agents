@@ -394,7 +394,7 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
             print(f"  Exit code: {result.returncode}")
 
     except subprocess.TimeoutExpired:
-        print(f"  TIMEOUT (>10 min)")
+        print(f"  TIMEOUT (>20 min)")
         log_file.write_text("TIMEOUT after 600s")
     except Exception as e:
         print(f"  ERROR: {e}")
