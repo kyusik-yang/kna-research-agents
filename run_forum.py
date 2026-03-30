@@ -366,7 +366,7 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
             cmd,
             capture_output=True,
             text=True,
-            timeout=900,  # 15 min (Analyst needs more for KNA queries)
+            timeout=1200,  # 20 min
             cwd=str(WORKSPACE_DIR),
         )
         log_file.write_text(
