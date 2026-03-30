@@ -1465,8 +1465,11 @@ def _build_article_list():
     if not articles_dir.exists():
         articles_dir.mkdir(exist_ok=True)
 
-    articles = sorted(articles_dir.glob("*.md"), reverse=True)
-    if not articles:
+    # Look for .tex files (primary) and .md files (fallback)
+    tex_files = sorted(articles_dir.glob("*.tex"), reverse=True)
+    tex_files = [t for t in tex_files if "template" not in t.name and "content" not in t.name and "compile" not in t.name and "test" not in t.name]
+
+    if not tex_files:
         return """\
 <div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
   <p style="font-size:2rem; margin-bottom:0.5rem;">📝</p>
@@ -1476,37 +1479,43 @@ def _build_article_list():
 
     from html import escape
     items = []
-    for a in articles:
-        content = a.read_text()
-        meta = {}
-        body = content
-        match = re.match(r"^---\n(.*?)\n---\n(.*)", content, re.DOTALL)
-        if match:
-            try:
-                meta = yaml.safe_load(match.group(1)) or {}
-            except yaml.YAMLError:
-                pass
-            body = match.group(2)
+    for tex in tex_files:
+        content = tex.read_text()
 
-        title = meta.get("title", a.stem)
-        date = meta.get("date", "")
-        source = meta.get("source_round", "?")
-        wc = len(body.split())
+        # Extract title
+        title_match = re.search(r'\\title\{(.+?)\}', content, re.DOTALL)
+        title = title_match.group(1).replace('\\\\', ' ').replace('\n', ' ').strip() if title_match else tex.stem
+
+        # Extract keywords
+        kw_match = re.search(r'\\textbf\{Keywords:\}\s*(.+?)$', content, re.MULTILINE)
+        keywords = kw_match.group(1).strip() if kw_match else ""
+
+        # Extract date from filename
+        date_match = re.match(r'(\d{4}-\d{2}-\d{2})', tex.name)
+        date = date_match.group(1) if date_match else ""
+
+        # Extract round
+        round_match = re.search(r'_r(\d+)', tex.name)
+        source = round_match.group(1) if round_match else "?"
+
+        # Word count from tex (strip LaTeX commands roughly)
+        stripped = re.sub(r'\\[a-zA-Z]+\{[^}]*\}', '', content)
+        stripped = re.sub(r'\\[a-zA-Z]+', '', stripped)
+        stripped = re.sub(r'[{}\\$%&_^~]', '', stripped)
+        wc = len(stripped.split())
 
         # Check for PDF
-        pdf = a.with_suffix(".pdf")
+        pdf = tex.with_suffix(".pdf")
         pdf_link = f' | <a href="articles/{pdf.name}" style="color:var(--analyst);">PDF</a>' if pdf.exists() else ""
+
+        # Keywords badge
+        kw_html = f'<div class="post-meta" style="margin-top:0.3rem;">{escape(keywords)}</div>' if keywords else ""
 
         items.append(f"""\
 <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem 1.25rem; margin:0.75rem 0;">
-  <div style="font-weight:600; color:var(--text); margin-bottom:0.3rem;">{escape(str(title))}</div>
+  <div style="font-weight:600; color:var(--text); margin-bottom:0.3rem;">{escape(title)}</div>
   <div class="post-meta">Round {source} | {date} | {wc} words{pdf_link}</div>
-  <details style="margin-top:0.5rem;">
-    <summary class="post-meta" style="cursor:pointer;">Read draft</summary>
-    <article class="post" style="margin-top:0.75rem;">
-    {markdown.markdown(body[:8000], extensions=['tables', 'fenced_code'])}
-    </article>
-  </details>
+  {kw_html}
 </div>""")
 
     return "\n".join(items)
