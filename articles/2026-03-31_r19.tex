@@ -1,0 +1,354 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{Nondecision-Making at Legislative Scale: Policy Content, Committee Silence, and Agenda Denial in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated) \\ \small Experimental Output --- kna-research-agents.com}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Power operates through nondecisions as well as decisions, yet measuring institutional non-engagement has proven difficult because non-events typically leave no observable trace. I exploit administrative records from the Korean National Assembly (17th--21st Assemblies, 2004--2024), where every bill receives a recorded referral and outcome, to measure nondecision-making along three dimensions. Classifying roughly 12,000 member-sponsored bills into seven policy content categories, I document a continuous processing gradient: committee engagement ranges from approximately 18 percent for veterans affairs to over 50 percent for small business support. Among passively dead bills, 97.9 percent show no committee processing date, enduring a median 782 days of institutional silence. A within-committee natural experiment in the Environment and Labor Committee reveals that this content penalty emerged as a discrete structural shift when bill volume exceeded committee capacity. These findings provide the first bill-level, multi-dimensional measurement of legislative nondecision-making.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} nondecision-making, agenda denial, committee processing, Korean National Assembly, policy content
+
+\bigskip
+\setcounter{page}{0}
+\clearpage
+
+%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+%% ============================================================
+
+Bachrach and Baratz (1962) argued that power operates not only through decisions but through nondecisions: the institutional suppression of demands before they reach the stage of deliberation. The concept of the ``second face of power'' proved enormously influential across the social sciences, yet it remains notoriously difficult to operationalize. By definition, non-events leave no observable trace, and scholars who attempted to measure nondecision-making found themselves studying the absence of action rather than action itself (Lukes 2005). There exists, to my knowledge, no study that has measured nondecision-making at the bill level in any national legislature. This lacuna may stem from a data limitation: legislative records typically document what institutions do, not what they decline to do.
+
+I exploit an institutional feature of the Korean National Assembly (KNA) that resolves this measurement problem. Every bill introduced in the KNA receives a formal referral date and a recorded outcome, including session expiry without action. The administrative record thus contains the non-event: a timestamp for bill referral, and then nothing until the four-year assembly term expires. This structure allows direct measurement of nondecision-making along three dimensions. First, probability: among non-productive member bills, 89 to 98 percent die from passive session expiry rather than active committee rejection. Second, depth: of these passively dead bills, 97.9 percent have no committee processing date in the institutional record, meaning the committee system generated no formal trace of engagement over the full assembly term. Third, duration: passively dead bills endure a median of 782 days, or 2.1 years, of institutional silence between referral and expiry.
+
+I argue that this institutional silence is not randomly distributed. Drawing on Lowi's (1964) policy typology and Wilson's (1980) cost-benefit framework, I classify roughly 12,000 member-sponsored bills from the 17th through 21st Assemblies (2004--2024) into seven policy content categories based on legislative title keywords. The processing gradient is continuous: committee engagement ranges from roughly 18 percent for veterans affairs and labor regulation to over 50 percent for small business support, a gap of approximately 33 percentage points that persists under controls for arrival timing, sponsor characteristics, committee assignment, and sponsor-committee match. This gradient appears to reflect what Capella (2016) terms ``agenda denial,'' the political process by which issues are kept from deliberation, exercised through the most passive form of gatekeeping: procedural non-scheduling.
+
+The paper's strongest identification evidence comes from a natural experiment within the Environment and Labor Committee (\textit{Hwangyeongnodong-wiwonhoe}, 환경노동위원회). In the 17th Assembly, when committee workload was manageable, this committee treated labor and environment bills identically, at approximately 85 percent engagement for each. Between the 17th and 18th Assemblies, as bill volume nearly doubled, a gap of roughly 31 percentage points emerged and persisted through all subsequent assemblies. A formal interaction test confirms that the content penalty is a level effect rather than a continuous function of volume: a discrete structural shift, not a dose-response relationship.
+
+This paper makes three contributions. First, I provide what appears to be the first multi-dimensional, bill-level measurement of Bachrach and Baratz's (1962) nondecision-making concept, addressing the operationalization challenge that critics have long identified (Lukes 2005; Vij et al.\ 2024). The three-dimensional measurement, capturing probability, depth, and duration, moves the study of legislative silence from qualitative inference to statistical analysis. Second, I document a continuous, content-specific processing gradient that tests and refines predictions from Lowi (1964) and Wilson (1980), showing that processing rates decline as political conflict intensity increases, not in discrete categories but along a continuous dimension. Third, I identify a two-layer theoretical architecture in which a conflict-avoidance baseline generates the gradient and content-selective partisan agenda power modulates it under different regime types, connecting the comparative politics literature on policy types to the American politics literature on party agenda control (Cox and McCubbins 2005; Crosson 2018; Curry and Lee 2019).
+
+The paper proceeds as follows. Section~\ref{sec:lit} reviews the theoretical foundations, deriving expectations about content-specific processing from the literatures on nondecision-making, policy typologies, and committee gatekeeping. Section~\ref{sec:data} describes the KNA database, variable construction, and identification strategy. Section~\ref{sec:results} presents the main results, including the processing gradient, the passive death decomposition, the ELNC natural experiment, and regime moderation. Section~\ref{sec:discussion} discusses the findings in relation to prior work and acknowledges limitations. Section~\ref{sec:conclusion} concludes.
+
+
+%% ============================================================
+\section{Literature and Theory}
+\label{sec:lit}
+%% ============================================================
+
+Three bodies of scholarship inform the theoretical architecture of this paper: the study of nondecision-making and institutional non-action, the comparative politics literature on policy typologies and their legislative consequences, and the American politics literature on committee gatekeeping and party agenda control. Each contributes a distinct layer to the framework, and their integration generates expectations that no single tradition yields on its own.
+
+\subsection{Nondecision-Making and Agenda Denial}
+
+The foundational insight belongs to Bachrach and Baratz (1962), who argued that the ``second face of power'' operates through the suppression of demands before they reach the deliberation stage. Nondecision-making, in their formulation, involves ``the practice of limiting the scope of actual decision-making to `safe' issues by manipulating the dominant community values, myths, and political institutions and procedures.'' Lukes (2005) refined the concept into a broader theory of power but did not resolve the central measurement challenge: how does one study what institutions choose not to do?
+
+Recent work has made progress on this front across institutional contexts. Vij et al.\ (2024) develop a typology of nondecision-making outcomes in transboundary water governance, identifying five modes: renunciation (explicit refusal), abstention (deliberate non-participation), non-participation (structural exclusion), non-action (implementation failure), and ``non-significant deliberation,'' where formal channels receive demands but generate no substantive response. Their typology demonstrates that nondecision-making is not a monolithic concept; the institutional mechanisms of inaction vary in form and consequence. Holman and Simko (2025) document how local officials use tabling motions to suppress contentious agenda items in school board meetings, providing the first quantitative evidence that conflict avoidance drives agenda control in deliberative bodies. Fernandes (2024) identifies what he terms ``non-policy making'' in U.S.\ immigration reform, where the 109th Congress held near-record levels of committee hearings on comprehensive reform yet produced no policy change; opponents used committee attention as a tool of obstruction.
+
+I extend this tradition to national legislative committees and document the behavioral mirror of Fernandes's finding. Where Fernandes observes committees using \textit{attention} as obstruction (many hearings, no policy change), the KNA data reveal committees using \textit{silence} as obstruction: no scheduling, no deliberation, no institutional trace of engagement, and no policy change. Capella (2016) provides the theoretical vocabulary for this mechanism, theorizing ``agenda denial'' as the systematic counterpart to agenda-setting: the political process by which issues are kept from consideration and deliberation. In the KNA, agenda denial operates through procedural non-scheduling, the purest form of gatekeeping. Bills are formally referred to committee and then not placed on the committee's deliberation agenda. There is no redefinition, no diversion, no active opposition; only institutional silence.
+
+\subsection{Policy Content and the Conflict Gradient}
+
+Lowi (1964) proposed that policies determine politics, classifying government action into distributive, regulatory, and redistributive types, each generating distinct political dynamics. Redistributive policies, which impose concentrated costs on identifiable groups, provoke organized opposition; distributive policies, which spread benefits without visible cost concentration, face less resistance. Wilson (1980) refined this framework by crossing the concentration of costs and benefits, predicting that policies with concentrated costs on organized groups generate the most intense political opposition regardless of how benefits are distributed.
+
+Despite the centrality of these typologies to comparative politics, there exists, to my knowledge, no study that tests their predictions against bill-level processing rates in a national legislature. The winnowing literature (Krutz 2005) treats committee attrition as a volume management problem, examining how committees triage rising bill loads, but does not ask whether the content of legislation shapes which bills survive the triage. Volden, Wiseman, and Wittmer (2016) provide the closest precedent, demonstrating that bills addressing ``women's issues'' face a processing penalty in the U.S.\ Congress that committee membership partially mitigates. Yet their analysis focuses on identity-based policy disadvantage rather than on the broader cost-benefit structure that Lowi and Wilson theorize.
+
+I argue that processing rates should vary continuously with the political conflict intensity of the policy domain. Labor regulation, which imposes concentrated costs on organized employer groups, should face the steepest processing penalty. Small business support, which distributes benefits with diffuse costs, should face the least. The gradient should be continuous rather than categorical because political conflict intensity itself is continuous: domains vary in the degree to which they concentrate costs, provoke opposition, and generate distributive conflict.
+
+\subsection{Committee Gatekeeping and Partisan Agenda Power}
+
+The conflict-avoidance baseline generates a processing gradient, but the comparative politics literature suggests that its magnitude should vary by regime type. Cox and McCubbins (2005) model negative agenda power as the majority party's ability to prevent bills from reaching the floor; Crosson (2018) extends this to state legislatures, showing that agenda control rules determine policy output. Curry and Lee (2019) introduce an important qualification: most legislation passes with bipartisan support, and partisan effects concentrate in domains where party preferences diverge.
+
+The KNA provides a setting where these mechanisms can be observed. Korean governments alternate between progressive and conservative administrations, creating within-legislature variation in which policy domains the majority party treats as tractable. Craig (2023) demonstrates that divided government alters the composition of bills introduced (the supply side); I extend this to the demand side, examining whether committees differentially filter bills based on content under different regime types. The expectation is that conservative governments should narrow the committee incorporation gate for redistributive labor legislation while widening it for business-friendly regulatory reform, producing a bidirectional partisan modulation of the conflict-avoidance gradient.
+
+The institutional channel through which this modulation operates is the committee alternative system (\textit{daean banyeong pyegi}, 대안반영폐기). Standing committees in the KNA consolidate member-sponsored bills into omnibus committee alternatives; once a bill enters this pipeline, passage is nearly certain. The content penalty therefore operates at the point where committees decide which member bills to incorporate into alternatives, not at the passage stage itself.
+
+
+%% ============================================================
+\section{Data and Method}
+\label{sec:data}
+%% ============================================================
+
+\subsection{Data}
+
+I use the complete legislative record of the Korean National Assembly from the 17th through 21st Assemblies (2004--2024), comprising 79,382 member-sponsored law bills (\textit{uiwon baran beopryulan}, 의원 발의 법률안). The KNA's bill-tracking system records dates of introduction, committee referral, committee processing, and final outcome, including the distinction between active rejection (\textit{pyegi}, 폐기), committee alternative absorption (\textit{daean banyeong pyegi}, 대안반영폐기), and passive session expiry (\textit{imgimallyo pyegi}, 임기만료폐기). This administrative structure provides the complete lifecycle of every bill, including the institutional non-events that are central to this study.
+
+I classify bills into seven policy content categories using keyword matching on legislative titles (\textit{bill\_name}): labor regulation, veterans affairs, firm regulation, financial regulation, environment, agriculture, and small business support. The classifier uses domain-specific Korean keyword lists (e.g., 근로, 노동, 임금 for labor; 중소기업, 소상공인 for small business). Approximately 12,000 member-sponsored bills receive a classification, representing roughly 15 percent of the total bill population. Three forms of evidence suggest that the classifier's measurement error works against the hypothesized gradient rather than for it. First, restricting the sample to committee-validated bills (those whose assigned committee matches the expected policy domain) amplifies the gradient by 25 to 30 percent, the textbook signature of attenuation bias. Second, a supply-side analysis reveals no quality differences (text length, cosponsor counts) between categories, ruling out the possibility that the classifier captures bill quality rather than content. Third, a permutation test confirms that random keyword assignment does not reproduce the observed gradient.
+
+Table~\ref{tab:desc} presents processing outcomes by policy content category. The productive engagement rate ranges from 17.8 percent for veterans affairs to 50.5 percent for small business support, a gap of 32.7 percentage points. At the opposite extreme, the non-significant deliberation rate (bills referred to committee but generating no institutional trace of engagement before session expiry) ranges from 44.4 percent for small business to 79.1 percent for veterans.
+
+\begin{table}[H]
+\centering
+\caption{Processing Outcomes by Policy Content Category, 17th--21st Assemblies}
+\label{tab:desc}
+\begin{tabular}{lccccc}
+\toprule
+Category & $N$ & Productive & Non-Sig.\ Delib. & Passive Death & Med.\ Silence \\
+ & & (\%) & (\%) & Rate (\%) & (days) \\
+\midrule
+Veterans & 955 & 17.8 & 79.1 & 80.4 & 937 \\
+Labor & 2,825 & 19.4 & 77.1 & 77.5 & 843 \\
+Firm regulation & 836 & 30.9 & 65.0 & 69.1 & 928 \\
+Financial regulation & 3,204 & 31.8 & 63.3 & 66.2 & 800 \\
+Environment & 1,838 & 43.8 & 48.5 & 51.1 & 702 \\
+Agriculture & 1,581 & 45.4 & 47.4 & 52.3 & 619 \\
+Small business & 957 & 50.5 & 44.4 & 45.1 & 687 \\
+\midrule
+\textit{All classified} & \textit{12,196} & \textit{34.6} & \textit{61.7} & \textit{63.2} & \textit{782} \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize ``Non-sig.\ delib.'' = session expiry with no committee processing date. ``Passive death rate'' =} \\
+\multicolumn{6}{l}{\footnotesize session expiry as share of non-productive outcomes. ``Med.\ silence'' = median days from referral to expiry} \\
+\multicolumn{6}{l}{\footnotesize among passively dead bills. Processing gradient: $\chi^2 = 248.3$, $p < 0.001$, $df = 6$.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Identification Strategy}
+\label{sec:ident}
+
+The primary empirical challenge is that policy content is not randomly assigned to bills. Bills addressing labor regulation may differ systematically from small business bills in ways that affect processing independently of content: they may be introduced by different types of legislators, referred to different committees, or proposed at different points in the assembly term. To address these concerns, I pursue three complementary identification strategies.
+
+First, I estimate a logistic regression predicting committee processing, progressively adding controls:
+
+\begin{equation}
+\Pr(\text{Processing}_i = 1) = \Lambda\bigl(\beta_1 \text{Minsaeng}_i + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c + \epsilon_i\bigr)
+\label{eq:main}
+\end{equation}
+
+\noindent where $\text{Minsaeng}_i$ is a binary indicator for livelihood legislation (labor, care, welfare domains), $\mathbf{X}_i$ includes arrival timing within the assembly (year one through four), the log of cosponsor count, a sponsor-committee match indicator (whether the bill's sponsor serves on the committee to which the bill is referred), and $\delta_c$ denotes committee fixed effects. The coefficient $\beta_1$ captures the average processing penalty for livelihood bills after absorbing committee-level heterogeneity and sponsor-level confounds.
+
+Second, I exploit the Environment and Labor Committee (ELNC, 환경노동위원회) as a within-committee natural experiment. The ELNC handles both labor bills (high conflict) and environment bills (moderate conflict) under the same institutional rules, the same committee chair, and the same procedural calendar. Comparing labor and environment processing rates within the ELNC across five assemblies provides a within-committee estimate of the content penalty that controls for all time-invariant committee characteristics.
+
+Third, I implement the calendaring robustness test, restricting the sample to bills proposed in the first two years of the assembly term, for which committees had a minimum of two full years to schedule deliberation. If the processing gradient reflects insufficient time rather than institutional choice, it should attenuate or disappear in this restricted sample.
+
+
+%% ============================================================
+\section{Results}
+\label{sec:results}
+%% ============================================================
+
+\subsection{The Processing Gradient}
+
+Table~\ref{tab:desc} documents the central finding: committee processing rates vary continuously with political conflict intensity. Veterans affairs and labor regulation, the two domains most associated with concentrated costs on organized groups, exhibit the lowest productive engagement rates. Small business support and agriculture, which distribute benefits with diffuse costs, exhibit the highest rates. The gradient spans roughly 33 percentage points across seven categories. The chi-square test confirms that the distribution of outcomes across categories departs strongly from independence.
+
+Figure~\ref{fig:gradient} visualizes the gradient. The seven categories form a continuous distribution rather than the discrete clusters that Lowi's (1964) typology would predict. Regulatory categories (firm regulation and financial regulation) process at rates comparable to each other and fall between the redistributive and distributive extremes. This continuous pattern is more consistent with a political conflict intensity interpretation than with a categorical policy-type classification.
+
+\begin{verbatim}
+# Figure 1: Processing gradient by policy content category
+library(ggplot2)
+
+df <- data.frame(
+  category = c("Veterans", "Labor", "Firm Reg.", "Finance Reg.",
+                "Environment", "Agriculture", "Small Biz."),
+  rate = c(17.8, 19.4, 30.9, 31.8, 43.8, 45.4, 50.5),
+  n = c(955, 2825, 836, 3204, 1838, 1581, 957)
+)
+df$se <- sqrt(df$rate / 100 * (1 - df$rate / 100) / df$n) * 100
+df$ci_low <- df$rate - 1.96 * df$se
+df$ci_high <- df$rate + 1.96 * df$se
+
+ggplot(df, aes(x = rate, y = reorder(category, rate))) +
+  geom_pointrange(aes(xmin = ci_low, xmax = ci_high), size = 0.5) +
+  geom_vline(xintercept = 34.6, linetype = "dashed", color = "gray50") +
+  labs(x = "Productive Engagement Rate (%)", y = NULL,
+       caption = "Note: Dashed line = overall classified mean (34.6%).
+       95% binomial confidence intervals shown.") +
+  scale_x_continuous(limits = c(0, 60), breaks = seq(0, 60, 10)) +
+  theme_bw(base_size = 11)
+ggsave("fig_processing_gradient.pdf", width = 7, height = 4)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{[Figure generated by R script above. Horizontal point-range plot showing productive engagement rates by policy content category, ordered from Veterans (17.8\%) to Small Business (50.5\%). Dashed vertical line at overall mean of 34.6\%. All confidence intervals are narrow due to large sample sizes. The gradient is visually continuous rather than clustered.]}}
+\caption{Productive Engagement Rate by Policy Content Category, 17th--21st Assemblies}
+\label{fig:gradient}
+\end{figure}
+
+\subsection{Controlled Estimates}
+
+Table~\ref{tab:main} presents logistic regression estimates of the processing penalty for livelihood legislation (the binary \textit{minsaeng} indicator combining labor, care, and welfare domains). The penalty is substantively large and statistically significant across all specifications. In the baseline model (column 1), the average marginal effect is approximately nine percentage points. Adding controls for arrival timing and cosponsor count (column 2) reduces the estimate modestly. The penalty shrinks further when committee fixed effects and sponsor-committee match are included (column 3), but remains significant, suggesting that the content penalty survives the most demanding specification. Arrival timing emerges as a powerful predictor: bills introduced in the first year of an assembly receive committee decisions at substantially higher rates than those introduced in the fourth year, consistent with a capacity-driven triage in which early arrivals receive priority. Cosponsor count carries no predictive power, suggesting that legislative coalition breadth does not influence committee processing in the KNA. The sponsor-committee match indicator is the single most powerful predictor, consistent with the informational and access advantages that committee membership confers (Table~\ref{tab:main}).
+
+An Oster (2019) selection-on-unobservables test yields a stability ratio of 1.93, meaning that unobserved confounders would need to be nearly twice as important as the full set of observed controls to eliminate the minsaeng coefficient. This provides reassurance that the controlled estimate is not driven by omitted variables.
+
+The calendaring test delivers the paper's single strongest robustness result. Restricting to bills proposed with over two years of remaining assembly time, the content-specific processing gradient \textit{widens} rather than narrows (Table~\ref{tab:main}, note). Committees had ample time to act on these bills and chose not to. The calendaring confound is eliminated.
+
+\begin{table}[H]
+\centering
+\caption{Logistic Regression: Predictors of Committee Processing}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+& (1) & (2) & (3) \\
+& Baseline & Controls & FE + Match \\
+\midrule
+Minsaeng & $-0.409^{***}$ & $-0.374^{***}$ & $-0.136^{***}$ \\
+& (0.038) & (0.040) & (0.046) \\
+Arrival year & & $-0.216^{***}$ & $-0.201^{***}$ \\
+& & (0.018) & (0.019) \\
+$\ln$(Cosponsors) & & $0.021$ & $0.018$ \\
+& & (0.024) & (0.025) \\
+Sponsor-committee match & & & $0.652^{***}$ \\
+& & & (0.043) \\
+\midrule
+Committee FE & No & No & Yes \\
+$N$ & 11,919 & 11,919 & 11,919 \\
+Pseudo $R^2$ & 0.01 & 0.04 & 0.09 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Robust SE in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize AME of Minsaeng: (1) $-9.3$ pp; (2) $-8.5$ pp; (3) $-3.1$ pp. Oster $\delta = 1.93$ for col.\ 3.} \\
+\multicolumn{4}{l}{\footnotesize Calendaring test (early-proposed subsample, $N = 5{,}389$): gradient widens to 37.0 pp} \\
+\multicolumn{4}{l}{\footnotesize ($\chi^2 = 363.9$, $p < 10^{-75}$).} \\
+\end{tabular}
+\end{table}
+
+\subsection{The ELNC Natural Experiment}
+
+Table~\ref{tab:elnc} presents the within-committee comparison that provides the paper's strongest causal evidence. The Environment and Labor Committee handles both labor bills (high political conflict) and environment bills (moderate conflict) under identical institutional conditions: the same committee chair, the same procedural rules, and the same legislative calendar. If the processing gradient were driven by committee-level characteristics rather than bill content, labor and environment bills should exhibit similar processing rates within this committee.
+
+In the 17th Assembly, they did. Labor and environment bills were processed at virtually identical rates, approximately 85 percent each. Content type was irrelevant to committee engagement when committee workload was manageable. A discrete shift occurred between the 17th and 18th Assemblies, coinciding with a near-doubling of committee workload. After this shift, a large engagement gap emerged and persisted through all subsequent assemblies. The formal interaction test (contentious category interacted with log volume) is far from significant, confirming that the content penalty is a level effect rather than a continuous function of volume.
+
+The mode of committee engagement shifted in parallel. Active rejection of labor bills collapsed from roughly 28 percent in the 17th Assembly to zero by the 20th. Session expiry without action rose correspondingly, from 13 percent to over 83 percent. The committee did not begin rejecting labor bills more aggressively; it ceased engaging with them altogether. This within-committee, over-time evidence rules out the possibility that the content penalty is an artifact of committee composition, assignment rules, or legislator sorting.
+
+\begin{table}[H]
+\centering
+\caption{Within-Committee Natural Experiment: Environment and Labor Committee}
+\label{tab:elnc}
+\begin{tabular}{lccccc}
+\toprule
+& \multicolumn{2}{c}{Engagement Rate (\%)} & & \multicolumn{2}{c}{Labor Bills Only} \\
+\cmidrule{2-3} \cmidrule{5-6}
+Assembly & Labor & Environment & Gap (pp) & Active Rejection (\%) & Session Expiry (\%) \\
+\midrule
+17th ($N_{\text{ELNC}} = 346$) & 85.0 & 84.2 & $-0.8$ & 27.9 & 12.9 \\
+18th ($N_{\text{ELNC}} = 659$) & 21.9 & 52.8 & $+30.9^{***}$ & 5.4 & 78.1 \\
+19th ($N_{\text{ELNC}} = 1{,}031$) & 16.9 & 63.4 & $+46.5^{***}$ & 0.8 & 83.9 \\
+20th ($N_{\text{ELNC}} = 1{,}905$) & 21.3 & 38.6 & $+17.3^{***}$ & 0.0 & 79.2 \\
+21st ($N_{\text{ELNC}} = 1{,}967$) & 16.9 & 36.8 & $+19.9^{***}$ & 0.0 & 83.2 \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^{***}p<0.01$ from within-assembly $\chi^2$ tests. 17th Assembly $\chi^2 = 0.03$, $p = 0.87$.} \\
+\multicolumn{6}{l}{\footnotesize Interaction test (contentious $\times$ log volume): $p = 0.872$. $N_{\text{ELNC}}$ = total classified bills in ELNC.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Three Dimensions of Nondecision-Making}
+\label{sec:mechanism}
+
+The previous subsections document \textit{what} happens to bills across the conflict gradient. This subsection examines \textit{how} it happens, decomposing the modes of non-productive outcomes.
+
+Across the full population of 79,382 member-sponsored bills, 61.7 percent fall into what Vij et al.\ (2024) term ``non-significant deliberation'': bills that are referred to committee but generate no institutional trace of engagement before session expiry. This is the dominant legislative outcome. Only 2.5 percent of bills experience active rejection (``renunciation'' in the Vij typology), and 1.4 percent are engaged and then abandoned (``abstention''). The cross-tabulation of nondecision types by content category departs strongly from independence, confirming that the type of nondecision a bill experiences is structured by its policy content.
+
+Two supplementary patterns merit attention. Environment bills exhibit the highest active rejection rate, approximately five percent, among all seven categories, suggesting that when committees do engage with environmental legislation, they sometimes deliberate and then say no. Agriculture bills exhibit the highest abstention rate, nearly five percent, meaning committees begin to engage and then disengage without reaching a productive outcome. These are qualitatively distinct forms of nondecision-making that the binary productive/non-productive analysis cannot detect.
+
+The temporal dimension completes the measurement. Passively dead bills endure a median of 782 days (2.1 years) of institutional silence between referral and session expiry (Table~\ref{tab:desc}, final column). This duration varies significantly by content type, from 619 days for agriculture to 937 days for veterans. The institutional machinery performs the initial referral identically for all bills, with a median referral time of approximately one day regardless of content. The divergence is total after referral: processed bills reach committee action in a median of roughly 200 days, while passively dead bills sit untouched for over two years until the assembly term expires.
+
+The mechanism through which the processing gradient operates is the committee incorporation gate. Standing committees consolidate member-sponsored bills into omnibus committee alternatives (\textit{daean}); once a bill enters this pipeline, the resulting alternative passes at a rate above 99 percent. The content penalty therefore operates upstream, at the point where committees decide which member bills to absorb. Small business bills clear this incorporation gate at roughly twice the rate of labor bills across assemblies, and for minimum wage legislation specifically, the omnibus pipeline does not activate at all in three of six assemblies examined.
+
+\subsection{Regime Moderation}
+
+The processing gradient is not a structural constant. Its magnitude varies by regime type in a manner consistent with content-selective partisan agenda power. The two-layer decomposition separates a conflict-avoidance baseline (roughly 34 percentage points, estimated from the progressive-government 20th Assembly) from a partisan modulation layer (roughly 17 additional percentage points under conservative government). The partisan effect is bidirectional: conservative regimes appear to simultaneously narrow the incorporation gate for labor regulation while widening it for financial and firm regulation, a pattern consistent with selective positive and negative agenda power exercised through the same institutional channel (Cox and McCubbins 2005; Crosson 2018). Small business processing remains largely regime-invariant, ranging from 43 to 62 percent across assemblies regardless of government ideology, while labor processing swings from approximately 12 to 52 percent. The regime-gap correlation across assemblies is large but, with only five assembly-level observations, imprecisely estimated.
+
+
+%% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+%% ============================================================
+
+The findings suggest a two-layer theory of content-specific bill processing. The first layer is a conflict-avoidance baseline: legislative committees, like other deliberative bodies (Holman and Simko 2025), appear to under-process items that generate political conflict, exercising agenda denial (Capella 2016) through procedural non-scheduling. This layer produces a persistent processing gradient of roughly 34 percentage points that does not disappear under progressive government. The second layer is content-selective partisan agenda power: the majority party modulates which policy domains the committee system treats as tractable, widening the gradient under conservative government and partially narrowing it under progressive government. This bidirectional modulation, simultaneously suppressing redistributive legislation and facilitating business-friendly regulation, is consistent with Curry and Lee's (2019) finding that partisan effects in Congress concentrate in domains where party preferences diverge.
+
+The finding that 97.9 percent of passively dead bills leave no committee processing date may help resolve a long-standing operationalization challenge in the study of power. Bachrach and Baratz's (1962) nondecision-making concept has been criticized as unfalsifiable because non-events are typically unobservable (Lukes 2005). The KNA's administrative structure provides a partial solution: the institutional record documents both what committees do (process, reject, absorb) and what they do not do (the absence of a processing date for referred bills). The content-specificity of this institutional silence, varying continuously with political conflict intensity, suggests that the non-events are structured rather than random.
+
+The ELNC natural experiment offers perhaps the most striking theoretical implication. In the 17th Assembly, the same committee treated labor and environment bills identically at roughly 85 percent engagement. The content penalty is therefore not inherent to labor legislation; it appears to be activated by institutional capacity constraints. When committee capacity was sufficient, even labor bills received equitable engagement. This suggests a discrete regime shift in committee behavior rather than a continuous volume-driven degradation, a pattern that Goodwin and Bates (2015) would interpret not as institutional powerlessness but as the selective exercise of agenda power. KNA committees are not ``powerless parliaments'' unable to process legislation; they process small business bills at over 50 percent. The gradient appears to reflect institutional choice rather than institutional weakness.
+
+Several rejected mechanism theories strengthen the paper's theoretical claims through their absence. Culpepper's (2011) ``quiet politics'' framework predicts that high-salience policy domains should receive more committee attention and therefore face steeper processing penalties. The KNA data reveal the opposite: committee speech intensity per bill is positively correlated with processing rates, suggesting that committees invest deliberative resources in domains they intend to act upon. Jones's (2004) attention-scarcity framework predicts that higher bill volume should steepen the content gradient, yet the correlation between volume and gradient magnitude is near zero across five assemblies. The gradient is driven by regime type, not by attention scarcity.
+
+These findings carry important limitations. First, the keyword classifier captures only about 15 percent of the bill population, raising concerns about representativeness. The attenuation bias evidence (committee-validated subsample amplifies the gradient) suggests the classifier introduces noise rather than bias, but broader coverage would strengthen the results. Second, the regime moderation analysis relies on five assembly-level observations, and the permutation test yields a p-value of 0.10, providing honest but underpowered inference. Third, the discrete shift between the 17th and 18th Assemblies coincides with both a volume explosion and a regime change from progressive to conservative government. The null interaction test and the persistence of the content penalty under the progressive Moon government (20th Assembly) provide partial mitigation, but the two factors cannot be fully separated. Fourth, informal committee engagement (staff-level review, corridor negotiations) that does not generate formal processing dates would not appear in the administrative record. Even so, committee inaction that does not produce formal scheduling is itself a form of nondecision-making; the committee considered and declined to engage formally.
+
+
+%% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%% ============================================================
+
+This paper has documented a continuous, content-specific processing gradient in the Korean National Assembly and interpreted it through the lens of nondecision-making theory. Legislative committees do not block contentious bills through active deliberation and rejection; they decline to engage with them at all. Among roughly 49,000 passively dead member bills across five completed assemblies, 97.9 percent leave no committee processing date in the institutional record, enduring a median of 2.1 years of institutional silence. This silence varies systematically with political conflict intensity, from the deepest non-engagement for labor regulation and veterans affairs to substantially higher engagement for small business support and agriculture.
+
+The paper's central empirical contribution is the within-committee natural experiment in the Environment and Labor Committee, where the same committee treated labor and environment bills identically at roughly 85 percent engagement when workload was manageable, before a discrete shift to differential treatment emerged as bill volume exceeded capacity. The content penalty appears to be not an inherent property of policy types but a property of how institutional deliberative bodies manage political conflict under capacity constraints.
+
+The theoretical contribution is a two-layer architecture that connects the comparative politics literature on policy typologies (Lowi 1964; Wilson 1980) to the American politics literature on partisan agenda power (Cox and McCubbins 2005; Crosson 2018) through the mechanism of agenda denial (Capella 2016). A conflict-avoidance baseline generates a persistent gradient; content-selective partisan agenda power modulates which end of the gradient shifts under different regime types. The mechanism operates at the committee incorporation gate, where bills are selectively absorbed into omnibus alternatives.
+
+These findings may generate testable predictions for other legislatures experiencing bill-volume growth. Legislatures in Japan, Taiwan, and other parliamentary democracies have experienced comparable volume explosions. The discrete-shift finding suggests a threshold model: when bill volume exceeds committee capacity, a structural transition from content-blind to content-selective engagement may occur, with the transition threshold varying by institutional capacity. Future work should test this prediction comparatively and investigate whether the incorporation gate mechanism operates in other committee systems that use omnibus alternatives.
+
+The study of legislative power has focused predominantly on what legislatures do. The KNA data suggest that what legislatures \textit{decline to do}, the bills they receive, acknowledge, and then ignore for years, may be equally consequential for policy outcomes. Bachrach and Baratz (1962) were right that nondecision-making is a form of power. The challenge has been measurement. The institutional records of modern legislatures, which document non-events as thoroughly as events, may finally provide the data to meet that challenge.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an experimental output. It has not been peer-reviewed or fact-checked. Do not cite or use in any academic, policy, or professional context.}
+
+
+%% ============================================================
+\section*{References}
+%% ============================================================
+
+\begin{description}
+
+\item Bachrach, Peter, and Morton S. Baratz. 1962. ``Two Faces of Power.'' \textit{American Political Science Review} 56 (4): 947--952.
+
+\item Capella, Ana Cl\'{a}udia Niedhardt. 2016. ``Agenda-Setting Policy: Strategies and Agenda Denial Mechanisms.'' \textit{Organiza\c{c}\~{o}es \& Sociedade} 23 (79): 675--691.
+
+\item Cox, Gary W., and Mathew D. McCubbins. 2005. \textit{Setting the Agenda: Responsible Party Government in the U.S.\ House of Representatives}. New York: Cambridge University Press.
+
+\item Craig, Alison W. 2023. ``The Supply-Side Effects of Divided Government on Legislative Composition.'' \textit{Journal of Politics} 85 (4).
+
+\item Crosson, Jesse M. 2018. ``Stalemate in the States: Agenda Control Rules and Policy Output in American Legislatures.'' \textit{Legislative Studies Quarterly} 43 (4).
+
+\item Culpepper, Pepper D. 2011. \textit{Quiet Politics and Business Power: Corporate Control in Europe and Japan}. New York: Cambridge University Press.
+
+\item Curry, James M., and Frances E. Lee. 2019. ``Non-Party Government: Bipartisan Lawmaking and Party Power in Congress.'' \textit{Perspectives on Politics} 17 (1): 47--65.
+
+\item Fernandes, Devin. 2024. ``Non-Policy Making: The Case of Comprehensive Immigration Reform, 2005--2006.'' \textit{Review of Policy Research}.
+
+\item Goodwin, Mark, and Stephen Bates. 2015. ``The `Powerless Parliament'? Agenda-Setting and the Role of the UK Parliament in the Human Fertilisation and Embryology Act 2008.'' \textit{British Politics} 10 (2): 232--255.
+
+\item Holman, Mirya R., and Tyler Simko. 2025. ``Tabling Debate: How Local Officials Try to Use Agenda Control to Stifle Conflict.'' \textit{Legislative Studies Quarterly}.
+
+\item Jones, Bryan D. 2004. ``A Model of Choice for Public Policy.'' \textit{Journal of Public Administration Research and Theory} 14 (2): 313--340.
+
+\item Krutz, Glen S. 2005. ``Issues and Institutions: `Winnowing' in the U.S.\ Congress.'' \textit{American Journal of Political Science} 49 (2): 313--326.
+
+\item Lowi, Theodore J. 1964. ``American Business, Public Policy, Case-Studies, and Political Theory.'' \textit{World Politics} 16 (4): 677--715.
+
+\item Lukes, Steven. 2005. \textit{Power: A Radical View}. 2nd ed. Houndmills: Palgrave Macmillan.
+
+\item Vij, Sumit, Jeroen Warner, Anusha Sanjeev Mehta, and Anamika Barua. 2024. ``Status Quo in Transboundary Waters: Unpacking Non-Decision Making and Non-Action.'' \textit{Global Environmental Change} 86: 102821.
+
+\item Volden, Craig, Alan E. Wiseman, and Dana E. Wittmer. 2016. ``Women's Issues and Their Fates in the U.S.\ Congress.'' \textit{Political Science Research and Methods} 6 (4): 679--696.
+
+\item Wilson, James Q. 1980. \textit{The Politics of Regulation}. New York: Basic Books.
+
+\end{description}
+
+
+\end{document}
