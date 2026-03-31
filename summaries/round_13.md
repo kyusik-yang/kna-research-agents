@@ -1,18 +1,18 @@
 ---
 round: 13
-date: "2026-03-31 03:39"
-topic: "continuing discussion"
+date: "2026-03-31 04:23"
+topic: "Wilson vs Lowi, binary vs continuous gradient"
 ---
 
 # Round 13 Summary
 
-The final round asked whether the Lowi gradient is continuous or binary, and whether the project's empirical architecture is complete. Analyst's three-category test revealed the decisive finding: redistributive and regulatory bills process at nearly identical rates (around 25-27%), while distributive bills clear at roughly 43%, a binary divide rather than a three-step ordering. Government labor bills bypass the incorporation gate entirely, processing at more than double the member-bill rate, confirming the gate is a member-bill-specific chokepoint. Critic declared all four scoring dimensions at ceiling for the third consecutive round, endorsed the binary gradient as the paper's new headline, and called for drafting to begin.
+Critic declared the binary Lowi gradient the paper's sharpest result and issued a final "pursue" verdict at 4/4 across all dimensions. Scout challenged the theoretical framing, arguing Wilson (1980) better explains the binary pattern because Wilson specifies the mechanism: concentrated costs on organized groups provoke opposition regardless of policy type. Analyst then tested Wilson's prediction directly on 9,202 classified bills and found the aggregate pattern holds (a 15 percentage-point gap) but the within-committee test fails in the one committee with sufficient data, the seven sub-categories form a continuous gradient rather than a binary divide, and the veterans anomaly confirms political conflict intensity is the operative variable.
 
 ## Key Quotes
 
-> **Scout**: "Across 130+ queries over twelve rounds, this space has been confirmed as empty. The one near-precedent (Lee 2021) examines government bills rather than member bills, uses a different typology, and does not specify the procedural mechanism."
+> **Scout**: "The binary pattern is better explained by Wilson (1980) than by Lowi (1964). Lowi classifies policies into types; Wilson explains why two of those types generate equivalent political opposition."
 
-> **Analyst**: "The gradient is not continuous. Regulatory bills are processed at lower rates than redistributive bills, not between them."
+> **Analyst**: "The seven categories form a continuous gradient from 17.1% to 49.5%, with no clean break separating 'concentrated' from 'diffuse.'"
 
 > **Critic**: "The binary Lowi gradient is a more faithful test of Lowi (1964) than the continuous gradient and provides the paper's cleanest single result."
 
@@ -20,10 +20,11 @@ The final round asked whether the Lowi gradient is continuous or binary, and whe
 
 | Finding | Status |
 |---------|--------|
-| Lowi gradient is binary: conflict-generating policies (~26%) vs benefit-concentrating (~43%) | confirmed |
-| Government bills bypass the incorporation gate (processing at more than double the member-bill rate) | confirmed |
-| Labor alternatives merge more diverse proposals at higher ratios, creating preconditions for content dilution | preliminary |
-| Content dilution inside omnibus alternatives remains unmeasurable from current data | confirmed (limitation) |
-| Lee (2021) is a precedent to cite and distinguish on four dimensions | confirmed |
+| Binary Lowi gradient (conflict-generating ~26% vs benefit-concentrating ~43%) | contested |
+| Wilson's cost-concentration prediction holds across but fails within committees | contested |
+| Processing gradient is continuous across seven sub-categories, not binary | preliminary |
+| Veterans bills process like redistributive legislation despite being formally distributive | confirmed |
+| Oversight-processing decoupling is a bill-volume artifact, not a real tradeoff | confirmed |
+| Content penalty is demand-side and member-bill-specific | confirmed |
 
-**Verdict**: Pursue (4/4 all dimensions, third consecutive round at ceiling). Eight self-corrections across 13 rounds prove the adversarial process works. | **Next**: Draft Paper 1 with the binary gradient as headline; draft Paper 2 with the Hacker-Patashnik-forum trichotomy (inaction / erosion / selective non-activation).
+**Verdict**: Pursue (4/4 all dimensions, third consecutive round at ceiling) | **Next**: Resolve whether Paper 1 leads with the binary framing or the continuous gradient, and whether Wilson or Lowi anchors the theoretical contribution.
