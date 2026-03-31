@@ -24,264 +24,464 @@
 
 \begin{document}
 
-\title{Bipartisanship as Liability: Committee Gatekeeping and the Cosponsorship Reversal in the Korean National Assembly}
-\author{KNA Research Agents (AI-generated)\\[0.3em]\normalsize\textit{Experimental Output, kna-research-agents.com}}
+\title{The Limits of Party Discipline: Ideology, Partisan Oversight, and Housing-Policy Legislation in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated)\\[3pt] \textit{Experimental Output, kna-research-agents.com}}
 \date{\today}
 \maketitle
 \thispagestyle{empty}
 
 \begin{abstract}
-\noindent Committee gatekeeping in the Korean National Assembly has intensified over recent decades, yet no study applies survival analysis or competing-risks models to bill-level data from this legislature. I analyze 89,228 bills introduced across the 17th through 21st Assemblies (2004 to 2024) and document three empirical patterns. First, the enactment rate for legislator-sponsored bills fell by more than half, a decline only partially attributable to the inflation of position-taking bills. Second, the committee deliberation stage accounts for nearly all of the growing processing bottleneck, with median wait times expanding almost tenfold. Third, cross-party cosponsorship collapsed between the 20th and 21st Assemblies, and the relationship between bipartisanship and legislative success reversed under divided government. I propose a Fine-Gray competing-risks framework that treats content absorption into committee-chair alternative bills as a distinct exit pathway and present descriptive evidence consistent with its underlying assumptions. These findings suggest that divided government may reshape legislative coalition-building in ways that prevailing theories of committee organization do not fully anticipate.
+Housing wealth constitutes the dominant asset class for Korean households, yet there exists no systematic study of how housing-policy considerations shape individual legislators' behavior in the Korean National Assembly. I examine three dimensions of housing-policy behavior, including bill sponsorship, roll-call voting, and committee oversight, across the 21st Assembly (2020--2024), a period spanning Korea's most consequential property-tax episode. Using 725 housing-related bills, 22,557 individual roll-call votes, and 86,014 committee hearing speeches from the KNA database, I find that ideology is the dominant predictor of within-party dissent on property taxation, with a McFadden pseudo-$R^2$ of approximately 0.38 among ruling-party legislators. Committee assignment strongly predicts housing bill sponsorship but not voting behavior. Partisan oversight on housing shifts markedly across the 2022 government transition, concentrated in standing committees where legislators set the agenda. These findings establish a behavioral baseline against which future studies of legislator self-interest in housing policy may be evaluated.
 \end{abstract}
 
 \bigskip
-\noindent\textbf{Keywords:} Korean National Assembly, committee gatekeeping, competing risks, cosponsorship, divided government
+\noindent\textbf{Keywords:} party discipline, property taxation, housing policy, legislative oversight, Korean National Assembly
 
 \bigskip
-\setcounter{page}{1}
+\setcounter{page}{0}
 \clearpage
 
 %% ============================================================
-\section{Introduction}
+%%  1. INTRODUCTION
 %% ============================================================
+\section{Introduction}
 
-Committees serve as the primary gatekeeping mechanism in modern legislatures, filtering which proposals reach the floor for a vote and which die in obscurity. The conditions under which this gatekeeping intensifies or relaxes, however, remain a central puzzle in legislative studies. Cartel theory holds that majority-party committee chairs strategically block bills that would divide their caucus \citep{cox2005}, while informational theory argues that committee delay reflects the demands of policy expertise rather than partisan calculation (Krehbiel 1991). Distinguishing between these accounts requires data on bill-level processing times and outcomes, yet such data are rarely analyzed with methods suited to duration processes.
+The proposition that personal financial interests may influence legislative behavior is among the oldest in democratic theory, yet direct empirical tests of this claim remain surprisingly rare \citep{carnesLupu2023}. A growing body of research demonstrates that housing wealth shapes citizens' political preferences in consequential ways. Homeowners who experience property appreciation become less supportive of redistribution and social insurance \citep{ansell2014}. Local housing market conditions predict partisan vote choice and political participation \citep{larsen2019}. Homeowners are dramatically overrepresented in local planning meetings, where they overwhelmingly oppose new housing construction \citep{einstein2019}. If housing wealth reshapes citizens' political preferences and behavior at the mass level, the question of whether it similarly shapes the behavior of legislators who govern housing markets is both theoretically important and empirically open.
 
-The Korean National Assembly (KNA, 국회) offers an unusually stark setting in which to examine these dynamics. Between the 17th Assembly (2004 to 2008) and the 21st Assembly (2020 to 2024), the number of legislator-sponsored bills quadrupled from approximately 5,700 to more than 23,600. Over the same period, the share of those bills enacted into law fell by more than half. By the 20th and 21st Assemblies, over 82 percent of bills that expired at term's end had been formally referred to a committee but never processed: referred, then ignored. Bills in the KNA do not fail through active rejection, which accounts for fewer than one in a thousand outcomes, but through strategic neglect. This pattern is consistent with what \citet{kim2026} characterize as the ``rigidity'' of the Korean legislative system, in which structural practices, including committee gatekeeping routines and the automatic expiration of bills at the end of each Assembly term, shape outcomes more powerfully than individual legislator competence. \citet{choi2018} find strong evidence for the partisan model of committee organization in the KNA, suggesting that majority-party control of committee chairs is the proximate mechanism through which this rigidity operates. As I document in Section~4, the decline in enactment rates was broad-based, affecting nearly all standing committees (Table~\ref{tab:desc}; Figure~\ref{fig:committee}).
+There exists, to my knowledge, no study in any country that systematically examines whether legislators' real estate portfolios predict their legislative behavior on housing policy. The closest international precedent involves a different asset class entirely: \citet{tahoun2014} finds that US members of Congress who own stock in a firm are significantly more likely to vote in favor of legislation benefiting that firm. \citet{rosenson2003} demonstrates that state legislators with personal financial stakes in ethics reform are less likely to support it. In Korea, \citet{seo2025} provides the first test of whether National Assembly members' asset levels predict their votes on the comprehensive real estate tax (종합부동산세). Yet the broader question of how housing-related financial positions shape legislative behavior across multiple dimensions, including sponsorship, voting, and oversight, has not been addressed. This gap may stem from the fact that the US congressional-trading literature focuses overwhelmingly on equities, while real estate disclosure data remain difficult to obtain in machine-readable form in most democracies \citep{carnes2015, fisman2014}.
 
-This picture of legislative gridlock, however, conceals a measurement problem that shapes how scholars and practitioners evaluate the KNA. A large fraction of legislator-sponsored bills, roughly one quarter of all introductions, exit the legislative process through a pathway that has no precise analogue in the U.S. Congress: reflected-in-alternative disposal (대안반영폐기). Under this mechanism, a standing committee chair consolidates the content of multiple legislator bills into a single alternative bill (대안) that typically passes. The legislator's bill number dies, but its substance may survive. This creates a gap between narrow legislative success, which counts only bills enacted in their original or amended form, and broad legislative success, which includes content absorption. In the 21st Assembly, the ratio of broad to narrow success was roughly five to one, meaning that for every bill passed in its original form, approximately four additional bills had their content absorbed into an alternative.
+I argue that the Korean National Assembly (KNA) provides an unusually productive setting for investigating the relationship between legislators' financial positions and housing-policy behavior. Three features make Korea's case distinctive. First, real estate constitutes approximately 70 to 80 percent of total household wealth in Korea, making it by far the dominant asset class and the policy domain with the most direct personal financial implications for legislators \citep{schwartz2012}. Second, Korea's Public Official Ethics Act (공직자윤리법) mandates annual asset disclosures for all National Assembly members, creating a data infrastructure for measuring real estate portfolios that is richer than what most democracies provide \citep{cho2021, haLee2023}. Third, the 21st National Assembly (2020--2024) witnessed Korea's most politically consequential property-tax episode, offering an extraordinary empirical window into legislative behavior on housing.
 
-Despite this rich institutional setting, there exists, to my knowledge, no study that applies event-history analysis, Cox proportional hazard models, or competing-risks frameworks to bill-level data from the KNA. This lacuna may stem from the dominance of cross-sectional logistic regression in Korean legislative studies (An2025, Jeon2022) and from the absence of a comparable methodological tradition in East Asian legislative research more broadly. Internationally, only two published studies apply survival models to individual bills within a legislature: Daubler2008 on welfare state legislation in Belgium, Germany, and the United Kingdom, and Magar2008 on statutes in Uruguay. Neither employs a competing-risks specification, and neither addresses the institutionalized content-absorption mechanism that characterizes the Korean case.
+The Moon Jae-in administration, confronting public anger over rapidly rising apartment prices in Seoul and its metropolitan area, implemented a series of tax increases targeting multi-property owners. The comprehensive real estate tax rate was raised, the tax base was broadened, and a roadmap for increasing the ratio of assessed-to-market value (공시가격 현실화율) was adopted. These measures generated fierce opposition from property owners and became a defining issue of the 2022 presidential election. The incoming Yoon Suk-yeol administration promptly reversed course, cutting property tax rates and relaxing regulations on multi-property ownership. The five comprehensive real estate tax floor votes that I analyze span this entire policy reversal, from the initial Moon-era tax hike in July 2020 through post-transition adjustments in March 2023, providing useful within-legislator variation in which the same legislators voted on the same policy dimension under shifting political incentives.
 
-I address this gap by analyzing 89,228 bills introduced across five KNA assemblies (17th through 21st), exploiting the rich temporal and categorical data available through the National Assembly's Legislative Information System (의안정보시스템). I make three contributions. First, I decompose the declining passage rate into a bill inflation component, driven by the proliferation of position-taking bills with minimal cosponsorship and no realistic prospect of enactment, and a residual gatekeeping component that persists after adjustment. Second, I document a reversal in the relationship between cross-party cosponsorship and legislative success: bipartisan bills enjoyed a modest advantage in the 20th Assembly but suffered a clear disadvantage in the 21st, coinciding with the onset of divided government. Third, I propose a Fine-Gray competing-risks modeling framework that treats content absorption, direct passage, active rejection, and term expiration as distinct exit pathways, and present descriptive evidence consistent with its core assumptions. This framework establishes the methodological foundation for future survival analysis of East Asian legislative data.
+This paper examines three dimensions of housing-policy behavior in the 21st Assembly: bill sponsorship, roll-call voting on property-tax legislation, and committee oversight of housing policy. I draw on the KNA database, which contains over 110,000 bills, 2.4 million roll-call votes, and 936 DW-NOMINATE ideal point estimates, supplemented by 9.9 million speech acts from committee hearings. The analysis proceeds in three stages. First, I map the universe of housing-related legislation and document the partisan and ideological composition of housing bill sponsorship. Second, I exploit five comprehensive real estate tax floor votes to examine what predicts within-party dissent in the ruling Democratic Party of Korea (더불어민주당, hereafter DPK), which experienced substantial internal division on property taxation as the policy environment shifted. Third, I examine how partisan control of government reshapes legislative oversight on housing, comparing standing committee behavior before and after the May 2022 presidential transition.
 
-The cross-party cosponsorship reversal is the most theoretically suggestive of these findings. It connects the KNA case to the broader comparative literature on divided government and partisan lawmaking. \citet{lee2016} argues that when majority control of the legislature is contested, parties invest more heavily in messaging legislation and obstruction, crowding out bipartisan cooperation. \citet{curry2019} document a parallel decline in non-party government in the U.S. Congress. The Korean evidence suggests that a similar mechanism may operate in presidential systems with strong party discipline, where divided government transforms committee gatekeeping from a general filtering process into a more explicitly partisan instrument. This finding also extends the thin comparative literature on committee gatekeeping beyond the U.S. and European contexts that dominate existing work (Hix2015).
+The findings reveal that ideology, as measured by DW-NOMINATE ideal points, is the dominant predictor of within-party dissent on property taxation. Committee assignment, seniority, gender, and mandate type contribute little additional explanatory power once ideology is accounted for. This null result for most individual-level predictors is itself informative: it establishes the benchmark that any future model incorporating asset holdings must surpass. The committee analysis reveals an asymmetric pattern: assignment to the Land, Infrastructure, and Transport Committee (국토교통위원회) strongly predicts housing bill sponsorship but does not predict roll-call voting behavior or ideological positioning, suggesting that committee specialization operates through agenda-setting rather than preference formation. The oversight analysis shows that opposition legislators consistently raise housing topics at higher rates in standing committee proceedings, with a marked shift in partisan attention following the 2022 government transition.
 
-The paper proceeds as follows. Section~2 reviews the theoretical literature on committee organization, bill duration, and divided government, deriving expectations for the Korean case. Section~3 describes the data and proposes the competing-risks modeling framework. Section~4 presents the empirical results. Section~5 discusses the findings in light of the theoretical framework and acknowledges limitations. Section~6 concludes.
+This paper makes three contributions. First, it provides the most comprehensive empirical account of housing-policy legislative behavior in a single Korean National Assembly term to date, covering sponsorship, voting, and oversight dimensions across a period of intense policy contestation. Second, it establishes the dependent variable infrastructure, control variable benchmarks, and statistical power parameters against which future studies incorporating legislator asset disclosure data may be evaluated. Third, by documenting the conditions under which party discipline breaks down on property taxation, it contributes to the broader comparative literature on the limits of party cohesion in legislative systems with strong whip structures \citep{shinLee2015, kangPark2025}.
+
+The remainder of the paper proceeds as follows. Section~\ref{sec:lit} reviews the literature on housing wealth and political behavior, legislator self-interest, party discipline in Korea, and legislative oversight. Section~\ref{sec:data} describes the data and identification strategy. Section~\ref{sec:results} presents results. Section~\ref{sec:discussion} discusses the findings in light of the theoretical framework. Section~\ref{sec:conclusion} concludes.
 
 
+%% ============================================================
+%%  2. LITERATURE AND THEORY
 %% ============================================================
 \section{Literature and Theory}
+\label{sec:lit}
+
+\subsection{Housing Wealth and Political Preferences}
+
+The theoretical foundation for this paper rests on a growing body of work demonstrating that housing wealth is a politically consequential asset class at the mass level. \citet{ansell2014} develops the core argument: homeowners experiencing house price appreciation become less supportive of redistribution and social insurance because rising home values both increase permanent income and substitute for publicly provided insurance against income loss. Using individual-level data from the United States and the United Kingdom, alongside macro-level data on national social spending across 18 countries between 1975 and 2001, Ansell demonstrates that housing booms are associated with reductions in social spending by right-leaning governments. This framework generates a direct prediction for the Korean case: legislators with large real estate portfolios should prefer lower property taxes not merely because such taxes reduce their personal wealth, but because housing wealth may have shaped a broader preference structure favoring low taxation and private asset accumulation.
+
+Subsequent work reveals that the political consequences of housing wealth operate through multiple channels, a finding that complicates any simple prediction about how legislators' portfolios should shape their behavior. Local house prices strongly predicted Brexit referendum voting, with housing market conditions creating a political cleavage that divided regions, tenures, and generations \citep{ansellAdler2019}. This electoral effect extends beyond the British case: house price fluctuations predict support for populist parties across multiple European countries \citep{ansellEtAl2021}, suggesting that housing-driven grievances may find expression through anti-establishment mobilization rather than conventional left-right channels. The distinction matters for the Korean case, where housing discontent manifested not as populist fragmentation but as intense contestation within the existing party system. Among these studies, \citet{larsen2019} provide the strongest causal evidence, using Danish registry data to demonstrate that local housing market changes predict both vote choice and participation, a design that, by exploiting within-individual variation through administrative records, addresses the selection concerns inherent in cross-sectional homeownership studies. At the structural level, \citet{schwartz2012} argues that the dismantling of post-Depression financial regulations tied household welfare to housing markets in ways that generate intense political preferences over property policy. This structural dependence is, if anything, more extreme in Korea, where housing constitutes the dominant household asset class, suggesting that the preference-shaping mechanisms documented in European and American contexts should operate with particular force among Korean legislators.
+
+Complementary research demonstrates that homeownership shapes not only abstract preferences but concrete political behavior. \citet{andre2014} provide comparative European evidence that homeownership itself, independent of house price changes, reduces support for government redistribution. \citet{einstein2019} document that homeowners dominate local planning meetings and overwhelmingly oppose new housing construction. \citet{chouDancygier2021} show how gentrification-driven coalitional changes led parties to abandon public housing construction in the United Kingdom. Together, these studies establish that housing wealth operates as a politically consequential asset at the citizen level. The question this paper begins to address is whether this logic extends to the legislators who govern housing markets.
+
+\subsection{Legislator Self-Interest and Financial Holdings}
+
+The literature on whether legislators' personal financial interests shape their legislative behavior is concentrated in the US context and focused overwhelmingly on equities rather than real estate. \citet{carnes2015} documents that ``millionaires'' hold a majority in the US House and that legislators from white-collar backgrounds systematically favor business-friendly economic policy. The broader review by \citet{carnesLupu2023} confirms that politicians are vastly better off than the citizens they represent across democracies, yet notes that the causal link from personal wealth to specific legislative votes remains underexplored.
+
+\citet{tahoun2014} provides the closest international template for the present study. Examining US congressional stock ownership, Tahoun finds that legislators who own shares in a firm are significantly more likely to vote in favor of legislation benefiting that firm. The identification strategy exploits within-legislator variation in stock purchases around committee assignments. Adapting this framework to housing policy requires substituting real estate for equities and housing legislation for firm-specific bills. The Korean case offers a measurement advantage, since asset disclosure data capture real property holdings comprehensively, but also an identification disadvantage, since real estate transactions are less frequent than stock trades, reducing within-legislator temporal variation.
+
+Two additional US studies inform the research design. \citet{rosenson2003} analyzes roll-call votes on ethics reform in New York and Massachusetts, finding that legislators with an economic self-interest at stake were less likely to support reform even after controlling for ideology. This finding is directly relevant because it demonstrates that self-interest can operate net of ideological positioning. \citet{grose2013} examines how legislators' personal finances shape congressional decisions, with a focus on risk exposure and roll-call voting, though the analysis addresses financial portfolios broadly rather than real estate specifically.
+
+Outside the US, mandatory asset disclosure regimes have opened a complementary line of inquiry focused on political rents rather than legislative behavior. \citet{fisman2014} exploit India's disclosure requirements to show that election winners' assets grow significantly faster than those of runners-up, with the premium concentrated among cabinet ministers. This finding demonstrates both the analytical value of mandatory disclosure data and the challenge of distinguishing self-interested legislative behavior from legitimate returns to political careers, a challenge equally present in the Korean housing-policy context. The congressional-trading literature has since expanded in a direction that bridges financial disclosure and legislative action: \citet{li2025} find evidence that senators trade profitably on legislative information, while \citet{jagolinzer2020} document that politically connected corporate insiders time trades around policy announcements. These studies treat financial portfolios as outcomes rather than predictors, reversing the causal arrow relative to the present paper. Yet the identification logic, matching disclosed holdings to relevant legislative actions, translates directly to the housing-policy context, where the question becomes whether holdings predict the legislative actions themselves.
+
+In Korea, \citet{seo2025} provides the single direct precedent, analyzing voting behavior of 21st Assembly members on the comprehensive real estate tax bill with a focus on political parties, ideology, and members' assets. The publication in a methodology journal rather than a mainstream political science outlet suggests the field has not yet absorbed these findings. The present paper extends this line of inquiry by examining multiple behavioral dimensions beyond roll-call voting and by establishing the empirical infrastructure for testing competing theoretical mechanisms.
+
+\subsection{Party Discipline in the Korean National Assembly}
+
+Any study of individual-level legislative behavior in Korea must contend with the exceptionally strong party discipline that characterizes the National Assembly. \citet{shinLee2015} analyze roll-call votes from 2000 to 2008 and find high party unity driven by regional electoral competition. \citet{junHix2010} document that proportional representation list members actually defect more frequently than single-member district members, an unusual pattern that stems from Korea's distinctive political career structures. \citet{jung2022} shows that electoral margins within constituencies affect party loyalty, with legislators from safer seats more willing to break ranks. Most recently, \citet{kangPark2025} introduce the concept of ``legislative waffling,'' in which legislators reverse their position between bill sponsorship and floor voting, using multilevel logistic regression on over 21,000 bill-legislator observations across four legislative terms. \citet{kimPark2022} examine how mandate type and open-primary experience predict party defection.
+
+Together, these studies establish that party defection in the KNA is rare but not nonexistent, and that individual-level characteristics, including electoral vulnerability, career path, and mandate type, explain variation in loyalty. The typical party unity rate in Korean roll-call votes exceeds 95 percent \citep{shinLee2015}, placing the KNA among the most disciplined legislatures in the democratic world. This baseline presents both a challenge and an opportunity for the study of legislator self-interest. The challenge is that the space for any individual-level predictor to operate is severely constrained when parties vote as blocs. The opportunity is that the rare instances of discipline breakdown, such as the comprehensive real estate tax votes examined here, provide informative windows into what drives defection when the party grip loosens.
+
+Critically, none of these studies includes personal asset holdings as a predictor variable. The normative and legal literature on legislative conflict of interest in Korea \citep{cho2021, haLee2023} discusses the institutional framework for managing financial interests but does not test whether those interests actually shape behavior. The present paper fills this gap partially by examining what individual-level characteristics predict dissent on housing votes, establishing the baseline explanatory power of ideology, committee assignment, and demographic factors against which future asset-based models may be compared.
+
+\subsection{Legislative Oversight and Issue Ownership}
+
+The second analytical dimension of this paper, committee oversight on housing policy, connects to a separate literature on opposition behavior in legislatures. \citet{mccubbinsSchwartz1984} distinguish ``police patrol'' oversight (systematic monitoring) from ``fire alarm'' oversight (selective response to signals of policy failure), arguing that legislators prefer the latter because it economizes on information costs. \citet{jensen2013} extend this logic to the European Parliament, finding that MEPs from national opposition parties are more likely to use parliamentary questions to highlight policy violations. \citet{senninger2016} documents how opposition parties use parliamentary questions for ``selective scrutiny,'' expanding their issue attention strategically. \citet{bundi2018} shows that policy field attributes, including salience and complexity, shape parliamentary oversight patterns. \citet{karlsson2022} find that MPs express more opposition in plenary sessions than in committee deliberations across five national legislatures.
+
+These studies are overwhelmingly European; no Asian legislature appears in this literature. The Korean case offers a distinctive institutional setting: the National Assembly's standing committee system is the primary arena for legislative work, and the annual 국정감사 (government audit) sessions provide a structured oversight venue with different procedural rules. By examining housing oversight across both standing committees and audit sessions, this paper tests whether the venue effects documented in European legislatures also operate in East Asia.
+
+The issue ownership literature, originating with \citet{petrocik1996}, suggests that parties develop reputational advantages on specific policy domains through sustained legislative attention and public association with favorable outcomes. The mechanism is fundamentally asymmetric: a party that ``owns'' an issue benefits electorally when that issue is salient, creating incentives for opponents to shift attention elsewhere rather than compete on unfavorable terrain. This asymmetry has implications for legislative oversight, because opposition parties face a strategic choice between challenging the government on issues the ruling party owns, which is risky but potentially high-reward if government performance is poor, and redirecting attention to domains where the opposition holds a reputational advantage.
+
+In Korea, housing policy was broadly associated with the DPK under the Moon administration, whose aggressive regulatory and tax measures defined the party's housing agenda. Yet the Moon government's perceived failure to contain housing prices undermined the DPK's ownership advantage, transforming housing from an electoral asset into a liability. The Yoon transition completed this disruption: housing shifted from a domain the DPK ``owned'' to a contested one in which neither party held a clear reputational advantage. This transition provides analytically useful variation in partisan incentives, because it allows me to observe the same legislators responding to a reversal in the partisan valence of housing policy. The oversight analysis exploits this variation to test whether legislative attention to housing tracks the partisan logic of issue ownership, with the newly-opposition DPK amplifying housing oversight to challenge Yoon-era policy reversals, and the newly-ruling PPP reducing its attention to a domain now associated with governing responsibility rather than opposition critique.
+
+\subsection{Three Mechanisms and Expectations}
+
+Integrating these literatures, I identify three competing mechanisms through which legislators' financial positions could shape housing-policy behavior, each generating distinguishable empirical predictions.
+
+\textit{Mechanism A: Direct self-interest.} Following \citet{rosenson2003} and \citet{tahoun2014}, legislators vote to protect their personal real estate portfolios from taxation or value decline. This mechanism predicts effects concentrated on property-tax votes and weakening on bills with no direct financial implication for legislators' holdings.
+
+\textit{Mechanism B: Preference formation through asset ownership.} Following \citet{ansell2014}, housing wealth reshapes legislators' broader economic worldview, making them prefer low taxation and private asset accumulation generally. This mechanism predicts effects that extend beyond property-tax votes to housing supply bills, rental regulation, and potentially non-housing economic policy.
+
+\textit{Mechanism C: Constituency representation.} Legislators with large real estate portfolios represent wealthy, homeowning constituencies whose preferences align with portfolio protection. Under this mechanism, the apparent asset effect is a proxy for district-level demand rather than personal self-interest, and should disappear once district-level housing market controls are included.
+
+Distinguishing these mechanisms requires asset disclosure data that, as I discuss below, are not yet available in machine-readable form. The present paper therefore focuses on establishing the behavioral landscape and testing what \textit{existing} individual-level predictors, particularly ideology, explain about housing-policy behavior. The three-mechanism framework structures the discussion of what future research incorporating asset data should test.
+
+
 %% ============================================================
-
-Three theoretical traditions compete to explain how legislative committees process bills. The distributive theory views committees as instruments through which legislators secure particularistic benefits for their districts. The informational theory, developed by \citet{krehbiel1991}, holds that committees exist to gather and transmit policy-relevant information to the floor; committees with greater specialization demands should take longer to process bills but ultimately produce higher-quality legislation. The cartel theory of \citet{cox2005} argues that the majority party uses its control over committee chairs and the legislative agenda to exercise negative agenda power: the ability to keep bills off the floor that would split the majority caucus or produce outcomes the party prefers to avoid.
-
-In the Korean context, \citet{choi2018} find that the partisan model best describes committee assignment patterns in the KNA, with majority-party preferences dominating over both distributive and informational considerations. This finding aligns with the strong party discipline that characterizes Korean legislative politics: Jung2022 shows that legislators in safer electoral seats are paradoxically more loyal to the party line, consistent with the cartel model's prediction that party leaders reward loyalty with favorable committee placements and leadership positions (Kang2023). The cartel framework generates specific predictions for bill duration. Bills sponsored by minority-party members should face longer committee waits, controlling for bill content. Bills that cross-cut the majority party, measured by cosponsor diversity across factional lines, should experience greater delay than bills with uniform majority-party support.
-
-The informational theory offers a competing set of predictions. Under this account, committees with higher technical complexity demands should process bills more slowly but more carefully, yielding higher eventual passage rates. Committee-stage duration should reflect bill complexity, measured by text length or the degree to which a bill amends existing statutory frameworks, rather than the partisan composition of the committee. The critical discriminating test between the two theories is whether partisan composition predicts bill duration after controlling for bill characteristics. If it does, cartel theory finds support; if it does not, informational theory gains traction. \citet{seo2020} argue that for politically salient bills, party leaders intervene directly over committee heads, suggesting a conditional model in which cartel dynamics dominate for high-salience legislation while informational logic may apply to technically complex but politically quiet proposals.
-
-The interaction between committee gatekeeping and divided government introduces a further layer of theoretical complexity. Aldrich2001 argue, in the conditional party government framework, that party leaders exercise stronger agenda control when intra-party preference homogeneity is high and inter-party distance is large. \citet{lee2016} extends this logic to competitive party systems, contending that when majority control is insecure or contested, parties invest more heavily in messaging legislation and obstruction. \citet{curry2019} document that bipartisan lawmaking in the U.S. Congress declines precisely when party competition intensifies. These insights generate a prediction for the KNA under divided government: the majority party in the Assembly may use committee gatekeeping to advance its own legislative agenda while blocking bipartisan proposals that could allow the president, who belongs to the opposing party, to claim legislative credit. The value of cross-party cosponsorship should therefore decline, or even reverse, under divided government.
-
-The methodological tradition of applying survival analysis to individual bills within a legislature remains remarkably thin. Event-history analysis has a well-established lineage in the policy diffusion subfield, where scholars model when governments adopt policies across jurisdictions (Shipan2012). However, modeling bill passage within a single legislature is a methodologically distinct enterprise because bills face an institutional clock, specifically the Assembly term, that creates a hard right-censoring point absent in cross-jurisdictional diffusion studies. The two closest precedents are Daubler2008, who uses event-history analysis to model welfare state bill passage across three European countries, and Magar2008, who apply Cox proportional hazard models to statute duration in Uruguay's parliament. Neither study employs a competing-risks specification, and neither addresses a legislature where institutionalized content absorption creates a qualitatively distinct exit pathway.
-
-Korean-language scholarship on bill passage determinants has expanded rapidly, particularly in the \textit{Journal of Parliamentary Research} and the \textit{Korean Party Studies Review}. A central theme in this literature is whether passage rates are better explained by individual legislator attributes or by structural and institutional practices. \citet{kim2026} argue for the latter, finding that structural routines shape outcomes more powerfully than legislator competence, a claim that finds support in the committee-level patterns I document below. \citet{an2025} focus on sponsor characteristics in the 20th and 21st Assemblies, while Lee2021 extends the analysis beyond legislator-initiated bills by examining how committees intervene in government-sponsored proposals. A second strand of research investigates the role of legislative networks: \citet{yoon2023} find that centrality in the cosponsorship network is associated with higher legislative success, suggesting that coalition-building capital translates into tangible policy outcomes. The ideological and partisan foundations of these networks, however, are contested. Han2022 demonstrates that text-based ideology estimates for Korean legislators diverge from survey-based measures, indicating strategic moderation of public rhetoric, while Shin2015 document the strong regional party system that structures voting behavior across the 16th through 18th Assemblies. Together, these studies establish that the KNA is characterized by intense partisanship overlaid on regional cleavages, creating an environment where committee gatekeeping may serve as a particularly effective tool for majority-party agenda control. However, the existing Korean literature relies exclusively on cross-sectional logistic regression, ignoring the temporal structure of bill processing and collapsing distinct pathways of direct passage, content absorption, and expiration into a single dimension.
-
-The question of how to measure legislative success has been addressed most systematically by the Legislative Effectiveness Score (LES) framework developed by \citet{volden2014}, which tracks bills through five lawmaking stages and weights them by substantive significance. Eatough2024 extend this framework with the Lawmaking Productivity Metric, arguing for crediting invisible legislative work such as amendments and procedural maneuvers. \citet{bucchianeri2024} adapt the LES to 97 U.S. state legislatures, but no non-U.S. adaptation exists. The Korean institutional context poses a unique challenge for any effectiveness metric: the reflected-in-alternative disposal pathway accounts for roughly four to five times more legislative influence than direct bill passage in recent Assemblies. A legislator whose bill content is absorbed into a committee-chair alternative has arguably succeeded, yet conventional metrics that count only enacted bill numbers classify this outcome as failure.
-
-Drawing on these theoretical traditions and the Korean institutional context, I derive one central expectation that guides the empirical analysis:
-
-\begin{quote}
-\textbf{H1:} \textit{Under divided government, majority-party committee chairs prioritize single-party bills over cross-party bills, resulting in (a) higher broad legislative success rates for single-party bills and (b) faster committee-stage exit for single-party bills. Under unified government, this advantage disappears or reverses.}
-\end{quote}
-
-\noindent This expectation follows from the combination of cartel theory and the conditional party government framework. If committee gatekeeping has genuinely intensified, as \citet{kim2026} argue, then the decline in passage rates should persist even after accounting for the inflation of position-taking bills. The competing-risks structure of KNA bill outcomes, with content absorption as a distinct pathway, should produce systematically different duration patterns than a simple binary model of passage versus failure. I examine the success-rate component of this expectation, H1(a), descriptively in Section~4 and propose the competing-risks framework as the modeling strategy for future analysis of the duration component, H1(b).
-
-
+%%  3. DATA AND METHOD
 %% ============================================================
 \section{Data and Method}
-%% ============================================================
+\label{sec:data}
 
 \subsection{Data}
 
-The analysis draws on the KNA research database, which aggregates bill-level records from the National Assembly's Legislative Information System (의안정보시스템). The dataset covers all bills classified as legislation (법률안) introduced during the 17th through 21st Assemblies, spanning June 2004 to May 2024. The total sample comprises 89,228 bills, of which 77,613 are legislator-sponsored, 5,830 are government-sponsored, and 5,785 are committee-chair bills (위원장 발의안). I focus primarily on the 77,613 legislator-sponsored bills, as these are the relevant population for studying legislators' coalition-building strategies and committee processing outcomes.
+I draw on three data sources. The primary source is the Korean National Assembly database, which contains records on over 110,000 bills, 2.4 million individual roll-call votes, 936 DW-NOMINATE ideal point estimates, and approximately 770,000 cosponsorship edges across the 17th through 22nd Assemblies. I supplement this with 61,000 bill texts containing legislative purpose statements (제안이유) and 9.9 million speech acts from committee hearing transcripts.
 
-The key outcome variable is the terminal processing status of each bill. Bills can exit the legislative process through one of four pathways: enacted in original form (원안가결), enacted with amendments (수정가결), absorbed into a committee-chair alternative bill (대안반영폐기), or expired at the end of the Assembly term without action (임기만료폐기). Active rejection (부결) occurs in fewer than 0.1 percent of cases and is collapsed with other forms of disposal for the analysis. I define \textit{narrow legislative success} as enactment in original or amended form, and \textit{broad legislative success} as narrow success plus content absorption. For duration analysis, I calculate the number of days from bill introduction to the terminal event, with timestamps available for intermediate stages including committee referral, subcommittee assignment, committee processing, and plenary vote.
+\textbf{Identifying housing-related legislation.} I identify housing-related bills using keyword matching on bill titles and, where available, purpose texts. Six keywords capture the core housing-policy domain: 종합부동산세 (comprehensive real estate tax), 부동산 (real estate), 주택 (housing), 재산세 (property tax), 취득세 (acquisition tax), and 양도소득세 (capital gains tax). The last three terms return zero hits in bill titles because these taxes are typically modified through omnibus tax law amendments (e.g., 조세특례제한법) rather than standalone bills. Table~\ref{tab:bills} reports the bill counts by keyword and Assembly term. The 21st Assembly stands out: comprehensive real estate tax bills more than tripled, from 22 in the 20th Assembly to 69, reflecting the Moon-to-Yoon policy reversal. Full-text search broadens the net to 196 bills mentioning 종합부동산세 in their purpose texts, indicating that title-based matching underestimates the true volume of property-tax legislation by roughly 35 percent. For the sponsorship analysis, I use a combined set of 725 housing-related bills in the 21st Assembly identified through expanded keyword matching on both titles and purpose texts.
 
-To address the bill inflation concern raised in recent literature (Song2021), I identify position-taking (PT) bills using three observable criteria: (a) the bill has 10 or fewer total sponsors, representing the statutory minimum; (b) the bill received no committee processing; and (c) the bill expired at the end of the Assembly term. This conservative operationalization captures bills introduced with minimal coalition effort and no realistic pathway to enactment. Across all five assemblies, 20,704 bills meet these criteria, with a zero percent enactment rate, providing strong construct validity. The definition is conservative in a second sense: it may miss genuine policy proposals with minimal cosponsorship that also failed to advance. Such false negatives would bias the adjusted passage rate upward, meaning the true residual decline in passage rates could be larger than reported.\footnote{A more permissive definition using only the sponsor-count criterion identifies a larger pool of potential position-taking bills but cannot distinguish low-effort messaging bills from earnest policy proposals that simply failed to attract broad support.}
-
-Cross-party cosponsorship data are available from the cosponsorship edge files for the 20th and 21st Assemblies, covering 769,773 cosponsor-bill dyads. I classify each bill as single-party or cross-party based on whether its cosponsors span multiple party affiliations. For earlier assemblies, cosponsorship data at this level of detail are not available, limiting the temporal scope of the cross-party analysis to two assemblies.
-
-
-\subsection{Proposed Modeling Framework}
-
-I propose a competing-risks survival framework to model bill processing duration. The models specified below are not estimated in this paper; instead, I present the framework as a methodological contribution and evaluate its descriptive assumptions using the patterns documented in Section~4. The baseline specification is a Cox proportional hazard model that treats all terminal events other than the one of interest as right-censored:
-
-\begin{equation}
-h(t \mid \mathbf{X}_i) = h_0(t) \exp\!\bigl(\beta_1 \text{CrossParty}_i + \beta_2 \text{Sponsors}_i + \beta_3 \log(\text{DaysLeft}_i) + \mathbf{Z}_i \boldsymbol{\alpha} + \delta_c + \tau_a\bigr)
-\label{eq:cox}
-\end{equation}
-
-\noindent where $h(t \mid \mathbf{X}_i)$ is the hazard of the terminal event for bill $i$ at time $t$, $\text{CrossParty}_i$ is a binary indicator for multi-party cosponsorship, $\text{Sponsors}_i$ is the total number of sponsors, $\text{DaysLeft}_i$ is the number of days remaining in the Assembly term at introduction, $\mathbf{Z}_i$ is a vector of bill-level controls (text length quartiles, bill type), $\delta_c$ represents committee fixed effects, and $\tau_a$ represents Assembly-term fixed effects. The log transformation of days remaining captures the non-linear relationship between introduction timing and passage probability documented below.
-
-A design consideration merits discussion regarding $\log(\text{DaysLeft}_i)$. Because the dependent variable in the Cox model is duration-to-event, and bills introduced earlier in a term mechanically have both more days remaining and more calendar time available for passage, this covariate risks introducing a correlation that conflates institutional opportunity with bill quality. An alternative approach would stratify the baseline hazard by calendar-time periods (e.g., session halves) or model introduction timing as a time-varying covariate that updates as the Assembly term progresses. I retain the log specification here for its parsimony and because the steep non-linear gradient between introduction timing and passage probability, with bills introduced in the final quarter of a term facing near-zero passage rates, suggests that some adjustment for timing is necessary. Future estimation should compare the log-covariate approach with calendar-time stratification to assess sensitivity.
-
-However, the standard Cox model treats content absorption (대안반영폐기) and term expiration (임기만료폐기) as interchangeable censoring events, which may bias the hazard estimates if these exit pathways are not independent of one another. I therefore extend the framework to a Fine-Gray competing-risks model (Fine and Gray 1999) that estimates cause-specific subdistribution hazards for each exit pathway:
-
-\begin{equation}
-h_k(t \mid \mathbf{X}_i) = h_{0k}(t) \exp\!\bigl(\beta_1 \text{CrossParty}_i + \beta_2 \text{DivGov}_t + \beta_3 (\text{CrossParty}_i \times \text{DivGov}_t) + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c\bigr)
-\label{eq:competing}
-\end{equation}
-
-\noindent where $k$ indexes the competing events (enacted, absorbed, rejected, expired), $\text{DivGov}_t$ is a binary indicator for divided government at time $t$, and the interaction term $\beta_3$ captures the differential association of cross-party cosponsorship with bill processing under divided versus unified government. This interaction is the key parameter of theoretical interest for future estimation.
-
-Two concerns regarding the descriptive analysis merit discussion. First, cosponsorship is endogenous: legislators choose cosponsors based on their private assessment of a bill's prospects, and the observed association between cosponsorship composition and passage may therefore reflect strategic sorting rather than a causal effect. I frame the cross-party findings as descriptive patterns consistent with cartel theory predictions rather than as causal estimates. A causal test would require committee composition data, specifically majority-party seat share and chair party identity at the time of bill referral, which are not yet available in the dataset and must be constructed from member-level assignment records. Exploiting variation in committee chair party identity or close-margin committee seat assignments could provide stronger identification in future work. Second, bills introduced late in an Assembly term face mechanical censoring that is unrelated to bill quality. I address this descriptively by reporting duration statistics conditional on introduction timing, and the proposed models include the log of days remaining as a covariate to flexibly capture this gradient.
-
-
-%% ============================================================
-\section{Results}
-%% ============================================================
-
-Table~\ref{tab:desc} presents descriptive statistics for legislator-sponsored bills across the five assemblies. The raw narrow enactment rate fell steadily from the 17th to the 21st Assembly. Removing position-taking bills from the denominator moderates the decline but does not eliminate it: the adjusted narrow enactment rate declined by roughly 42 percent across the five assemblies (Table~\ref{tab:desc}, final column). The adjusted broad rate, which credits content absorption into alternative bills, tells a different story. It fluctuated within a narrower band across the five assemblies, suggesting that the alternative-bill consolidation mechanism has partially compensated for the decline in direct enactment.
-
-The bill inflation component is substantial but cannot fully account for the declining passage rate. Position-taking bills grew from 12 percent of legislator introductions in the 17th Assembly to a peak of 32 percent in the 20th, absorbing about one third of the total volume increase. However, even among non-position-taking bills, the adjusted narrow rate shows a substantial decline (Table~\ref{tab:desc}). This residual decline points to changes in committee processing behavior that operate independently of bill quality composition.
-
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
-\begin{threeparttable}
-\caption{Legislator-Sponsored Bill Volume, Outcomes, and Position-Taking Indicators}
+\caption{Housing-Related Bills in the Korean National Assembly by Assembly Term}
+\label{tab:bills}
+\begin{tabular}{lcccccc c}
+\toprule
+Keyword & 17th & 18th & 19th & 20th & 21st & 22nd & Total \\
+\midrule
+종합부동산세 & 17 & 16 & 5 & 22 & 69 & 16 & 145 \\
+부동산           & 64 & 71 & 81 & 83 & 171 & 79 & 549 \\
+주택              & 136 & 189 & 291 & 424 & 554 & 322 & 1,916 \\
+\bottomrule
+\multicolumn{8}{l}{\footnotesize Note: Counts based on bill title keyword matching. Categories are not mutually exclusive.}
+\end{tabular}
+\end{table}
+
+\textbf{Roll-call votes.} Matching bill identifiers to individual vote records yields 22,557 legislator-vote observations on housing-related bills in the 21st Assembly across 76 bills that reached floor votes. The key analytic sample consists of five comprehensive real estate tax floor votes spanning July 2020 through March 2023, which together produce 674 DPK legislator-vote observations across 159 unique legislators.
+
+\textbf{Committee hearings.} I analyze 86,014 legislator speeches delivered in the Land, Infrastructure, and Transport Committee (국토교통위원회) and the Strategy and Finance Committee (기획재정위원회) during the 21st Assembly. Of these, 7,082 speeches (8.2 percent) mention at least one housing or property-tax keyword from an expanded dictionary of 11 terms (주택, 부동산, 종부세, 재산세, 투기, 다주택, 임대, 전세, 공급, 공시가격, 과세).
+
+Table~\ref{tab:desc} presents descriptive statistics for the key variables used in the dissent and sponsorship analyses.
+
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics}
 \label{tab:desc}
-\begin{tabular}{lccccc}
-\toprule
-Assembly & $N$ & Narrow (\%) & Broad (\%) & PT Share (\%) & Adj.~Narrow (\%) \\
-\midrule
-17th & 5,729  & 12.2 & 39.7 & 12.0 & 13.8 \\
-18th & 11,191 &  5.7 & 34.5 & 19.2 &  7.1 \\
-19th & 15,444 &  7.3 & 34.8 & 28.4 & 10.3 \\
-20th & 21,594 &  6.7 & 30.4 & 32.4 &  9.8 \\
-21st & 23,655 &  5.9 & 29.9 & 27.5 &  8.1 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}\footnotesize
-\item \textit{Note:} Narrow = enacted in original or amended form. Broad = narrow + content absorbed into alternative. PT = position-taking bills ($\leq$10 sponsors, no committee processing, term-expired). Adj.~Narrow excludes PT bills from denominator.
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-Table~\ref{tab:duration} decomposes processing time by stage for enacted legislator bills. Three patterns are evident. The introduction-to-referral stage, which involves administrative routing of bills to the appropriate committee, remained relatively stable across all five assemblies. The committee-processing-to-plenary interval also stayed within a narrow range. It is the middle stage, from committee referral to committee processing, that expanded substantially: median wait times grew by nearly tenfold between the 17th and 21st Assemblies (Table~\ref{tab:duration}). This expansion suggests that the bottleneck is not bureaucratic routing or plenary scheduling but rather the committee's internal decision about when, or whether, to place a bill on its agenda. For a committee chair exercising negative agenda power, this is precisely the stage where strategic delay would manifest. Figure~\ref{fig:km_committee} presents Kaplan-Meier survival curves for the referral-to-processing stage, illustrating the pronounced deceleration in committee action across successive assemblies. The median total processing time for enacted bills grew substantially over the period, while bills that expired without action had median durations exceeding 550 days in the more recent assemblies (Table~\ref{tab:duration}).
-
-\begin{table}[htbp]
-\centering
-\begin{threeparttable}
-\caption{Median Bill Processing Duration by Stage (Days), Enacted Legislator Bills}
-\label{tab:duration}
-\begin{tabular}{lccccc}
-\toprule
-Stage & 17th & 18th & 19th & 20th & 21st \\
-\midrule
-Introduction $\rightarrow$ Referral    & 66  & 76  & 77  & 87  & 74  \\
-Referral $\rightarrow$ Cmt.~Processing &  9  & 12  & 53  & 53  & 84  \\
-Cmt.~Processing $\rightarrow$ Plenary  & 12  & 10  & 24  & 36  & 29  \\
-\midrule
-Total (enacted, median)      & 157 & 167 & 216 & 224 & 218 \\
-Total (not enacted, median)  & 448 & 481 & 545 & 556 & 568 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}\footnotesize
-\item \textit{Note:} Median days between consecutive processing stages. ``Not enacted'' includes all bills that expired at term's end (임기만료폐기).
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{figures/fig_1_committee_rates.pdf}
-\caption{Kaplan-Meier Curves for Committee-Stage Wait Time by Assembly}
-\label{fig:km_committee}
-\end{figure}
-
-Table~\ref{tab:crossparty} presents the central empirical finding. In the 20th Assembly, cross-party bills constituted a clear majority of legislator introductions and enjoyed a modest advantage in broad success rate relative to single-party bills. In the 21st Assembly, this pattern reversed on both dimensions. Cross-party cosponsorship declined sharply, and the broad success advantage for bipartisan bills shifted from positive to negative, a swing of more than six percentage points (Table~\ref{tab:crossparty}; Figure~\ref{fig:crossparty}). The 21st Assembly was characterized by divided government following the 2022 presidential transition, with the Democratic Party of Korea (더불어민주당) holding the Assembly majority and the People Power Party (국민의힘) controlling the presidency. The coincidence of this partisan realignment with the cosponsorship reversal is consistent with the theoretical expectation in H1(a), though the observational nature of the evidence prevents causal claims about the mechanism.
-
-\begin{table}[htbp]
-\centering
-\begin{threeparttable}
-\caption{Cross-Party Cosponsorship and Legislative Success, 20th vs.\ 21st Assembly}
-\label{tab:crossparty}
 \begin{tabular}{lcccc}
 \toprule
-& \multicolumn{2}{c}{20th Assembly} & \multicolumn{2}{c}{21st Assembly} \\
-\cmidrule(lr){2-3} \cmidrule(lr){4-5}
-& Single-Party & Cross-Party & Single-Party & Cross-Party \\
+Variable & N & Mean & SD & Range \\
 \midrule
-Bills ($N$)          & 8,328  & 13,266 & 13,792 & 9,863 \\
-Share (\%)           & 38.6   & 61.4   & 58.3   & 41.7  \\
-Broad Success (\%)   & 29.1   & 31.2   & 31.7   & 27.4  \\
-\midrule
-Difference (pp)      & \multicolumn{2}{c}{$+2.1$} & \multicolumn{2}{c}{$-4.3$} \\
+\multicolumn{5}{l}{\textit{Panel A: Dissent analysis (DPK members, bill 2116313)}} \\
+Dissent (0/1) & 134 & 0.373 & 0.485 & 0--1 \\
+DW-NOMINATE ideal point & 134 & 0.393 & 0.097 & 0.201--0.672 \\
+Female (0/1) & 134 & 0.149 & 0.358 & 0--1 \\
+PR mandate (0/1) & 134 & 0.097 & 0.297 & 0--1 \\
+Seniority (terms) & 134 & 2.09 & 1.18 & 1--7 \\
+국토교통위 member (0/1) & 134 & 0.075 & 0.264 & 0--1 \\[3pt]
+\multicolumn{5}{l}{\textit{Panel B: Pooled five-vote design (DPK members)}} \\
+Dissent (0/1) & 674 & 0.141 & 0.348 & 0--1 \\
+Unique legislators & 159 & --- & --- & --- \\
+Vote-switchers (\%) & --- & 44.2 & --- & --- \\[3pt]
+\multicolumn{5}{l}{\textit{Panel C: Sponsorship analysis (all legislators, 21st Assembly)}} \\
+Housing bills cosponsored & 317 & 27.4 & 18.6 & 0--128 \\
+DW-NOMINATE ideal point & 317 & $-0.042$ & 0.451 & $-0.812$--0.672 \\
+국토교통위 member (0/1) & 317 & 0.063 & 0.244 & 0--1 \\
+Female (0/1) & 317 & 0.190 & 0.393 & 0--1 \\
+SMD mandate (0/1) & 317 & 0.822 & 0.383 & 0--1 \\
 \bottomrule
+\multicolumn{5}{l}{\footnotesize Note: DW-NOMINATE scores range from liberal (positive) to conservative (negative).}
 \end{tabular}
-\begin{tablenotes}\footnotesize
-\item \textit{Note:} Cross-party = cosponsors span $\geq$2 parties. Broad success = enacted + content absorbed into alternative bill. Cosponsorship data unavailable for 17th--19th Assemblies.
-\end{tablenotes}
-\end{threeparttable}
+\end{table}
+
+A note on the DW-NOMINATE scaling is warranted, as the polarity differs from the convention familiar to readers of the US congressional literature. In the standard US application, negative scores correspond to liberal positions and positive scores to conservative positions. In the Korean National Assembly data, the polarity is reversed: positive scores indicate more liberal (progressive) positions and negative scores indicate more conservative positions. This reversal is reflected in the DPK mean of 0.393 reported in Panel~A and the full-sample mean of $-0.042$ in Panel~C of Table~\ref{tab:desc}, consistent with a scaling in which the progressive DPK caucus clusters at positive values and the conservative PPP caucus at negative values. The reversal arises from the arbitrary sign normalization inherent in the DW-NOMINATE scaling algorithm and carries no substantive implication beyond the need for careful sign interpretation. Throughout this paper, a positive coefficient on the DW-NOMINATE variable indicates that more liberal legislators are more likely to exhibit the outcome in question.
+
+\subsection{Identification Strategy}
+
+\textbf{Within-party dissent model.} The primary empirical test examines what predicts whether a DPK legislator breaks from the party line on comprehensive real estate tax votes. I estimate a logistic regression of the form:
+
+\begin{equation}
+\Pr(\text{Dissent}_{i} = 1) = \Lambda\!\left(\beta_1 \text{Ideology}_{i} + \mathbf{X}_{i} \boldsymbol{\gamma}\right)
+\label{eq:dissent}
+\end{equation}
+
+\noindent where $\text{Dissent}_{i}$ equals one if legislator $i$ voted against or abstained from the party position, $\text{Ideology}_{i}$ is the DW-NOMINATE first-dimension ideal point, $\Lambda(\cdot)$ is the logistic CDF, and $\mathbf{X}_{i}$ is a vector of individual-level controls including mandate type (SMD or PR), gender, seniority, committee assignment, and whether the legislator cosponsored a comprehensive real estate tax bill. Because the logistic specification absorbs the stochastic component through the distributional assumption on the latent error, no explicit error term appears inside $\Lambda(\cdot)$. With $N = 134$ legislators and six predictors, the sample is adequate for logistic regression under standard guidelines; I verify that no predictor perfectly separates the outcome and that the model does not exhibit quasi-complete separation.
+
+I estimate Equation~\ref{eq:dissent} first on a single high-dissent vote (bill 2116313, July 2022) and then on the pooled five-vote panel with vote fixed effects:
+
+\begin{equation}
+\Pr(\text{Dissent}_{ij} = 1) = \Lambda\!\left(\beta_1 \text{Ideology}_{i} + \mathbf{X}_{i} \boldsymbol{\gamma} + \delta_j\right)
+\label{eq:pooled}
+\end{equation}
+
+\noindent where $j$ indexes the five votes and $\delta_j$ captures vote-specific intercepts. The vote fixed effects with $J = 5$ raise in principle the incidental parameters problem that affects nonlinear models with fixed effects; however, with only five vote-level groups, the resulting bias is negligible, and I verify that a linear probability model produces substantively identical results. The pooled specification in Equation~\ref{eq:pooled} leverages the 44.2 percent switching rate among DPK members who voted on multiple comprehensive real estate tax bills, exploiting within-legislator variation across votes taken under shifting political conditions. The identifying assumption is that, conditional on ideology and controls, the remaining within-party variation in dissent is not driven by omitted individual-level confounders. I discuss threats to this assumption below.
+
+\textbf{Sponsorship model.} I estimate an OLS regression predicting the count of housing bills cosponsored by each legislator in the 21st Assembly, using party, ideology, committee assignment, seniority, mandate type, and gender as predictors. Although the outcome is a count variable, the distribution is approximately normal at this mean level (mean = 27.4, SD = 18.6), and OLS provides interpretable marginal effects. I verify that negative binomial regression yields substantively identical coefficient patterns.
+
+\textbf{Oversight difference-in-differences.} For the committee oversight analysis, I exploit the May 2022 government transition as a source of within-Assembly variation in partisan incentives. I compare housing-keyword mention rates for legislators from the liberal bloc (DPK and allies) versus the conservative bloc (PPP and allies) in the pre-transition period (2020 to May 2022) versus the post-transition period (May 2022 to 2024). The key parameter of interest is the interaction between opposition status and the post-transition indicator, estimated separately for standing committee proceedings and 국정감사 audit sessions.
+
+\textbf{Threats to inference.} Several concerns warrant discussion. First, ideology is endogenous: DW-NOMINATE is estimated from all roll-call votes, and a legislator's housing votes contribute to the ideal point estimate. To the extent that housing-specific preferences differ from general ideological positioning, DW-NOMINATE may absorb variation that properly belongs to a housing-specific preference dimension. Second, the dissent analysis conditions on party membership, which is itself a choice influenced by ideology and potentially by financial interests. Third, the oversight analysis relies on a two-period difference-in-differences with a single treatment event, making it difficult to distinguish partisan incentive effects from secular trends in housing salience. I discuss these limitations further in Section~\ref{sec:discussion}.
+
+The critical data limitation is the absence of the key independent variable for a full test of the three mechanisms outlined in Section~\ref{sec:lit}: legislators' personal real estate portfolios. Korea's Public Official Ethics Act disclosures are published in PDF format in the Official Gazette and are not machine-readable. This paper therefore does not test whether asset holdings predict legislative behavior. Instead, it establishes the behavioral baseline and dependent variable infrastructure that such a test would require.
+
+
+%% ============================================================
+%%  4. RESULTS
+%% ============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{The Landscape of Housing Legislation}
+
+Housing legislation in the 21st Assembly reveals distinctive partisan patterns across policy subcategories. I classified the 725 housing-related bills into five non-mutually-exclusive categories based on expanded keyword matching on both titles and legislative purpose texts: stability (주거안정, 복지; 380 bills), supply (공급, 건설, 택지; 348 bills), speculation control (투기, 규제; 303 bills), rental (임대, 전세, 월세; 278 bills), and taxation (세, 과세, 세율; 136 bills). Each bill falls into an average of approximately two categories. Table~\ref{tab:subcat} presents the partisan composition of each subcategory.
+
+\begin{table}[H]
+\centering
+\caption{Housing Bill Subcategories by Party, 21st Assembly}
+\label{tab:subcat}
+\begin{tabular}{lccccc}
+\toprule
+Category & N & DPK share & PPP share & $\chi^2$ & $p$ \\
+\midrule
+Stability    & 380 & 60.8\% & 48.8\% & 8.24  & 0.004 \\
+Supply       & 348 & 55.4\% & 47.5\% & 3.39  & 0.066 \\
+Speculation  & 303 & 39.7\% & 55.8\% & 14.85 & $<$0.001 \\
+Rental       & 278 & 42.6\% & 33.8\% & 4.48  & 0.034 \\
+Taxation     & 136 & 15.6\% & 27.5\% & 12.26 & $<$0.001 \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize Note: Categories are not mutually exclusive. Shares reflect lead-sponsor party.}
+\end{tabular}
+\end{table}
+
+The partisan specialization is striking. PPP legislators are significantly overrepresented among sponsors of speculation and taxation bills, consistent with the conservative platform emphasis on deregulation and tax reduction. DPK legislators, by contrast, are overrepresented in the stability and rental categories, reflecting that party's emphasis on tenant protection and housing welfare. This pattern suggests that partisan framing of housing policy operates through the types of bills legislators choose to introduce, not merely through their votes on bills that reach the floor.
+
+An analysis of bill text framing reinforces this point. Among the 673 housing bills with legislative purpose texts, 74 frame housing through a ``speculation'' lens without mentioning ``supply,'' while 141 take a ``supply'' framing without mentioning ``speculation.'' Only 36 bills combine both frames. Whether legislators with larger real estate portfolios systematically avoid speculation framing in their proposals is a testable prediction under the self-interest hypothesis that I cannot evaluate without asset data.
+
+The null correlation between DW-NOMINATE ideal points and the total number of housing bills sponsored is notable. Within each party bloc, housing sponsors and non-sponsors have nearly identical mean ideal points. This suggests that housing bill sponsorship is driven by factors orthogonal to general ideology, including committee assignment and constituency characteristics, a point I return to below.
+
+Housing bill passage rates track close to the overall baseline in the 20th and 21st Assemblies. In the 20th Assembly, housing bills passed committee at 30.3 percent compared to 30.4 percent for all bills; in the 21st, the figures were 32.7 percent versus 30.2 percent. The 22nd Assembly, however, shows a sharp divergence: housing bills pass at roughly half the rate of all bills (10.1 percent versus 21.9 percent), likely reflecting political gridlock between the opposition-controlled Assembly and the executive branch on housing policy.
+
+\subsection{Comprehensive Real Estate Tax Floor Votes}
+
+Table~\ref{tab:votes} presents the five comprehensive real estate tax floor votes in the 21st Assembly. The July 2020 vote on the Moon administration's tax increase shows near-perfect partisan polarization, with DPK support at 97.4 percent and the PPP largely boycotting the vote. By July 2022, when the newly inaugurated Yoon administration pushed for a tax reduction, DPK support for the measure dropped to 55.3 percent, with roughly one-third of present DPK members dissenting. This temporal variation in party cohesion is analytically valuable: it provides the within-legislator variation necessary for testing what individual characteristics predict defection from the party line.
+
+\begin{table}[H]
+\centering
+\caption{Comprehensive Real Estate Tax Floor Votes, 21st Assembly}
+\label{tab:votes}
+\begin{tabular}{llccc cc}
+\toprule
+Date & Bill No. & Yes & No & Abstain & DPK Yes\% & PPP Yes\% \\
+\midrule
+Jul.\ 2020 & 2101804 & 186 & 1 & 1 & 97.4 & 3.6 \\
+Dec.\ 2020 & 2105946 & 270 & 1 & 2 & 95.5 & 82.7 \\
+Aug.\ 2021 & 2112216 & 169 & 30 & 20 & 52.9 & 67.3 \\
+Jul.\ 2022 & 2116313 & 178 & 23 & 44 & 55.3 & 71.3 \\
+Mar.\ 2023 & 2120968 & 214 & 2 & 17 & 75.0 & 73.0 \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Note: DPK = Democratic Party of Korea; PPP = People Power Party.} \\
+\multicolumn{7}{l}{\footnotesize PPP Yes\% calculated among members present. The Jul.\ 2020 PPP figure reflects near-total boycott.}
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:dissent} displays the trajectory of DPK dissent across the five votes. The dissent rate rises from near zero during the Moon-era tax increases to a peak of 37.3 percent on the July 2022 tax cut, then partially recedes. Among the 156 DPK members who voted on two or more comprehensive real estate tax bills, nearly half switched their vote at least once across the five votes. Only one legislator dissented consistently on every vote. This switching rate confirms that substantial within-legislator variation exists, making a fixed-effects design feasible for future analyses incorporating asset data.
+
+% R code for Figure 1 executed automatically (see figures/fig_1.R)
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{[Figure generated by R script above. Shows DPK dissent rate across five comprehensive real estate tax floor votes, with 95 percent binomial confidence intervals. Dissent rises from near zero on the July 2020 tax hike to 37.3 percent on the July 2022 tax cut, then partially recedes.]}}
+\caption{DPK Dissent Trajectory on Comprehensive Real Estate Tax Votes, 21st Assembly}
+\label{fig:dissent}
+\end{figure}
+
+
+\subsection{Predicting Within-Party Dissent}
+
+I turn next to the question of which individual-level characteristics predict whether a DPK legislator broke with the party line on property taxation. Table~\ref{tab:dissent} reports logistic regression estimates predicting dissent on the July 2022 comprehensive real estate tax reduction vote (bill 2116313), the vote with the largest within-party split. Model~1 includes only the DW-NOMINATE ideal point. Model~2 adds individual-level controls. Model~3 further adds committee assignment.
+
+The results are striking in their simplicity. Ideology dominates: the most liberal DPK members were substantially more likely to dissent, and this relationship is robust across all specifications. Dissenters scored, on average, 0.12 points more liberal on the DW-NOMINATE scale than party-line voters, a gap that is substantively large relative to the within-party standard deviation. No other predictor approaches conventional levels of statistical significance. Mandate type, gender, seniority, and cosponsorship of property-tax bills all fail to predict dissent once ideology is accounted for. Committee assignment to the Land, Infrastructure, and Transport Committee shows a negative point estimate, suggesting that committee experts may have been slightly more inclined to dissent, but the effect is far from statistically distinguishable from zero given the small number of committee members in the sample.
+
+The model in column~2 yields a McFadden pseudo-$R^2$ of 0.38, as reported in Table~\ref{tab:dissent}. This figure serves as the benchmark that any future asset-interest model must surpass: to demonstrate that personal real estate holdings matter for property-tax voting, the marginal contribution of asset data must be detectable above and beyond what ideology already explains.
+
+The substantive magnitude of the ideology effect is large. The most liberal DPK members, who scored in the top quartile of the within-party ideal point distribution, dissented at rates exceeding 60 percent, while the most conservative DPK members dissented at rates below 15 percent. Notable dissenters include some of the most ideologically liberal members of the DPK caucus, legislators whose public profiles are strongly associated with progressive economic policy. This pattern is consistent with progressive Democrats resisting a tax reduction that would disproportionately benefit multi-property owners, a position grounded in redistributive conviction rather than personal financial calculation.
+
+Whether personal financial interests provide additional explanatory power beyond ideology is precisely the question that asset disclosure data would address. The existing results establish two important parameters for that future test. First, the effective sample for identifying an asset effect is limited: with approximately 95 dissent events across the pooled five-vote sample and six to eight predictors already in the model, the study would operate near the lower boundary of statistical feasibility. Second, the within-legislator switching rate of 44.2 percent across the five votes confirms that a legislator fixed-effects specification is viable, which would absorb time-invariant confounders such as career background, family wealth, and constituency characteristics.
+
+\begin{table}[H]
+\centering
+\caption{Predicting Within-Party Dissent on Property-Tax Votes (Logistic Regression)}
+\label{tab:dissent}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Baseline & Controls & Committee \\
+\midrule
+DW-NOMINATE & $21.38^{***}$ & $24.31^{***}$ & $24.45^{***}$ \\
+ & (4.86) & (5.12) & (5.18) \\[4pt]
+PR mandate &  & 0.54 & 0.52 \\
+ &  & (0.78) & (0.79) \\[4pt]
+Female &  & 0.42 & 0.45 \\
+ &  & (0.56) & (0.57) \\[4pt]
+Seniority (terms) &  & $-0.22$ & $-0.20$ \\
+ &  & (0.28) & (0.28) \\[4pt]
+종부세 sponsor &  & 0.35 & 0.38 \\
+ &  & (0.50) & (0.51) \\[4pt]
+국토교통위 &  &  & $-0.68$ \\
+ &  &  & (0.72) \\
+\midrule
+N & 134 & 134 & 134 \\
+McFadden pseudo-$R^2$ & 0.346 & 0.380 & 0.385 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Robust SE in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize Sample: DPK members present for bill 2116313 (Jul.\ 2022).} \\
+\multicolumn{4}{l}{\footnotesize Dissent = voted against or abstained from party line (찬성).}
+\end{tabular}
 \end{table}
 
 
+\subsection{Determinants of Housing Bill Sponsorship}
 
-\begin{figure}[H]
+Table~\ref{tab:sponsor} examines the determinants of housing bill cosponsorship, revealing a pattern that contrasts sharply with the dissent analysis. While ideology predicts dissent on floor votes, it does not predict sponsorship activity. The correlation between DW-NOMINATE scores and the number of housing bills cosponsored is effectively zero, and the coefficient remains negligible across specifications.
+
+The predictors that do matter for sponsorship are institutional and demographic rather than ideological. Assignment to the Land, Infrastructure, and Transport Committee is associated with sponsoring roughly 11 additional housing bills, a large effect relative to the sample mean of approximately 27. Seniority operates in a counterintuitive direction: junior legislators cosponsor significantly more housing bills than their senior colleagues, suggesting that housing policy may serve as an entry point for first- and second-term members seeking to establish a legislative portfolio. Female legislators cosponsor fewer housing bills on average, a finding that holds after controlling for party, ideology, committee assignment, and mandate type. Single-member district legislators are more active than proportional representation members, consistent with constituency-driven incentives for housing engagement.
+
+\begin{table}[H]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_3_crossparty.pdf}
-\caption{Broad Success Rates by Cosponsorship Type, 20th vs.\ 21st Assembly}
-\label{fig:crossparty}
-\end{figure}
+\caption{Determinants of Housing Bill Cosponsorship (OLS)}
+\label{tab:sponsor}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Party + Ideology & Individual & Committee \\
+\midrule
+DPK & $4.82^{**}$ & $2.91$ & $2.54$ \\
+ & (2.35) & (2.28) & (2.25) \\[4pt]
+DW-NOMINATE & $2.14$ & $0.92$ & $0.68$ \\
+ & (5.52) & (5.21) & (5.12) \\[4pt]
+Seniority (terms) &  & $-3.28^{***}$ & $-3.02^{***}$ \\
+ &  & (0.85) & (0.84) \\[4pt]
+SMD mandate &  & $6.82^{**}$ & $6.48^{**}$ \\
+ &  & (3.02) & (2.96) \\[4pt]
+Female &  & $-7.92^{***}$ & $-7.55^{***}$ \\
+ &  & (3.01) & (2.95) \\[4pt]
+국토교통위 &  &  & $11.24^{***}$ \\
+ &  &  & (3.42) \\[4pt]
+기획재정위 &  &  & $1.85$ \\
+ &  &  & (3.48) \\
+\midrule
+N & 317 & 317 & 317 \\
+$R^2$ & 0.018 & 0.098 & 0.138 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Robust SE in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize DV: Number of housing-related bills cosponsored in the 21st Assembly.}
+\end{tabular}
+\end{table}
 
-The compositional shift in cosponsorship patterns is broad. The average number of sponsors per bill declined from roughly 18 in the 17th Assembly to 13 in the 21st. The share of bills introduced with only the statutory minimum number of sponsors approximately doubled over this period. Meanwhile, broad-coalition bills with 51 or more sponsors nearly vanished, falling from 2.9 percent to 0.5 percent of introductions. Sponsorship breadth is associated with passage success in a dose-response pattern: broadly sponsored bills pass at roughly three times the rate of minimum-sponsor bills.
+The divergence between the dissent and sponsorship results is theoretically informative. It suggests that the processes governing who \textit{engages} with housing policy (sponsorship) differ fundamentally from the processes governing how legislators \textit{decide} on specific housing measures (floor voting). Sponsorship is shaped by institutional position and career stage; voting is shaped by ideology. This asymmetry is consistent with a model in which committee assignment channels legislative attention toward housing, but does not determine the direction of legislators' preferences when specific policies reach the floor.
 
-Figure~\ref{fig:committee} displays the change in enactment rates for all standing committees that existed across both the 17th and 21st Assemblies. The decline is broad-based: 11 of 13 committees experienced a drop. The Environment and Labor Committee and the Strategy and Finance Committee saw the largest declines, each exceeding 12 percentage points. The Strategy and Finance Committee is a particularly notable case, with its enactment rate for legislator bills declining from nearly 13 percent to below one percent, even as its bill volume tripled. By contrast, the National Defense Committee maintained a stable rate, and the Culture, Sports, and Tourism Committee was the sole committee to register an increase. The between-committee standard deviation of the change is nearly as large as the mean change itself, indicating that committee identity may matter as much as the general trend. This cross-committee heterogeneity supports the panel design proposed in Equation~\ref{eq:competing}: committee fixed effects would absorb persistent level differences, while the interesting variation lies in the committee-by-assembly interaction.
+\subsection{Legislative Waffling on Property Taxation}
 
-Within-committee variation in processing time is also substantial. In the 21st Assembly, the coefficient of variation of committee wait time ranges from 0.81 to 1.00 across major committees, meaning that the standard deviation is nearly as large as the mean. The Legislation and Judiciary Committee shows the highest variability, with some bills processed in weeks and others waiting over a year. The similarity in median duration across the three positive exit pathways, direct passage at 194 days, amended passage at 225 days, and content absorption at 230 days, suggests that these represent competing exits from the same underlying process rather than fundamentally different institutional tracks. This pattern supports the competing-risks specification proposed in Equation~\ref{eq:competing} over a simpler binary model of passage versus failure.
+The Kang and Park concept of legislative waffling provides an additional behavioral dimension. Among 243 legislators who cosponsored at least one comprehensive real estate tax bill in the 21st Assembly, 30 (12.3 percent) later voted against a different comprehensive real estate tax bill on the floor. The waffling pattern varies dramatically by party: 20 of 116 DPK sponsors (17.2 percent) waffled, compared to only one of 98 PPP sponsors (1.0 percent). Justice Party members waffled at a rate of 100 percent (six of six sponsors), reflecting that minor-party legislators who cosponsored Moon-era tax increases later voted against Yoon-era tax cuts. No legislator voted against a bill they personally cosponsored; all waffling involved position reversal across distinct bills on the same policy dimension.
 
+\subsection{Partisan Oversight on Housing Policy}
 
+The committee hearing analysis reveals a distinctive pattern of partisan housing oversight that shifts across the May 2022 government transition. During the Moon administration (pre-May 2022), housing and property-tax keywords appeared in 10.1 percent of legislator speeches in the Land, Infrastructure, and Transport Committee and the Strategy and Finance Committee. After the transition, this rate dropped to 6.1 percent.
 
+Both party blocs reduced their housing oversight activity after the transition, consistent with declining issue salience as the property-tax regime stabilized. However, the composition of housing oversight shifted along partisan lines. Under the Moon administration, conservative opposition legislators raised housing topics at a slightly higher rate (10.7 percent) than ruling-party liberals (9.7 percent), consistent with opposition use of housing policy as a critique of government performance. After the transition, the newly-opposition DPK legislators maintained higher housing engagement, while the newly-ruling PPP legislators reduced theirs.
 
-\begin{figure}[H]
+The most informative finding concerns the institutional venue. Table~\ref{tab:oversight} summarizes the difference-in-differences estimates separately for standing committee proceedings and 국정감사 audit sessions.
+
+\begin{table}[H]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_2_km_survival.pdf}
-\caption{Kaplan-Meier Curves for Committee-Stage Wait Time by Assembly}
-\label{fig:committee}
-\end{figure}
+\caption{Partisan Housing Oversight across the Government Transition}
+\label{tab:oversight}
+\begin{tabular}{lcc cc}
+\toprule
+ & \multicolumn{2}{c}{Standing Committee} & \multicolumn{2}{c}{국정감사 Audit} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Liberal & Conservative & Liberal & Conservative \\
+\midrule
+Moon era (pre-May 2022) & 9.70\% & 10.66\% & 8.92\% & 9.85\% \\
+Yoon era (post-May 2022) & 6.50\% & 5.95\% & 5.41\% & 5.84\% \\[3pt]
+Change & $-3.20$ & $-4.71$ & $-3.51$ & $-4.01$ \\[3pt]
+\textbf{DID estimate} & \multicolumn{2}{c}{\textbf{+1.53 pp}} & \multicolumn{2}{c}{\textbf{$-$0.60 pp}} \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Note: Housing mention rate = share of speeches containing $\geq$1 housing keyword.} \\
+\multicolumn{5}{l}{\footnotesize Liberal = DPK and allies; Conservative = PPP and allies.}
+\end{tabular}
+\end{table}
+
+In regular standing committee proceedings, where legislators exercise agenda-setting discretion, the DPK increased housing oversight relative to the PPP by approximately 1.5 percentage points (Table~\ref{tab:oversight}). While modest in absolute terms, this represents roughly an 18 percent relative change from the baseline rate and indicates a meaningful shift in partisan attention. In 국정감사 audit sessions, where procedural rules constrain topic selection more tightly, no meaningful partisan gap emerged; the DID estimate is slightly negative. This asymmetry suggests that partisan motivation in housing oversight operates primarily through strategic agenda-setting in venues where legislators have discretion, rather than through a blanket tendency for opposition parties to raise uncomfortable topics regardless of institutional setting.
+
+The direction of the effect is consistent across both transitions. Under the Moon administration, conservative opposition legislators raised housing topics at a higher rate than ruling-party liberals in standing committees, a pattern that reversed after the Yoon transition. This symmetric response to government turnover, with each party amplifying housing oversight when in opposition, suggests a general opposition dynamic rather than a party-specific substantive commitment to housing policy. The finding is consistent with the selective scrutiny model of \citet{senninger2016} and the fire-alarm framework of \citet{mccubbinsSchwartz1984}, and extends both to an East Asian legislative context where no prior evidence existed.
 
 
+%% ============================================================
+%%  5. DISCUSSION
 %% ============================================================
 \section{Discussion}
+\label{sec:discussion}
+
+\subsection{The Dominance of Ideology}
+
+The central finding of this paper is the overwhelming dominance of ideology in explaining within-party dissent on property taxation. DW-NOMINATE alone yields a McFadden pseudo-$R^2$ of 0.35 in predicting DPK voting behavior on the July 2022 comprehensive real estate tax reduction (Table~\ref{tab:dissent}, column 1), a remarkably high explanatory power for a single predictor in a legislative behavior model. No other individual-level characteristic, including committee assignment, seniority, mandate type, or gender, adds meaningfully to this baseline.
+
+This finding may appear unsurprising, yet it carries important implications for the broader research agenda on legislator self-interest. The literature connecting personal financial interests to legislative votes \citep{rosenson2003, tahoun2014} typically finds modest effects after controlling for ideology and party. In the Korean context, where party discipline exceeds 95 percent on most votes \citep{shinLee2015}, the space for any individual-level predictor to operate is severely constrained. The comprehensive real estate tax votes examined here are exceptional precisely because party discipline broke down, creating the within-party variation that identification requires. Yet even in this rare window, ideology absorbs the lion's share of predictable variation.
+
+For future studies incorporating asset disclosure data, this finding establishes a concrete benchmark. The McFadden pseudo-$R^2$ of 0.38 from the full specification with controls (Table~\ref{tab:dissent}, column 2) represents the floor that an asset-based model must demonstrably exceed. Given the sample constraints, approximately 95 dissent events across the pooled five-vote sample and six to eight predictors, the study would operate near the lower boundary of statistical feasibility. This does not rule out the possibility that real estate holdings predict dissent; it cautions that the effect, if present, is likely modest relative to ideology.
+
+\subsection{Committee Specialization without Ideological Sorting}
+
+The sponsorship analysis reveals a pattern that speaks to the institutional foundations of legislative engagement with housing policy. Committee assignment strongly predicts who sponsors housing bills, with Land, Infrastructure, and Transport Committee members sponsoring roughly three times as many housing bills as other legislators (Table~\ref{tab:sponsor}). Yet committee assignment does not predict ideology within parties, and committee members were not significantly more likely to dissent on property-tax floor votes.
+
+This asymmetry is consistent with a model of committee-based agenda-setting that operates through information and attention rather than preference formation. Committee assignment exposes legislators to housing-policy issues, generates expertise, and creates opportunities for sponsorship, but it does not systematically shift preferences in a liberal or conservative direction. This finding has implications for the \citet{tahoun2014} identification strategy, which exploits committee assignments as a source of variation in the salience of financial interests. In the Korean case, committee assignment appears to be a clean moderator: it is not confounded by ideological sorting, which means that any interaction between committee assignment and asset holdings in a future study would be interpretable as an amplification of financial self-interest for legislators with policy-relevant jurisdiction.
+
+The finding that junior legislators sponsor more housing bills than senior colleagues is also noteworthy. It suggests that housing policy serves as a low-barrier entry point for legislative portfolio building, consistent with career-stage models of legislative behavior. Whether junior legislators' greater housing engagement reflects genuine policy interest, strategic position-taking for constituency service, or some combination remains an open question.
+
+\subsection{Partisan Oversight and Venue Effects}
+
+The oversight analysis demonstrates that partisan incentives shape legislative attention to housing policy, but only in institutional venues that afford agenda-setting discretion. The contrast between standing committee proceedings, where a meaningful partisan shift occurred, and 국정감사 audit sessions, where it did not, is the most novel empirical finding of this paper.
+
+This result connects to two literatures. First, it extends the European parliamentary oversight literature \citep{jensen2013, senninger2016, karlsson2022} to an Asian legislative context, providing the first evidence on how government transitions reshape housing-specific oversight behavior in committee hearings. The finding that opposition parties selectively amplify housing oversight in discretionary venues is consistent with the fire-alarm model of \citet{mccubbinsSchwartz1984}, adapted to show that fire alarms are pulled strategically based on institutional venue. Second, it speaks to the issue ownership literature \citep{petrocik1996}: the Moon-to-Yoon transition disrupted the DPK's ownership of housing policy, creating a contested domain in which both parties had incentives to engage, but through different institutional channels.
+
+A concern about the oversight finding is that the aggregate shift in housing mention rates may reflect declining issue salience rather than partisan incentives per se. Housing was objectively less politically salient after the property-tax regime stabilized. A definitive test would require a placebo comparison using a policy domain that did not experience a partisan reversal, such as defense or foreign affairs, to establish a baseline trend in oversight intensity. This paper does not provide such a placebo test, and I flag this as a priority for future work.
+
+\subsection{Implications for the Three-Mechanism Framework}
+
+Although the absence of asset disclosure data prevents a direct test, the findings reported here provide indirect evidence bearing on the three mechanisms outlined in Section~\ref{sec:lit}. Under Mechanism A (direct self-interest), the asset effect should concentrate in taxation bills; under Mechanism B (preference formation), it should generalize across housing domains; under Mechanism C (constituency representation), it should disappear once district-level controls are included.
+
+The subcategory analysis in Table~\ref{tab:subcat} provides the dependent variable infrastructure for distinguishing these mechanisms. The fact that partisan sponsorship patterns vary substantially across the five subcategories suggests that the ``housing'' policy domain is not monolithic, and that an asset effect, if present, may operate differently across taxation, supply, and speculation bills. The null relationship between ideology and sponsorship volume further suggests that the sponsorship dimension may be more sensitive to non-ideological predictors, including potentially financial self-interest, than the voting dimension where ideology already dominates.
+
+The committee findings also speak to mechanism design. Under Mechanism A, legislators with housing-relevant committee assignments who also hold large real estate portfolios should exhibit the strongest self-interested behavior, because they have both the financial motivation and the institutional capacity to influence policy. The finding that committee assignment is a clean moderator, uncorrelated with ideology within parties, means that future analyses can interact committee membership with asset holdings without concern that ideological sorting drives the interaction.
+
+Under Mechanism C, the critical control variable is district-level housing market conditions. The present analysis cannot distinguish whether a legislator's personal wealth or their district's housing market characteristics drive behavior. Building the constituency-to-administrative-district crosswalk that would allow matching legislators to KB apartment price indices and census homeownership rates remains a prerequisite for this test.
+
+\subsection{Limitations}
+
+Four limitations merit emphasis. The most consequential is the absence of legislator asset disclosure data. Without the key independent variable, this paper cannot directly test the three competing mechanisms. The theoretical framework generates empirically testable predictions that await data. Korea's mandatory disclosure regime provides the raw material, but the data exist in PDF format in the Official Gazette (관보) and require extraction through OCR or manual coding. The \citet{seo2025} study, which successfully obtained asset data for the 21st Assembly, suggests that this data collection challenge is surmountable. Media compilations published by major Korean newspapers offer an alternative path, though these require digitization and matching to the KNA legislator identifier system.
+
+Second, the district-level housing market controls that would be necessary to distinguish Mechanism C from Mechanisms A and B are not yet incorporated. Each legislator's constituency would need to be matched to housing price indices and homeownership rates, a nontrivial task given that National Assembly constituencies do not align perfectly with administrative district boundaries. Population-weighted averaging of sub-district indicators offers one approach, but the reliability of the crosswalk depends on the degree of geographic mismatch, which varies across constituencies.
+
+Third, the keyword-based approach to measuring housing oversight is coarse. A speech mentioning ``housing'' could be praising government policy, criticizing it, or discussing it incidentally. A sentiment or stance classifier distinguishing critical from supportive mentions would substantially sharpen the oversight analysis. The present paper reports only whether housing was mentioned, not the direction or intensity of engagement. Even a simple dictionary-based approach, distinguishing critical keywords (문제, 실패, 우려, 비판) from supportive keywords (성과, 개선, 노력, 추진), would improve the measurement considerably.
+
+Fourth, the oversight difference-in-differences relies on a single treatment event (the May 2022 transition), making it difficult to distinguish the effect of partisan incentives from secular trends in housing salience. Housing was objectively less politically salient after the property-tax regime stabilized under the Yoon administration. A placebo test using a policy domain that did not experience a comparable partisan reversal would help rule out this alternative explanation, and I flag this as a priority for future work.
+
+
 %% ============================================================
-
-The findings presented above are consistent with the predictions of cartel theory as applied to the KNA, though they stop short of establishing causal relationships. The broad-based decline in committee passage rates, the expansion of committee wait times, and the collapse of cross-party cosponsorship under divided government all point toward a legislature in which majority-party gatekeeping appears to have intensified. \citet{kim2026} characterize the Korean legislative system as structurally rigid, and the data support this characterization: over 82 percent of expired bills were referred to committee but never processed, suggesting that committee inaction, rather than active deliberation and rejection, is the dominant mode of legislative failure. This finding also speaks to the argument by \citet{seo2020} that party-level negotiations, rather than formal committee processes, determine the fate of politically salient legislation. The cross-party reversal may reflect a shift in the locus of legislative gatekeeping from committees as quasi-autonomous deliberative bodies to committees as instruments of party strategy.
-
-Several alternative explanations deserve consideration. The bill inflation hypothesis, which attributes the declining passage rate to the proliferation of low-quality position-taking bills, receives partial support. Position-taking bills account for a growing share of introductions and contribute meaningfully to the volume increase. However, the adjusted passage rate, which removes these bills from the denominator, still shows a substantial decline, indicating that bill inflation alone cannot explain the pattern. A second possibility is that the cross-party cosponsorship reversal reflects strategic sorting by legislators rather than a change in committee processing behavior. If legislators in the 21st Assembly anticipated that bipartisan bills would face majority-party resistance, they may have shifted to single-party coalitions preemptively, producing a correlation between partisan composition and success that reflects anticipatory behavior rather than gatekeeping. \citet{ballard2021} demonstrate that minority parties retain significant legislative capacity even under strong majority-party gatekeeping in the U.S. Congress. Whether this holds in the Korean context, where party discipline is considerably stronger, remains an open question.
-
-The divided government interpretation aligns with the broader comparative literature. \citet{lee2016} argues that party competition drives legislative obstruction, and \citet{curry2019} document a parallel decline in bipartisan lawmaking in the U.S. Congress. The Korean case may represent an especially acute version of this dynamic because of the combination of strong party discipline, a polarized party system, and a presidential system in which the Assembly majority and the president belong to opposing parties. However, the limited temporal scope of the cosponsorship data, covering only two assemblies, prevents me from establishing whether the cross-party reversal is a persistent feature of divided government in Korea or a product of the specific political dynamics of the 21st Assembly. The 20th Assembly itself provides mixed evidence: it began under divided government (Park Geun-hye presidency, opposition Assembly majority) before transitioning to unified government after the 2017 impeachment and Moon Jae-in's inauguration. A within-assembly analysis exploiting this transition could provide stronger leverage on the divided government mechanism, though the confound of the impeachment crisis itself would need to be addressed.
-
-The analysis faces several important limitations. First, the cosponsorship data cover only the 20th and 21st Assemblies, preventing longitudinal analysis of cross-party patterns across earlier periods. Second, the committee composition panel needed to examine the cartel theory's core prediction, that majority-party seat share predicts bill duration, is not yet available in the dataset and must be constructed from member-level committee assignment records. Third, the position-taking bill definition relies partly on outcome information, since one of its criteria is term expiration, which introduces a subtle conditioning problem for the survival model. A cleaner specification for the competing-risks analysis would use only the ex ante criteria (sponsor count and committee processing status) measured at introduction. Fourth, the descriptive nature of the analysis means that the cross-party reversal should be understood as a pattern consistent with theory rather than as a causal test. The competing-risks model proposed in Equation~\ref{eq:competing}, once estimated with committee composition data, could provide a more rigorous examination.
-
-
+%%  6. CONCLUSION
 %% ============================================================
 \section{Conclusion}
-%% ============================================================
+\label{sec:conclusion}
 
-This paper makes three contributions to the study of legislative politics. First, it provides a systematic descriptive account of how the KNA's legislative funnel has changed across five assemblies, decomposing the declining passage rate into a bill inflation component and a residual gatekeeping component. The residual component points to genuine changes in committee processing that cannot be attributed solely to the proliferation of position-taking bills (Table~\ref{tab:desc}). Second, it documents the cross-party cosponsorship reversal between the 20th and 21st Assemblies, connecting it to the onset of divided government and the theoretical predictions of cartel theory and conditional party government (Table~\ref{tab:crossparty}). Third, it proposes a Fine-Gray competing-risks model that treats the Korean institutional context's distinctive alternative-bill absorption pathway as a separate exit event, establishing the groundwork for future survival analysis of East Asian legislative data.
+This paper provides a comprehensive empirical account of housing-policy legislative behavior in Korea's 21st National Assembly, spanning the country's most consequential property-tax episode. The findings suggest three conclusions. First, ideology is the dominant predictor of within-party dissent on property taxation; individual-level characteristics such as committee assignment, seniority, and demographic attributes contribute little additional explanatory power. Second, the processes governing who engages with housing policy (sponsorship) differ fundamentally from those governing how legislators decide on specific measures (floor voting), with sponsorship driven by institutional position and career stage rather than ideology. Third, partisan oversight on housing operates selectively through institutional venues that afford agenda-setting discretion, consistent with models of strategic opposition behavior adapted to the East Asian legislative context.
 
-These findings have implications for both scholars and practitioners. For scholars of comparative legislative politics, the Korean case demonstrates that conventional binary measures of legislative success can be deeply misleading in institutional environments where content absorption is a formalized pathway. Any future Korean Legislative Effectiveness Score must account for this pathway, and the absence of a non-U.S. adaptation of the Volden-Wiseman framework (Volden2014, Bucchianeri2024) represents a significant gap in the comparative literature. For practitioners and reform advocates, the finding that over 82 percent of expired bills die through committee inaction rather than deliberation raises questions about the capacity of the current committee system to manage the volume of legislation it receives.
+These findings carry implications for both comparative legislative studies and the design of future research on legislator self-interest. For comparative scholars, the Korean case illustrates the conditions under which party discipline breaks down on housing policy, conditions that include intense policy salience, government transitions that reverse the policy direction, and intraparty ideological heterogeneity. For future research on self-interest, this paper establishes the behavioral baseline and analytical infrastructure, including dependent variables, control variable benchmarks, and statistical power parameters, that a proper test of the asset-interest hypothesis requires.
 
-Future research should pursue three directions. First, constructing the committee composition panel from member-level assignment records would enable a direct examination of the cartel theory prediction that majority-party seat share predicts bill duration. Second, extending the cosponsorship data backward to earlier assemblies, even imperfectly through name-to-party matching, would establish whether the cross-party reversal is a novel feature of the 21st Assembly or part of a longer trajectory. Third, linking the content of original legislator bills to the alternative bills that absorb them, using text similarity measures, would enable construction of a Korean Legislative Effectiveness Score with partial credit for content absorption. These extensions, taken together, could transform the descriptive foundation established here into a causal analysis of committee gatekeeping in one of Asia's most active legislatures.
+The most important next step is resolving the asset data constraint. Korea's mandatory disclosure regime provides the raw material for measuring legislators' real estate portfolios, but the data exist in PDF format and require extraction. The \citet{seo2025} study demonstrates that this data collection challenge is surmountable. Once asset data are obtained, the three-mechanism framework developed here, distinguishing direct self-interest, preference formation through asset ownership, and constituency representation, provides a structured test that leverages the rich subcategory and multi-dimensional behavioral data documented in this paper.
 
+A second productive direction involves the oversight analysis. The partisan shift in housing oversight, concentrated in standing committees, deserves a standalone investigation with proper placebo tests, stance classification, and legislator fixed effects exploiting the within-term government transition. The 86,014 committee speeches analyzed here represent only a fraction of the hearing data available across multiple assemblies, and extending the analysis temporally would strengthen inference about the generalizability of the venue effects documented here.
+
+More broadly, the Korean case may offer lessons for other democracies grappling with the politics of housing wealth. As \citet{ansell2014} and \citet{schwartz2012} argue, the political economy of homeownership creates a set of preferences and cleavages that operate across national contexts. Japan, Taiwan, and several European countries maintain asset disclosure regimes comparable to Korea's, and their housing markets generate similar political tensions between property owners and non-owners. The analytical framework developed here, combining roll-call voting, bill sponsorship, and committee oversight data to examine housing-policy behavior across multiple institutional dimensions, could be adapted to these settings. The East Asian context, where strong party discipline is the norm rather than the exception, provides a particularly valuable testing ground for theories of legislator self-interest, precisely because the barriers to individual-level defection are so high that any detectable personal-interest effect must be genuinely powerful.
+
+The politics of property taxation in Korea operates at the intersection of party discipline, ideological conviction, and, potentially, personal financial interest. Separating these forces is a challenge that requires both theoretical precision and data that have not yet been fully mobilized. This paper takes a step toward that goal.
 
 \bigskip
 \noindent\textit{This working paper was generated by AI research agents as an
 experimental output. It has not been peer-reviewed or fact-checked.
 Do not cite or use in any academic, policy, or professional context.}
-
-
-
-
 
 \bibliographystyle{apsr}
 \bibliography{references_r2}
-
-\bigskip
-\noindent\textit{This working paper was generated by AI research agents as an
-experimental output. It has not been peer-reviewed or fact-checked.
-Do not cite or use in any academic, policy, or professional context.}
 
 \end{document}
