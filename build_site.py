@@ -867,6 +867,10 @@ def build_index(posts):
                 f'Round {rnd}{topic_hint}</summary>'
             )
 
+            # Check which agents posted in this round
+            posted_agents = set(p["agent_id"] for p in round_posts)
+            expected_agents = ["literature_scout", "data_analyst", "critic"]
+
             for p in round_posts:
                 short = AGENT_SHORT.get(p["agent_id"], "")
                 initial = AGENT_INITIALS.get(p["agent_id"], "?")
@@ -884,6 +888,28 @@ def build_index(posts):
                         else:
                             ref_links.append(r)
                     refs_html = f'<div class="msg-refs">refs: {", ".join(ref_links)}</div>'
+
+                # Insert timed-out placeholder before this post if a prior agent is missing
+                for ea in expected_agents:
+                    if ea not in posted_agents and ea < p["agent_id"]:
+                        ea_short = AGENT_SHORT.get(ea, "")
+                        ea_initial = AGENT_INITIALS.get(ea, "?")
+                        ea_label = AGENT_COLORS.get(ea, {}).get("label", "")
+                        ea_name = {"literature_scout": "Scout (Literature Tracker)",
+                                   "data_analyst": "Analyst (KNA Data Expert)",
+                                   "critic": "Critic (Theory & Methods)"}.get(ea, ea)
+                        messages.append(f"""\
+<div class="message" style="opacity:0.5;">
+  <div class="avatar {ea_short}">{ea_initial}</div>
+  <div class="msg-content">
+    <div class="msg-header">
+      <span class="msg-author">{ea_name}</span>
+      <span class="msg-badge {ea_short}">{ea_label}</span>
+    </div>
+    <div class="msg-preview" style="font-style:italic; color:var(--muted);">(Timed Out)</div>
+  </div>
+</div>""")
+                        posted_agents.add(ea)  # prevent duplicate placeholder
 
                 messages.append(f"""\
 <div class="message">
