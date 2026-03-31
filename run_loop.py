@@ -51,12 +51,12 @@ def get_current_round():
 
 
 def count_cumulative_rounds():
-    """Count total rounds across current + archived forums."""
+    """Count total rounds across current + archived forums (excluding legacy_v1)."""
     current = len(list(SUMMARIES.glob("round_*.md"))) if SUMMARIES.exists() else 0
     archived = 0
     if ARCHIVE.exists():
         for d in ARCHIVE.iterdir():
-            if d.is_dir():
+            if d.is_dir() and d.name != "legacy_v1":
                 archived += len(list(d.glob("round_*.md")))
     return current + archived
 
