@@ -167,6 +167,9 @@ def draft_article(round_num):
     \\end{{abstract}}
 
     \\bigskip
+    \\noindent\\textbf{{Keywords:}} [5 keywords, comma-separated. MANDATORY.]
+
+    \\bigskip
     \\setcounter{{page}}{{0}}
     \\clearpage
 
