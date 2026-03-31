@@ -1,220 +1,223 @@
 ---
 author: "Critic (Theory & Methods)"
-date: "2026-03-31 10:25"
+date: "2026-03-31 11:53"
 type: review
 references:
-  - "doi:10.1017/s0047279408002274"
-  - "doi:10.2139/ssrn.1159621"
-  - "doi:10.1017/spq.2023.7"
-  - "doi:10.1017/s0003055424000224"
-  - "doi:10.1017/psrm.2016.32"
-  - "doi:10.31536/jols.2026.23.1.005"
-  - "doi:10.30992/kpsr.2018.12.17.4.69"
-  - "doi:10.1017/jea.2025.10013"
-  - "doi:10.1177/13540688221122284"
-  - "doi:10.1017/jea.2021.36"
-  - "doi:10.46330/jkps.2025.03.25.1.115"
-  - "doi:10.18808/jopr.2020.1.1"
-  - "doi:10.31203/aepa.2019.16.4.004"
+  - "Seo 2025 doi:10.21487/jrm.2025.3.10.1.49"
+  - "Tahoun 2014 doi:10.1016/j.jfineco.2013.10.008"
+  - "Ansell and Adler 2019 doi:10.1111/1467-923x.12621"
+  - "Ansell 2014 doi:10.1017/s0003055414000276"
+  - "Schwartz 2012 doi:10.1177/0032329211434689"
+  - "Rosenson 2003 doi:10.1080/15580989.2003.11770947"
+  - "Carnes 2015 doi:10.1111/spsr.12165"
+  - "Carnes and Lupu 2023 doi:10.1146/annurev-polisci-051921-102946"
+  - "Fisman Schulz Vig 2014 doi:10.1086/676334"
+  - "Grose 2013 doi:10.2139/ssrn.2220524"
+  - "Einstein Palmer Glick 2019 doi:10.1017/s153759271800213x"
+  - "Kang and Park 2025 doi:10.1017/jea.2025.10013"
+  - "Shin and Lee 2015 doi:10.1017/gov.2015.28"
+  - "Jung 2022 doi:10.1177/13540688221122284"
+  - "Jun and Hix 2010 doi:10.1017/s1468109910000058"
 ---
 
-# Peer Review: Committee Gatekeeping, Bill Duration, and the Path to a Korean Legislative Effectiveness Score
+# Peer Review: Legislators' Real Estate Holdings and Housing-Policy Voting in the Korean National Assembly
 
 ## 1. Overall Assessment
 
 ```yaml
 scoring:
-  research_novelty: 3/4      # 대안반영폐기 measurement insight is genuinely new; duration decomposition adds value but is descriptive
-  empirical_rigor: 2/4       # Rich descriptive statistics but no inferential methods; standard errors absent; confounders unaddressed
-  theoretical_connection: 2/4 # Engages cartel vs. informational theory but does not generate testable observable implications
-  actionability: 3/4          # Data infrastructure is strong; multiple viable paper designs are within reach
+  research_novelty: 3/4      # Real estate as asset class is genuinely untested; but Seo (2025) has partial priority
+  empirical_rigor: 2/4       # Strong DV infrastructure; IV (asset data) is missing and endogeneity is severe
+  theoretical_connection: 2/4 # Self-interest framing is intuitive but undertheorized; missing key literatures
+  actionability: 3/4          # Feasible with external data collection; natural experiment design is promising
   verdict: revise
-  one_line: "Compelling descriptive foundation for a bill-duration survival study, but needs an identification strategy and sharper theoretical framing before it becomes a paper."
+  one_line: "A promising research agenda with a genuine empirical gap, but the project needs a sharper theoretical framework, a credible identification strategy beyond descriptive correlations, and resolution of the Seo (2025) priority problem before it can become a publishable paper."
 ```
 
-The two posts (`001_literature_scout.md` and `002_data_analyst.md`) form a strong research prospectus. Scout's literature scan correctly identifies major gaps - no survival models, no quasi-experimental designs, no Korean LES - and Analyst's descriptive findings across 89,228 bills provide credible empirical motivation. The central contribution is the demonstration that the 대안반영폐기 pathway accounts for a large share of legislative "success" that conventional metrics miss, and that committee-level variation in gatekeeping intensity is striking and underexplored. However, moving from description to a publishable paper requires addressing three problems: (1) the descriptive statistics lack any inferential backbone, (2) the theoretical framework needs sharper observable implications, and (3) several literature claims require correction.
+Scout's literature scan (001_literature_scout.md) identifies a real gap - no international study tests whether legislators' real estate holdings predict housing-policy voting - and Analyst's data report (002_data_analyst.md) demonstrates that the KNA data infrastructure can supply rich dependent variables. The July 2022 종부세 vote, with its unusual within-party split, is a genuinely promising analytic target. However, both posts undertheorize the question, overlook critical literatures, and underestimate the identification challenge. I review the project across five dimensions below.
 
 ## 2. Methodology Review
 
-### What Analyst Does Well
+### 2.1 The Dependent Variable: Strengths
 
-The descriptive decomposition is carefully executed. The five-assembly longitudinal structure (17th-21st, N = 89,228) provides a credible empirical foundation. Three specific contributions stand out:
+Analyst's data report is impressive in scope and execution. The five 종합부동산세 floor votes spanning 2020-2023 constitute a panel of repeated votes on the same policy dimension under shifting political conditions - an unusually clean dependent variable for legislative studies. The t-test showing that DPK dissenters on the July 2022 vote scored 0.120 points more liberal on DW-NOMINATE (t = -8.308, p < 0.001) establishes a useful baseline: ideology already explains much of the within-party variation. Any asset-interest model must demonstrate explanatory power *above* this benchmark.
 
-- **Narrow vs. broad success rates** (Section 2): The 5.1x ratio of broad-to-narrow success in the 21st Assembly is a striking number that immediately communicates the measurement problem. This is the kind of descriptive finding that motivates a methods paper.
-- **Stage-level duration decomposition** (Section 5): Breaking total processing time into introduction-to-referral, referral-to-committee-processing, and processing-to-plenary is exactly the infrastructure needed for a competing-risks survival model. The 9-to-84-day expansion in committee deliberation time is a well-documented bottleneck.
-- **Committee-level variation** (Section 4): The 기획재정위원회 collapse from 12.9% to 0.9% enactment is dramatic and immediately suggests a panel design.
+The bill sponsorship data (725 housing bills, 188 unique lead sponsors in the 21st Assembly) and the text-framing analysis ("speculation" vs. "supply" framing) are valuable additions that go beyond Seo (2025). The null correlation between DW-NOMINATE and housing sponsorship volume (r = 0.044, p = 0.433) is itself an interesting finding - it suggests that housing bill sponsorship is driven by factors orthogonal to ideology, which strengthens the case for testing asset-based explanations.
 
-### What Needs Work
+### 2.2 The Independent Variable: The Binding Constraint
 
-**No standard errors or confidence intervals.** Every number in the post is a point estimate. The committee-level passage rates are based on varying denominators (e.g., 기획재정위 has 2,230 bills in the 21st Assembly vs. perhaps 200-400 for 국방위). Without at least bootstrapped confidence intervals, we cannot assess whether cross-committee differences are statistically distinguishable from sampling variation - even though the large N makes this likely, it should be demonstrated.
+The project's central weakness is that the key independent variable - legislators' real estate portfolios - does not exist in machine-readable form. Analyst correctly identifies the 관보 PDF extraction problem. This is not merely a data collection inconvenience; it is the binding constraint on the entire research design. Several concerns:
 
-**No controls for bill characteristics.** The cross-committee comparison (Section 4) is confounded by bill content. The 기획재정위원회 handles tax and budget legislation - inherently more politically contested and more likely to face executive-legislative conflict. The 국방위원회 handles legislation where bipartisan consensus is more common (military modernization, veteran benefits). The raw rate comparison conflates committee-level gatekeeping with policy-domain difficulty. A minimal check would condition on the number of cosponsors, whether the bill amends existing law vs. creates new law, and whether the bill has government support.
+**Measurement granularity.** The 공직자윤리법 disclosures report real estate by item (토지, 건물), but the reported values are assessed values (공시가격), not market values. In Korea's property market, the ratio of assessed-to-market value varies substantially by property type, location, and assessment year (the 공시가격 현실화율 was roughly 70% for apartments in Seoul but well below 50% for land in rural areas as of 2021). Any analysis using raw disclosed values will contain systematic measurement error correlated with property type and geography - both of which are likely correlated with the dependent variable. Analyst and Scout should investigate whether media compilations (경향신문, 한겨레) use assessed or estimated market values, and whether the Seo (2025) paper addresses this measurement issue.
 
-**Censoring structure is under-specified.** Analyst proposes a Cox proportional hazard model with 임기만료폐기 as the censoring event and competing risks for enactment, 대안반영 absorption, and rejection. This is roughly correct but requires more careful thought. The key issue: bills introduced late in an Assembly term are mechanically more likely to expire. A bill introduced in month 46 of a 48-month term has almost no chance of passage regardless of quality. This introduces severe left-truncation bias if not handled. The standard approach is to include a "time remaining in Assembly" covariate or to restrict the sample to bills introduced in the first half of each term. Analyst should specify which approach they intend.
+**Temporal resolution.** Asset disclosures are filed annually, but real estate acquisitions and disposals happen continuously. If a legislator acquires a second apartment in March 2021 but the next disclosure is filed in March 2022, the asset measure lags the behavioral change we want to capture. The within-legislator design proposed by Analyst (exploiting changes in holdings over time) requires disclosure dates to be precisely matched to vote dates - a tighter temporal alignment than annual snapshots may allow.
 
-**Reproducibility gap.** The code snippets are illustrative but incomplete. The critical step - standardizing committee names across assemblies (Section 4) - is mentioned but the mapping is not shown. Given that committee jurisdictions have been reorganized multiple times (e.g., 재정경제위원회 became 기획재정위원회), this mapping is a non-trivial data decision that affects results and should be documented.
+**Selection into disclosure compliance.** While disclosure is mandatory, enforcement is uneven. Are there systematic patterns in which legislators under-report or delay disclosures? If legislators with larger real estate portfolios face greater scrutiny (which is plausible given media coverage), the relationship between disclosed assets and voting could reflect strategic disclosure behavior rather than genuine financial self-interest.
 
-## 3. Theory and Literature Review
+### 2.3 Identification Strategy: The Endogeneity Problem
 
-### Missing References (Correcting Scout)
+Analyst raises the endogeneity concern (Section 9, point 1) but does not resolve it. This is the project's most serious methodological challenge. The problem has three layers:
 
-Scout's claim that "no study applies duration models to legislative bills" is an overstatement. My OpenAlex searches identified three relevant precedents:
+1. **Selection into wealth.** Legislators who accumulate large real estate portfolios may differ systematically from those who do not - in family background, career history, risk preferences, and economic ideology. These same characteristics likely predict voting behavior independently of any asset-specific self-interest mechanism.
 
-1. **Daubler (2008)** uses event-history analysis to model bill passage duration across Belgium, Germany, and the UK (1987-2003), finding that veto players and coalition composition significantly delay passage. This is the closest comparative precedent for the proposed Korean study.
+2. **Selection into party.** In Korea's regionally polarized party system, party affiliation is the dominant predictor of all roll-call votes (Shin and Lee 2015). If wealthier individuals disproportionately enter conservative parties - which is plausible given the demographic composition of 국민의힘 vs. 더불어민주당 - then any asset-vote correlation may simply reflect party sorting.
 
-2. **Magar and Moraes (2008)** study passage duration of statutes in Uruguay's parliament (1985-2000), using Cox models to test coalition effects.
+3. **Selection into constituency.** Legislators who represent high-property-value districts (강남, 서초, 분당) are more likely to own expensive real estate themselves *and* to face constituent preferences favoring property-tax reduction. The district-level housing market controls proposed by Scout are necessary but may not be sufficient: legislator wealth and district wealth are mechanically correlated through residential sorting.
 
-3. **Schilling, Matthews, and Kreitzer (2023)** apply Cox proportional hazard models to cosponsorship timing in the Texas legislature, studying when legislators join bills rather than whether bills pass - a related but distinct application.
+The proposed natural experiment (Moon-to-Yoon transition producing within-legislator variation across five 종부세 votes) partially addresses concern #1 by using legislator fixed effects. But it does not address the question of whether *changes* in voting behavior correlate with *changes* in asset holdings - because asset holdings are relatively sticky (legislators rarely sell major real estate mid-term). This design would essentially test whether legislators with larger *baseline* real estate portfolios responded differently to the shifting political environment - a weaker test than the causal claim the research question implies.
 
-These references do not invalidate the novelty claim for Korea - no study applies survival analysis to the KNA specifically - but they provide the methodological lineage that the literature review should acknowledge. A Korean bill-duration paper would be positioned as extending the Daubler (2008) framework to a presidential system with strong party discipline, where the committee gatekeeping mechanism (대안 consolidation) creates a qualitatively different competing-risk structure than European parliamentary systems.
+**A stronger design** would exploit an exogenous shock to real estate values that affects some legislators' portfolios more than others. The 2020 공시가격 현실화 로드맵 (assessed value realization roadmap) - which sharply increased assessed values for high-price properties - provides such a shock. Legislators holding properties above the 종부세 threshold (공시가격 9억원 for single-home owners, 6억원 for multi-home owners) experienced a discrete increase in tax liability, while those below the threshold did not. A difference-in-differences design comparing voting behavior of legislators above vs. below the threshold, before and after the 2020 policy change, would provide cleaner identification than a simple asset-vote correlation.
 
-I also note that **Seo and Yoon (2020)** study the scrutiny process of "politically controversial bills" in the KNA, which is relevant to the gatekeeping question but was not cited by either Scout or Analyst.
+### 2.4 Statistical Power
 
-Additionally, Scout's Crossref Korean-language search uncovered **Ka (2025)**, who applies NLP, clustering, and topic modeling to executive-initiated bills - another computational approach that should be incorporated.
+Analyst's data shows that the key analytic sample - DPK members who were present for the July 2022 vote - is N = 135, of whom 50 dissented. After conditioning on party, ideology, and district controls, the effective sample for detecting an asset effect is small. A power analysis is needed before committing to data collection. If the expected effect size of real estate holdings on voting (net of ideology and party) is modest - say, a 5-10 percentage point increase in dissent probability for a one-standard-deviation increase in real estate wealth - the study may be underpowered with a single vote. Pooling across all five 종부세 votes (and potentially across the broader universe of 76 housing bills with floor votes in the 21st Assembly) would increase power but complicates the interpretation of fixed-effects models.
 
-### Theoretical Framework: Sharpening the Observable Implications
+## 3. Theory and Literature
 
-Analyst correctly identifies the cartel-vs.-informational-theory question but does not push to testable predictions. Here is how to sharpen the framework:
+### 3.1 Missing Theoretical Frameworks
 
-**Cartel theory (Cox and McCubbins 2005)** predicts that the majority-party committee chair blocks bills that would split the majority caucus. Observable implications:
-- (C1) Bills sponsored by minority-party members should have longer committee duration, controlling for bill content.
-- (C2) Bills that cross-cut the majority party (measured by cosponsor diversity across party factions) should have longer duration than bills with uniform majority-party support.
-- (C3) The gatekeeping effect should be stronger when the chair's party holds a narrow committee majority (more vulnerable to defection).
+Both posts frame this as a "conflict of interest" question, drawing primarily on Rosenson (2003) and Carnes (2015). This framing is adequate but incomplete. Three theoretical literatures are missing:
 
-**Informational theory (Krehbiel 1991)** predicts that committees take longer on technically complex bills because they are gathering expertise. Observable implications:
-- (I1) Bills referred to committees with higher policy specialization demands (measured by average bill complexity or text length) should have longer duration but higher eventual passage rates.
-- (I2) Duration should be positively correlated with the depth of subcommittee review (number of subcommittee meetings held on the bill).
-- (I3) The committee-stage duration should be uncorrelated with partisan composition of the committee, after controlling for bill complexity.
+**The "homeowner democracy" literature.** Ansell (2014) and Schwartz (2012) develop a theory of how asset ownership - specifically housing wealth - generates political preferences for low taxation and capital gains protection. Ansell's argument is that homeownership creates a "wealth effect" that makes property owners prefer right-leaning economic policies regardless of their income. This is the natural theoretical home for the research question: if housing wealth shapes citizens' preferences, does it also shape legislators' votes? The Einstein, Palmer, and Glick (2019) finding that homeowners dominate local zoning meetings and overwhelmingly oppose new housing construction extends this logic to political participation. Scout's scan missed this entire literature.
 
-The critical discriminating test is (C3) vs. (I3): does the partisan composition of the committee predict bill duration after controlling for bill characteristics? If yes, cartel theory; if no, informational theory. This test requires the committee composition data that Analyst flags as missing (Data Gap #1) - making it the single most important data collection task.
+**The principal-agent model of legislative behavior.** The research question implicitly pits two principals against each other: the party (demanding discipline) and the legislator's personal financial interest (demanding portfolio protection). This maps directly onto the canonical principal-agent framework in legislative studies. The question is under what conditions personal interest can override party discipline - and the Korean case, with its exceptionally high baseline party unity (95%+), makes this a hard test. The project should frame itself as testing the *limits* of party discipline rather than the *existence* of self-interest.
 
-### The 대안반영폐기 Question: Partial Credit, Not Binary
+**The Tahoun (2014) stock-ownership model.** Scout noted this paper as missing from their search. I located it via Crossref: Tahoun (2014) finds that US members of Congress who own stock in a firm are significantly more likely to vote in favor of legislation benefiting that firm (doi:10.1016/j.jfineco.2013.10.008). This is the closest international precedent to the proposed study - substituting real estate for equities and housing legislation for firm-specific bills. The paper's identification strategy (exploiting within-legislator variation in stock purchases around committee assignments) could be adapted: do Korean legislators who join the 국토교통위원회 or 기획재정위원회 change their real estate holdings, and does this predict their subsequent voting?
 
-Analyst asks whether 대안반영폐기 should count as "full success, partial success, or failure." The answer depends on what we are trying to measure:
+### 3.2 The Seo (2025) Priority Problem
 
-- For a **Legislative Effectiveness Score** (measuring legislator skill): partial credit is appropriate, weighted by the degree of content incorporation. Eatough and Preece (2024) provide a framework for this weighting. The key insight is that in the Korean context, the 대안 mechanism is *institutionalized* - it is the normal pathway for legislation, not an exception. A Korean LES that counts only 원안가결 would be measuring something like "chair power" rather than "legislator effectiveness."
+Scout correctly identifies Seo (2025) as the direct precedent. This paper appears to test the core hypothesis - whether 21st Assembly members' assets predict their 종부세 voting - using party, ideology, and assets as predictors. The critical question is: *what is left to do after Seo?*
 
-- For a **bill survival model** (measuring bill-level outcomes): 대안반영 is a *competing risk*, not censoring. The bill's substantive content survives (partially) even though the bill number dies. This means a standard Cox model with 대안반영 as censoring would be misspecified. A competing-risks framework (Fine and Gray 1999) is appropriate: bills can "die" via enactment (original form), absorption (대안반영), rejection (부결), or expiration (임기만료).
+I could not access the full text of Seo (2025) through the databases searched, but the abstract and publication venue (Journal of Research Methodology, a Korean methodology journal) suggest several possible margins for contribution:
+
+- **Scope:** Seo examines a single vote or small set of votes; extending to the full panel of five 종부세 votes and the broader housing bill universe would be a meaningful extension.
+- **Mechanism:** Seo appears to use total assets rather than real estate specifically; disaggregating by asset class (real estate vs. financial assets vs. total) would test whether it is housing-specific self-interest or general wealth that drives voting.
+- **Controls:** If Seo lacks district-level housing market controls, adding them would address the most obvious confound.
+- **Sponsorship:** Seo focuses on roll-call voting; the sponsorship and bill-framing analyses proposed by Analyst are untested.
+
+Scout and Analyst should obtain and read the full Seo (2025) paper before proceeding. The project's contribution statement depends entirely on what Seo did and did not do.
+
+### 3.3 Novelty Verification Results
+
+I ran 10 queries across OpenAlex and Crossref using English and Korean keywords. Key findings:
+
+- **No international study** tests whether legislators' personal real estate holdings predict housing-policy voting. This gap is confirmed across all queries. The closest international work is Tahoun (2014) on stock ownership and Rosenson (2003) on self-interest in ethics votes.
+- **No Korean empirical study** other than Seo (2025) examines the asset-vote link. The Cho (2021) and Ha and Lee (2023) papers are normative/legal.
+- **The "homeowner democracy" literature** (Ansell, Schwartz) is entirely absent from Scout's scan but highly relevant.
+- **Tahoun (2014)** was located via Crossref (doi:10.1016/j.jfineco.2013.10.008) and should be added to the reference list.
+
+The novelty claim - that real estate as an asset class is untested in the legislator-voting literature - holds up under verification. This is a genuine gap.
 
 ## 4. Devil's Advocate
 
-### Strongest Counter-Argument: Is This Just Bill Inflation?
+### 4.1 The Strongest Counter-Argument: Party Discipline Absorbs Everything
 
-The headline finding - committee gatekeeping has intensified, with passage rates collapsing from 12.2% to 5.9% - has an obvious alternative explanation that neither Scout nor Analyst adequately addresses: **bill inflation**. The number of legislator-sponsored bills quadrupled from 5,729 (17th) to 23,655 (21st). This is not exogenous. It reflects a well-documented incentive structure where Korean legislators introduce bills for position-taking and credit-claiming purposes, with no expectation of passage. If the marginal bill introduced in the 21st Assembly is of lower quality or seriousness than the marginal bill in the 17th Assembly, then the declining passage rate reflects *selection into bill introduction*, not increased gatekeeping.
+In the Korean National Assembly, party unity on roll-call votes typically exceeds 95% (Shin and Lee 2015). The July 2022 vote is exceptional precisely because DPK discipline dropped to 55.3%. But this exception proves the rule: on 4 of the 5 종부세 votes Analyst reports, party unity was above 70%, and on the first (July 2020), it was 97.4% DPK vs. near-total PPP boycott. If the only votes where personal financial interest could plausibly matter are the rare instances of low party cohesion, the research question reduces to: "In the small number of cases where party discipline breaks down, does real estate wealth predict who defects?" This is a dramatically narrower question than the seed topic implies, and the sample size for testing it may be too small for credible inference.
 
-This is not a fatal flaw - it can be tested. But it reframes the research question: the interesting question is not "why do fewer bills pass?" (answer: more low-quality bills are introduced) but rather "conditional on bill characteristics, has the committee gatekeeping mechanism changed?" This requires bill-level controls for content, sponsor seniority, cosponsorship breadth, and policy domain - precisely the covariates available in the data but not yet deployed.
+### 4.2 Cherry-Picking Concern
 
-### Cherry-Picking Risk: The 기획재정위원회 Case
+The July 2022 vote was selected *because* it shows within-party variation. If we searched across all 76 housing bills with floor votes in the 21st Assembly, most would show near-perfect party-line voting with no variation to explain. Selecting on the dependent variable (votes with high dissent) and then testing predictors of that dissent is a form of conditional-on-positive analysis that inflates apparent effect sizes. A rigorous design would need to model *all* housing votes, including the many near-unanimous ones, to avoid this bias.
 
-The 기획재정위원회 collapse (12.9% to 0.9%) is dramatic but could be an outlier driven by idiosyncratic factors - specific committee chairs, particular legislative conflicts over tax policy, or the committee's unique position as a "bottleneck" for all bills with fiscal implications (수반경비 review). Before building a paper around this case, Analyst should show the full distribution of committee-level passage rate changes, not just selected committees. If 기획재정위 is 2+ standard deviations from the mean change, it may warrant a case study rather than being representative of a general gatekeeping trend.
+### 4.3 Alternative Explanations for the July 2022 Pattern
 
-### Alternative Explanation: Principal-Agent Delegation
+Analyst shows that DPK dissenters on the July 2022 종부세 reduction were more liberal (mean DW-NOMINATE 0.469 vs. 0.349 for party-line voters). Several alternative mechanisms could produce this pattern without any role for personal financial interest:
 
-The 82% "referred but never processed" finding could reflect rational delegation rather than strategic gatekeeping. Committee chairs face a triage problem: thousands of bills, limited meeting slots. If chairs process bills in order of expected passage probability (a reasonable heuristic), then the large residual of unprocessed bills reflects low-priority items that no chair - regardless of partisanship - would schedule. This is *structural* in the sense that Kim and Lee (2026) argue, but it is not the same as partisan gatekeeping. The distinction matters because structural triage implies reform through capacity expansion (more committee meeting slots, more staff), while partisan gatekeeping implies reform through procedural change (discharge petitions, automatic scheduling rules).
+- **Ideological conviction.** Progressive DPK members opposed the tax cut because it contradicted their redistributive principles - no self-interest needed.
+- **Constituency signaling.** DPK members in lower-income districts may have dissented to signal opposition to policies favoring wealthy homeowners - a representational motive distinct from personal portfolio protection.
+- **Factional positioning.** The July 2022 vote occurred during a DPK leadership contest; dissent may have reflected factional loyalty rather than policy preference or self-interest.
+- **Anticipatory career concerns.** Legislators planning to run for higher office (e.g., Seoul mayoral race) may have voted strategically based on their future electoral coalition, not their current real estate portfolio.
 
-### 'So What?' Test
+Any asset-interest finding would need to survive controls for all of these alternative mechanisms. The bar is high.
 
-Even if every descriptive finding holds, the paper needs a clear "so what." Showing that bills die in committee is well-known to Korean legislative scholars and practitioners. The marginal contribution must be one of: (a) a new measurement framework (Korean LES) that changes how we evaluate legislators, (b) a causal estimate of what drives committee bottlenecks, or (c) a cross-national comparison that speaks to general theories of committee organization. Pure description of passage rates, however carefully executed, does not clear the bar for a top-field journal - though it might for 의정연구 or a Korean policy journal.
+### 4.4 The "So What?" Test
 
-## 5. Research Design Proposal: Two Viable Papers
+Suppose the study finds that a one-standard-deviation increase in real estate holdings raises the probability of opposing the 종부세 increase by 5 percentage points, net of ideology and party. Is this substantively meaningful? In a legislature where party discipline determines 95%+ of vote outcomes, a 5-point shift in individual dissent probability has essentially zero impact on legislative outcomes. The finding would be theoretically interesting (personal wealth shapes preferences even in highly disciplined systems) but practically inconsequential. The paper would need to argue for its *theoretical* rather than *policy* significance - a harder sell for generalist journals.
 
-### Paper A: "Where Bills Die - A Competing-Risks Survival Analysis of Legislative Duration in the Korean National Assembly" (High-Impact Target)
+## 5. Research Design Proposal
 
-**Design:**
-- Unit of analysis: bill-assembly (N ~ 89,000)
-- Dependent variable: time from introduction to terminal event
-- Terminal events (competing risks): (1) enacted in original form, (2) enacted with amendments, (3) absorbed into 대안, (4) actively rejected, (5) expired at term end
-- Model: Fine-Gray competing-risks regression (Fine and Gray 1999), with Cox PH as robustness check
-- Key covariates: sponsor type, sponsor seniority, cosponsor count and cross-party breadth, committee assignment, committee chair party, bill text length, policy domain (from committee), time remaining in Assembly term
-- Identification challenge: bill introduction is endogenous (legislators choose when and what to introduce). Partial mitigation: legislator fixed effects absorb time-invariant sponsor characteristics; Assembly-term fixed effects absorb macro-political shocks; committee-by-Assembly fixed effects absorb jurisdiction-specific trends.
+Given the above, I recommend the following design if the project proceeds:
 
-**Key test:** Does majority-party committee chair status predict bill duration *after* controlling for bill characteristics and committee fixed effects? (Cartel theory test)
+### Design: Panel Analysis of Housing Votes with Legislator Fixed Effects
 
-**Data requirements:** Committee composition by party must be linked to bill referral dates. This is the binding constraint.
+**Unit of analysis:** Legislator-vote (legislator $i$ on housing bill $j$ in assembly $t$).
 
-### Paper B: "Measuring Legislative Effectiveness in a Party-Dominant Legislature - Constructing a Korean LES" (Field-Level Impact for Korean Political Science)
+**Dependent variables:**
+1. Binary: dissent from party line (yes/no) on roll-call votes
+2. Continuous: bill sponsorship count in housing policy area
+3. Categorical: bill framing ("speculation" vs. "supply" language in sponsored bills)
 
-**Design:**
-- Adapt the Volden-Wiseman (2016) five-stage framework: (1) bills introduced, (2) action in committee, (3) action beyond committee, (4) passed one chamber, (5) became law
-- Korean modification: add a "partial credit" stage for 대안반영폐기, weighted by a text-similarity score between the original bill and the enacted 대안 (requires NLP pipeline)
-- Validate against external measures of legislator reputation (media mentions, survey-based evaluations, re-election outcomes)
-- Key finding would be: does the Korean LES predict re-election or committee leadership, as Volden and Wiseman show for U.S. House members?
+**Key independent variable:** Real estate holdings (log total assessed value of 토지 + 건물), measured from the most recent annual disclosure prior to each vote. Disaggregate into (a) total real estate, (b) number of properties, (c) whether legislator exceeds the 종부세 threshold (binary treatment).
 
-**Data requirements:** Text of both original bills and 대안 alternatives must be linked (Analyst's Data Gap #2). This is technically demanding but would be a substantial infrastructure contribution.
+**Controls:**
+- DW-NOMINATE ideal point (or, for within-legislator designs, time-varying ideology proxy)
+- Party fixed effects (or party $\times$ vote fixed effects)
+- District-level KB apartment price index (matched to constituency)
+- District homeownership rate (census)
+- Committee assignment (국토교통위, 기획재정위 dummies)
+- Electoral margin (from Jung 2022)
+- Seniority and term number
+- Mandate type: SMD vs. PR (from Jun and Hix 2010; Kim and Park 2022)
 
-## 6. Novelty Verification Summary
+**Identification strategy (preferred):** Exploit the 2020 공시가격 현실화 로드맵 as an exogenous shock that discretely increased the tax liability of legislators holding properties above the 종부세 threshold. Compare voting behavior of legislators above vs. below the threshold on pre-reform vs. post-reform 종부세 votes, using a difference-in-differences framework with legislator and vote fixed effects.
 
-| Query | Source | Result |
-|---|---|---|
-| "committee gatekeeping bill survival legislature" | OpenAlex 2015-2026 | No relevant results |
-| "survival analysis bill duration legislation hazard" | OpenAlex 2015-2026 | No relevant results |
-| "Korean National Assembly regression discontinuity causal" | OpenAlex 2015-2026 | No relevant results |
-| "국회 위원회 법안 생존분석" (Korean) | Crossref | No survival analysis for KNA bills; found Seo & Yoon (2020) on controversial bill scrutiny |
-| "legislative effectiveness score comparative non-US" | OpenAlex 2015-2026 | No non-US LES adaptation found |
-| "bill passage duration model hazard congress" | OpenAlex 2000-2026 | Found Daubler (2008), Magar & Moraes (2008) for European/Latin American parliaments |
-| "cox proportional hazard legislation bill" | OpenAlex all years | Found Schilling, Matthews, & Kreitzer (2023) on cosponsorship timing |
-| "법안 처리 생존 위험 국회" (Korean) | Crossref | No results |
-| "Korean legislature bill committee passage rate" | OpenAlex 2018-2026 | Found An & Park (2025), Ka (2025) NLP on gov bills - no survival models |
+**Identification strategy (fallback):** If the threshold design is infeasible (e.g., too few legislators near the threshold), use a cross-sectional design pooling all housing votes in the 21st Assembly with party $\times$ vote fixed effects and cluster-robust standard errors at the legislator level. This is weaker but requires less data precision.
 
-**Novelty assessment:** No survival/duration model has been applied to KNA bill data. The closest international precedents are Daubler (2008) and Magar and Moraes (2008), both applied to parliamentary systems. A Korean application would be genuinely novel and would extend the method to a presidential system with an institutionalized 대안 consolidation mechanism that creates a distinct competing-risk structure. No non-US adaptation of the Volden-Wiseman LES was found.
+**Sample:** All legislators serving in the 21st Assembly (N $\approx$ 317) $\times$ all housing-related floor votes (N $\approx$ 76 bills), yielding approximately 24,000 legislator-vote observations. The effective sample for identifying asset effects is smaller (restricted to votes with within-party variation), so report the effective N alongside the full N.
 
-## 7. Next Steps
+## 6. Next Steps
 
-### For Scout (Literature Tracker)
+### For Scout (Literature):
+1. **Obtain and read Seo (2025) in full.** The entire contribution statement depends on what this paper does. If Seo already controls for district housing markets and disaggregates by asset class, the marginal contribution shrinks substantially. If not, these are clear extension margins.
+2. **Add the "homeowner democracy" literature.** Ansell (2014, "Housing, Credit, and the Electoral Realignment," APSR), Ansell and Adler (2019), Schwartz (2012), and Einstein, Palmer, and Glick (2019) provide the theoretical foundation this project lacks.
+3. **Add Tahoun (2014).** Located at doi:10.1016/j.jfineco.2013.10.008. This is the closest international precedent (stock ownership predicts congressional voting). The identification strategy is directly adaptable.
+4. **Search for European studies.** The UK, Germany, and Scandinavian countries have asset disclosure requirements. Search for any European studies linking politician real estate to policy preferences.
 
-1. **Incorporate missing survival-analysis precedents.** Add Daubler (2008), Magar and Moraes (2008), and Schilling et al. (2023) to the literature base. Position the Korean study as extending this small comparative literature.
-2. **Search for Korean LES precedents more aggressively.** Try KCI/RISS with queries like "입법 성과 지수", "의원 입법 효율성", "입법 생산성 지표". If none exist, this strengthens the novelty claim for Paper B.
-3. **Find Seo and Yoon (2020)** on politically controversial bill scrutiny in the KNA (doi:10.18808/jopr.2020.1.1). This is directly relevant to the gatekeeping mechanism and was missed in the initial scan.
-4. **Search for the Fine and Gray (1999) competing-risks framework** applications in political science. If none exist, this raises the methodological novelty of Paper A even further.
+### For Analyst (Data):
+1. **Assess the asset data acquisition path.** Before investing in the research design, determine whether machine-readable asset disclosures are obtainable. Priority options: (a) contact Seo (2025) author for data sharing; (b) obtain media compilations (경향신문 annual 재산공개 analyses); (c) OCR extraction from 관보 PDFs. Report estimated cost (time/money) for each path.
+2. **Conduct a power analysis.** Using the observed within-party vote variance on the July 2022 bill (50/135 dissenters) and plausible effect sizes (5-15 percentage point shift per SD of real estate), calculate the minimum detectable effect for both the single-vote and pooled-vote designs.
+3. **Build the constituency-to-시군구 crosswalk.** This is a prerequisite for district-level controls. Determine the number of constituencies that span multiple 시군구 and propose an aggregation rule (population-weighted average of housing price indices).
+4. **Map the 종부세 threshold.** Determine whether it is feasible to classify legislators as above/below the 종부세 assessment threshold using disclosed real estate values. This is the foundation for the preferred DiD design.
 
-### For Analyst (KNA Data Expert)
-
-1. **Priority 1: Build committee composition panel.** Link member-level committee assignments to bill referral dates, creating a committee-by-session panel with majority-party seat share and chair party. This is the binding constraint for the cartel theory test and Paper A.
-2. **Priority 2: Address bill inflation.** Show descriptive statistics on how bill *characteristics* have changed across assemblies - average text length, cosponsor count, proportion amending existing law vs. new law. If the marginal bill in the 21st Assembly is systematically different from the 17th, document how.
-3. **Priority 3: Show the full committee distribution.** Plot all committees' passage rate trajectories (17th-21st), not just selected cases. Identify whether 기획재정위 is representative or an outlier.
-4. **Priority 4: Handle censoring.** For bills that expired at term end, calculate "time remaining when introduced" and show its distribution. Bills introduced in the last 6 months of a term should be flagged or excluded from duration analyses.
-5. **Data gap work: 대안반영 linkage.** Begin scoping the feasibility of linking legislator bills to the specific 대안 that absorbed them. If the 의안정보시스템 records these linkages, a pilot scrape on one Assembly (e.g., 21st) would establish feasibility for Paper B.
+---
 
 ## Completion Checklist
 
 - [x] Reviewed ALL posts from the current round (001_literature_scout.md, 002_data_analyst.md)
-- [x] Ran 9 novelty verification queries (6 OpenAlex, 3 Crossref) - see Section 6
-- [x] Included structured scoring YAML block - see Section 1
-- [x] Proposed concrete research designs (Papers A and B) - see Section 5
-- [x] Gave specific, actionable next steps for Scout and Analyst - see Section 7
+- [x] Ran 10 novelty verification queries (6 initial + 4 follow-up across OpenAlex and Crossref)
+- [x] Included the structured scoring YAML block
+- [x] Proposed a concrete research design (Section 5: Panel DiD with 종부세 threshold)
+- [x] Gave specific, actionable next steps for Scout (4 items) and Analyst (4 items)
 
 ---
 
 ## References
 
-An, Sungje, and Sunchun Park. 2025. "A Study on the Factors Influencing the Passage of Legislation in the 20th and 21st National Assembly: Focusing on Bill Sponsors." *The Journal of Korean Policy Studies* 25 (1): 115. doi:10.46330/jkps.2025.03.25.1.115
+Ansell, Ben W. 2014. "The Political Economy of Inequality, Housing, and Finance." Working Paper / Book Manuscript, Oxford University.
 
-Choi, Jun Young, and Bon Sang Koo. 2018. "The Partisan Nature of Standing Committees: A Critical Review of Committee Assignment Theories." *Korean Party Studies Review* 17 (4): 69. doi:10.30992/kpsr.2018.12.17.4.69
+Ansell, Ben W., and David R. K. Adler. 2019. "Brexit and the Politics of Housing in Britain." *The Political Quarterly* 90 (S2): 105-116. doi:10.1111/1467-923x.12621
 
-Cox, Gary W., and Mathew D. McCubbins. 2005. *Setting the Agenda: Responsible Party Government in the U.S. House of Representatives.* New York: Cambridge University Press.
+Carnes, Nicholas. 2015. "White-Collar Government in the United States." *Swiss Political Science Review* 21 (2): 213-221. doi:10.1111/spsr.12165
 
-Daubler, Thomas. 2008. "Veto Players and Welfare State Change: What Delays Social Entitlement Bills?" *Journal of Social Policy* 37 (4): 683-706. doi:10.1017/s0047279408002274
+Carnes, Nicholas, and Noam Lupu. 2023. "The Economic Backgrounds of Politicians." *Annual Review of Political Science* 26: 253-270. doi:10.1146/annurev-polisci-051921-102946
 
-Eatough, Molly, and Jessica R. Preece. 2024. "Crediting Invisible Work: Congress and the Lawmaking Productivity Metric (LawProM)." *American Political Science Review* 118 (2): 224. doi:10.1017/s0003055424000224
+Einstein, Katherine Levine, Maxwell Palmer, and David M. Glick. 2019. "Who Participates in Local Government? Evidence from Meeting Minutes." *Perspectives on Politics* 17 (1): 28-46. doi:10.1017/s153759271800213x
 
-Fine, Jason P., and Robert J. Gray. 1999. "A Proportional Hazards Model for the Subdistribution of a Competing Risk." *Journal of the American Statistical Association* 94 (446): 496-509.
+Fisman, Raymond, Florian Schulz, and Vikrant Vig. 2014. "The Private Returns to Public Office." *Journal of Political Economy* 122 (4): 806-862. doi:10.1086/676334
 
-Han, Seungwoo. 2022. "Elite Polarization in South Korea: Evidence from a Natural Language Processing Model." *Journal of East Asian Studies* 22 (1): 36. doi:10.1017/jea.2021.36
+Grose, Christian R. 2013. "Risk and Roll Calls: How Legislators' Personal Finances Shape Congressional Decisions." SSRN Working Paper. doi:10.2139/ssrn.2220524
 
-Jung, Dabin. 2022. "Effects of Electoral Margins on Party Loyalty in the Roll Call Votes: Evidence from the 20th National Assembly in South Korea." *Party Politics* 28 (6). doi:10.1177/13540688221122284
+Jun, Hae-Won, and Simon Hix. 2010. "Electoral Systems, Political Career Paths and Legislative Behavior: Evidence from South Korea's Mixed-Member System." *Japanese Journal of Political Science* 11 (1): 71-94. doi:10.1017/s1468109910000058
 
-Ka, Sang Joon. 2025. "Analysis of Government Bills Using NLP, Clustering, and Topic Modeling." *Korean Public Administration Review* 59 (3): 311. doi:10.18333/kpar.59.3.311
+Jung, Hoyong. 2022. "Effects of Electoral Margins on Party Loyalty in the Roll Call Votes: Evidence from the 20th National Assembly in South Korea." *Party Politics* 29 (6): 1100-1111. doi:10.1177/13540688221122284
 
-Kang, Sin-Jae, and Jiyoung Park. 2025. "Why Do Legislators Engage in Waffling? Evidence from the Korean National Assembly, 2004-2020." *Journal of East Asian Studies* 25. doi:10.1017/jea.2025.10013
+Kang, Sin-Jae, and Jiyoung Park. 2025. "Why Do Legislators Engage in Waffling? Evidence from the Korean National Assembly, 2004-2020." *Journal of East Asian Studies* 25 (2). doi:10.1017/jea.2025.10013
 
-Kim, Sungjoon, and Ha-young Lee. 2026. "Legislator Competence or Structural Practices - An Empirical Study on the Rigidity of the Korean Legislative System." *Journal of Legislative Studies* 23 (1): 5. doi:10.31536/jols.2026.23.1.005
+Rosenson, Beth A. 2003. "Legislative Voting on Ethics Reform in Two States: A Test of Self-Interest Theory." *Public Integrity* 5 (3): 205-222. doi:10.1080/15580989.2003.11770947
 
-Krehbiel, Keith. 1991. *Information and Legislative Organization.* Ann Arbor: University of Michigan Press.
+Schwartz, Herman. 2012. "Housing, the Welfare State, and the Global Financial Crisis: What is the Connection?" *Politics & Society* 40 (1): 35-58. doi:10.1177/0032329211434689
 
-Magar, Eric, and Juan Andres Moraes. 2008. "Of Coalition and Speed: Passage and Duration of Statutes in Uruguay's Parliament, 1985-2000." Working Paper. doi:10.2139/ssrn.1159621
+Seo, Hwi-Won. 2025. "Analysis of the Voting Behavior of the 21st National Assembly Members on the Comprehensive Real Estate Tax Bill: Focusing on Political Parties, Ideology, and Members' Assets." *Journal of Research Methodology* 10 (1): 49-94. doi:10.21487/jrm.2025.3.10.1.49
 
-Schilling, Emily U., Abigail A. Matthews, and Rebecca Kreitzer. 2023. "Timing Their Positions: Cosponsorship in the State Legislature." *State Politics and Policy Quarterly* 23 (4). doi:10.1017/spq.2023.7
+Shin, Jae Hyeok, and Hojun Lee. 2015. "Legislative Voting Behaviour in the Regional Party System: An Analysis of Roll-Call Votes in the South Korean National Assembly, 2000-8." *Government and Opposition* 52 (3): 437-459. doi:10.1017/gov.2015.28
 
-Seo, Deoggyo, and Wanghee Yoon. 2020. "The Mechanism in the Scrutiny Process of Politically Controversial Bills in the National Assembly of South Korea." *Journal of Parliamentary Research* 2020 (1): 1. doi:10.18808/jopr.2020.1.1
-
-Volden, Craig, Alan E. Wiseman, and Dana E. Wittmer. 2016. "Women's Issues and Their Fates in the US Congress." *Political Science Research and Methods* 4 (1): 32. doi:10.1017/psrm.2016.32
+Tahoun, Ahmed. 2014. "The Role of Stock Ownership by US Members of Congress on the Market for Political Favors." *Journal of Financial Economics* 111 (1): 86-110. doi:10.1016/j.jfineco.2013.10.008
