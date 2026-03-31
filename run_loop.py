@@ -119,7 +119,9 @@ def archive_and_reset():
 
 
 def pick_new_topic():
-    """Use Claude to pick a new research topic (different from previous threads)."""
+    """Use Claude to pick a new research topic, informed by agora demands + previous topics."""
+    AGORA_DIR = BASE / "agora" / "discussions"
+
     # Gather previous topics from archived summaries
     prev_topics = []
     if ARCHIVE.exists():
@@ -130,15 +132,29 @@ def pick_new_topic():
                         if line.startswith("topic:"):
                             prev_topics.append(line.split(":", 1)[1].strip().strip('"'))
 
+    # Gather citizen research demands from agora
+    citizen_demands = []
+    if AGORA_DIR.exists():
+        for f in sorted(AGORA_DIR.glob("*.json")):
+            try:
+                d = json.load(open(f))
+                for dm in d.get("research_demands", []):
+                    citizen_demands.append(dm.get("demand", "")[:100])
+            except:
+                pass
+
     prev_str = ", ".join(prev_topics[:10]) if prev_topics else "none yet"
+    demands_str = "\n".join(f"- {d}" for d in citizen_demands[-10:]) if citizen_demands else "none yet"
 
     prompt = (
         f"You are a political science research agenda setter. "
         f"Previous forum topics were: {prev_str}. "
+        f"Recent citizen research demands from Yeouido Agora:\n{demands_str}\n\n"
         f"Suggest ONE specific, novel research question about the Korean National Assembly "
         f"that is DIFFERENT from all previous topics. "
-        f"Focus on an empirical puzzle testable with bill data, roll call votes, "
-        f"committee records, or hearing transcripts. "
+        f"Prioritize citizen demands if they suggest an interesting empirical puzzle. "
+        f"Focus on something testable with bill data, roll call votes, "
+        f"committee records, member metadata, or hearing transcripts. "
         f"One sentence only. English."
     )
 
