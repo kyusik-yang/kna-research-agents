@@ -1,0 +1,30 @@
+category,subcategory,N,note
+total_unique_legislators,all,323,21st Assembly legislator speeches (by naas_cd)
+total_unique_legislators,DPK,184,includes DPK satellites (더불어시민당 열린민주당)
+total_unique_legislators,PPP,118,includes PPP predecessors (미래통합당 미래한국당 국민의힘)
+total_unique_legislators,Other,21,정의당 무소속 국민의당 시대전환 기본소득당 진보당
+continuous_service,all,291,speeches in both pre and post periods
+continuous_service,DPK,171,
+continuous_service,PPP,103,
+continuous_service,Other,17,
+pre_only,all,14,speeches only before 2022-05-10
+post_only,all,18,speeches only after 2022-05-10
+speeches_continuous_pre,all,327765,
+speeches_continuous_post,all,363723,
+speeches_continuous_total,all,691488,
+land_transport_continuous,all,67,continuous legislators who spoke in land_transport
+land_transport_continuous,DPK,40,
+land_transport_continuous,PPP,25,
+land_transport_continuous,Other,2,
+land_transport_both_periods,all,24,spoke in land_transport in BOTH periods
+land_transport_both_periods,DPK,14,
+land_transport_both_periods,PPP,9,
+land_transport_both_periods,Other,1,
+finance_continuous,all,57,continuous legislators who spoke in finance
+finance_continuous,DPK,37,
+finance_continuous,PPP,16,
+finance_continuous,Other,4,
+finance_both_periods,all,18,spoke in finance in BOTH periods
+finance_both_periods,DPK,10,
+finance_both_periods,PPP,6,
+finance_both_periods,Other,2,
