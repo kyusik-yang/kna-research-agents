@@ -413,7 +413,7 @@ def compile_tex(tex_file):
     print(f"  Compiling {tex_file.name} with xelatex...")
 
     # Run xelatex twice (for references/cross-refs)
-    for i in range(2):
+    for i in range(3):  # 3 passes for cross-refs + error recovery
         result = _sp.run(
             [str(Path.home() / "Library/TinyTeX/bin/universal-darwin/xelatex"),
              "-interaction=nonstopmode", "-halt-on-error", tex_file.name],
