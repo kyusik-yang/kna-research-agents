@@ -1,29 +1,30 @@
 ---
 round: 17
-date: "2026-03-31 07:14"
+date: "2026-03-31 08:03"
 topic: "continuing discussion"
 ---
 
 # Round 17 Summary
 
-The forum's final round locked in the paper architecture. Analyst decomposed bill outcomes for 8,961 classified bills and discovered that 89-98% of non-productive bills die from passive session expiry, not active rejection, while conservative regimes simultaneously suppress labor and facilitate business regulation. Scout anchored both layers in established literature (Holman and Simko 2025 for conflict-avoidance; Crosson 2018 for partisan moderation), and Critic declared the project ready to draft after 185+ novelty queries confirmed empty space.
+The forum's closing round eliminated the last major alternative explanation and grounded the passive death finding theoretically. Analyst's calendaring test showed the content gradient actually *widens* among bills proposed with over two years remaining, decisively ruling out insufficient time as a driver; the most striking new number is that 97.9% of passively dead bills never received a committee processing date, leaving zero trace of deliberation. Scout anchored these findings in Bachrach and Baratz's (1962) "nondecision-making" and Fernandes's (2024) "non-policy making," while Critic declared papers ready to draft after 190+ novelty queries confirmed empty space.
 
 ## Key Quotes
 
-> **Scout**: "The gradient's steepness is partisan; the gradient's existence is not."
+> **Scout**: "We document the mirror pattern: rather than using attention to obstruct, committees decline to allocate any attention to contentious domains, producing the same policy stasis through institutional silence."
 
-> **Analyst**: "Among bills that do not reach a productive outcome, 89-98% die from session expiry rather than being actively rejected or withdrawn."
+> **Analyst**: "Across 49,074 passively dead member bills, 97.9% never received a committee processing date; the committee system received these bills, acknowledged them, and then generated no further institutional action over the entire four-year assembly term."
 
-> **Critic**: "The committee incorporation gate is a gate of neglect, not of deliberation."
+> **Critic**: "The 89-98% passive death ratio transforms the paper's framing from 'committees block contentious bills' to 'committees never engage with them.'"
 
 ## Findings Status
 
 | Finding | Status |
 |---------|--------|
-| 89-98% of non-productive bills die from passive session expiry, not active rejection | preliminary |
-| Conservative regimes suppress labor (about 14pp) while facilitating business regulation (about 19pp) | preliminary |
-| Two-layer decomposition: conflict-avoidance baseline (~34pp) + partisan moderation (~17pp) | confirmed |
-| No large overall ruling-party processing advantage; advantage is content-selective | preliminary |
-| 17th Assembly labor rate (85.6%) vs 20th Assembly (21.8%) complicates baseline estimate | contested |
+| Calendaring confound eliminated (gradient holds for early-proposed bills) | confirmed |
+| 97.9% of passively dead bills show no committee processing record | preliminary |
+| 17th Assembly as outlier of active engagement, not a usable progressive baseline | confirmed |
+| Bidirectional partisan effect (conservative regimes suppress labor, facilitate business) | confirmed |
+| Two-layer decomposition: baseline ~34pp + partisan ~17pp | confirmed |
+| Bachrach and Baratz "nondecision-making" as theoretical anchor for passive death | preliminary |
 
-**Verdict**: Pursue (4/4 all dimensions); both papers draftable today | **Next**: Start writing Paper 1, opening with the 89-98% passive death ratio as the hook
+**Verdict**: Pursue; papers ready to draft. All four scores at 4/4. | **Next**: Begin writing Paper 1 with the passive death ratio as the opening hook and the two-layer architecture as the organizing framework.
