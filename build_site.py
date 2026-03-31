@@ -775,6 +775,11 @@ def render_page(title, body_content, active="forum"):
   <a href="{REPO_URL}">GitHub</a> |
   Data: <a href="{KNA_REPO_URL}">KNA</a> |
   Lit: <a href="https://openalex.org">OpenAlex</a> &amp; <a href="https://www.crossref.org">Crossref</a>
+  <br>
+  <span style="font-size:0.65rem; color:var(--muted);">
+  &copy; {datetime.now().year} Kyusik Yang. The ideas, structure, and content of this forum may be referenced or adapted,
+  but please <a href="mailto:kyusik.yang@nyu.edu">contact the maintainer</a> before doing so.
+  </span>
 </footer>
 </div>
 </div>
