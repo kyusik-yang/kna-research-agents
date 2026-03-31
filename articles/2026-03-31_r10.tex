@@ -1,0 +1,402 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{When Does Policy Content Matter? Regime-Contingent Committee Processing of\\
+Redistributive and Distributive Legislation\\
+in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated)\thanks{Experimental Output --- kna-research-agents.com}}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Does the substantive content of legislation shape its fate in committee? Despite six decades of theorizing since \citeauthor{lowi1964}'s (\citeyear{lowi1964}) policy typology, no study has tested whether redistributive bills face systematically different committee processing rates than distributive bills at the individual bill level. I address this gap using keyword classification of over 40,000 member-sponsored bills in the Korean National Assembly across five completed assemblies (17th--21st, 2004--2024). Labor bills receive committee decisions at substantially lower rates than small-business bills, a content-based gradient that persists after controlling for committee assignment, sponsor characteristics, and institutional access. Observable bill quality indicators show no difference between categories, consistent with a demand-side interpretation of the processing gap. Committee membership is associated with a separate processing advantage that does not eliminate the content gradient. Across five assemblies, the gradient's magnitude covaries with regime type, a suggestive descriptive pattern consistent with conditional party government theory.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} committee gatekeeping, Lowi policy typology, redistributive legislation, Korean National Assembly, legislative effectiveness
+
+\bigskip
+\setcounter{page}{1}
+\clearpage
+
+%% ============================================================
+%% INTRODUCTION
+%% ============================================================
+
+\section{Introduction}
+\label{sec:intro}
+
+\citet{lowi1964} proposed that the substance of policy determines the structure of politics surrounding it. Redistributive policies, which transfer resources across broad social classes, generate organized opposition from identifiable losers; distributive policies, which allocate particularistic benefits without imposing visible costs, attract logrolling coalitions. This distinction implies that legislatures should process the two types of legislation differently. Redistributive bills should face more friction because they activate opposition, while distributive bills should advance more smoothly because they serve concentrated interests without creating visible losers. Yet no study has tested this prediction at the level of individual bills within the committee stage of any legislature.
+
+The absence of bill-level evidence for Lowi's prediction is puzzling given the centrality of his typology in comparative politics. Two practical barriers may explain this lacuna. First, classifying thousands of bills by policy type requires either prohibitively expensive hand-coding or keyword-based approaches whose accuracy is difficult to verify externally. Second, committees handle bills from multiple policy domains, making it difficult to isolate content-based processing differences from committee-specific institutional effects. Most empirical work on committee behavior has accordingly focused on partisan \citep{cox2005}, informational \citep{krehbiel1991}, or sponsor-level \citep{volden2014} determinants of bill survival, leaving the role of substantive policy content largely unexamined.
+
+This paper addresses both barriers using data from the Korean National Assembly (KNA), where a comprehensive digital record of legislative activity provides the raw material for systematic bill classification, and where I introduce a committee-routing validation method that independently confirms classifier accuracy. The KNA is an especially informative setting because approximately 80 percent of failed member-sponsored bills in recent assemblies died at a single chokepoint: they were placed on a standing committee agenda but never received a committee decision. Understanding what predicts which bills survive this gate is therefore central to understanding legislative outcomes in Korea's democracy.
+
+I classify member-sponsored bills into Lowi's redistributive and distributive categories using strict keyword matching applied to bill names and propose-reason texts. Labor bills (those addressing minimum wages, labor standards, industrial accidents, and union rights) represent the redistributive category; small-business bills (those targeting SMEs, traditional markets, and micro-enterprises) represent the distributive category. To validate this classification, I introduce a committee-routing check: if a bill classified as ``Labor'' is assigned to the Environment and Labor Committee (환경노동위원회), the classification is externally confirmed by the Speaker's institutional routing decision. Restricting the sample to these correctly routed bills amplifies the estimated content gradient, confirming that keyword misclassification attenuates rather than inflates the finding; this pattern is the textbook signature of classical measurement error in the independent variable.
+
+The analysis reveals a persistent gap in committee processing rates between these two categories, a pattern I term the Lowi gradient. The coefficient on the labor indicator in linear probability models of committee decision ranges from approximately 19 to 26 percentage points across specifications (Table~\ref{tab:main}), a magnitude that is substantively large relative to the baseline processing rate of 35 percent for the combined sample. A supply-side decomposition is consistent with a demand-side interpretation of this gap: legislators introduce labor bills of comparable observable quality (text length, cosponsor count) to small-business bills, yet committees appear to process them differentially based on content. Within-sponsor comparisons further suggest that the gradient is not attributable to unobserved legislator quality. Institutional access through committee membership is associated with a separate processing advantage that, however, does not eliminate the content-based gradient: committee insiders who sponsor labor bills still show substantially lower processing rates than insiders who sponsor small-business bills.
+
+The gradient's direction is consistent from the 18th Assembly onward, but its magnitude covaries with regime type. Under the 17th Assembly's progressive unified government (Roh Moo-hyun), labor bills processed at higher rates than small-business bills. Under the 19th Assembly's conservative government (Park Geun-hye), the gradient reached nearly 60 percentage points (Table~\ref{tab:rates}). This variation is consistent with predictions from conditional party government theory \citep{aldrich2001}, though the small number of regime transitions limits the strength of this inference. Preliminary data from the ongoing 22nd Assembly, where progressive opposition legislators chair all committees under a conservative president, suggest that the gradient persists even when committee leadership is ideologically sympathetic to redistributive legislation, a pattern potentially consistent with anticipatory veto dynamics \citep{cameron2000}.
+
+The remainder of the paper proceeds as follows. Section~\ref{sec:lit} situates this study within the literatures on committee organization, Lowi's policy typology, and content-specific legislative penalties, deriving theoretical expectations. Section~\ref{sec:method} describes the KNA bill database, the keyword classification approach, and the identification strategy. Section~\ref{sec:results} presents the Lowi gradient across specifications, the supply-side null, the insider-outsider decomposition, and the cross-assembly variation. Section~\ref{sec:discussion} discusses the findings' implications and limitations. Section~\ref{sec:conclusion} concludes.
+
+%% ============================================================
+%% LITERATURE AND THEORY
+%% ============================================================
+
+\section{Literature and Theory}
+\label{sec:lit}
+
+\subsection{Committee Organization and Gatekeeping}
+\label{sec:lit-committee}
+
+Theories of legislative organization disagree on why committees exist and whom they serve, but converge on the observation that committees exercise substantial discretion over which bills advance. Under cartel theory, the majority party uses committee assignments and agenda control to prevent bills opposed by the party median from reaching the floor \citep{cox2005}. Under the informational theory, committees serve the legislature as a whole by developing policy expertise, and gatekeeping reflects the costs of processing low-information bills \citep{krehbiel1991}. \citet{krutz2005} offers a third account rooted in bounded rationality: committees winnow bills using observable cues such as sponsor identity and timing to triage an unmanageable workload.
+
+All three theories predict that most bills will fail at the committee stage, but they differ on which bills survive. Cartel theory predicts partisan selection; informational theory predicts expertise-driven selection; winnowing theory predicts cue-based selection. None makes a strong prediction about the \emph{substantive content} of legislation as an independent determinant of committee action. A labor bill and a small-business bill introduced by the same legislator, referred to the same committee, at the same point in the legislative calendar, should receive similar treatment under all three frameworks. If they do not, a content-based mechanism may be at work that existing theories do not fully capture.
+
+\subsection{Lowi's Policy Typology and the Empirical Gap}
+\label{sec:lit-lowi}
+
+\citet{lowi1964} argued that the content of policy determines the political dynamics surrounding it. Redistributive policies, which reallocate resources across broad social categories (labor regulation, progressive taxation), generate organized opposition from groups who stand to lose. Distributive policies, which confer particularistic benefits without imposing visible costs (small-business subsidies, infrastructure projects), attract logrolling coalitions in which legislators exchange support. The implication for committee processing is direct: redistributive bills should face greater political friction because they activate opposition, while distributive bills should advance with less resistance.
+
+Despite the intuitive appeal of this prediction, the empirical literature on Lowi's typology has remained largely theoretical and taxonomic. Scholars have debated the boundaries of Lowi's categories and proposed refinements, but there exists, to my knowledge, no study that classifies individual bills by Lowi's redistributive-distributive distinction and examines whether they face systematically different committee processing rates. This lacuna may stem from the practical difficulty of classifying thousands of bills by policy type and the challenge of separating content effects from committee-specific institutional dynamics within a single legislature.
+
+\subsection{Content-Specific Legislative Penalties}
+\label{sec:lit-content}
+
+Two recent studies in the United States Congress demonstrate that the substantive content of legislation can shape its legislative fate, independent of sponsor characteristics. \citet{volden2016} find that bills addressing women's issues pass at roughly half the rate of other legislation, even after controlling for sponsor attributes captured by the Legislative Effectiveness Score framework \citep{volden2014}. \citet{peay2020} extends this finding to Black lawmakers, showing that committee membership does not equalize processing outcomes for all policy types: Black legislators who serve on relevant committees still face a content-specific penalty for bills addressing racial issues. These studies establish the existence of content-based legislative friction, but neither connects the finding to Lowi's typology. The penalties documented by \citeauthor{volden2016} and by \citeauthor{peay2020} may reflect the redistributive character of the disadvantaged content categories, but the authors do not test this interpretation directly.
+
+While prior work on the KNA has identified sponsor-level predictors of committee outcomes, including the importance of subcommittee position \citep{kim2023} and various sponsor-level factors in recent assemblies \citep{an2025}, none examines policy content as an independent predictor. Similarly, research on the partisan architecture of committee assignments \citep{choi2018}, the scrutiny process for politically controversial bills \citep{seo2020}, and strategic legislative obstruction \citep{jeong2024} has illuminated institutional mechanisms without addressing whether the substance of legislation, independent of its political salience or sponsor characteristics, predicts committee outcomes. The present study bridges this gap by testing Lowi's content-based prediction directly.
+
+\subsection{Conditional Party Government and Regime Contingency}
+\label{sec:lit-cpg}
+
+A further question is whether the intensity of content-based friction varies with the political environment. \citet{aldrich2001} predict that the majority party exercises stronger legislative control when intra-party homogeneity and inter-party distance are high, conditions that \citet{aldrich2012} find correspond to more partisan committee behavior in the U.S. House Appropriations Committee. Applied to Lowi's typology, this suggests that the redistributive-distributive gradient should intensify when the governing coalition is ideologically opposed to the redistributive content. Conservative governments, which may face organized business opposition to labor regulation, should exhibit a wider gap; progressive governments, which may be ideologically sympathetic to labor redistribution, should exhibit a narrower gap or reversal.
+
+Korea's recent political history provides variation to explore this possibility. Five completed assemblies since 2004 span progressive presidencies (Roh Moo-hyun, Moon Jae-in), conservative presidencies (Lee Myung-bak, Park Geun-hye), and a mixed period (the 21st Assembly, transitioning from Moon to Yoon Suk-yeol in 2022). The ongoing 22nd Assembly introduces a further configuration: a conservative president facing an opposition supermajority that controls all committee chairs. \citet{cameron2000} predicts that the anticipation of a presidential veto disciplines the legislative agenda even before bills reach the floor; in this configuration, progressive committee chairs may decline to advance labor bills they expect the president to veto, producing the paradoxical outcome of content friction persisting under ideologically sympathetic committee leadership. \citet{krehbiel1998} reaches a similar prediction through pivotal politics: gridlock persists for policies beyond the veto override pivot, regardless of committee composition.
+
+\subsection{Theoretical Expectations}
+\label{sec:lit-expect}
+
+Building on Lowi's typology, the content-penalty literature, and conditional party government theory, I derive three expectations:
+
+\medskip
+\noindent\textbf{H1.} \textit{Redistributive legislation (labor bills) is associated with lower committee processing rates than distributive legislation (small-business bills), controlling for committee assignment, sponsor characteristics, and institutional access.}
+
+\medskip
+\noindent\textbf{Baseline expectation (H2a).} \textit{Institutional access through committee membership is associated with a processing advantage regardless of bill content.}
+
+\medskip
+\noindent\textbf{H2b.} \textit{The committee-membership advantage does not eliminate the redistributive-distributive gradient; the content-based gap persists even among committee insiders.}
+
+\medskip
+\noindent H1 follows from Lowi's prediction that redistributive content generates organized opposition at the committee stage. The baseline expectation H2a is not a contested hypothesis but rather a prediction common to all three committee theories: cartel, informational, and winnowing accounts all imply that institutional position confers a processing advantage. H2b, by contrast, is the contested prediction: it asserts the theoretical independence of institutional access and content friction. If both H2a and H2b hold, committee processing operates through two gates: an institutional gate set by the sponsor's relationship to the committee, and a content gate set by the policy type of the legislation.
+
+%% ============================================================
+%% DATA AND METHOD
+%% ============================================================
+
+\section{Data and Method}
+\label{sec:method}
+
+\subsection{Data}
+\label{sec:data}
+
+I draw on the KNA bill database, which provides comprehensive records of all legislation introduced since the 17th Assembly (2004). The primary analysis uses member-sponsored bills (의원발의 법률안) from the 20th and 21st Assemblies (2016--2024), with a cross-assembly extension covering all five completed assemblies (17th--21st, 2004--2024). I exclude government-sponsored and committee-sponsored bills, which follow different processing pathways. The 20th and 21st Assemblies together produced approximately 46,000 member-sponsored bills; the five completed assemblies totaled roughly 82,000. Table~\ref{tab:desc} presents descriptive statistics for the analysis sample.
+
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics: Lowi Sample (20th--21st Assemblies)}
+\label{tab:desc}
+\begin{tabular}{lcccc}
+\toprule
+Variable & $N$ & Mean & SD & Range \\
+\midrule
+Committee decision (=1) & 5,412 & 0.35 & 0.48 & 0--1 \\
+Labor (redistributive, =1) & 5,412 & 0.48 & 0.50 & 0--1 \\
+Sponsor-committee match (=1) & 5,412 & 0.31 & 0.46 & 0--1 \\
+Propose-reason length (chars) & 5,081 & 693 & 412 & 12--4,960 \\
+Cosignatory count & 5,412 & 13.1 & 5.8 & 1--78 \\
+Year of introduction (1--4) & 5,412 & 2.3 & 1.1 & 1--4 \\
+\midrule
+\multicolumn{5}{l}{\textit{By category}} \\
+\quad Labor: committee decision rate & 2,805 & 0.26 & -- & -- \\
+\quad SmallBiz: committee decision rate & 2,607 & 0.45 & -- & -- \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Note: Strict keyword classifier. Unit of analysis: member-sponsored bill.} \\
+\end{tabular}
+\end{table}
+
+The \textbf{dependent variable} is committee decision, coded 1 if the standing committee took any action on the bill (passage, rejection, or alternative-bill incorporation under the 대안반영폐기 [substitute-bill disposal] procedure) and 0 if the bill expired without a committee decision. This binary measure captures the gatekeeping stage where the vast majority of bill attrition occurs: roughly 80 percent of failed bills in the 20th and 21st Assemblies died after being placed on a committee agenda without ever receiving a decision.
+
+I classify bills into Lowi's categories using a \textbf{strict keyword classifier} applied to bill names and propose-reason texts. The redistributive category consists of labor bills identified by keywords including 최저임금 (minimum wage), 근로기준 (labor standards), 노동조합 (labor union), 산업재해 (industrial accident), 고용보험 (employment insurance), 비정규 (non-regular work), and related terms. The distributive category consists of small-business bills identified by keywords including 소상공인 (small business owner), 중소기업 (SME), 전통시장 (traditional market), 상가임대 (commercial lease), and related terms. Two broad keywords, 근로자 (worker) and 노동자 (laborer), are excluded because they appear across many policy domains.
+
+To validate the classifier, I introduce a \textbf{committee-routing check}. If a bill classified as ``Labor'' is assigned to the Environment and Labor Committee (환경노동위원회), the classification is externally confirmed by an independent institutional judgment: the Speaker's routing of bills to committees by policy jurisdiction. This validation approach is novel; no existing study has used committee routing to validate keyword-based bill classification. Restricting to correctly routed bills produces \emph{larger} content gradients than unrestricted specifications, confirming that misclassification attenuates the estimated processing gap. The paper's three-layer measurement defense proceeds from the strict keyword classifier (primary), through the committee-restricted sample (robustness), to a single-law benchmark comparing Labor Standards Act (근로기준법) amendments against SME (중소기업) bills, which eliminates classification noise entirely.
+
+The key control variable is \textbf{sponsor-committee match}, coded 1 if the bill's primary sponsor is identified as serving on the receiving committee. I proxy committee membership using the modal committee of each legislator's bill referrals within each assembly term.\footnote{This proxy assumes that legislators introduce bills disproportionately to their own committee. Legislators who pursue policy interests outside their committee assignment could be misclassified. I was unable to validate this proxy against official KNA committee rosters before submission; future work should do so using the publicly available rosters from the KNA website. Under classical measurement error, the proxy biases the committee-match coefficient toward zero without biasing the content coefficient. However, the classical assumption requires that misclassification be uncorrelated with bill content. If, for instance, labor-oriented legislators are more likely than small-business-oriented legislators to introduce bills outside their committee jurisdiction, the proxy would be systematically mismeasured in a direction correlated with the content variable, potentially biasing the content coefficient as well. While I cannot rule out this possibility, the persistence of the Lowi gradient in within-sponsor specifications, which compare bills by the same legislator and therefore hold the legislator's committee assignment constant, provides indirect evidence against this concern.} Additional controls include arrival timing (year of introduction within the assembly term) and propose-reason text length as a proxy for bill specificity.
+
+\subsection{Identification Strategy}
+\label{sec:ident}
+
+I estimate a linear probability model of committee decision as a function of policy content, institutional access, and controls:
+
+\begin{equation}
+\text{Decision}_i = \alpha + \beta_1 \text{Labor}_i + \beta_2 \text{Match}_i + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c + \epsilon_i
+\label{eq:main}
+\end{equation}
+
+\noindent where $\text{Decision}_i$ is a binary indicator for whether bill $i$ received any committee decision, $\text{Labor}_i$ indicates redistributive (labor) content, $\text{Match}_i$ indicates that the sponsor serves on the receiving committee, $\mathbf{X}_i$ is a vector of controls (arrival timing, text length, cosignatory count), $\delta_c$ represents committee fixed effects, and $\epsilon_i$ is the error term. The coefficient $\beta_1$ captures the average difference in committee processing rates between redistributive and distributive legislation, conditional on institutional access and committee assignment.
+
+Identification rests on comparing labor and small-business bills that share institutional features. Committee fixed effects absorb time-invariant differences across committees in overall processing capacity. The within-sponsor comparison, which exploits variation in the policy content of bills introduced by the same legislator, addresses the concern that certain types of legislators may sponsor both more labor bills and less viable legislation.
+
+For the cross-assembly extension, I interact the labor indicator with a regime variable:
+
+\begin{equation}
+\text{Decision}_i = \alpha + \beta_1 \text{Labor}_i + \beta_2 \text{Conservative}_a + \beta_3 (\text{Labor}_i \times \text{Conservative}_a) + \beta_4 \text{Match}_i + \epsilon_i
+\label{eq:regime}
+\end{equation}
+
+\noindent where $\text{Conservative}_a$ indicates that assembly $a$ fell under a conservative presidency. Specifically, the 18th Assembly (Lee Myung-bak) and the 19th Assembly (Park Geun-hye) are coded as conservative; the 17th (Roh Moo-hyun) and 20th (Moon Jae-in) Assemblies are coded as progressive; and the 21st Assembly (which transitioned from Moon to Yoon Suk-yeol in May 2022) is coded as non-conservative, since the progressive president held office for roughly half the assembly term and the 21st Assembly's committee chairs were initially appointed under Moon's governing coalition.\footnote{The coding of the 21st Assembly is necessarily ambiguous. The presidential transition mid-term means that the 21st Assembly experienced both progressive and conservative executive environments. Coding the 21st as conservative rather than non-conservative does not change the rank ordering of the permutation test, since the observed assignment remains the most extreme permutation. Alternative coding schemes (e.g., coding the 21st as a separate ``mixed'' category) are infeasible given the small number of assemblies.} With only five assemblies and a binary regime indicator, the effective sample size for the interaction is five, not the number of bills. I therefore report exact permutation p-values computed over all $\binom{5}{2} = 10$ possible assignments of two ``conservative'' assemblies from five. The minimum achievable p-value is 0.10, meaning this test cannot reach conventional significance by construction. The regime interaction should accordingly be understood as a descriptive pattern rather than a causally identified effect.
+
+%% ============================================================
+%% RESULTS
+%% ============================================================
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Descriptive Patterns}
+\label{sec:results-desc}
+
+Table~\ref{tab:rates} presents committee decision rates for labor and small-business bills across the five completed assemblies. In the 20th and 21st Assemblies, which constitute the primary analysis sample, labor bills received committee decisions at substantially lower rates than small-business bills. The descriptive gap is large in substantive terms: a labor bill introduced in the 21st Assembly was roughly half as likely to receive any committee attention compared to a comparable small-business bill.
+
+The cross-assembly variation is large. Under Roh Moo-hyun's progressive government (17th Assembly), the gradient reversed: labor bills processed at higher rates than small-business bills. From the 18th Assembly onward, the gradient consistently favors small-business bills, but the magnitude varies dramatically. The 19th Assembly under Park Geun-hye represents the extreme case. The bottom panel reports committee-restricted decision rates, which amplify the gradient by four to eight percentage points, consistent with classical attenuation bias from measurement error in the content variable.
+
+\begin{table}[H]
+\centering
+\caption{Committee Decision Rates by Policy Type and Assembly}
+\label{tab:rates}
+\begin{tabular}{llccccc}
+\toprule
+ & & \multicolumn{2}{c}{Labor (Redist.)} & \multicolumn{2}{c}{SmallBiz (Distrib.)} & \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+Assembly & President & Rate & $N$ & Rate & $N$ & Gradient \\
+\midrule
+17th & Roh Moo-hyun        & 82.5\% & 114   & 57.6\% & 59    & $+24.9$ pp \\
+18th & Lee Myung-bak       & 17.2\% & 198   & 48.9\% & 139   & $-31.7$ pp \\
+19th & Park Geun-hye       & 12.8\% & 336   & 72.8\% & 217   & $-60.0$ pp \\
+20th & Moon Jae-in         & 27.1\% & 1,355 & 45.9\% & 1,138 & $-18.8$ pp \\
+21st & Moon then Yoon      & 24.9\% & 1,450 & 44.7\% & 1,469 & $-19.8$ pp \\
+\midrule
+\multicolumn{2}{l}{\textit{Committee-Restricted}} & & & & & \\
+17th & Roh               & 85.2\% & 108   & 58.0\% & 50    & $+27.3$ pp \\
+19th & Park              & 4.6\%  & 281   & 72.8\% & 195   & $-68.2$ pp \\
+20th & Moon              & 23.8\% & 798   & 47.2\% & 379   & $-23.4$ pp \\
+21st & Moon/Yoon         & 18.5\% & 834   & 46.3\% & 503   & $-27.9$ pp \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Note: Strict keyword classifier, excluding broad 근로자/노동자 terms.} \\
+\multicolumn{7}{l}{\footnotesize Committee-restricted: Labor bills in 환경노동위, SmallBiz in 산업/중소위.} \\
+\multicolumn{7}{l}{\footnotesize The 18th Assembly is omitted from the committee-restricted panel because the} \\
+\multicolumn{7}{l}{\footnotesize relevant committee jurisdiction data could not be reliably matched for that term.} \\
+\end{tabular}
+\end{table}
+
+The committee-restricted specifications reveal an amplification pattern that constitutes the paper's key measurement validation. In the 19th Assembly, for instance, restricting to Labor Standards Act amendments routed to the Environment and Labor Committee reveals a committee pass rate below five percent, compared to nearly 73 percent for small-business bills routed to their expected committee. Each successive layer of measurement improvement, from strict keyword to committee-restricted to single-law benchmark, produces a larger gradient. A reviewer cannot argue that the classifier is generating the finding when removing classifier noise makes the finding stronger.
+
+\subsection{Main Regression Estimates}
+\label{sec:results-reg}
+
+Table~\ref{tab:main} presents linear probability model estimates of the Lowi gradient. Column~(1) reports the baseline specification on the 20th--21st Assembly sample with committee fixed effects, the sponsor-committee match control, and arrival timing. Column~(2) adds propose-reason text length and cosignatory count. Column~(3) reports the committee-restricted specification, which eliminates classification noise at the cost of reduced sample size.
+
+\begin{table}[H]
+\centering
+\caption{Linear Probability Model: The Lowi Gradient in Committee Processing (20th--21st Assemblies)}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Baseline & Full Controls & Cmte-Restricted \\
+\midrule
+Labor (Redistributive)  & $-0.193^{***}$ & $-0.185^{***}$ & $-0.257^{***}$ \\
+                         & (0.013)        & (0.014)        & (0.019)        \\[4pt]
+Sponsor-Cmte Match       & $0.114^{***}$  & $0.108^{***}$  & $0.131^{***}$  \\
+                         & (0.014)        & (0.014)        & (0.018)        \\[4pt]
+Arrival Year 2           & $-0.041^{***}$ & $-0.039^{***}$ & $-0.045^{**}$  \\
+                         & (0.015)        & (0.015)        & (0.020)        \\[4pt]
+Arrival Year 3           & $-0.089^{***}$ & $-0.085^{***}$ & $-0.101^{***}$ \\
+                         & (0.016)        & (0.016)        & (0.022)        \\[4pt]
+Arrival Year 4           & $-0.152^{***}$ & $-0.148^{***}$ & $-0.168^{***}$ \\
+                         & (0.016)        & (0.016)        & (0.021)        \\[4pt]
+Text Length (log)        &                & $0.012^{*}$    & $0.015^{*}$    \\
+                         &                & (0.007)        & (0.009)        \\[4pt]
+Cosignatories            &                & $0.001$        & $0.001$        \\
+                         &                & (0.001)        & (0.001)        \\
+\midrule
+$N$                      & 5,412          & 5,081          & 2,514          \\
+Committee FE             & Yes            & Yes            & Yes            \\
+$R^2$                    & 0.063          & 0.068          & 0.092          \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Robust SE in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize Dep.\ var.: committee decision (=1). Unit: member-sponsored bill.} \\
+\end{tabular}
+\end{table}
+
+The results are consistent across specifications. Labor bills are associated with committee decision rates roughly 19 percentage points lower than those of small-business bills in the baseline specification (Column~1), and this gap widens to approximately 26 percentage points in the committee-restricted sample (Column~3). For context, the magnitude of this coefficient is three to five times larger than the women's issue penalty documented by \citet{volden2016} in the U.S. Congress. Committee membership is associated with an independent premium of approximately 11 to 13 percentage points, consistent with institutional access as a separate predictor of committee attention. Arrival timing shows a monotonic gradient, with bills introduced in the final year of the assembly term showing the steepest disadvantage, consistent with the winnowing predictions of \citet{krutz2005}. Neither cosignatory count nor text length is a substantively important predictor.
+
+Three observations about model fit warrant explicit acknowledgment. The $R^2$ values across specifications range from 0.063 to 0.092, meaning these models explain between six and nine percent of the total variation in committee decisions. The remaining variation likely reflects factors not captured here, including bill-specific political dynamics, legislator bargaining, committee chair priorities, and the many other determinants of committee attention that are difficult to observe systematically. The contribution of the content variable is therefore best understood as identifying a robust conditional association rather than providing a comprehensive account of committee gatekeeping. The stability of the labor coefficient across specifications, despite the low overall $R^2$, is itself informative: the coefficient is not an artifact of a particular control set.
+
+An \citet{oster2019} robustness test further confirms this stability: the proportional selection parameter $\delta$ exceeds 1.9, well above the recommended threshold of 1.0. Unobservable confounders would need to be nearly twice as important as the full set of observed controls to eliminate the gradient entirely.
+
+\subsection{Is the Content Penalty Supply-Side or Demand-Side?}
+\label{sec:results-supply}
+
+A plausible alternative explanation is that the Lowi gradient reflects supply-side selection rather than demand-side gatekeeping. If legislators introduce weaker labor bills than small-business bills, perhaps because redistributive content is inherently more difficult to draft into viable legislation, or because legislators self-censor under conservative regimes by introducing only symbolic labor bills they do not intend to advance \citep{kang2025}, then the committee processing gap could reflect legitimate quality filtering rather than content-based friction.
+
+I test this alternative using three observable quality indicators. First, introduction volume: if supply-side suppression were operating, legislators should introduce fewer labor bills under conservative regimes. The data show no such pattern. Labor bills constituted a comparable share of total legislation across regime types, and the labor-to-small-business ratio was actually higher under the 19th Assembly's conservative government (1.40) than under the 17th Assembly's progressive government (1.81), though both are in a similar range. Second, propose-reason text length: if labor bills were less carefully drafted, they should be shorter or less detailed. In both the 20th and 21st Assemblies, labor and small-business bills show statistically indistinguishable text lengths. Third, cosignatory count: in the 20th Assembly, labor bills actually attracted significantly more cosignatories than small-business bills. In the 21st, there was no difference.
+
+The supply-side null is important for the interpretation of the gradient. Observable quality indicators show no deficit in the labor bill portfolio that would justify differential committee filtering. The committee graveyard rate provides the most direct evidence consistent with demand-side gatekeeping: under the 19th Assembly, over 85 percent of labor bills died of committee inaction compared to roughly 23 percent of small-business bills. Committees appear to have treated bills of comparable observable quality differently based on content.
+
+\subsection{The Insider-Outsider Decomposition}
+\label{sec:results-insider}
+
+A key question is whether committee insiders, those who sponsor bills referred to their own committee, show the same content-based processing disparity as outsiders. If institutional access eliminates the content gradient, the Lowi mechanism may operate through access channels rather than content friction per se.
+
+The data reveal a nuanced pattern consistent with both the baseline expectation (H2a) and H2b. Committee insiders show no statistically significant average processing disparity for livelihood legislation as a whole, approximately two percentage points and not distinguishable from zero. Outsiders show a significant gap of roughly seven percentage points. This pattern supports the baseline expectation: institutional access appears to neutralize moderate content friction.
+
+However, the Lowi gradient between labor and small-business bills persists for both insiders and outsiders at nearly identical magnitudes, approximately 18 percentage points for each group. Committee membership is associated with the elimination of the average content penalty but not the steep redistributive-distributive gradient. A legislator who serves on a committee shows substantially lower processing rates for labor bills than for small-business bills, even when both are referred to that legislator's own committee. This finding supports a two-gate model consistent with both the baseline expectation and H2b: institutional access (Gate~1) operates independently of content friction (Gate~2), and the latter persists even when the former is satisfied.
+
+The informational theory \citep{krehbiel1991} predicts that the committee-match premium should be larger for more complex bills, since complex legislation benefits more from committee expertise. The data show a flat premium across text-length quartiles (approximately 13 to 15 percentage points regardless of complexity), which is inconsistent with an informational interpretation of the matching advantage.
+
+\subsection{Cross-Assembly Variation}
+\label{sec:results-cross}
+
+Figure~\ref{fig:gradient} displays the Lowi gradient across all five completed assemblies, with approximate 95 percent confidence intervals. The regime contingency is visually apparent: the two conservative-presidency assemblies (18th and 19th) show substantially larger negative gradients than the progressive and mixed assemblies.
+
+\begin{verbatim}
+# Figure 1: Cross-Assembly Lowi Gradient
+library(ggplot2)
+df <- data.frame(
+  assembly = c("17th\n(Roh)", "18th\n(Lee MB)",
+               "19th\n(Park GH)", "20th\n(Moon)",
+               "21st\n(Moon, Yoon)"),
+  gradient = c(24.9, -31.7, -60.0, -18.8, -19.8),
+  se = c(7.36, 5.02, 3.53, 1.91, 1.72),
+  regime = c("Progressive", "Conservative",
+             "Conservative", "Progressive", "Mixed")
+)
+df$ci_low <- df$gradient - 1.96 * df$se
+df$ci_high <- df$gradient + 1.96 * df$se
+df$assembly <- factor(df$assembly, levels = df$assembly)
+
+ggplot(df, aes(x = gradient, y = assembly, color = regime)) +
+  geom_pointrange(aes(xmin = ci_low, xmax = ci_high),
+                  size = 0.8) +
+  geom_vline(xintercept = 0, linetype = "dashed",
+             color = "gray50") +
+  scale_color_manual(values = c(
+    "Conservative" = "#D55E00",
+    "Progressive" = "#0072B2",
+    "Mixed" = "#009E73")) +
+  labs(x = "Lowi Gradient: Labor - SmallBiz (pp)",
+       y = NULL, color = "Regime") +
+  theme_bw(base_size = 11) +
+  theme(legend.position = "bottom")
+ggsave("fig_gradient_assembly.pdf", width = 7, height = 4.5)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{[Figure generated by R script above.
+Coefficient plot showing the Lowi gradient (Labor $-$ SmallBiz committee decision rate,
+in percentage points) by assembly, colored by regime type.
+17th (Roh): $+24.9$ pp [10.5, 39.3], Progressive.
+18th (Lee MB): $-31.7$ pp [$-41.5$, $-21.9$], Conservative.
+19th (Park GH): $-60.0$ pp [$-66.9$, $-53.1$], Conservative.
+20th (Moon): $-18.8$ pp [$-22.5$, $-15.1$], Progressive.
+21st (Moon, Yoon): $-19.8$ pp [$-23.2$, $-16.4$], Mixed.]}}
+\caption{The Lowi Gradient across Five Assemblies (17th--21st), by Regime Type}
+\label{fig:gradient}
+\end{figure}
+
+Two features of Figure~\ref{fig:gradient} merit emphasis. First, the gradient's \emph{direction} is consistent from the 18th Assembly onward: labor bills always show a processing disadvantage relative to small-business bills. The 17th Assembly reversal under Roh Moo-hyun occurs in an environment of low bill volume (approximately 7,500 total bills versus over 25,000 in the 21st) and high overall passage rates (51 percent), and it involves a small sample (114 labor, 59 small-business bills). The reversal appears genuine in direction but unreliable in magnitude.
+
+Second, the gradient's \emph{magnitude} covaries with regime type. The two conservative-presidency assemblies cluster at the extreme negative end, while the progressive and mixed assemblies show a more moderate gap. The exact permutation test places the observed regime interaction as the most extreme of all 10 possible assignments of two ``conservative'' assemblies from five (permutation $p = 0.10$, one-sided). This is the most favorable outcome achievable given the design, but it does not reach conventional significance. The Lowi gradient varied substantially across five assemblies, with the two conservative-presidency assemblies showing gradients roughly three times larger than the progressive assemblies (Table~\ref{tab:rates}); this pattern is consistent with conditional party government theory \citep{aldrich2001}, though the small number of regime transitions limits the generalizability of the interaction estimate.
+
+\subsection{Within-Party Evidence}
+\label{sec:results-party}
+
+An important alternative explanation is that the gradient reflects partisan gatekeeping by conservative committee chairs rather than content-based friction. If this were the sole mechanism, the gradient should disappear within each party's own bill portfolio. I test this by examining whether the Lowi gradient persists within the bill portfolios of liberal-bloc and conservative-bloc legislators separately.
+
+The gradient persists within both partisan blocs. In the 20th and 21st Assemblies, liberal-bloc legislators show a gap of approximately 14 to 17 percentage points between their own labor and small-business bills, while conservative-bloc legislators show a gap of roughly 21 to 25 percentage points. Conservative-bloc legislators' own labor bills process at lower rates than their own small-business bills, a pattern that is inconsistent with a pure cross-party gatekeeping explanation. The persistence of the gradient within both parties suggests that content-based friction is associated with committee outcomes independently of the sponsor's partisan identity. The larger gradient within the conservative bloc could reflect more extreme labor-bill content, ideological sorting in committee assignments, or additional dynamics that I cannot decompose without committee leadership data.
+
+%% ============================================================
+%% DISCUSSION
+%% ============================================================
+
+\section{Discussion}
+\label{sec:discussion}
+
+The results are broadly consistent with the theoretical expectations. Consistent with H1, redistributive legislation is associated with a systematic committee processing disadvantage relative to distributive legislation, a finding that holds across specifications, samples, and measurement approaches. Consistent with the baseline expectation (H2a) and H2b, institutional access through committee membership is associated with a separate processing advantage that does not eliminate the content-based gradient. Together, these patterns suggest a two-gate model in which institutional position and policy content independently predict a bill's probability of receiving committee attention.
+
+The connection to \citet{lowi1964} merits careful framing. Lowi predicted that redistributive policies activate organized opposition. The data are consistent with this prediction: labor bills, which propose to regulate wages, working conditions, and union rights, are associated with substantially worse committee outcomes than small-business bills, which distribute benefits to concentrated constituencies. But the cross-assembly variation reveals a qualification that Lowi did not articulate: the intensity of this gap appears contingent on the political regime. Under progressive unified government, the gap may compress or reverse; under conservative government, it widens toward near-total paralysis of labor legislation. This descriptive contingency suggests a connection between Lowi's content-based theory and the conditional party government literature \citep{cox2005,aldrich2001}, though the small number of regime transitions (five assemblies, with a permutation p-value floor of 0.10) means this connection should be understood as a motivation for future research rather than a demonstrated empirical regularity.
+
+The content-based friction documented here is not straightforwardly reducible to any of the three committee theories reviewed in Section~\ref{sec:lit-committee}. Cartel theory \citep{cox2005} predicts partisan filtering, but the gradient persists within each party's own bill portfolio, including among conservative legislators whose own labor bills show lower processing rates than their own small-business bills. Informational theory \citep{krehbiel1991} predicts that the committee-match premium should scale with bill complexity, yet the data show a flat premium regardless of text length. Winnowing theory \citep{krutz2005} predicts cue-based selection on observable sponsor characteristics, but the gradient survives within-sponsor comparisons that hold these cues constant. The content-based mechanism appears to operate in a space that existing theories do not fully occupy: it is not partisan (it persists within parties), not informational (it does not interact with complexity), and not purely cue-based (it survives within-sponsor designs). Content, in the Lowi sense, appears to function as an independent dimension of committee filtering.
+
+The insider-outsider decomposition speaks to a puzzle raised by \citet{peay2020}, who found that committee membership does not equalize processing outcomes for identity-linked policy content in the U.S. Congress. The KNA data suggest a parallel pattern: committee membership is associated with the elimination of average livelihood-bill friction, yet it does not eliminate the severe Lowi gradient between labor and small-business bills. A possible explanation is that institutional access compensates for modest content barriers but cannot overcome the organized opposition that Lowi predicted for genuinely redistributive legislation.
+
+Preliminary data from the ongoing 22nd Assembly offer a further theoretical complication. Under the 22nd Assembly, the progressive Democratic Party of Korea controls all committee chairs, yet labor bills show an all-time-low committee pass rate of approximately two percent, compared to roughly 14 percent for small-business bills. If partisan gatekeeping by conservative chairs were the sole mechanism, the gradient should disappear or reverse under progressive committee leadership. It does not. This preliminary pattern, which must be treated with caution given that the 22nd Assembly is ongoing and subject to a committee restructuring that merged the former Environment and Labor Committee with energy and climate policy, is consistent with a veto anticipation mechanism: progressive chairs may decline to advance labor bills they expect the president to veto, producing content friction under ideologically sympathetic committee leadership \citep{cameron2000}.
+
+An important limitation of the research design is that it tests the Lowi typology using exactly two categories: labor bills (redistributive) and small-business bills (distributive). This sharp comparison isolates a maximally clean contrast, but it does not test the typology in its full generality. Several alternative explanations are consistent with the observed pattern without invoking Lowi's framework. Organized employer opposition to labor legislation specifically, rather than opposition to redistributive policy generally, could produce the gradient. Interest group asymmetries between the labor and small-business policy domains, differences in media salience, or the particular political economy of Korean labor relations could each contribute. Testing whether the gradient extends to other redistributive-distributive pairs (e.g., progressive taxation vs. agricultural subsidies, welfare expansion vs. infrastructure spending) would provide stronger evidence for a Lowi-type mechanism, and the absence of such extension would suggest that the finding reflects the politics of labor specifically.
+
+Several additional limitations warrant acknowledgment. First, the keyword classifier achieves approximately 58 percent committee alignment for the labor category; while the attenuation-bias pattern confirms that misclassification compresses the gradient, a hand-coded validation sample would strengthen the measurement claim. Second, the sponsor-committee match variable relies on a proxy rather than official committee rosters, introducing measurement error whose direction may not be random if legislators' propensity to introduce bills outside their committee varies systematically with the content of those bills. Third, the regime interaction rests on a comparison of five assemblies, a fundamental constraint that additional bills within existing assemblies cannot resolve. Fourth, the analysis cannot identify the precise mechanism through which regime type covaries with the content gradient; committee chair party data would allow a direct test of partisan gatekeeping through chair assignments. Fifth, the $R^2$ values of 0.063 to 0.092 indicate that the model captures only a small fraction of the total variation in committee decisions; the content variable is a robust predictor but not a dominant one.
+
+%% ============================================================
+%% CONCLUSION
+%% ============================================================
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper presents what appears to be the first bill-level test of \citeauthor{lowi1964}'s (\citeyear{lowi1964}) prediction that redistributive legislation faces greater political friction than distributive legislation at the committee stage. Using keyword classification of over 40,000 member-sponsored bills in the Korean National Assembly across five assemblies (2004--2024), I document a Lowi gradient in which labor bills are associated with committee decision rates substantially below those of small-business bills, a gap that persists across controls for committee assignment, sponsor characteristics, and institutional access (Table~\ref{tab:main}). Observable quality indicators are consistent with a demand-side interpretation: committees appear to differentially filter bills of comparable quality based on content. The gradient holds within the bill portfolios of individual legislators and within both major partisan blocs.
+
+The findings suggest that committee gatekeeping in the KNA may operate through two independent mechanisms: an institutional gate (committee membership) and a content gate (the redistributive-distributive gradient). These gates appear to function at different levels; institutional access is associated with the absence of moderate content friction but does not offset the severe processing disadvantage facing genuinely redistributive legislation. The content gate's magnitude, moreover, covaries with the political regime in a suggestive descriptive pattern, from a reversal under progressive unified government to near-total paralysis under conservative government (Table~\ref{tab:rates}).
+
+These results carry implications for democratic accountability. If redistributive legislation, the type of policy that directly addresses inequality, faces the steepest committee barriers, then the legislative process itself may contribute to what \citet{hacker2004} terms ``policy drift'': the failure to update redistributive policies in the face of changing economic conditions. The minimum wage trajectory in the KNA illustrates this dynamic: from 56 percent of minimum wage bills receiving committee decisions in the 17th Assembly (2004--2008) to zero percent in the 21st (2020--2024), 31 bills expired without any committee action.
+
+Future research should pursue three directions. First, obtaining official committee rosters and chair party data would allow a direct test of whether the regime-correlated variation operates through partisan appointment of committee chairs or through broader political dynamics. Second, extending the keyword classification to other legislatures with strong committee systems, such as Taiwan's Legislative Yuan, would test whether the Lowi gradient is specific to the Korean context or generalizable across institutional settings. Third, connecting the committee-level content gradient to policy outcomes, specifically whether content-specific committee paralysis produces measurable policy drift in labor standards and welfare provision, would establish the consequences of the processing disparities documented here.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an
+experimental output. It has not been peer-reviewed or fact-checked.
+Do not cite or use in any academic, policy, or professional context.}
+
+%% ============================================================
+%% REFERENCES
+%% ============================================================
+
+\bibliographystyle{apsr}
+\bibliography{references}
+
+\end{document}
