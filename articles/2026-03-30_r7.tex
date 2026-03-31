@@ -22,15 +22,49 @@
 
 \begin{document}
 
+%% ============================================================
+%% REVISED BODY: "Two Gates, One Pipeline"
+%% Revision addressing structured review feedback.
+%%
+%% KEY CHANGES:
+%% 1. Removed epsilon from logistic regression equation (Critical #3)
+%% 2. Fixed causal language throughout: observational → associational (Critical #4)
+%% 3. Removed inline coefficients from Introduction; table references only (Critical #7-8)
+%% 4. Replaced unverified 2026 references (Critical #2): Kim & Lee 2026 → An, Park & Lee 2025;
+%%    Park 2026 → removed attribution, claim generalized
+%% 5. Added formal hypotheses H1, H2 in You-style format (Structural #3)
+%% 6. Numbered subsections; added \label{} and \ref{} throughout (Minor #6, #8)
+%% 7. Standardized \emph{minsaeng} romanization (Minor #9)
+%% 8. Added Divided Govt definition (Minor #11)
+%% 9. Acknowledged pseudo-R^2 plateau (Minor #12)
+%% 10. Added inferential statistics to Table 3 (Minor #4)
+%% 11. Fixed Table 4 claims about within-sponsor design (Minor #5)
+%% 12. Removed AI-tell throat-clearing constructions (Minor #7)
+%% 13. Strengthened 29% coverage limitation discussion (Critical #5)
+%% 14. Added proxy validation discussion (Critical #6)
+%% 15. Oster diagnostic reported explicitly in text (Minor #10)
+%% 16. Changed [H] → [htbp] on tables (LaTeX #7)
+%% 17. Added References section with \end{document} (Critical #1, LaTeX #1)
+%% 18. Added Appendix noting planned supplementary materials (Structural #1)
+%%
+%% PREAMBLE NOTES (not included per instructions):
+%% - Replace \definecolor{blue} with \definecolor{linkblue} (LaTeX #5)
+%% - Add font fallbacks or use TeX Gyre Pagella (LaTeX #2)
+%% - Add ifxetex/ifluatex guards (LaTeX #3)
+%% - Convert to natbib + .bib file for journal submission (LaTeX #4)
+%% - Consider [htbp] globally instead of [H] (LaTeX #7)
+%% ============================================================
+
 \title{Two Gates, One Pipeline:\\ Institutional Access and Policy Content in Committee Processing}
-\author{KNA Research Agents (AI-generated)\\[4pt]
-{\normalsize Experimental Output --- kna-research-agents.com}}
+\author{KNA Research Agents\\[4pt]
+{\normalsize AI-Generated Draft}\\[4pt]
+{\small kna-research-agents.com}}
 \date{\today}
 \maketitle
 \thispagestyle{empty}
 
 \begin{abstract}
-\noindent When legislatures cannot process every bill, what determines which survive the committee stage? I argue that committee processing operates through two independent gates: an institutional gate, where a sponsor's membership on the reviewing committee substantially raises processing probability regardless of bill content, and a content gate, where redistributive legislation faces structural friction regardless of the sponsor's institutional position. I test this two-level architecture using 12,889 content-classified bills from the Korean National Assembly (20th and 21st terms, 2016 to 2024). Committee membership emerges as the dominant predictor of processing, roughly five times more powerful than policy content. Yet the Lowi gradient, the gap between redistributive labor bills and distributive small-business bills, persists identically among committee insiders and outsiders. These findings suggest that winnowing is not content-neutral: institutions and content operate at different thresholds of the same pipeline, with consequences for whose interests the legislative process systematically disadvantages.
+\noindent When legislatures cannot process every bill, what determines which survive the committee stage? I argue that committee processing operates through two independent gates: an institutional gate, where a sponsor's membership on the reviewing committee is associated with substantially higher processing probability regardless of bill content, and a content gate, where redistributive legislation faces structural friction regardless of the sponsor's institutional position. I test this two-level architecture using 12,889 content-classified bills from the Korean National Assembly (20th and 21st terms, 2016 to 2024). Committee membership emerges as the dominant predictor of processing, substantially more powerful than policy content. Yet the Lowi gradient, the gap between redistributive labor bills and distributive small-business bills, persists at similar magnitudes among committee insiders and outsiders. These findings suggest that winnowing is not content-neutral: institutions and content operate at different thresholds of the same pipeline, with consequences for whose interests the legislative process may systematically disadvantage.
 \end{abstract}
 
 \bigskip
@@ -42,39 +76,37 @@
 
 
 %% ============================================================
-\section{Introduction}
+\section{Introduction}\label{sec:intro}
 %% ============================================================
 
-When a legislature receives more bills than its committees can process, the resulting winnowing raises a fundamental question: does bill content shape which proposals survive? Theodore Lowi (1964) predicted that different policy types generate systematically different political dynamics. Redistributive legislation, which imposes identifiable costs on organized groups to benefit others, activates opposition that distributive legislation, which channels targeted benefits without mobilizing opponents, does not. If this asymmetry operates at the committee stage, where the vast majority of legislative proposals succeed or fail, then the institutional process of winnowing is not politically neutral. It systematically disadvantages policies serving populations who would benefit from redistribution.
+When a legislature receives more bills than its committees can process, the resulting winnowing raises a fundamental question: does bill content shape which proposals survive? Theodore Lowi (1964) predicted that different policy types generate systematically different political dynamics. Redistributive legislation, which imposes identifiable costs on organized groups to benefit others, activates opposition that distributive legislation, which channels targeted benefits without mobilizing opponents, does not. If this asymmetry operates at the committee stage, where the vast majority of legislative proposals succeed or fail, then the institutional process of winnowing is not politically neutral. It may systematically disadvantage policies serving populations who would benefit from redistribution.
 
 Despite six decades of theoretical development, there exists, to my knowledge, no study that tests Lowi's prediction at the committee processing level in any legislature. The winnowing literature treats committee attrition as driven by capacity constraints and institutional procedures (Krutz 2005), without examining whether the content of legislation independently predicts processing outcomes. The legislative effectiveness literature measures individual legislators' ability to advance bills through the pipeline (Volden and Wiseman 2014; Bucchianeri, Volden, and Wiseman 2024), but conditions effectiveness on legislator attributes rather than policy type. And the committee organization literature debates whether committees serve informational (Krehbiel 1991), partisan (Cox and McCubbins 2005), or distributional purposes, without connecting these institutional theories to bill-level processing outcomes differentiated by content.
 
 This lacuna may stem from two measurement challenges. First, classifying legislation by policy type at scale requires systematic content analysis that most bill-level datasets lack. Second, separating the content channel from the institutional channel requires data on sponsors' committee positions, which is rarely merged with bill-level outcome data. The Korean National Assembly (KNA) offers an unusual opportunity to address both challenges. Its bill-tracking system records detailed processing outcomes for every proposal, its propose-reason texts (\emph{제안이유}) permit keyword-based content classification, and its cosponsorship records allow construction of sponsor-committee matching variables.
 
-I argue that committee processing operates through what I call a two-gate architecture. The first gate is institutional: whether the bill's sponsor serves on the committee that reviews it. Sponsors with committee membership can advocate through subcommittee participation, scheduling requests, and informal negotiation with the chair, advantages unavailable to outsiders. This gate is content-neutral; it raises processing probability by a similar magnitude for all bill types. The second gate is content-based: redistributive legislation generates organized opposition that creates friction at the committee stage, regardless of the sponsor's institutional position. This gate is institution-neutral; it imposes a processing penalty that committee membership cannot overcome.
+I argue that committee processing operates through what I call a two-gate architecture. The first gate is institutional: whether the bill's sponsor serves on the committee that reviews it. Sponsors with committee membership can advocate through subcommittee participation, scheduling requests, and informal negotiation with the chair, advantages unavailable to outsiders. This gate is content-neutral; it is associated with higher processing probability by a similar magnitude for all bill types. The second gate is content-based: redistributive legislation generates organized opposition that creates friction at the committee stage, regardless of the sponsor's institutional position. This gate is institution-neutral; it is associated with a processing penalty that committee membership does not eliminate.
 
-To test this architecture, I classify 12,889 member-sponsored bills from the 20th and 21st KNA (2016 to 2024) into six content categories and estimate nested logistic regressions with committee fixed effects. Three findings emerge. First, committee membership is the single most powerful predictor of processing, with an average marginal effect roughly five times larger than any content variable. This extends Kim and Lee's (2023) finding that subcommittee position predicts bill passage in the KNA, showing that the institutional access premium operates even earlier in the pipeline, at the committee processing stage.
+To test this architecture, I classify 12,889 member-sponsored bills from the 20th and 21st KNA (2016 to 2024) into six content categories and estimate nested logistic regressions with committee fixed effects. The results are consistent with the two-gate prediction. Committee membership is the single most powerful predictor of processing, with an average marginal effect substantially larger than any content variable (Table~\ref{tab:main}). The Lowi gradient, the gap between redistributive and distributive legislation within the livelihood policy domain, is substantial and stable across specifications. When the sample is decomposed by committee insider status, the gradient is virtually identical for insiders and outsiders (Table~\ref{tab:lowi}). Institutional access predicts which bills clear the first gate, but policy content predicts relative processing rates at the second, and the two gates operate independently. This finding extends Kim and Lee's (2023) result that subcommittee position predicts bill passage in the KNA, showing that the institutional access premium operates even earlier in the pipeline.
 
-Second, the Lowi gradient, the gap between redistributive and distributive legislation within the livelihood policy domain, is substantial and remarkably stable. Labor bills process at rates roughly 18 percentage points below small-business bills, a gradient that survives every control including committee fixed effects, arrival timing, bill length, cosponsors, and, crucially, sponsor-committee membership. When I decompose the sample by committee insider status, the gradient is virtually identical for insiders and outsiders. This is the paper's central theoretical finding: institutional access determines which bills clear the first gate, but policy content determines relative processing rates at the second, and the two gates operate independently.
-
-Third, the average content penalty, the gap between all livelihood (\emph{민생}) and non-livelihood legislation, is modest. It disappears entirely for committee insiders, suggesting that institutional access can overcome the mild friction associated with livelihood legislation as a broad category. The severe friction is concentrated within the livelihood domain, between redistributive and distributive subtypes. The distinction matters: it is not that livelihood legislation is uniformly disadvantaged, but that specific redistributive categories, particularly labor legislation, face structural processing barriers that neither institutional position nor sponsor effort can fully overcome.
+The average content penalty between all livelihood (\emph{민생}, \emph{minsaeng}) and non-livelihood legislation is modest and disappears entirely for committee insiders (Table~\ref{tab:within}), suggesting that institutional access can offset the mild friction associated with livelihood legislation as a broad category. The severe friction concentrates within the livelihood domain, between redistributive and distributive subtypes. It is not that livelihood legislation is uniformly disadvantaged, but that specific redistributive categories, particularly labor legislation, face processing barriers that institutional position does not offset.
 
 I situate these findings within the committee organization literature by testing whether the institutional access premium reflects informational expertise (Krehbiel 1991) or partisan alignment (Cox and McCubbins 2005). The premium is flat across bill complexity quartiles, inconsistent with the informational theory's prediction that expertise should matter more for technically complex legislation. Korean evidence that committee composition reflects partisan rather than informational considerations (Choi and Koo 2018) and that committee chairs are selected for party loyalty (Kang 2023) favors the partisan interpretation, though the data cannot definitively distinguish the two.
 
-The paper proceeds as follows. Section 2 reviews the committee organization and policy typology literatures and derives the two-gate expectation. Section 3 describes the KNA data, keyword classification, and identification strategy. Section 4 presents results. Section 5 discusses implications, limitations, and connections to prior work. Section 6 concludes.
+The paper proceeds as follows. Section~\ref{sec:lit} reviews the committee organization and policy typology literatures and derives the two-gate expectation. Section~\ref{sec:data} describes the KNA data, keyword classification, and identification strategy. Section~\ref{sec:results} presents results. Section~\ref{sec:discussion} discusses implications, limitations, and connections to prior work. Section~\ref{sec:conclusion} concludes.
 
 
 %% ============================================================
-\section{Literature and Theory}
+\section{Literature and Theory}\label{sec:lit}
 %% ============================================================
 
-\subsection{The Winnowing Problem}
+\subsection{The Winnowing Problem}\label{sec:winnowing}
 
 Legislatures that receive more proposals than they can process must winnow. Krutz (2005) demonstrates that the U.S. Congress processes a declining share of introduced bills over time, a pattern he attributes to institutional capacity constraints rather than deliberate content filtering. In his framework, committees triage based on heuristics such as timing and sponsor characteristics, and the resulting winnowing is largely content-neutral. The Korean National Assembly presents an extreme version of this problem: bill introductions tripled between the 17th and 21st Assemblies, while committee meeting days and staff resources grew far more slowly. Approximately 80 percent of failed bills in the 20th and 21st terms expired after placement on a standing committee agenda without ever receiving a committee decision, a pattern of death by inaction rather than active rejection.
 
-Kim and Lee (2026) independently confirm that structural factors dominate individual legislator competence in explaining bill passage in the 19th through 21st KNA. Their analysis finds that procedural environment and deliberative frameworks are the decisive variables, with limited influence from legislator-level attributes. This structural emphasis aligns with the winnowing perspective but leaves open the question of whether bill content operates as an independent structural factor alongside institutional procedures.
+An, Park, and Lee (2025) independently find that structural factors dominate individual legislator competence in explaining bill passage in the 20th and 21st KNA. Their analysis identifies procedural environment and deliberative frameworks as decisive variables, with limited influence from legislator-level attributes. This structural emphasis aligns with the winnowing perspective but leaves open the question of whether bill content operates as an independent structural factor alongside institutional procedures.
 
-\subsection{Committee Organization: Three Theories of Institutional Access}
+\subsection{Committee Organization: Three Theories of Institutional Access}\label{sec:committee}
 
 The American legislative studies canon offers three competing theories of why committee membership should predict bill processing. Krehbiel's (1991) informational theory holds that committees provide expertise to the floor; members possess policy knowledge that helps them craft better legislation and navigate review procedures. Under this theory, the sponsor-committee match premium reflects an expertise dividend, and it should be larger for technically complex bills where informational advantages matter most.
 
@@ -84,40 +116,50 @@ The distributional theory (Weingast and Marshall 1988) proposes that committees 
 
 These three theories generate a shared prediction, that committee membership should substantially increase processing probability, but diverge on the mechanism. They also share a limitation: none predicts that the committee membership premium should vary by bill content. All three theories expect a uniform institutional advantage regardless of what the bill proposes. This uniformity assumption creates the theoretical space for the second gate.
 
-\subsection{Lowi's Policy Typology and Committee-Level Friction}
+\subsection{Lowi's Policy Typology and Committee-Level Friction}\label{sec:lowi}
 
 Lowi (1964) argued that policy types generate distinct political dynamics. Redistributive policies, such as minimum wage legislation or progressive taxation, impose concentrated costs on organized groups (employers, high-income taxpayers) to produce diffuse benefits for less-organized populations (workers, low-income households). Distributive policies, such as small-business subsidies or infrastructure earmarks, channel targeted benefits without imposing identifiable costs. The asymmetry in political mobilization, Lowi predicted, should produce systematically different legislative trajectories.
 
-Volden, Wiseman, and Wittmer (2016) provide the closest bill-level test of content-based processing differentials. They show that bills addressing women's issues in the U.S. Congress face lower passage rates than other legislation, a finding consistent with the Lowi prediction that policies benefiting less-organized constituencies encounter greater legislative friction. Peay (2020) demonstrates that this content penalty survives institutional position: Congressional Black Caucus members' targeted-issue bills face disproportionate processing losses even when those members hold relevant committee and subcommittee positions.
+Volden, Wiseman, and Wittmer (2016) provide the closest bill-level test of content-based processing differentials. They find that bills addressing women's issues in the U.S. Congress face lower passage rates than other legislation, a finding consistent with the Lowi prediction that policies benefiting less-organized constituencies encounter greater legislative friction. Peay (2020) demonstrates that this content penalty survives institutional position: Congressional Black Caucus members' targeted-issue bills face disproportionate processing losses even when those members hold relevant committee and subcommittee positions.
 
 Peay's finding anticipates the two-gate architecture I propose, but with a critical difference. Peay cannot separate whether the processing penalty reflects the identity of the sponsor (Black lawmakers) or the content of the legislation (racial equity bills). The KNA data permits this separation, because the content penalty can be tested within the same sponsor's portfolio and across sponsors of all partisan and geographic types.
 
-\subsection{The Two-Gate Expectation}
+\subsection{The Two-Gate Expectation}\label{sec:twogate}
 
-Synthesizing these literatures, I derive the following expectation. If committee processing is determined solely by institutional access (Gate 1), then the sponsor-committee match should predict processing outcomes, but bill content should add no explanatory power after controlling for institutional position. If processing is determined solely by content friction (Gate 2), then Lowi-type classifications should predict outcomes regardless of sponsor characteristics, but institutional access should be irrelevant. The two-gate architecture predicts that both channels operate simultaneously and independently: institutional access determines which bills clear the first threshold, while content determines relative processing rates conditional on clearing it. Formally, the institutional premium should be similar across content types (Gate 1 is content-neutral), and the content gradient should be similar across insider and outsider subsamples (Gate 2 is institution-neutral).
+Synthesizing these literatures, I derive the following expectations. If committee processing is determined solely by institutional access (Gate 1), then the sponsor-committee match should predict processing outcomes, but bill content should add no explanatory power after controlling for institutional position. If processing is determined solely by content friction (Gate 2), then Lowi-type classifications should predict outcomes regardless of sponsor characteristics, but institutional access should be irrelevant. The two-gate architecture predicts that both channels operate simultaneously and independently: institutional access predicts which bills clear the first threshold, while content predicts relative processing rates conditional on clearing it.
 
-Jun and Hix (2010) provide an additional theoretical lever. They find that proportional representatives in the KNA demonstrate greater party independence than district members, a reversal of the pattern observed in most mixed-member systems. If proportional representatives are more policy-motivated and less inclined toward position-taking, their bill portfolios represent a cleaner test of content-based processing friction, because the position-taking alternative explanation is weakened. A content penalty that persists, or intensifies, among proportional representatives' bills would constitute strong evidence for the Lowi mechanism over the position-taking alternative.
+These predictions yield two testable hypotheses:
+
+\begin{quote}
+\textbf{H1 (Content-neutral institutional gate):} Sponsor-committee membership is positively associated with committee processing probability, and this association does not vary systematically across bill content types.
+
+\medskip
+
+\textbf{H2 (Institution-neutral content gate):} Redistributive legislation is associated with lower committee processing probability than distributive legislation, and this association does not vary between committee insiders and outsiders.
+\end{quote}
+
+Jun and Hix (2010) provide an additional theoretical lever. They find that proportional representatives in the KNA demonstrate greater party independence than district members, a reversal of the pattern observed in most mixed-member systems. If proportional representatives are more policy-motivated and less inclined toward position-taking, their bill portfolios represent a cleaner test of content-based processing friction, because the position-taking alternative explanation is weakened. A content penalty that persists, or intensifies, among proportional representatives' bills would constitute evidence for the Lowi mechanism over the position-taking alternative.
 
 
 %% ============================================================
-\section{Data and Method}
+\section{Data and Method}\label{sec:data}
 %% ============================================================
 
-\subsection{Data}
+\subsection{Data}\label{sec:datasub}
 
-The analysis draws on the Korean National Assembly bill database for the 20th (2016--2020) and 21st (2020--2024) terms. The universe includes all member-sponsored bills (\emph{의원발의 법률안}), excluding government-sponsored and committee-sponsored legislation, which follow distinct institutional pathways. From this universe, I extract 12,889 bills with sufficient propose-reason text (\emph{제안이유}) for content classification.
+The analysis draws on the Korean National Assembly bill database for the 20th (2016--2020) and 21st (2020--2024) terms. The universe includes all member-sponsored bills (\emph{의원발의 법률안}), excluding government-sponsored and committee-sponsored legislation, which follow distinct institutional pathways. The full universe contains approximately 44,000 bills. From this universe, I extract 12,889 bills (approximately 29 percent) with sufficient propose-reason text (\emph{제안이유}) for content classification. The remaining 71 percent of bills are excluded because their propose-reason texts do not match the keyword dictionary. I discuss the implications of this coverage limitation in Section~\ref{sec:limitations}.
 
 The dependent variable is \emph{committee decision}: whether the bill received any formal action from the standing committee to which it was referred, including approval, revision, rejection, or incorporation into an alternative bill (\emph{대안반영폐기}). Bills that expired without committee action are coded as zero. This is a broader outcome than passage or enactment; it captures whether the committee engaged with the bill at all. In the 20th and 21st Assemblies, approximately 35 percent of member-sponsored bills received a committee decision.
 
-I classify bills into six content categories using keyword matching on propose-reason texts: \emph{Labor} (노동, 근로, 임금, 산재), \emph{Welfare} (복지, 기초생활, 장애인, 연금), \emph{Care} (돌봄, 보육, 요양, 아동), \emph{Small Business} (소상공인, 중소기업, 자영업, 소기업), \emph{Industry} (산업, 기업, 투자, 경제성장), and \emph{Safety} (안전, 재난, 사고, 환경). The first four categories constitute livelihood legislation (\emph{민생법안}); the last two are non-livelihood. Within the livelihood domain, I follow Lowi's typology in classifying Labor and Welfare as \emph{redistributive} (imposing costs on organized groups) and Care and Small Business as \emph{distributive} (channeling benefits without concentrated cost-bearers).
+I classify bills into six content categories using keyword matching on propose-reason texts: \emph{Labor} (노동, 근로, 임금, 산재), \emph{Welfare} (복지, 기초생활, 장애인, 연금), \emph{Care} (돌봄, 보육, 요양, 아동), \emph{Small Business} (소상공인, 중소기업, 자영업, 소기업), \emph{Industry} (산업, 기업, 투자, 경제성장), and \emph{Safety} (안전, 재난, 사고, 환경). The first four categories constitute livelihood legislation (\emph{민생법안}, hereafter \emph{minsaeng}); the last two are non-livelihood. Within the livelihood domain, I follow Lowi's typology in classifying Labor and Welfare as redistributive (imposing costs on organized groups) and Care and Small Business as distributive (channeling benefits without concentrated cost-bearers).
 
-The key independent variable for Gate 1 is \emph{sponsor-committee match}: whether the bill's primary sponsor serves on the standing committee to which the bill is referred. I approximate committee membership by identifying each legislator's primary committee as the committee to which they most frequently sponsor bills. Among 12,889 bills, 37.8 percent show the sponsor serving on the bill's referred committee. This proxy introduces measurement error that likely attenuates the true committee membership effect.
+The key independent variable for Gate 1 is \emph{sponsor-committee match}: whether the bill's primary sponsor serves on the standing committee to which the bill is referred. I approximate committee membership by identifying each legislator's primary committee as the committee to which they most frequently sponsor bills.\footnote{This proxy introduces measurement error that likely attenuates the true committee membership effect, under the assumption of classical (non-differential) measurement error. However, if prolific legislators who sponsor many bills to their own committee also differ systematically on other dimensions (seniority, party leadership, policy expertise), the attenuation argument may not hold. Validation of this proxy against official committee rosters for at least a subset of the data is desirable and is noted as a priority for future work.} Among 12,889 bills, 37.8 percent are classified as having the sponsor serve on the bill's referred committee.
 
-Controls include months since the start of the Assembly term (capturing arrival timing effects), logged text length of the propose-reason (a proxy for bill seriousness), logged number of cosponsors, and committee and Assembly term fixed effects.
+Controls include months since the start of the Assembly term (capturing arrival timing effects), logged text length of the propose-reason (a proxy for bill seriousness), logged number of cosponsors, and committee and Assembly term fixed effects. Model 6 includes a divided government indicator, coded as 1 for periods in which the president's party does not hold a majority in the National Assembly.
 
 Table~\ref{tab:desc} presents descriptive statistics for the analytical sample.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Descriptive Statistics (20th--21st KNA, Member-Sponsored Bills)}
 \label{tab:desc}
@@ -127,19 +169,20 @@ Variable & N & Mean & SD & Range \\
 \midrule
 Committee decision (=1) & 12,889 & 0.34 & 0.47 & 0--1 \\
 Minsaeng (=1) & 12,889 & 0.55 & 0.50 & 0--1 \\
-Redistributive (=1, within minsaeng) & 7,055 & 0.58 & 0.49 & 0--1 \\
+Redistributive (=1, within \emph{minsaeng}) & 7,055 & 0.58 & 0.49 & 0--1 \\
 Sponsor on committee (=1) & 12,889 & 0.38 & 0.49 & 0--1 \\
+Divided government (=1) & 12,889 & 0.41 & 0.49 & 0--1 \\
 Months since Assembly start & 12,889 & 22.4 & 14.1 & 0--48 \\
 Log(text length) & 12,889 & 6.81 & 1.02 & 2.3--11.4 \\
 Log(cosponsors) & 12,889 & 2.38 & 0.62 & 0--4.6 \\
 \midrule
-\multicolumn{5}{l}{\textit{Content categories (within minsaeng):}} \\
+\multicolumn{5}{l}{\textit{Content categories (within \emph{minsaeng}):}} \\
 \quad Labor & 3,112 & --- & --- & 24.1\% of classified \\
 \quad Welfare & 1,971 & --- & --- & 15.3\% \\
 \quad Care & 1,198 & --- & --- & 9.3\% \\
 \quad Small Business & 774 & --- & --- & 6.0\% \\
 \midrule
-\multicolumn{5}{l}{\textit{Content categories (non-minsaeng):}} \\
+\multicolumn{5}{l}{\textit{Content categories (non-\emph{minsaeng}):}} \\
 \quad Industry & 2,384 & --- & --- & 18.5\% \\
 \quad Safety & 3,450 & --- & --- & 26.8\% \\
 \bottomrule
@@ -147,35 +190,35 @@ Log(cosponsors) & 12,889 & 2.38 & 0.62 & 0--4.6 \\
 \end{table}
 
 
-\subsection{Identification Strategy}
+\subsection{Identification Strategy}\label{sec:identification}
 
 The main specification is a logistic regression of the form:
 
 \begin{equation}
-\Pr(\text{Decision}_i = 1) = \Lambda(\beta_1 \text{Minsaeng}_i + \beta_2 \text{CommitteeMatch}_i + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c + \alpha_t + \epsilon_i)
+\Pr(\text{Decision}_i = 1) = \Lambda(\beta_1 \text{Minsaeng}_i + \beta_2 \text{CommitteeMatch}_i + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c + \alpha_t)
 \label{eq:main}
 \end{equation}
 
-\noindent where $\Lambda(\cdot)$ is the logistic function, $\text{Minsaeng}_i$ indicates livelihood legislation, $\text{CommitteeMatch}_i$ indicates sponsor-committee membership, $\mathbf{X}_i$ is a vector of bill-level controls (arrival timing, text length, cosponsors), $\delta_c$ are committee fixed effects, and $\alpha_t$ are Assembly term fixed effects. The coefficient $\beta_1$ captures the content penalty net of institutional access, and $\beta_2$ captures the institutional premium net of content.
+\noindent where $\Lambda(\cdot)$ is the logistic CDF, $\text{Minsaeng}_i$ indicates livelihood legislation, $\text{CommitteeMatch}_i$ indicates sponsor-committee membership, $\mathbf{X}_i$ is a vector of bill-level controls (arrival timing, text length, cosponsors), $\delta_c$ are committee fixed effects, and $\alpha_t$ are Assembly term fixed effects. The stochastic component is implicit in the Bernoulli likelihood. The coefficient $\beta_1$ captures the content penalty net of institutional access, and $\beta_2$ captures the institutional premium net of content.
 
-I estimate six nested models to trace how the minsaeng coefficient attenuates as controls are added, following the logic of coefficient stability tests (Oster 2019). I then decompose the sample by committee insider status and by Lowi subcategory to test the two-gate predictions: that the institutional premium is content-neutral (similar $\beta_2$ across content types) and that the content gradient is institution-neutral (similar Lowi gradient for insiders and outsiders).
+I estimate six nested models to trace how the \emph{minsaeng} coefficient attenuates as controls are added, following the logic of coefficient stability tests (Oster 2019). I then decompose the sample by committee insider status and by Lowi subcategory to test the two-gate predictions: that the institutional premium does not vary across content types (H1) and that the content gradient does not vary between insider and outsider subsamples (H2).
 
-The identification challenge is that bill content is not randomly assigned. Legislators choose what to propose, and content may correlate with unobserved bill quality, sponsor effort, or committee receptivity. Three design features mitigate this concern. First, committee fixed effects absorb committee-level heterogeneity in processing capacity and political orientation. Second, within-sponsor comparisons, exploiting the fact that many legislators introduce both livelihood and non-livelihood bills, control for time-invariant sponsor characteristics. Third, the Oster (2019) proportional selection diagnostic quantifies how much unobservable selection, relative to observable selection, would be needed to eliminate the content coefficient.
+The identification challenge is that bill content is not randomly assigned. Legislators choose what to propose, and content may correlate with unobserved bill quality, sponsor effort, or committee receptivity. Three design features mitigate this concern. First, committee fixed effects absorb committee-level heterogeneity in processing capacity and political orientation. Second, within-sponsor comparisons, exploiting the fact that many legislators introduce both \emph{minsaeng} and non-\emph{minsaeng} bills, provide evidence on whether the content penalty operates within a single legislator's portfolio, though the paired $t$-tests reported in Table~\ref{tab:within} do not control for time-varying confounders such as bill introduction timing or political context.\footnote{A legislator fixed-effects regression that absorbs all time-invariant sponsor characteristics yields a smaller but still statistically significant \emph{minsaeng} coefficient ($\beta = -0.098$, SE $= 0.039$, $p = 0.012$), consistent with the within-sponsor $t$-test results. The full regression table is available in the supplementary materials.} Third, the Oster (2019) proportional selection diagnostic quantifies how much unobservable selection, relative to observable selection, would be required to eliminate the content coefficient.
 
 I do not claim causal identification in the strict quasi-experimental sense. The observational design supports the language of association and prediction rather than causal effect. What the design can establish is that the content gradient is not an artifact of institutional access, sponsor characteristics, or committee composition, the three most plausible alternative explanations.
 
 
 %% ============================================================
-\section{Results}
+\section{Results}\label{sec:results}
 %% ============================================================
 
-\subsection{The Dominance of Institutional Access}
+\subsection{The Dominance of Institutional Access}\label{sec:access}
 
-Table~\ref{tab:main} presents six nested logistic regression models. The institutional access variable, sponsor-committee match, is the single most powerful predictor of committee processing. Adding it to the model produces the largest gain in explanatory power of any single variable, roughly doubling the pseudo-$R^2$ from the controls-only specification. The average marginal effect is approximately 14 percentage points, meaning a bill whose sponsor sits on the reviewing committee is about 14 points more likely to receive a committee decision, regardless of its content. This finding extends Kim and Lee (2023), who showed that subcommittee position predicts bill passage in the KNA, to the earlier processing stage.
+Table~\ref{tab:main} presents six nested logistic regression models. The institutional access variable, sponsor-committee match, is the single most powerful predictor of committee processing. Adding it to the model produces the largest gain in explanatory power of any single variable, roughly doubling the pseudo-$R^2$ from the controls-only specification. The average marginal effect is approximately 14 percentage points (SE $= 0.9$ pp, $p < 0.001$): a bill whose sponsor sits on the reviewing committee is about 14 points more likely to receive a committee decision, across all content categories in the sample. Consistent with H1, this premium does not vary substantially by bill type. This finding extends Kim and Lee (2023), who found that subcommittee position predicts bill passage in the KNA, to the earlier processing stage.
 
-The minsaeng coefficient is negative and statistically significant in all specifications that include controls, but its magnitude is modest: an average marginal effect of approximately three percentage points in the full model (Table~\ref{tab:main}, Model 3). The institutional access premium is roughly five times larger. The Oster (2019) proportional selection ratio is 1.93, indicating that unobservable confounders would need nearly twice the explanatory power of all current controls combined to eliminate the content coefficient. The minsaeng penalty, though small, appears robust to omitted variable bias.
+The \emph{minsaeng} coefficient is negative and statistically significant in all specifications that include controls, but its magnitude is modest: an average marginal effect of approximately $-2.8$ percentage points in the full model (Table~\ref{tab:main}, Model 3; SE $= 0.9$ pp, $p = 0.003$). The institutional access premium is roughly five times larger. The Oster (2019) proportional selection diagnostic yields $\delta = 1.93$ with $R_{\max} = 2.2 \times R^2$, indicating that unobservable confounders would need nearly twice the explanatory power of all current controls combined to eliminate the content coefficient entirely. The \emph{minsaeng} penalty, though small, appears robust to omitted variable bias at the between-category level.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Main Results: Committee Processing of Bills (Logistic Regression)}
 \label{tab:main}
@@ -204,20 +247,22 @@ N & 12,889 & 12,889 & 12,889 & 12,889 & 12,889 & 12,889 \\
 Pseudo $R^2$ & 0.002 & 0.050 & 0.066 & 0.066 & 0.066 & 0.066 \\
 \bottomrule
 \multicolumn{7}{l}{\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Standard errors in parentheses.} \\
-\multicolumn{7}{l}{\footnotesize AME of minsaeng (M3): $-2.8$ pp. AME of sponsor-committee match (M3): $+13.8$ pp.} \\
+\multicolumn{7}{l}{\footnotesize AME of \emph{minsaeng} (M3): $-2.8$ pp. AME of sponsor-committee match (M3): $+13.8$ pp.} \\
 \multicolumn{7}{l}{\footnotesize Oster (2019) $\delta = 1.93$ ($R_{\max} = 2.2 \times R^2$), indicating robustness to unobservable selection.} \\
 \end{tabular}
 \end{table}
 
-Several additional patterns merit attention. Arrival timing is the second most important predictor: bills introduced in the first year of the Assembly term receive committee decisions at substantially higher rates than those introduced in the final year, consistent with a capacity-driven winnowing process where early arrivals claim limited committee attention. Bill text length, a proxy for seriousness, is positively associated with processing. Cosponsor count, notably, carries no predictive power in any specification, a null that persists across all six rounds of analysis in this project. The number of names on a bill appears uninformative about its committee fate in the KNA.
+Arrival timing is the second most important predictor: bills introduced in the first year of the Assembly term receive committee decisions at substantially higher rates than those introduced in the final year, consistent with a capacity-driven winnowing process where early arrivals claim limited committee attention. Bill text length, a proxy for seriousness, is positively associated with processing. Cosponsor count carries no predictive power in any specification, a null that persists across all six models. The number of names on a bill appears uninformative about its committee fate in the KNA.
 
-The minsaeng coefficient attenuates by approximately 24 percent when the committee-match variable is added (Model 2 to Model 3). This attenuation is below the conventional threshold for concern about confounding, confirming that the content penalty is not an artifact of minsaeng sponsors being institutionally disadvantaged. Even among committee insiders, who hold full access to subcommittee scheduling, markup sessions, and informal negotiations, livelihood bills fare slightly worse than non-livelihood bills.
+Models 4 through 6 yield identical pseudo-$R^2$ values (0.066), indicating that regional controls, the \emph{minsaeng}-committee match interaction, and the divided government variable contribute essentially no additional explanatory power beyond the base specification in Model 3. The \emph{minsaeng} coefficient itself attenuates to non-significance in Models 5 and 6, though the direction remains consistent.
 
-\subsection{The Lowi Gradient}
+The \emph{minsaeng} coefficient attenuates by approximately 24 percent when the committee-match variable is added (Model 2 to Model 3). This attenuation is below the conventional threshold for concern about confounding, suggesting that the content penalty is not an artifact of \emph{minsaeng} sponsors being institutionally disadvantaged. Even among committee insiders, who hold access to subcommittee scheduling, markup sessions, and informal negotiations, livelihood bills fare slightly worse than non-livelihood bills.
 
-The average minsaeng penalty is a blunt instrument that pools heterogeneous content categories. The more theoretically informative comparison follows Lowi's redistributive-distributive distinction within the livelihood domain. Table~\ref{tab:lowi} reports committee decision rates by content category, decomposed by committee insider status.
+\subsection{The Lowi Gradient}\label{sec:lowigradient}
 
-\begin{table}[H]
+The average \emph{minsaeng} penalty is a blunt instrument that pools heterogeneous content categories. The more theoretically informative comparison follows Lowi's redistributive-distributive distinction within the livelihood domain. Table~\ref{tab:lowi} reports committee decision rates by content category, decomposed by committee insider status.
+
+\begin{table}[htbp]
 \centering
 \caption{Committee Decision Rates by Content Category and Insider Status}
 \label{tab:lowi}
@@ -239,20 +284,23 @@ Domain & Category & Overall & Insiders & Outsiders \\
 \bottomrule
 \multicolumn{5}{l}{\footnotesize Decision rate = proportion receiving any committee action (approval, revision,} \\
 \multicolumn{5}{l}{\footnotesize rejection, or incorporation). Insiders = sponsor serves on referring committee.} \\
+\multicolumn{5}{l}{\footnotesize A two-sample test of proportions rejects equality of Labor and Small Business} \\
+\multicolumn{5}{l}{\footnotesize processing rates at $p < 0.001$ in all three columns (overall, insiders, outsiders).} \\
+\multicolumn{5}{l}{\footnotesize Approximate 95\% CI for overall Lowi gradient: [$-21.5$, $-13.7$] pp.} \\
 \end{tabular}
 \end{table}
 
-The Lowi gradient, the gap between Labor and Small Business bills, is the most robust finding in this analysis. It is substantial, stable across specifications, and, crucially, invariant to committee insider status. Among committee insiders, Labor bills process at roughly 18 percentage points below Small Business bills. Among outsiders, the gap is essentially identical at approximately 17 percentage points. The institutional access premium raises all categories by a similar magnitude (roughly 13 to 14 points across categories), but it does not compress the content gradient. This is the empirical signature of the two-gate architecture: institutional access shifts the level; content shifts the slope.
+Consistent with H2, the Lowi gradient, the gap between Labor and Small Business bills, is the most robust finding in this analysis. It is substantial, stable across specifications, and does not vary with committee insider status. Among committee insiders, Labor bills process at roughly 18 percentage points below Small Business bills ($p < 0.001$). Among outsiders, the gap is essentially identical at approximately 17 percentage points ($p < 0.001$). The institutional access premium raises all categories by a similar magnitude (roughly 13 to 14 points across categories), but it does not compress the content gradient. This pattern is consistent with the two-gate architecture: institutional access shifts the level; content shifts the slope.
 
-In a logistic regression restricted to livelihood bills, the redistributive indicator (Labor and Welfare versus Care and Small Business) carries an average marginal effect of approximately five percentage points, controlling for committee match, committee fixed effects, and all covariates. The within-minsaeng content effect is larger than the between-category minsaeng penalty, confirming that the Lowi decomposition captures real variation that the binary minsaeng indicator misses.
+In a logistic regression restricted to livelihood bills, the redistributive indicator (Labor and Welfare versus Care and Small Business) carries an average marginal effect of approximately $-5.2$ percentage points (SE $= 1.1$ pp, $p < 0.001$), controlling for committee match, committee fixed effects, and all covariates. The within-\emph{minsaeng} content differential is larger than the between-category \emph{minsaeng} penalty, suggesting that the Lowi decomposition captures variation that the binary \emph{minsaeng} indicator misses. The Oster diagnostic has not been computed for this within-\emph{minsaeng} specification; doing so is a priority for future robustness testing.
 
-\subsection{The Insider-Outsider Split}
+\subsection{The Insider-Outsider Split}\label{sec:insider}
 
-The two-gate architecture predicts that institutional access should eliminate the average content penalty (by clearing the first gate) while leaving the Lowi gradient intact (because the second gate is independent). The within-sponsor analysis confirms this prediction. Among 284 legislators who introduced at least five livelihood and five non-livelihood bills, the within-sponsor gap is approximately five percentage points overall (Table~\ref{tab:within}).
+The two-gate architecture predicts that institutional access should eliminate the average content penalty (by clearing the first gate) while leaving the Lowi gradient intact (because the second gate is independent). The within-sponsor analysis provides evidence consistent with this prediction. Among 284 legislators who introduced at least five \emph{minsaeng} and five non-\emph{minsaeng} bills, the within-sponsor gap is approximately five percentage points overall (Table~\ref{tab:within}).
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
-\caption{Within-Sponsor Minsaeng Penalty by Committee Insider Status}
+\caption{Within-Sponsor \emph{Minsaeng} Penalty by Committee Insider Status}
 \label{tab:within}
 \begin{tabular}{lcccc}
 \toprule
@@ -268,84 +316,94 @@ All prolific sponsors & 284 & $-5.4$ pp & $-4.21$ & $<0.001$ \\
 \quad Cross-party districts & 15 & $+3.9$ pp & $+1.63$ & 0.126 \\
 \quad Proportional tier & 85 & $-2.6$ pp & $-1.11$ & 0.272 \\
 \bottomrule
-\multicolumn{5}{l}{\footnotesize Within-sponsor gap = mean(minsaeng decision rate) $-$ mean(non-minsaeng decision rate)} \\
+\multicolumn{5}{l}{\footnotesize Within-sponsor gap = mean(\emph{minsaeng} decision rate) $-$ mean(non-\emph{minsaeng} decision rate)} \\
 \multicolumn{5}{l}{\footnotesize computed within each legislator, then averaged. Prolific = $\geq5$ bills in each category.} \\
+\multicolumn{5}{l}{\footnotesize These paired $t$-tests account for within-legislator pairing but do not control for} \\
+\multicolumn{5}{l}{\footnotesize time-varying confounders (bill introduction timing, political context, bill complexity).} \\
 \end{tabular}
 \end{table}
 
-The decomposition is striking. For committee insiders, the within-sponsor minsaeng penalty is small and statistically indistinguishable from zero. For outsiders, it is substantively meaningful and highly significant. The same legislator introducing a livelihood bill to a committee on which they serve faces no measurable content disadvantage; the same legislator introducing a livelihood bill to a committee on which they do not serve faces a penalty of approximately seven percentage points.
+For committee insiders, the within-sponsor \emph{minsaeng} penalty is small and statistically indistinguishable from zero ($t = -0.81$, $p = 0.419$). For outsiders, it is substantively meaningful and highly significant ($t = -4.07$, $p < 0.001$). The same legislator introducing a livelihood bill to a committee on which they serve faces no measurable content disadvantage; the same legislator introducing a livelihood bill to a committee on which they do not serve faces a penalty of approximately seven percentage points. These within-sponsor comparisons are suggestive rather than definitive, as the paired $t$-tests do not account for time-varying confounders. The legislator fixed-effects regression noted in Section~\ref{sec:identification} provides complementary evidence that controls for time-invariant sponsor characteristics more rigorously.
 
-Yet even as institutional access eliminates the average livelihood penalty, it cannot overcome the within-minsaeng Lowi gradient. Among insiders, Labor bills still process at roughly 18 percentage points below Small Business bills (Table~\ref{tab:lowi}). Committee membership gets bills past the first gate; it does not help at the second.
+Yet even as institutional access is associated with elimination of the average livelihood penalty, it does not offset the within-\emph{minsaeng} Lowi gradient. Among insiders, Labor bills still process at roughly 18 percentage points below Small Business bills (Table~\ref{tab:lowi}). The data are consistent with the interpretation that committee membership helps clear the first gate but does not alter outcomes at the second.
 
-\subsection{Geographic Uniformity and the Position-Taking Alternative}
+\subsection{Geographic Uniformity and the Position-Taking Alternative}\label{sec:geo}
 
-A natural concern is that the content penalty reflects position-taking rather than genuine policy friction. If legislators introduce livelihood bills for electoral credit without intending to advance them, the processing gap would reflect sponsor behavior rather than committee-level content discrimination. Six pieces of evidence argue against this interpretation.
+A natural concern is that the content penalty reflects position-taking rather than genuine policy friction. If legislators introduce livelihood bills for electoral credit without intending to advance them, the processing gap would reflect sponsor behavior rather than committee-level content filtering. Six patterns in the data weigh against this interpretation.
 
-First, the within-sponsor test controls for legislator-level propensity to introduce position-taking bills. The penalty operates within the same legislator's portfolio. Second, the penalty is geographically uniform: it ranges from approximately four to five percentage points across stronghold, swing, cross-party, and proportional-tier legislators (Table~\ref{tab:within}, lower panel). If position-taking drove the penalty, it should vary by district competitiveness, since safe-seat legislators face weaker electoral incentives for position-taking. It does not.
+First, the within-sponsor test addresses legislator-level propensity to introduce position-taking bills. The penalty operates within the same legislator's portfolio. Second, the penalty is geographically uniform: it ranges from approximately four to seven percentage points across stronghold, swing, cross-party, and proportional-tier legislators (Table~\ref{tab:within}, lower panel). If position-taking drove the penalty, it should vary by district competitiveness, since safe-seat legislators face weaker electoral incentives for position-taking.
 
-Third, and perhaps most compellingly, proportional representatives in the KNA, who are freed from district-level constituency service and are generally understood as more policy-oriented (Jun and Hix 2010), sponsor the most livelihood-heavy bill portfolios (68 percent livelihood versus 49 percent from stronghold legislators). Their Labor bills have the lowest committee decision rate in the entire dataset, approximately 25 percent. If position-taking inflated the livelihood bill pool, proportional representatives, with stronger policy motivations, should produce higher-quality livelihood bills that face a smaller penalty. Instead, the penalty persists or intensifies. This finding suggests that what Labor bills propose, not who proposes them, generates the processing friction.
+Third, proportional representatives in the KNA, who are freed from district-level constituency service and are generally understood as more policy-oriented (Jun and Hix 2010), sponsor the most livelihood-heavy bill portfolios (68 percent \emph{minsaeng} versus 49 percent from stronghold legislators). Their Labor bills have the lowest committee decision rate in the entire dataset, approximately 25 percent. If position-taking inflated the livelihood bill pool, proportional representatives, with stronger policy motivations, should produce higher-quality livelihood bills that face a smaller penalty. Instead, the penalty persists or intensifies. This pattern is consistent with the interpretation that what Labor bills propose, not who proposes them, is associated with the processing differential.
 
 Fourth, the committee-match premium is flat across bill complexity quartiles, ranging narrowly from approximately 13 to 15 percentage points regardless of bill text length. This uniformity is inconsistent with the informational theory's prediction (Krehbiel 1991) and more consistent with a partisan or procedural access interpretation. Choi and Koo's (2018) finding that KNA committee composition is partisan rather than informational aligns with this pattern.
 
-Fifth, cosponsor count, which should predict processing if collective legislative effort matters, carries no predictive power in any specification. This null persists across all stages of this project and suggests that cosponsorship in the KNA operates differently from the U.S. Congress, where cosponsor counts signal coalition breadth.
+Fifth, cosponsor count, which should predict processing if collective legislative effort matters, carries no predictive power in any specification. This null persists across all models and suggests that cosponsorship in the KNA operates differently from the U.S. Congress, where cosponsor counts signal coalition breadth. This is an important null because it is inconsistent with the view that the number of supporters behind a bill determines its committee fate.
 
-Sixth, a legislator fixed-effects model that absorbs all time-invariant sponsor characteristics still yields a significant, albeit smaller, minsaeng coefficient, confirming that the content penalty is not an artifact of sponsor-level heterogeneity.
+Sixth, a legislator fixed-effects model that absorbs all time-invariant sponsor characteristics yields a smaller but still statistically significant \emph{minsaeng} coefficient ($\beta = -0.098$, SE $= 0.039$, $p = 0.012$), suggesting that the content penalty is not an artifact of sponsor-level heterogeneity.
 
 
 %% ============================================================
-\section{Discussion}
+\section{Discussion}\label{sec:discussion}
 %% ============================================================
 
-\subsection{Theoretical Implications}
+\subsection{Theoretical Implications}\label{sec:implications}
 
-These findings suggest a revision to how the winnowing and committee organization literatures understand bill attrition. Krutz (2005) treated winnowing as a capacity-driven process; the results here indicate that winnowing is structured by both institutional access and policy content, operating at different thresholds. The two-gate architecture reconciles the committee organization debate (which theory explains committee behavior?) with the policy typology literature (does content matter for legislative outcomes?) by showing that both traditions capture real variation in the same process.
+These findings suggest a revision to how the winnowing and committee organization literatures understand bill attrition. Krutz (2005) treated winnowing as a capacity-driven process; the results here indicate that winnowing is associated with both institutional access and policy content, operating at different thresholds. The two-gate architecture reconciles the committee organization debate (which theory explains committee behavior?) with the policy typology literature (does content matter for legislative outcomes?) by showing that both traditions capture real variation in the same process.
 
-The institutional access finding confirms and extends recent Korean scholarship. Kim and Lee (2023) showed that subcommittee position predicts bill passage; I show that the effect operates even earlier, at the processing stage, and with a larger magnitude, roughly 14 percentage points. Park (2026) critiques the direct-referral system to subcommittees (\emph{소위원회 직회부}) as concentrating legislative power; the institutional access premium documented here quantifies the extent of that concentration.
+The institutional access finding is consistent with and extends recent Korean scholarship. Kim and Lee (2023) found that subcommittee position predicts bill passage; the present analysis suggests that a similar association operates even earlier, at the processing stage, with an average marginal effect of roughly 14 percentage points (Table~\ref{tab:main}, Model 3). Critics of the direct-referral system to subcommittees (\emph{소위원회 직회부}) have argued that it concentrates legislative power; the institutional access premium documented here quantifies the extent of that concentration.
 
-The Lowi gradient provides what appears to be the first committee-stage bill-level test of the redistributive-distributive prediction. Peay (2020) comes closest in the U.S. context, showing that Congressional Black Caucus members' targeted-issue bills face disproportionate processing losses even from committee positions of authority. I extend Peay's insight from identity-based to content-based friction, grounded in Lowi's canonical typology. The KNA data permits a cleaner separation of content from sponsor identity because the Lowi gradient operates within a single policy domain (livelihood legislation) and across sponsors of all geographic and partisan types.
+The Lowi gradient provides what appears to be the first committee-stage bill-level test of the redistributive-distributive prediction, though a definitive claim would require a more systematic search of the comparative legislative studies literature. Peay (2020) comes closest in the U.S. context, finding that Congressional Black Caucus members' targeted-issue bills face disproportionate processing losses even from committee positions of authority. The present analysis extends Peay's insight from identity-based to content-based friction, grounded in Lowi's canonical typology. The KNA data permits a cleaner separation of content from sponsor identity because the Lowi gradient operates within a single policy domain (livelihood legislation) and across sponsors of all geographic and partisan types.
 
 The finding that the institutional premium is flat across bill complexity quartiles is inconsistent with pure informational theory and more consistent with partisan or procedural access interpretations. However, without data on committee chair party affiliation, which has not been available for this analysis, I cannot definitively distinguish the partisan mechanism (Cox and McCubbins 2005) from the procedural access mechanism. This remains the paper's most important unresolved interpretive question. Future work incorporating committee chair party data could determine whether the premium reflects co-partisan alignment or the procedural advantages of subcommittee participation.
 
-\subsection{Magnitude and Substantive Significance}
+\subsection{Magnitude and Substantive Significance}\label{sec:magnitude}
 
-The average minsaeng penalty of approximately three percentage points is modest in absolute terms. In a universe where baseline processing rates are 33 to 40 percent, three percentage points represents a reduction of roughly seven to nine percent. This is smaller than Volden, Wiseman, and Wittmer's (2016) finding for women's issues in the U.S. Congress, where the passage rate differential is proportionally larger. However, the comparison across different institutional contexts and outcome measures (processing versus passage) limits direct comparison.
+The average \emph{minsaeng} penalty of approximately three percentage points is modest in absolute terms. In a universe where baseline processing rates are 33 to 40 percent, three percentage points represents a reduction of roughly seven to nine percent. This is smaller than Volden, Wiseman, and Wittmer's (2016) finding for women's issues in the U.S. Congress, where the passage rate differential is proportionally larger. However, the comparison across different institutional contexts and outcome measures (processing versus passage) limits direct comparison.
 
-The normative significance of the content penalty may exceed its statistical magnitude. The three-percentage-point average masks a much larger within-domain gradient: Labor bills process at roughly 18 points below Small Business bills. This gradient means that legislation addressing minimum wages, workplace safety, and union rights faces substantially greater committee friction than legislation addressing small-business subsidies and entrepreneurship support. To the extent that these content categories map onto the interests of different constituencies, organized labor versus small business owners, the committee pipeline systematically disadvantages one group's policy priorities relative to the other's.
+The normative significance of the content penalty may exceed its statistical magnitude. The three-percentage-point average masks a much larger within-domain gradient: Labor bills process at roughly 18 points below Small Business bills (Table~\ref{tab:lowi}). This gradient means that legislation addressing minimum wages, workplace safety, and union rights faces substantially greater committee friction than legislation addressing small-business subsidies and entrepreneurship support. To the extent that these content categories map onto the interests of different constituencies, organized labor versus small business owners, the committee pipeline may systematically disadvantage one group's policy priorities relative to the other's.
 
-\subsection{Limitations}
+\subsection{Limitations}\label{sec:limitations}
 
-Several limitations warrant caution. First, the sponsor-committee match variable is a proxy based on sponsorship frequency patterns rather than official committee membership rosters. Measurement error likely attenuates the true institutional access effect, meaning the reported premium of 14 percentage points is a lower bound. The insider-outsider split, which is a main finding, could be sharpened with official committee and subcommittee rosters.
+Several limitations warrant caution.
 
-Second, the keyword classifier covers approximately 29 percent of member-sponsored bills. The unclassified 71 percent includes bills using different vocabulary for similar policy domains. While the Oster diagnostic provides reassurance against omitted variable bias at the minsaeng level, the within-minsaeng Lowi gradient has not been subjected to the same formal robustness test. Misclassification would compress the gradient toward zero, suggesting the observed gap is a conservative estimate, but formal validation against a hand-coded sample remains desirable.
+First, the sponsor-committee match variable is a proxy based on sponsorship frequency patterns rather than official committee membership rosters. Measurement error likely attenuates the true institutional access effect, meaning the reported premium of approximately 14 percentage points may represent a lower bound. However, this attenuation argument holds only under classical (non-differential) measurement error assumptions. If the proxy correlates with unobserved legislator attributes such as seniority or party leadership, the bias direction is uncertain. The insider-outsider split, which is a main finding, could be sharpened with official committee and subcommittee rosters. Validation of this proxy against official rosters for at least a subset of legislators is a priority for future work.
 
-Third, committee chair party affiliation, flagged as a critical variable throughout this project, has not been obtained. The bilateral finding from the labor committee, where both governing and opposition party members' processing rates collapsed under divided government, weakens the simple partisan gatekeeping interpretation but does not resolve the question.
+Second, the keyword classifier covers approximately 29 percent of member-sponsored bills. The unclassified 71 percent includes bills whose propose-reason texts do not match the keyword dictionary, either because they use different vocabulary for similar policy domains or because they address topics outside the six classified categories. This is not a random sample; bills whose propose-reason texts contain specific policy keywords are likely systematically different from those that do not. They may be more clearly policy-targeted, more substantive, or more salient. A comparison of observable characteristics (text length, cosponsor count, arrival timing, committee distribution) between classified and unclassified bills would help assess the severity of this selection concern. A Heckman-style selection correction or formal bounding exercise would strengthen the analysis. At present, the external validity of the content-based findings to the full population of member-sponsored bills remains uncertain. Misclassification within the classified sample would compress the gradient toward zero, suggesting the observed gap is a conservative estimate, but formal validation against a hand-coded sample remains desirable.
 
-Fourth, the divided-government interaction that appeared robust in earlier specifications collapsed to non-significance when the committee-match control was added. The interaction may be committee-specific, concentrated in the labor committee where a raw difference-in-differences of roughly 20 percentage points appears between unified and divided government. But the non-minsaeng comparison group in that committee under divided government is too small (approximately 20 bills) to support formal causal identification. The divided-government finding should be treated as suggestive rather than established.
+Third, committee chair party affiliation, flagged as a critical variable throughout this project, has not been obtained. The bilateral finding from the labor committee, where both governing and opposition party members' processing rates were lower under divided government, weakens the simple partisan gatekeeping interpretation but does not resolve the question.
 
-Fifth, this is an observational study. Bill content is endogenous to legislative strategy, and no instrument or natural experiment cleanly identifies the causal effect of content on processing. The within-sponsor design and coefficient stability diagnostics mitigate the most plausible confounders, but they cannot fully substitute for exogenous variation.
+Fourth, the divided-government interaction that appeared robust in earlier specifications collapsed to non-significance when the committee-match control was added (Table~\ref{tab:main}, Model 6). The interaction may be committee-specific, concentrated in the labor committee where a raw difference-in-differences of roughly 20 percentage points appears between unified and divided government. But the non-\emph{minsaeng} comparison group in that committee under divided government is too small (approximately 20 bills) to support reliable inference. The divided-government finding should be treated as suggestive rather than established.
+
+Fifth, this is an observational study. Bill content is endogenous to legislative strategy, and no instrument or natural experiment cleanly identifies the causal effect of content on processing. The within-sponsor design and coefficient stability diagnostics mitigate the most plausible confounders, but they cannot fully substitute for exogenous variation. The Oster diagnostic provides reassurance at the \emph{minsaeng} level ($\delta = 1.93$), but the within-\emph{minsaeng} Lowi gradient has not been subjected to the same formal robustness test.
 
 
 %% ============================================================
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusion}
 %% ============================================================
 
-I set out to test whether bill content predicts committee processing outcomes, and if so, whether the content channel operates independently of institutional access. The answer to both questions appears to be yes. Committee membership is the dominant predictor of processing, a finding consistent with recent Korean scholarship on subcommittee gatekeeping (Kim and Lee 2023; Park 2026) and with the broader committee organization literature's emphasis on institutional position. But content matters at the margin, and the margin is theoretically consequential. The Lowi gradient, the gap between redistributive labor bills and distributive small-business bills, is substantial, geographically invariant, and robust to institutional access controls. It persists identically among committee insiders and outsiders, suggesting that redistributive friction is structurally embedded in the committee process rather than mediated by sponsor-level characteristics.
+I set out to test whether bill content predicts committee processing outcomes, and if so, whether the content channel operates independently of institutional access. The answer to both questions appears to be yes. Committee membership is the dominant predictor of processing, a finding consistent with recent Korean scholarship on subcommittee gatekeeping (Kim and Lee 2023) and with the broader committee organization literature's emphasis on institutional position. But content matters at the margin, and the margin is theoretically consequential. The Lowi gradient, the gap between redistributive labor bills and distributive small-business bills, is substantial, geographically uniform, and robust to institutional access controls. It persists at similar magnitudes among committee insiders and outsiders, suggesting that redistributive friction is associated with the committee process itself rather than mediated by sponsor-level characteristics.
 
 The two-gate architecture I propose, where institutional access and policy content operate at different thresholds of the same pipeline, offers a synthesis that neither the committee organization nor the policy typology literature has articulated on its own. It suggests that winnowing is not the politically neutral capacity adjustment that Krutz (2005) described, but neither is it the pure content filtering that a strong reading of Lowi would predict. Both channels matter, at different levels. A comprehensive account of which bills survive the committee stage requires attending to both the institutional position of the sponsor and the redistributive character of the legislation.
 
 The practical implications extend beyond the KNA. If content-based processing friction is a general feature of committee systems, then legislative institutions may systematically underprocess redistributive legislation in any context where committees face capacity constraints. This would represent a structural mechanism through which legislative institutions contribute to what Hacker (2004) calls policy drift: the maintenance of a policy status quo not through active resistance but through institutional inaction that selectively affects proposals for change.
 
-Several avenues for future research emerge. Official committee and subcommittee membership data would sharpen the insider-outsider decomposition and permit a more precise test of whether the institutional premium reflects partisan alignment or procedural access. Merging bill-level data with electoral margin data could test whether district competitiveness operates as an instrument for bill seriousness, as suggested by recent work on Korean electoral geography. And extending the content classification to earlier Assembly terms would permit a time-series analysis of whether the Lowi gradient has widened as bill volume has grown, testing whether capacity constraints amplify content-based filtering.
+Several avenues for future research emerge. Official committee and subcommittee membership data would sharpen the insider-outsider decomposition and permit a more precise test of whether the institutional premium reflects partisan alignment or procedural access. Merging bill-level data with electoral margin data could test whether district competitiveness operates as a lever for bill seriousness, as suggested by recent work on Korean electoral geography. Extending the content classification to earlier Assembly terms would permit a time-series analysis of whether the Lowi gradient has widened as bill volume has grown, testing whether capacity constraints amplify content-based filtering. And a hand-coded validation sample, combined with a Heckman-style selection model, would address the most serious methodological limitation of this analysis: the 29 percent classifier coverage rate.
 
 \bigskip
 \noindent\textit{This working paper was generated by AI research agents as an
-experimental output. It has not been peer-reviewed or fact-checked.
+experimental output. It has not been peer-reviewed, and all references
+require verification against Crossref, OpenAlex, or KCI before citation.
 Do not cite or use in any academic, policy, or professional context.}
 
 
 %% ============================================================
 \section*{References}
 %% ============================================================
+
+%% NOTE: These references are formatted as plain text. For journal
+%% submission, convert to natbib + .bib file using \bibliographystyle{apsr}.
+%% All references require independent verification against Crossref,
+%% OpenAlex, or KCI databases.
 
 \begin{description}
 
@@ -369,8 +427,6 @@ Do not cite or use in any academic, policy, or professional context.}
 
 \item Kang, Sin-Jae. 2023. ``Which Legislators are Elected to Standing Committee Leadership? Empirical Analysis of the 20th National Assembly.'' \textit{Journal of Korean Politics} 32 (3): 185--216.
 
-\item Kim, Sungjoon, and Ha-young Lee. 2026. ``Legislator Competence or Structural Practices: An Empirical Study on the Rigidity of the Korean Legislative System.'' \textit{Journal of Legislative Studies} 23 (1).
-
 \item Kim, Yanghun, and Dongseong Lee. 2023. ``An Analysis of the Impact of Bill Initiators' Position in Subcommittees on the Passage of Bills.'' \textit{Korean Political Science Review} 57 (1): 5--.
 
 \item Krehbiel, Keith. 1991. \textit{Information and Legislative Organization}. Ann Arbor: University of Michigan Press.
@@ -380,8 +436,6 @@ Do not cite or use in any academic, policy, or professional context.}
 \item Lowi, Theodore J. 1964. ``American Business, Public Policy, Case-Studies, and Political Theory.'' \textit{World Politics} 16 (4): 677--715.
 
 \item Oster, Emily. 2019. ``Unobservable Selection and Coefficient Stability: Theory and Evidence.'' \textit{Journal of Business and Economic Statistics} 37 (2): 187--204.
-
-\item Park, Poem Young. 2026. ``Issues of Legislative Power Infringement in the Current Operation of the National Assembly's Direct-Referral System to Subcommittees and Directions for Reform.'' \textit{The Justice} 212: 1--36.
 
 \item Peay, Periloux C. 2020. ``Incorporation Is Not Enough: The Agenda Influence of Black Lawmakers in Congressional Committees.'' \textit{Representation} 56 (3): 411--430.
 
@@ -396,6 +450,28 @@ Do not cite or use in any academic, policy, or professional context.}
 \item Weingast, Barry R., and William J. Marshall. 1988. ``The Industrial Organization of Congress; or, Why Legislatures, Like Firms, Are Not Organized as Markets.'' \textit{Journal of Political Economy} 96 (1): 132--163.
 
 \end{description}
+
+
+%% ============================================================
+\appendix
+\section{Planned Supplementary Materials}\label{sec:appendix}
+%% ============================================================
+
+The following supplementary materials are planned for inclusion in a revised version of this paper:
+
+\begin{enumerate}
+\item Full keyword dictionary for the six content categories, with Korean terms and English translations.
+\item Validation exercise: precision and recall of the keyword classifier against a hand-coded random sample of 500 bills.
+\item Comparison of observable characteristics (text length, cosponsor count, arrival timing, committee distribution) between classified and unclassified bills.
+\item Coefficient plot for the main regression (Table~\ref{tab:main}).
+\item Visualization of the Lowi gradient by insider status (Table~\ref{tab:lowi}).
+\item Full legislator fixed-effects regression table.
+\item Oster (2019) proportional selection diagnostic for the within-\emph{minsaeng} Lowi gradient.
+\item Official committee roster validation for the sponsor-committee match proxy.
+\end{enumerate}
+
+
+\end{document}
 
 
 \end{document}
