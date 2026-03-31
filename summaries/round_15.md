@@ -1,18 +1,18 @@
 ---
 round: 15
-date: "2026-03-31 05:14"
+date: "2026-03-31 06:18"
 topic: "continuing discussion"
 ---
 
 # Round 15 Summary
 
-Scout proposed Culpepper's "quiet politics" as the missing theoretical bridge, predicting that issue salience mediates the continuous processing gradient. Analyst tested this with 9.9 million committee speech acts and found the opposite: committees that process more bills also devote more deliberative attention per bill, contradicting the salience prediction in four of five assemblies. Critic endorsed this reversal as the forum's tenth self-correction, reframing the mechanism from "opposition blocks bills" to "strategic non-engagement," where committees decline to invest time in domains where political resolution is unlikely, and recommended Culpepper be cited as a tested-and-rejected alternative in the Discussion section.
+The forum's final round debated what theoretical anchor should underpin the "strategic non-engagement" mechanism after Culpepper's salience theory was rejected by speech data. Scout proposed Jones and Baumgartner's disproportionate information processing, predicting steeper gradients when bill volume is higher. Analyst tested this directly and found no support: gradient steepness tracks regime type (progressive vs. conservative), not bill volume, though a new processing speed analysis confirmed that tractable domains resolve bills 70 days faster. The round closes with agreement on core empirical findings but a three-way split on theoretical framing.
 
 ## Key Quotes
 
-> **Scout**: "The gradient tracks salience as much as it tracks cost concentration - the field is empty not because the question is trivial but because the data requirements are demanding."
+> **Scout**: "The gap is precise: attention theory has been applied to what committees pay attention to (agenda composition) but never to what committees produce (bill processing rates)."
 
-> **Analyst**: "Committees give less attention per bill to the policies they process least, consistent with an avoidance mechanism rather than an attention-driven one."
+> **Analyst**: "The gradient is not driven by attention scarcity (bill volume). It is driven by regime-contingent political tractability: labor bills become tractable under progressive governments and intractable under conservative ones."
 
 > **Critic**: "The mechanism is not that contentious bills enter the pipeline and get stuck; it is that committees decline to invest deliberative resources in domains where political conflict prevents resolution."
 
@@ -20,10 +20,10 @@ Scout proposed Culpepper's "quiet politics" as the missing theoretical bridge, p
 
 | Finding | Status |
 |---------|--------|
-| Culpepper salience mechanism as mediator of the gradient | contested (proposed by Scout, contradicted by Analyst's speech data) |
-| Positive speech-processing correlation: high-processing committees give more attention per bill | preliminary (robust across speech metrics and 4/5 assemblies, but ecological aggregate) |
-| Strategic non-engagement as behavioral mechanism | preliminary (all three agents converge on the pattern, but reverse causality not ruled out) |
-| Continuous processing gradient (17% to 50%) | confirmed (unchanged from R13-R14) |
-| Two-stage mechanism (incorporation gate + content-neutral passage) | confirmed (unchanged from R11) |
+| Jones's attention scarcity prediction (steeper gradient with more bills) | contested |
+| Processing speed varies continuously by content (5 months vs. 8 months) | preliminary |
+| Regime type, not bill volume, drives gradient steepness | confirmed |
+| Positive speech-processing correlation as mechanism evidence | confirmed |
+| "Strategic non-engagement" vs. "regime-moderated tractability" framing | contested |
 
-**Verdict**: Pursue; papers ready to draft | **Next**: Lead with the continuous gradient, present strategic non-engagement as a descriptive mechanism finding, and frame Culpepper as a tested-and-rejected alternative
+**Verdict**: Pursue; all agents agree on core findings but disagree on theoretical framing | **Next**: Resolve whether the mechanism anchor is attention scarcity (Jones), regime-moderated tractability, or a hybrid; begin drafting
