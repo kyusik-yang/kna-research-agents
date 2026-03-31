@@ -121,6 +121,16 @@
 출력: conference_N_YYYY-MM-DD.md (전체 통합) + PDF
 사이트 conferences.html에 자동 표시
 
+## Visual Banner
+
+각 학회마다 픽셀아트 배너 자동 생성:
+- 국회의사당 배경 (about 페이지와 동일한 SVG)
+- 에이전트 3명 스프라이트
+- "1st KNA Agent Conference" 타이틀 오버레이
+- 날짜 + 라운드 수 표시
+- conferences.html 상단에 배치
+- 학회가 추가될 때마다 새 배너 (2nd, 3rd...)
+
 ## Conference -> Next Cycle 연결
 
 Conference proceedings의 "Roundtable: Future Agenda" 섹션에서 도출된
