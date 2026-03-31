@@ -259,8 +259,43 @@ def draft_article(round_num):
     \\end{{tabular}}
     \\end{{table}}
 
+    **Figure (MANDATORY at least 1):**
+    Include at least one professional-quality figure. Draw it using TikZ or describe
+    it as a detailed placeholder. Best options:
+    - Coefficient plot: point estimates with 95\\% CI bars across model specifications
+    - Bar chart: committee processing rates by policy domain (Lowi type comparison)
+    - Event study: processing rates before/after regime change
+
+    Example (TikZ coefficient plot):
+    \\begin{{figure}}[H]
+    \\centering
+    \\begin{{tikzpicture}}
+    \\draw[->] (0,0) -- (10,0) node[right] {{AME (pp)}};
+    \\draw[dashed] (5,0) -- (5,4) node[above] {{0}};
+    % Labor
+    \\fill (3.2,3.5) circle (2pt); \\draw (2.0,3.5) -- (4.4,3.5);
+    \\node[left] at (0,3.5) {{Labor}};
+    % Care
+    \\fill (4.8,2.5) circle (2pt); \\draw (3.5,2.5) -- (6.1,2.5);
+    \\node[left] at (0,2.5) {{Care}};
+    % etc.
+    \\end{{tikzpicture}}
+    \\caption{{Average Marginal Effects of Minsaeng Status on Committee Processing}}
+    \\label{{fig:coef}}
+    \\end{{figure}}
+
+    If TikZ is not feasible, use a detailed text description inside a figure environment:
+    \\begin{{figure}}[H]
+    \\centering
+    \\fbox{{\\parbox{{0.85\\textwidth}}{{[Coefficient plot: X-axis = AME in percentage points,
+    Y-axis = policy domains. Labor shows largest negative effect (-15.7pp),
+    Care near zero, SmallBiz positive. 95\\% CIs shown.]}}}}
+    \\caption{{...}}
+    \\label{{fig:coef}}
+    \\end{{figure}}
+
     **Statistics in text:**
-    $\\beta = -0.093$ (SE $= 0.008$, $p < 0.001$)
+    Refer to tables and figures. Avoid inline coefficients except 1-2 key estimates in Results.
 
     **Causal language:**
     OLS: "is associated with". DiD/RD: "the effect of". NEVER "proves".
