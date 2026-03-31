@@ -190,7 +190,7 @@ def run_persona(persona, prompt_text, dry_run=False):
 
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=120,
+            cmd, capture_output=True, text=True, timeout=600,
         )
         # Extract the actual reaction (strip tool use artifacts)
         output = result.stdout.strip()
@@ -270,7 +270,7 @@ def run_discussion(stimulus, stimulus_type="news", n_personas=10, dry_run=False)
             "Write the discussion report now.",
         ]
         try:
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
             report_text = result.stdout.strip()
         except Exception as e:
             report_text = f"Report generation failed: {e}"

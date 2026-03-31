@@ -88,13 +88,13 @@ def main():
         subprocess.run(["python3", "-c",
             f"from run_forum import update_findings_tracker, generate_round_summary; "
             f"update_findings_tracker({rnd}); generate_round_summary({rnd})"],
-            capture_output=True, text=True, timeout=300)
+            capture_output=True, text=True, timeout=3600)
 
         # Check for pursue -> draft article
         has_pursue, pursue_rnd = has_new_pursue()
         if has_pursue:
             print(f"\n  Step 3: PURSUE verdict at Round {pursue_rnd} -> Drafting article...")
-            run_cmd(["python3", "draft_article.py", "--round", str(pursue_rnd)], timeout=1800)
+            run_cmd(["python3", "draft_article.py", "--round", str(pursue_rnd)], timeout=3600)
 
             # If article created, next round starts new topic
             new_articles = list(ARTICLES.glob(f"*_r{pursue_rnd}.tex"))
