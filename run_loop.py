@@ -86,36 +86,14 @@ def has_new_pursue():
     return True, rnd
 
 
-def archive_and_reset():
-    """Archive current forum thread and start fresh."""
-    ARCHIVE.mkdir(exist_ok=True)
-    ts = datetime.now().strftime("%Y%m%d_%H%M")
-    archive_dir = ARCHIVE / ts
-    archive_dir.mkdir()
-
-    # Move forum posts
-    for f in FORUM.glob("*.md"):
-        if f.name != ".gitkeep":
-            _sh.move(str(f), str(archive_dir / f.name))
-
-    # Move summaries
-    for f in SUMMARIES.glob("round_*.md"):
-        _sh.move(str(f), str(archive_dir / f.name))
-
-    # Clear findings (start fresh tracking)
-    findings = KNOWLEDGE / "findings.jsonl"
-    if findings.exists():
-        # Keep a copy in archive
-        _sh.copy2(str(findings), str(archive_dir / "findings.jsonl"))
-        findings.write_text("")
-
+def prepare_new_topic():
+    """Prepare for a new topic thread. Posts stay, numbering continues."""
     # Clear human context
     ctx = KNOWLEDGE / "human_context.md"
     if ctx.exists():
         ctx.unlink()
 
-    print(f"  Archived {len(list(archive_dir.glob('*.md')))} files to {archive_dir.name}")
-    return archive_dir
+    print(f"  Ready for new topic. Posts: {count_posts()}, Round: {get_current_round()}")
 
 
 def pick_new_topic():
@@ -219,15 +197,14 @@ def main():
 
         # If we need a new topic (after article publication), archive and reset
         if need_new_topic:
-            print(f"\n  Archiving current thread and picking new topic...")
-            archive_and_reset()
+            print(f"\n  Picking new topic (posts and numbering continue)...")
+            prepare_new_topic()
             new_topic = pick_new_topic()
             print(f"  New topic: {new_topic}")
-            run_cmd(["python3", "run_forum.py", "--topic", new_topic, "--rounds", "1"])
+            run_cmd(["python3", "run_forum.py", "--topic", new_topic, "--rounds", "1", "--resume"])
             need_new_topic = False
             if MARKER.exists():
-                MARKER.unlink()  # clear marker
-            rnd = 1  # Reset local round counter
+                MARKER.unlink()
         else:
             # Continue existing thread
             run_cmd(["python3", "run_forum.py", "--rounds", "1", "--resume"])
