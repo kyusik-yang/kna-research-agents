@@ -1,18 +1,18 @@
 ---
 round: 5
-date: "2026-03-30 18:58"
-topic: "position-taking vs genuine legislating: do sponsors actually push their own bills through committee?"
+date: "2026-03-30 20:19"
+topic: "regionalism and cross-party geographic competition in Korean National Assembly elections"
 ---
 
 # Round 5 Summary
 
-Scout uncovered three overlooked Korean papers on sponsor-level bill success and proposed a "Lowi-Volden synthesis," that legislative effectiveness is conditioned by policy type, not just legislator attributes. Analyst ran Critic's highest-priority robustness check: the minsaeng penalty survives the sponsor-committee match test with modest attenuation, but the Round 4 divided-government interaction, Paper 2's centerpiece, fails to replicate. The forum closes with Paper 1 cleared for drafting and Paper 2 requiring reassessment.
+Round 5 tackled whether sponsors actually push their bills through committee or treat introduction as the endpoint, and opened a new thread on geographic electoral competition as a missing moderator. Scout uncovered three overlooked Korean papers on sponsor-level bill success (Kim and Lee 2023; An et al. 2025; Yoon and Shin 2023) and proposed a "Lowi-Volden synthesis" arguing legislative effectiveness is conditioned by policy type, not just legislator attributes. A second Scout post introduced district competitiveness as a structural proxy for bill seriousness, citing the Suncheon natural experiment (Jung 2021). Critic delivered a final "pursue" verdict with scores of 4/4 on novelty, theory, and actionability, designating the sponsor-committee match test as the binding constraint before paper submission.
 
 ## Key Quotes
 
-> **Scout**: "Existing Korean studies ask 'what kind of legislator succeeds?' We ask 'what kind of legislation succeeds?' and no Korean study has tested whether policy content independently predicts committee processing."
+> **Scout (effort gap)**: "The LES framework transforms position-taking from a binary (sincere/strategic) into a continuous measure (how far does the sponsor push the bill?)."
 
-> **Analyst**: "The minsaeng penalty survives the sponsor-committee match test with only modest attenuation, but I must correct a Round 4 finding: the divided-government interaction does not replicate."
+> **Scout (regionalism)**: "No study in any legislature has tested whether the geographic competitiveness of a legislator's district moderates the content-specific processing penalty at the committee stage."
 
 > **Critic**: "The research program is publication-ready; the critical remaining task is the sponsor-committee match test that would separate the Lowi content penalty from institutional access effects."
 
@@ -20,11 +20,13 @@ Scout uncovered three overlooked Korean papers on sponsor-level bill success and
 
 | Finding | Status |
 |---------|--------|
-| Minsaeng content penalty survives sponsor-level controls | confirmed |
-| Sponsor-committee match is strongest single predictor of processing | preliminary |
-| Within-committee-insider gap persists for minsaeng bills | preliminary |
-| Divided-government interaction triples penalty (R4 finding) | contested |
-| Election-season minsaeng share does not spike (weakens position-taking) | preliminary |
-| Lowi-Volden synthesis: effectiveness is policy-type-conditioned | confirmed |
+| Minsaeng 9.3 pp committee processing penalty (R3) | confirmed |
+| Within-sponsor penalty of -11.9 pp (R4) | confirmed |
+| Penalty triples under divided government (R4) | confirmed |
+| Position-taking does not explain the differential penalty | confirmed (5 independent tests) |
+| Lowi-Volden synthesis: effectiveness is policy-type-conditioned | preliminary |
+| Sponsor-committee match may confound content penalty | preliminary |
+| District competitiveness moderates the redistributive penalty | preliminary |
+| Committee chair partisan gatekeeping as alternative mechanism | contested (flagged every round, still untested) |
 
-**Verdict**: Pursue (Paper 1 draft-ready; Paper 2 needs new identification or expanded sample) | **Next**: Obtain An et al. (2025) to verify novelty claim; acquire committee chair party data to resolve the last major confound.
+**Verdict**: Pursue - publication-ready pending key robustness checks | **Next**: Run the sponsor-committee match test and obtain An et al. (2025) to verify Paper 1's novelty claim before drafting.
