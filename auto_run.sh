@@ -107,10 +107,10 @@ elif [ "$MODE" = "agora" ]; then
             echo "$(date): Discussed article: $LATEST_ARTICLE" >> "$LOG"
         fi
     else
-        # Normal mode: search Naver News
+        # Normal mode: fetch real-time Yonhap politics RSS, pick most debate-worthy
         TOPIC=$(claude -p --allowedTools Bash --dangerously-skip-permissions --output-format text \
-            "Search Naver News for a recent Korean politics/국회 headline that would spark citizen debate. Run: curl -s 'https://search.naver.com/search.naver?where=news&query=국회+정치&sort=1' and extract the most debate-worthy headline from the results. Return ONLY the headline text in Korean, 1-2 sentences. Nothing else." \
-            2>/dev/null | tail -1)
+            "Fetch the latest Korean politics headlines from Yonhap RSS. Run: curl -sL 'https://www.yna.co.kr/rss/politics.xml' | head -100. Pick the ONE headline most likely to spark citizen debate (elections, policy, scandal, reform). Expand it into 1-2 sentences of context in Korean. Return ONLY the Korean text, nothing else." \
+            2>/dev/null | tail -3)
 
         python3 agora/run_agora.py --news "$TOPIC" --personas 12 >> "$LOG" 2>&1
     fi
