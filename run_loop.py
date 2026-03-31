@@ -67,7 +67,7 @@ def run_cmd(cmd, timeout=3600):
         return False
 
 def main():
-    target = 10
+    target = 20
     current = get_current_round()
     print(f"\n  Autonomous Loop: Round {current+1} to {target}")
     print(f"  Current posts: {count_posts()}")
