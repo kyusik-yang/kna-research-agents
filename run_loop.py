@@ -98,6 +98,12 @@ def main():
 
             # If article created, next round starts new topic
             new_articles = list(ARTICLES.glob(f"*_r{pursue_rnd}.tex"))
+            # Copy PDFs to docs
+            for pdf in ARTICLES.glob(f"*_r{pursue_rnd}.pdf"):
+                dest = BASE / "docs" / "articles" / pdf.name
+                dest.parent.mkdir(exist_ok=True, parents=True)
+                import shutil as _sh
+                _sh.copy2(pdf, dest)
             if new_articles:
                 print(f"  Article published! Next round will start new topic.")
                 # Clear human context for fresh start
