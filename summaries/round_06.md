@@ -1,16 +1,18 @@
 ---
 round: 6
-date: "2026-03-30 20:25"
-topic: "regionalism and cross-party geographic competition"
+date: "2026-03-30 20:52"
+topic: "sponsor-committee match reshapes the project"
 ---
 
 # Round 6 Summary
 
-Analyst delivered Critic's top-priority robustness check: whether the sponsor-committee match explains away the minsaeng penalty. The match turned out to be the single most powerful predictor of committee processing (a 15 percentage-point advantage), yet the minsaeng penalty survived with only 13% attenuation, well below the 30% concern threshold. The divided-government interaction from Round 4, however, collapsed from highly significant to non-significant in the full specification, putting Paper 2 in crisis.
+Analyst introduced the sponsor-committee match control, revealing it as the single most powerful predictor of bill processing, with a 15 percentage-point advantage that dwarfs all other variables. The minsaeng content penalty survives every control but shrinks to roughly one-third of the Round 5 estimate, while the divided-government interaction collapses entirely. Scout complicated the institutional access interpretation by surfacing three competing theories (informational, partisan, distributional) and identifying Korean scholarship showing KNA committees are organized along partisan lines, leaving the mechanism ambiguous.
 
 ## Key Quotes
 
-> **Analyst**: "Regionalism shapes what legislators sponsor, but not how those bills are processed."
+> **Scout**: "The proportional representative finding is the forum's cleanest anti-position-taking evidence precisely because it eliminates the two main alternative explanations simultaneously."
+
+> **Analyst**: "Labor bills from proportional representatives have the lowest decision rate in the entire dataset, even lower than labor bills from swing or stronghold district legislators."
 
 > **Critic**: "The project is smaller than it appeared in Round 4, but what survives is more credible."
 
@@ -18,12 +20,11 @@ Analyst delivered Critic's top-priority robustness check: whether the sponsor-co
 
 | Finding | Status |
 |---------|--------|
-| Sponsor-committee match is the dominant predictor of committee processing (15 pp advantage) | confirmed |
-| Minsaeng penalty survives all controls including institutional access | confirmed |
-| Minsaeng penalty magnitude revised downward (from roughly 9 pp to 3 pp) | confirmed |
-| Geographic electoral competition does not moderate the content penalty | preliminary |
-| Divided-government interaction no longer significant in full model | contested |
-| Cosponsor count has no predictive power (from Round 2) | confirmed |
-| Position-taking does not explain the differential penalty (from Round 3) | confirmed |
+| Sponsor-committee match dominates bill processing (five times larger than content penalty) | preliminary |
+| Minsaeng penalty survives institutional access control but shrinks substantially | confirmed |
+| Minsaeng penalty is geographically uniform across district types | confirmed |
+| Divided-government interaction (Round 5 headline) collapses in fuller specification | contested |
+| PR members' labor bills face the steepest processing penalty despite policy motivation | preliminary |
+| Yeongnam-Honam cosponsorship divide is the lowest cross-regional bridging in the Assembly | preliminary |
 
-**Verdict**: Pursue with mandatory reframing; Paper 1 must lead with institutional access, not content penalty | **Next**: Run restricted-sample diagnostic to isolate whether the AME attenuation is sample-driven or control-driven, and determine if Paper 2's interaction can be rescued
+**Verdict**: Pursue, with honest downsizing; Paper 1 must reframe around institutional access, Paper 2 paused pending rescue diagnostics | **Next**: Round 7 should run restricted-sample diagnostics to decompose the cross-round attenuation and determine whether the divided-government finding is rescuable or must be shelved.
