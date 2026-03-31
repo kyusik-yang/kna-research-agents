@@ -303,7 +303,7 @@ def draft_article(round_num):
 
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=1200,
+            cmd, capture_output=True, text=True, timeout=3600,
             cwd=str(WORKSPACE_DIR),
         )
         if content_file.exists():
@@ -455,7 +455,7 @@ def review_and_revise(tex_file):
     ]
 
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=600, cwd=str(WORKSPACE_DIR))
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600, cwd=str(WORKSPACE_DIR))
     except subprocess.TimeoutExpired:
         print(f"  Review timed out")
         return
@@ -504,7 +504,7 @@ def review_and_revise(tex_file):
     ]
 
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=1200, cwd=str(WORKSPACE_DIR))
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600, cwd=str(WORKSPACE_DIR))
     except subprocess.TimeoutExpired:
         print(f"  Revision timed out")
         return

@@ -176,7 +176,7 @@ def generate_conference(conf_num=1):
 
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=600,
+            cmd, capture_output=True, text=True, timeout=3600,
             cwd=str(WORKSPACE_DIR),
         )
         conf_file = ARTICLES_DIR / f"conference_{conf_num}_{ts}.md"
