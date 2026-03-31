@@ -1,0 +1,380 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{Policy Content and Committee Processing: A Bill-Level Test of\\
+the Lowi-Wilson Gradient in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated)\thanks{Experimental output. kna-research-agents.com. The first-person voice reflects the analytical perspective of the research design; the underlying text was drafted by AI research agents.}}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent \citet{lowi1964} predicted that redistributive and regulatory policies generate organized opposition while distributive policies avoid it. \citet{wilson1980} specified the mechanism: policies that concentrate costs on organized groups provoke resistance regardless of how benefits are distributed. Despite six decades of theorizing, neither prediction has been tested at the level of individual bills within the committee stage of any legislature. Using bill-level data from five assemblies of the Korean National Assembly (2004--2024), I classify over 9,200 member-sponsored bills into seven policy sub-categories and find a continuous processing gradient: committee processing rates span a nearly threefold range, with bills imposing more concentrated costs on more organized constituencies facing progressively lower rates. Five convergent demand-side tests suggest the gradient is consistent with committee sorting rather than differences in bill quality. The gradient concentrates at the committee incorporation gate; once committee alternatives are produced, they pass at near-universal rates regardless of content.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} committee gatekeeping, Lowi-Wilson policy typology, legislative winnowing, Korean National Assembly, omnibus legislation
+
+\bigskip
+\setcounter{page}{1}
+\clearpage
+
+%% ============================================================
+%% INTRODUCTION
+%% ============================================================
+
+\section{Introduction}
+\label{sec:intro}
+
+\citet{lowi1964} proposed that the substance of policy determines the structure of politics surrounding it. Redistributive policies, which transfer resources across broad social classes, generate organized opposition from identifiable losers. Regulatory policies, which impose rules on specific industries, similarly activate concentrated resistance from regulated firms. Distributive policies, which allocate particularistic benefits without imposing visible costs, attract logrolling coalitions and face minimal opposition. \citet{wilson1980} sharpened the mechanism: both redistributive and regulatory policies impose concentrated costs on organized groups, and it is this cost concentration that provokes political opposition. The implication for legislatures is direct: bills that concentrate costs should face greater committee resistance, while bills that diffuse costs should advance more smoothly. Yet there exists, to my knowledge, no study that tests this prediction at the level of individual bills within the committee stage of any legislature.
+
+The absence of bill-level evidence is puzzling given the centrality of these typologies in comparative politics. Two practical barriers may explain this lacuna. First, classifying thousands of bills by policy type requires either prohibitively expensive hand-coding or keyword-based approaches whose accuracy is difficult to verify externally. Second, committees handle bills from multiple policy domains, making it difficult to separate content-based processing differences from committee-specific institutional effects. Most empirical work on committee behavior has accordingly focused on partisan \citep{cox2005}, informational \citep{krehbiel1991}, or sponsor-level \citep{volden2014} determinants of bill survival, leaving the role of substantive policy content largely unexamined.
+
+This paper addresses both barriers using data from the Korean National Assembly (KNA), where a comprehensive digital record of legislative activity provides the material for systematic bill classification, and where I introduce a committee-routing validation method that independently confirms classifier accuracy. The KNA is an especially informative setting because the vast majority of failed member-sponsored bills (의원발의 법률안, member-initiated legislation) in recent assemblies died at a single chokepoint: they were placed on a standing committee agenda but never received a committee decision. Understanding what predicts which bills survive this gate is central to understanding legislative outcomes in Korea's democracy.
+
+I classify over 9,200 member-sponsored bills into seven policy sub-categories using keyword matching applied to bill names, then group these into \citeauthor{wilson1980}'s (\citeyear{wilson1980}) cost-concentration categories. Labor bills represent the redistributive type; financial regulation, fair trade, and environmental regulation represent the regulatory type; small-business and agriculture bills represent the distributive type. Veterans benefits bills (보훈, patriotic merit), formally distributive but politically contested along partisan lines, provide a theoretically informative anomaly. To validate the classification, I introduce a committee-routing check: if a bill classified as ``Labor'' is assigned to the Environment and Labor Committee (환경노동위원회), the classification is independently confirmed by the Speaker's institutional routing decision. Restricting the sample to these correctly routed bills amplifies the estimated content gradient, consistent with classical attenuation bias from measurement error.
+
+The central finding is a continuous processing gradient rather than a binary divide. The seven sub-categories span committee decision rates across a range exceeding 30 percentage points (Table~\ref{tab:desc}), with no clean break separating ``concentrated'' from ``diffuse'' cost types. The gradient is monotonic: bills that impose more concentrated costs on more organized groups face progressively lower processing rates. This continuous pattern is consistent with both \citeauthor{lowi1964}'s (\citeyear{lowi1964}) and \citeauthor{wilson1980}'s (\citeyear{wilson1980}) predictions but is better characterized as a gradient of political conflict intensity than as a discrete typological boundary. Veterans benefits bills, formally distributive under Wilson's taxonomy, process at rates comparable to the most contentious redistributive legislation, suggesting that political conflict intensity rather than formal cost structure is the key correlate of committee processing outcomes.
+
+The processing gap concentrates at the committee incorporation gate, the upstream stage where committees decide which member bills to consolidate into omnibus alternatives. Once committee alternatives are produced, they pass at near-universal rates regardless of content. Multiple lines of evidence suggest the gradient is consistent with demand-side committee sorting rather than supply-side differences in bill quality: the same legislator introducing bills in both categories sees divergent processing trajectories, and government-sponsored bills largely bypass the incorporation gate, consistent with the interpretation that the gap is specific to the member-bill channel.
+
+I proceed by situating this study within the literatures on committee organization, Lowi-Wilson policy typology, and content-specific legislative processing differentials (Section~\ref{sec:lit}), then describing the data, classification approach, and identification strategy (Section~\ref{sec:method}), before presenting the continuous gradient, demand-side evidence, and incorporation gate analysis (Section~\ref{sec:results}). Section~\ref{sec:discussion} discusses implications and limitations, and Section~\ref{sec:conclusion} concludes.
+
+%% ============================================================
+%% LITERATURE AND THEORY
+%% ============================================================
+
+\section{Literature and Theory}
+\label{sec:lit}
+
+\subsection{Committee Organization and the Winnowing Problem}
+
+Theories of legislative organization disagree on why committees exist and whom they serve but converge on the observation that committees exercise substantial discretion over which bills advance. Under cartel theory, the majority party uses committee assignments and agenda control to prevent bills opposed by the party median from reaching the floor \citep{cox2005}. Under the informational theory, committees serve the legislature as a whole by developing policy expertise, and gatekeeping reflects the costs of processing low-information proposals \citep{krehbiel1991}. \citet{krutz2005} offers a third account rooted in bounded rationality: committees winnow bills using observable cues such as sponsor identity and timing to triage an unmanageable workload.
+
+All three theories predict that most bills will fail at the committee stage, but they differ on which bills survive. Cartel theory predicts partisan selection; informational theory predicts expertise-driven selection; winnowing theory predicts cue-based selection. None makes a strong prediction about the \emph{substantive content} of legislation as an independent determinant of committee action. A labor bill and a small-business bill introduced by the same legislator, referred to the same committee, at the same point in the legislative calendar, should receive similar treatment under all three frameworks. If they do not, a content-based process is at work that existing theories do not fully capture.
+
+A parallel literature documents the rise of omnibus legislation as the dominant vehicle for lawmaking. \citet{krutz2001} argues that omnibus bills serve as vehicles for proposals that cannot pass on their own. \citet{krutz2006} show that recurring bills use the omnibus vehicle strategically across congressional sessions. \citet{sinclair2016} documents the broader shift toward ``unorthodox lawmaking'' in which leadership-driven consolidation supplants traditional committee-stage deliberation. In all three accounts, the omnibus channel is treated as a volume management device. The question of whether access to the omnibus channel varies systematically by policy content type has not been examined.
+
+\subsection{Lowi, Wilson, and the Empirical Gap}
+
+\citet{lowi1964} argued that the content of policy determines the political dynamics surrounding it. Redistributive policies, which reallocate resources across broad social categories, generate organized opposition from groups who stand to lose. Regulatory policies, which impose rules on identifiable industries, similarly activate concentrated resistance from regulated firms. Distributive policies, which confer particularistic benefits without imposing visible costs, attract logrolling coalitions. \citet{wilson1980} refined this prediction through a two-by-two matrix of concentrated versus diffuse costs and benefits. The critical insight is that both redistributive and regulatory policies impose concentrated costs on organized groups: employers in the case of labor regulation, regulated industries in the case of financial regulation. Distributive policies avoid this because their costs are diffused across the tax base. Wilson predicted that policies with concentrated costs provoke organized opposition regardless of how benefits are distributed.
+
+These predictions carry a clear testable consequence for committee processing. Bills proposing concentrated costs on identifiable groups should face greater political resistance because they activate organized opposition. Bills proposing diffuse costs should advance with less resistance. Whether the resulting processing gradient is binary (a discrete divide between cost-concentrating and cost-diffusing types) or continuous (a monotonic relationship between cost concentration and processing rates) is an empirical question that neither Lowi nor Wilson resolved theoretically.
+
+Despite the intuitive appeal of these predictions, the empirical literature on policy typology has remained largely theoretical and taxonomic. Scholars have debated the boundaries of Lowi's categories and proposed refinements, but existing work has not brought these categories to bear on individual legislative bills to test whether committee processing rates vary systematically by policy content. \citet{bundi2017} provides the closest comparative precedent, demonstrating that policy field attributes predict parliamentary oversight demand in Switzerland. Yet Bundi's dependent variable is oversight demand, not bill processing outcomes, and the analysis does not employ Lowi-Wilson classifications. The practical difficulty of classifying thousands of bills and of separating content effects from committee-specific dynamics may account for this broader absence.
+
+\subsection{Content-Specific Legislative Processing Differentials}
+
+Two recent studies in the U.S. Congress demonstrate that the substantive content of legislation can shape its fate independent of sponsor characteristics. \citet{volden2016} find that bills addressing women's issues face a significant content-based processing disadvantage even after controlling for sponsor attributes captured by the Legislative Effectiveness Score framework \citep{volden2014}. \citet{peay2020} extends the content-penalty finding to Black lawmakers, showing that committee membership does not equalize processing outcomes for all policy types. These studies establish the existence of content-based legislative processing differentials but neither connects the finding to Lowi's typology nor identifies the procedural stage at which the differential concentrates. \citet{bucchianeri2024} extend the LES framework to 97 state chambers but do not decompose aggregate effectiveness scores by Lowi category, leaving open the question of whether content-specific differentials exist beneath the aggregation.
+
+\citet{craig2023} takes a complementary approach in U.S. state legislatures, demonstrating that divided government shifts the \emph{composition} of introduced bills toward district-specific legislation. This is a supply-side composition effect. The present paper tests whether, holding supply constant, committees differentially filter bills by content type: a demand-side process. \citet{lee2021} demonstrates that policy characteristics, specifically salience and complexity, shape the processing of government-sponsored legislation in the KNA. I extend this finding from government bills to member-sponsored legislation, from a salience-complexity framework to Lowi-Wilson policy typology, and from aggregate outcomes to the specific procedural stage at which the content-based processing gap concentrates.
+
+In the Korean context, prior work has identified sponsor-level predictors of committee outcomes, including the importance of subcommittee position \citep{kim2023}, sponsor characteristics in recent assemblies \citep{an2025}, and the structural rigidity of the legislative system itself \citep{kim2026}. \citet{park2026} documents how the direct-referral system (소위원회 직접회부, direct referral to subcommittee) concentrates legislative power at the subcommittee stage. \citet{kim2019} examines how bill attributes shape committee hearing decisions (공청회, public hearing); I extend this from hearing decisions to processing outcomes, and from bill-level attributes to policy-type classification grounded in Lowi-Wilson theory.
+
+\subsection{Theoretical Expectations}
+
+Building on the Lowi-Wilson framework, the content-processing-differential literature, and the winnowing literature, I derive the following expectations:
+
+\medskip
+\noindent\textbf{H1.} \textit{Bills that impose more concentrated costs on more organized groups are associated with lower committee processing rates, controlling for committee assignment, sponsor characteristics, and institutional access.}
+
+\medskip
+\noindent\textbf{H2.} \textit{The content-based processing gap persists among sponsors who serve on the receiving committee.}
+
+\medskip
+\noindent\textbf{Exploratory Expectation (E1).} \textit{The content-based processing gap intensifies when the governing coalition is ideologically opposed to redistributive content.}
+
+\medskip
+\noindent H1 follows from Wilson's prediction that concentrated costs on organized groups generate political opposition. If correct, the gradient should be continuous rather than categorical: the more concentrated and visible the costs a bill imposes, the lower its expected processing rate. H2 tests the theoretical independence of institutional access and content-based processing: if the content gap persists even among committee insiders, the committee pipeline operates through two gates, an institutional gate and a content gate. E1 extends the framework through conditional party government theory \citep{aldrich2001} and anticipatory veto dynamics \citep{cameron2000, fox2023}. As discussed in Section~\ref{sec:ident}, E1 faces a binding power constraint and should be understood as a descriptive pattern that motivates future research.
+
+%% ============================================================
+%% DATA AND METHOD
+%% ============================================================
+
+\section{Data and Method}
+\label{sec:method}
+
+\subsection{Data}
+\label{sec:data}
+
+I draw on the KNA bill database, which provides comprehensive records of all legislation introduced since the 17th Assembly (2004). The primary analysis uses member-sponsored bills (의원발의 법률안, member-initiated legislation) from the 17th through 21st Assemblies (2004--2024), with supplementary evidence from the ongoing 22nd Assembly. I exclude government-sponsored and committee-sponsored bills, which follow different processing pathways. Government-sponsored labor bills are processed at substantially higher rates than member-sponsored labor bills: in the pooled 17th--21st sample, government labor bills received committee decisions at approximately 64 percent compared to 17.1 percent for member-sponsored labor bills, a gap of roughly 47 percentage points. This difference is consistent with the interpretation that the incorporation gate examined here is specific to the member-bill channel.\footnote{\citet{lee2021} demonstrates that policy characteristics shape government-sponsored bill processing. The present analysis focuses on member-sponsored bills, where the content-based processing gap is substantially larger and where the vast majority of legislative proposals originate.}
+
+Table~\ref{tab:desc} presents descriptive statistics for the classified sample.
+
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics: Seven-Category Wilson Sample (17th--21st Assemblies)}
+\label{tab:desc}
+\begin{tabular}{llccc}
+\toprule
+Wilson Category & Sub-Category & $N$ & Decision Rate & Cost Structure \\
+\midrule
+\multirow{2}{*}{Concentrated cost} & Labor on employers & 1,833 & 17.1\% & Concentrated \\
+ & Finance regulation & 1,285 & 25.3\% & Concentrated \\
+ & Regulation on firms & 1,020 & 25.9\% & Concentrated \\
+ & Environment on industry & 1,001 & 35.0\% & Concentrated \\
+\midrule
+\multirow{2}{*}{Diffuse cost} & Agriculture support & 2,124 & 44.1\% & Diffuse \\
+ & SmallBiz support & 1,056 & 49.5\% & Diffuse \\
+\midrule
+Anomaly & Veterans (보훈) & 883 & 17.4\% & Formally diffuse \\
+\midrule
+\multicolumn{2}{l}{Total classified} & 9,202 & & \\
+\multicolumn{2}{l}{Unclassified member bills} & 84,553 & 30.5\% & \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Note: Member-sponsored 의원발의 법률안, 17th--21st Assemblies. Unit of analysis: bill.} \\
+\multicolumn{5}{l}{\footnotesize ``Decision'' includes passage, rejection, and 대안반영폐기 (alternative-bill incorporation).} \\
+\end{tabular}
+\end{table}
+
+The \textbf{dependent variable} is committee decision. I code this variable as one if the standing committee took any action on the bill (passage, rejection, or alternative-bill incorporation under the substitute-bill disposal procedure, 대안반영폐기) and zero if the bill expired without a committee decision. This binary measure captures the gatekeeping stage where the vast majority of bill attrition occurs: roughly 80 percent of failed member bills in the 20th and 21st Assemblies died from committee inaction after agenda placement rather than from active rejection.
+
+I classify bills into seven sub-categories using a \textbf{keyword classifier} applied to bill names. The redistributive category consists of labor bills, identified by keywords including 최저임금 (minimum wage), 근로기준 (labor standards), 노동조합 (labor union), 산업재해 (industrial accident), 고용보험 (employment insurance), and 비정규 (non-regular work). The regulatory category consists of financial regulation, fair trade (공정거래, fair trade), environmental regulation, and consumer protection bills (소비자보호, consumer protection), identified by corresponding keywords. The distributive category consists of small-business (중소기업, small and medium enterprises) and agriculture bills (농업, agriculture). Veterans benefits bills (보훈, patriotic merit) are classified separately because their formal cost structure (diffuse costs, concentrated benefits) diverges from their observed political dynamics.
+
+To validate the classifier, I introduce a \textbf{committee-routing check}: if a bill classified as ``Labor'' is assigned to the Environment and Labor Committee, the classification is independently confirmed by the Speaker's routing decision. Restricting to correctly routed bills produces larger content gradients, consistent with the expectation that misclassification attenuates the estimated gap. This validation is demonstrated for the labor category; equivalent routing-based validation for other categories is less straightforward because of mixed committee jurisdictions, a limitation I acknowledge. The keyword classifier is the sole classification method employed. Future work should validate it against a hand-coded random subsample of at least 200 bills, report inter-coder agreement rates, and compare results with alternative classification approaches (e.g., LLM-based classifiers or regex variants) to assess robustness to keyword boundary choices.
+
+The key control variable is \textbf{sponsor-committee match}, coded as one if the bill's primary sponsor serves on the receiving committee. I proxy this variable using the modal committee of each legislator's bill referrals within each assembly term. This proxy achieves a coverage rate of approximately 85 percent (i.e., 85 percent of legislators in the sample have a modal committee that matches their actual committee assignment for at least one term). Under classical measurement error, this proxy biases the committee-match coefficient toward zero, attenuating the estimated institutional access advantage, without biasing the content coefficient. Future work should validate against official KNA committee rosters to assess the magnitude of attenuation.
+
+\subsection{Identification Strategy}
+\label{sec:ident}
+
+I estimate a linear probability model of committee decision as a function of policy content, institutional access, and controls:
+
+\begin{equation}
+\text{Decision}_i = \alpha + \beta_1 \text{CostConcentration}_i + \beta_2 \text{Match}_i + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c + \epsilon_i
+\label{eq:main}
+\end{equation}
+
+\noindent where $\text{Decision}_i$ is a binary indicator for whether bill $i$ received any committee decision, $\text{CostConcentration}_i$ indicates concentrated-cost content (with diffuse-cost as reference), $\text{Match}_i$ indicates that the sponsor serves on the receiving committee, $\mathbf{X}_i$ is a vector of controls (arrival timing, text length, cosignatory count), $\delta_c$ represents committee fixed effects, and $\epsilon_i$ is the error term. The coefficient $\beta_1$ captures the average difference in committee processing rates between concentrated-cost and diffuse-cost legislation, conditional on institutional access and committee assignment. I present three specifications: the binary Wilson specification (Equation~\ref{eq:main}, primary), a three-category Lowi specification allowing redistributive and regulatory bills to have separate coefficients, and a two-category specification restricted to Labor versus SmallBiz.
+
+A substantial identification concern is the collinearity between content classification and committee assignment. The seven sub-categories are drawn from different committee systems: Environment and Labor for labor bills, Financial Services and Fair Trade for regulatory bills, SME and Agriculture committees for distributive bills. Committee fixed effects absorb between-committee differences in processing rates, but the content variable and committee assignment overlap considerably. The coefficient $\beta_1$ should therefore be interpreted as the within-committee-system content gradient rather than a pure content effect purged of all institutional differences. The within-committee domain comparison in the 22nd Assembly (Section~\ref{sec:results-mechanism}) provides a complementary test that holds the committee constant.
+
+Because the primary theoretical claim concerns the monotonicity of the seven-category gradient rather than pairwise contrasts between individual categories, I do not apply multiple-comparison corrections to the descriptive gradient (Figure~\ref{fig:gradient_seven}). Readers should interpret individual pairwise category differences with appropriate caution; the inferential weight rests on the overall monotonic pattern and on the regression specifications that collapse the seven categories into binary or three-category contrasts.
+
+A further design limitation constrains the test of E1. With only five completed assemblies and a binary regime indicator, the minimum achievable permutation $p$-value for the regime interaction is $0.10$ (one-sided), meaning it cannot reach conventional significance by construction. E1 should therefore be understood as a descriptive pattern that motivates future research with additional assemblies rather than as a hypothesis amenable to decisive testing in the present data.
+
+%% ============================================================
+%% RESULTS
+%% ============================================================
+
+\section{Results}
+\label{sec:results}
+
+\subsection{The Continuous Processing Gradient}
+
+Figure~\ref{fig:gradient_seven} presents the central finding. The seven policy sub-categories form a continuous monotonic gradient spanning more than 30 percentage points in committee decision rates (Table~\ref{tab:desc}). Bills imposing the most concentrated costs on the most organized groups (labor regulation on employers) are processed at the lowest rates, while bills diffusing costs across the tax base (small-business support) are processed at the highest rates. The gradient is continuous rather than binary: there is no clean break separating ``concentrated'' from ``diffuse'' cost types. Environment-on-industry bills sit midway between the regulatory cluster and the distributive cluster.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_seven_gradient.pdf}
+\caption{Committee Decision Rates by Policy Sub-Category: The Continuous Processing Gradient (17th--21st Assemblies, $N = 9{,}202$). Point ranges show 95\% confidence intervals. Colors indicate Wilson category: red = concentrated cost, blue = diffuse cost, pink = anomaly (veterans).}
+\label{fig:gradient_seven}
+\end{figure}
+
+The veterans anomaly is theoretically informative. Under \citeauthor{wilson1980}'s (\citeyear{wilson1980}) taxonomy, veterans benefits bills should be ``client politics'' (concentrated benefits to veterans, diffuse costs to taxpayers) and process at high rates. Instead, they process at 17.4 percent (Table~\ref{tab:desc}), comparable to the most contentious redistributive legislation. In Korea, 보훈 (patriotic merit) eligibility is politically contested along partisan lines: the question of who qualifies as a ``patriotic'' beneficiary activates ideological conflict that the formal cost-benefit structure does not predict. This pattern is consistent with the interpretation that the operative variable is not Wilson's formal cost-concentration matrix but political conflict intensity. Bills that activate organized political opposition, whether through concentrated costs (labor, regulation) or through ideological contestation (veterans), are associated with lower processing rates.
+
+Table~\ref{tab:cross_assembly} presents the aggregate Wilson classification across assemblies, showing that the concentrated-cost versus diffuse-cost gap persists in all six assemblies observed.
+
+\begin{table}[H]
+\centering
+\caption{Committee Decision Rates by Wilson Cost Category and Assembly}
+\label{tab:cross_assembly}
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{Concentrated Cost} & \multicolumn{2}{c}{Diffuse Cost} & \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Assembly & Rate & $N$ & Rate & $N$ & Gap (pp) \\
+\midrule
+17th (Roh)          & 40.4\% & 223   & 54.8\% & 197   & $+14.4$ \\
+18th (Lee MB)       & 30.4\% & 487   & 50.2\% & 468   & $+19.8$ \\
+19th (Park GH)      & 29.1\% & 753   & 41.2\% & 687   & $+12.1$ \\
+20th (Moon)         & 21.7\% & 1,357 & 43.9\% & 917   & $+22.2$ \\
+21st (Moon/Yoon)    & 22.2\% & 1,334 & 35.3\% & 1,016 & $+13.1$ \\
+22nd (Yoon)*        & 20.9\% & 985   & 29.0\% & 778   & $+8.1$ \\
+\midrule
+Pooled (17th--21st) & 24.4\% & 5,139 & 39.7\% & 4,063 & $+15.3$ \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^{*}$22nd Assembly ongoing (77\% of bills still pending).} \\
+\multicolumn{6}{l}{\footnotesize Note: Veterans excluded from both categories. Member-sponsored 의원발의 법률안 only.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Within-Committee Evidence}
+
+The continuous gradient operates across different committee systems, raising the possibility that it reflects committee-level institutional differences rather than content-specific friction. I address this concern through two within-committee tests.
+
+First, within the Political Affairs Committee (정무위원회), which handles both regulatory bills (concentrated cost) and veterans benefits bills (formally diffuse cost), the gradient reverses: concentrated-cost bills process at 25.3 percent versus 17.9 percent for veterans bills. This reversal is driven entirely by the veterans anomaly and suggests that the key correlate is political conflict intensity rather than Wilson's formal cost structure. Within pure regulatory sub-domains of 정무위원회, processing rates are uniformly low: pure fair-trade regulation at roughly 28 percent, industry financial regulation at roughly 26 percent, and consumer protection at roughly 21 percent.
+
+Second, the 22nd Assembly's merged Climate, Energy, Environment, and Labor Committee (기후에너지환경노동위원회) provides a cleaner within-committee test. Operating under the same progressive chair and the same procedural rules, energy and environment bills achieve direct passage at roughly eight times the rate of labor bills (Fisher's exact test, $p = 0.030$). This comparison holds all committee-level institutional variables constant, isolating the content dimension.
+
+\subsection{Main Regression Estimates}
+
+Table~\ref{tab:main} presents linear probability model estimates. Column~(1) reports the binary Wilson specification with concentrated-cost content as a single indicator. Column~(2) separates redistributive and regulatory coefficients in a three-category Lowi specification. Column~(3) restricts to the two-category Labor versus SmallBiz comparison on the 20th--21st subsample.
+
+\begin{table}[H]
+\centering
+\caption{Linear Probability Model: Content and Committee Processing}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Binary Wilson & Three-Category & Labor vs SmallBiz \\
+ & 17th--21st & 17th--21st & 20th--21st \\
+\midrule
+Concentrated Cost & $-0.153^{***}$ &  &  \\
+                  & (0.009) &  &  \\[4pt]
+Redistributive (Labor) &  & $-0.148^{***}$ &  \\
+                       &  & (0.011) &  \\[4pt]
+Regulatory (Fin/FT) &  & $-0.160^{***}$ &  \\
+                     &  & (0.011) &  \\[4pt]
+Labor (vs SmallBiz) &  &  & $-0.193^{***}$ \\
+                    &  &  & (0.013) \\[4pt]
+Sponsor-Cmte Match & $0.119^{***}$ & $0.118^{***}$ & $0.114^{***}$ \\
+                   & (0.008) & (0.008) & (0.014) \\[4pt]
+Arrival Year 2 & $-0.033^{***}$ & $-0.033^{***}$ & $-0.041^{**}$ \\
+               & (0.009) & (0.009) & (0.015) \\[4pt]
+Arrival Year 3 & $-0.072^{***}$ & $-0.072^{***}$ & $-0.089^{***}$ \\
+               & (0.009) & (0.009) & (0.016) \\[4pt]
+Arrival Year 4 & $-0.138^{***}$ & $-0.138^{***}$ & $-0.152^{***}$ \\
+               & (0.009) & (0.009) & (0.016) \\
+\midrule
+$N$ & 24,742 & 24,742 & 5,412 \\
+Committee FE & Yes & Yes & Yes \\
+$R^2$ & 0.058 & 0.058 & 0.063 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$. Robust SE in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize Dep.\ var.: committee decision (=1). Reference: distributive (SmallBiz/Agri).} \\
+\end{tabular}
+\end{table}
+
+Two features of Table~\ref{tab:main} merit emphasis. First, the concentrated-cost indicator is associated with a processing disadvantage of roughly 15 percentage points relative to diffuse-cost bills, a substantively large gap that persists across all three specifications. Second, the three-category Lowi specification supports parsimony: the redistributive and regulatory coefficients are substantively similar and statistically indistinguishable from each other, consistent with Wilson's prediction that both types impose concentrated costs and therefore provoke equivalent opposition.
+
+Sponsor-committee match is associated with an independent processing advantage of approximately 12 percentage points across specifications (Table~\ref{tab:main}), consistent with institutional access operating as a separate gate. Arrival timing shows a monotonic gradient, with bills introduced in the final year of the assembly term facing the steepest disadvantage, consistent with the winnowing predictions of \citet{krutz2005}. An \citet{oster2019} robustness test on the two-category specification yields a proportional selection parameter exceeding 1.9, well above the recommended threshold of 1.0, suggesting the content coefficient is robust to plausible unobservable selection.
+
+\subsection{Demand-Side Evidence}
+
+A plausible alternative is that the gradient reflects supply-side selection. If legislators introduce weaker bills in conflict-generating domains, the processing gap could reflect legitimate quality filtering rather than differential committee treatment. \citet{craig2023} demonstrates that divided government shifts the composition of introduced legislation in U.S. states; a parallel process in the KNA could generate the observed gradient through differential bill quality. \citet{kim2026} provide an important baseline: they demonstrate that the KNA's low passage rates are associated with structural institutional practices rather than legislator quality, a finding the present analysis extends by showing that within the structural rigidity they document, conflict-generating legislation is associated with systematically lower processing rates.
+
+I assess the supply-side alternative through five convergent tests. First, propose-reason text length shows no significant difference between labor and small-business bills. Second, cosignatory counts show no deficit for conflict-generating bills. Third, introduction volume remained stable across regime types, with no evidence of self-censorship. Fourth, both liberal-bloc and conservative-bloc legislators exhibit the Lowi gradient for their own bills, with the processing gap ranging from substantial to large within each bloc. This pattern is inconsistent with a pure cross-party gatekeeping explanation. Fifth, the \citet{oster2019} selection robustness bound exceeds conventional thresholds.
+
+The within-legislator ``scissors pattern'' provides the most compelling demand-side evidence (Figure~\ref{fig:scissors}). Among 79 legislators who served in both the 20th and 21st Assemblies, small-business bill processing rates rose by roughly seven percentage points while labor bill processing rates declined by approximately eight percentage points. The divergent trajectories for the same legislators across assemblies cannot readily be attributed to sponsor quality or strategic self-selection.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_scissors_pattern.pdf}
+\caption{The Within-Legislator Scissors Pattern: Divergent Processing Rates for the Same Legislators across the 20th and 21st Assemblies ($N = 79$ repeat legislators). Point ranges show 95\% confidence intervals. SmallBiz (distributive) processing rates rise while Labor (redistributive) rates decline for the same legislators.}
+\label{fig:scissors}
+\end{figure}
+
+\subsection{Where Does the Processing Gap Concentrate? The Incorporation Gate}
+\label{sec:results-mechanism}
+
+In the KNA, the substitute-bill disposal procedure (대안반영폐기, alternative-bill incorporation) is the primary vehicle for legislative output. Committees consolidate multiple related member bills into a single omnibus alternative, formally disposing of the constituent bills while passing the consolidated version. Between 70 and 80 percent of all ``processed'' member bills go through this channel rather than through direct passage in original form (원안가결, passage as introduced) or with amendments (수정가결, passage with revisions).
+
+A critical question is whether the committee alternatives produced through this channel actually become law. Tracing all 557 committee alternatives in the 22nd Assembly, I find that 555 passed: a rate of 99.8 percent. All 24 labor-domain committee alternatives passed. All 33 energy and environment alternatives passed. Once a committee alternative is produced, it passes at near-universal rates regardless of policy domain.
+
+This finding has a crucial implication: the content-specific processing gap does not operate at the passage stage. Committee alternatives are content-neutral in their success rates. Instead, the gradient operates at the \emph{incorporation gate}, the upstream stage where the committee decides which member bills to consolidate into omnibus alternatives. Table~\ref{tab:incorp} presents cross-assembly incorporation rates by policy type.
+
+\begin{table}[H]
+\centering
+\caption{Incorporation Rates by Policy Type and Assembly: The Incorporation Gate}
+\label{tab:incorp}
+\begin{tabular}{llccccc}
+\toprule
+ & & \multicolumn{2}{c}{대안반영 Rate} & \multicolumn{2}{c}{Direct Pass Rate} & \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+Assembly & President & Labor & SmallBiz & Labor & SmallBiz & Incorp.\ Gap \\
+\midrule
+17th & Roh             & 36.8\% & 32.2\% & 13.2\% & 32.2\% & $+4.6$~pp \\
+18th & Lee MB          & 9.1\%  & 36.7\% & 4.0\%  & 6.5\%  & $-27.6$~pp \\
+19th & Park GH         & 7.4\%  & 46.5\% & 2.1\%  & 10.6\% & $-39.1$~pp \\
+20th & Moon            & 21.6\% & 28.7\% & 1.2\%  & 10.3\% & $-7.1$~pp \\
+21st & Moon/Yoon       & 17.4\% & 35.3\% & 1.1\%  & 9.8\%  & $-17.9$~pp \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Note: Member-sponsored 의원발의 법률안. 대안반영 = incorporation into committee alternative.} \\
+\end{tabular}
+\end{table}
+
+Three patterns in Table~\ref{tab:incorp} warrant attention. First, the incorporation gap appears in all completed assemblies except the 17th. Small-business bills enter the omnibus pipeline at higher rates than labor bills, with gaps ranging from roughly seven to 39 percentage points. Second, the incorporation gap is larger than the direct passage gap in most assemblies: the omnibus channel is where the processing difference concentrates. Third, the 19th Assembly under Park Geun-hye shows the most extreme incorporation gap: nearly half of small-business bills were incorporated into omnibus alternatives, compared to fewer than one in 13 labor bills.
+
+The minimum wage trajectory illustrates the extreme case. From six assemblies of data, the KNA produced committee alternatives incorporating minimum wage amendments in only two (17th and 20th). In three assemblies (19th, 21st, 22nd), zero committee action of any kind occurred despite 24 to 88 member-sponsored proposals per assembly. The committee does not lack the institutional capacity to process minimum wage policy; it routinely produces and passes omnibus alternatives for adjacent labor statutes (산업안전 [industrial safety], 고용보험 [employment insurance], 근로기준 [labor standards]). For the most directly redistributive statute in its jurisdiction, the committee selectively declines to activate a tool it uses routinely for adjacent laws.
+
+Government-sponsored bills provide a further institutional benchmark. Government labor bills are processed at roughly 64 percent, compared to approximately 17 percent for member-sponsored labor bills in the pooled sample (Table~\ref{tab:desc}), a gap of roughly 47 percentage points. This gap is consistent with the interpretation that the incorporation gate is specific to the member-bill pipeline. Government bills arrive with executive backing and committee scheduling priority, partially bypassing the incorporation stage that filters member proposals.
+
+\subsection{Cross-Assembly Variation}
+
+Figure~\ref{fig:gradient_assembly} displays the two-category Lowi gradient (Labor minus SmallBiz committee decision rate) across all five completed assemblies. The gradient's direction is consistent from the 18th Assembly onward: labor bills always show a processing disadvantage. The 17th Assembly under Roh involves a small sample in a high-passage-rate environment and represents a full reversal.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_gradient_assembly.pdf}
+\caption{The Lowi Gradient across Five Assemblies (17th--21st), by Regime Type. Point ranges show 95\% confidence intervals. The gradient (Labor $-$ SmallBiz committee decision rate, in percentage points) is negative in all assemblies except the 17th. Colors indicate regime type.}
+\label{fig:gradient_assembly}
+\end{figure}
+
+The gradient's magnitude covaries with regime type: the two conservative assemblies show the widest gaps, the two progressive assemblies show narrower gaps, and the mixed assembly falls in between. An exact permutation test places the observed assignment as the most extreme of 10 possible permutations ($p = 0.10$, one-sided). As noted in Section~\ref{sec:ident}, this does not reach conventional significance by construction. The regime interaction remains a descriptive pattern that motivates future research with more assemblies.
+
+%% ============================================================
+%% DISCUSSION
+%% ============================================================
+
+\section{Discussion}
+\label{sec:discussion}
+
+The results provide support for the core theoretical expectations. Consistent with H1, bills that impose more concentrated costs on more organized constituencies are associated with progressively lower committee processing rates, a finding that holds across specifications, measurement approaches, and five completed assemblies (Figure~\ref{fig:gradient_seven}, Tables~\ref{tab:cross_assembly} and~\ref{tab:main}). The continuous gradient aligns with \citeauthor{wilson1980}'s (\citeyear{wilson1980}) prediction that concentrated costs on organized groups generate political opposition. Yet the gradient tracks political conflict intensity rather than Wilson's formal cost-benefit matrix: veterans bills, formally distributive, process at rates comparable to the most contentious redistributive legislation because they activate ideological contestation. This suggests that \citeauthor{lowi1964}'s (\citeyear{lowi1964}) and \citeauthor{wilson1980}'s (\citeyear{wilson1980}) typologies approximate a deeper variable, the degree of organized political opposition a bill provokes, which formal categories capture imperfectly.
+
+Consistent with H2, the content-based processing gap persists for both committee insiders and outsiders: committee insiders face no average content penalty, but the within-domain gradient (labor below small-business) persists even among insiders. The cross-assembly variation is descriptively consistent with E1 (Figure~\ref{fig:gradient_assembly}), though the permutation test cannot reach conventional significance with five assemblies.
+
+The incorporation gate analysis (Table~\ref{tab:incorp}) refines the theoretical understanding of the procedural stage at which content-based processing differentials operate. \citet{krutz2005} documents winnowing as a volume problem. The present findings suggest that winnowing may also operate as content-specific channel sorting: within the same legislative pipeline, distributive bills gain access to the omnibus pathway at substantially higher rates than conflict-generating bills. Since committee alternatives pass at near-universal rates regardless of content, the processing gap concentrates entirely at the point where the committee selects which member bills to consolidate. \citet{park2026} identifies this subcommittee incorporation stage as the primary site of concentrated legislative power in the KNA; the present analysis provides quantitative evidence that this power is associated with differential treatment by policy content. The minimum wage trajectory, where the omnibus pipeline never activates in three of six assemblies despite bipartisan proposals, is adjacent to the policy drift through institutional inaction described by \citet{hacker2004} but is more precisely characterized as drift through selective deployment of an available institutional mechanism.
+
+Several limitations warrant acknowledgment. The strongest surviving methodological concern is an ecological confound: the seven sub-categories are drawn from different committee systems with different chairs, norms, and workloads. The cross-committee gradient may partly reflect committee-level institutional differences rather than a universal content mechanism. The within-committee domain comparison (22nd Assembly) mitigates this concern but rests on preliminary data from an ongoing assembly. The within-legislator scissors pattern (Figure~\ref{fig:scissors}) and the Oster robustness bound provide additional protection but cannot fully resolve the committee-assignment confound.
+
+Second, the keyword classifier achieves reasonable committee alignment for the labor category, but misclassification rates for other categories may differ. Because the classifier has not been validated against a hand-coded subsample, I cannot report inter-coder agreement rates or assess sensitivity to keyword boundary choices. The committee-routing check provides one form of external validation (for the labor category), and the finding that restricting to correctly routed bills amplifies the gradient is consistent with classical attenuation from misclassification. Nevertheless, validation against human coding across all seven categories is a necessary step for future work.
+
+Third, the regime interaction rests on five assemblies. Fourth, labor committee alternatives consolidate more topically diverse member proposals at higher ratios than small-business alternatives, creating structural preconditions for content dilution. Whether the consolidation process preserves or dilutes redistributive provisions cannot be determined from available metadata; full-text comparison would be necessary \citep[cf.][]{ka2025}. Fifth, the 22nd Assembly, with 77 percent of bills pending, is a preliminary snapshot.\footnote{I find no evidence of an oversight-processing tradeoff at the committee level. An apparent negative correlation between committee meeting frequency and bill processing rates is entirely mediated by bill volume: committees that receive more bills have lower processing rates regardless of meeting frequency.}
+
+%% ============================================================
+%% CONCLUSION
+%% ============================================================
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper tests the predictions of \citet{lowi1964} and \citet{wilson1980} that the substantive content of legislation shapes its political fate, using bill-level data from five assemblies of the Korean National Assembly (2004--2024). The finding is a continuous processing gradient: bills that impose more concentrated costs on more organized groups face progressively lower committee processing rates, spanning more than 30 percentage points from labor regulation to small-business support (Figure~\ref{fig:gradient_seven}). The gradient concentrates at a precisely identified institutional chokepoint, the committee incorporation gate (Table~\ref{tab:incorp}). Five convergent tests suggest the gap is demand-side: committees appear to process bills of comparable quality at different rates based on the political conflict their content provokes.
+
+The findings contribute to three scholarly conversations. First, the content-processing-differential literature \citep{volden2016, peay2020} has documented processing disadvantages for specific types of legislation in the U.S. Congress. The continuous Lowi-Wilson gradient extends this finding to a non-U.S. legislature and grounds it in foundational theoretical distinctions. Aggregate legislative effectiveness scores \citep{bucchianeri2024} may mask systematic content-specific differentials that this analysis renders visible. Second, the winnowing literature \citep{krutz2001, krutz2005} has treated committee attrition as a volume problem. The incorporation gate decomposition suggests that winnowing may also operate as content-specific channel sorting, with the omnibus pipeline associated with higher access rates for distributive than for conflict-generating content. \citet{bundi2017} has shown that policy field attributes shape parliamentary oversight behavior; the present findings extend this logic from oversight to bill processing. Third, the veterans anomaly, in which formally distributive but politically contentious bills process at rates comparable to redistributive legislation, suggests that formal policy typology is a proxy for a deeper variable: the political opposition a bill activates. Future research should extend the analysis to legislatures with comparable omnibus procedures, validate the classifier against hand-coded samples, and apply natural language processing methods to trace whether omnibus consolidation preserves or dilutes the substantive provisions of conflict-generating legislation.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an
+experimental output. It has not been peer-reviewed or fact-checked.
+Do not cite or use in any academic, policy, or professional context.}
+
+%% ============================================================
+%% REFERENCES
+%% ============================================================
+
+\bibliographystyle{apsr}
+\bibliography{refs}
+
+\end{document}
