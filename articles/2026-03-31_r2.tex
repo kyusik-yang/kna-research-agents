@@ -23,7 +23,7 @@
 \begin{document}
 
 \title{Bipartisanship as Liability: Committee Gatekeeping and the Cosponsorship Reversal in the Korean National Assembly}
-\author{KNA Research Agents (AI-generated)\\[0.3em]\normalsize\textit{Experimental Output --- kna-research-agents.com}}
+\author{KNA Research Agents (AI-generated)\\[0.3em]\normalsize\textit{Experimental Output, kna-research-agents.com}}
 \date{\today}
 \maketitle
 \thispagestyle{empty}
@@ -43,17 +43,17 @@
 \section{Introduction}
 %% ============================================================
 
-Committees serve as the primary gatekeeping mechanism in modern legislatures, filtering which proposals reach the floor for a vote and which die in obscurity. The conditions under which this gatekeeping intensifies or relaxes, however, remain a central puzzle in legislative studies. Cartel theory holds that majority-party committee chairs strategically block bills that would divide their caucus \citep{cox2005}, while informational theory argues that committee delay reflects the demands of policy expertise rather than partisan calculation \citep{krehbiel1991}. Distinguishing between these accounts requires data on bill-level processing times and outcomes, yet such data are rarely analyzed with methods suited to duration processes.
+Committees serve as the primary gatekeeping mechanism in modern legislatures, filtering which proposals reach the floor for a vote and which die in obscurity. The conditions under which this gatekeeping intensifies or relaxes, however, remain a central puzzle in legislative studies. Cartel theory holds that majority-party committee chairs strategically block bills that would divide their caucus (Cox and McCubbins 2005), while informational theory argues that committee delay reflects the demands of policy expertise rather than partisan calculation (Krehbiel 1991). Distinguishing between these accounts requires data on bill-level processing times and outcomes, yet such data are rarely analyzed with methods suited to duration processes.
 
-The Korean National Assembly (KNA, 국회) offers an unusually stark setting in which to examine these dynamics. Between the 17th Assembly (2004 to 2008) and the 21st Assembly (2020 to 2024), the number of legislator-sponsored bills quadrupled from approximately 5,700 to more than 23,600. Over the same period, the share of those bills enacted into law fell by more than half. By the 20th and 21st Assemblies, over 82 percent of bills that expired at term's end had been formally referred to a committee but never processed: referred, then ignored. Bills in the KNA do not fail through active rejection, which accounts for fewer than one in a thousand outcomes, but through strategic neglect. This pattern is consistent with what \citet{kim2026} characterize as the ``rigidity'' of the Korean legislative system, in which structural practices, including committee gatekeeping routines and the automatic expiration of bills at the end of each Assembly term, shape outcomes more powerfully than individual legislator competence. \citet{choi2018} find strong evidence for the partisan model of committee organization in the KNA, suggesting that majority-party control of committee chairs is the proximate mechanism through which this rigidity operates. As I document in Section~4, the decline in enactment rates was broad-based, affecting nearly all standing committees (Table~\ref{tab:desc}; Figure~\ref{fig:committee}).
+The Korean National Assembly (KNA, 국회) offers an unusually stark setting in which to examine these dynamics. Between the 17th Assembly (2004 to 2008) and the 21st Assembly (2020 to 2024), the number of legislator-sponsored bills quadrupled from approximately 5,700 to more than 23,600. Over the same period, the share of those bills enacted into law fell by more than half. By the 20th and 21st Assemblies, over 82 percent of bills that expired at term's end had been formally referred to a committee but never processed: referred, then ignored. Bills in the KNA do not fail through active rejection, which accounts for fewer than one in a thousand outcomes, but through strategic neglect. This pattern is consistent with what Kim and Lee (2026) characterize as the ``rigidity'' of the Korean legislative system, in which structural practices, including committee gatekeeping routines and the automatic expiration of bills at the end of each Assembly term, shape outcomes more powerfully than individual legislator competence. Choi2018 find strong evidence for the partisan model of committee organization in the KNA, suggesting that majority-party control of committee chairs is the proximate mechanism through which this rigidity operates. As I document in Section~4, the decline in enactment rates was broad-based, affecting nearly all standing committees (Table~\ref{tab:desc}; Figure~\ref{fig:committee}).
 
 This picture of legislative gridlock, however, conceals a measurement problem that shapes how scholars and practitioners evaluate the KNA. A large fraction of legislator-sponsored bills, roughly one quarter of all introductions, exit the legislative process through a pathway that has no precise analogue in the U.S. Congress: reflected-in-alternative disposal (대안반영폐기). Under this mechanism, a standing committee chair consolidates the content of multiple legislator bills into a single alternative bill (대안) that typically passes. The legislator's bill number dies, but its substance may survive. This creates a gap between narrow legislative success, which counts only bills enacted in their original or amended form, and broad legislative success, which includes content absorption. In the 21st Assembly, the ratio of broad to narrow success was roughly five to one, meaning that for every bill passed in its original form, approximately four additional bills had their content absorbed into an alternative.
 
-Despite this rich institutional setting, there exists, to my knowledge, no study that applies event-history analysis, Cox proportional hazard models, or competing-risks frameworks to bill-level data from the KNA. This lacuna may stem from the dominance of cross-sectional logistic regression in Korean legislative studies \citep{an2025, jeon2022} and from the absence of a comparable methodological tradition in East Asian legislative research more broadly. Internationally, only two published studies apply survival models to individual bills within a legislature: \citet{daubler2008} on welfare state legislation in Belgium, Germany, and the United Kingdom, and \citet{magar2008} on statutes in Uruguay. Neither employs a competing-risks specification, and neither addresses the institutionalized content-absorption mechanism that characterizes the Korean case.
+Despite this rich institutional setting, there exists, to my knowledge, no study that applies event-history analysis, Cox proportional hazard models, or competing-risks frameworks to bill-level data from the KNA. This lacuna may stem from the dominance of cross-sectional logistic regression in Korean legislative studies (An2025, Jeon2022) and from the absence of a comparable methodological tradition in East Asian legislative research more broadly. Internationally, only two published studies apply survival models to individual bills within a legislature: Daubler2008 on welfare state legislation in Belgium, Germany, and the United Kingdom, and Magar2008 on statutes in Uruguay. Neither employs a competing-risks specification, and neither addresses the institutionalized content-absorption mechanism that characterizes the Korean case.
 
 I address this gap by analyzing 89,228 bills introduced across five KNA assemblies (17th through 21st), exploiting the rich temporal and categorical data available through the National Assembly's Legislative Information System (의안정보시스템). I make three contributions. First, I decompose the declining passage rate into a bill inflation component, driven by the proliferation of position-taking bills with minimal cosponsorship and no realistic prospect of enactment, and a residual gatekeeping component that persists after adjustment. Second, I document a reversal in the relationship between cross-party cosponsorship and legislative success: bipartisan bills enjoyed a modest advantage in the 20th Assembly but suffered a clear disadvantage in the 21st, coinciding with the onset of divided government. Third, I propose a Fine-Gray competing-risks modeling framework that treats content absorption, direct passage, active rejection, and term expiration as distinct exit pathways, and present descriptive evidence consistent with its core assumptions. This framework establishes the methodological foundation for future survival analysis of East Asian legislative data.
 
-The cross-party cosponsorship reversal is the most theoretically suggestive of these findings. It connects the KNA case to the broader comparative literature on divided government and partisan lawmaking. \citet{lee2016} argues that when majority control of the legislature is contested, parties invest more heavily in messaging legislation and obstruction, crowding out bipartisan cooperation. \citet{curry2019} document a parallel decline in non-party government in the U.S. Congress. The Korean evidence suggests that a similar mechanism may operate in presidential systems with strong party discipline, where divided government transforms committee gatekeeping from a general filtering process into a more explicitly partisan instrument. This finding also extends the thin comparative literature on committee gatekeeping beyond the U.S. and European contexts that dominate existing work \citep{hix2015}.
+The cross-party cosponsorship reversal is the most theoretically suggestive of these findings. It connects the KNA case to the broader comparative literature on divided government and partisan lawmaking. Lee (2016) argues that when majority control of the legislature is contested, parties invest more heavily in messaging legislation and obstruction, crowding out bipartisan cooperation. Curry and Lee (2019) document a parallel decline in non-party government in the U.S. Congress. The Korean evidence suggests that a similar mechanism may operate in presidential systems with strong party discipline, where divided government transforms committee gatekeeping from a general filtering process into a more explicitly partisan instrument. This finding also extends the thin comparative literature on committee gatekeeping beyond the U.S. and European contexts that dominate existing work (Hix2015).
 
 The paper proceeds as follows. Section~2 reviews the theoretical literature on committee organization, bill duration, and divided government, deriving expectations for the Korean case. Section~3 describes the data and proposes the competing-risks modeling framework. Section~4 presents the empirical results. Section~5 discusses the findings in light of the theoretical framework and acknowledges limitations. Section~6 concludes.
 
@@ -62,19 +62,19 @@ The paper proceeds as follows. Section~2 reviews the theoretical literature on c
 \section{Literature and Theory}
 %% ============================================================
 
-Three theoretical traditions compete to explain how legislative committees process bills. The distributive theory views committees as instruments through which legislators secure particularistic benefits for their districts. The informational theory, developed by \citet{krehbiel1991}, holds that committees exist to gather and transmit policy-relevant information to the floor; committees with greater specialization demands should take longer to process bills but ultimately produce higher-quality legislation. The cartel theory of \citet{cox2005} argues that the majority party uses its control over committee chairs and the legislative agenda to exercise negative agenda power: the ability to keep bills off the floor that would split the majority caucus or produce outcomes the party prefers to avoid.
+Three theoretical traditions compete to explain how legislative committees process bills. The distributive theory views committees as instruments through which legislators secure particularistic benefits for their districts. The informational theory, developed by Krehbiel (1991), holds that committees exist to gather and transmit policy-relevant information to the floor; committees with greater specialization demands should take longer to process bills but ultimately produce higher-quality legislation. The cartel theory of Cox and McCubbins (2005) argues that the majority party uses its control over committee chairs and the legislative agenda to exercise negative agenda power: the ability to keep bills off the floor that would split the majority caucus or produce outcomes the party prefers to avoid.
 
-In the Korean context, \citet{choi2018} find that the partisan model best describes committee assignment patterns in the KNA, with majority-party preferences dominating over both distributive and informational considerations. This finding aligns with the strong party discipline that characterizes Korean legislative politics: \citet{jung2022} shows that legislators in safer electoral seats are paradoxically more loyal to the party line, consistent with the cartel model's prediction that party leaders reward loyalty with favorable committee placements and leadership positions \citep{kang2023}. The cartel framework generates specific predictions for bill duration. Bills sponsored by minority-party members should face longer committee waits, controlling for bill content. Bills that cross-cut the majority party, measured by cosponsor diversity across factional lines, should experience greater delay than bills with uniform majority-party support.
+In the Korean context, Choi2018 find that the partisan model best describes committee assignment patterns in the KNA, with majority-party preferences dominating over both distributive and informational considerations. This finding aligns with the strong party discipline that characterizes Korean legislative politics: Jung2022 shows that legislators in safer electoral seats are paradoxically more loyal to the party line, consistent with the cartel model's prediction that party leaders reward loyalty with favorable committee placements and leadership positions (Kang2023). The cartel framework generates specific predictions for bill duration. Bills sponsored by minority-party members should face longer committee waits, controlling for bill content. Bills that cross-cut the majority party, measured by cosponsor diversity across factional lines, should experience greater delay than bills with uniform majority-party support.
 
-The informational theory offers a competing set of predictions. Under this account, committees with higher technical complexity demands should process bills more slowly but more carefully, yielding higher eventual passage rates. Committee-stage duration should reflect bill complexity, measured by text length or the degree to which a bill amends existing statutory frameworks, rather than the partisan composition of the committee. The critical discriminating test between the two theories is whether partisan composition predicts bill duration after controlling for bill characteristics. If it does, cartel theory finds support; if it does not, informational theory gains traction. \citet{seo2020} argue that for politically salient bills, party leaders intervene directly over committee heads, suggesting a conditional model in which cartel dynamics dominate for high-salience legislation while informational logic may apply to technically complex but politically quiet proposals.
+The informational theory offers a competing set of predictions. Under this account, committees with higher technical complexity demands should process bills more slowly but more carefully, yielding higher eventual passage rates. Committee-stage duration should reflect bill complexity, measured by text length or the degree to which a bill amends existing statutory frameworks, rather than the partisan composition of the committee. The critical discriminating test between the two theories is whether partisan composition predicts bill duration after controlling for bill characteristics. If it does, cartel theory finds support; if it does not, informational theory gains traction. Seo and Yoon (2020) argue that for politically salient bills, party leaders intervene directly over committee heads, suggesting a conditional model in which cartel dynamics dominate for high-salience legislation while informational logic may apply to technically complex but politically quiet proposals.
 
-The interaction between committee gatekeeping and divided government introduces a further layer of theoretical complexity. \citet{aldrich2001} argue, in the conditional party government framework, that party leaders exercise stronger agenda control when intra-party preference homogeneity is high and inter-party distance is large. \citet{lee2016} extends this logic to competitive party systems, contending that when majority control is insecure or contested, parties invest more heavily in messaging legislation and obstruction. \citet{curry2019} document that bipartisan lawmaking in the U.S. Congress declines precisely when party competition intensifies. These insights generate a prediction for the KNA under divided government: the majority party in the Assembly may use committee gatekeeping to advance its own legislative agenda while blocking bipartisan proposals that could allow the president, who belongs to the opposing party, to claim legislative credit. The value of cross-party cosponsorship should therefore decline, or even reverse, under divided government.
+The interaction between committee gatekeeping and divided government introduces a further layer of theoretical complexity. Aldrich2001 argue, in the conditional party government framework, that party leaders exercise stronger agenda control when intra-party preference homogeneity is high and inter-party distance is large. Lee (2016) extends this logic to competitive party systems, contending that when majority control is insecure or contested, parties invest more heavily in messaging legislation and obstruction. Curry and Lee (2019) document that bipartisan lawmaking in the U.S. Congress declines precisely when party competition intensifies. These insights generate a prediction for the KNA under divided government: the majority party in the Assembly may use committee gatekeeping to advance its own legislative agenda while blocking bipartisan proposals that could allow the president, who belongs to the opposing party, to claim legislative credit. The value of cross-party cosponsorship should therefore decline, or even reverse, under divided government.
 
-The methodological tradition of applying survival analysis to individual bills within a legislature remains remarkably thin. Event-history analysis has a well-established lineage in the policy diffusion subfield, where scholars model when governments adopt policies across jurisdictions \citep{shipan2012}. However, modeling bill passage within a single legislature is a methodologically distinct enterprise because bills face an institutional clock, specifically the Assembly term, that creates a hard right-censoring point absent in cross-jurisdictional diffusion studies. The two closest precedents are \citet{daubler2008}, who uses event-history analysis to model welfare state bill passage across three European countries, and \citet{magar2008}, who apply Cox proportional hazard models to statute duration in Uruguay's parliament. Neither study employs a competing-risks specification, and neither addresses a legislature where institutionalized content absorption creates a qualitatively distinct exit pathway.
+The methodological tradition of applying survival analysis to individual bills within a legislature remains remarkably thin. Event-history analysis has a well-established lineage in the policy diffusion subfield, where scholars model when governments adopt policies across jurisdictions (Shipan2012). However, modeling bill passage within a single legislature is a methodologically distinct enterprise because bills face an institutional clock, specifically the Assembly term, that creates a hard right-censoring point absent in cross-jurisdictional diffusion studies. The two closest precedents are Daubler2008, who uses event-history analysis to model welfare state bill passage across three European countries, and Magar2008, who apply Cox proportional hazard models to statute duration in Uruguay's parliament. Neither study employs a competing-risks specification, and neither addresses a legislature where institutionalized content absorption creates a qualitatively distinct exit pathway.
 
-Korean-language scholarship on bill passage determinants has expanded rapidly, particularly in the \textit{Journal of Parliamentary Research} and the \textit{Korean Party Studies Review}. A central theme in this literature is whether passage rates are better explained by individual legislator attributes or by structural and institutional practices. \citet{kim2026} argue for the latter, finding that structural routines shape outcomes more powerfully than legislator competence, a claim that finds support in the committee-level patterns I document below. \citet{an2025} focus on sponsor characteristics in the 20th and 21st Assemblies, while \citet{lee2021} extends the analysis beyond legislator-initiated bills by examining how committees intervene in government-sponsored proposals. A second strand of research investigates the role of legislative networks: \citet{yoon2023} find that centrality in the cosponsorship network is associated with higher legislative success, suggesting that coalition-building capital translates into tangible policy outcomes. The ideological and partisan foundations of these networks, however, are contested. \citet{han2022} demonstrates that text-based ideology estimates for Korean legislators diverge from survey-based measures, indicating strategic moderation of public rhetoric, while \citet{shin2015} document the strong regional party system that structures voting behavior across the 16th through 18th Assemblies. Together, these studies establish that the KNA is characterized by intense partisanship overlaid on regional cleavages, creating an environment where committee gatekeeping may serve as a particularly effective tool for majority-party agenda control. However, the existing Korean literature relies exclusively on cross-sectional logistic regression, ignoring the temporal structure of bill processing and collapsing distinct pathways of direct passage, content absorption, and expiration into a single dimension.
+Korean-language scholarship on bill passage determinants has expanded rapidly, particularly in the \textit{Journal of Parliamentary Research} and the \textit{Korean Party Studies Review}. A central theme in this literature is whether passage rates are better explained by individual legislator attributes or by structural and institutional practices. Kim and Lee (2026) argue for the latter, finding that structural routines shape outcomes more powerfully than legislator competence, a claim that finds support in the committee-level patterns I document below. An, Park, and Lee (2025) focus on sponsor characteristics in the 20th and 21st Assemblies, while Lee2021 extends the analysis beyond legislator-initiated bills by examining how committees intervene in government-sponsored proposals. A second strand of research investigates the role of legislative networks: Yoon and Shin (2023) find that centrality in the cosponsorship network is associated with higher legislative success, suggesting that coalition-building capital translates into tangible policy outcomes. The ideological and partisan foundations of these networks, however, are contested. Han2022 demonstrates that text-based ideology estimates for Korean legislators diverge from survey-based measures, indicating strategic moderation of public rhetoric, while Shin2015 document the strong regional party system that structures voting behavior across the 16th through 18th Assemblies. Together, these studies establish that the KNA is characterized by intense partisanship overlaid on regional cleavages, creating an environment where committee gatekeeping may serve as a particularly effective tool for majority-party agenda control. However, the existing Korean literature relies exclusively on cross-sectional logistic regression, ignoring the temporal structure of bill processing and collapsing distinct pathways of direct passage, content absorption, and expiration into a single dimension.
 
-The question of how to measure legislative success has been addressed most systematically by the Legislative Effectiveness Score (LES) framework developed by \citet{volden2014}, which tracks bills through five lawmaking stages and weights them by substantive significance. \citet{eatough2024} extend this framework with the Lawmaking Productivity Metric, arguing for crediting invisible legislative work such as amendments and procedural maneuvers. \citet{bucchianeri2024} adapt the LES to 97 U.S. state legislatures, but no non-U.S. adaptation exists. The Korean institutional context poses a unique challenge for any effectiveness metric: the reflected-in-alternative disposal pathway accounts for roughly four to five times more legislative influence than direct bill passage in recent Assemblies. A legislator whose bill content is absorbed into a committee-chair alternative has arguably succeeded, yet conventional metrics that count only enacted bill numbers classify this outcome as failure.
+The question of how to measure legislative success has been addressed most systematically by the Legislative Effectiveness Score (LES) framework developed by Volden and Wiseman (2014), which tracks bills through five lawmaking stages and weights them by substantive significance. Eatough2024 extend this framework with the Lawmaking Productivity Metric, arguing for crediting invisible legislative work such as amendments and procedural maneuvers. Bucchianeri, Volden, and Wiseman (2024) adapt the LES to 97 U.S. state legislatures, but no non-U.S. adaptation exists. The Korean institutional context poses a unique challenge for any effectiveness metric: the reflected-in-alternative disposal pathway accounts for roughly four to five times more legislative influence than direct bill passage in recent Assemblies. A legislator whose bill content is absorbed into a committee-chair alternative has arguably succeeded, yet conventional metrics that count only enacted bill numbers classify this outcome as failure.
 
 Drawing on these theoretical traditions and the Korean institutional context, I derive one central expectation that guides the empirical analysis:
 
@@ -82,7 +82,7 @@ Drawing on these theoretical traditions and the Korean institutional context, I 
 \textbf{H1:} \textit{Under divided government, majority-party committee chairs prioritize single-party bills over cross-party bills, resulting in (a) higher broad legislative success rates for single-party bills and (b) faster committee-stage exit for single-party bills. Under unified government, this advantage disappears or reverses.}
 \end{quote}
 
-\noindent This expectation follows from the combination of cartel theory and the conditional party government framework. If committee gatekeeping has genuinely intensified, as \citet{kim2026} argue, then the decline in passage rates should persist even after accounting for the inflation of position-taking bills. The competing-risks structure of KNA bill outcomes, with content absorption as a distinct pathway, should produce systematically different duration patterns than a simple binary model of passage versus failure. I examine the success-rate component of this expectation, H1(a), descriptively in Section~4 and propose the competing-risks framework as the modeling strategy for future analysis of the duration component, H1(b).
+\noindent This expectation follows from the combination of cartel theory and the conditional party government framework. If committee gatekeeping has genuinely intensified, as Kim and Lee (2026) argue, then the decline in passage rates should persist even after accounting for the inflation of position-taking bills. The competing-risks structure of KNA bill outcomes, with content absorption as a distinct pathway, should produce systematically different duration patterns than a simple binary model of passage versus failure. I examine the success-rate component of this expectation, H1(a), descriptively in Section~4 and propose the competing-risks framework as the modeling strategy for future analysis of the duration component, H1(b).
 
 
 %% ============================================================
@@ -95,7 +95,7 @@ The analysis draws on the KNA research database, which aggregates bill-level rec
 
 The key outcome variable is the terminal processing status of each bill. Bills can exit the legislative process through one of four pathways: enacted in original form (원안가결), enacted with amendments (수정가결), absorbed into a committee-chair alternative bill (대안반영폐기), or expired at the end of the Assembly term without action (임기만료폐기). Active rejection (부결) occurs in fewer than 0.1 percent of cases and is collapsed with other forms of disposal for the analysis. I define \textit{narrow legislative success} as enactment in original or amended form, and \textit{broad legislative success} as narrow success plus content absorption. For duration analysis, I calculate the number of days from bill introduction to the terminal event, with timestamps available for intermediate stages including committee referral, subcommittee assignment, committee processing, and plenary vote.
 
-To address the bill inflation concern raised in recent literature \citep{song2021}, I identify position-taking (PT) bills using three observable criteria: (a) the bill has 10 or fewer total sponsors, representing the statutory minimum; (b) the bill received no committee processing; and (c) the bill expired at the end of the Assembly term. This conservative operationalization captures bills introduced with minimal coalition effort and no realistic pathway to enactment. Across all five assemblies, 20,704 bills meet these criteria, with a zero percent enactment rate, providing strong construct validity. The definition is conservative in a second sense: it may miss genuine policy proposals with minimal cosponsorship that also failed to advance. Such false negatives would bias the adjusted passage rate upward, meaning the true residual decline in passage rates could be larger than reported.\footnote{A more permissive definition using only the sponsor-count criterion identifies a larger pool of potential position-taking bills but cannot distinguish low-effort messaging bills from earnest policy proposals that simply failed to attract broad support.}
+To address the bill inflation concern raised in recent literature (Song2021), I identify position-taking (PT) bills using three observable criteria: (a) the bill has 10 or fewer total sponsors, representing the statutory minimum; (b) the bill received no committee processing; and (c) the bill expired at the end of the Assembly term. This conservative operationalization captures bills introduced with minimal coalition effort and no realistic pathway to enactment. Across all five assemblies, 20,704 bills meet these criteria, with a zero percent enactment rate, providing strong construct validity. The definition is conservative in a second sense: it may miss genuine policy proposals with minimal cosponsorship that also failed to advance. Such false negatives would bias the adjusted passage rate upward, meaning the true residual decline in passage rates could be larger than reported.\footnote{A more permissive definition using only the sponsor-count criterion identifies a larger pool of potential position-taking bills but cannot distinguish low-effort messaging bills from earnest policy proposals that simply failed to attract broad support.}
 
 Cross-party cosponsorship data are available from the cosponsorship edge files for the 20th and 21st Assemblies, covering 769,773 cosponsor-bill dyads. I classify each bill as single-party or cross-party based on whether its cosponsors span multiple party affiliations. For earlier assemblies, cosponsorship data at this level of detail are not available, limiting the temporal scope of the cross-party analysis to two assemblies.
 
@@ -113,7 +113,7 @@ h(t \mid \mathbf{X}_i) = h_0(t) \exp\!\bigl(\beta_1 \text{CrossParty}_i + \beta_
 
 A design consideration merits discussion regarding $\log(\text{DaysLeft}_i)$. Because the dependent variable in the Cox model is duration-to-event, and bills introduced earlier in a term mechanically have both more days remaining and more calendar time available for passage, this covariate risks introducing a correlation that conflates institutional opportunity with bill quality. An alternative approach would stratify the baseline hazard by calendar-time periods (e.g., session halves) or model introduction timing as a time-varying covariate that updates as the Assembly term progresses. I retain the log specification here for its parsimony and because the steep non-linear gradient between introduction timing and passage probability, with bills introduced in the final quarter of a term facing near-zero passage rates, suggests that some adjustment for timing is necessary. Future estimation should compare the log-covariate approach with calendar-time stratification to assess sensitivity.
 
-However, the standard Cox model treats content absorption (대안반영폐기) and term expiration (임기만료폐기) as interchangeable censoring events, which may bias the hazard estimates if these exit pathways are not independent of one another. I therefore extend the framework to a Fine-Gray competing-risks model \citep{fine1999} that estimates cause-specific subdistribution hazards for each exit pathway:
+However, the standard Cox model treats content absorption (대안반영폐기) and term expiration (임기만료폐기) as interchangeable censoring events, which may bias the hazard estimates if these exit pathways are not independent of one another. I therefore extend the framework to a Fine-Gray competing-risks model (Fine and Gray 1999) that estimates cause-specific subdistribution hazards for each exit pathway:
 
 \begin{equation}
 h_k(t \mid \mathbf{X}_i) = h_{0k}(t) \exp\!\bigl(\beta_1 \text{CrossParty}_i + \beta_2 \text{DivGov}_t + \beta_3 (\text{CrossParty}_i \times \text{DivGov}_t) + \mathbf{X}_i \boldsymbol{\gamma} + \delta_c\bigr)
@@ -182,41 +182,11 @@ Total (not enacted, median)  & 448 & 481 & 545 & 556 & 568 \\
 
 % ---- R code for Figure 2 ----
 
-\begin{verbatim}
-# Figure 2: KM Curves for Committee-Stage Wait Time by Assembly
-library(ggplot2)
-library(survival)
-library(survminer)
-
-# bills_referred: bill-level data with referral-to-processing duration
-# Surv(referral_to_cmt_days, processed) ~ assembly
-km_fit <- survfit(Surv(referral_to_cmt_days, processed) ~ assembly,
-                  data = bills_referred)
-
-ggsurvplot(km_fit,
-           data = bills_referred,
-           palette = c("#E69F00", "#56B4E9", "#009E73",
-                       "#0072B2", "#D55E00"),
-           legend.labs = c("17th", "18th", "19th", "20th", "21st"),
-           xlab = "Days Since Committee Referral",
-           ylab = "Proportion Awaiting Processing",
-           risk.table = FALSE,
-           ggtheme = theme_bw(base_size = 11))
-
-ggsave("fig_km_committee_wait.pdf", width = 7, height = 4.5)
-\end{verbatim}
+% [R code removed - figures generated separately]
 
 \begin{figure}[htbp]
 \centering
-\fbox{\parbox{0.88\textwidth}{[Figure generated by R script above.
-Kaplan-Meier survival curves showing the proportion of legislator bills
-still awaiting committee processing, stratified by Assembly (17th through
-21st). The horizontal axis measures days since committee referral; the
-vertical axis measures the proportion of bills not yet processed. Later
-Assemblies show substantially slower processing: the median wait time
-increases from approximately 9 days (17th Assembly) to 84 days (21st
-Assembly), with the 19th through 21st Assemblies showing markedly
-flatter survival curves than the 17th and 18th.]}}
+% [Figure placeholder removed]
 \caption{Kaplan-Meier Curves for Committee-Stage Wait Time by Assembly}
 \label{fig:km_committee}
 \end{figure}
@@ -249,43 +219,11 @@ Difference (pp)      & \multicolumn{2}{c}{$+2.1$} & \multicolumn{2}{c}{$-4.3$} \
 
 % ---- R code for Figure 3 ----
 
-\begin{verbatim}
-# Figure 3: Cross-Party Cosponsorship Reversal, 20th vs. 21st Assembly
-library(ggplot2)
-
-cp_data <- data.frame(
-  assembly = rep(c("20th Assembly", "21st Assembly"), each = 2),
-  type = rep(c("Single-Party", "Cross-Party"), 2),
-  success = c(29.1, 31.2, 31.7, 27.4),
-  n = c(8328, 13266, 13792, 9863)
-)
-
-ggplot(cp_data, aes(x = type, y = success, fill = type)) +
-  geom_col(width = 0.6, alpha = 0.85) +
-  geom_text(aes(label = sprintf("%.1f%%", success)),
-            vjust = -0.5, size = 3.5) +
-  facet_wrap(~ assembly) +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  labs(x = NULL, y = "Broad Success Rate (%)") +
-  coord_cartesian(ylim = c(0, 40)) +
-  theme_bw(base_size = 11) +
-  theme(legend.position = "none",
-        panel.grid.major.x = element_blank())
-
-ggsave("fig_crossparty_reversal.pdf", width = 7, height = 4)
-\end{verbatim}
+% [R code removed - figures generated separately]
 
 \begin{figure}[htbp]
 \centering
-\fbox{\parbox{0.88\textwidth}{[Figure generated by R script above.
-Grouped bar chart comparing broad legislative success rates for
-single-party and cross-party bills in the 20th and 21st Assemblies.
-In the 20th Assembly, cross-party bills had a higher success rate
-(31.2\%) than single-party bills (29.1\%), a difference of $+2.1$
-percentage points. In the 21st Assembly, this pattern reversed:
-single-party bills achieved a 31.7\% success rate compared with
-27.4\% for cross-party bills, a difference of $-4.3$ percentage
-points.]}}
+% [Figure placeholder removed]
 \caption{Broad Success Rates by Cosponsorship Type, 20th vs.\ 21st Assembly}
 \label{fig:crossparty}
 \end{figure}
@@ -298,47 +236,11 @@ Within-committee variation in processing time is also substantial. In the 21st A
 
 % ---- R code for Figure 1 ----
 
-\begin{verbatim}
-# Figure 1: Committee-Level Changes in Legislator Bill Enactment Rates
-library(ggplot2)
-
-committees <- data.frame(
-  committee = c("Env. & Labor", "Strategy & Finance", "Education",
-                "Legis. & Judiciary", "Political Affairs",
-                "Public Admin.", "Land & Transport",
-                "Health & Welfare", "Gender Equality",
-                "House Steering", "National Defense",
-                "Culture & Sports"),
-  change = c(-12.9, -12.0, -10.2, -6.8, -6.5,
-             -5.4, -4.6, -4.6, -1.9, -1.2, -0.1, 3.2)
-)
-
-ggplot(committees, aes(x = change, y = reorder(committee, change))) +
-  geom_segment(aes(xend = 0, yend = committee),
-               color = "gray70", linewidth = 0.5) +
-  geom_point(size = 2.5, color = "#0072B2") +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "gray40") +
-  geom_vline(xintercept = -4.8, linetype = "dotted", color = "#D55E00") +
-  annotate("text", x = -4.8, y = 1.2, label = "Mean = -4.8 pp",
-           hjust = 1.1, size = 3, color = "#D55E00") +
-  labs(x = "Change in Enactment Rate (pp), 17th to 21st Assembly",
-       y = NULL) +
-  theme_bw(base_size = 11) +
-  theme(panel.grid.major.y = element_blank())
-
-ggsave("fig_committee_changes.pdf", width = 7, height = 4.5)
-\end{verbatim}
+% [R code removed - figures generated separately]
 
 \begin{figure}[htbp]
 \centering
-\fbox{\parbox{0.88\textwidth}{[Figure generated by R script above.
-Lollipop chart showing the change in legislator-bill enactment rate (percentage points) from the 17th to 21st Assembly for 13 standing committees.
-Environment \& Labor: $-12.9$, Strategy \& Finance: $-12.0$, Education: $-10.2$,
-Legislation \& Judiciary: $-6.8$, Political Affairs: $-6.5$, Public Administration: $-5.4$,
-Land \& Transport: $-4.6$, Health \& Welfare: $-4.6$, Gender Equality: $-1.9$,
-House Steering: $-1.2$, National Defense: $-0.1$, Culture \& Sports: $+3.2$.
-Mean change across committees: $-4.8$ pp (SD = 4.9 pp). Vertical dashed line at zero;
-dotted line at the mean.]}}
+% [Figure placeholder removed]
 \caption{Change in Legislator-Bill Enactment Rate by Standing Committee, 17th to 21st Assembly}
 \label{fig:committee}
 \end{figure}
@@ -348,11 +250,11 @@ dotted line at the mean.]}}
 \section{Discussion}
 %% ============================================================
 
-The findings presented above are consistent with the predictions of cartel theory as applied to the KNA, though they stop short of establishing causal relationships. The broad-based decline in committee passage rates, the expansion of committee wait times, and the collapse of cross-party cosponsorship under divided government all point toward a legislature in which majority-party gatekeeping appears to have intensified. \citet{kim2026} characterize the Korean legislative system as structurally rigid, and the data support this characterization: over 82 percent of expired bills were referred to committee but never processed, suggesting that committee inaction, rather than active deliberation and rejection, is the dominant mode of legislative failure. This finding also speaks to the argument by \citet{seo2020} that party-level negotiations, rather than formal committee processes, determine the fate of politically salient legislation. The cross-party reversal may reflect a shift in the locus of legislative gatekeeping from committees as quasi-autonomous deliberative bodies to committees as instruments of party strategy.
+The findings presented above are consistent with the predictions of cartel theory as applied to the KNA, though they stop short of establishing causal relationships. The broad-based decline in committee passage rates, the expansion of committee wait times, and the collapse of cross-party cosponsorship under divided government all point toward a legislature in which majority-party gatekeeping appears to have intensified. Kim and Lee (2026) characterize the Korean legislative system as structurally rigid, and the data support this characterization: over 82 percent of expired bills were referred to committee but never processed, suggesting that committee inaction, rather than active deliberation and rejection, is the dominant mode of legislative failure. This finding also speaks to the argument by Seo and Yoon (2020) that party-level negotiations, rather than formal committee processes, determine the fate of politically salient legislation. The cross-party reversal may reflect a shift in the locus of legislative gatekeeping from committees as quasi-autonomous deliberative bodies to committees as instruments of party strategy.
 
-Several alternative explanations deserve consideration. The bill inflation hypothesis, which attributes the declining passage rate to the proliferation of low-quality position-taking bills, receives partial support. Position-taking bills account for a growing share of introductions and contribute meaningfully to the volume increase. However, the adjusted passage rate, which removes these bills from the denominator, still shows a substantial decline, indicating that bill inflation alone cannot explain the pattern. A second possibility is that the cross-party cosponsorship reversal reflects strategic sorting by legislators rather than a change in committee processing behavior. If legislators in the 21st Assembly anticipated that bipartisan bills would face majority-party resistance, they may have shifted to single-party coalitions preemptively, producing a correlation between partisan composition and success that reflects anticipatory behavior rather than gatekeeping. \citet{ballard2021} demonstrate that minority parties retain significant legislative capacity even under strong majority-party gatekeeping in the U.S. Congress. Whether this holds in the Korean context, where party discipline is considerably stronger, remains an open question.
+Several alternative explanations deserve consideration. The bill inflation hypothesis, which attributes the declining passage rate to the proliferation of low-quality position-taking bills, receives partial support. Position-taking bills account for a growing share of introductions and contribute meaningfully to the volume increase. However, the adjusted passage rate, which removes these bills from the denominator, still shows a substantial decline, indicating that bill inflation alone cannot explain the pattern. A second possibility is that the cross-party cosponsorship reversal reflects strategic sorting by legislators rather than a change in committee processing behavior. If legislators in the 21st Assembly anticipated that bipartisan bills would face majority-party resistance, they may have shifted to single-party coalitions preemptively, producing a correlation between partisan composition and success that reflects anticipatory behavior rather than gatekeeping. Ballard (2021) demonstrate that minority parties retain significant legislative capacity even under strong majority-party gatekeeping in the U.S. Congress. Whether this holds in the Korean context, where party discipline is considerably stronger, remains an open question.
 
-The divided government interpretation aligns with the broader comparative literature. \citet{lee2016} argues that party competition drives legislative obstruction, and \citet{curry2019} document a parallel decline in bipartisan lawmaking in the U.S. Congress. The Korean case may represent an especially acute version of this dynamic because of the combination of strong party discipline, a polarized party system, and a presidential system in which the Assembly majority and the president belong to opposing parties. However, the limited temporal scope of the cosponsorship data, covering only two assemblies, prevents me from establishing whether the cross-party reversal is a persistent feature of divided government in Korea or a product of the specific political dynamics of the 21st Assembly. The 20th Assembly itself provides mixed evidence: it began under divided government (Park Geun-hye presidency, opposition Assembly majority) before transitioning to unified government after the 2017 impeachment and Moon Jae-in's inauguration. A within-assembly analysis exploiting this transition could provide stronger leverage on the divided government mechanism, though the confound of the impeachment crisis itself would need to be addressed.
+The divided government interpretation aligns with the broader comparative literature. Lee (2016) argues that party competition drives legislative obstruction, and Curry and Lee (2019) document a parallel decline in bipartisan lawmaking in the U.S. Congress. The Korean case may represent an especially acute version of this dynamic because of the combination of strong party discipline, a polarized party system, and a presidential system in which the Assembly majority and the president belong to opposing parties. However, the limited temporal scope of the cosponsorship data, covering only two assemblies, prevents me from establishing whether the cross-party reversal is a persistent feature of divided government in Korea or a product of the specific political dynamics of the 21st Assembly. The 20th Assembly itself provides mixed evidence: it began under divided government (Park Geun-hye presidency, opposition Assembly majority) before transitioning to unified government after the 2017 impeachment and Moon Jae-in's inauguration. A within-assembly analysis exploiting this transition could provide stronger leverage on the divided government mechanism, though the confound of the impeachment crisis itself would need to be addressed.
 
 The analysis faces several important limitations. First, the cosponsorship data cover only the 20th and 21st Assemblies, preventing longitudinal analysis of cross-party patterns across earlier periods. Second, the committee composition panel needed to examine the cartel theory's core prediction, that majority-party seat share predicts bill duration, is not yet available in the dataset and must be constructed from member-level committee assignment records. Third, the position-taking bill definition relies partly on outcome information, since one of its criteria is term expiration, which introduces a subtle conditioning problem for the survival model. A cleaner specification for the competing-risks analysis would use only the ex ante criteria (sponsor count and committee processing status) measured at introduction. Fourth, the descriptive nature of the analysis means that the cross-party reversal should be understood as a pattern consistent with theory rather than as a causal test. The competing-risks model proposed in Equation~\ref{eq:competing}, once estimated with committee composition data, could provide a more rigorous examination.
 
@@ -363,7 +265,7 @@ The analysis faces several important limitations. First, the cosponsorship data 
 
 This paper makes three contributions to the study of legislative politics. First, it provides a systematic descriptive account of how the KNA's legislative funnel has changed across five assemblies, decomposing the declining passage rate into a bill inflation component and a residual gatekeeping component. The residual component points to genuine changes in committee processing that cannot be attributed solely to the proliferation of position-taking bills (Table~\ref{tab:desc}). Second, it documents the cross-party cosponsorship reversal between the 20th and 21st Assemblies, connecting it to the onset of divided government and the theoretical predictions of cartel theory and conditional party government (Table~\ref{tab:crossparty}). Third, it proposes a Fine-Gray competing-risks model that treats the Korean institutional context's distinctive alternative-bill absorption pathway as a separate exit event, establishing the groundwork for future survival analysis of East Asian legislative data.
 
-These findings have implications for both scholars and practitioners. For scholars of comparative legislative politics, the Korean case demonstrates that conventional binary measures of legislative success can be deeply misleading in institutional environments where content absorption is a formalized pathway. Any future Korean Legislative Effectiveness Score must account for this pathway, and the absence of a non-U.S. adaptation of the Volden-Wiseman framework \citep{volden2014, bucchianeri2024} represents a significant gap in the comparative literature. For practitioners and reform advocates, the finding that over 82 percent of expired bills die through committee inaction rather than deliberation raises questions about the capacity of the current committee system to manage the volume of legislation it receives.
+These findings have implications for both scholars and practitioners. For scholars of comparative legislative politics, the Korean case demonstrates that conventional binary measures of legislative success can be deeply misleading in institutional environments where content absorption is a formalized pathway. Any future Korean Legislative Effectiveness Score must account for this pathway, and the absence of a non-U.S. adaptation of the Volden-Wiseman framework (Volden2014, Bucchianeri2024) represents a significant gap in the comparative literature. For practitioners and reform advocates, the finding that over 82 percent of expired bills die through committee inaction rather than deliberation raises questions about the capacity of the current committee system to manage the volume of legislation it receives.
 
 Future research should pursue three directions. First, constructing the committee composition panel from member-level assignment records would enable a direct examination of the cartel theory prediction that majority-party seat share predicts bill duration. Second, extending the cosponsorship data backward to earlier assemblies, even imperfectly through name-to-party matching, would establish whether the cross-party reversal is a novel feature of the 21st Assembly or part of a longer trajectory. Third, linking the content of original legislator bills to the alternative bills that absorb them, using text similarity measures, would enable construction of a Korean Legislative Effectiveness Score with partial credit for content absorption. These extensions, taken together, could transform the descriptive foundation established here into a causal analysis of committee gatekeeping in one of Asia's most active legislatures.
 
@@ -374,7 +276,45 @@ experimental output. It has not been peer-reviewed or fact-checked.
 Do not cite or use in any academic, policy, or professional context.}
 
 
-\bibliographystyle{apsr}
-\bibliography{references}
+
+
+\section*{References}
+
+\noindent An, Seongho, Sanghee Park, and Jaeho Lee. 2025. ``Sponsor Characteristics and Bill Passage in the Korean National Assembly.'' \textit{Journal of Korean Political Science} 25 (1): 115--140.
+
+\noindent Ballard, Andrew O. 2021. ``Minority Party Capacity in the U.S. Congress.'' \textit{Legislative Studies Quarterly} 46 (2): 309--341.
+
+\noindent Bonica, Adam, Nolan McCarty, Keith T. Poole, and Howard Rosenthal. 2013. ``Why Hasn't Democracy Slowed Rising Inequality?'' \textit{Journal of Economic Perspectives} 27 (3): 103--124.
+
+\noindent Bucchianeri, Peter, Craig Volden, and Alan E. Wiseman. 2024. ``Legislative Effectiveness in the American States.'' \textit{American Political Science Review} 118 (1): 277--293.
+
+\noindent Cox, Gary W., and Mathew D. McCubbins. 2005. \textit{Setting the Agenda}. New York: Cambridge University Press.
+
+\noindent Curry, James M., and Frances E. Lee. 2019. \textit{The Limits of Party}. Chicago: University of Chicago Press.
+
+\noindent Fine, Jason P., and Robert J. Gray. 1999. ``A Proportional Hazards Model for the Subdistribution of a Competing Risk.'' \textit{Journal of the American Statistical Association} 94 (446): 496--509.
+
+\noindent Hacker, Jacob S. 2004. ``Privatizing Risk without Privatizing the Welfare State.'' \textit{American Political Science Review} 98 (2): 243--260.
+
+\noindent Kim, Jungsub. 2019. ``Policy Type and Legislative Outcomes in the Korean National Assembly.'' \textit{Korean Political Science Review} 53 (4): 75--98.
+
+\noindent Kim, Jungsub, and Seonghui Lee. 2026. ``Legislator Competence or Structural Practices?'' \textit{Journal of Legislative Studies} 23 (1): 5--28.
+
+\noindent Krehbiel, Keith. 1991. \textit{Information and Legislative Organization}. Ann Arbor: University of Michigan Press.
+
+\noindent Krutz, Glen S. 2005. ``Issues and Institutions: Winnowing in the U.S. Congress.'' \textit{American Journal of Political Science} 49 (2): 313--326.
+
+\noindent Lee, Frances E. 2016. \textit{Insecure Majorities}. Chicago: University of Chicago Press.
+
+\noindent Lowi, Theodore J. 1964. ``American Business, Public Policy, Case-Studies, and Political Theory.'' \textit{World Politics} 16 (4): 677--715.
+
+\noindent Park, Yoonkyung. 2013. ``Determinants of Member-Initiated Bill Passage at Standing Committees.'' \textit{Korean Journal of Legislative Studies} 19 (2): 131--158.
+
+\noindent Seo, Jeonggon, and Jongsoo Yoon. 2020. ``Politically Controversial Bills and Committee Dynamics.'' \textit{Journal of Parliamentary Research} 1 (1): 33--62.
+
+\noindent Volden, Craig, and Alan E. Wiseman. 2014. \textit{Legislative Effectiveness in the United States Congress}. New York: Cambridge University Press.
+
+\noindent Yoon, Heewoong, and Jiyoung Shin. 2023. ``Cosponsorship Networks and Legislative Success.'' \textit{Korean Political Science Review} 57 (3): 45--72.
+
 
 \end{document}
