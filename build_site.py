@@ -845,14 +845,22 @@ def build_index(posts):
 
     if posts:
         messages = []
-        n_agents = 3
-        max_round = (len(posts) - 1) // n_agents + 1
 
-        # Group posts by round
+        # Group posts by round using agent sequence detection
+        # A new round starts when we see a scout after a critic (or at the beginning)
         rounds_data = {}
-        for i, p in enumerate(posts):
-            rnd = (i // n_agents) + 1
-            rounds_data.setdefault(rnd, []).append(p)
+        current_rnd = 1
+        prev_agent = None
+        agent_order = {"literature_scout": 0, "data_analyst": 1, "critic": 2, "human": 3, "unknown": 4}
+        for p in posts:
+            agent_rank = agent_order.get(p["agent_id"], 4)
+            prev_rank = agent_order.get(prev_agent, -1) if prev_agent else -1
+            # New round if agent rank resets (scout after critic, or scout after scout in new thread)
+            if prev_agent is not None and agent_rank <= prev_rank and prev_rank >= 2:
+                current_rnd += 1
+            rounds_data.setdefault(current_rnd, []).append(p)
+            prev_agent = p["agent_id"]
+        max_round = current_rnd
 
         # Render in REVERSE order (most recent first)
         for rnd in sorted(rounds_data.keys(), reverse=True):
@@ -867,51 +875,33 @@ def build_index(posts):
                 f'Round {rnd}{topic_hint}</summary>'
             )
 
-            # Check which agents posted in this round
-            posted_agents = set(p["agent_id"] for p in round_posts)
-            expected_agents = ["literature_scout", "data_analyst", "critic"]
+            # Render posts in correct order (scout -> analyst -> critic)
+            # with timed-out placeholders for missing agents
+            posted_agents = {p["agent_id"] for p in round_posts}
+            expected_order = ["literature_scout", "data_analyst", "critic"]
+            posts_by_agent = {p["agent_id"]: p for p in round_posts}
 
-            for p in round_posts:
-                short = AGENT_SHORT.get(p["agent_id"], "")
-                initial = AGENT_INITIALS.get(p["agent_id"], "?")
-                label = AGENT_COLORS.get(p["agent_id"], {}).get("label", "")
+            for ea in expected_order:
+                if ea in posts_by_agent:
+                    p = posts_by_agent[ea]
+                    short = AGENT_SHORT.get(p["agent_id"], "")
+                    initial = AGENT_INITIALS.get(p["agent_id"], "?")
+                    label = AGENT_COLORS.get(p["agent_id"], {}).get("label", "")
 
-                preview = re.sub(r"[#*`\[\]()]", "", p["body_md"])
-                preview = re.sub(r"\n+", " ", preview).strip()[:200] + "..."
+                    preview = re.sub(r"[#*`\[\]()]", "", p["body_md"])
+                    preview = re.sub(r"\n+", " ", preview).strip()[:200] + "..."
 
-                refs_html = ""
-                if p["references"]:
-                    ref_links = []
-                    for r in p["references"][:3]:
-                        if r.endswith(".md"):
-                            ref_links.append(f'<a href="{r.replace(".md", ".html")}">{r}</a>')
-                        else:
-                            ref_links.append(r)
-                    refs_html = f'<div class="msg-refs">refs: {", ".join(ref_links)}</div>'
+                    refs_html = ""
+                    if p["references"]:
+                        ref_links = []
+                        for r in p["references"][:3]:
+                            if r.endswith(".md"):
+                                ref_links.append(f'<a href="{r.replace(".md", ".html")}">{r}</a>')
+                            else:
+                                ref_links.append(r)
+                        refs_html = f'<div class="msg-refs">refs: {", ".join(ref_links)}</div>'
 
-                # Insert timed-out placeholder before this post if a prior agent is missing
-                for ea in expected_agents:
-                    if ea not in posted_agents and ea < p["agent_id"]:
-                        ea_short = AGENT_SHORT.get(ea, "")
-                        ea_initial = AGENT_INITIALS.get(ea, "?")
-                        ea_label = AGENT_COLORS.get(ea, {}).get("label", "")
-                        ea_name = {"literature_scout": "Scout (Literature Tracker)",
-                                   "data_analyst": "Analyst (KNA Data Expert)",
-                                   "critic": "Critic (Theory & Methods)"}.get(ea, ea)
-                        messages.append(f"""\
-<div class="message" style="opacity:0.5;">
-  <div class="avatar {ea_short}">{ea_initial}</div>
-  <div class="msg-content">
-    <div class="msg-header">
-      <span class="msg-author">{ea_name}</span>
-      <span class="msg-badge {ea_short}">{ea_label}</span>
-    </div>
-    <div class="msg-preview" style="font-style:italic; color:var(--muted);">(Timed Out)</div>
-  </div>
-</div>""")
-                        posted_agents.add(ea)  # prevent duplicate placeholder
-
-                messages.append(f"""\
+                    messages.append(f"""\
 <div class="message">
   <div class="avatar {short}">{initial}</div>
   <div class="msg-content">
@@ -925,6 +915,26 @@ def build_index(posts):
     {refs_html}
   </div>
 </div>""")
+                else:
+                    # Timed out - show placeholder
+                    ea_short = AGENT_SHORT.get(ea, "")
+                    ea_initial = AGENT_INITIALS.get(ea, "?")
+                    ea_label = AGENT_COLORS.get(ea, {}).get("label", "")
+                    ea_name = {"literature_scout": "Scout (Literature Tracker)",
+                               "data_analyst": "Analyst (KNA Data Expert)",
+                               "critic": "Critic (Theory & Methods)"}.get(ea, ea)
+                    messages.append(f"""\
+<div class="message" style="opacity:0.4;">
+  <div class="avatar {ea_short}">{ea_initial}</div>
+  <div class="msg-content">
+    <div class="msg-header">
+      <span class="msg-author">{ea_name}</span>
+      <span class="msg-badge {ea_short}">{ea_label}</span>
+    </div>
+    <div class="msg-preview" style="font-style:italic; color:var(--muted);">(Timed Out)</div>
+  </div>
+</div>""")
+
             # (round posts rendered above, now close with summary)
             if rnd in round_summaries:
                 s = round_summaries[rnd]
