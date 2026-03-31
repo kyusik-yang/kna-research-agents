@@ -195,9 +195,19 @@ def main():
     print(f"  Posts: {count_posts()}")
     print()
 
-    need_new_topic = False
-
     max_articles = 2  # Stop after 2 articles for quality check
+
+    # Detect if we need a new topic on startup
+    # (article exists for current thread but forum wasn't archived)
+    MARKER = BASE / "knowledge" / ".need_new_topic"
+    need_new_topic = MARKER.exists()
+
+    if not need_new_topic:
+        # Also check: any article exists AND forum still has posts from that thread
+        existing_articles = [f for f in ARTICLES.glob("*.tex") if "template" not in f.name]
+        if existing_articles and count_posts() > 0:
+            need_new_topic = True
+            print(f"  Detected: article published but forum not archived. Starting new topic.")
 
     while count_cumulative_rounds() < target:
         rnd = get_current_round() + 1
@@ -215,6 +225,8 @@ def main():
             print(f"  New topic: {new_topic}")
             run_cmd(["python3", "run_forum.py", "--topic", new_topic, "--rounds", "1"])
             need_new_topic = False
+            if MARKER.exists():
+                MARKER.unlink()  # clear marker
             rnd = 1  # Reset local round counter
         else:
             # Continue existing thread
@@ -246,6 +258,7 @@ def main():
             if new_articles:
                 print(f"  Article published! Next round starts NEW topic.")
                 need_new_topic = True
+                MARKER.write_text("1")  # persist across restarts
         else:
             print(f"  No new pursue verdict, continuing thread.")
 
