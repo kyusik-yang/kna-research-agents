@@ -460,10 +460,14 @@ def generate_round_summary(round_num, topic=None):
 
     Rules:
     - Quotes should be the punchline of each agent's post - the one line a reader would remember
+    - NEVER include inline coefficients (beta, SE, p-values) in quotes or overview text
+    - Use substantive magnitude instead: "a 12 percentage-point penalty", "roughly twice as likely"
     - Findings Status: mark as "confirmed" if multiple agents agree, "contested" if disagreement exists, "preliminary" if new
+    - Findings table: describe findings in plain language, no beta/SE/p notation
     - If a finding from a PREVIOUS round was addressed this round, update its status
     - Keep the overview to 2-3 sentences, not more
     - Total length under 200 words (excluding quotes and table)
+    - No em dashes (---). Use commas, semicolons, or rephrase.
 
     ## Posts to Summarize
 
