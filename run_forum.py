@@ -489,7 +489,7 @@ def generate_round_summary(round_num, topic=None):
     print(f"\n  Generating Round {round_num} summary...")
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=120, cwd=str(WORKSPACE_DIR),
+            cmd, capture_output=True, text=True, timeout=3600, cwd=str(WORKSPACE_DIR),
         )
         summary_file = SUMMARIES_DIR / f"round_{round_num:02d}.md"
         if summary_file.exists():
