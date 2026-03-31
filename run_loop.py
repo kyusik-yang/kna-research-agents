@@ -197,6 +197,8 @@ def main():
 
     need_new_topic = False
 
+    max_articles = 2  # Stop after 2 articles for quality check
+
     while count_cumulative_rounds() < target:
         rnd = get_current_round() + 1
         cumulative = count_cumulative_rounds() + 1
@@ -265,6 +267,12 @@ def main():
         subprocess.run(["git", "push", "origin", "main"], capture_output=True, timeout=60)
 
         print(f"  Done. Cumulative: {count_cumulative_rounds()}/{target}")
+
+        # Stop after N articles for quality check
+        article_count = len([f for f in ARTICLES.glob("*.tex") if "template" not in f.name])
+        if article_count >= max_articles:
+            print(f"\n  PAUSED: {article_count} articles generated. Waiting for quality check.")
+            break
 
     print(f"\n{'='*50}")
     print(f"  LOOP COMPLETE: {count_cumulative_rounds()} cumulative rounds")
