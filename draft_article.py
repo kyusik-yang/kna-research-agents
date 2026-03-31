@@ -213,14 +213,27 @@ def draft_article(round_num):
     - Parenthetical: \\citep{{lowi1964}} = (Lowi 1964)
     - Multiple: \\citep{{bates1998, jones1990}} = (Bates et al. 1998; Jones 1990)
     - With page: \\citep[45]{{author2005}} = (Author 2005, 45)
-    - CRITICAL: There is NO .bib file. Do NOT use \\citet or \\citep commands.
-      Write all citations as plain text:
-      WRONG: \\citet{{cox2005}} -> COMPILE ERROR
-      RIGHT: Cox and McCubbins (2005)
-      WRONG: \\citep{{lowi1964}} -> COMPILE ERROR
-      RIGHT: (Lowi 1964)
-    - ALSO CRITICAL: You MUST include a \\section*{{References}} at the end
-      with full bibliography entries. Without this the paper is incomplete.
+    - Use natbib commands for all citations:
+      Narrative: \\citet{{cox2005}} -> Cox and McCubbins (2005)
+      Parenthetical: \\citep{{lowi1964}} -> (Lowi 1964)
+      Multiple: \\citep{{bates1998, jones1990}} -> (Bates et al. 1998; Jones 1990)
+      With page: \\citet[45]{{author2005}} -> Author (2005, 45)
+    - Use consistent, short citation keys: authorYEAR (e.g., cox2005, lowi1964)
+    - At the end of the paper, write:
+      \\bibliographystyle{{apsr}}
+      \\bibliography{{references_r{round_num}}}
+    - ALSO write a separate .bib file to: {ARTICLES_DIR}/references_r{round_num}.bib
+      with ALL cited references in BibTeX format. Example entry:
+      @article{{lowi1964,
+        author = {{Lowi, Theodore J.}},
+        title = {{American Business, Public Policy, Case-Studies, and Political Theory}},
+        journal = {{World Politics}},
+        year = {{1964}},
+        volume = {{16}},
+        number = {{4}},
+        pages = {{677--715}}
+      }}
+    - EVERY \\citet/\\citep key MUST have a matching entry in the .bib file.
 
     **Equations (amsmath):**
     Inline: $\\beta_1$, $p < 0.001$
@@ -353,7 +366,7 @@ def draft_article(round_num):
         "--dangerously-skip-permissions",
         "--system-prompt-file", str(prompt_file),
         "--output-format", "text",
-        "Write the working paper draft now.",
+        f"Write the working paper draft now. Write TWO files: (1) the LaTeX content to {content_file} and (2) the BibTeX references to {ARTICLES_DIR}/references_r{round_num}.bib",
     ]
 
     try:
@@ -508,13 +521,25 @@ def compile_tex(tex_file):
     import subprocess as _sp
 
     tex_dir = tex_file.parent
-    print(f"  Compiling {tex_file.name} with xelatex...")
+    TINYTEX = Path.home() / "Library/TinyTeX/bin/universal-darwin"
+    print(f"  Compiling {tex_file.name} (xelatex + bibtex)...")
 
-    # Run xelatex twice (for references/cross-refs)
-    for i in range(3):  # 3 passes for cross-refs + error recovery
+    # Pass 1: xelatex
+    _sp.run(
+        [str(TINYTEX / "xelatex"), "-interaction=nonstopmode", tex_file.name],
+        capture_output=True, text=True, timeout=120, cwd=str(tex_dir),
+    )
+
+    # Pass 2: bibtex (for natbib references)
+    _sp.run(
+        [str(TINYTEX / "bibtex"), tex_file.stem],
+        capture_output=True, text=True, timeout=60, cwd=str(tex_dir),
+    )
+
+    # Pass 3-4: xelatex twice more for cross-refs
+    for i in range(2):
         result = _sp.run(
-            [str(Path.home() / "Library/TinyTeX/bin/universal-darwin/xelatex"),
-             "-interaction=nonstopmode", "-halt-on-error", tex_file.name],
+            [str(TINYTEX / "xelatex"), "-interaction=nonstopmode", tex_file.name],
             capture_output=True, text=True, timeout=120, cwd=str(tex_dir),
         )
         if result.returncode != 0 and i == 0:
@@ -533,7 +558,7 @@ def compile_tex(tex_file):
     if pdf_file.exists():
         print(f"  PDF: {pdf_file.name} ({pdf_file.stat().st_size // 1024} KB)")
         # Clean aux files
-        for ext in [".aux", ".log", ".out", ".toc"]:
+        for ext in [".aux", ".log", ".out", ".toc", ".bbl", ".blg"]:
             f = tex_file.with_suffix(ext)
             if f.exists():
                 f.unlink()
