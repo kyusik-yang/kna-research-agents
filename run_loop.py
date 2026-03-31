@@ -152,9 +152,13 @@ def pick_new_topic():
         f"Recent citizen research demands from Yeouido Agora:\n{demands_str}\n\n"
         f"Suggest ONE specific, novel research question about the Korean National Assembly "
         f"that is DIFFERENT from all previous topics. "
-        f"Prioritize citizen demands if they suggest an interesting empirical puzzle. "
+        f"Two sources of inspiration: "
+        f"(1) Citizen demands from Yeouido Agora listed above, if any suggest an interesting empirical puzzle. "
+        f"(2) Your own knowledge of political science literature, identifying gaps or untested theories. "
+        f"Either source is fine. Pick whichever yields the most promising question. "
         f"Focus on something testable with bill data, roll call votes, "
-        f"committee records, member metadata, or hearing transcripts. "
+        f"committee records, member metadata (party, district, committee, seniority, gender), "
+        f"or hearing transcripts (9.9M speeches, 7.4M Q&A dyads). "
         f"One sentence only. English."
     )
 
