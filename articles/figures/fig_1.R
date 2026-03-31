@@ -1,37 +1,41 @@
 # Auto-generated figure for article
 Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
-# Figure 1: DPK Dissent Trajectory on Property-Tax Votes
+# Figure 1: Committee-level passage rate changes around December 3
 library(ggplot2)
+library(dplyr)
 
-votes <- data.frame(
-  vote_num = 1:5,
-  label = c("Jul 2020\n(Tax Hike)", "Dec 2020\n(Amendment)",
-            "Aug 2021\n(Adjustment)", "Jul 2022\n(Tax Cut)",
-            "Mar 2023\n(Revision)"),
-  dissent_pct = c(0.7, 0.0, 8.8, 37.3, 28.7),
-  n_present = c(149, 151, 125, 134, 115)
+committees <- data.frame(
+  committee = c("Culture/Sports/Tourism",
+                "Industry/SME",
+                "Agriculture/Fisheries",
+                "Health/Welfare",
+                "Education",
+                "Judiciary (all bills)",
+                "Defense/Foreign Affairs",
+                "Strategy/Finance"),
+  change = c(-41.0, -28.1, -27.1, -26.2, -25.6, -18.2, -8.3, 28.0),
+  type = c("Social policy", "Economic", "Social policy",
+            "Social policy", "Social policy", "Judiciary",
+            "Security", "Economic")
 )
 
-votes$n_dissent <- round(votes$dissent_pct / 100 * votes$n_present)
-votes$ci_low <- mapply(function(x, n) {
-  if (x == 0) return(0)
-  binom.test(x, n)$conf.int[1] * 100
-}, votes$n_dissent, votes$n_present)
-votes$ci_high <- mapply(function(x, n) {
-  binom.test(x, n)$conf.int[2] * 100
-}, votes$n_dissent, votes$n_present)
+# Okabe-Ito palette subset
+palette <- c("Social policy" = "#E69F00", "Economic" = "#56B4E9",
+             "Judiciary" = "#009E73", "Security" = "#D55E00")
 
-votes$label <- factor(votes$label, levels = votes$label)
-
-ggplot(votes, aes(x = label, y = dissent_pct)) +
-  geom_pointrange(aes(ymin = ci_low, ymax = ci_high), size = 0.7) +
-  geom_hline(yintercept = 5, linetype = "dashed", color = "gray50") +
-  annotate("text", x = 0.7, y = 7, label = "5% baseline",
-           size = 3, color = "gray40", hjust = 0) +
-  labs(x = NULL, y = "DPK Dissent Rate (%)",
-       caption = "Note: 95% exact binomial confidence intervals.") +
-  scale_y_continuous(limits = c(0, 55), breaks = seq(0, 50, 10)) +
+ggplot(committees, aes(x = change,
+                       y = reorder(committee, change),
+                       color = type)) +
+  geom_point(size = 3) +
+  geom_segment(aes(xend = 0, yend = committee), linewidth = 0.6) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  scale_color_manual(values = palette, name = "Committee type") +
+  labs(x = "Change in passage rate (percentage points)",
+       y = NULL,
+       caption = paste("Note: Change = post-Dec. 3 rate minus",
+                       "pre-Dec. 3 rate. Selected committees shown.")) +
   theme_bw(base_size = 11) +
-  theme(axis.text.x = element_text(size = 9))
-
+  theme(legend.position = c(0.82, 0.25),
+        legend.background = element_rect(fill = "white", color = "gray80"),
+        plot.caption = element_text(hjust = 0, size = 8))
 ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_1.pdf", width = 7, height = 4.5)
