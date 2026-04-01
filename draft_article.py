@@ -282,10 +282,11 @@ def draft_article(round_num):
     \\end{{tabular}}
     \\end{{table}}
 
-    **Figure (MANDATORY at least 1):**
-    Include at least one professional-quality figure. Generate the figure using R code
-    that runs independently. Write the R script inside the article as a code block,
-    and include a \\includegraphics placeholder for the output PDF.
+    **Figure (MANDATORY - at least 1, ideally 2):**
+    You MUST include at least one figure. This is NOT optional.
+    The R code in \\begin{{verbatim}} blocks will be AUTOMATICALLY EXECUTED
+    by the pipeline and the placeholder will be replaced with the actual figure.
+    Write real, runnable R code that loads data and produces a figure.
 
     Best figure types:
     - Coefficient plot: point estimates with 95\\% CI bars (ggplot2 + geom_pointrange)
@@ -349,6 +350,20 @@ def draft_article(round_num):
     - Do NOT invent data or citations
     - Acknowledge Critic's limitations honestly
     - Target 8,000-10,000 words
+    - APSR style throughout
+
+    **KNA Data Available (check before writing Data section):**
+    - master_bills_{{17-22}}.parquet: bill lifecycle (42+ columns)
+    - roll_calls_all.parquet: 2.4M member-level votes
+    - dw_ideal_points_20_22.csv: DW-NOMINATE ideal points
+    - committee_meetings_{{17-22}}.parquet: committee meeting records
+    - bill_texts_linked.parquet: 60K propose-reason texts
+    - cosponsorship_edges.parquet: cosponsorship network
+    - members_{{17-22}}.parquet: member metadata (party, district, committee, sex, birth_date, election_type, reelection)
+    - assets data: db.assets(assembly=22) - 2,928 member-year wealth observations
+    - kr-hearings-data: 9.9M speeches + 7.4M Q&A dyads (separate download)
+    Data path: /Users/kyusik/kna/data/processed/
+    R code for figures should use arrow::read_parquet() to load this data directly.
     - Valid LaTeX that compiles with xelatex
 
     ## Forum Discussion (Rounds 1-{round_num})
