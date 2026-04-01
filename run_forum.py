@@ -51,32 +51,58 @@ def get_forum_posts():
     return posts
 
 
+def get_topic_break_round():
+    """Check if there's a topic break marker (new topic starts from this round)."""
+    marker = KNOWLEDGE_DIR / "topic_break.txt"
+    if marker.exists():
+        try:
+            return int(marker.read_text().strip())
+        except ValueError:
+            pass
+    return 0
+
+
 def get_forum_state(current_round=1, n_agents=3):
     """Compile forum state with aggressive context compression.
 
-    Strategy (keeps context small even at 20+ rounds):
-    - Current round (N): full text of all posts so far in this round
-    - Previous round (N-1): full text (agents need recent context)
-    - Rounds N-3 to N-2: round SUMMARY only (from summaries/ dir)
-    - Rounds 1 to N-4: omitted entirely (findings tracker covers key results)
+    Strategy:
+    - If topic break exists, ONLY show posts from break round onwards
+    - Current round (N): full text of all posts so far
+    - Previous round (N-1): full text
+    - Rounds N-3 to N-2: round SUMMARY only
+    - Older: omitted
     """
     posts = get_forum_posts()
     if not posts:
-        return "(No posts yet. You are starting the discussion.)"
+        return "(No posts yet. You are starting a NEW research thread.)"
+
+    # Topic break: only show posts from the new topic onwards
+    topic_break = get_topic_break_round()
+    if topic_break > 0 and current_round >= topic_break:
+        min_round = topic_break
+    else:
+        min_round = 1
 
     parts = []
 
-    # 1. Include round summaries for N-3 and N-2 only
+    # If this is the first round of a new topic, say so explicitly
+    if topic_break > 0 and current_round == topic_break:
+        parts.append(
+            "(This is a NEW research topic. Previous rounds covered different topics. "
+            "Do NOT reference or respond to previous posts. Start fresh.)"
+        )
+
+    # 1. Include round summaries for N-3 and N-2 only (within current topic)
     if SUMMARIES_DIR.exists():
         for sf in sorted(SUMMARIES_DIR.glob("round_*.md")):
             rnd_num = int(re.search(r"(\d+)", sf.stem).group(1))
-            if current_round - 3 <= rnd_num <= current_round - 2:
+            if rnd_num >= min_round and current_round - 3 <= rnd_num <= current_round - 2:
                 parts.append(f"--- Round {rnd_num} Summary ---\n{sf.read_text()}")
 
-    # 2. Full text for current and previous round only
+    # 2. Full text for current and previous round only (within current topic)
     for i, p in enumerate(posts):
         post_round = (i // n_agents) + 1
-        if post_round >= current_round - 1:
+        if post_round >= max(min_round, current_round - 1):
             parts.append(f"--- {p.name} ---\n{p.read_text()}")
 
     return "\n\n".join(parts)
