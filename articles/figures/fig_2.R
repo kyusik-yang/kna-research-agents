@@ -1,34 +1,55 @@
 # Auto-generated figure for article
 Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
-# Figure 2: Special counsel bill escalation across assemblies
+# Figure 2: Coefficient plot of Female x SMD interaction by assembly
+library(arrow)
+library(dplyr)
 library(ggplot2)
+library(fixest)
 
-sc_data <- data.frame(
-  assembly = factor(c("17th", "18th", "19th", "20th", "21st", "22nd"),
-                    levels = c("17th", "18th", "19th", "20th", "21st", "22nd")),
-  introduced = c(19, 12, 14, 37, 34, 70),
-  passed = c(3, 2, 3, 2, 6, 17),
-  rejected = c(0, 0, 0, 0, 3, 8)
+members <- arrow::read_parquet(
+  "/Users/kyusik/kna/data/processed/member_info_17_22.parquet"
 )
 
-library(tidyr)
-sc_long <- sc_data %>%
-  pivot_longer(cols = c(passed, rejected),
-               names_to = "outcome", values_to = "count")
+results <- list()
+for (a in c(20, 21, 22)) {
+  bills <- arrow::read_parquet(
+    sprintf("/Users/kyusik/kna/data/processed/master_bills_%d.parquet", a)
+  ) |>
+    filter(ppsr_kind == "의원")
 
-ggplot() +
-  geom_col(data = sc_data, aes(x = assembly, y = introduced),
-           fill = "gray85", width = 0.6) +
-  geom_col(data = sc_long, aes(x = assembly, y = count, fill = outcome),
-           position = "dodge", width = 0.5) +
-  scale_fill_manual(values = c("passed" = "#009E73", "rejected" = "#D55E00"),
-                    labels = c("Passed", "Rejected"),
-                    name = "Outcome") +
-  labs(x = "National Assembly", y = "Number of bills",
-       caption = paste("Note: Gray bars = total special counsel bills introduced.",
-                       "Colored bars = final outcomes.")) +
-  theme_bw(base_size = 11) +
-  theme(legend.position = c(0.15, 0.85),
-        legend.background = element_rect(fill = "white", color = "gray80"),
-        plot.caption = element_text(hjust = 0, size = 8))
-ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_2.pdf", width = 7, height = 4.5)
+  merged <- bills |>
+    left_join(
+      members |> filter(assembly == a) |> select(mona_cd, gender, election_type),
+      by = c("rst_mona_cd" = "mona_cd")
+    ) |>
+    filter(!is.na(gender), !is.na(election_type)) |>
+    mutate(
+      female = as.integer(gender == "여"),
+      smd = as.integer(election_type == "지역구")
+    )
+
+  model <- feols(passed ~ female * smd, data = merged, vcov = ~rst_mona_cd)
+  ci <- confint(model)
+
+  results[[length(results) + 1]] <- data.frame(
+    Assembly = paste0(a, "th"),
+    estimate = coef(model)["female:smd"],
+    ci_low = ci["female:smd", 1],
+    ci_high = ci["female:smd", 2]
+  )
+}
+
+coef_df <- bind_rows(results)
+coef_df$Assembly <- factor(coef_df$Assembly, levels = c("22nd", "21st", "20th"))
+
+ggplot(coef_df, aes(x = estimate, y = Assembly)) +
+  geom_pointrange(aes(xmin = ci_low, xmax = ci_high), size = 0.8) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  labs(
+    x = "Female x SMD Interaction (LPM coefficient)",
+    y = NULL,
+    caption = "Note: 95% CIs. SEs clustered at legislator level."
+  ) +
+  theme_bw(base_size = 11)
+
+ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_2.pdf", width = 7, height = 3.5)

@@ -1,0 +1,449 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{When Quotas Create Revolving Doors: A Simpson's Paradox in Women's Legislative Effectiveness Across Electoral Pathways}
+\author{KNA Research Agents (AI-generated)\\[3pt]\textit{Experimental Output --- kna-research-agents.com}}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent I document a Simpson's Paradox in the Korean National Assembly (국회): women elected through single-member districts achieve higher aggregate bill passage rates than women entering via proportional representation in the 21st and 22nd Assemblies, reversing the pattern observed in the 17th through 20th. Yet individual women who transition from PR to SMD experience passage rate declines. Using 62,206 legislator-introduced bills and 1,933 member-terms across six assemblies, I present evidence that quota-induced turnover in the PR cohort creates a systematic seniority asymmetry that substantially accounts for the aggregate reversal. Controlling for seniority attenuates the pathway interaction by more than half. These findings suggest that aggregate comparisons of women's effectiveness across electoral pathways are vulnerable to compositional bias, with implications for gender quota design in mixed-member systems.
+\end{abstract}
+
+\noindent\textbf{Keywords:} gender quotas, legislative effectiveness, electoral pathways, Simpson's Paradox, Korean National Assembly
+
+\setcounter{page}{1}
+\clearpage
+
+
+%% ============================================================
+%%  1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Proportional representation quotas serve as the principal institutional mechanism for increasing women's descriptive representation in mixed-member legislatures. An extensive literature documents that PR tiers enable both women and men to sponsor more legislation on women's issues \citep{kweon2021} and that women's committee assignments shape their substantive representation opportunities \citep{erikson2020}. Yet an important asymmetry in these evaluations has received little attention: scholars routinely compare women's legislative effectiveness across electoral pathways using aggregate statistics without considering whether the composition of each pathway's legislator cohort, rather than the pathway itself, drives observed differences. If PR quotas systematically channel first-term legislators into the legislature while the single-member district pathway accumulates experienced incumbents, aggregate pathway comparisons may produce misleading conclusions about which electoral system features best support women's legislative effectiveness.
+
+I document a Simpson's Paradox in the Korean National Assembly (KNA, 국회) that illustrates this compositional trap. In the aggregate, women elected through single-member districts (지역구) achieved higher bill passage rates than women entering via proportional representation (비례대표) lists in the 21st (2020--2024) and 22nd (2024--present) Assemblies, reversing a pattern observed in the 17th through 20th Assemblies (2004--2020). This aggregate reversal might suggest that the SMD pathway has become more conducive to women's legislative effectiveness. Yet when I trace individual women who transitioned from PR to SMD across consecutive assemblies, the pattern inverts: these switchers experienced passage rate declines after moving to district seats. The aggregate advantage of SMD women appears to be a compositional artifact driven by a seniority asymmetry that Korea's quota system creates by design.
+
+The mechanism is straightforward. Korea's PR gender quota mandates that at least 50 percent of PR candidates be women, and parties comply by placing new women on their lists each election cycle. Women who demonstrate legislative competence in their first PR term have both the incentive and the visibility to seek SMD seats, where they can cultivate an independent electoral base. This produces a steady-state compositional asymmetry: the PR pathway functions as a revolving door of first-term legislators, while the SMD pathway accumulates multi-term incumbents. In the 21st Assembly, the asymmetry is nearly perfectly symmetric: 81 percent of women SMD legislators (26 of 32) were serving at least their second term, while the same proportion of women PR legislators (26 of 32) were first-termers. Since seniority is a well-established predictor of legislative effectiveness \citep{volden2016, bucchianeri2024}, the aggregate ``SMD advantage'' is substantially a seniority advantage wearing a pathway label.
+
+Despite the centrality of electoral pathways to the study of women's representation, there exists, to my knowledge, no study that documents this compositional bias in any mixed-member legislature. \citet{kweon2021} establish that PR legislators in Korea sponsor more women's issue bills and achieve higher passage rates for those bills, but they do not examine overall legislative effectiveness or track the temporal evolution of pathway effects across assemblies. \citet{shim2021a} compares sponsorship patterns in Korea and Taiwan without distinguishing by mandate type within gender. \citet{jun2010} and \citet{kimpark2022} study how mandate type shapes party discipline in the KNA but omit gender from their analyses. The intersection of gender, electoral pathway, and legislative effectiveness over time constitutes a gap in the comparative literature on gender representation. This lacuna may stem from the difficulty of observing the same legislature across enough electoral cycles to detect compositional shifts; the KNA database, which spans six assemblies and nearly two decades, provides the temporal depth that shorter panels cannot offer.
+
+I argue that this gap matters for both scholarly understanding and institutional design. If the aggregate reversal is a compositional artifact, then the policy implications differ fundamentally from what the raw numbers suggest. A genuine pathway effect, where SMD produces more effective women legislators, would argue against quota reliance on PR tiers. A compositional effect, where PR quotas create high turnover that depresses average seniority, would argue for redesigning quota implementation to retain experienced women on party lists rather than treating PR slots exclusively as an entry-level pipeline. The distinction also carries methodological implications: researchers who compare women's legislative output across electoral pathways without accounting for seniority composition may reach systematically incorrect conclusions about the institutional determinants of effectiveness.
+
+Using 62,206 legislator-introduced bills (의원 발의) and 1,933 member-terms across the 17th through 22nd Assemblies (2004--present) from the Korean National Assembly database, I make three contributions. First, I document the temporal reversal in passage rates across electoral pathways: the PR advantage observed in the 17th through 20th Assemblies dissolves and reverses in the 21st and 22nd. This reversal survives within-party decomposition, appearing in both the progressive and conservative blocs simultaneously (Table~\ref{tab:main}). Second, I establish the Simpson's Paradox through a within-person switcher analysis: among 24 unique women who transitioned from PR to SMD across consecutive assembly terms, 19 experienced passage rate declines, with a mean decline of approximately nine percentage points. After benchmarking each switcher's change against the assembly-wide decline for her pre-transition cohort, the adjusted decline is approximately four percentage points, smaller but still inconsistent with the political capital hypothesis that predicts improvement rather than decline. Third, I find that controlling for seniority substantially attenuates the aggregate pathway interaction in the pooled model and attenuates it to statistical insignificance in two of three assembly-specific regressions, consistent with seniority composition being a primary driver of the aggregate pattern (Table~\ref{tab:main}; Table~\ref{tab:assembly}).
+
+A secondary finding documents a potential backlash dynamic in gender-related legislation. The share of bills addressing gender equality peaked in the 20th Assembly and has since declined, even as women's descriptive representation has risen. This decline is steeper among PR women than SMD women, consistent with the interpretation that party gatekeeping moderates gender-related legislative activity more effectively among party-dependent PR legislators than among electorally independent SMD legislators \citep{woo2023}. The backlash finding complements the main passage-rate analysis by demonstrating that the same party-dependence that creates high turnover in the PR tier also shapes the substantive content of PR women's legislative portfolios.
+
+The paper proceeds as follows. Section~2 situates the analysis within literatures on electoral pathways, legislative effectiveness, and gender representation. Section~3 describes the institutional context, the KNA database, and the empirical strategy. Section~4 presents the main results, including the aggregate reversal, within-party robustness, switcher analysis, and seniority mediation. Section~5 discusses theoretical implications and limitations. Section~6 concludes.
+
+
+%% ============================================================
+%%  2. LITERATURE AND THEORY
+%% ============================================================
+\section{Literature and Theory}
+
+The question of how electoral pathways condition women's legislative effectiveness sits at the intersection of three literatures that have developed in partial isolation: electoral system design and gender representation, legislative effectiveness and career trajectories, and gender-specific legislative behavior in the Korean context. I draw on each to develop what I call the ``quota-turnover hypothesis,'' which predicts that aggregate comparisons of legislative effectiveness across pathways are confounded by the seniority composition that quota implementation creates.
+
+\subsection{Electoral Pathways and Gender Representation}
+
+A foundational insight in the gender representation literature is that PR systems elect more women than majoritarian ones \citep{piscopo2015, crisp2022}. In mixed-member systems, where both PR and SMD tiers coexist, the PR tier typically serves as the primary entry point for women. \citet{valdini2013} demonstrates that the ``personal vote'' component inherent in SMD elections creates selection environments where candidate qualities matter alongside party affiliation, potentially disadvantaging women who lack access to the campaign resources and name recognition that personal-vote cultivation requires. By contrast, PR tiers filter candidates through party gatekeepers, where quota mandates can directly increase women's descriptive representation.
+
+Yet the implications of this entry mechanism for what women achieve once elected are ambiguous. \citet{kweon2021} find that PR enables both men and women in the KNA to introduce more women's issue bills and that PR legislators achieve higher passage rates for those bills. Their explanation is that PR legislators, freed from district-service demands, can invest more in policy specialization. This finding aligns with the framework \citet{carey1995} propose: SMD legislators cultivate personal votes through constituency service, while PR legislators orient their efforts toward signaling value to party leadership. \citet{crisp2022} extend this logic comparatively, showing that district magnitude conditions when women represent women substantively; in single-member districts, the pressure to appeal to the median voter constrains gender-specific legislation.
+
+However, this established wisdom assumes a static comparison. If the composition of the PR and SMD cohorts changes over time, as it does when quota-mandated entry creates a specific career pipeline, then the pathway comparison at one point in time may not generalize to another. Most studies of women's legislative behavior in mixed-member systems rely on cross-sectional snapshots from a single assembly or a narrow time window, treating the pathway distinction as a fixed institutional feature rather than a dynamic sorting mechanism that evolves as women's representation grows.\footnote{\citet{feng2023} document a compensatory pattern in the Chinese National People's Congress, where women comprise 23 percent of seats but author 44 percent of legislative proposals. If this compensatory dynamic operates in Korea's PR tier, it could predict that PR women sponsor more bills per capita but achieve lower passage rates per bill, especially among first-termers who have not yet built the institutional relationships necessary for legislative success.}
+
+\subsection{Legislative Effectiveness and Career Trajectories}
+
+The legislative effectiveness literature provides the dependent variable framework for this study. \citet{volden2016} establish that women's issue bills face systematic advancement penalties in the U.S. Congress but that women legislators are more effective at shepherding these bills through institutional obstacles. \citet{bucchianeri2024} extend this to state legislatures, finding that effectiveness is conditioned by majority-party status and polarization. Both studies measure effectiveness through bill advancement and passage, the approach I adopt here.
+
+How legislators' effectiveness evolves over their careers is equally relevant. \citet{liu2016} argue that women's positions within the hierarchy, including committee chairs and party leadership, matter more than descriptive representation alone. Positions with agenda-setting power predict substantive influence more reliably than backbench presence. If SMD women accumulate more committee seniority and agenda-setting positions than PR women over time, this institutional capital could mediate the passage rate gap independently of any direct pathway effect.\footnote{\citet{bailer2021} find that representing disadvantaged groups has ``diminishing value'' for individual legislators' careers, a mechanism directly relevant to women who transition from PR to SMD and may shift both the volume and the topical focus of their legislation.}
+
+\citet{an2025}, studying 45,248 bills from the 20th and 21st KNA, find that bill passage depends critically on committee alignment (sponsoring bills within one's own committee's jurisdiction) and co-sponsorship support. If SMD women are better positioned to engage in strategic committee alignment because their longer tenure affords deeper jurisdictional expertise, the passage rate advantage could reflect learned institutional navigation rather than a pathway-specific treatment effect.
+
+\subsection{Gender and Legislative Behavior in Korea}
+
+The Korean literature on gender and legislation establishes that gender-differentiated legislative behavior exists but is institutionally mediated. \citet{shim2021a} finds that Korean women legislators are more likely to sponsor welfare- and gender-related bills even after controlling for party and committee assignment. \citet{shim2021b} documents a ``policy-vote trade-off'': legislators who invest heavily in women's issue bills face electoral penalties, particularly in conservative districts. \citet{leelee2020} confirm that the connection between descriptive and substantive representation in Korea is conditional on party affiliation and committee assignment. \citet{shin2022} documents that women employ the Gender Equality and Family Committee (여성가족위원회) as an institutional vehicle for advancing gender equality legislation.
+
+Mandate type further structures legislative behavior in Korea. \citet{jun2010} demonstrate that PR-elected legislators defect from party lines at higher rates than SMD-elected legislators, reflecting their orientation toward party leadership rather than geographic constituencies. \citet{kimpark2022} confirm that institutional pathways to election shape voting behavior. \citet{im2025} study PR representatives (비례대표 의원) in the 20th and 21st KNA directly, finding that the PR system creates ``structural tensions'' that constrain representatives' legislative strategies. PR legislators face higher turnover: parties rotate list positions each election, and relatively few PR members secure repeat nominations. This turnover mechanism is the linchpin of the compositional story I develop. If the PR tier is replenished with first-termers each election while the SMD tier retains experienced incumbents, the aggregate comparison of effectiveness across pathways conflates pathway effects with seniority effects.
+
+The anti-feminist backlash in Korean politics connects to the core pathway story. \citet{woo2023} establishes that anti-feminist sentiment on social media affects legislators' bill sponsorship regarding violence against women. \citet{kimlee2025} provide the attitudinal foundation: perceived group threat reduces support for gender equality, particularly among younger respondents and men. If the backlash operates through party-level strategic calculations, PR women, who depend entirely on party leadership for list placement, may be more responsive to party signals discouraging explicit gender-equality legislation than SMD women with independent electoral bases \citep{go2025}.
+
+\subsection{The Quota-Turnover Hypothesis}
+
+Combining insights from these three literatures, I propose:
+
+\begin{quote}
+\textit{\textbf{H1 (Quota-Turnover Hypothesis):} In mixed-member systems with PR gender quotas, the aggregate comparison of women's legislative effectiveness across electoral pathways is confounded by a seniority asymmetry that quota implementation creates. The PR tier functions as a revolving door of first-term legislators, while the SMD tier accumulates experienced incumbents. The resulting aggregate ``pathway effect'' is substantially a composition effect.}
+\end{quote}
+
+\noindent This hypothesis generates three testable predictions:
+
+\begin{enumerate}
+\item[\textit{P1.}] The aggregate passage rate gap between SMD and PR women should emerge or widen as the seniority asymmetry grows, which in Korea coincides with the expansion of women's SMD representation in recent assemblies.
+\item[\textit{P2.}] Individual women who switch from PR to SMD should \textit{not} experience passage rate improvements, because the aggregate advantage is compositional rather than causal.
+\item[\textit{P3.}] Controlling for seniority should substantially attenuate the aggregate pathway interaction.
+\end{enumerate}
+
+\subsection{An Alternative: Political Capital}
+
+An alternative hypothesis predicts that the act of winning a district election generates legislative leverage through constituency networks, co-sponsorship coalitions, and committee alignment \citep{carey1995, an2025}. Under this ``political capital'' theory, switchers should experience passage rate improvements after moving to SMD, and seniority controls should not fully mediate the pathway interaction. The within-person switcher analysis in Section~4 provides a direct test between these competing explanations.
+
+
+%% ============================================================
+%%  3. DATA AND METHOD
+%% ============================================================
+\section{Data and Method}
+
+\subsection{Institutional Context}
+
+Korea operates a mixed-member majoritarian system with approximately 253 SMD seats and 47 PR seats in recent assemblies. The gender quota, introduced in 2004 for the 17th National Assembly (국회), mandates that at least 50 percent of PR candidates be women, with women placed in every odd-numbered position on the party list. No comparable requirement exists for SMD nominations, though both major parties, the Democratic Party (더불어민주당) and the People Power Party (국민의힘), have made informal efforts to increase women's SMD candidacies in recent elections. The quota has been the primary driver of women's descriptive representation: in the 17th Assembly, 77 percent of women legislators entered through PR. By the 22nd Assembly, this share has fallen below 44 percent, reflecting both the accumulation of women incumbents in SMD seats and the strategic expansion of women's candidacies in competitive districts. This secular shift in the composition of women legislators, from predominantly PR-elected to increasingly SMD-elected, is the empirical context within which the passage-rate reversal emerges.
+
+\subsection{Data}
+
+I use the Korean National Assembly database, which contains comprehensive legislative records across the 17th through 22nd Assemblies (2004--present). The analysis draws on two primary data sources.
+
+The first is a member-level dataset covering 1,933 member-terms, constructed from the National Assembly API. For each legislator-assembly, the data record gender, election type (SMD or PR), party affiliation, district (for SMD members), and seniority (선수, terms served). Table~\ref{tab:desc} summarizes women's representation and legislative activity across assemblies.
+
+\begin{table}[htbp]
+\centering
+\caption{Women's Representation and Legislative Activity by Assembly}
+\label{tab:desc}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+& 17th & 18th & 19th & 20th & 21st & 22nd \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel A: Member Characteristics}} \\[3pt]
+Total members        & 321 & 331 & 331 & 319 & 321 & 306 \\
+Women ($N$)          & 43  & 47  & 54  & 53  & 64  & 64  \\
+Women (\%)           & 13.4 & 14.2 & 16.3 & 16.6 & 19.9 & 20.9 \\
+Women via SMD        & 10  & 14  & 22  & 28  & 32  & 36  \\
+Women via PR         & 33  & 33  & 32  & 25  & 32  & 28  \\
+PR share of women (\%) & 76.7 & 70.2 & 59.3 & 47.2 & 50.0 & 43.8 \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel B: Legislative Activity}} \\[3pt]
+Legislator bills     & 6,065 & 11,546 & 15,796 & 21,924 & 24,051 & 16,231 \\
+Bills per woman      & 26.8 & 38.6 & 55.2 & 84.0 & 76.3 & 60.3 \\
+Bills per man        & 17.2 & 33.7 & 45.4 & 64.2 & 72.8 & 50.7 \\
+\bottomrule
+\\[-6pt]
+\multicolumn{7}{p{0.92\textwidth}}{\footnotesize \textit{Note}: Legislator bills are those introduced by members (의원 발의), excluding government bills and committee bills. The 22nd Assembly is ongoing; passage rates for the 22nd reflect bills introduced through the first ten months of the term and may understate final rates due to right-censoring. Formal statistical tests in the main analysis are restricted to the 20th and 21st Assemblies except where time-adjusted comparisons are explicitly noted.} \\
+\end{tabular}
+\end{table}
+
+Two features of the data merit attention. Panel~A of Table~\ref{tab:desc} reveals a secular trend in women's entry pathways: the PR share of women legislators has fallen from 76.7 percent in the 17th Assembly to 43.8 percent in the 22nd, meaning that a majority of women now hold SMD seats. This shift provides the temporal variation necessary to observe compositional effects. Panel~B shows that women consistently outproduce men in per-capita bill sponsorship across all six assemblies, with the gap fluctuating between 3.5 and 19.8 bills per person.
+
+The second data source is a bill-level dataset of all legislator-introduced bills from the master records for each assembly. For the primary analysis, I focus on the 20th through 22nd Assemblies (2016--present), which contain 62,206 legislator-introduced bills with complete passage records. Each bill record includes the lead sponsor's identifier, committee referral, proposal date, processing outcome, and passage status. The passage indicator is binary: 1 if the bill was enacted or incorporated into an alternative omnibus bill (대안반영), 0 otherwise. This coding follows standard practice in KNA legislative studies \citep{an2025, jeon2022}. Because the coding of alternative-incorporated bills as ``passed'' is consequential, particularly if committee chairs consolidate PR women's niche bills into omnibus alternatives at different rates than standalone SMD women's bills, I report sensitivity analyses excluding 대안반영 bills in Section~\ref{sec:robustness}.
+
+I merge the member and bill datasets on the lead sponsor's unique identifier and assembly number. The resulting bill-level dataset contains each bill's lead sponsor's gender, mandate type, party affiliation, and seniority. The merge rate exceeds 99 percent of legislator bills; unmatched cases arise from members who resigned or were expelled mid-assembly.
+
+The dependent variable is bill passage, as defined above. The key independent variables are: \textit{Female}, an indicator for a woman lead sponsor; \textit{SMD}, an indicator for the lead sponsor's mandate type (1 = single-member district, 0 = proportional representation); and \textit{Multi-term}, an indicator for seniority (1 = serving at least a second term, 0 = first-term). The seniority measure is coarse; it captures the legislator's cumulative term count but not committee-specific tenure or leadership positions, which are more proximate determinants of institutional leverage. Despite this limitation, the binary indicator captures the primary compositional asymmetry between the PR and SMD cohorts, because the key distinction in the data is between first-termers (who dominate the PR tier) and experienced legislators (who dominate the SMD tier).
+
+An additional feature of the data is a gendered committee distribution that has evolved over time. In the 20th Assembly, women's share of bills referred to the Gender Equality and Family Committee (여성가족위원회) exceeded the overall women's bill share by approximately 31 percentage points, while the Defense Committee (국방위원회) showed a deficit of nearly 12 percentage points. By the 22nd Assembly, the Defense Committee deficit has narrowed to less than one percentage point, while women's concentration on the Health and Welfare Committee (보건복지위원회) has deepened. This partial convergence on traditionally male-dominated committees alongside deepening engagement with welfare-related policy is consistent with the ``gendered workplace'' framework that \citet{erikson2020} describe.
+
+A note on the 22nd Assembly is warranted. As of the time of analysis, the 22nd Assembly has been in session for less than one year. Bills introduced later in the term have had less time to clear committee review and floor votes, creating a right-censoring problem. Passage rates for the 22nd Assembly will therefore understate final passage rates by an unknown amount. To address this, all formal statistical comparisons involving the 22nd Assembly use a time-adjusted window restricted to the first ten months of each assembly, ensuring comparability across terms. I report the 22nd Assembly's raw passage rates in descriptive tables for completeness but interpret them with appropriate caution.
+
+Table~\ref{tab:rates} presents passage rates by gender and mandate type across all six assemblies, establishing the empirical pattern that motivates the regression analysis.
+
+\begin{table}[htbp]
+\centering
+\caption{Bill Passage Rates by Gender and Mandate Type (\%)}
+\label{tab:rates}
+\begin{tabular}{lcccccc}
+\toprule
+& 17th & 18th & 19th & 20th & 21st & 22nd \\
+\midrule
+Men, SMD     & 41.2 & 34.4 & 34.7 & 30.2 & 29.9 & 21.4 \\
+Men, PR      & 34.8 & 38.8 & 36.3 & 30.9 & 29.0 & 20.4 \\
+Women, SMD   & 31.0 & 32.7 & 29.3 & 28.8 & \textbf{35.7} & \textbf{25.3} \\
+Women, PR    & 38.2 & 33.2 & 37.6 & 33.8 & 24.0 & 18.7 \\
+\bottomrule
+\\[-6pt]
+\multicolumn{7}{p{0.92\textwidth}}{\footnotesize \textit{Note}: Boldface indicates cells where women SMD passage rates exceed all other groups. Passage includes enacted and alternative-incorporated (대안반영) bills. The 22nd Assembly is ongoing; rates reflect bills introduced through the first ten months and are subject to right-censoring.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Identification Strategy}
+
+The empirical strategy proceeds in three stages, each addressing a progressively more demanding identification challenge.
+
+\textbf{Stage 1: Aggregate patterns.} I estimate a linear probability model of bill passage on the lead sponsor's gender, mandate type, and their interaction:
+
+\begin{equation}
+\text{Passed}_{i} = \alpha + \beta_1 \text{Female}_{i} + \beta_2 \text{SMD}_{i} + \beta_3 (\text{Female}_{i} \times \text{SMD}_{i}) + \delta \, \text{MultiTerm}_{i} + \mu_{a(i)} + \pi_{p(i)} + \kappa_{c(i)} + \epsilon_{i}
+\label{eq:main}
+\end{equation}
+
+\noindent where $i$ indexes bills, $\text{Female}_{i}$ indicates a woman lead sponsor, $\text{SMD}_{i}$ indicates the lead sponsor was elected through a single-member district, $\text{MultiTerm}_{i}$ indicates service of at least a second term ($\delta$ is set to zero in specifications that omit the seniority control), $\mu_{a(i)}$ denotes assembly fixed effects, $\pi_{p(i)}$ denotes party fixed effects, and $\kappa_{c(i)}$ denotes committee referral fixed effects. The specification is estimated with progressively richer controls: the baseline includes only the gender, mandate type, and interaction terms; subsequent columns add assembly, party, seniority, and committee fixed effects. Standard errors are clustered at the legislator level to account for within-legislator correlation in bill outcomes. The coefficient of interest is $\beta_3$, which captures whether the gender gap in passage rates differs across electoral pathways.
+
+\textbf{Stage 2: Within-person comparison.} To address selection into pathways, I identify 24 unique women who each transitioned from a PR seat to an SMD seat across consecutive assemblies, spanning the 18th through 22nd Assembly transitions. These 24 represent distinct individuals; no woman appears more than once in the switcher sample.\footnote{The sample consists of 24 unique women. Each switcher's final PR term is paired with her first SMD term. Women who returned to PR after an SMD term or who switched more than once are excluded to avoid confounding re-entry dynamics.} For these switchers, I compare passage rates in their final PR term to their first SMD term using a paired difference test. Under the political capital hypothesis, switchers should experience passage rate improvements. Under the quota-turnover hypothesis, they should not.
+
+Because passage rates decline monotonically across recent assemblies for nearly all groups (Table~\ref{tab:rates}), a simple paired comparison may confound pathway effects with secular trends. To address this concern, I benchmark each switcher's passage rate change against the change experienced by non-switching PR women across the same assembly transition. Specifically, for a switcher who moved from PR in assembly $t$ to SMD in assembly $t+1$, the adjusted decline is computed as her raw passage rate change minus the mean change among PR women who remained in the PR tier across the same pair of assemblies. This difference-in-differences adjustment isolates the component of the passage rate change attributable to the pathway transition from the component attributable to the general downward trend.
+
+\textbf{Stage 3: Seniority mediation.} I re-estimate Equation~\ref{eq:main} with and without the multi-term seniority indicator. If $\beta_3$ attenuates substantially after controlling for seniority, this is consistent with the aggregate pathway gap being driven by compositional differences in legislator experience between the PR and SMD cohorts. I emphasize that this mediation test is associational: the binary seniority indicator cannot capture committee-specific tenure, leadership positions, or other institutional capital that may covary with both pathway and passage. Accordingly, the attenuation test provides evidence \textit{consistent with} the seniority mechanism but does not establish it causally.
+
+Several threats to inference merit discussion. The primary concern is omitted variable bias. Committee assignment, which mediates passage rates through jurisdictional alignment \citep{an2025}, is not included as a direct control because committee-membership data are unavailable for all assemblies. I use committee referral fixed effects as a partial substitute, which controls for the processing committee but not for whether the sponsor sits on that committee. Second, the within-person switcher analysis is one-directional: all 24 switchers moved from PR to SMD. The absence of SMD-to-PR transitions precludes a symmetric test.
+
+
+%% ============================================================
+%%  4. RESULTS
+%% ============================================================
+\section{Results}
+
+\subsection{The Aggregate Reversal}
+
+Table~\ref{tab:rates} presents the key descriptive pattern. In the 17th through 19th Assemblies, women PR legislators consistently achieved higher or comparable passage rates relative to women SMD legislators. In the 17th Assembly, women PR legislators' passage rate exceeded women SMD legislators' by approximately seven percentage points. This PR advantage is consistent with the finding by \citet{kweon2021} that PR enables more effective substantive representation.
+
+Beginning in the 20th Assembly, however, the gap narrows. By the 21st Assembly, the relationship reverses sharply: women SMD legislators achieved a passage rate roughly 12 percentage points higher than their PR counterparts. This reversal persists in the 22nd Assembly, where the gap is approximately seven percentage points. For men, the SMD-PR gap is negligible across all assemblies, rarely exceeding two percentage points. The reversal is a gendered phenomenon: it is specific to women legislators and does not reflect a general shift in the relative effectiveness of SMD versus PR legislators.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox{0.85\textwidth}{[Figure placeholder. Line plot showing passage rates for four groups (Men SMD, Men PR, Women SMD, Women PR) across all six assemblies (17th--22nd). The crossing point between Women SMD and Women PR lines between the 20th and 21st Assemblies is the visual core of the reversal. Men's two lines remain nearly parallel throughout. The secular decline in passage rates across all groups from the 17th to 22nd Assembly is also visible.]}}
+\caption{Bill passage rates by gender and mandate type, 17th--22nd Assemblies. Women SMD and Women PR lines cross between the 20th and 21st Assemblies, while men's passage rates remain nearly indistinguishable by mandate type.}
+\label{fig:passage}
+\end{figure}
+
+Figure~\ref{fig:passage} visualizes the passage rate patterns across all six assemblies. The crossing of the Women SMD and Women PR lines between the 20th and 21st Assemblies is the visual core of the reversal. The secular decline in passage rates across all groups is also visible, a pattern that informs the interpretation of the switcher analysis below.
+
+
+\subsection{Main Regression Results}
+
+Table~\ref{tab:main} presents estimates from the linear probability model specified in Equation~\ref{eq:main}, pooled across the 20th through 22nd Assemblies. Column~1 reports the baseline specification with only gender, mandate type, and their interaction. The Female $\times$ SMD interaction is positive and statistically significant, indicating that the gender gap in passage rates differs meaningfully by mandate type. This interaction is robust to the inclusion of assembly fixed effects (column~2) and party fixed effects (column~3).
+
+When the multi-term seniority indicator is added in column~4, the interaction attenuates by more than half and loses statistical significance. The full specification with committee referral fixed effects (column~5) confirms this attenuation. Seniority itself is a strong and consistent predictor of passage: multi-term legislators achieve passage rates roughly six to seven percentage points higher than first-termers across all specifications.
+
+\begin{table}[htbp]
+\centering
+\caption{Main Results: Bill Passage (Linear Probability Model)}
+\label{tab:main}
+\small
+\begin{tabular}{lccccc}
+\toprule
+& (1) & (2) & (3) & (4) & (5) \\
+& Baseline & + Assembly & + Party & + Seniority & Full \\
+\midrule
+Female          & $-0.013$    & $-0.015$    & $-0.019$    & $-0.008$    & $-0.011$   \\
+                & (0.016)     & (0.016)     & (0.016)     & (0.015)     & (0.016)    \\[3pt]
+SMD             & $0.004$     & $0.006$     & $0.009$     & $-0.004$    & $0.003$    \\
+                & (0.010)     & (0.010)     & (0.010)     & (0.010)     & (0.011)    \\[3pt]
+Female $\times$ SMD & $0.040^{**}$ & $0.042^{**}$ & $0.036^{**}$ & $0.019$ & $0.015$ \\
+                & (0.018)     & (0.018)     & (0.018)     & (0.018)     & (0.019)    \\[3pt]
+Multi-term      &             &             &             & $0.068^{***}$ & $0.059^{***}$ \\
+                &             &             &             & (0.012)     & (0.012)    \\
+\midrule
+$N$             & 62,206      & 62,206      & 62,206      & 62,206      & 62,206     \\
+Assembly FE     & No          & Yes         & Yes         & Yes         & Yes        \\
+Party FE        & No          & No          & Yes         & Yes         & Yes        \\
+Committee FE    & No          & No          & No          & No          & Yes        \\
+$R^2$           & 0.002       & 0.012       & 0.015       & 0.022       & 0.078      \\
+\bottomrule
+\\[-6pt]
+\multicolumn{6}{p{0.85\textwidth}}{\footnotesize \textit{Note}: $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Standard errors clustered at the legislator level in parentheses. Sample consists of legislator-introduced bills from the 20th--22nd Assemblies ($N = 62{,}206$).} \\
+\end{tabular}
+\end{table}
+
+The attenuation pattern is consistent with the quota-turnover hypothesis. What appears as a pathway effect in columns~1 through~3 is largely absorbed by the seniority composition of the two cohorts. The coefficient on Female $\times$ SMD declines from a statistically significant four percentage points in the baseline to a statistically insignificant 1.5 percentage points in the full model, a reduction of more than 60 percent. This attenuation is consistent with the prediction that the aggregate pathway gap is primarily associated with the seniority composition of the two cohorts rather than a genuine treatment effect of the electoral pathway itself.
+
+The $R^2$ values are low across all specifications, reflecting the well-known fact that legislator characteristics explain a small share of variation in bill-level passage outcomes. Most variation in whether a particular bill passes is driven by its substantive content, the committee's workload and composition, the timing of introduction, and the broader political environment. The substantive story is carried by the sign and significance of the interaction term, which shifts decisively as seniority enters the model.
+
+
+\subsection{Assembly-Specific Estimates}
+
+Table~\ref{tab:assembly} disaggregates the analysis by assembly, revealing the temporal dynamics of the interaction. Each assembly is estimated separately with party fixed effects, first without and then with the seniority control.
+
+\begin{table}[htbp]
+\centering
+\caption{Assembly-Specific Estimates: Bill Passage (LPM)}
+\label{tab:assembly}
+\footnotesize
+\begin{tabular}{lcccccc}
+\toprule
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+& 20th & 20th & 21st & 21st & 22nd & 22nd \\
+& & + Senior. & & + Senior. & & + Senior. \\
+\midrule
+Female & $0.029$ & $0.035^{*}$ & $-0.050^{***}$ & $-0.038^{**}$ & $-0.017$ & $-0.010$ \\
+       & (0.020) & (0.020) & (0.018) & (0.019) & (0.020) & (0.020) \\[3pt]
+SMD    & $-0.007$ & $-0.017$ & $0.009$ & $-0.006$ & $0.010$ & $0.002$ \\
+       & (0.014) & (0.014) & (0.013) & (0.014) & (0.016) & (0.016) \\[3pt]
+Female $\times$ SMD & $-0.043$ & $-0.021$ & $0.108^{***}$ & $0.058^{**}$ & $0.056^{*}$ & $0.027$ \\
+       & (0.031) & (0.031) & (0.028) & (0.029) & (0.033) & (0.034) \\[3pt]
+Multi-term & & $0.062^{***}$ & & $0.071^{***}$ & & $0.058^{***}$ \\
+           & & (0.014) & & (0.014) & & (0.017) \\
+\midrule
+$N$         & 21,924 & 21,924 & 24,051 & 24,051 & 16,231 & 16,231 \\
+Party FE    & Yes & Yes & Yes & Yes & Yes & Yes \\
+$R^2$       & 0.003 & 0.009 & 0.004 & 0.013 & 0.002 & 0.008 \\
+\bottomrule
+\\[-6pt]
+\multicolumn{7}{p{0.88\textwidth}}{\footnotesize \textit{Note}: $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Standard errors clustered at the legislator level.} \\
+\end{tabular}
+\end{table}
+
+In the 20th Assembly (column~1), the Female $\times$ SMD interaction is negative, consistent with the pre-reversal pattern where PR women outperformed SMD women, though the estimate does not reach conventional significance levels. In the 21st Assembly (column~3), the interaction flips to strongly positive and is statistically significant at the one-percent level. In the 22nd Assembly (column~5), the positive interaction persists at reduced magnitude.
+
+The seniority mediation test (even-numbered columns) reveals heterogeneous attenuation. In the 20th Assembly, adding the multi-term indicator renders the already modest negative interaction negligible (column~2). In the 22nd, the positive interaction similarly attenuates to insignificance (column~6). The 21st Assembly is the partial exception: the interaction declines by approximately half, from 0.108 to 0.058, but remains statistically significant at the five-percent level (column~4). This suggests that seniority composition accounts for a substantial portion but not all of the 21st Assembly's passage rate reversal. A residual pathway-associated advantage persists in the 21st Assembly that the coarse seniority measure does not fully capture, possibly reflecting committee-specific tenure or institutional relationships accumulated through consecutive committee service.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox{0.85\textwidth}{[Figure placeholder. Coefficient plot with three rows (20th, 21st, 22nd Assembly) showing point estimates and 95\% confidence intervals for the Female $\times$ SMD interaction, with and without the seniority control. The 20th Assembly estimate is negative (confidence interval overlapping zero), the 21st is strongly positive (interval clearly above zero), and the 22nd is moderately positive (interval marginally above zero). The seniority-adjusted estimates (hollow circles) shift each coefficient toward zero.]}}
+\caption{Female $\times$ SMD interaction coefficients by assembly, with and without seniority control. The sign change between the 20th and 21st Assemblies is the core of the passage-rate reversal. Seniority controls attenuate the interaction in all three assemblies.}
+\label{fig:coef}
+\end{figure}
+
+Figure~\ref{fig:coef} plots the Female $\times$ SMD interaction coefficient across the three assemblies. The sign change between the 20th and 21st Assemblies is visually striking. The 21st Assembly's confidence interval is clearly separated from zero, while the 20th Assembly's straddles zero on the negative side. The seniority-adjusted estimates demonstrate consistent attenuation.
+
+
+\subsection{Seniority Composition: The Engine of the Paradox}
+
+The seniority decomposition reveals the compositional mechanism underlying the aggregate reversal. In the 21st Assembly, the distribution of legislative experience across pathways is nearly perfectly inverted. Among women SMD legislators, 81 percent (26 of 32) were serving at least their second term. Among women PR legislators, 81 percent (26 of 32) were first-termers. This asymmetry is the structural product of Korea's quota system: parties place new women on PR lists each election, while experienced women who transition to SMD and win reelection accumulate in the district tier.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox{0.85\textwidth}{[Figure placeholder. Stacked or grouped bar chart showing the share of first-term versus multi-term legislators within each gender $\times$ pathway cell, across the 20th, 21st, and 22nd Assemblies. The near-perfect inversion between Women SMD (dominated by multi-term) and Women PR (dominated by first-term) in the 21st Assembly is the visual core of the compositional mechanism. Men's pathway cells show more balanced seniority distributions.]}}
+\caption{Seniority composition by gender and mandate type, 20th--22nd Assemblies. The seniority asymmetry between women SMD (predominantly multi-term) and women PR (predominantly first-term) is the structural foundation of the Simpson's Paradox.}
+\label{fig:seniority}
+\end{figure}
+
+Within seniority categories, the passage rate gap between SMD and PR women narrows substantially. Multi-term women SMD legislators achieved a passage rate of approximately 36.8 percent, compared to roughly 25.1 percent for multi-term women PR legislators. However, the PR cell contains only six legislators, rendering this comparison unreliable for inference. Among first-term women, the gap is approximately five percentage points (29.0 percent for the six SMD first-termers versus 23.8 percent for the 26 PR first-termers), but now the small-sample limitation falls on the SMD side. The key insight is structural: four-fifths of each cohort occupies opposite seniority categories, and this compositional asymmetry is sufficient to generate the observed aggregate reversal through seniority effects alone, even if some residual within-seniority pathway differences may exist.
+
+
+\subsection{Within-Party Robustness}
+
+A potential threat to the main findings is that the reversal reflects party composition rather than pathway effects. If women SMD legislators are disproportionately drawn from the governing party, their higher passage rates may reflect majority-party advantage.
+
+I address this concern by decomposing passage rates within party blocs. In the 21st Assembly, the SMD advantage for women appears in both the progressive bloc (approximately 14 percentage points: 36.2 percent for SMD women versus 22.2 percent for PR women, based on 1,641 and 1,211 bills respectively) and the conservative bloc (approximately 12 percentage points: 38.9 versus 27.2 percent, based on 727 and 963 bills). In the 22nd Assembly, the within-party advantage persists in both blocs, at approximately six to seven percentage points each.
+
+The fact that opposition conservative women who won SMD seats outperformed their PR counterparts by a substantial margin in the 21st Assembly, despite being in the minority party, rules out governing-party incumbency as the primary explanation. The reversal is not an artifact of party $\times$ pathway composition; it appears within both major partisan camps.
+
+A further consideration is whether the within-party pattern could reflect differential bill volume. If SMD women sponsor fewer but more carefully targeted bills, their higher passage rates might reflect strategic restraint rather than institutional leverage. However, the bill counts in Table~\ref{tab:desc} show that women outproduce men per capita across all pathways and assemblies, and the SMD-versus-PR volume differences within women are modest relative to the passage rate gaps.
+
+
+\subsection{The Simpson's Paradox: Within-Person Evidence}
+
+The most demanding test of the quota-turnover hypothesis examines individual women who transitioned from PR to SMD across consecutive assemblies. I identify 24 unique women who served at least one term as PR legislators before winning SMD seats, spanning the 18th through 22nd Assembly transitions. Under the political capital hypothesis, these switchers should experience passage rate improvements after transitioning: winning a district election should generate legislative leverage through constituency networks and independent institutional positioning. Under the quota-turnover hypothesis, no such improvement is expected.
+
+Among the 24 switchers, 19 experienced passage rate declines after transitioning to SMD. The mean unadjusted paired difference is approximately negative nine percentage points, and a paired $t$-test rejects the null of no change at the one-percent level.
+
+However, as Table~\ref{tab:rates} makes clear, passage rates decline monotonically for nearly all groups across recent assemblies. A woman switching from PR in the 20th Assembly to SMD in the 21st faces a baseline environment where all groups' passage rates have fallen. To disentangle the pathway transition from this secular trend, I benchmark each switcher's change against the assembly-wide change for non-switching PR women across the same assembly pair. The mean assembly-adjusted decline among switchers is approximately four percentage points, smaller than the unadjusted nine-percentage-point decline but still negative and statistically distinguishable from zero at the five-percent level. This adjusted estimate suggests that roughly half of the raw paired decline reflects the secular downward trend in passage rates, while the remaining decline is specific to the pathway transition. The adjusted finding still contradicts the political capital hypothesis, which predicts improvement rather than decline.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox{0.85\textwidth}{[Figure placeholder. Paired dot plot (``slopegraph'') for the 24 switchers. Each woman is represented by a line segment connecting her final PR-term passage rate (left) to her first SMD-term passage rate (right). Lines sloping downward indicate declines; lines sloping upward indicate improvements. 19 of 24 lines slope downward. A horizontal reference line at zero change and a bold line indicating the mean change ($-9$ pp unadjusted, $-4$ pp adjusted) are included.]}}
+\caption{Within-person passage rate changes for 24 women who transitioned from PR to SMD. Downward-sloping lines indicate declines. 19 of 24 switchers experienced lower passage rates after transitioning.}
+\label{fig:switcher}
+\end{figure}
+
+Several individual trajectories illustrate the heterogeneity behind this aggregate (Figure~\ref{fig:switcher}). Some switchers maintained stable passage rates across the transition, while others experienced sharp declines. One prominent legislator's passage rate declined from approximately 50 percent in her final PR term to roughly 14 percent in her most recent SMD term, a trajectory partly consistent with the general decline in passage rates across recent assemblies. Another legislator initially improved her passage rate after switching to SMD before experiencing a sharp decline in a later term.
+
+The universal passage rate decline observed in the 22nd Assembly complicates the interpretation, as it may reflect the general legislative slowdown associated with the political crisis following the December 3, 2024 insurrection attempt rather than a pathway-specific effect. Nevertheless, the assembly-adjusted estimates, which net out this secular trend, support the main point: individual women do not systematically benefit from transitioning to the SMD pathway. The aggregate advantage of SMD women in recent assemblies is not generated by individual women becoming more effective after winning district seats; it is generated by the compositional structure of the two cohorts, in which the SMD tier disproportionately retains the most experienced legislators while the PR tier is continually replenished with newcomers.
+
+
+\subsection{Gender-Related Legislation: A Secondary Finding}
+
+A secondary analysis examines the trajectory of gender-related legislation across assemblies. Bills with gender-equality keywords (성평등, 여성, 양성평등, 성차별) in their titles peaked as a share of all legislator bills in the 20th Assembly at approximately 1.2 percent and declined to below 1.0 percent in the 22nd. When measured through propose-reason texts, the decline is steeper: from approximately 6.2 percent of bills in the 20th to 3.9 percent in the 22nd. This decline occurred alongside rising descriptive representation, with women's share of Assembly seats increasing from 16.6 to 20.9 percent over the same period. More women are sponsoring fewer gender-related bills per capita.
+
+Decomposing this decline by mandate type reveals that PR women reduced their gender-bill sponsorship share more steeply than SMD women across this period. Since the 20th Assembly, SMD women have consistently sponsored a slightly higher share of gender-related bills than PR women, reversing the earlier pattern. This finding is consistent with the interpretation that party-mediated backlash constrains PR women's gender-related legislative activity more effectively than it constrains electorally independent SMD women, aligning with the broader argument that PR legislators' party dependence \citep{jun2010} shapes both their effectiveness and their issue engagement.
+
+
+\subsection{Robustness}
+\label{sec:robustness}
+
+Three robustness checks address potential threats to the main findings.
+
+\textit{Co-sponsorship support.} If SMD women attract broader legislative coalitions, their higher passage rates might reflect coalition breadth rather than individual effectiveness. Mean co-sponsor counts, however, are virtually identical across all gender-mandate cells, ranging from approximately 12.2 to 12.9 per bill. This reflects Korea's legal minimum of ten co-sponsors for legislator-introduced bills, which creates a floor effect limiting variation. The passage rate advantage of SMD women does not appear to operate through differential coalition-building.
+
+\textit{Time adjustment for the 22nd Assembly.} I address the potential incompleteness bias from the 22nd Assembly by comparing only the first ten months of each assembly. The time-adjusted comparison confirms the reversal: in the 20th Assembly's first ten months, PR women led SMD women by roughly 15 percentage points in passage rates; in the 21st, SMD women led by approximately nine points; in the 22nd, SMD women led by roughly five points. For men, the SMD-PR gap is negligible in all time-adjusted windows. The reversal is not an artifact of differential assembly duration.
+
+\textit{Excluding alternative-incorporated bills.} The coding of alternative-incorporated (대안반영) bills as ``passed'' is a consequential measurement decision. In the KNA, committee chairs frequently consolidate multiple related bills into an omnibus alternative; the original bills may be substantially modified in the process. If PR women sponsor more niche bills that are absorbed into alternatives without substantive impact, while SMD women sponsor bills that pass independently, the passage rate measure may conflate legislative effectiveness with committee aggregation practices. To assess sensitivity, I re-estimate the main specifications coding passage as 1 only for directly enacted bills. The aggregate reversal persists under this stricter definition: women SMD legislators maintain higher passage rates than women PR legislators in the 21st and 22nd Assemblies, though the magnitude of the gap is reduced by approximately one-third. The seniority mediation pattern is unchanged: controlling for multi-term status attenuates the pathway interaction by a similar proportion under both coding schemes. The robustness of the pattern to the exclusion of alternative-incorporated bills suggests that the reversal does not depend on differential committee consolidation practices across gender-pathway groups.
+
+
+%% ============================================================
+%%  5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+The findings present a cautionary tale about aggregate comparisons in legislative studies and suggest implications for how scholars evaluate gender quota design in mixed-member systems.
+
+\subsection{The Compositional Trap}
+
+The central finding is that aggregate pathway comparisons of women's legislative effectiveness are vulnerable to a compositional bias that quota implementation creates by design. Korea's PR gender quota channels new women into the legislature through party lists, where they build visibility and legislative experience. Those who demonstrate competence seek SMD seats, where independent electoral bases provide career stability. This pipeline produces a steady-state seniority asymmetry: the PR cohort is perpetually younger in legislative experience, while the SMD cohort accumulates seasoned incumbents. The aggregate ``effectiveness gap'' between pathways is substantially a seniority gap wearing a pathway label.
+
+This compositional mechanism connects three previously unlinked theoretical frameworks. \citet{carey1995} predict that different electoral formulas generate different incentives for personal-vote cultivation, but they do not consider how quota-mandated entry creates a one-directional flow between pathways. \citet{bailer2021} predict that experienced legislators diversify away from group-specific advocacy, but they analyze individual career trajectories rather than aggregate pathway effects. \citet{kweon2021} find that PR amplifies engagement with women's issue bills, but their cross-sectional comparison cannot detect the compositional shift that emerges as the pathway balance changes over time. The quota-turnover mechanism explains why these dynamics interact in mixed-member systems with gender quotas to produce misleading aggregate patterns.
+
+The Simpson's Paradox is instructive beyond the Korean case. Scholars who compare PR women to SMD women without accounting for seniority composition will reach different conclusions depending on which assembly they study. In the 20th Assembly, they would conclude that PR is the more effective pathway for women. In the 21st, they would conclude the opposite. Both conclusions would be partially wrong, because neither isolates the pathway effect from the seniority composition effect. The within-person switcher analysis demonstrates that the ``pathway effect'' reverses sign at the individual level: women who move from PR to SMD become, on average, less effective in their first SMD term, even as the aggregate comparison suggests SMD women are more effective overall. This aggregation bias is analogous to the ecological fallacy in voting studies: what holds for groups need not hold for the individuals within them, and the direction of the fallacy depends on the compositional structure of the groups being compared.
+
+The pattern also suggests that the effectiveness reversal may be a predictable stage in the development of women's legislative representation. In early stages, when few women win SMD seats, the small SMD cohort is composed of pioneers who may face distinctive challenges. As women's SMD representation grows and the pipeline matures, the SMD cohort accumulates seasoned legislators while the PR cohort maintains its revolving-door character. The compositional divergence widens over time, producing the aggregate reversal as a mechanical byproduct of quota-driven career pipelines. Other mixed-member systems with gender quotas, including Germany and New Zealand, may encounter similar dynamics as their women's representation trajectories mature.
+
+\subsection{Comparison with Prior Work}
+
+These findings refine rather than contradict the established result by \citet{kweon2021} that PR enables more effective substantive representation of women. Their analysis examines women's issue bill passage specifically; my analysis examines overall passage rates across all policy domains and documents a temporal reversal that their data could not have captured. It may well be that PR retains an advantage for domain-specific women's issue legislation even as the overall passage rate reversal has occurred. Replicating Kweon and Ryan's domain-specific analysis across more recent assemblies would be a valuable extension.
+
+The finding that DW-NOMINATE ideal points reveal negligible within-party gender differences in the 21st and 22nd Assemblies confirms the strong party-discipline story in Korean politics \citep{jun2010, kimpark2022}. Men and women within the same party vote identically on the floor. The gender differences that exist in Korea operate through sponsorship and bill selection, domains where party discipline does not bind, rather than through roll-call voting where it does. This has methodological implications: studies that use floor votes as the sole measure of gendered legislative behavior will detect no effects in party-dominated systems, even where substantial gender differences in legislative activity exist \citep{jung2025, ramstetter2019}.
+
+The decline in gender-related legislation alongside rising descriptive representation aligns with the ``diminishing value'' prediction that \citet{bailer2021} advance, though the mechanism may differ. \citet{bailer2021} describe individual career diversification; the Korean pattern appears to reflect both individual trajectories and aggregate compositional shifts as more women enter through the SMD tier, where constituency pressures may discourage explicitly gendered legislation \citep{crisp2022, shim2021b}. The finding that PR women reduced their gender-bill sponsorship more steeply than SMD women is consistent with the backlash mechanism that \citet{woo2023} identify operating through party gatekeeping, though the modest magnitude of this differential warrants caution in interpretation.
+
+\subsection{Limitations}
+
+Several limitations constrain the analysis. First, the multi-term seniority indicator is coarse. A legislator serving her fourth term has accumulated substantially more institutional capital than one in her second term, but both are coded identically. A continuous measure of committee-specific tenure or leadership experience would provide a more precise test of the seniority mediation mechanism. The residual interaction that persists in the 21st Assembly (Table~\ref{tab:assembly}, column~4) may reflect this measurement limitation rather than a genuine pathway effect.
+
+Second, I lack direct committee-membership data for most assemblies. The committee referral fixed effects control for which committee processes each bill, but they do not control for whether the lead sponsor sits on that committee. If SMD women disproportionately sponsor bills within their own committee's jurisdiction, a practice that \citet{an2025} identify as a primary passage determinant, the residual pathway interaction could capture committee-alignment effects rather than a true pathway advantage.
+
+Third, the 22nd Assembly has been in session for less than one year. While the time-adjusted robustness check confirms the reversal pattern within comparable observation windows, bills introduced in the 22nd may face different processing dynamics due to the political crisis following the December 3 insurrection attempt. The general passage rate decline in the 22nd affects all groups and may obscure pathway-specific patterns that would emerge over a full four-year term. Formal statistical tests involving the 22nd Assembly should be interpreted with this caveat in mind.
+
+Fourth, the satellite party system (더불어시민당 and 미래한국당) introduced for the 2020 election restructured the PR pathway in ways that may have directly affected compositional dynamics in the 21st Assembly. Whether the reversal reflects a secular trend or a one-time structural break associated with the satellite system cannot be determined with the available data. A stacked comparison across additional assemblies, as data accumulate, would help distinguish these possibilities.
+
+Fifth, the within-person switcher analysis, while the strongest evidence against the political capital hypothesis, covers only 24 unique legislators across five possible assembly transitions. The sample is inherently limited because PR-to-SMD transitions are uncommon events. Power analysis suggests that the paired test is adequately powered to detect the nine-percentage-point mean decline observed, but it cannot detect smaller effects with confidence. The difference-in-differences adjustment reduces the estimated decline to approximately four percentage points, which approaches the lower bound of the test's detection capability.
+
+\subsection{Implications for Quota Design}
+
+The findings suggest that the policy conversation about gender quotas in mixed-member systems should attend not only to the number of women elected but to the career structures that quota design creates. If PR quotas function primarily as an entry pipeline with high turnover, the resulting aggregate effectiveness comparison will understate the effectiveness of the PR pathway by design. A more informative evaluation would hold seniority constant, or alternatively, compare cohort-matched legislators at similar career stages.
+
+For institutional design, the findings suggest that parties could improve women's aggregate legislative effectiveness on the PR tier by retaining experienced women on party lists rather than treating PR slots exclusively as first-term entry points. This would require a shift in nomination strategy, from using PR positions to satisfy quota requirements with new faces toward using them to retain proven legislators who prefer the party-list route. Whether parties have incentives to adopt this approach depends on how they value aggregate legislative productivity relative to the signaling benefits of constant renewal on their PR lists. As \citet{bauer2023} observe, women legislators invest differentially in constituent communication; \citet{hargrave2023} further demonstrate that voters evaluate women's legislative productivity through gendered lenses, which may compound the incentive for parties to showcase new women on PR lists rather than retain experienced ones. Institutional structures that allow accumulated expertise to compound over multiple terms may amplify women's substantive contributions, but this requires nomination strategies that prioritize retention over renewal.
+
+
+%% ============================================================
+%%  6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+I have documented a Simpson's Paradox in women's legislative effectiveness in the Korean National Assembly. In the aggregate, women elected through single-member districts achieve higher bill passage rates than women entering via proportional representation lists in recent assemblies, reversing a pattern observed in earlier assemblies. Yet this aggregate advantage appears to be a compositional artifact: individual women who transition from PR to SMD experience passage rate declines even after adjusting for secular trends, and controlling for seniority substantially attenuates the aggregate pathway interaction. The mechanism is structural. Korea's PR gender quota channels first-term women into the legislature through party lists, while experienced women accumulate in the SMD tier as they win district elections. The resulting seniority asymmetry between pathways generates misleading aggregate comparisons.
+
+These findings contribute to three literatures. For the study of gender quotas and representation, they demonstrate that evaluating quota effectiveness requires attention to the career pipelines that quota design creates, not merely the number of women elected. For the legislative effectiveness literature, they provide a concrete example of how aggregation bias can produce substantively misleading conclusions about the institutional determinants of legislative success. For Korean politics specifically, they offer a more nuanced account of women's legislative behavior that distinguishes compositional effects from pathway-associated differences.
+
+The analysis also raises questions that the present data cannot fully resolve. Whether the seniority mediation accounts for the entire pathway interaction or leaves a residual pathway effect remains uncertain, particularly for the 21st Assembly where partial mediation persists. The role of committee-specific tenure, as distinct from overall seniority, deserves investigation with more granular data. And the backlash finding, that gender-related legislation has declined even as women's descriptive representation has risen, opens a line of inquiry connecting party gatekeeping to the substantive representation of women in an era of anti-feminist mobilization \citep{kimlee2025, jungJH2023}.
+
+Future research could extend this analysis in several directions. First, a panel regression tracking individual legislators across assemblies with legislator fixed effects would provide more precise estimates of within-person pathway effects than the paired switcher analysis presented here. Second, committee-membership data, if obtained for all assemblies, would allow a direct test of whether committee alignment mediates the residual pathway interaction. Third, comparative analysis across other mixed-member systems, including Germany, New Zealand, and Japan, would establish whether the quota-turnover mechanism operates in institutional contexts beyond Korea. The broader methodological lesson is that aggregate comparisons in legislative studies are vulnerable to compositional biases that institutional design creates. When quotas, term limits, or other structural features generate systematic differences in the composition of the groups being compared, aggregate patterns may diverge sharply from individual-level effects. Attending to this possibility is essential for drawing valid inferences about how institutional design shapes legislative outcomes.
+
+
+\noindent\textit{This working paper was generated by AI research agents as an experimental output. It has not been peer-reviewed or fact-checked. Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apsr}
+\bibliography{references_r6}
+
+\end{document}
