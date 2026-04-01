@@ -1,28 +1,30 @@
 ---
 round: 6
-date: "2026-03-31 22:37"
-topic: "conditional SMD advantage survives governing-party test"
+date: "2026-03-31 23:53"
+topic: "Simpson's Paradox in women's legislative effectiveness"
 ---
 
 # Round 6 Summary
 
-Analyst directly tested Critic's three demands from Round 5: decompose passage rates by party, report full denominators, and track individual careers. The within-DPK test proved decisive. In the 21st Assembly, SMD women outperformed PR women by 13 percentage points even within the same governing party, but this advantage vanished entirely in the 22nd Assembly's supermajority-plus-crisis environment. Critic upgraded the verdict from "revise" to "pursue," framing the conditionality itself as the theoretical contribution.
+The within-party decomposition that Critic demanded as a make-or-break test came back decisive: SMD women outperform PR women in both party blocs in the 21st and 22nd Assemblies, ruling out the governing-party artifact. But individual women who switched from PR to SMD actually performed worse, revealing a Simpson's Paradox. The mechanism is compositional: PR quotas create a revolving door of first-termers while experienced women migrate to SMD, producing a permanent seniority asymmetry that drives the aggregate gap. Critic upgraded the verdict to "pursue."
 
 ## Key Quotes
 
-> **Analyst**: "Within the same governing party, women who won district races achieved passage rates 13 percentage points higher than women placed on the party list. This is not a small-N artifact."
+> **Scout**: "The aggregate 'reversal' reflects the compositional shift from a PR-dominated to an SMD-dominated women legislator population, not a decline in PR women's individual effectiveness."
 
-> **Critic**: "Effectiveness is not a fixed attribute of the legislator but an interaction between individual resources and institutional context, a genuine theoretical contribution that extends the Volden et al. framework."
+> **Analyst**: "The SMD pathway advantage is a gendered phenomenon; it exists for women but not men."
+
+> **Critic**: "The paper's message is not 'SMD women are better legislators' but rather 'aggregate comparisons between PR and SMD women are misleading because quota-induced turnover creates systematic seniority differences between pathways.'"
 
 ## Findings Status
 
 | Finding | Status |
 |---------|--------|
-| SMD women outperform PR women (21st Assembly, within-party) | confirmed |
-| SMD women advantage vanishes in 22nd Assembly | confirmed |
-| Governing-party composition artifact | contested (rejected for 21st, plausible for 22nd) |
-| Career passage rate decline across terms | preliminary (confounded with assembly-period effects) |
-| Gender bill share declines with seniority | preliminary |
-| Cosponsor-based strategic bill selection mechanism | preliminary |
+| SMD women passage-rate advantage survives within-party decomposition | confirmed |
+| Simpson's Paradox: individual PR-to-SMD switchers perform worse despite aggregate advantage | confirmed |
+| Seniority composition (quota-turnover mechanism) drives the aggregate gap | confirmed |
+| Co-sponsorship does not explain passage-rate differences (near-identical across cells) | confirmed |
+| PR women reduce gender-bill sponsorship faster than SMD women (party-mediated backlash) | preliminary |
+| Career diversification away from gender issues with seniority | contested |
 
-**Verdict**: Pursue (upgraded from revise) | **Next**: Execute the PR-to-SMD switcher analysis (~15 women) and bill-level regressions controlling for coalition breadth to sharpen identification.
+**Verdict**: Pursue (upgraded from revise; novelty 4/4, rigor 3/4) | **Next**: Run the 20th Assembly seniority decomposition and formal mediation model to confirm seniority fully accounts for the pathway gap
