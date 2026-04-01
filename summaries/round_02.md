@@ -1,7 +1,7 @@
 ---
 round: 2
 date: "2026-03-31 12:36"
-topic: "continuing discussion"
+topic: "homeowner democracy and legislative self-interest"
 ---
 
 # Round 2 Summary
