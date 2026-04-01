@@ -134,6 +134,7 @@ def draft_article(round_num):
     - No rhetorical questions. Use declarative statements.
     - Numbers: spell out zero through nine, numerals for 10 and above.
     - "Who" for people, not "that". Hyphenate compound modifiers before nouns.
+    - NEVER use LaTeX backtick quotes (`` or `). Use straight double quotes " only.
 
     **Hedging and Caution:**
     - Never state absolute certainty. Use "may," "could," "suggests," "appears to."
@@ -345,7 +346,7 @@ def draft_article(round_num):
     \\section*{{References}}
     \\begin{{description}}
     \\item Cox, Gary W., and Mathew D. McCubbins. 2005. \\textit{{Setting the Agenda}}. New York: Cambridge University Press.
-    \\item Lowi, Theodore J. 1964. ``American Business, Public Policy, Case-Studies, and Political Theory.'' \\textit{{World Politics}} 16 (4): 677--715.
+    \\item Lowi, Theodore J. 1964. "American Business, Public Policy, Case-Studies, and Political Theory." \\textit{{World Politics}} 16 (4): 677--715.
     \\end{{description}}
     ONLY include references from the forum posts.
 
