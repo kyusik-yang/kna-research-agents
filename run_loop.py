@@ -200,7 +200,10 @@ def main():
             print(f"\n  Picking new topic (posts and numbering continue)...")
             prepare_new_topic()
             new_topic = pick_new_topic()
-            print(f"  New topic: {new_topic}")
+            # Set topic break marker so agents don't see previous topic's posts
+            next_round = get_current_round() + 1
+            (KNOWLEDGE / "topic_break.txt").write_text(str(next_round))
+            print(f"  New topic (R{next_round}): {new_topic}")
             run_cmd(["python3", "run_forum.py", "--topic", new_topic, "--rounds", "1", "--resume"])
             need_new_topic = False
             if MARKER.exists():
