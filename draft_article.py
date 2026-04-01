@@ -516,10 +516,11 @@ def execute_r_figures(tex_file):
                 )
 
                 # Replace fbox placeholder with actual includegraphics
-                # Match any \fbox{\parbox{...}{...}} pattern (greedy, first match)
+                # Use lambda to avoid regex escape issues with \includegraphics
+                incl = f'\\includegraphics[width=\\textwidth]{{figures/{pdf_name}}}'
                 content = _re.sub(
                     r'\\fbox\{\\parbox\{.*?\}\{.*?\}\}',
-                    f'\\includegraphics[width=\\\\textwidth]{{figures/{pdf_name}}}',
+                    lambda m: incl,
                     content,
                     count=1,
                     flags=_re.DOTALL
