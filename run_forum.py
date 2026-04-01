@@ -634,23 +634,23 @@ def main():
         print(f"{'#' * 60}")
 
         for agent in agents:
-            try:
-                run_agent(
-                    agent, rnd, start_round + args.rounds - 1,
-                    seed_topic=args.topic if i == 0 else None,
-                    dry_run=args.dry_run,
-                )
-            except Exception as e:
-                print(f"  ERROR running {agent['id']}: {e}")
-                print(f"  Retrying once...")
+            success = False
+            for attempt in range(3):  # 1 original + 2 retries
                 try:
                     run_agent(
                         agent, rnd, start_round + args.rounds - 1,
                         seed_topic=args.topic if i == 0 else None,
                         dry_run=args.dry_run,
                     )
-                except Exception as e2:
-                    print(f"  RETRY FAILED: {e2}. Skipping {agent['id']}.")
+                    success = True
+                    break
+                except Exception as e:
+                    print(f"  ERROR running {agent['id']} (attempt {attempt+1}/3): {e}")
+                    if attempt < 2:
+                        print(f"  Retrying...")
+            if not success:
+                print(f"  FATAL: {agent['id']} failed 3 times. Stopping.")
+                sys.exit(1)
 
         if not args.dry_run:
             generate_round_summary(
