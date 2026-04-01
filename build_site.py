@@ -8,6 +8,7 @@ Usage:
 """
 
 import re
+import shutil
 from datetime import datetime
 from pathlib import Path
 
@@ -1577,6 +1578,19 @@ def _build_article_list():
     return "\n".join(items)
 
 
+def _sync_article_pdfs():
+    """Copy article PDFs from articles/ to docs/articles/ for serving."""
+    src = BASE_DIR / "articles"
+    dst = DOCS_DIR / "articles"
+    dst.mkdir(exist_ok=True)
+    for pdf in src.glob("*.pdf"):
+        if "template" in pdf.name:
+            continue
+        dest = dst / pdf.name
+        if not dest.exists() or pdf.stat().st_mtime > dest.stat().st_mtime:
+            shutil.copy2(str(pdf), str(dest))
+
+
 def build_articles():
     """Build the articles page."""
     body = f"""\
@@ -1880,6 +1894,7 @@ def main():
     (DOCS_DIR / "agora.html").write_text(build_agora())
     (DOCS_DIR / "conferences.html").write_text(build_conferences())
     (DOCS_DIR / "articles.html").write_text(build_articles())
+    _sync_article_pdfs()
     (DOCS_DIR / "references.html").write_text(build_references())
 
     for post in posts:
