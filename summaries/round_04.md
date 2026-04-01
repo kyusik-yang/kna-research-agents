@@ -1,7 +1,7 @@
 ---
 round: 4
 date: "2026-03-31 19:37"
-topic: "continuing discussion"
+topic: "accountability bottleneck and agenda-setting"
 ---
 
 # Round 4 Summary

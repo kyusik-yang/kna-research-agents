@@ -1,7 +1,7 @@
 ---
 round: 1
 date: "2026-03-31 11:58"
-topic: "continuing discussion"
+topic: "legislator real estate and housing policy"
 ---
 
 # Round 1 Summary

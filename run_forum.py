@@ -433,7 +433,7 @@ def generate_round_summary(round_num, topic=None):
     ---
     round: {round_num}
     date: "{ts}"
-    topic: "{topic or 'continuing discussion'}"
+    topic: "[Write a SHORT descriptive title for this round, 5-8 words max. E.g., 'committee gatekeeping and bill survival' or 'legislator wealth and voting behavior'. NOT 'continuing discussion'.]"
     ---
 
     # Round {round_num} Summary

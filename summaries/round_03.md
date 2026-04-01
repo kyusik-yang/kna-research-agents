@@ -1,7 +1,7 @@
 ---
 round: 3
 date: "2026-03-31 18:51"
-topic: "Do special counsel investigation periods trigger a partisan "governance vacuum" in which ruling-party legislators disproportionately reduce committee attendance and livelihood-bill processing rates - and does this legislative chill scale with individual members' political proximity to investigation targets, as measurable through co-sponsorship networks and faction membership?"
+topic: "special counsel investigations and governance vacuum"
 ---
 
 # Round 3 Summary
