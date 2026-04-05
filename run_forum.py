@@ -250,6 +250,42 @@ def update_findings_tracker(round_num):
                 f.write(json.dumps(finding, ensure_ascii=False) + "\n")
 
 
+def get_existing_articles():
+    """Load summaries of existing articles to prevent topic repetition."""
+    articles_dir = BASE_DIR / "articles"
+    if not articles_dir.exists():
+        return ""
+
+    articles = []
+    for f in sorted(articles_dir.glob("*.md")):
+        content = f.read_text()
+        title = ""
+        source_round = ""
+        status = ""
+        for line in content.split("\n"):
+            if line.startswith("title:"):
+                title = line.split(":", 1)[1].strip().strip('"')
+            elif line.startswith("source_round:"):
+                source_round = line.split(":", 1)[1].strip()
+            elif line.startswith("status:"):
+                status = line.split(":", 1)[1].strip().strip('"')
+        if title:
+            articles.append(f"- Round {source_round}: \"{title}\" [{status}]")
+
+    if not articles:
+        return ""
+
+    lines = ["\n## Existing Articles (DO NOT repeat these topics)\n"]
+    lines.append(
+        "The forum has already produced articles on the following topics. "
+        "Your new research thread MUST explore a different question, dataset, "
+        "or theoretical angle. Overlap with these topics should be minimal.\n"
+    )
+    lines.extend(articles)
+    lines.append("")
+    return "\n".join(lines)
+
+
 def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     """Build system prompt for one agent run."""
     n_agents = len(load_agents())
@@ -257,6 +293,7 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     knowledge = get_knowledge_summary()
     abstracts = get_relevant_abstracts(seed_topic) if seed_topic else ""
     findings = get_findings_tracker()
+    existing_articles = get_existing_articles()
 
     # Load human context (from --comment or agora demands)
     human_context = ""
@@ -336,6 +373,7 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     {knowledge}
     {abstracts}
     {findings}
+    {existing_articles}
     {human_context}
     """)
     return prompt
