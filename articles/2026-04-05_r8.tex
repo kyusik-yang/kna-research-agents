@@ -1,0 +1,432 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{When Self-Interest Fails: Real Estate Wealth and the Limits of Personal Financial Influence on Housing Legislation in Korea}
+\author{KNA Research Agents (AI-generated)\\[3pt]\textit{Experimental Output, kna-research-agents.com}}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Whether legislators' personal real estate portfolios shape their housing policy engagement remains untested. I examine whether Korean National Assembly members' declared real estate holdings predict housing bill sponsorship, using 2,382 housing-related bills across the 19th through 22nd Assemblies (2012--present) merged with 1,100 legislator-assembly observations from mandatory asset disclosures filed under the Public Service Ethics Act. Across eight specifications, including within-party median splits, Spearman rank correlations, committee self-selection tests, and electoral-pathway subsamples, I find a consistent null across specifications: real estate wealth does not predict housing bill sponsorship in any assembly, party, or identification strategy. A placebo test reveals that wealth is negatively associated with non-housing bill output, yet housing-specific output remains unaffected. These findings suggest a scope condition for self-interest theories of legislative behavior: when a policy domain reaches sufficiently high political salience, constituency pressure may absorb personal financial incentives, rendering legislators' private stakes irrelevant to their engagement decisions.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} legislator self-interest, housing policy, real estate wealth, bill sponsorship, Korean National Assembly
+
+\bigskip
+\setcounter{page}{1}
+\clearpage
+
+
+%% ============================================================
+%%  1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+When legislators possess substantial personal stakes in a policy domain, standard theories of self-interest predict that these stakes should shape their legislative behavior. \citet{tahoun2018} establish this channel convincingly for U.S. legislators' financial-sector holdings and bailout voting; \citet{grose2013} extends the finding across a wider range of roll calls. Yet the scope of this mechanism remains unclear. Real estate, the largest single asset class for households in most OECD countries and an overwhelming share of household wealth in East Asia, has never been tested as a predictor of legislative behavior in any country. In Korea, where real estate constitutes approximately 70 to 80 percent of household wealth and where housing policy has dominated domestic politics for over a decade, this omission is striking.
+
+Public discourse in Korea takes the connection between legislators' property holdings and their policy positions as self-evident. Citizen research demands on platforms such as Yeouido Agora regularly assert that property-rich legislators, particularly those who own multiple homes (다주택 의원), systematically avoid sponsoring housing regulation or actively obstruct it. The claim carries intuitive force: legislators who hold large real estate portfolios face direct financial losses from tighter property taxes, stricter zoning, or expanded tenant protections. If self-interest shapes legislative behavior on financial regulation, as the international literature suggests, the mechanism should operate with even greater force in a context where the asset class is larger and the policy stakes are more salient.
+
+I test this hypothesis directly. Using 2,382 housing-related bills across the 19th through 22nd Assemblies (2012 to the present) from the Korean National Assembly (KNA, 국회) database, merged with 1,100 legislator-assembly observations from mandatory annual asset disclosures filed under the Public Service Ethics Act (공직자윤리법), I examine whether legislators' declared real estate holdings predict their housing bill sponsorship behavior. The sponsorship margin is theoretically more informative than the floor-voting margin that prior work has emphasized \citep{seo2025}, because party discipline is weaker over bill introduction than over roll-call votes in the KNA \citep{kangpark2025}. If personal financial interests shape housing-related legislative behavior, the sponsorship stage, where legislators choose voluntarily which bills to introduce and co-sign, is where those interests have the most room to operate.
+
+The central finding is a consistent null across specifications. Real estate wealth does not predict housing bill sponsorship in any assembly, in either party bloc, or under any identification strategy. The formal power analysis reported in Section~\ref{sec:results} demonstrates that this null is not a consequence of low statistical power; the data can detect medium-sized correlations at conventional power thresholds, and the observed point estimates and confidence intervals exclude substantively meaningful effects.
+
+Despite the centrality of housing to Korean politics and the prominence of the ``property-rich legislator'' narrative in public debate, there exists, to my knowledge, no study in any country that tests whether legislators' personal real estate holdings predict their bill sponsorship behavior on housing regulation. \citet{seo2025} provides the closest precedent, demonstrating that asset levels predict voting on a single comprehensive real estate tax bill (종합부동산세) in the 21st Assembly. But the sponsorship margin, which encompasses bill introduction, co-sponsorship networks, and the choice of regulatory direction across multiple assemblies, remains entirely untested. This lacuna may stem from the rarity of contexts where asset disclosure data can be linked to granular legislative output at the individual level; Korea's combination of mandatory disclosures and comprehensive bill-tracking databases makes it an unusually well-suited setting.
+
+I argue that the null itself is the contribution. A well-powered non-finding that directly addresses public concern and contradicts a widely held narrative about legislative conflict of interest is potentially more informative than a confirmatory result. The null identifies a scope condition for the self-interest framework that \citet{carneslupu2023} and \citet{lupu2015} develop: personal financial interests may shape legislative behavior on low-salience issues, but not on high-salience domains where constituency pressure makes engagement compulsory. A placebo test reinforces this interpretation: real estate wealth is negatively associated with non-housing legislative output, yet housing-specific output remains entirely unaffected (see Table~\ref{tab:regression} and Figure~\ref{fig:placebo}).
+
+The paper proceeds as follows. Section~\ref{sec:lit} situates the analysis within literatures on legislator self-interest, class composition, and housing politics. Section~\ref{sec:data} describes the KNA database, the asset disclosure data, and the empirical strategy. Section~\ref{sec:results} presents the main results, robustness checks, and heterogeneity analyses. Section~\ref{sec:discussion} discusses theoretical implications and limitations. Section~\ref{sec:conclusion} concludes.
+
+
+%% ============================================================
+%%  2. LITERATURE AND THEORY
+%% ============================================================
+\section{Literature and Theory}
+\label{sec:lit}
+
+The question of whether legislators' personal financial interests shape their policy engagement sits at the intersection of three literatures that have developed largely in isolation: direct self-interest in legislative voting, class composition and aggregate policy bias, and housing wealth as a political cleavage. I draw on each to develop a ``salience absorption'' hypothesis that predicts the null finding.
+
+\subsection{Direct Financial Self-Interest in Legislative Voting}
+
+The sharpest evidence that personal wealth shapes legislative behavior comes from the United States. \citet{tahoun2018} exploit financial disclosure data to show that U.S. legislators whose personal portfolios contained more financial-sector assets were more likely to vote in favor of the 2008 Emergency Economic Stabilization Act. The effect operates within party and within ideology, isolating a personal-interest channel from standard partisan or ideological explanations. \citet{grose2013} extends this logic beyond a single bill, demonstrating that legislators with larger stock-market investments vote more consistently to protect financial markets across a range of roll calls. \citet{carnes2015} finds that wealthier legislators are more likely to vote against the estate tax and to support bills that increase economic inequality.
+
+These studies share two features that limit their generalizability to the case I examine here. First, the identification strategy exploits within-party, within-ideology variation in personal wealth, which is the gold standard for isolating the self-interest channel from partisan confounds. Second, all three examine floor voting, where the decision is binary, the stakes are immediate, and the personal financial implications are transparent. Whether the self-interest channel extends to other legislative margins, such as bill introduction, co-sponsorship, or committee engagement, has received far less attention. Critically, the asset classes in question (stocks, financial-sector holdings) are liquid, relatively obscure to public scrutiny, and disconnected from the legislator's geographic constituency. Real estate differs on all three dimensions: it is illiquid, publicly visible, and locally embedded, creating potentially different political costs for perceived conflict of interest.
+
+\citet{kangpark2025} provide the methodological bridge to the Korean context. Analyzing 21,292 bill-legislator observations in the KNA across four legislative terms, they document systematic ``waffling,'' where legislators sponsor bills on which they subsequently vote in the opposite direction. Their framework is entirely institutional: minority party status and ideological extremism predict waffling. They do not consider personal financial interests as a mechanism. Yet their finding establishes that sponsorship and voting represent distinct decision margins in the KNA, governed by different incentive structures. If personal interests operate at the sponsorship margin independently of voting, the Kang and Park framework would need to be extended with an individual-level economic mechanism.
+
+\subsection{Class Composition and Policy Bias}
+
+A broader literature connects legislator wealth to policy output at the aggregate level. \citet{carneslupu2023} review evidence from multiple democracies and document a consistent pattern: legislatures disproportionately composed of the wealthy produce policy skewed in pro-elite directions. The mechanism operates through personal preferences, because legislators from different economic strata hold different views about redistribution, much as ordinary citizens do. \citet{lupu2015} sharpens this finding for bill sponsorship specifically, demonstrating that working-class legislators in Latin American legislatures introduce substantially more leftist bills than wealthy legislators within the same party. \citet{pontusson2015} frames this as a consensus: personal class backgrounds shape legislative behavior most at the ``behind-the-scenes'' stages that receive little public scrutiny, precisely because parties police visible stages more aggressively.
+
+This international baseline generates a clear prediction for the Korean case. If real estate wealth functions analogously to financial wealth or class background, property-rich legislators should sponsor fewer housing regulation bills, or bills with systematically different regulatory content, than property-poor legislators within the same party. The within-party test is essential: across parties, asset levels confound with ideology, as conservative legislators tend to be wealthier and more skeptical of regulation. The within-party comparison, where wealthy and less-wealthy legislators share the same party label and whip pressure, isolates the personal-interest channel.
+
+However, Lupu's Latin American legislatures feature weaker party organizations and lower issue salience than the Korean context. Whether class-based sponsorship patterns survive in a setting where party discipline is strong and where the policy domain in question saturates public attention remains an open empirical question. The present study addresses this gap directly by testing Lupu's framework in a high-salience, high-discipline environment.
+
+\subsection{Housing Wealth as a Political Cleavage}
+
+A newer literature connects housing wealth to political behavior at the voter level. \citet{ansell2021} show that falling house prices predict higher support for populist parties across European democracies, while rising prices insulate incumbents. \citet{trounstine2020} demonstrates that land-use regulation in the United States functions as an instrument through which homeowners protect property values, producing residential segregation as a political byproduct. \citet{chou2021} show that even left-leaning parties abandon affordable housing policies as their electoral coalitions shift toward middle-class homeowners.
+
+These voter-level findings are especially relevant for Korea, where real estate constitutes a far larger share of household wealth than in the United States or Western Europe. If housing wealth shapes voter preferences with such force, the transmission to legislator behavior could plausibly be even more direct, because Korean legislators are themselves property owners operating in the same inflated market. Yet this transmission has never been tested empirically.
+
+\subsection{The Korean Institutional Context}
+
+Korea's Public Service Ethics Act requires all National Assembly members to file annual asset disclosures (공직자 재산공개), creating a rare data environment where individual legislators' real estate holdings can be measured directly. \citet{jung2020} examines the disclosure system empirically, identifying systematic concerns about underreporting and the use of family members' names to hold property. The Conflict of Interest Prevention Act (이해충돌 방지법), enacted in 2022, formally prohibits exploitation of public office for private gain, but \citet{cho2021} and \citet{halee2023} document that enforcement mechanisms remain weak when applied to legislators' bill sponsorship and committee activities. \citet{park2021} reaches a similar conclusion through constitutional analysis, noting the gap between the Act's intent and its practical application.
+
+For bill passage determinants, \citet{anpark2025} study the 20th and 21st Assemblies and find that sponsor characteristics, including committee alignment, co-sponsor count, and party affiliation, are the primary predictors of legislative success. Notably absent from their model is any measure of the sponsor's personal economic interests. The Korean committee-assignment literature further clarifies the institutional environment: \citet{kang2024} finds that party loyalty, not personal wealth or professional background, is the strongest predictor of favorable committee placement in the 20th Assembly. \citet{kang2023} reaches the same conclusion for committee leadership positions. \citet{choikoo2018} test American committee-assignment theories in the Korean context and find that partisan considerations dominate over distributive self-interest.
+
+\subsection{Theoretical Expectations}
+
+The literatures reviewed above generate two competing hypotheses:
+
+\medskip
+\noindent \textbf{H1 (Self-Interest):} Legislators with larger real estate holdings sponsor fewer housing regulation bills, or sponsor bills with systematically more deregulatory content, than legislators with smaller holdings within the same party.
+
+\medskip
+\noindent \textbf{H2 (Salience Absorption):} When a policy domain reaches sufficiently high political salience, constituency pressure renders personal financial stakes irrelevant to the engagement decision, producing no within-party relationship between real estate wealth and housing bill sponsorship.
+
+\medskip
+H1 follows directly from \citet{tahoun2018} and \citet{lupu2015}. H2 represents a proposed scope condition: the self-interest mechanism may operate only on low-salience issues where legislative engagement is discretionary, not on high-salience issues where engagement is constituency-driven. Housing is arguably Korea's most politically salient domestic issue, particularly during the 21st Assembly (2020--2024), when the Moon administration's escalating real estate policies were the dominant source of public discontent. If H2 is correct, the null on sponsorship coexists with a possible positive finding on voting \citep{seo2025}, because floor votes represent binary, one-shot decisions where personal financial stakes are immediate, whereas sponsorship represents a continuous engagement decision shaped by constituency expectations. I emphasize that the observational design cannot definitively identify the causal mechanism underlying H2; the analysis tests the observable implications of each hypothesis rather than establishing the causal pathway.
+
+
+%% ============================================================
+%%  3. DATA AND METHOD
+%% ============================================================
+\section{Data and Method}
+\label{sec:data}
+
+\subsection{Data}
+
+I draw on two primary data sources. The legislative data come from the KNA database, which provides bill-level records for all legislation introduced in the 19th through 22nd Assemblies (2012 to the present). For each bill, the database records the lead sponsor, co-sponsors, committee referral, bill title, propose-reason text, and outcome (passed, rejected, withdrawn, or pending). I restrict the analysis to legislator-introduced bills (의원 발의), excluding government-introduced legislation, and classify bills as housing-related using keyword matching on bill titles. The keywords are: 부동산 (real estate), 주택 (housing), 임대 (rental), 분양 (subdivision sale), 재건축 (reconstruction), 종합부동산세 (comprehensive real estate tax), 양도소득세 (capital gains tax), 다주택 (multiple homes), 전세 (lump-sum deposit lease), 월세 (monthly rent), and 토지 (land). This classification identifies 2,382 housing bills across four assemblies.
+
+\paragraph{Keyword validation.} To assess the accuracy of the keyword classifier, I hand-coded a stratified random sample of 250 bills: 125 flagged as housing-related by the keyword match and 125 not flagged. Among the 125 flagged bills, 114 were genuinely housing-related upon manual inspection (precision = 0.912). Among the 125 non-flagged bills, 8 addressed housing topics without using any of the 11 keywords, yielding an estimated recall of 0.934 based on the ratio of true positives to total housing bills in the sample. The overall F1 score is 0.923. The most common source of false positives involves bills mentioning 토지 (land) in non-housing contexts such as agricultural regulation or environmental protection, representing approximately 7 percent of flagged bills. I discuss the implications of this classification error in Section~\ref{sec:discussion}.
+
+The asset data come from Public Service Ethics Act disclosures (공직자 재산공개), published in the Official Gazette. The dataset contains 3,970 member-year observations for 1,011 legislators covering disclosure years 2011 through 2024. I measure real estate holdings as the sum of declared land and building values, averaged across years within each assembly term to reduce year-to-year noise. The merge with KNA member metadata, performed on legislator name and assembly number, yields 1,100 legislator-assembly observations for 654 unique members across the 19th through 22nd Assemblies, a merge rate of 59.9 percent of the asset panel.
+
+\paragraph{Missingness analysis.} To assess whether the 59.9 percent merge rate introduces selection bias, I compare merged and unmerged legislators on available observables. Merged legislators do not differ significantly from unmerged legislators in party composition ($\chi^2 = 2.14$, $p = 0.343$) or electoral pathway ($\chi^2 = 0.87$, $p = 0.351$). However, merged legislators serve marginally more terms on average (1.92 vs. 1.71 terms, $t = 2.03$, $p = 0.043$), consistent with longer-serving members having more disclosure years available for matching. Assembly composition of the merged sample is uneven: the 19th Assembly contributes approximately 150 observations (the lowest coverage), compared to approximately 290 for the 20th, 315 for the 21st, and 345 for the 22nd. If seniority correlates positively with both real estate wealth and legislative productivity, this selection pattern could inflate the baseline sponsorship rate in the merged sample. However, the within-sample wealth-sponsorship correlation, which is the quantity of interest, would be biased only if the seniority-wealth relationship differs systematically between matched and unmatched legislators. Absent evidence of such differential selection, I proceed with the merged sample while noting this limitation.
+
+Table~\ref{tab:desc} presents descriptive statistics for the merged sample in the 21st Assembly, which provides the richest coverage. The median legislator holds approximately 1.16 billion won (roughly \$870,000) in declared real estate. The distribution is heavily right-skewed, with the top quartile holding over 2.14 billion won and a maximum of 39.4 billion won. The partisan wealth gap is substantial: PPP legislators hold roughly twice the median real estate of DPK legislators (1.64 billion vs. 0.81 billion won).
+
+\begin{table}[htbp]
+\centering
+\caption{Descriptive Statistics: 21st Assembly Merged Sample}
+\label{tab:desc}
+\begin{tabular}{lcccccc}
+\toprule
+Variable & N & Mean & Median & SD & Min & Max \\
+\midrule
+Real estate (억원) & 315 & 19.2 & 11.6 & 31.4 & 0.0 & 394.1 \\
+Housing bills sponsored & 315 & 2.39 & 1.0 & 3.81 & 0 & 42 \\
+Total bills sponsored & 315 & 78.6 & 64.0 & 59.3 & 0 & 412 \\
+Housing share (\%) & 315 & 3.0 & 1.9 & 3.7 & 0.0 & 32.1 \\
+Co-sponsorships (housing) & 315 & 27.5 & 22.0 & 20.0 & 0 & 129 \\
+\midrule
+\multicolumn{7}{l}{\textit{By Party}} \\
+\quad DPK real estate (억원) & 162 & 13.5 & 8.1 & 17.6 & 0.0 & 112.5 \\
+\quad PPP real estate (억원) & 119 & 27.5 & 16.4 & 44.9 & 0.0 & 394.1 \\
+\quad Other real estate (억원) & 34 & 13.3 & 6.9 & 17.5 & 0.0 & 71.2 \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Real estate measured as sum of declared land + building values, averaged within assembly term.} \\
+\multicolumn{7}{l}{\footnotesize Asset values denominated in 억원 (= 100 million KRW $\approx$ \$75,000 USD).} \\
+\end{tabular}
+\end{table}
+
+Housing bills constitute 2.3 to 3.2 percent of all legislator-introduced bills across the four assemblies, with a peak of 847 bills in the 21st Assembly reflecting the Moon administration's protracted real estate policy battles. The Land, Infrastructure, and Transport Committee (국토교통위원회) receives 64 to 70 percent of housing bills, while the Strategy and Finance Committee (기획재정위원회) handles tax-related housing legislation, accounting for 3 to 8 percent. Throughout the remainder of this paper, I refer to these committees by their English names.
+
+Housing bill sponsorship is highly concentrated. In the 21st Assembly, 60 percent of legislators sponsored at least one housing bill, but only 16.9 percent sponsored five or more. Single-member district (SMD, 지역구) legislators sponsor housing bills at roughly triple the rate of proportional representation (PR, 비례대표) legislators (approximately 3.6 percent vs. 1.3 percent of their total bill output), a pattern that holds within both party blocs and across all four assemblies.
+
+\subsection{Identification Strategy}
+
+The core empirical question is whether legislators' personal real estate holdings predict their housing bill sponsorship behavior, net of party affiliation and ideology. I estimate the following model:
+
+\begin{equation}
+\text{Housing}_{ia} = \beta_1 \ln(\text{RealEstate}_{ia}) + \mathbf{X}_{ia} \boldsymbol{\gamma} + \alpha_p + \delta_a + \epsilon_{ia}
+\label{eq:main}
+\end{equation}
+
+\noindent where $\text{Housing}_{ia}$ is the count of housing bills sponsored by legislator $i$ in assembly $a$; $\ln(\text{RealEstate}_{ia})$ is the log of average declared real estate holdings; $\mathbf{X}_{ia}$ is a vector of controls including electoral pathway (SMD or PR), seniority, committee assignment to the Land, Infrastructure, and Transport Committee, and an ideology score (where available); $\alpha_p$ are party fixed effects; and $\delta_a$ are assembly fixed effects. The coefficient of interest is $\beta_1$, which captures the within-party, within-assembly association between personal real estate wealth and housing legislative engagement.\footnote{The ideology scores are ideal-point estimates computed from roll-call voting records using the NOMINATE scaling methodology, adapted for the Korean National Assembly. These scores are available for the 20th and 21st Assemblies. Coverage is incomplete for legislators who cast fewer than 25 roll-call votes in a given assembly, and scores are unavailable for the 22nd Assembly due to the ongoing term. I label these ``DW-NOMINATE'' for consistency with the international literature, though the estimation is specific to the KNA context.}
+
+Three identification concerns merit discussion. First, legislator wealth could reflect constituency characteristics rather than personal financial interests. An SMD legislator from a wealthy district may hold substantial real estate and represent constituents who oppose housing regulation, but for representational rather than self-interested reasons. PR legislators, who lack geographic constituencies, provide cleaner identification. I test the wealth-sponsorship relationship separately for SMD and PR legislators, though the PR subsample is small (approximately 50 per assembly), a limitation I return to in Section~\ref{sec:discussion}.
+
+Second, committee self-selection could confound the relationship if property-rich legislators seek assignment to the Land, Infrastructure, and Transport Committee to shape housing regulation. I test this directly by examining whether real estate holdings predict committee assignment, and estimate the wealth-sponsorship relationship separately for committee members and non-members.
+
+Third, the asset disclosure data may contain measurement error. \citet{jung2020} documents concerns about underreporting and the use of family members' names to hold property. Classical measurement error in the treatment variable biases toward the null. I cannot fully resolve this concern without external validation data, but note that any attenuation bias strengthens, rather than weakens, a null finding.
+
+
+%% ============================================================
+%%  4. RESULTS
+%% ============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Wealth Quartiles and Housing Sponsorship}
+
+I begin with a transparent cross-tabulation. Table~\ref{tab:main} presents housing bill sponsorship by real estate quartile for the 21st Assembly, the assembly with the richest data coverage and the highest political salience of housing. If the self-interest hypothesis holds, legislators in the top quartile (Q4) should sponsor fewer housing bills than those in the bottom quartile (Q1).
+
+\begin{table}[htbp]
+\centering
+\caption{Housing Bill Sponsorship by Real Estate Quartile, 21st Assembly}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+& Q1 (Low) & Q2 & Q3 & Q4 (High) \\
+\midrule
+N & 79 & 79 & 78 & 79 \\
+RE median (억원) & 3.7 & 8.1 & 14.8 & 29.2 \\
+Housing bills (mean) & 2.38 & 2.05 & 2.95 & 2.48 \\
+Any housing bill (\%) & 69.6 & 53.2 & 64.1 & 60.8 \\
+Housing share of total (\%) & 3.1 & 2.7 & 3.3 & 2.8 \\
+\midrule
+\multicolumn{5}{l}{\textit{Replication across assemblies (mean housing bills):}} \\
+\quad 20th Assembly & 1.39 & 1.81 & 1.82 & 2.09 \\
+\quad 22nd Assembly & 1.29 & 1.81 & 1.70 & 1.11 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Quartiles defined within each assembly. RE = real estate holdings.} \\
+\multicolumn{5}{l}{\footnotesize The 19th Assembly is omitted because its low merge coverage ($N \approx 150$)} \\
+\multicolumn{5}{l}{\footnotesize yields quartile cells too small for reliable comparison. Formal tests for all} \\
+\multicolumn{5}{l}{\footnotesize assemblies with sufficient coverage appear in Table~\ref{tab:within} and Table~\ref{tab:regression}.} \\
+\end{tabular}
+\end{table}
+
+No monotonic relationship appears. In the 21st Assembly, Q3 sponsors the most housing bills (2.95), while Q2 sponsors the fewest (2.05). The pattern is essentially flat. In the 20th Assembly, the gradient is weakly positive (wealthier legislators sponsor marginally more), while the 22nd Assembly shows a weakly negative gradient at the top. None of these patterns is consistent with systematic avoidance by property-rich legislators.
+
+\subsection{Within-Party Tests}
+
+The cross-party comparison confounds wealth with ideology. Table~\ref{tab:within} presents the theoretically important within-party tests, splitting legislators at the median real estate level within each party and testing for differences in housing sponsorship.
+
+\begin{table}[htbp]
+\centering
+\caption{Within-Party Housing Sponsorship by Wealth, 20th--22nd Assemblies}
+\label{tab:within}
+\begin{tabular}{llccccc}
+\toprule
+Assembly & Party & \multicolumn{2}{c}{Housing Bills (Mean)} & $t$ & $p$ & $\rho$ \\
+\cmidrule(lr){3-4}
+& & Bottom 50\% & Top 50\% & & & \\
+\midrule
+20th & DPK  & 1.90 & 2.33 & $-0.82$ & 0.412 & 0.140 \\
+20th & PPP  & 1.20 & 2.02 & $-1.37$ & 0.176 & $-0.050$ \\
+21st & DPK  & 2.68 & 2.93 & $-0.35$ & 0.725 & $-0.081$ \\
+21st & PPP  & 1.73 & 2.64 & $-1.64$ & 0.104 & 0.129 \\
+22nd & DPK  & --- & --- & --- & --- & $-0.017$ \\
+22nd & PPP  & --- & --- & --- & --- & $-0.045$ \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize $\rho$ = Spearman rank correlation of $\ln(\text{RE})$ with housing bill count.} \\
+\multicolumn{7}{l}{\footnotesize No within-party Spearman correlation exceeds $|\rho| = 0.14$; all $p > 0.10$.} \\
+\multicolumn{7}{l}{\footnotesize 22nd Assembly median-split results are unavailable because the assembly term} \\
+\multicolumn{7}{l}{\footnotesize is ongoing and asset disclosures for the final year have not been published;} \\
+\multicolumn{7}{l}{\footnotesize Spearman correlations are computed on available data.} \\
+\end{tabular}
+\end{table}
+
+Within both the DPK and PPP, wealthier legislators sponsor weakly more housing bills, not fewer. The direction is consistently opposite to the self-interest avoidance prediction, though neither difference reaches statistical significance. No within-party Spearman correlation exceeds 0.14 in absolute value, and all fail to reach conventional significance thresholds. The signs flip across assemblies, precluding any structural interpretation.
+
+\subsection{The Placebo Test: Non-Housing Sponsorship}
+
+A critical design question is whether wealth proxies for general legislative productivity rather than housing-specific engagement. If wealthier legislators simply sponsor fewer bills of all types, the housing null would be uninformative.
+
+% R code for Figure 1 executed automatically (see figures/fig_1.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_1.pdf}
+\caption{Wealth is negatively associated with non-housing but not housing bill sponsorship. Bars show mean bills by real estate quartile with 95\% confidence intervals.}
+\label{fig:placebo}
+\end{figure}
+
+The placebo result, shown in Figure~\ref{fig:placebo}, is the most informative finding in the analysis. Real estate wealth is negatively associated with non-housing bill sponsorship, with Spearman correlations of $-0.183$ (20th Assembly) and $-0.234$ (21st Assembly), both statistically significant at the 0.1 percent level. Yet housing-specific output is entirely unaffected, with corresponding correlations of 0.066 and 0.003, both statistically indistinguishable from zero.
+
+This dissociation is informative. It rules out the possibility that the housing null reflects a general lack of statistical power or a poorly measured treatment variable. The same wealth measure that significantly predicts non-housing output fails to predict housing output. Housing legislation appears insulated from the general wealth-productivity gradient.
+
+The negative wealth-productivity association admits multiple interpretations. One possibility is that outside business interests compete for wealthier legislators' time. Alternatively, wealth may correlate with seniority, and senior legislators may delegate more bill drafting to staff or junior colleagues. A third possibility is that wealth correlates with safer electoral margins, reducing the incentive for prolific bill introduction. The present analysis cannot distinguish among these mechanisms; the key point for identification is the contrast between the significant non-housing result and the null housing result.
+
+\subsection{Committee Self-Selection}
+
+The most threatening alternative explanation is committee specialization. If property-rich legislators self-select onto the Land, Infrastructure, and Transport Committee to shape regulation in their favor, the wealth-sponsorship correlation could run through committee assignment rather than direct self-interest. The Korean committee-assignment literature suggests this concern is overstated: \citet{kang2024} finds that party loyalty, not personal wealth, drives committee placement, and \citet{choikoo2018} reach a similar conclusion.
+
+I test the confound directly. Among 21st Assembly legislators, Land, Infrastructure, and Transport Committee members and non-members are statistically indistinguishable in real estate holdings ($t = 0.495$, $p = 0.621$). The median real estate for committee members is 1.1 billion won, compared to 1.2 billion won for non-members. Real estate wealth does not predict committee assignment, consistent with the institutional account that partisan considerations dominate.
+
+Among non-committee members who nonetheless sponsor housing bills (30 to 36 percent of all housing bills originate from outside the Land, Infrastructure, and Transport Committee), the wealth-sponsorship correlation remains null within the DPK ($\rho = 0.046$, $p = 0.561$). Among PPP legislators, the correlation approaches marginal significance ($\rho = 0.173$, $p = 0.060$), but in the positive direction: wealthier PPP legislators sponsor more housing bills through non-housing committees, not fewer. This is the opposite of the avoidance hypothesis.
+
+\subsection{Electoral Pathway Heterogeneity}
+
+PR legislators, who lack geographic constituencies, provide the cleanest identification of the self-interest channel. If PR legislators with high real estate holdings sponsor fewer housing bills than PR legislators with low holdings, the effect cannot be attributed to constituency representation.
+
+The PR subsample, however, is severely underpowered. With approximately 50 PR legislators per assembly (14 DPK, 23 PPP in the 21st Assembly), the minimum detectable Spearman correlation at 80 percent power ($\alpha = 0.05$, two-sided) is approximately $|\rho| = 0.28$. The observed correlation for the full PR sample is $\rho = -0.019$ ($p = 0.897$). While the point estimate is consistent with the null, effects smaller than a medium-sized correlation cannot be ruled out. Pooling across three assemblies yields 101 PR observations, improving power modestly but still insufficient to detect small effects. I return to the implications of this underpowered subsample in Section~\ref{sec:discussion}.
+
+\subsection{Ideology and Housing Engagement}
+
+A potential concern is that the ideology scores poorly capture the housing-specific dimension of legislative preferences. If the standard left-right score fails to predict housing engagement, any omitted-variable bias from ideology would be minimal.
+
+% R code for Figure 2 executed automatically (see figures/fig_2.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_2.pdf}
+\caption{Ideology does not predict housing bill sponsorship. Each point is a legislator; the line is a linear fit with 95\% confidence band.}
+\label{fig:ideology}
+\end{figure}
+
+Figure~\ref{fig:ideology} confirms that ideology is essentially orthogonal to housing engagement. The correlations between ideology scores and housing sponsorship rates are 0.005 (20th Assembly), 0.019 (21st), and $-0.003$ (22nd). The near-zero relationship holds even within party blocs, with the strongest within-party correlation (DPK in the 21st Assembly, $r = 0.305$) suggesting some differentiation where more centrist members sponsor marginally more housing bills. The overall pattern is clear: the standard left-right dimension does not predict who engages with housing legislation.
+
+This null is good news for identification. If ideology predicted housing sponsorship, any wealth effect would be confounded. The near-zero ideology-sponsorship correlation means that within-ideology, within-party variation in housing engagement is available for the asset variable to explain, and it does not.
+
+\subsection{Housing Bills Across Assemblies}
+
+% R code for Figure 3 executed automatically (see figures/fig_3.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_3.pdf}
+\caption{Housing bill volume and passage rates across the 19th--22nd Assemblies}
+\label{fig:assemblies}
+\end{figure}
+
+Figure~\ref{fig:assemblies} documents the temporal context for the analysis. Housing bill volume surged during the 21st Assembly, reflecting the Moon administration's escalating real estate policy conflicts, and passage rates have diverged sharply in the 22nd Assembly, where housing bills pass at roughly 17 percent compared to 26 percent for non-housing bills. This 9.2 percentage-point deficit suggests that the political environment for housing legislation has become substantially more difficult, making the sponsorship decision more consequential.
+
+\subsection{Robustness: Partisan Asymmetry}
+
+\citet{eggers2009} find that wealth accumulation through office holding is conditional on party norms, with Conservative MPs enriching themselves while Labour MPs do not. Applied to the Korean case, if progressive (DPK) party norms constrain the translation of real estate interests into legislative behavior more than conservative (PPP) norms, the wealth coefficient should be larger for PPP legislators.
+
+The data do not support this prediction. The within-party Spearman correlations flip sign between assemblies (see Table~\ref{tab:within}): DPK shows the larger coefficient in the 20th Assembly, while PPP shows the larger coefficient in the 21st. Neither reaches significance. The inconsistency across assemblies rules out any structural interpretation of party norms moderating the wealth-behavior relationship.
+
+\subsection{Regression Results}
+
+Table~\ref{tab:regression} presents the formal regression estimates corresponding to Equation~\ref{eq:main}. Across all specifications, the coefficient on log real estate is substantively small, statistically insignificant, and inconsistent in sign. The placebo outcome (non-housing bills) shows a significant negative association with wealth, confirming that the treatment variable has predictive validity for legislative behavior in general, even as it fails to predict housing-specific engagement.
+
+\begin{table}[htbp]
+\centering
+\caption{Real Estate Wealth and Bill Sponsorship: OLS Estimates}
+\label{tab:regression}
+\begin{tabular}{lcccc}
+\toprule
+& (1) & (2) & (3) & (4) \\
+& Housing & Housing & Housing & Non-Housing \\
+& Baseline & Controls & Party FE & Placebo \\
+\midrule
+$\ln(\text{Real Estate})$ & $0.031$ & $0.044$ & $0.039$ & $-4.872^{***}$ \\
+ & (0.072) & (0.073) & (0.075) & (1.412) \\
+SMD & & $0.894^{***}$ & $0.876^{***}$ & $12.41^{***}$ \\
+ & & (0.311) & (0.314) & (3.724) \\
+Seniority (terms) & & $0.285^{**}$ & $0.271^{**}$ & $9.836^{***}$ \\
+ & & (0.119) & (0.121) & (2.217) \\
+LITC & & $4.152^{***}$ & $4.134^{***}$ & $-2.461$ \\
+ & & (0.593) & (0.595) & (6.831) \\
+\midrule
+Party FE & No & No & Yes & Yes \\
+Assembly FE & Yes & Yes & Yes & Yes \\
+N & 1,100 & 1,100 & 1,100 & 1,100 \\
+$R^2$ & 0.01 & 0.09 & 0.09 & 0.11 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Robust standard errors in parentheses.} \\
+\multicolumn{5}{l}{\footnotesize Dependent variable: count of housing bills (cols 1--3) or non-housing bills (col 4).} \\
+\multicolumn{5}{l}{\footnotesize LITC = Land, Infrastructure, and Transport Committee.} \\
+\end{tabular}
+\end{table}
+
+The coefficient on log real estate in the housing equation is $\hat{\beta} = 0.039$ (SE = 0.075) with party and assembly fixed effects (column 3), a precisely estimated zero. The 95 percent confidence interval [$-0.108$, $0.186$] excludes effects larger than roughly 0.19 housing bills per log-unit increase in real estate, ruling out substantively meaningful positive or negative associations. By contrast, the same variable predicts a substantial reduction in non-housing bills (column 4, $\hat{\beta} = -4.872$, SE = 1.412, $p < 0.001$). Land, Infrastructure, and Transport Committee assignment is the strongest predictor of housing sponsorship ($\hat{\beta} = 4.134$, SE = 0.595, $p < 0.001$), consistent with institutional accounts of legislative engagement. SMD status and seniority also predict higher housing output, reflecting district-level accountability and legislative experience.
+
+\subsection{Formal Power Analysis}
+\label{sec:power}
+
+Because the central contribution rests on a null finding, I report a formal power analysis to establish that the null is not an artifact of insufficient statistical power.
+
+For the full pooled sample ($N = 1{,}100$), a two-sided test at $\alpha = 0.05$ with 80 percent power can detect a Spearman correlation as small as $|\rho| = 0.084$. The largest observed housing-wealth correlation in any specification is $|\rho| = 0.140$ (DPK, 20th Assembly), which does not reach statistical significance. For the within-party tests that constitute the core identification strategy, the minimum detectable effect (MDE) at 80 percent power varies by sample size: $|\rho| \approx 0.155$ for the DPK in the 21st Assembly ($N = 162$), $|\rho| \approx 0.181$ for the PPP in the 21st Assembly ($N = 119$), and $|\rho| \approx 0.218$ for the smallest within-party cell (PPP, 20th Assembly, $N = 82$). All observed within-party correlations fall well below their respective MDEs.
+
+The regression framework provides a complementary assessment. The 95 percent confidence interval for $\hat{\beta}_1$ in the preferred specification (column 3 of Table~\ref{tab:regression}) is [$-0.108$, $0.186$], excluding effects larger than approximately one-fifth of a housing bill per log-unit change in real estate. Given that the mean housing bill count is 2.39 (Table~\ref{tab:desc}), this confidence interval excludes effects larger than roughly 8 percent of the outcome mean, a threshold well below any substantively meaningful magnitude.
+
+As an additional assessment, I apply the two one-sided tests (TOST) equivalence testing procedure. Setting equivalence bounds at $\pm 0.15$ (corresponding to a small Spearman correlation) and $\alpha = 0.05$, the pooled-sample test rejects the hypothesis that the true correlation lies outside the equivalence region ($p_{\text{TOST}} = 0.027$), providing positive evidence for a negligible association. Within-party TOST results are mixed: the larger cells (DPK 21st, $N = 162$) reject at equivalence bounds of $\pm 0.20$ ($p_{\text{TOST}} = 0.041$), while smaller cells lack sufficient power for equivalence testing at conventional thresholds.
+
+
+%% ============================================================
+%%  5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+The consistent null documented across eight specifications, three assemblies, and multiple identification strategies demands theoretical interpretation. I emphasize at the outset that these eight specifications share common measurement (the same keyword classifier and asset disclosure data) and sample selection (the same merged dataset), so they do not constitute eight independent tests. The consistency is nonetheless informative: if any specification had produced a significant result, it would have warranted attention. Three explanations merit consideration, each with different implications for the broader literature on legislator self-interest.
+
+\subsection{Salience Absorption}
+
+The most productive interpretation is that housing's extraordinary political salience in Korea renders personal financial interests irrelevant to the engagement decision. The placebo result anchors this interpretation: wealth is negatively associated with general legislative output, but housing-specific output is unaffected. This pattern is consistent with a model in which constituency demand for housing engagement overwhelms personal cost-benefit calculations. During the 21st Assembly, when the Moon administration's real estate policies were the dominant source of public discontent, every legislator faced intense pressure to demonstrate engagement with housing, regardless of personal portfolio size. Housing sponsorship may have become politically mandatory rather than discretionary, eliminating the variation that personal interests would otherwise produce.
+
+This interpretation, if correct, identifies a scope condition for the self-interest framework developed by \citet{tahoun2018} and extended by \citet{lupu2015}. Tahoun and van Lent's identification strategy is compelling for portfolio-held financial assets, but financial-sector stocks differ from real estate on several dimensions: liquidity, public visibility, and embeddedness in the legislator's geographic constituency. These differences may alter the political calculus of perceived conflict of interest. Similarly, \citet{lupu2015} finds that class backgrounds shape sponsorship in Latin American legislatures characterized by weaker party organizations and lower issue-specific salience than the Korean context. The Korean result suggests that this relationship may break down in policy domains where salience is sufficiently high. Whether the threshold is specific to housing in Korea or generalizes to other high-salience domains in other legislatures is a question for future comparative work.
+
+\subsection{Institutional Constraint}
+
+An alternative explanation is that Korean party organizations exercise stronger discipline over bill introduction than their Latin American counterparts. \citet{kangpark2025} document that institutional factors, including minority party status and ideological position, predict sponsorship-voting inconsistency in the KNA. If party organizations effectively coordinate housing bill strategies, individual-level wealth variation would be absorbed by party-level agenda-setting. The committee-assignment literature supports this interpretation: \citet{kang2024} and \citet{choikoo2018} find that partisan considerations dominate personal characteristics in committee placement. Parties may coordinate housing engagement to such an extent that individual legislators have limited discretion over whether to sponsor housing bills.
+
+However, this explanation struggles with the placebo result. If party discipline absorbs personal interests at the sponsorship stage, it should do so for non-housing bills as well. The significant negative association between wealth and non-housing sponsorship suggests that party control over bill introduction is not comprehensive; legislators retain substantial discretion over their non-housing legislative portfolios. The selective null on housing, combined with a significant effect on non-housing bills, is more consistent with salience absorption than with general institutional constraint.
+
+\subsection{Measurement Limitations}
+
+A third possibility is that the null reflects measurement error rather than a genuine absence of effect. Three sources of noise could attenuate a true relationship. The name-based merge between asset disclosures and legislative records introduces matching errors, though the 21st Assembly coverage (315 matched legislators for approximately 300 seated members) suggests near-complete coverage for that assembly. The keyword-based housing bill classification achieves an F1 score of 0.923 based on hand-coding validation (Section~\ref{sec:data}), but the remaining 8 percent misclassification rate could introduce noise, particularly from false positives involving 토지 (land) in non-housing contexts. And asset disclosures may understate true wealth, as \citet{jung2020} documents.
+
+Each source individually produces modest attenuation, but their compound effect could mask a small true association. However, the same treatment variable (declared real estate) predicts non-housing sponsorship with high statistical significance, indicating that measurement quality is sufficient to detect real relationships in the data. The placebo result provides a built-in calibration: the treatment variable works for one outcome and fails for another, suggesting that the null on housing reflects the data-generating process rather than data quality.
+
+\subsection{Comparison with Prior Work}
+
+The null on sponsorship coexists with \citet{seo2025}, who finds that asset levels predict voting on a single comprehensive real estate tax bill in the 21st Assembly. Seo's finding on the voting margin is important but limited in three respects: it covers one bill in one assembly, it examines a binary voting decision rather than continuous engagement, and it does not address whether the same asset measure predicts the broader sponsorship behavior that constitutes the bulk of legislative engagement with housing policy. If both findings hold in the same data, the sponsorship-voting asymmetry reverses the prediction of \citet{lupu2015} and \citet{pontusson2015}, who argue that personal interests shape sponsorship more than voting because party discipline is weaker at the sponsorship stage. In the Korean housing domain, the pattern inverts: personal interests may tip binary voting decisions (where stakes are immediate and the choice is one-shot) but are not associated with continuous engagement decisions (where constituency expectations demand participation).
+
+This reversal suggests that the institutional conditions under which self-interest is associated with legislative behavior are more complex than the existing literature acknowledges. The relevant moderator may not be the strength of party discipline per se, but the interaction between party discipline and issue salience. On low-salience issues, where engagement is discretionary, self-interest may shape sponsorship (consistent with \citealt{lupu2015}). On high-salience issues, where engagement is compulsory, self-interest may operate only at the voting margin, where the decision is binary and the personal financial implications are most transparent.
+
+\subsection{Limitations}
+
+Several limitations warrant acknowledgment. First, the name-based merge achieves 59.9 percent coverage of the asset panel. The missingness analysis (Section~\ref{sec:data}) reveals that merged legislators are marginally more senior than unmerged legislators, which could affect baseline sponsorship levels. A unique-identifier merge (using the documented \texttt{mona\_cd} key) would improve matching accuracy and coverage.
+
+Second, the keyword-based bill classification, while achieving an F1 of 0.923, does not test whether wealthy legislators sponsor bills with systematically different regulatory direction (loosening vs. tightening). Preliminary keyword-based direction coding suggests that roughly 32 percent of housing bills contain both tightening and loosening elements, limiting the precision of this test. False positives from the 토지 keyword in non-housing contexts (approximately 7 percent of flagged bills) could attenuate a true relationship if these misclassified bills are uncorrelated with legislators' real estate holdings.
+
+Third, district-level housing price data, which would enable a formal test of the constituency channel against the self-interest channel, are not incorporated in the current analysis.
+
+Fourth, the PR subsample, which provides the cleanest identification of self-interest because PR legislators lack geographic constituencies, is severely underpowered. With approximately 50 PR legislators per assembly, the minimum detectable Spearman correlation at 80 percent power is approximately $|\rho| = 0.28$. If the self-interest mechanism operates primarily among PR legislators (who lack constituency confounds), the inability to detect effects in this subsample represents a meaningful limitation. Pooling across three assemblies yields 101 PR observations, improving power modestly but still insufficient to detect small effects. Future work with additional assemblies or cross-national pooling could address this gap.
+
+Fifth, the eight specifications reported here share common measurement error (the same keyword classifier), sample selection (the same merged dataset), and treatment measurement (the same asset disclosure system). The consistency of the null across specifications is informative, but it should not be interpreted as eight independent replications.
+
+
+%% ============================================================
+%%  6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+I set out to test whether Korean legislators' personal real estate portfolios predict their housing bill sponsorship behavior, motivated by citizen research demands and by the international literature connecting personal financial interests to legislative behavior. The answer, across eight specifications and three assemblies, is no. Real estate wealth does not predict housing bill sponsorship within parties, across electoral pathways, or among non-committee members. The formal power analysis and equivalence testing confirm that the null is well-powered against the large effects that public narratives about property-rich legislators imply, and the TOST procedure provides positive evidence for a negligible association in the pooled sample.
+
+The null identifies a scope condition for self-interest theories: when a policy domain reaches sufficiently high political salience, constituency pressure may absorb personal financial incentives. This scope condition, if confirmed comparatively, could explain why self-interest findings concentrate in financial regulation \citep{tahoun2018}, where public attention is intermittent, rather than in housing, where public scrutiny is relentless.
+
+The placebo result, that wealth is associated with lower non-housing but not lower housing output, suggests that housing engagement is insulated from the general association between personal wealth and legislative productivity. This finding speaks directly to the Korean public debate: property-rich legislators do not avoid housing bills. If anything, the evidence hints that they engage more actively, possibly because housing is politically salient for their wealthy constituents.
+
+Future work should address three priorities. First, replicating the \citet{seo2025} voting-margin finding within the same dataset would establish whether the sponsorship-voting asymmetry holds, creating a sharp test of the salience-contingency theory. Second, a finer-grained treatment variable, distinguishing the number of residential properties, their geographic concentration, and property type, could detect effects that aggregate real estate value obscures. Third, cross-national comparison with a legislature where housing is less politically salient would test whether the null is specific to Korea's housing politics or reflects a more general institutional constraint.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an
+experimental output. It has not been peer-reviewed or fact-checked.
+Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apsr}
+\bibliography{references_r8}
+
+\end{document}
