@@ -1,42 +1,38 @@
-# Figure 3: Seniority composition by Gender x Mandate, 20th-22nd Assemblies
-library(arrow)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
+# Auto-generated figure for article
+Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
+# Figure 3: Housing bill volume and passage rates across assemblies
+library(arrow); library(dplyr); library(ggplot2); library(tidyr)
+DATA <- "/Users/kyusik/kna/data/processed"
+bills <- bind_rows(lapply(17:22, function(a) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
+  if (file.exists(f)) read_parquet(f) else NULL
+})) |> filter(ppsr_kind == "의원")
 
-DATA_DIR <- Sys.getenv("KBL_DATA", "/Users/kyusik/kna/data/processed")
+housing_kw <- c("부동산","주택","임대","분양","재건축","종합부동산세","양도소득세","다주택","전세","월세","토지")
+bills <- bills |> mutate(housing = grepl(paste(housing_kw, collapse="|"), bill_nm))
 
-members <- read_parquet(file.path(DATA_DIR, "member_info_17_22.parquet")) |>
-  filter(assembly %in% 20:22) |>
+summary_df <- bills |>
+  filter(age %in% 19:22) |>
+  group_by(age, housing) |>
+  summarise(n = n(), pass_rate = 100 * mean(passed, na.rm=TRUE), .groups="drop") |>
   mutate(
-    Gender = ifelse(gender == "여", "Women", "Men"),
-    Mandate = ifelse(election_type == "비례대표", "PR", "SMD"),
-    Group = paste(Gender, Mandate, sep = ", "),
-    Seniority = ifelse(reelection == "초선", "First-term", "Multi-term"),
-    Assembly = paste0(assembly, "th")
+    type = ifelse(housing, "Housing", "Non-Housing"),
+    Assembly = paste0(age, "th")
   )
 
-comp <- members |>
-  count(Assembly, Group, Seniority) |>
-  group_by(Assembly, Group) |>
-  mutate(pct = n / sum(n) * 100) |>
-  ungroup()
+p1 <- ggplot(filter(summary_df, housing), aes(x = Assembly, y = n)) +
+  geom_col(fill = "#E69F00", width = 0.6) +
+  labs(x = "", y = "Number of Housing Bills") +
+  theme_bw(base_size = 11)
 
-comp$Group <- factor(comp$Group,
-  levels = c("Women, PR", "Women, SMD", "Men, PR", "Men, SMD"))
-comp$Assembly <- factor(comp$Assembly, levels = c("20th", "21st", "22nd"))
-
-ggplot(comp, aes(x = Group, y = pct, fill = Seniority)) +
-  geom_col(position = "stack", width = 0.7) +
-  facet_wrap(~Assembly) +
-  scale_fill_manual(values = c("First-term" = "#CC79A7", "Multi-term" = "#009E73")) +
-  labs(x = NULL, y = "Share (%)", fill = NULL) +
+p2 <- ggplot(summary_df, aes(x = Assembly, y = pass_rate, color = type, group = type)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = c("Housing" = "#E69F00", "Non-Housing" = "#56B4E9")) +
+  labs(x = "", y = "Passage Rate (%)", color = "") +
   theme_bw(base_size = 11) +
-  theme(
-    axis.text.x = element_text(angle = 30, hjust = 1, size = 9),
-    legend.position = "bottom",
-    panel.grid.minor = element_blank()
-  )
+  theme(legend.position = "bottom")
 
-ggsave("fig_3.pdf", width = 7, height = 4)
-cat("Figure 3 done.\n")
+library(patchwork)
+combined <- p1 + p2 + plot_annotation(tag_levels = "a")
+ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_3.pdf", combined, width = 7, height = 4)

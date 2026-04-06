@@ -1,52 +1,30 @@
-# Figure 2: Female x SMD interaction coefficient by assembly (20th-22nd)
-library(arrow)
-library(dplyr)
-library(ggplot2)
-library(fixest)
+# Auto-generated figure for article
+Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
+# Figure 2: Ideology vs. housing sponsorship rate by assembly
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/kna/data/processed"
+members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
+bills <- bind_rows(lapply(17:22, function(a) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
+  if (file.exists(f)) read_parquet(f) else NULL
+})) |> filter(ppsr_kind == "의원")
+dw <- read.csv(file.path(DATA, "dw_ideal_points_20_22.csv"))
 
-DATA_DIR <- Sys.getenv("KBL_DATA", "/Users/kyusik/kna/data/processed")
+housing_kw <- c("부동산","주택","임대","분양","재건축","종합부동산세","양도소득세","다주택","전세","월세","토지")
+bills <- bills |> mutate(housing = grepl(paste(housing_kw, collapse="|"), bill_nm))
 
-members <- read_parquet(file.path(DATA_DIR, "member_info_17_22.parquet"))
+sponsor_rates <- bills |>
+  filter(age %in% c(20, 21, 22)) |>
+  group_by(rst_mona_cd, age) |>
+  summarise(housing_pct = 100 * mean(housing), total = n(), .groups="drop") |>
+  filter(total >= 5)
 
-results <- list()
-for (a in 20:22) {
-  bills <- read_parquet(file.path(DATA_DIR, sprintf("master_bills_%d.parquet", a))) |>
-    filter(ppsr_kind == "의원")
+merged <- inner_join(sponsor_rates, dw, by = c("rst_mona_cd" = "mona_cd", "age" = "assembly"))
 
-  merged <- bills |>
-    left_join(
-      members |> filter(assembly == a) |> select(mona_cd, gender, election_type),
-      by = c("rst_mona_cd" = "mona_cd")
-    ) |>
-    filter(!is.na(gender), !is.na(election_type)) |>
-    mutate(
-      female = as.integer(gender == "여"),
-      smd = as.integer(election_type == "지역구")
-    )
-
-  model <- feols(passed ~ female * smd, data = merged, vcov = ~rst_mona_cd)
-  ci <- confint(model)
-
-  results[[length(results) + 1]] <- data.frame(
-    Assembly = paste0(a, "th"),
-    estimate = coef(model)["female:smd"],
-    ci_low = ci["female:smd", 1],
-    ci_high = ci["female:smd", 2]
-  )
-}
-
-coef_df <- bind_rows(results)
-coef_df$Assembly <- factor(coef_df$Assembly, levels = c("20th", "21st", "22nd"))
-
-ggplot(coef_df, aes(x = estimate, y = Assembly)) +
-  geom_pointrange(aes(xmin = ci_low, xmax = ci_high), size = 0.8) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
-  labs(
-    x = expression(paste("Female ", times, " SMD Interaction (LPM coefficient)")),
-    y = NULL,
-    caption = "95% CIs. SEs clustered at legislator level."
-  ) +
+ggplot(merged, aes(x = coord1D, y = housing_pct)) +
+  geom_point(alpha = 0.3, size = 1.5, color = "#0072B2") +
+  geom_smooth(method = "lm", se = TRUE, color = "#D55E00", linewidth = 0.8) +
+  facet_wrap(~paste0(age, "th Assembly"), scales = "free") +
+  labs(x = "DW-NOMINATE (1st Dimension)", y = "Housing Bills (% of Total)") +
   theme_bw(base_size = 11)
-
-ggsave("fig_2.pdf", width = 7, height = 3.5)
-cat("Figure 2 done.\n")
+ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_2.pdf", width = 7, height = 4.5)
