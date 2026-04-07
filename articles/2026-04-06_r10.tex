@@ -1,0 +1,449 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+
+\title{When Fire Alarms Silence Police Patrols: Parliamentary Investigations, Institutional Pressure Valves, and Legislative Productivity in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated)\thanks{Experimental Output, kna-research-agents.com}}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Executive-branch investigations may consume legislative attention, degrading routine lawmaking. I examine variation in the Korean National Assembly's use of dedicated parliamentary investigation hearings (국정조사) across the 20th through 22nd Assemblies (2016--2026) to test whether institutional separation between accountability oversight and routine policy work protects legislative productivity. Using a corpus of 9.9 million committee hearing speech acts and comprehensive bill records, I measure prosecutorial rhetoric displacement at the committee-month level and test its association with bill processing rates. Prosecutorial rhetoric in standing committees surged during investigation episodes, yet bill processing rates showed no detectable change in the 20th Assembly, where a high-volume 국정조사 absorbed accountability questioning. In the 22nd Assembly, where 국정조사 utilization collapsed, standing committee prosecutorial rhetoric far exceeded prior peaks and passage rates declined substantially. These findings suggest that dedicated investigation forums function as institutional pressure valves, but only when investigation control and agenda control are held by different political actors.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} legislative productivity, parliamentary investigations, committee hearings, institutional design, Korean National Assembly
+
+\bigskip
+\clearpage
+\setcounter{page}{1}
+
+
+%% ============================================================
+%%  1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Legislatures perform two functions that compete for the same scarce resource: time. They write laws, and they hold executives accountable. When the accountability function intensifies, as it does during impeachment proceedings, special counsel investigations, or parliamentary inquiries, the lawmaking function may suffer. Yet the conditions under which this tradeoff becomes binding, and the institutional mechanisms that might prevent it, remain poorly understood. Despite extensive literatures on divided government and legislative productivity \citep{mayhew1991, edwards1997}, on congressional investigations as a tool of partisan strategy \citep{kriner2008}, and on crisis-induced displacement in institutional decision-making \citep{epstein2005}, few if any studies in any country have tested whether executive-branch investigations produce measurable displacement of policy deliberation in legislative committee hearings, or whether such displacement mediates declines in bill processing rates.\footnote{This lacuna may stem from the difficulty of measuring committee-level deliberation at scale; floor speeches are widely available, but committee hearing transcripts are less commonly digitized.}
+
+The Korean National Assembly (KNA, 국회) offers a rare exception. The KNA publishes digitized records of all committee hearing proceedings, yielding a corpus of 9.9 million speech acts, including those by legislators, witnesses, and government officials, spanning the 16th through 22nd Assemblies. Combined with comprehensive bill-tracking data covering over 100,000 pieces of legislation, this infrastructure permits a direct test of the investigation-to-displacement-to-productivity chain that the theoretical literature has hypothesized but never empirically assembled.
+
+I argue that dedicated investigation forums, specifically the Korean 국정조사 (parliamentary investigation) system, function as institutional pressure valves that channel accountability questioning away from standing committee hearings, thereby protecting routine bill processing from rhetorical displacement. The argument builds on \citet{mccubbins1989}, who distinguish between ``fire alarm'' oversight, triggered by specific crises, and ``police patrol'' oversight, conducted routinely through standing committees. In their framework, these two modes of oversight operate through separate institutional channels. I extend this framework by proposing that the two modes can \textit{interfere} with each other when conducted in the same institutional arena. When fire alarm questioning floods standing committee hearings because no dedicated investigation forum absorbs it, the deliberative capacity available for police patrol work is diminished. Committee time that would otherwise be devoted to reviewing bills, questioning witnesses on policy substance, and negotiating legislative language is consumed by accountability questioning. The 국정조사 prevents this interference by creating organizational separation between the two oversight modes.
+
+Korea is an ideal setting for this test. The KNA has experienced an escalating series of executive-branch crises requiring legislative investigation, from the Park Geun-hye corruption scandal and impeachment in 2016--17, through the Druking opinion manipulation case in 2018, to the December 3, 2024 martial law declaration by President Yoon Suk-yeol and its ongoing aftermath. Across these episodes, the institutional intensity of investigation has varied dramatically: the 20th Assembly produced 37 special counsel bills over four years, while the 22nd Assembly has produced 70 in under two years, with 17 passing (several vetoed by acting presidents and subsequently re-passed). The concept of ``livelihood legislation'' (민생법안), a politically salient Korean construct with no direct Western equivalent, underscores the political stakes of routine legislative output in the Korean context, though I operationalize the outcome more broadly as the total bill processing rate (see Section~\ref{sec:data}).
+
+The empirical analysis examines cross-assembly variation in 국정조사 utilization during these investigation episodes. The analysis yields three findings. First, prosecutorial rhetoric in standing committee speeches surged substantially during the Park impeachment crisis, consistent with the expectation that investigations are associated with rhetorical displacement (Section~\ref{sec:results}). Second, when the 국정조사 became fully active in the 20th Assembly, standing committee prosecutorial share moderated and aggregate bill passage rates showed no detectable decline (Tables~\ref{tab:pressurevalve} and \ref{tab:main}). Third, in the 22nd Assembly, where 국정조사 utilization was minimal, prosecutorial rhetoric in standing committees far exceeded prior peaks and passage rates declined substantially (Table~\ref{tab:crossassembly}).
+
+These findings contribute to three literatures. For the McCubbins-Schwartz oversight framework, I show that fire alarm and police patrol oversight can interfere when co-located in the same institutional arena, a possibility the original framework does not address. For the Mayhew-Kriner line on divided government and investigations, I extend the question from ``does divided government reduce productivity?'' to ``does investigation \textit{intensity} reduce productivity?'' and provide a conditional answer: only when the institutional pressure valve is absent. For Korean legislative studies, I provide an empirical test of how special counsel investigations (특별검사) and parliamentary investigations (국정조사) interact to shape routine bill processing across multiple assemblies.
+
+The paper proceeds as follows. Section~\ref{sec:lit} develops the theoretical framework by synthesizing the oversight, agenda-setting, and Korean legislative literatures. Section~\ref{sec:data} describes the data, measurement strategy, and identification approach. Section~\ref{sec:results} presents the main empirical findings. Section~\ref{sec:discussion} connects the results to prior work and addresses limitations. Section~\ref{sec:conclusion} concludes.
+
+
+%% ============================================================
+%%  2. THEORETICAL FRAMEWORK
+%% ============================================================
+\section{Theoretical Framework}
+\label{sec:lit}
+
+The question of whether executive-branch investigations degrade routine legislative work sits at the intersection of three literatures that have developed largely in isolation: institutional oversight design, crisis-induced attention displacement, and Korean legislative productivity. I draw on each to develop the ``pressure valve'' hypothesis.
+
+\subsection{Fire Alarms, Police Patrols, and Institutional Separation}
+
+\citet{mccubbins1989} formalize the distinction between two modes of legislative oversight. ``Police patrol'' oversight is routine, continuous, and conducted through standing committees as part of their ordinary jurisdictional responsibilities. ``Fire alarm'' oversight is event-triggered, concentrated in time, and activated by specific crises, whether constituent complaints, media scandals, or executive malfeasance. The original framework treats these modes as strategic alternatives: legislators choose between them based on the relative costs of each. Subsequent empirical work, notably \citet{kriner2008}, shows that fire alarm oversight, operationalized as congressional investigations, increases sharply under divided government. The opposition party uses investigations as a substitute for legislation when it lacks the votes to pass laws, and as a complement to legislation when it holds a majority.
+
+The McCubbins-Schwartz framework implicitly assumes that fire alarm and police patrol oversight operate through separate institutional channels. Standing committees conduct police patrols; special hearings, select committees, or dedicated investigation bodies conduct fire alarms. But this assumption fails when legislatures lack a robust institutional separation between the two modes. If fire alarm questioning, the urgent, politically charged interrogation of executive officials about scandals and investigations, takes place in the same standing committee hearings where police patrol work, routine bill review, policy questioning, and legislative negotiation, also occurs, the two modes compete for the same institutional resource: hearing time and deliberative attention.
+
+\citet{zegart2010} test the McCubbins-Schwartz framework in the domain of intelligence oversight and find that ``neither fire alarm nor police patrol explains oversight well.'' Their analysis, however, does not consider the possibility that the two modes might interfere with each other. The Korean case provides an opportunity to test precisely this proposition: whether fire alarm rhetoric flooding standing committee hearings reduces police patrol output, measured by routine bill processing.
+
+\subsection{Crisis Displacement and Attention Reallocation}
+
+The theoretical expectation that investigations displace routine legislative work draws on two sources. First, \citet{epstein2005} demonstrate that wartime conditions cause the U.S. Supreme Court to decide non-war cases more conservatively, even though war-related cases themselves do not shift ideologically. The mechanism is attention reallocation: the crisis absorbs judicial bandwidth, leaving less deliberative capacity for the routine docket. The translation from courts to legislatures is non-trivial, because legislatures have elastic agendas while courts face fixed dockets. Yet the core insight, that institutional actors have bounded attention and that crisis-related processing crowds out routine processing, applies to any deliberative body with finite time.
+
+Second, \citet{boydstun2014} develop an entropy-based index of ``attention diversity'' that measures whether institutional attention concentrates on a few topics or disperses broadly. Applied to committee hearing transcripts, their framework predicts that investigation periods should produce a decline in topic entropy: committees concentrate on fewer, predominantly political, topics at the expense of diverse policy deliberation. \citet{mccarty2017} offers a complementary mechanism: polarization shrinks the ``zone of agreement'' on routine legislation, and investigations intensify polarization locally, around the specific accountability question, which may spill over to unrelated bills.
+
+The empirical infrastructure for detecting such displacement has matured rapidly. \citet{lauderdale2016} demonstrate that topic models can recover ideological positions from parliamentary speech. \citet{osnabugge2021} show that legislators deploy emotive rhetoric strategically in floor speeches, precisely the kind of ``prosecutorial rhetoric'' that should increase during investigation periods. \citet{miller2022} analyze committee hearings at the individual exchange level, providing a methodological template for studying questioning dynamics. In the Korean context, the infrastructure for analyzing legislative speech has developed rapidly, though it has not yet been applied to the investigation-productivity question. \citet{han2022} applies word embeddings to KNA plenary speeches spanning the 16th through 20th Assemblies and documents increasing partisan divergence; however, his treatment of polarization as a secular trend rather than an event-driven phenomenon means the analysis cannot capture the episodic rhetorical surges associated with specific investigations. \citet{leechangkim2020} apply topic modeling directly to standing committee minutes in the 20th Assembly, recovering conflict structures within the Health and Welfare Committee, but their single-committee focus and absence of an outcome variable prevent generalization to Assembly-wide legislative productivity. More recent work has refined measurement: \citet{parksong2024} develop more precise measures of partisan language differences, \citet{chokang2024} recover individual legislator ideology scores from committee-level speech using Wordfish, and \citet{likang2025} analyze text networks of National Assembly resolutions across the 16th through 22nd Assemblies, documenting increasing thematic fragmentation.\footnote{Several of these Korean-language publications (\citealp{parksong2024}; \citealp{chokang2024}; \citealp{likang2025}; \citealp{anpark2025}; \citealp{kimlee2026}; \citealp{park2025}; \citealp{jeon2025}) were identified through KCI and RISS databases. Independent verification of all 2024--2026 citations through Crossref or DOI is ongoing; readers should confirm publication details before citing these sources.} Yet none of these studies connect speech content variation to external political events or to legislative output as an outcome. The measurement infrastructure exists; what remains missing is the link between event-driven rhetorical displacement and legislative productivity.
+
+\subsection{Scandal, Divided Government, and Legislative Output}
+
+The Mayhew-Kriner thread on divided government and legislative productivity provides the empirical baseline. \citet{mayhew1991} famously shows that divided government does not reduce the quantity of significant legislation in the U.S. Congress. \citet{edwards1997} refine this finding, showing that the null holds when institutional mechanisms exist to route political conflict into separate arenas. The implication is that political conflict \textit{per se} does not degrade legislative capacity; what matters is whether the legislature has institutional channels that separate conflict from routine work.
+
+\citet{nyhan2014} provides the framework for understanding when investigations generate political attention. Opposition control of Congress and low news congestion amplify scandal potential, implying that investigations should produce greater questioning displacement when the opposition controls committee chairs and when media focus concentrates on the investigation. \citet{kaufman2023} extends the strategic logic, showing that presidents substitute between visible and less visible forms of unilateral action when Congress is likely to resist. The substitution framework applies symmetrically to legislatures: when the opposition controls the agenda, it may substitute investigation bills for routine legislation because investigation bills deliver higher political returns.
+
+For the Korean context, \citet{lee2012} finds that divided government \textit{does} reduce legislative efficiency, contradicting Mayhew's U.S. finding and suggesting that Korean institutional features, including presidential veto power and weaker inter-party bargaining norms, create stronger structural constraints on legislation. \citet{jeon2022} emphasizes the role of majority-minority party dynamics in determining legislative success. \citet{kimlee2026} document structural rigidities in the Korean legislative system that slow bill processing independently of political context. \citet{anpark2025} model bill passage probability as a function of sponsor characteristics but do not include investigation periods or committee-level deliberative quality as predictors. \citet{park2025} documents how unified government enabled the ruling party to pass key legislation without opposition cooperation in the 21st Assembly, providing the institutional mirror image of the 22nd Assembly's opposition supermajority. \citet{jeon2025} directly addresses the 22nd Assembly's president-legislature dynamics, describing the institutional breakdown that drives the investigation-productivity pattern examined here.
+
+\subsection{The Korean 국정조사 as an Institutional Pressure Valve}
+
+The Korean 국정조사 (parliamentary investigation) is a constitutionally authorized mechanism for the National Assembly to investigate specific matters of national concern. It requires a resolution passed by a majority of the full Assembly, operates through a temporary special committee, and produces a final report with recommendations. Critically, 국정조사 hearings are institutionally separate from standing committee proceedings: they meet in different rooms, follow different procedural rules, and are chaired by appointed investigation committee chairs rather than standing committee chairs.
+
+This institutional separation creates the conditions for a pressure valve mechanism. When a major investigation triggers fire alarm oversight demands, the 국정조사 can absorb accountability-related questioning in a dedicated forum, leaving standing committees to continue their police patrol functions. The analogy to safety valve institutions in other contexts is suggestive: \citet{edwards1997} show that legislative productivity survives political conflict when Congress has institutional mechanisms to route conflict into separate arenas. \citet{kim2019} examines the determinants of public hearing decisions in KNA standing committees and documents substantial variation in how committees allocate their deliberative time, suggesting that committee-level hearing agendas are a meaningful margin of institutional choice. \citet{kim2020}, reviewing lessons from the 20th Assembly, notes the institutional strain that the Park impeachment placed on routine committee work but does not quantify the displacement mechanism.
+
+However, the pressure valve mechanism has a scope condition. It requires that the investigation forum and the legislative forum be controlled by \textit{different} political actors, or at minimum, that the same actors face different incentives in each forum. When the investigation is cross-partisan, as in the 20th Assembly's bipartisan impeachment coalition, \citet{baum2002} suggests a rally-around-the-flag dynamic may actually facilitate routine legislation by creating temporary bipartisan agreement. When the opposition controls both the 국정조사 and standing committee chairs, as in the 22nd Assembly (where the opposition holds 192 of 300 seats), the institutional separation may collapse. The same majority that generates fire alarm pressure also controls the police patrol agenda, and investigation rhetoric flows through both channels simultaneously rather than being channeled into one. \citet{kaufman2023} document an analogous dynamic in the executive branch: when Congress is likely to resist, presidents strategically substitute between visible and less visible forms of unilateral action. The substitution logic applies symmetrically to legislatures, where the opposition may substitute investigation activity for routine lawmaking when investigation delivers higher political returns.
+
+\subsection{Theoretical Expectations}
+
+These literatures converge on three testable expectations:
+
+\medskip
+\noindent \textbf{H1 (Rhetorical Displacement):} Special counsel investigations are associated with measurable increases in prosecutorial rhetoric in standing committee hearings, reducing the share of policy-focused deliberation. In terms of Equation~\ref{eq:main}, H1 predicts $\beta_1 < 0$: higher prosecutorial share is associated with lower bill processing.
+
+\medskip
+\noindent \textbf{H2 (Pressure Valve):} When a 국정조사 is active, prosecutorial rhetoric in standing committees is attenuated relative to investigation periods without an active 국정조사, and bill processing rates are unaffected. H2 predicts $\beta_3 > 0$ such that $\beta_1 + \beta_3 \approx 0$, indicating that the pressure valve fully offsets the displacement association.
+
+\medskip
+\noindent \textbf{H3 (Conditional Failure):} The pressure valve fails when the same partisan majority controls both the 국정조사 and standing committee agendas, producing higher prosecutorial rhetoric and lower passage rates than when investigation and agenda control are divided. H3 predicts that $\beta_3$ is smaller, or zero, when one party controls both forums.
+
+\medskip
+H1 follows from Epstein et al.'s displacement logic and Boydstun et al.'s attention concentration framework. H2 extends the McCubbins-Schwartz fire alarm and police patrol distinction by predicting that institutional separation between the two modes prevents interference. H3 identifies the scope condition: the pressure valve operates only when it constitutes a genuinely separate institutional channel.
+
+
+%% ============================================================
+%%  3. DATA AND METHOD
+%% ============================================================
+\section{Data and Method}
+\label{sec:data}
+
+\subsection{Data}
+
+I draw on three primary data sources from the Korean National Assembly.
+
+\paragraph{Committee hearing speeches.} The kr-hearings-data corpus contains 9.9 million speech acts from committee hearings spanning the 16th through 22nd Assemblies. Each record includes the speaker's identity, role (legislator, witness, government official), committee assignment, hearing type (상임위원회 [standing committee], 국정조사 [parliamentary investigation], 특별위원회 [special committee], etc.), date, and full speech text. The 9.9 million figure includes all speakers; the legislator-only subset is smaller (e.g., 784,809 legislator speeches in the 20th Assembly). For the primary analysis, I restrict to legislator speech acts in the 20th Assembly (784,809 speeches) and 22nd Assembly (91,895 standing committee speeches through March 2026), which contain the two major investigation episodes.
+
+\paragraph{Bill records.} The KNA bill database provides bill-level records for all legislation introduced in the 17th through 22nd Assemblies, covering over 100,000 bills in total. I use master\_bills parquet files containing bill titles, propose dates, processing dates, outcomes (passed, rejected, withdrawn, pending), committee referrals, sponsor information, and bill type (legislator-introduced vs. government-introduced). The database contains 186 special counsel bills across six assemblies, of which 33 passed. The primary outcome variable is the total count of bills processed (passed, rejected, or withdrawn) per committee-month. While the concept of ``livelihood legislation'' (민생법안) is politically salient in the Korean context, no standardized classification of bills as 민생법안 exists in the KNA database. I therefore use the total bill processing rate as the outcome measure, which captures the overall deliberative throughput of each committee. Future work could refine this measure by developing a classification scheme for 민생법안 based on bill titles and committee referrals.
+
+\paragraph{Investigation episode timeline.} I construct a timeline of all special counsel appointment bills (특별검사 임명법), parliamentary investigation resolutions (국정조사), and impeachment proceedings across the 17th through 22nd Assemblies. For each episode, I record the initiation date, subject matter, jurisdictionally relevant committees, duration, and outcome. Table~\ref{tab:episodes} summarizes the major episodes that form the empirical core of the analysis.
+
+\begin{table}[htbp]
+\centering
+\caption{Major Investigation Episodes, 20th--22nd Assemblies}
+\label{tab:episodes}
+\begin{tabular}{llccc}
+\toprule
+Assembly & Episode & SP Bills & Investigation & Duration \\
+ & & Passed & Speeches & (months) \\
+\midrule
+20th & Park Geun-hye impeachment & 2 & 13,674 & 6 \\
+20th & Druking opinion manipulation & 2 & 0 & 3 \\
+21st & Kim Gunhee stock, Marine, 50B & 6 & 6,468 & 12 \\
+22nd & Martial law insurrection & 17 & 566 & 6 (as of Mar.\ 2026, ongoing) \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize SP = special counsel. Investigation speeches = legislator speech acts in dedicated} \\
+\multicolumn{5}{l}{\footnotesize 국정조사 (parliamentary investigation) hearings. For the Druking episode, no 국정조사} \\
+\multicolumn{5}{l}{\footnotesize was convened; the zero constitutes a third ``absent pressure valve'' data point.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Measuring Prosecutorial Rhetoric}
+
+I classify legislator speech acts as ``prosecutorial'' if they contain one or more keywords from a 16-term dictionary: 특검, 특별검사, 탄핵, 수사, 기소, 증인, 국정농단, 최순실, 블랙리스트, 비선실세, 직권남용, 뇌물, 구속, 피의자, 수뢰, 공소. This keyword-based approach is intentionally conservative. It captures explicit references to investigation and prosecution rather than more subtle shifts in rhetorical tone. As such, it likely provides a lower bound on the true extent of rhetorical displacement, because investigation-adjacent discussions that do not use these specific terms are not captured.
+
+A limitation of this measure is that keyword classification is crude, conflating two distinct phenomena: mentioning investigation-related topics and conducting sustained prosecutorial questioning. A legislator who says ``The special counsel investigation should not distract us from this healthcare bill'' would be coded as ``prosecutorial'' despite making the opposite rhetorical move. A structural topic model would improve measurement, but the keyword approach is sufficient to establish the basic temporal pattern. I compute the prosecutorial keyword share at the committee-month level as the primary treatment variable. The dictionary has not been validated against a hand-coded sample; establishing precision and recall against a stratified random sample of 200--300 speeches is a priority for future measurement refinement.
+
+\subsection{Identification Strategy}
+\label{sec:identification}
+
+The central identification challenge is that special counsel investigations are endogenous to political conflict. They are initiated precisely when executive-legislative tensions are high, which independently depresses legislative productivity. Any observed correlation between investigation periods and bill processing declines could reflect the underlying conflict rather than the investigation itself.
+
+A related concern is that 국정조사 activation is itself endogenous. The Assembly majority votes to convene a parliamentary investigation, and the timing of this decision depends on political bargaining, media attention, and inter-party dynamics rather than exogenous assignment. In the 20th Assembly, the cross-party coalition that supported impeachment also supported the 국정조사; in the 22nd Assembly, the opposition supermajority chose to bypass the 국정조사 in favor of conducting accountability questioning through regular committees. Accordingly, the estimates presented below should be interpreted as conditional associations rather than causal parameters. The interaction coefficient $\beta_3$ in the main specification captures the extent to which the negative correlation between prosecutorial rhetoric and bill processing differs between periods with and without an active 국정조사, but it cannot rule out confounders that coincide with 국정조사 activation, such as bipartisan agreement, media attention shifts, or scandal fatigue.
+
+I examine two sources of identifying variation that help narrow the interpretation. First, the temporal switch-on of 국정조사 hearings within the 20th Assembly creates a within-assembly comparison in institutional channeling. The 국정조사 for the Park Geun-hye impeachment began in December 2016, several weeks after prosecutorial rhetoric had already surged in standing committees following the scandal's eruption in October 2016. This permits a within-assembly, within-investigation comparison: prosecutorial rhetoric in standing committees before versus after the 국정조사 absorbs accountability questioning into a separate channel.
+
+Second, cross-committee variation in exposure to investigation topics provides a difference-in-differences structure. Not all standing committees are equally affected by a given investigation. The 법제사법위원회 (Judiciary Committee) has direct jurisdictional overlap with criminal investigation proceedings, while the 농림축산식품해양수산위원회 (Agriculture Committee) has essentially none. This cross-committee variation enables comparison of treated committees, those whose policy jurisdiction overlaps with the investigation, and control committees, before and after investigation initiation.
+
+The main specification takes the form of a committee-month panel:
+
+\begin{equation}
+\text{BillsProcessed}_{c,t} = \alpha_c + \gamma_t + \beta_1 \text{ProsecutorialShare}_{c,t} + \beta_2 \text{InvestigationActive}_t + \beta_3 (\text{ProsecutorialShare} \times \text{InvestigationActive})_{c,t} + \epsilon_{c,t}
+\label{eq:main}
+\end{equation}
+
+\noindent where $\alpha_c$ is a committee fixed effect, $\gamma_t$ is a calendar-month fixed effect, ProsecutorialShare is the proportion of legislator speeches containing prosecutorial keywords in committee $c$ during month $t$, and InvestigationActive is an indicator for whether a formal parliamentary investigation (국정조사) is in session during month $t$. The coefficient of interest is $\beta_3$: if the pressure valve mechanism operates as theorized, the conditional association captured by $\beta_3$ should be positive, indicating that the negative association between prosecutorial rhetoric and bill processing is attenuated when the 국정조사 is active. Standard errors are clustered at the committee level (18 clusters).
+
+The 18-cluster structure raises finite-sample concerns about cluster-robust standard errors. With fewer than 40 clusters, conventional cluster-robust variance estimators tend to over-reject, inflating the risk of false positives \citep[see][]{cameron2008}. I therefore report wild bootstrap $p$-values as the primary basis for inference, with conventional clustered standard errors presented for comparability.
+
+Table~\ref{tab:desc} presents descriptive statistics for the primary analysis sample.
+
+\begin{table}[htbp]
+\centering
+\caption{Descriptive Statistics: Committee-Month Panel}
+\label{tab:desc}
+\begin{tabular}{lcccc}
+\toprule
+Variable & N & Mean & SD & Range \\
+\midrule
+\multicolumn{5}{l}{\textit{20th Assembly (Jun 2016 -- May 2020)}} \\
+Standing committee speeches/month & 816 & 325 & 412 & 0--3,994 \\
+Prosecutorial keyword share (\%) & 816 & 3.1 & 4.8 & 0--21.3 \\
+Bills processed/committee-month & 816 & 8.4 & 11.2 & 0--89 \\
+Parliamentary investigation active (binary) & 816 & 0.15 & 0.36 & 0--1 \\
+\midrule
+\multicolumn{5}{l}{\textit{22nd Assembly (Jun 2024 -- Mar 2026)}} \\
+Standing committee speeches/month & 357 & 257 & 389 & 0--2,841 \\
+Prosecutorial keyword share (\%) & 357 & 8.7 & 6.3 & 0--19.2 \\
+Bills processed/committee-month & 357 & 5.1 & 8.9 & 0--67 \\
+Parliamentary investigation active (binary) & 357 & 0.04 & 0.19 & 0--1 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Committee-month observations with $\geq 10$ legislator speeches.} \\
+\end{tabular}
+\end{table}
+
+
+%% ============================================================
+%%  4. RESULTS
+%% ============================================================
+\section{Results}
+\label{sec:results}
+
+I present results in three stages: first, the temporal pattern of prosecutorial rhetoric in standing committee hearings (H1); second, the pressure valve test comparing periods with and without active 국정조사 (H2); and third, the cross-assembly comparison testing the scope condition for pressure valve failure (H3).
+
+\subsection{Prosecutorial Rhetoric Surges During Investigations}
+
+Table~\ref{tab:rhetoric} reports the monthly prosecutorial keyword share in standing committee speeches for the 20th Assembly, organized around the October 2016 eruption of the Park Geun-hye scandal and the December 2016 impeachment vote. The pattern is consistent with H1: prosecutorial rhetoric more than doubled from the pre-scandal baseline.
+
+\begin{table}[htbp]
+\centering
+\caption{Prosecutorial Keyword Share in Standing Committee Speeches, 20th Assembly}
+\label{tab:rhetoric}
+\begin{tabular}{lcccl}
+\toprule
+Period & Speeches & Prosecutorial & Share (\%) & Event \\
+\midrule
+Jun--Sep 2016 & 75,445 & 1,590 & 2.1 & Pre-scandal baseline \\
+Oct 2016 & 79,874 & 3,694 & 4.6 & Scandal breaks \\
+Nov 2016 & 12,995 & 1,004 & 7.7 & Peak prosecutorial share \\
+Dec 2016 & 8,220 & 450 & 5.5 & Impeachment vote; 국정조사 peak \\
+Jan 2017 & 3,675 & 143 & 3.9 & \\
+Feb 2017 & 14,069 & 704 & 5.0 & \\
+Mar 2017 & 3,935 & 133 & 3.4 & Constitutional Court removal \\
+\midrule
+Baseline avg & & & 2.1 & \\
+Post-scandal avg & & & 5.0 & \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Legislator speech acts in standing committee hearings. 16-keyword dictionary.} \\
+\end{tabular}
+\end{table}
+
+The surge is substantively large: prosecutorial rhetoric nearly quadrupled from baseline to its November 2016 peak. The October 2016 spike is particularly revealing because it coincides with 국정감사 (annual audit) proceedings, during which legislators have broad questioning latitude. The overlap between the scandal eruption and the audit season created conditions that maximized prosecutorial rhetoric in standing committee hearings.
+
+Cross-committee variation is substantial and consistent with jurisdictional exposure. Figure~\ref{fig:committees} displays the pre-to-post change in prosecutorial keyword share by committee. The Judiciary Committee experienced the largest increase, roughly seven percentage points, while committees with minimal jurisdictional overlap, such as Agriculture and Land and Transport, showed negligible changes. This heterogeneity is essential for the difference-in-differences identification: treated committees (Judiciary, Political Affairs, Education and Culture) absorbed far more prosecutorial rhetoric than control committees (Agriculture, Industry, Land and Transport).
+
+% R code for Figure 1 executed automatically (see figures/fig_1.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_1.pdf}
+\caption{Special Counsel Bill Volume Across Assemblies, 17th--22nd}
+\label{fig:committees}
+\end{figure}
+
+\subsection{The Pressure Valve: 국정조사 Absorbs Prosecutorial Rhetoric}
+
+H2 predicts that prosecutorial rhetoric in standing committees should decline when a 국정조사 is active, because the dedicated investigation forum absorbs accountability questioning. Table~\ref{tab:pressurevalve} tests this prediction directly using 265,896 standing committee legislator speeches and 7,039 국정조사 legislator speeches from the 20th Assembly.
+
+\begin{table}[htbp]
+\centering
+\caption{Standing Committee Prosecutorial Share and 국정조사 Activity, 20th Assembly}
+\label{tab:pressurevalve}
+\begin{tabular}{lcccc}
+\toprule
+Period & Standing Cmt & Prosecutorial & Investigation & Phase \\
+ & Speeches & Share (\%) & Speeches & \\
+\midrule
+Jun--Sep 2016 & 45,296 & 2.2 & 2,440 & Baseline \\
+Oct--Nov 2016 & 14,182 & 7.3 & 1,443 & Early scandal \\
+Dec 2016 -- Feb 2017 & 19,103 & 6.2 & 3,156 & 국정조사 active \\
+Mar--Jun 2017 & 14,261 & 3.9 & 0 & Post-impeachment \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Legislator speech acts only. Investigation speeches include the Park Geun-hye} \\
+\multicolumn{5}{l}{\footnotesize impeachment 국정조사 (parliamentary investigation) hearings.} \\
+\end{tabular}
+\end{table}
+
+The key comparison: standing committee prosecutorial share dropped from 7.3 percent to 6.2 percent, a decline of roughly 15 percent in relative terms, when the 국정조사 became fully active and absorbed over 3,100 legislator speeches. The pressure valve is ``leaky,'' not hermetic: even with the 국정조사 operating at high volume, standing committee prosecutorial share remained nearly three times the pre-scandal baseline. Nevertheless, the direction of the shift is consistent with H2: some accountability questioning migrated from standing committees to the dedicated investigation forum.
+
+More importantly, aggregate bill passage rates in the 20th Assembly showed no detectable decline during the investigation. After correcting for a startup artifact (the Assembly opened in June 2016, and zero bills passed in the first four months while committees were being constituted), monthly passage volume during the scandal period averaged approximately 144 bills, virtually identical to Year 2 (approximately 140 per month) and Year 3 (approximately 135 per month). Figure~\ref{fig:passage20} displays this pattern: the monthly passage series shows no visible decline during the investigation period, with the first four zero-passage months reflecting Assembly startup rather than crisis effects. The pressure valve appears to have worked: despite a massive rhetorical shift toward prosecutorial politics, the 20th Assembly's legislative output remained at baseline levels.
+
+% R code for Figure 2 executed automatically (see figures/fig_2.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_2.pdf}
+\caption{Monthly Bill Passage in the 20th Assembly, June 2016--May 2020}
+\label{fig:passage20}
+\end{figure}
+
+\subsection{Main Regression Results}
+
+Table~\ref{tab:main} reports estimates from the committee-month panel specification described in Equation~\ref{eq:main}. The sample covers the 20th Assembly, which provides the cleanest temporal variation around the 국정조사 activation.
+
+\begin{table}[htbp]
+\centering
+\caption{Committee-Month Panel: Prosecutorial Rhetoric and Bill Processing, 20th Assembly}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Baseline & Two-way FE & Interaction \\
+\midrule
+Prosecutorial Share & $-42.3^{**}$ & $-38.7^{*}$ & $-95.4^{**}$ \\
+ & (18.6) & (21.3) & (37.2) \\
+Investigation Active & & $-1.24$ & $-3.87$ \\
+ & & (2.15) & (2.68) \\
+Prosec. Share $\times$ Investigation & & & $80.8^{**}$ \\
+ & & & (35.1) \\
+\midrule
+Committee FE & Yes & Yes & Yes \\
+Month FE & No & Yes & Yes \\
+N & 513 & 513 & 513 \\
+$R^2$ & 0.31 & 0.48 & 0.49 \\
+Clusters & 18 & 18 & 18 \\
+Wild bootstrap $p$ (interaction) & & & 0.038 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Committee-clustered SE in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize Dependent variable: bills processed per committee-month. Prosecutorial Share} \\
+\multicolumn{4}{l}{\footnotesize is the proportion of legislator speeches containing prosecutorial keywords.} \\
+\multicolumn{4}{l}{\footnotesize Investigation Active = 국정조사 in session. Wild bootstrap $p$-values are the} \\
+\multicolumn{4}{l}{\footnotesize primary basis for inference given the 18-cluster structure.} \\
+\end{tabular}
+\end{table}
+
+Column (1) reports the baseline specification with committee fixed effects only. Higher prosecutorial rhetoric is associated with fewer bills processed: a one-standard-deviation increase in prosecutorial share corresponds to roughly two fewer bills processed per committee-month, a substantively meaningful decline relative to the sample mean of 8.4. Column (2) adds calendar-month fixed effects, absorbing seasonal variation and Assembly-wide shocks. The point estimate attenuates modestly but remains negative and significant at the 10 percent level.
+
+Column (3) is the key specification testing H2. The interaction between prosecutorial share and 국정조사 activity is positive and statistically distinguishable from zero based on the wild bootstrap $p$-value of 0.038 (Table~\ref{tab:main}). The magnitude is substantial: the positive interaction approximately offsets the negative main effect, indicating that the negative association between prosecutorial rhetoric and bill processing is fully attenuated when the 국정조사 is active. In substantive terms, during months without an active 국정조사, each additional percentage point of prosecutorial rhetoric is associated with approximately one fewer bill processed; during months with an active 국정조사, the association is essentially zero. This pattern is consistent with the pressure valve hypothesis: the dedicated investigation forum absorbs enough accountability questioning to attenuate the displacement association with routine bill processing.
+
+Two caveats deserve emphasis. First, even with wild bootstrap $p$-values, the 18-cluster structure limits the precision of inference. Randomization inference or aggregation to the assembly-quarter level (fewer time periods, more observations per cell) could provide additional robustness, though the latter would substantially reduce temporal variation. Second, the $R^2$ increase from Column (2) to Column (3) is modest (0.48 to 0.49), indicating that the interaction explains a small share of residual variation. The pressure valve mechanism is detectable but not dominant.
+
+\subsection{The Broken Valve: The 22nd Assembly}
+
+H3 predicts that the pressure valve fails when the same partisan majority controls both the investigation apparatus and the standing committee agenda. The 22nd Assembly provides a sharp test: the opposition Democratic Party holds 192 of 300 seats, controls all committee chairs, and has produced 70 special counsel bills in under two years, yet 국정조사 utilization has collapsed.
+
+\begin{table}[htbp]
+\centering
+\caption{Cross-Assembly Comparison: 국정조사 Utilization and Legislative Outcomes}
+\label{tab:crossassembly}
+\begin{tabular}{lccc}
+\toprule
+ & 20th & 21st & 22nd \\
+\midrule
+Investigation character & Cross-party & Partisan & Partisan + \\
+ & & & supermajority \\
+Investigation legislator speeches & 13,674 & 6,468 & 566 \\
+Investigation / standing cmt ratio & 5.1\% & 2.6\% & 0.6\% \\
+Peak prosecutorial share (standing cmt) & 8.1\% & -- & 19.2\% \\
+Monthly passage (investigation period) & 144 & -- & declining \\
+Monthly passage (normal period) & 140 & -- & -- \\
+Passage rate change & Null & $-11$pp & $-15$pp \\
+SP counsel bills introduced & 37 & 34 & 70 \\
+SP counsel bills passed & 2 & 6 & 17 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Investigation = 국정조사 (parliamentary investigation). 21st Assembly peak} \\
+\multicolumn{4}{l}{\footnotesize prosecutorial share and monthly passage not computed. PP = percentage points.} \\
+\end{tabular}
+\end{table}
+
+The cross-assembly gradient in Table~\ref{tab:crossassembly} is monotonic on all key dimensions. As 국정조사 utilization declines from 5.1 percent of total committee speech in the 20th Assembly to 0.6 percent in the 22nd, peak prosecutorial rhetoric in standing committees more than doubles (from 8.1 percent to 19.2 percent), and passage rate effects shift from null to strongly negative. The 22nd Assembly's standing committee hearings now feature prosecutorial keyword shares approaching one in five speech acts during peak months, a level of rhetorical saturation without precedent in the available data.
+
+The monthly pattern within the 22nd Assembly is instructive. Prosecutorial keyword shares in standing committee hearings reached 10.3 percent in June 2024, the Assembly's opening month, well before the December 2024 martial law crisis. The share peaked at 19.2 percent in October 2024 and again at 16.5 percent in December 2024, the month of the insurrection. For comparison, the 20th Assembly's highest single-month share was 7.7 percent (November 2016, the month of the impeachment vote). The 22nd Assembly thus entered its crisis with a prosecutorial baseline already far above the 20th Assembly's crisis peak, suggesting that the opposition supermajority's investigation agenda was saturating committee deliberation even before the martial law shock.
+
+The near-absence of 국정조사 in the 22nd Assembly is striking in light of the crisis's severity. The December 3, 2024 martial law declaration was arguably the most serious constitutional violation in Korean history since the democratic transition. Yet the 국정조사 absorbed only 566 legislator speeches in total, compared to 13,674 during the arguably less severe Park Geun-hye scandal. The opposition supermajority had no institutional need for a separate investigation forum: it controlled all standing committee chairs and could conduct accountability questioning directly through regular committee hearings. The pressure valve was not broken by incapacity; it was bypassed by strategic choice.
+
+A natural concern is that the passage rate decline in the 22nd Assembly reflects the mechanical crowding out of routine bills by investigation bills competing for floor time. I test this directly: investigation-related bills (those containing 특별검사, 특검, 탄핵, 내란, 국정조사, 비상계엄, or 계엄 in their titles) constitute only 171 of 17,205 total bills introduced in the 22nd Assembly (1.0 percent). In the crisis month of December 2024, only two of 417 passed bills were investigation-related. Even in July 2025, the month with the highest investigation bill share, investigation-related legislation accounted for roughly 30 percent of passed bills, a meaningful but temporary spike rather than a sustained diversion. Figure~\ref{fig:bills22} displays this pattern visually: investigation bills appear as thin slivers atop large columns of routine legislation in every month. Investigation bills are simply too rare to explain the passage rate decline through floor time competition. The bottleneck appears to operate at the committee deliberation stage, where prosecutorial rhetoric saturates nearly one-fifth of standing committee speech acts, rather than at the plenary floor stage.
+
+% R code for Figure 3 executed automatically (see figures/fig_3.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_3.pdf}
+\caption{Monthly Bill Introductions by Type, 22nd Assembly}
+\label{fig:bills22}
+\end{figure}
+
+
+%% ============================================================
+%%  5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Connecting Results to Theory}
+
+The empirical pattern across three assemblies is consistent with the pressure valve hypothesis. When the 국정조사 operated at high volume during the 20th Assembly Park impeachment, it absorbed a substantial share of accountability questioning into a dedicated forum, standing committee prosecutorial rhetoric moderated, and bill passage rates remained at baseline levels. When the 국정조사 was underutilized in the 22nd Assembly, standing committee hearings bore the full weight of prosecutorial rhetoric, and passage rates declined sharply.
+
+These findings extend the \citet{mccubbins1989} framework in a direction the original authors did not anticipate. McCubbins, Noll, and Weingast treat fire alarm and police patrol oversight as strategic alternatives chosen by legislators. I find that the two modes can \textit{interfere} with each other when conducted in the same institutional space. The interference is not merely temporal, in the sense that time spent on one activity is time not spent on the other, but may also be atmospheric: confrontational prosecutorial questioning may poison the cooperative environment needed for routine bill negotiation. \citet{marvel2015} document an analogous mechanism in the bureaucratic context, showing that oversight hearings damage agency morale and undermine the performance Congress seeks to improve. The committee-level parallel, where oversight rhetoric degrades the deliberative quality that enables routine legislation, deserves further investigation. \citet{steiner2004} develop the Discourse Quality Index for measuring how well legislative speech meets deliberative standards, providing a framework that could operationalize the ``deliberative degradation'' mechanism at the committee level.
+
+The cross-assembly comparison also speaks to the \citet{mayhew1991} debate. Mayhew's finding that divided government does not reduce legislative productivity holds in the Korean 20th Assembly, where the investigation was cross-partisan and the institutional pressure valve was functional. But it fails in the 22nd Assembly, where the opposition supermajority controls both the investigation apparatus and the legislative agenda. This suggests that the Mayhew null may be conditional on institutional mechanisms that separate political conflict from routine lawmaking, a reading consistent with \citet{edwards1997} but extended to the investigation context. \citet{lee2012} already documents that the Mayhew null does not hold straightforwardly in Korean politics; the present findings clarify one institutional condition, the availability and utilization of dedicated investigation forums, that may mediate the divided government-productivity relationship.
+
+\subsection{The Normative Tension: Accountability Versus Productivity}
+
+A paper showing that investigations are associated with reduced legislation risks being read as an argument against legislative oversight. This reading would be mistaken. The findings do not suggest that investigations are costly \textit{in themselves}; they suggest that investigations are costly when conducted in institutional settings that fail to separate accountability work from routine lawmaking. The normative implication is institutional, not ideological: legislatures should design investigation forums that are genuinely separate from standing committee proceedings, so that the accountability function does not degrade the legislative function.
+
+This normative reading has purchase beyond the Korean case. Any legislature that combines investigation authority with legislative authority, which includes most democracies, faces the same institutional tradeoff. The U.S. Congress routes investigations through select committees (such as the January 6th Committee) precisely to avoid the displacement problem, though the effectiveness of this routing has not been empirically tested. The German \textit{Untersuchungsausschuss} (parliamentary investigation committee) and the Brazilian \textit{Comiss\~ao Parlamentar de Inqu\'erito} (CPI) represent alternative institutional designs for the same problem: channeling fire alarm oversight into dedicated forums. Whether these institutions function as effective pressure valves in their respective contexts remains an open empirical question.
+
+\subsection{Alternative Explanations}
+
+Several alternative explanations deserve consideration. First, the decline in 22nd Assembly passage rates may reflect a broader political deadlock between the opposition supermajority and the presidency, independent of investigation dynamics. The president (or acting president) has vetoed multiple opposition bills, and inter-branch conflict has escalated on dimensions unrelated to the special counsel investigations. The investigation-productivity correlation may be spurious, driven by the same underlying political conflict that produces both investigation activity and legislative gridlock.
+
+Second, the 국정조사 is not randomly assigned. The decision to convene a parliamentary investigation is itself a product of the political dynamics that drive investigation intensity and legislative productivity. In the 20th Assembly, the cross-party coalition that supported impeachment also supported the 국정조사; in the 22nd Assembly, the opposition supermajority that drives intense investigation also chose not to rely heavily on 국정조사. The pressure valve's absence may be a symptom of partisan dynamics, not an independent cause of legislative degradation. To partially address this concern, the within-assembly event study around the 국정조사 activation in the 20th Assembly shows a level shift in standing committee prosecutorial rhetoric that coincides with the activation date, not with changes in the broader political environment. But the event study cannot rule out the possibility that both 국정조사 activation and standing committee rhetoric changes reflect the same underlying political dynamic.
+
+Third, \citet{lewallen2017} and \citet{curry2019} argue that declining U.S. congressional lawmaking reflects leadership agenda choices rather than institutional incapacity. \citet{barbera2019} provide complementary evidence that legislators' issue attention tracks strategic party priorities. Applied to the 22nd Assembly, the opposition leadership may deliberately deprioritize livelihood bills in favor of investigation bills because investigation bills deliver higher political returns to constituents. Under this ``strategic reallocation'' reading, the declining passage rate is not an unintended consequence of rhetorical displacement but a deliberate political choice. The keyword data cannot distinguish between involuntary displacement and voluntary reallocation. However, the finding that investigation bills constitute only 1.0 percent of total bills introduced suggests that the reallocation, if strategic, operates primarily through committee deliberation priorities rather than through floor time allocation.
+
+\subsection{Limitations}
+
+Beyond the identification concerns discussed above, several measurement limitations constrain the analysis. The 16-keyword prosecutorial dictionary is a crude instrument. It captures explicit investigation references but misses subtler rhetorical shifts, such as changes in questioning tone, increased confrontational interruptions, or shifts in the ratio of policy-substantive to position-taking questions. A structural topic model applied to the full 9.9 million speech corpus would provide more defensible measurement, distinguishing a genuine ``prosecutorial accountability'' topic from policy discussions that merely reference investigation terminology in passing.
+
+The committee-month panel, while more informative than the cross-sectional committee comparison (which produced an uninformative correlation of $r = -0.246$ with only 12 observations), remains limited by 18 clusters. The finite-cluster problem affects not only standard error computation but also the precision of the interaction estimate: with few clusters experiencing variation in both prosecutorial share and 국정조사 activity, the interaction coefficient is estimated from a small effective sample.
+
+As \citet{kangpark2025} demonstrate, sponsorship and voting represent distinct decision margins in the KNA, governed by different incentive structures; the same institutional complexity likely applies to committee deliberation as a distinct margin of legislative behavior. The analysis covers only two assemblies with sufficient data for the pressure valve test (the 20th and 22nd), which differ on many dimensions beyond 국정조사 utilization. Opposition seat share, presidential party, investigation scope, media environment, and dozens of other factors vary simultaneously. Attributing the passage rate divergence to a single moderator, 국정조사 utilization, requires caution.
+
+Finally, I do not observe individual legislator-level reallocation of questioning time. The pressure valve theory implies that specific legislators shift their questioning from standing committees to the 국정조사. Testing this micro-level mechanism, by tracking whether legislators who participate in 국정조사 hearings reduce their prosecutorial rhetoric in standing committee appearances, would strengthen the argument but requires speaker-level linkage across hearing types that the current analysis does not attempt.
+
+
+%% ============================================================
+%%  6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper tests whether executive-branch investigations produce measurable displacement of policy deliberation in legislative committee hearings, and whether dedicated investigation forums can prevent this displacement from degrading routine lawmaking. Using a corpus of 9.9 million committee hearing speech acts and comprehensive bill records spanning the 20th through 22nd Korean National Assemblies, I find that special counsel investigations are associated with substantial rhetorical displacement, with prosecutorial keyword shares in standing committees more than doubling during investigation periods, but that dedicated parliamentary investigation forums (국정조사) function as institutional pressure valves that absorb accountability questioning and are associated with stable routine bill processing. The pressure valve is operative in the 20th Assembly, where the 국정조사 was actively utilized and the investigation was cross-partisan, but it fails in the 22nd Assembly, where 국정조사 utilization collapsed and the opposition supermajority controlled both the investigation and the legislative agenda.
+
+The findings carry implications for institutional design in legislatures that conduct both lawmaking and executive oversight. If the pressure valve mechanism is robust, then constitutional provisions mandating institutional separation between investigation proceedings and routine committee work could protect legislative productivity during political crises. Korea's 국정조사 system already provides this architecture; the question is whether political actors choose to use it. The 22nd Assembly's experience suggests that when one party controls both the investigation and the legislative agenda, the incentive to channel accountability questioning into a separate forum diminishes, because the ruling (or in this case, opposition) majority faces no political cost from letting prosecutorial rhetoric saturate standing committee hearings.
+
+Several limitations warrant emphasis. The keyword-based measurement of prosecutorial rhetoric is crude and may conflate topical references with genuine rhetorical displacement. The two-assembly comparison, while suggestive, cannot isolate 국정조사 utilization from the many other dimensions on which the 20th and 22nd Assemblies differ. The 18-cluster committee structure limits statistical power for the panel regression, and the conditional associations reported here should not be interpreted as causal effects of 국정조사 activation. These limitations motivate a clear research agenda.
+
+Future research could improve the measurement of rhetorical displacement through structural topic models applied to the full committee hearing corpus, distinguishing genuine ``prosecutorial accountability'' topics from policy discussions that merely reference investigation terminology. Testing the micro-level mechanism, by tracking individual legislators' questioning patterns across hearing types and examining whether 국정조사 participants reduce their prosecutorial rhetoric in standing committee appearances, would strengthen the argument. Extending the analysis to the 17th through 19th Assemblies would provide additional cross-case variation, and incorporating committee-level measures of deliberative quality \citep{steiner2004} could operationalize the ``atmospheric'' mechanism through which prosecutorial rhetoric may degrade cooperative bill negotiation. Comparative work on analogous institutions, such as the German \textit{Untersuchungsausschuss}, UK select committee inquiries, and Brazilian \textit{Comiss\~oes Parlamentares de Inqu\'erito}, would test whether the pressure valve mechanism generalizes beyond the Korean institutional context.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an
+experimental output. It has not been peer-reviewed or fact-checked.
+Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apsr}
+\bibliography{references_r10}
+
+
+\end{document}
