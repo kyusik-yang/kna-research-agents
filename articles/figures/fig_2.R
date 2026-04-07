@@ -1,30 +1,30 @@
 # Auto-generated figure for article
 Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
-# Figure 2: Ideology vs. housing sponsorship rate by assembly
-library(arrow); library(dplyr); library(ggplot2)
+# Figure 2: Monthly Bill Passage in the 20th Assembly
+library(arrow); library(dplyr); library(ggplot2); library(lubridate)
 DATA <- "/Users/kyusik/kna/data/processed"
-members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
-bills <- bind_rows(lapply(17:22, function(a) {
-  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
-  if (file.exists(f)) read_parquet(f) else NULL
-})) |> filter(ppsr_kind == "의원")
-dw <- read.csv(file.path(DATA, "dw_ideal_points_20_22.csv"))
-
-housing_kw <- c("부동산","주택","임대","분양","재건축","종합부동산세","양도소득세","다주택","전세","월세","토지")
-bills <- bills |> mutate(housing = grepl(paste(housing_kw, collapse="|"), bill_nm))
-
-sponsor_rates <- bills |>
-  filter(age %in% c(20, 21, 22)) |>
-  group_by(rst_mona_cd, age) |>
-  summarise(housing_pct = 100 * mean(housing), total = n(), .groups="drop") |>
-  filter(total >= 5)
-
-merged <- inner_join(sponsor_rates, dw, by = c("rst_mona_cd" = "mona_cd", "age" = "assembly"))
-
-ggplot(merged, aes(x = coord1D, y = housing_pct)) +
-  geom_point(alpha = 0.3, size = 1.5, color = "#0072B2") +
-  geom_smooth(method = "lm", se = TRUE, color = "#D55E00", linewidth = 0.8) +
-  facet_wrap(~paste0(age, "th Assembly"), scales = "free") +
-  labs(x = "DW-NOMINATE (1st Dimension)", y = "Housing Bills (% of Total)") +
+bills20 <- read_parquet(file.path(DATA, "master_bills_20.parquet"))
+bills20 <- bills20 |>
+  mutate(proc_date = as.Date(proc_dt),
+         proc_month = floor_date(proc_date, "month"),
+         is_passed = (passed == TRUE))
+monthly <- bills20 |>
+  filter(!is.na(proc_month), proc_month >= as.Date("2016-06-01"),
+         proc_month <= as.Date("2020-05-01")) |>
+  group_by(proc_month) |>
+  summarise(passed = sum(is_passed, na.rm = TRUE), .groups = "drop")
+okabe_ito <- c("#0072B2", "#D55E00", "#009E73")
+ggplot(monthly, aes(x = proc_month, y = passed)) +
+  geom_line(color = okabe_ito[1], linewidth = 0.6) +
+  geom_point(color = okabe_ito[1], size = 1.5) +
+  geom_vline(xintercept = as.Date("2016-10-25"), linetype = "dashed",
+             color = okabe_ito[2], linewidth = 0.5) +
+  annotate("text", x = as.Date("2016-10-25"), y = max(monthly$passed, na.rm=TRUE)*0.95,
+           label = "Scandal erupts", hjust = -0.1, size = 3, color = okabe_ito[2]) +
+  geom_vline(xintercept = as.Date("2016-12-09"), linetype = "dotted",
+             color = okabe_ito[3], linewidth = 0.5) +
+  annotate("text", x = as.Date("2016-12-09"), y = max(monthly$passed, na.rm=TRUE)*0.85,
+           label = "Impeachment vote", hjust = -0.1, size = 3, color = okabe_ito[3]) +
+  labs(x = "", y = "Bills Passed") +
   theme_bw(base_size = 11)
 ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_2.pdf", width = 7, height = 4.5)
