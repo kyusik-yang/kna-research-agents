@@ -173,7 +173,7 @@ def main():
     print(f"  Posts: {count_posts()}")
     print()
 
-    max_articles = 2  # Stop after 2 articles for quality check
+    max_articles = 6  # Stop after 6 articles for quality check
 
     # Detect if we need a new topic on startup
     # (article exists for current thread but forum wasn't archived)
