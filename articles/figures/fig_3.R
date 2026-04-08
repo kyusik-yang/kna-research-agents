@@ -1,26 +1,23 @@
 # Auto-generated figure for article
 Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
-# Figure 3: Special Counsel Bill Trends and Passage in 22nd Assembly
-library(arrow); library(dplyr); library(ggplot2); library(lubridate)
-DATA <- "/Users/kyusik/kna/data/processed"
-bills22 <- read_parquet(file.path(DATA, "master_bills_22.parquet"))
-inv_kw <- c("특별검사", "특검", "탄핵", "내란", "국정조사", "비상계엄", "계엄")
-bills22 <- bills22 |>
-  mutate(
-    propose_date = as.Date(ppsl_dt),
-    propose_month = floor_date(propose_date, "month"),
-    is_investigation = grepl(paste(inv_kw, collapse = "|"), bill_nm, perl = TRUE),
-    bill_type = ifelse(is_investigation, "Investigation", "Routine")
-  )
-monthly_type <- bills22 |>
-  filter(!is.na(propose_month)) |>
-  group_by(propose_month, bill_type) |>
-  summarise(n = n(), .groups = "drop")
-okabe_ito <- c("#0072B2", "#D55E00")
-ggplot(monthly_type, aes(x = propose_month, y = n, fill = bill_type)) +
-  geom_col(width = 25) +
-  scale_fill_manual(values = okabe_ito, name = "") +
-  labs(x = "", y = "Bills Introduced") +
+# Figure 3: Floor rejections across assemblies
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/Desktop/kyusik-github/kna/data/processed"
+compute_rejections <- function(assembly) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", assembly))
+  if (!file.exists(f)) return(NULL)
+  b <- read_parquet(f)
+  n_rejected <- sum(b$proc_rslt == "부결", na.rm = TRUE)
+  n_total <- nrow(b)
+  data.frame(assembly = assembly, rejected = n_rejected,
+             total = n_total, rate = n_rejected / n_total * 100)
+}
+df <- bind_rows(lapply(17:22, compute_rejections))
+ggplot(df, aes(x = factor(assembly), y = rejected)) +
+  geom_col(fill = "#D55E00", width = 0.6) +
+  geom_text(aes(label = rejected), vjust = -0.5, size = 3.5) +
+  labs(x = "Assembly", y = "Bills Rejected on Floor",
+       title = NULL) +
   theme_bw(base_size = 11) +
-  theme(legend.position = "top")
-ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_3.pdf", width = 7, height = 4.5)
+  scale_y_continuous(limits = c(0, 40))
+ggsave("/Users/kyusik/Desktop/kyusik-github/kna-research-agents/articles/figures/fig_3.pdf", width = 7, height = 4.5)

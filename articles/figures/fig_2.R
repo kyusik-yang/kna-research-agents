@@ -1,30 +1,27 @@
 # Auto-generated figure for article
 Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
-# Figure 2: Monthly Bill Passage in the 20th Assembly
-library(arrow); library(dplyr); library(ggplot2); library(lubridate)
-DATA <- "/Users/kyusik/kna/data/processed"
-bills20 <- read_parquet(file.path(DATA, "master_bills_20.parquet"))
-bills20 <- bills20 |>
-  mutate(proc_date = as.Date(proc_dt),
-         proc_month = floor_date(proc_date, "month"),
-         is_passed = (passed == TRUE))
-monthly <- bills20 |>
-  filter(!is.na(proc_month), proc_month >= as.Date("2016-06-01"),
-         proc_month <= as.Date("2020-05-01")) |>
-  group_by(proc_month) |>
-  summarise(passed = sum(is_passed, na.rm = TRUE), .groups = "drop")
-okabe_ito <- c("#0072B2", "#D55E00", "#009E73")
-ggplot(monthly, aes(x = proc_month, y = passed)) +
-  geom_line(color = okabe_ito[1], linewidth = 0.6) +
-  geom_point(color = okabe_ito[1], size = 1.5) +
-  geom_vline(xintercept = as.Date("2016-10-25"), linetype = "dashed",
-             color = okabe_ito[2], linewidth = 0.5) +
-  annotate("text", x = as.Date("2016-10-25"), y = max(monthly$passed, na.rm=TRUE)*0.95,
-           label = "Scandal erupts", hjust = -0.1, size = 3, color = okabe_ito[2]) +
-  geom_vline(xintercept = as.Date("2016-12-09"), linetype = "dotted",
-             color = okabe_ito[3], linewidth = 0.5) +
-  annotate("text", x = as.Date("2016-12-09"), y = max(monthly$passed, na.rm=TRUE)*0.85,
-           label = "Impeachment vote", hjust = -0.1, size = 3, color = okabe_ito[3]) +
-  labs(x = "", y = "Bills Passed") +
-  theme_bw(base_size = 11)
-ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_2.pdf", width = 7, height = 4.5)
+# Figure 2: Absorption ratio over time
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/Desktop/kyusik-github/kna/data/processed"
+compute_ratio <- function(assembly) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", assembly))
+  if (!file.exists(f)) return(NULL)
+  b <- read_parquet(f) |> filter(ppsr_kind == "의원")
+  chair_b <- read_parquet(f) |> filter(ppsr_kind == "위원장")
+  n_chair <- nrow(chair_b)
+  n_absorbed <- sum(b$proc_rslt == "대안반영폐기", na.rm = TRUE)
+  ratio <- ifelse(n_chair > 0, n_absorbed / n_chair, NA)
+  pass_rate <- mean(chair_b$passed == 1, na.rm = TRUE) * 100
+  data.frame(assembly = assembly, chair_bills = n_chair,
+             absorbed = n_absorbed, ratio = ratio,
+             pass_rate = pass_rate)
+}
+df <- bind_rows(lapply(17:22, compute_ratio))
+ggplot(df, aes(x = factor(assembly), y = ratio)) +
+  geom_col(fill = "#0072B2", width = 0.6) +
+  geom_text(aes(label = sprintf("%.1f", ratio)), vjust = -0.5, size = 3.5) +
+  labs(x = "Assembly", y = "Bills Absorbed per Chair Alternative",
+       title = NULL) +
+  theme_bw(base_size = 11) +
+  scale_y_continuous(limits = c(0, 6))
+ggsave("/Users/kyusik/Desktop/kyusik-github/kna-research-agents/articles/figures/fig_2.pdf", width = 7, height = 4.5)

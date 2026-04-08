@@ -1,104 +1,36 @@
-# Figure 4: Within-person passage rate changes for PR-to-SMD switchers
-library(arrow)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-
-DATA_DIR <- Sys.getenv("KBL_DATA", "/Users/kyusik/kna/data/processed")
-
-members <- read_parquet(file.path(DATA_DIR, "member_info_17_22.parquet"))
-
-# Load all bills
-bills <- bind_rows(lapply(17:22, function(a) {
-  f <- file.path(DATA_DIR, sprintf("master_bills_%d.parquet", a))
-  if (file.exists(f)) read_parquet(f) else NULL
-})) |>
-  filter(ppsr_kind == "의원")
-
-# Compute legislator-assembly passage rates
-leg_rates <- bills |>
-  left_join(
-    members |> select(mona_cd, assembly, gender, election_type, name_kr),
-    by = c("rst_mona_cd" = "mona_cd", "age" = "assembly")
-  ) |>
-  filter(!is.na(gender), gender == "여") |>
-  group_by(rst_mona_cd, name_kr, age, election_type) |>
-  summarise(
-    pass_rate = mean(passed, na.rm = TRUE) * 100,
-    n_bills = n(),
-    .groups = "drop"
-  )
-
-# Find women who switched from PR to SMD across consecutive assemblies
-switchers <- leg_rates |>
-  arrange(rst_mona_cd, age) |>
-  group_by(rst_mona_cd) |>
-  filter(n() >= 2) |>
-  mutate(
-    prev_type = lag(election_type),
-    prev_rate = lag(pass_rate),
-    prev_age = lag(age)
-  ) |>
-  filter(election_type == "지역구" & prev_type == "비례대표") |>
-  ungroup()
-
-if (nrow(switchers) == 0) {
-  # Fallback: any women who served in both PR and SMD (not necessarily consecutive)
-  pr_terms <- leg_rates |> filter(election_type == "비례대표")
-  smd_terms <- leg_rates |> filter(election_type == "지역구")
-  both <- inner_join(
-    pr_terms |> group_by(rst_mona_cd, name_kr) |>
-      summarise(pr_rate = weighted.mean(pass_rate, n_bills), pr_age = max(age), .groups = "drop"),
-    smd_terms |> group_by(rst_mona_cd, name_kr) |>
-      summarise(smd_rate = weighted.mean(pass_rate, n_bills), smd_age = min(age), .groups = "drop"),
-    by = c("rst_mona_cd", "name_kr")
-  ) |>
-    filter(smd_age > pr_age)
-
-  plot_data <- both |>
-    mutate(
-      id = row_number(),
-      declined = smd_rate < pr_rate
-    ) |>
-    pivot_longer(cols = c(pr_rate, smd_rate), names_to = "phase", values_to = "rate") |>
-    mutate(phase = ifelse(phase == "pr_rate", "Last PR Term", "First SMD Term"))
-} else {
-  plot_data <- switchers |>
-    mutate(
-      id = row_number(),
-      declined = pass_rate < prev_rate
-    ) |>
-    select(id, name_kr, declined,
-           pr_rate = prev_rate, smd_rate = pass_rate) |>
-    pivot_longer(cols = c(pr_rate, smd_rate), names_to = "phase", values_to = "rate") |>
-    mutate(phase = ifelse(phase == "pr_rate", "Last PR Term", "First SMD Term"))
+# Auto-generated figure for article
+Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
+# Figure 4: Ruling-party passage advantage across assemblies
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/Desktop/kyusik-github/kna/data/processed"
+compute_gap <- function(assembly) {
+  bf <- file.path(DATA, sprintf("master_bills_%d.parquet", assembly))
+  mf <- file.path(DATA, sprintf("members_%d.parquet", assembly))
+  if (!file.exists(bf) || !file.exists(mf)) return(NULL)
+  b <- read_parquet(bf) |> filter(ppsr_kind == "의원")
+  m <- read_parquet(mf) |> select(mona_cd, party)
+  b <- left_join(b, m, by = c("rst_mona_cd" = "mona_cd"))
+  ruling_parties <- switch(as.character(assembly),
+    "17" = c("열린우리당", "한나라당")[1], "18" = c("한나라당", "새누리당"),
+    "19" = c("새누리당"), "20" = c("더불어민주당"),
+    "21" = c("더불어민주당"), "22" = c("국민의힘", "국민의미래"))
+  b <- b |> mutate(ruling = party %in% ruling_parties)
+  gap <- b |> filter(!is.na(ruling)) |> group_by(ruling) |>
+    summarise(pass = mean(passed == 1, na.rm = TRUE), .groups = "drop")
+  r <- gap$pass[gap$ruling == TRUE]
+  o <- gap$pass[gap$ruling == FALSE]
+  data.frame(assembly = assembly, gap_pp = (r - o) * 100,
+             ruling_pass = r * 100, opp_pass = o * 100)
 }
-
-plot_data$phase <- factor(plot_data$phase, levels = c("Last PR Term", "First SMD Term"))
-
-n_total <- length(unique(plot_data$id))
-n_declined <- plot_data |>
-  filter(phase == "Last PR Term") |>
-  summarise(n = sum(declined)) |>
-  pull(n)
-
-ggplot(plot_data, aes(x = phase, y = rate, group = id)) +
-  geom_line(aes(color = declined), alpha = 0.6, linewidth = 0.7) +
-  geom_point(aes(color = declined), size = 2) +
-  scale_color_manual(
-    values = c("TRUE" = "#D55E00", "FALSE" = "#009E73"),
-    labels = c("TRUE" = "Declined", "FALSE" = "Improved"),
-    name = NULL
-  ) +
-  geom_hline(yintercept = 0, linetype = "dotted", color = "gray70") +
-  labs(
-    x = NULL,
-    y = "Passage Rate (%)",
-    caption = sprintf("%d of %d switchers experienced lower passage rates after transitioning.",
-                      n_declined, n_total)
-  ) +
+df <- bind_rows(lapply(17:22, compute_gap))
+df$label <- c("Mixed\nchairs", "Ruling\nchairs", "Ruling\nchairs",
+              "Mixed\nchairs", "DP\nchairs", "All opp\nchairs")
+ggplot(df, aes(x = factor(assembly), y = gap_pp)) +
+  geom_col(fill = ifelse(df$gap_pp >= 0, "#0072B2", "#D55E00"), width = 0.6) +
+  geom_hline(yintercept = 0, linewidth = 0.4) +
+  geom_text(aes(label = sprintf("%+.1f", gap_pp)),
+            vjust = ifelse(df$gap_pp >= 0, -0.5, 1.5), size = 3.2) +
+  labs(x = "Assembly", y = "Ruling-Party Advantage (pp)") +
   theme_bw(base_size = 11) +
-  theme(legend.position = "bottom")
-
-ggsave("fig_4.pdf", width = 7, height = 4.5)
-cat("Figure 4 done. Switchers:", n_total, "Declined:", n_declined, "\n")
+  scale_y_continuous(limits = c(-5, 15))
+ggsave("/Users/kyusik/Desktop/kyusik-github/kna-research-agents/articles/figures/fig_4.pdf", width = 7, height = 4.5)
