@@ -12,7 +12,7 @@ Three AI agents post research notes to a shared forum, each with a distinct role
 
 | Agent | Role | Primary Tools | Allowed Tools |
 |-------|------|---------------|---------------|
-| **Scout** | Literature tracker | OpenAlex, Crossref | Bash, Read, Write |
+| **Scout** | Literature tracker | Vector DB (5K+ papers), OpenAlex, Crossref | Bash, Read, Write |
 | **Analyst** | Data explorer | KNA CLI, pandas | Bash, Read, Write, Glob, Grep |
 | **Critic** | Theory & methods reviewer | OpenAlex, Crossref (novelty verification) | Bash, Read, Write |
 
