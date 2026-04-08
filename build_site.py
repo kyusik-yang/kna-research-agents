@@ -1249,7 +1249,7 @@ research agendas.</p>
 
 <p style="color:var(--muted); font-size:0.85rem; margin-top:1rem; padding:0.6rem 0.8rem; border-left:2px solid var(--border);">
 This is an evolving project. More specialized agents will be added as the forum develops,
-including a <strong>Korean Politics Scholar</strong> (RAG-powered over the 641-paper abstract corpus),
+including a <strong>Korean Politics Scholar</strong> (powered by the growing Vector DB literature corpus),
 a <strong>Research Designer</strong> (proposing identification strategies), and a
 <strong>Replication Agent</strong> (cross-checking results with alternative specifications).
 A companion project, <strong>Yeouido Agora</strong> (여의도광장), simulates 25 Korean citizen personas reacting to
@@ -1300,7 +1300,7 @@ budget committees, plenary sessions. 33 speaker roles, 20 committee categories.<
 <tr><td>KNA bills/votes</td><td>~200MB total</td><td>pandas / KNA CLI</td><td>Full load OK</td></tr>
 <tr><td>kr-hearings speeches</td><td>1,132 MB</td><td>pyarrow filtered read</td><td>Must filter by term + columns; never full load</td></tr>
 <tr><td>kr-hearings dyads</td><td>986 MB</td><td>pyarrow filtered read</td><td>Must filter by term + columns; never full load</td></tr>
-<tr><td>Literature corpus</td><td>~2 MB</td><td>JSONL</td><td>Full load OK (641 abstracts)</td></tr>
+<tr><td>Literature Vector DB</td><td>~5 MB</td><td>LanceDB (semantic search)</td><td>5,000+ papers, growing via weekly updates</td></tr>
 </table>
 
 <p class="post-meta">For hearings data, Analyst uses <code>pyarrow.parquet.read_table()</code> with
@@ -1721,7 +1721,7 @@ conversation the forum contributes to.</p>
 <li>Comparative legislative studies (Korea in cross-national context)</li>
 </ul>
 
-<p class="post-meta">See the <a href="knowledge.html">knowledge base</a> for the full corpus of 641 tracked papers with abstracts.</p>
+<p class="post-meta">See the <a href="knowledge.html">knowledge base</a> for the full searchable literature corpus.</p>
 
 </article>
 </div>"""
@@ -1756,6 +1756,18 @@ def build_knowledge():
                 except Exception:
                     pass
 
+    # Try to get Vector DB stats
+    vectordb_count = 0
+    vectordb_path = Path.home() / "Desktop" / "kyusik-claude" / "tools" / "literature.lance"
+    if vectordb_path.exists():
+        try:
+            import lancedb
+            _db = lancedb.connect(str(vectordb_path))
+            _tbl = _db.open_table("literature")
+            vectordb_count = _tbl.count_rows()
+        except Exception:
+            pass
+
     if not abstracts and not log_entries:
         inner = "<p><em>No literature scans yet. Run <code>python3 weekly_scan.py</code> and <code>python3 collect_abstracts.py</code> to start.</em></p>"
     else:
@@ -1778,10 +1790,10 @@ def build_knowledge():
 
         stats_html = f"""\
 <div class="stats-bar" style="margin-bottom:1rem; border-radius:6px;">
-  <div><span class="stat-val">{len(all_papers)}</span> papers</div>
+  <div><span class="stat-val">{vectordb_count or len(all_papers):,}</span> in Vector DB</div>
+  <div><span class="stat-val">{len(all_papers):,}</span> abstracts</div>
   <div><span class="stat-val">{year_range}</span> year range</div>
   <div><span class="stat-val">{len(journals)}</span> journals</div>
-  <div><span class="stat-val">{" | ".join(f"{k}: {v}" for k, v in sorted(by_source.items()))}</span></div>
 </div>"""
 
         # Top journals table

@@ -30,7 +30,8 @@ agora/run_agora.py    # 시민 페르소나 시뮬레이션
 
 - `forum/` - 에이전트 포스트 (numbered markdown)
 - `summaries/` - 라운드 요약
-- `knowledge/` - 문헌 코퍼스 (641 papers)
+- `knowledge/` - 문헌 코퍼스 (abstracts.jsonl, growing via collect_abstracts.py)
+- Literature Vector DB at `~/Desktop/kyusik-claude/tools/literature.lance/` (5,000+ papers)
 
 ## Tech
 

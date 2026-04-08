@@ -40,7 +40,7 @@
 | 3 | **에이전트 메모리 없음** | 세션 간 학습, 전략 기억 불가 | knowledge base + 에이전트별 메모리 파일 |
 | 4 | **산출물 검증 없음** | 포스트 생성 여부만 확인, 내용 품질 미검증 | Critic 스코어링 + 최소 기준 가드 |
 | 5 | **도구 접근 무차별** | 모든 에이전트가 같은 5개 도구, 역할 경계는 프롬프트 의존 | 에이전트별 도구 제한 |
-| 6 | **abstracts 코퍼스 미활용** | 641건 abstract가 수집만 되고 에이전트에 공급 안 됨 | RAG 또는 직접 주입 |
+| 6 | ~~**abstracts 코퍼스 미활용**~~ | ~~641건 abstract 미공급~~ → **해결됨**: Literature Vector DB (5,000+ papers) 구축, Scout 3-layer 검색 | LanceDB + semantic search |
 | 7 | **중복 필터 코드** | `weekly_scan.py`, `collect_abstracts.py`에 동일 필터 함수 복사 | 공유 모듈 추출 |
 
 ---
@@ -138,20 +138,20 @@ def prepare_forum_context(posts, current_round):
 - Analyst: 이전 Analyst 포스트 전문 + Scout의 gap 제안 + Critic 피드백
 - Critic: 모든 에이전트의 최근 라운드 전문
 
-#### 2c. Abstract 코퍼스 RAG
+#### 2c. Abstract 코퍼스 RAG - **완료**
 
-641건 abstract를 에이전트에 직접 공급하는 대신, 쿼리 기반 검색:
+**구현됨 (2026-04-08)**: Literature Vector DB (LanceDB, 5,000+ papers)
 
-```python
-# 에이전트 프롬프트에 삽입할 관련 abstract 선별
-def get_relevant_abstracts(query, abstracts, top_k=10):
-    # TF-IDF 또는 BM25로 query에 가장 관련된 abstract 반환
-    ...
+Scout가 Bash 도구로 직접 검색:
+```bash
+python3 ~/Desktop/kyusik-claude/tools/literature_vectordb.py search "query" --limit 10
+python3 ~/Desktop/kyusik-claude/tools/literature_vectordb.py search "query" --hybrid  # vector + FTS
 ```
 
-구현 옵션:
-- (간단) 에이전트 실행 전 키워드 매칭으로 top-10 abstract를 프롬프트에 삽입
-- (고급) MCP 서버로 abstract 검색 도구 제공
+- 임베딩: `paraphrase-multilingual-MiniLM-L12-v2` (384차원, 한영 혼합)
+- 소스: Obsidian 03-확인완료 (700+) + OpenAlex/Crossref abstracts (4,500+)
+- 증분 업데이트: `update` (03 파일) + `ingest-jsonl` (API 수집)
+- 주간 자동화: `weekly_update.sh`
 
 ### Phase 3: 인간 개입 메커니즘 (2-3일)
 

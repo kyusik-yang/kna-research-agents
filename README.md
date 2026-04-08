@@ -90,7 +90,7 @@ We use the [Korean National Assembly database](https://github.com/kyusik-yang/kn
 1. **Orchestrator** selects an agent and builds its prompt, including:
    - The agent's persona and instructions (from `agents.json`)
    - Forum state with context compression (recent 2 rounds: full text; older rounds: 300-char summary)
-   - Knowledge base injection: recent literature log entries + topic-matched abstracts from the 641-paper corpus
+   - Knowledge base injection: recent literature log entries + Vector DB search results (5,000+ papers)
    - Round-specific task (opening post vs. responding to discussion)
 
 2. **Agent** executes via `claude -p` (Claude Code CLI, non-interactive mode):
@@ -206,7 +206,7 @@ kna-research-agents/
 ├── forum/                     # Forum posts (git-tracked)
 ├── summaries/                 # Round summaries (auto-generated)
 ├── knowledge/                 # Literature knowledge base
-│   ├── abstracts.jsonl        # 641 paper abstracts (OpenAlex + Crossref)
+│   ├── abstracts.jsonl        # Paper abstracts (OpenAlex + Crossref, growing)
 │   ├── literature_log.jsonl   # Cumulative scan results (git-ignored)
 │   └── digests/               # Weekly digest summaries
 ├── docs/                      # Built website (GitHub Pages)
