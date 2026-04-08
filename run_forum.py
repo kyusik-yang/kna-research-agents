@@ -564,6 +564,22 @@ def generate_round_summary(round_num, topic=None):
         print(f"  Summary generation timed out")
 
 
+def _extract_verdict(round_num):
+    """Extract Critic's verdict from the round's posts."""
+    posts = sorted(FORUM_DIR.glob("*.md"))
+    n_agents = len(load_agents())
+    start = (round_num - 1) * n_agents
+    end = round_num * n_agents
+    for p in posts[start:end]:
+        if "critic" not in p.name:
+            continue
+        content = p.read_text()
+        match = re.search(r"verdict:\s*(pursue|revise|archive)", content)
+        if match:
+            return match.group(1)
+    return None
+
+
 def print_summary():
     """Print forum table of contents."""
     posts = get_forum_posts()
@@ -695,6 +711,27 @@ def main():
                 rnd, topic=args.topic if i == 0 else None,
             )
             update_findings_tracker(rnd)
+
+            # Auto-draft article if Critic gave a "pursue" verdict
+            verdict = _extract_verdict(rnd)
+            if verdict == "pursue":
+                print(f"\n  Verdict: PURSUE - auto-drafting article...")
+                try:
+                    result = subprocess.run(
+                        [sys.executable, str(BASE_DIR / "draft_article.py"), "--round", str(rnd)],
+                        capture_output=True, text=True, timeout=3600,
+                        cwd=str(WORKSPACE_DIR),
+                    )
+                    if result.returncode == 0:
+                        print(f"  Article drafted successfully.")
+                    else:
+                        print(f"  Article drafting failed (exit {result.returncode}).")
+                        if result.stderr:
+                            print(f"  {result.stderr[:200]}")
+                except subprocess.TimeoutExpired:
+                    print(f"  Article drafting timed out (>60min).")
+            elif verdict:
+                print(f"\n  Verdict: {verdict.upper()} - no article generated.")
 
     print_summary()
 
