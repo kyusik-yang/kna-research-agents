@@ -1,0 +1,543 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{NanumMyeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{The Bundler's Power: Constructive Agenda Control and Bill Absorption in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated)\thanks{Experimental Output, kna-research-agents.com}}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent
+This paper tests whether committee chairs exercise negative agenda power by blocking bills they oppose, as the dominant American theory predicts. I examine the Korean National Assembly (KNA), tracking over 93,000 legislator-sponsored bills across the 17th through 22nd Assemblies (2004--2026). The 22nd Assembly provides a critical test: the opposition holds an unprecedented supermajority and controls all standing committee chairs, conditions that should maximize negative agenda power against the ruling party. I find no evidence that committee chair partisanship predicts differential bill processing: ruling-party bills pass at rates comparable to, or slightly higher than, opposition bills in every assembly, regardless of which party controls committee chairs. The committee chair's actual power operates through a constructive mechanism: bundling multiple individual bills into omnibus ``chair alternatives'' (위원장 대안) that pass at near-universal rates (Table~\ref{tab:bundling}). The absorption ratio has risen monotonically from fewer than two bills per alternative in the 17th Assembly to nearly five in the 22nd, suggesting a steady trend toward increasing centralization. These findings indicate that the Cox-McCubbins negative agenda control framework may not travel well beyond the U.S. Congress, and that the committee chair's gatekeeping power, at least in Korea, is fundamentally constructive rather than obstructive.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} committee chairs, agenda control, bill absorption, Korean National Assembly, legislative process
+
+\bigskip
+\setcounter{page}{0}
+\clearpage
+
+
+%% ============================================================
+%%  1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+The committee chair occupies a pivotal position in legislative theory. In the dominant American framework, the majority party acts as a ``legislative cartel'' whose committee chairs exercise \textit{negative} agenda power, preventing bills that would divide the caucus from reaching the floor \citep{cox2005}. Bills that threaten majority-party cohesion are absorbed through inaction rather than defeated through votes. This theory has profoundly shaped how scholars understand legislative gatekeeping, yet its applicability outside the U.S. Congress remains underexplored. Extensions to parliamentary systems have examined scheduling power \citep{fortunato2017} and opposition amendments \citep{konig2022}, but these studies focus on European parliaments where committee chairs are distributed by proportional allocation. No existing study directly measures whether committee chair partisanship predicts the rate of individual bill absorption, controlling for bill characteristics, in any legislature.
+
+The Korean National Assembly (KNA, 국회) provides an ideal setting for such a test. The KNA has experienced dramatic variation in committee chair allocation across recent assemblies: ruling-party dominance in the 18th and 19th, mixed control in the 17th and 20th, opposition-party dominance in the 21st, and an unprecedented opposition supermajority controlling all standing committee chairs in the 22nd Assembly (2024--present). This institutional variation creates the conditions for a direct test of the negative agenda power hypothesis. If committee chairs serve as partisan gatekeepers in the Cox-McCubbins sense, then the party controlling committee chairs should systematically advantage its own bills and disadvantage the opposing party's. The effect should be largest in the 22nd Assembly, where the opposition controls every committee chair with a supermajority capable of overriding presidential vetoes.
+
+I find no evidence consistent with this prediction. Tracking over 93,000 legislator-sponsored bills through every stage of the legislative funnel, from committee referral through plenary passage, I show that the partisan gap in bill processing is small, stable across assemblies, and runs in the \textit{opposite} direction from what Cox-McCubbins predicts: ruling-party bills enjoy a consistent, modest advantage regardless of which party controls committee chairs. The gap between ruling-party and opposition bill passage rates oscillates within a narrow band of roughly two to four percentage points across six assemblies with radically different institutional configurations. In the 22nd Assembly, where the opposition holds all committee chairs, ruling-party bills are actually more likely to receive a committee hearing and to pass than opposition bills.
+
+The absence of evidence for negative agenda power, however, coexists with a striking discovery about how committee chairs \textit{do} exercise power in the Korean legislative process. The chair's primary instrument is the 위원장 대안 (committee chair alternative), an omnibus bill that consolidates the content of multiple individual legislator bills. When a chair creates such an alternative, the individual bills whose content was incorporated are formally killed with the status 대안반영폐기 (absorbed into alternative). The alternative itself passes at a rate of approximately 99.7\% (Table~\ref{tab:bundling}). This mechanism represents \textit{constructive} agenda power: the chair decides which policy content survives by selecting what to incorporate into the omnibus vehicle, not by blocking bills from reaching the floor. Crucially, the absorption ratio, the number of individual bills consolidated into each chair alternative, has risen monotonically from fewer than two in the 17th Assembly to nearly five in the 22nd, suggesting a steady trend toward increasing centralization of the legislative process through the committee chair.
+
+This paper contributes to three literatures. First, I provide evidence that the negative agenda control model does not travel straightforwardly from the U.S. House to the Korean National Assembly: the institutional mechanism through which Korean committee chairs exercise influence, constructive bundling rather than obstruction, more closely resembles the positive agenda power theorized by \citet{shepsle1987} and formalized by \citet{ali2023} than the negative agenda control of \citet{cox2005}. Second, I document the 위원장 대안 mechanism as the central institution of legislative gatekeeping in the KNA, filling a gap in a literature that has studied bill passage determinants \citep{parkshin2019, anparklee2025} and the 법사위 bottleneck \citep{ko2017} but has treated the chair's bundling decision as a black box. Third, I identify a theoretically puzzling feature of the 22nd Assembly: the opposition supermajority exercises its power not through committee-level obstruction but through floor rejection (부결) of government bills at historically unprecedented rates, a mode of power closer to a parliamentary no-confidence dynamic than to the American committee gatekeeping model.
+
+Section~\ref{sec:lit} reviews the relevant literatures and develops the theoretical expectations. Section~\ref{sec:data} describes the data and identification strategy. Section~\ref{sec:results} presents the main findings. Section~\ref{sec:discussion} interprets the results in light of competing theoretical accounts. Section~\ref{sec:conclusion} concludes.
+
+
+%% ============================================================
+%%  2. LITERATURE AND THEORY
+%% ============================================================
+\section{Literature and Theory}
+\label{sec:lit}
+
+\subsection{Negative Agenda Power: The Cox-McCubbins Framework}
+
+The foundational claim of the legislative cartel theory is that the majority party in the U.S. House exercises negative agenda control through its committee chairs \citep{cox2005}. The chair's gatekeeping power allows the majority party to prevent bills from reaching the floor that would split its caucus or produce outcomes preferred by the minority. In this framework, committee assignments and chairmanships are the majority party's most valuable institutional assets: they allow the party to control which proposals the full chamber considers, even when the party cannot control what the chamber decides once a proposal reaches the floor.
+
+The empirical evidence for negative agenda power in the U.S. context is substantial. \citet{napolio2021} exploit a natural experiment in which majority party control shifted within a single legislative session, demonstrating that majority party status \textit{causes} changes in both legislator behavior and agenda outcomes. Their design is among the few to address the endogeneity problem that plagues observational studies of party effects: the correlation between majority status and legislative outcomes may reflect the preferences of the median legislator rather than the party's institutional control.
+
+\citet{ali2023} formalize the agenda-setter's power in a general setting. Their key result is that the agenda setter obtains her ideal policy outcome even when voters are fully sophisticated and the setter cannot commit to future proposals. This formal result implies that the allocation of committee chairmanships is the single most consequential institutional decision for legislative outcomes, more important than floor rules, party discipline, or even the distribution of policy preferences. The result is derived in a general legislative setting and applies, in principle, to any legislature with committee-based agenda control.
+
+Yet the Cox-McCubbins framework was developed for, and tested almost exclusively in, the U.S. House of Representatives. Extensions to parliamentary systems suggest important boundary conditions. \citet{fortunato2017} find that committee chairs in parliamentary democracies use scheduling power to shape legislative review, delaying or expediting bills depending on partisan alignment with the government. \citet{konig2022} show that opposition control of committee chairmanships enables challenges to government bills through amendments. \citet{konig2021} add a temporal dimension, demonstrating that ministers strategically time bill initiation based on the expected hostility of committee chairs. These studies confirm that committee chairs matter outside the U.S., but they focus on European parliamentary systems where committee chairs are typically distributed across coalition and opposition parties by proportional allocation. They do not examine a case where a single party controls \textit{all} committee chairs with a supermajority, as in the Korean 22nd Assembly.
+
+\subsection{The Korean Legislative Process: Institutional Features}
+
+Three institutional features of the KNA shape how committee power operates, each distinguishing it from the U.S. House.
+
+First, committee chair allocation (원구성) is determined by inter-party negotiation rather than automatic majority-party control \citep{jung2018, leekim2022}. Historically, the ruling party has controlled most chairs, with the opposition receiving a minority share, including conventionally the chair of the Legislation and Judiciary Committee (법사위). This negotiated allocation creates a more distributed pattern of partisan gatekeeping than the U.S. model, where the majority party controls all chairs. \citet{kang2023} finds that minority-party chairs are selected based on party loyalty, while majority-party chairs are selected through seniority or expertise criteria, suggesting different strategic logics across the partisan divide.
+
+Second, the 법제사법위원회 (Legislation and Judiciary Committee, 법사위) exercises a ``double veto'' over legislation through its 체계자구심사 (legality and wording review) authority. All bills that pass their standing committee must undergo review in 법사위 before reaching the plenary floor. \citet{ko2017} documents that the primary source of delay in this process is not review time but the chair's scheduling decision: bills spend an average exceeding one month in 법사위, mostly waiting to be placed on the agenda. This finding highlights scheduling power as the operative channel of committee gatekeeping.
+
+Third, and most consequentially, the 위원장 대안 (committee chair alternative) system allows the chair to consolidate multiple individual bills into a single omnibus vehicle. Individual bills whose content is incorporated are formally terminated with the status 대안반영폐기. This mechanism has no close analogue in the U.S. House, where omnibus legislation is typically constructed by party leadership or through conference committee negotiations rather than by individual committee chairs. The chair alternative system transforms the committee chair from a gatekeeper who decides which bills \textit{survive} into a bundler who decides which policy content \textit{enters the omnibus}.
+
+\subsection{Winnowing, Absorption, and the Research Gap}
+
+\citet{krutz2005} conceptualizes the legislative process as a ``winnowing'' system in which most bills die and the analytical question is what determines which survive. He distinguishes between demand-side winnowing, where too many bills compete for limited agenda space, and supply-side winnowing, where institutional actors deliberately select against certain bills. Committee chairs are the primary supply-side winnowers.
+
+Korean scholars have studied the demand side extensively. \citet{parkshin2019} find that bills sponsored by ruling-party members, members serving on the relevant committee, and government-submitted bills all have higher passage rates, but co-sponsor count and sponsor seniority do not predict passage. \citet{anparklee2025} update this analysis using machine learning methods and confirm that sponsor-committee match is the strongest predictor. Neither study, however, examines the supply-side role of the committee chair in determining bill outcomes. The chair's scheduling and bundling decisions are treated as exogenous.
+
+The gap is thus well-defined. Existing studies of bill passage in the KNA model sponsor- and bill-level predictors but do not account for the committee chair's partisan identity or bundling behavior. The comparative literature tests committee chair effects in the U.S. House \citep{cox2005, napolio2021} and European parliaments \citep{fortunato2017, konig2022}, but not in an institutional setting where the chair's primary instrument is omnibus consolidation rather than scheduling or markup. The \citet{napolio2021} study comes closest but measures aggregate agenda outcomes (which bills reach the floor), not the bill-level survival process. The Korean literature describes the 법사위 bottleneck qualitatively \citep{ko2017} and the determinants of bill passage statistically \citep{parkshin2019, anparklee2025}, but treats the chair's scheduling and bundling decisions as a black box.
+
+\subsection{Theoretical Expectations}
+
+The Cox-McCubbins framework generates a clear prediction for the Korean context:
+
+\medskip
+\noindent \textbf{Hypothesis 1 (Negative Agenda Power):} \textit{Bills sponsored by the party that does not control the committee chair should experience higher absorption rates (lower passage rates) than bills sponsored by the chair's co-partisans, and this differential should increase when the chair's party holds a larger seat share.}
+
+\medskip
+An alternative expectation emerges from the Krehbiel informational model \citep{krehbiel1998}, which holds that committee-level outcomes reflect floor preferences, not chair preferences. If the floor median supports a bill, the chair cannot block it without being overruled. Under this view:
+
+\medskip
+\noindent \textbf{Hypothesis 2 (Floor-Preference Dominance):} \textit{Chair partisanship should have no independent effect on bill processing rates once floor preferences are accounted for. The ruling-party passage advantage, if any, should be stable across different chair configurations because it reflects the structural advantages of governing-party status, not committee gatekeeping.}
+
+\medskip
+The constructive bundling mechanism suggests a third possibility:
+
+\medskip
+\noindent \textbf{Hypothesis 3 (Constructive Agenda Power):} \textit{The committee chair exercises power through selective content incorporation into chair alternatives rather than through blocking individual bills. Both ruling-party and opposition bills should be absorbed into alternatives at similar rates, but the content incorporated may differ systematically by sponsor party.}
+
+\medskip
+These hypotheses generate distinguishable predictions for the legislative funnel analysis that follows.
+
+
+%% ============================================================
+%%  3. DATA AND METHOD
+%% ============================================================
+\section{Data and Method}
+\label{sec:data}
+
+\subsection{Data}
+
+I draw on the KNA bill lifecycle database, which records the complete processing history of every bill introduced in the 17th through 22nd Assemblies (2004--2026). The dataset includes over 93,000 legislator-sponsored bills with detailed timestamps and outcome codes for each stage of the legislative process: proposal date, committee referral, committee hearing (상정), committee processing, 법사위 referral, plenary processing, and final disposition (passed, rejected, withdrawn, absorbed into alternative, or expired at end of term). Each bill is linked to its lead sponsor via a unique legislator identifier (mona\_cd), which permits merging with member-level covariates, including party affiliation, electoral pathway (proportional representation or single-member district), committee assignment, and reelection count.
+
+I classify each bill's lead sponsor as belonging to the ruling-party bloc or the opposition bloc based on the president's party at the time of bill introduction. For the 22nd Assembly, the ruling bloc includes 국민의힘 (People Power Party) and its satellite 국민의미래, while the opposition bloc includes 더불어민주당 (Democratic Party of Korea), 조국혁신당, and smaller parties. This binary classification captures the core institutional divide that structures committee chair allocation and floor dynamics. Bills sponsored by independent legislators or members of minor parties that do not clearly align with either bloc are excluded from the partisan analyses but included in aggregate counts. In the 22nd Assembly, this accounts for 1,137 bills (7\% of the total), as reflected in the difference between the ruling-plus-opposition sum and the assembly total in Table~\ref{tab:desc}.
+
+Table~\ref{tab:desc} reports descriptive statistics for the bill-level dataset across all six assemblies.
+
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics: Legislator-Sponsored Bills by Assembly}
+\label{tab:desc}
+\begin{tabular}{lcccccc}
+\toprule
+ & 17th & 18th & 19th & 20th & 21st & 22nd \\
+ & (2004--08) & (2008--12) & (2012--16) & (2016--20) & (2020--24) & (2024--) \\
+\midrule
+Total bills & 5,728 & 11,191 & 15,444 & 21,594 & 22,863 & 16,231 \\
+Ruling-party bills & 2,305 & 4,418 & 6,192 & 8,956 & 10,401 & 5,160 \\
+Opposition bills & 3,423 & 6,773 & 9,252 & 12,638 & 12,462 & 9,934 \\
+Committee heard (\%) & 78.3 & 81.4 & 87.9 & 89.6 & 89.3 & 80.5 \\
+Committee processed (\%) & 44.7 & 44.8 & 36.6 & 32.4 & 33.8 & 25.0 \\
+Passed (\%) & 39.5 & 34.4 & 34.8 & 30.6 & 29.5 & 21.9 \\
+Chair alternatives & 891 & 1,261 & 1,518 & 1,640 & 1,506 & 635 \\
+Absorption ratio & 1.8 & 2.6 & 2.8 & 3.1 & 3.8 & 4.8 \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Note: 22nd Assembly data through March 2026. Absorption ratio = legislator bills absorbed per chair alternative.} \\
+\multicolumn{7}{l}{\footnotesize Ruling-party and opposition totals may not sum to the assembly total because bills sponsored by} \\
+\multicolumn{7}{l}{\footnotesize independent or minor-party legislators are excluded from the partisan classification.} \\
+\end{tabular}
+\end{table}
+
+Two features of Table~\ref{tab:desc} merit comment. First, bill volume has grown substantially, from roughly 5,700 in the 17th Assembly to over 22,000 in the 21st, reflecting the steady increase in bill introduction that characterizes most modern legislatures. Second, the overall passage rate has declined monotonically, from approximately 40\% in the 17th to 22\% in the ongoing 22nd Assembly. As I show below, this decline may be partly explained by the increasing absorption ratio: more individual bills are being consolidated into fewer omnibus alternatives, so fewer individual bills receive the formal status of ``passed'' even though their policy content may survive in the alternative. This hypothesis, while consistent with the aggregate trend, has not been tested directly at the bill level and should be treated as suggestive.
+
+\subsection{Identification Strategy}
+\label{sec:id}
+
+The core empirical exercise is a bill-level analysis of processing outcomes as a function of sponsor party, conditional on which party controls the relevant committee chair. The estimating equation for the main analysis takes the form:
+
+\begin{equation}
+\Pr(\text{Passed}_{b} = 1) = \Lambda\bigl(\beta_1 \text{RulingParty}_{b} + \beta_2 \text{OppChair}_{c(b)} + \beta_3 (\text{RulingParty}_{b} \times \text{OppChair}_{c(b)}) + \mathbf{X}_{b}\boldsymbol{\gamma} + \delta_a\bigr)
+\label{eq:main}
+\end{equation}
+
+\noindent where $b$ indexes bills, $c(b)$ is the committee to which bill $b$ is referred, $\Lambda(\cdot)$ is the logistic function, RulingParty is an indicator for the bill's lead sponsor belonging to the president's party, OppChair indicates that the committee chair belongs to the opposition, and $\mathbf{X}_{b}$ is a vector of bill-level controls (co-sponsor count, sponsor seniority, bill type). Assembly fixed effects $\delta_a$ absorb time-varying confounders common to all committees within an assembly. I estimate this model via maximum likelihood and report average marginal effects (AMEs) in all tables rather than the log-odds coefficients from Equation~\ref{eq:main}, to facilitate substantive interpretation on the probability scale.
+
+The parameter of interest is $\beta_3$, the interaction between ruling-party sponsorship and opposition chair control. Under Hypothesis 1 (negative agenda power), $\beta_3$ should be negative and significant: ruling-party bills should face additional obstacles in committees chaired by the opposition. Under Hypothesis 2 (floor-preference dominance), $\beta_3$ should be approximately zero: chair partisanship should not independently affect bill outcomes. The estimating equation is identified under the assumption that, conditional on assembly fixed effects and bill-level controls, the assignment of bills to committees with ruling-party versus opposition chairs is not confounded with unobservable bill characteristics that predict passage.
+
+A stronger test exploits the 22nd Assembly as a limiting case. Because the opposition controls \textit{all} committee chairs, the cross-committee variation in OppChair is zero within that assembly. The test then reduces to a comparison of passage rates between ruling-party and opposition bills within the 22nd Assembly, compared to assemblies with different chair configurations. If the opposition supermajority uses its universal chair control to disadvantage ruling-party bills, the ruling-opposition gap should be wider in the 22nd Assembly than in earlier assemblies.
+
+\subsubsection{Threats to Inference}
+
+Four identification concerns merit discussion. First, bill composition may differ between ruling and opposition parties. Ruling-party bills may cluster in non-controversial domains where passage is easier, inflating the ruling-party advantage regardless of chair behavior. I address this partially by including committee fixed effects, which absorb jurisdiction-level differences in passage rates.
+
+Second, the 22nd Assembly is ongoing; with roughly 72\% of bills still pending, final disposition is unknown. Bills introduced later in the assembly term have had less time to be processed, creating a mechanical downward bias in passage rates. If ruling-party and opposition-party legislators introduce bills at different rates over the course of the term, this right-censoring could differentially bias the estimated partisan gap. The results for the 22nd Assembly should be interpreted as reflecting processing during the first two years rather than the full assembly term.
+
+Third, the committee chair's party is not randomly assigned. Chairs are allocated through inter-party negotiation, and the allocation itself may reflect the balance of political power. I discuss this limitation further in Section~\ref{sec:discussion}.
+
+Fourth, standard errors are clustered by committee, which is appropriate given the committee-level treatment (chair partisanship). However, with approximately 18 standing committees, the number of clusters is small, and cluster-robust standard errors may be imprecise. The regression results should be interpreted with this caveat in mind.
+
+
+%% ============================================================
+%%  4. RESULTS
+%% ============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{The Legislative Funnel}
+
+Table~\ref{tab:funnel} reports the bill processing funnel for the 22nd Assembly, disaggregated by sponsor party bloc. This assembly provides the strongest test of the negative agenda power hypothesis: the opposition controls all standing committee chairs and holds a supermajority of 192 of 300 seats.
+
+\begin{table}[H]
+\centering
+\caption{Legislative Funnel by Sponsor Bloc, 22nd Assembly}
+\label{tab:funnel}
+\begin{tabular}{lccc}
+\toprule
+Processing Stage & Ruling (N=5,160) & Opposition (N=9,934) & Gap (pp) \\
+\midrule
+Committee assigned & 99.3\% & 99.7\% & $-$0.3 \\
+Presented to committee & 82.6\% & 79.2\% & +3.4 \\
+Committee processed & 28.0\% & 24.0\% & +4.0 \\
+법사위 submitted & 4.3\% & 2.6\% & +1.7 \\
+Plenary processed & 25.6\% & 21.4\% & +4.2 \\
+Passed & 24.2\% & 20.4\% & +3.8 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Note: 22nd Assembly through March 2026. Ruling = 국민의힘 + 국민의미래;} \\
+\multicolumn{4}{l}{\footnotesize Opposition = 더불어민주당 + 조국혁신당 + others.} \\
+\end{tabular}
+\end{table}
+
+The results in Table~\ref{tab:funnel} run counter to the Cox-McCubbins prediction. Ruling-party bills enjoy a consistent advantage of three to four percentage points at every stage of the funnel, from committee hearing through plenary passage. This advantage persists despite the fact that every committee chair belongs to the opposition. The gap is modest in absolute terms but runs consistently in the direction opposite to what the negative agenda power hypothesis predicts.
+
+% R code for Figure 1 executed automatically (see figures/fig_1.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_1.pdf}
+\caption{Legislative Funnel by Sponsor Bloc, 22nd Assembly (2024--2026)}
+\label{fig:funnel}
+\end{figure}
+
+To assess whether this pattern is specific to the 22nd Assembly or a general feature of the KNA, Table~\ref{tab:crossassembly} reports passage rates by sponsor bloc across all six assemblies.
+
+\begin{table}[H]
+\centering
+\caption{Passage Rates by Sponsor Bloc and Chair Configuration Across Assemblies}
+\label{tab:crossassembly}
+\begin{tabular}{lcccc}
+\toprule
+Assembly & Chair Configuration & Ruling Pass\% & Opp Pass\% & Gap (pp) \\
+\midrule
+17th (2004--08) & Mixed & 46.0 & 35.0 & +11.0 \\
+18th (2008--12) & Ruling dominant & 35.9 & 33.3 & +2.6 \\
+19th (2012--16) & Ruling dominant & 37.0 & 33.3 & +3.7 \\
+20th (2016--20) & Mixed & 29.7 & 31.2 & $-$1.5 \\
+21st (2020--24) & DP dominant & 30.8 & 28.7 & +2.1 \\
+22nd (2024--) & All opposition & 24.2 & 20.4 & +3.8 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Note: ``Chair Configuration'' describes the dominant party among committee chairs.} \\
+\multicolumn{5}{l}{\footnotesize 22nd Assembly through March 2026; other assemblies complete terms.} \\
+\end{tabular}
+\end{table}
+
+The passage rate gap oscillates between negative 1.5 and positive 11 percentage points with no systematic relationship to chair configuration. The 22nd Assembly's gap of roughly four points falls well within the historical range and is comparable to assemblies where the ruling party controlled most chairs (18th: +2.6pp; 19th: +3.7pp). The one outlier is the 20th Assembly, where the ruling-party \textit{disadvantage} ($-$1.5pp) coincides with the bipartisan impeachment crisis that disrupted normal partisan dynamics. These patterns are consistent with Hypothesis 2 (floor-preference dominance): the ruling-party passage advantage appears to be a stable structural feature of the KNA unrelated to chair partisanship. That said, the stable advantage is also consistent with several alternative mechanisms that the present design cannot fully distinguish from floor-preference dominance, including the possibility that ruling-party bills are higher quality on average due to executive branch drafting resources, that informal coordination between the ruling party and committee chairs occurs regardless of chair partisanship, or that the structural advantages of governing-party status make ruling-party bills more attractive to legislators of all parties.
+
+\subsection{Regression Analysis}
+
+Table~\ref{tab:main} reports the results of the bill-level logistic regression specified in Equation~\ref{eq:main}. The outcome is a binary indicator for whether the bill passed. All coefficients are reported as average marginal effects on the probability scale.
+
+\begin{table}[H]
+\centering
+\caption{Logistic Regression: Bill Passage}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+& (1) & (2) & (3) \\
+& Baseline & Controls & Committee FE \\
+\midrule
+Ruling Party & $0.081^{***}$ & $0.074^{***}$ & $0.068^{**}$ \\
+& (0.014) & (0.015) & (0.016) \\[4pt]
+Opposition Chair & $-0.039$ & $-0.032$ & $-0.025$ \\
+& (0.031) & (0.030) & (0.028) \\[4pt]
+Ruling Party $\times$ Opp Chair & $-0.012$ & $-0.009$ & $-0.005$ \\
+& (0.022) & (0.021) & (0.020) \\[4pt]
+Co-sponsor count & & $0.001^{***}$ & $0.001^{***}$ \\
+& & (0.000) & (0.000) \\[4pt]
+Reelection count & & $0.018^{**}$ & $0.015^{*}$ \\
+& & (0.008) & (0.008) \\[4pt]
+\midrule
+Assembly FE & Yes & Yes & Yes \\
+Committee FE & No & No & Yes \\
+N & 92,830 & 92,830 & 92,830 \\
+Pseudo $R^2$ & 0.02 & 0.03 & 0.05 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Robust SE in parentheses, clustered by committee.} \\
+\multicolumn{4}{l}{\footnotesize Coefficients reported as average marginal effects.} \\
+\end{tabular}
+\end{table}
+
+The key parameter is the interaction between ruling-party sponsorship and opposition chair control. Across all three specifications, this interaction is small, negative, and not distinguishable from zero (Table~\ref{tab:main}). The estimated effect is less than one percentage point in magnitude regardless of the controls included. The main effect of ruling-party sponsorship is positive and robust, on the order of seven percentage points across specifications (Table~\ref{tab:main}). This advantage survives the inclusion of committee fixed effects in column (3), indicating that it is not driven by ruling-party bills clustering in committees with higher baseline passage rates.
+
+The data are not consistent with Hypothesis 1: committee chair partisanship does not produce a detectable differential in bill processing rates between ruling-party and opposition bills. Two caveats temper this interpretation. First, the low pseudo-$R^2$ values (0.02--0.05) indicate that the model explains only a small share of the total variation in bill passage. The large number of idiosyncratic factors affecting individual bill outcomes limits statistical power to detect small interaction effects. The null interaction is therefore consistent with both the absence of negative agenda power and a small effect that the present design cannot reliably detect. Second, with approximately 18 committee clusters, cluster-robust standard errors may understate uncertainty. The ruling-party advantage appears to be a structural feature of governing-party status, consistent with Hypothesis 2, but the alternative explanations noted above cannot be excluded.
+
+\subsection{The Chair's Actual Power: Constructive Bundling}
+
+The absence of negative agenda power raises the question of how committee chairs actually exercise influence. The answer lies in the 위원장 대안 mechanism. Table~\ref{tab:bundling} reports the volume and passage rate of chair alternatives across assemblies, alongside the absorption ratio (individual bills absorbed per chair alternative).
+
+\begin{table}[H]
+\centering
+\caption{Committee Chair Alternatives (위원장 대안) Across Assemblies}
+\label{tab:bundling}
+\begin{tabular}{lcccc}
+\toprule
+Assembly & Chair Bills & Pass Rate & Bills Absorbed & Ratio \\
+\midrule
+17th (2004--08) & 891 & 99.0\% & 1,591 & 1.8 \\
+18th (2008--12) & 1,261 & 99.2\% & 3,247 & 2.6 \\
+19th (2012--16) & 1,518 & 98.9\% & 4,256 & 2.8 \\
+20th (2016--20) & 1,640 & 99.9\% & 5,135 & 3.1 \\
+21st (2020--24) & 1,506 & 99.3\% & 5,713 & 3.8 \\
+22nd (2024--) & 635 & 99.7\% & 3,019 & 4.8 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Note: ``Ratio'' = legislator bills absorbed per chair alternative.} \\
+\multicolumn{5}{l}{\footnotesize 22nd Assembly through March 2026.} \\
+\end{tabular}
+\end{table}
+
+The pattern in Table~\ref{tab:bundling} is striking. Chair alternatives pass at near-universal rates across all assemblies, ranging from 98.9\% to 99.9\%. The absorption ratio has increased monotonically from 1.8 in the 17th Assembly to 4.8 in the 22nd. Each chair alternative in the 22nd Assembly consolidates the content of nearly five individual legislator bills. This steady trend toward higher absorption ratios provides a partial accounting for the declining passage rate of individual bills documented in Table~\ref{tab:desc}: as more bills are bundled into fewer omnibus vehicles, fewer individual bills formally ``pass'' even when their substantive content survives in the alternative.
+
+% R code for Figure 2 executed automatically (see figures/fig_2.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_2.pdf}
+\caption{Rising Absorption Ratio: Individual Bills per Chair Alternative, 17th--22nd Assemblies}
+\label{fig:ratio}
+\end{figure}
+
+Crucially, the absorption process is approximately non-partisan. Table~\ref{tab:absorption} reports the share of ruling-party and opposition bills that receive 대안반영폐기 status (absorbed into a chair alternative) across assemblies.
+
+\begin{table}[htbp]
+\centering
+\caption{Alternative-Absorption Rates by Sponsor Bloc}
+\label{tab:absorption}
+\begin{tabular}{lccc}
+\toprule
+Assembly & Ruling 대안반영 (\%) & Opposition 대안반영 (\%) & Gap (pp) \\
+\midrule
+17th & 29.8 & 25.9 & +3.9 \\
+18th & 28.9 & 28.7 & +0.2 \\
+19th & 28.4 & 26.8 & +1.6 \\
+20th & 23.5 & 24.1 & $-$0.6 \\
+21st & 24.4 & 23.5 & +0.9 \\
+22nd & 20.3 & 18.1 & +2.2 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Note: Share of each bloc's legislator bills coded as 대안반영폐기.} \\
+\end{tabular}
+\end{table}
+
+The gap in absorption rates is small and generally favors the ruling party, meaning that ruling-party bills are slightly more likely to be incorporated into chair alternatives than opposition bills. In the 22nd Assembly, where opposition chairs control every committee, ruling-party bills are absorbed at a rate roughly two percentage points higher than opposition bills. This finding is inconsistent with partisan constructive power (if opposition chairs were selectively incorporating their own party's content, the gap should favor the opposition) and consistent with the Krehbiel informational account in which bundling reflects policy substance rather than partisan affiliation.
+
+\subsection{The 법사위 Bypass}
+
+A common assumption in the Korean legislative studies literature is that the 법사위 체계자구심사 constitutes a critical second veto point \citep{ko2017}. Table~\ref{tab:lawcom} shows that this characterization, while accurate for a minority of bills, applies to a diminishing share of legislation.
+
+\begin{table}[htbp]
+\centering
+\caption{법사위 Utilization Across Assemblies}
+\label{tab:lawcom}
+\begin{tabular}{lccc}
+\toprule
+Assembly & Committee Processed & 법사위 Submitted & Through 법사위 (\%) \\
+\midrule
+17th & 2,563 & 684 & 26.7 \\
+18th & 5,015 & 645 & 12.9 \\
+19th & 5,655 & 1,085 & 19.2 \\
+20th & 6,999 & 1,389 & 19.8 \\
+21st & 7,734 & 1,382 & 17.9 \\
+22nd & 4,060 & 509 & 12.5 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Note: ``Through 법사위'' = bills submitted to legality review as share of committee-processed bills.} \\
+\end{tabular}
+\end{table}
+
+Only about 13\% of committee-processed bills in the 22nd Assembly undergo 법사위 review. The remaining 87\% bypass 법사위 entirely, primarily because committee chair alternatives proceed directly to the plenary floor. This finding does not diminish the 법사위's importance for the bills that do pass through it, which may be disproportionately consequential, but it qualifies the ``double veto'' characterization: for the vast majority of legislation, the standing committee chair is the sole effective gatekeeper.
+
+\subsection{Floor Rejection: A New Mode of Power}
+
+The absence of negative agenda power at the committee level raises a separate question about how the 22nd Assembly's opposition supermajority uses its institutional position. The answer lies in an almost unprecedented instrument: plenary floor rejection (부결).
+
+\begin{table}[htbp]
+\centering
+\caption{Floor Rejection (부결) of Bills Across Assemblies}
+\label{tab:rejection}
+\begin{tabular}{lcc}
+\toprule
+Assembly & Bills Rejected & Rejection Rate (\%) \\
+\midrule
+17th & 10 & 0.12 \\
+18th & 8 & 0.05 \\
+19th & 7 & 0.04 \\
+20th & 6 & 0.02 \\
+21st & 20 & 0.07 \\
+22nd & 33 & 0.19 \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize Note: Rejection rate as share of all bills reaching plenary vote.} \\
+\end{tabular}
+\end{table}
+
+The 22nd Assembly has produced 33 floor rejections, more than three times the rate of the 20th Assembly and nearly five times the 19th. Of these 33 rejections, 28 are government-submitted bills and four are speaker nominations. Zero are individual legislator bills. The opposition supermajority does not use its committee chairs to silently absorb the ruling party's legislation; it uses its floor majority to publicly defeat the executive's agenda. This finding suggests that the mode of opposition power in the 22nd Assembly is better characterized through the veto players framework \citep{tsebelis2002} than through the committee gatekeeping model: the opposition signals dominance through visible floor confrontation rather than invisible committee obstruction.
+
+% R code for Figure 3 executed automatically (see figures/fig_3.R)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_3.pdf}
+\caption{Floor Rejections (부결) by Assembly, 17th--22nd}
+\label{fig:rejections}
+\end{figure}
+
+\subsection{Heterogeneity Across Committees}
+
+The aggregate pattern of partisan neutrality in bill processing may mask heterogeneity across committees. Some committees may exhibit stronger partisan gatekeeping than others, depending on the salience and divisiveness of their policy jurisdictions.
+
+Among the 20 committees with sufficient bill volume (50 or more bills from each bloc) in the 22nd Assembly, 11 show higher processing rates for opposition bills and eight show higher rates for ruling-party bills. The average gap across committees is approximately one percentage point, favoring the ruling party. The largest ruling-party advantages appear in the Foreign Affairs and Unification Committee (approximately 15 percentage points) and the Trade, Industry, Energy Committee (approximately 11 points). The largest opposition advantages appear in the Environment and Labor Committee (approximately 11 points) and the Gender Equality and Family Committee (approximately seven points).
+
+This heterogeneity is substantively interesting but does not salvage the negative agenda power hypothesis. If opposition chairs were exercising partisan gatekeeping, the gap should consistently favor the opposition across committees. Instead, the variation appears to reflect policy-domain differences in the partisan composition of bills rather than differential treatment by chairs.
+
+\subsection{Robustness: Assembly-Specific Models}
+
+A potential concern with the pooled regression in Table~\ref{tab:main} is that the null interaction may mask assembly-specific effects. Perhaps negative agenda power operates in some assemblies but not others, and the pooled estimate averages across heterogeneous effects. Table~\ref{tab:robust} addresses this concern by estimating separate models for each completed assembly (17th through 21st), reporting the marginal effect of ruling-party sponsorship on passage probability within each institutional configuration. I also report the result for the 22nd Assembly separately, where the opposition holds all chairs.
+
+\begin{table}[H]
+\centering
+\caption{Robustness: Ruling-Party Passage Advantage by Assembly}
+\label{tab:robust}
+\begin{tabular}{lcccc}
+\toprule
+& (1) & (2) & (3) & (4) \\
+& 17th--19th & 20th & 21st & 22nd \\
+& Ruling chairs & Mixed & DP chairs & All opp \\
+\midrule
+Ruling Party & $0.094^{***}$ & $-0.011$ & $0.025^{*}$ & $0.042^{**}$ \\
+& (0.019) & (0.016) & (0.014) & (0.018) \\[4pt]
+Co-sponsor count & $0.001^{***}$ & $0.001^{***}$ & $0.001^{**}$ & $0.001^{**}$ \\
+& (0.000) & (0.000) & (0.000) & (0.000) \\[4pt]
+Reelection count & $0.024^{**}$ & $0.012$ & $0.016^{*}$ & $0.019^{*}$ \\
+& (0.011) & (0.009) & (0.009) & (0.011) \\[4pt]
+\midrule
+Committee FE & Yes & Yes & Yes & Yes \\
+N & 32,363 & 21,594 & 22,863 & 16,231 \\
+Pseudo $R^2$ & 0.04 & 0.05 & 0.04 & 0.06 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Robust SE in parentheses, clustered by committee.} \\
+\multicolumn{5}{l}{\footnotesize Coefficients are average marginal effects from logistic regression. DV = Passed (0/1).} \\
+\end{tabular}
+\end{table}
+
+The results in Table~\ref{tab:robust} reinforce the main finding. The ruling-party advantage is positive and statistically significant in three of four columns. In the 20th Assembly, the one exception, the coefficient is small, negative, and insignificant, consistent with the bipartisan dynamics of the Park impeachment period that disrupted normal partisan alignments. Crucially, column (4) shows that the ruling-party advantage in the 22nd Assembly, where the opposition holds all chairs, is comparable in magnitude to the advantage in the 21st Assembly, where chair allocation was different. If negative agenda power were operative, the ruling-party coefficient should be substantially more negative in the 22nd Assembly than in earlier periods. Instead, it is positive and significant.
+
+% R code for Figure 4 executed automatically (see figures/fig_4.R)
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_4.pdf}
+\caption{Ruling-Party Passage Advantage by Assembly and Chair Configuration}
+\label{fig:gap}
+\end{figure}
+
+The visual pattern in Figure~\ref{fig:gap} is clear: the ruling-party advantage bears no systematic relationship to which party controls committee chairs. The advantage is largest in the 17th Assembly (mixed chairs), smallest (and negative) in the 20th (also mixed chairs), and moderately positive in both the 21st (DP chairs) and 22nd (all opposition chairs). If anything, the advantage is slightly \textit{larger} when the opposition controls more chairs, the opposite of the negative agenda power prediction.
+
+
+%% ============================================================
+%%  5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Why Negative Agenda Power Does Not Travel}
+
+The findings in Section~\ref{sec:results} suggest three structural reasons why the negative agenda control model does not translate from the U.S. House to the Korean National Assembly.
+
+First, the 위원장 대안 mechanism transforms the chair's role from gatekeeper to bundler. In the U.S. Congress, the committee chair decides whether a bill receives a hearing and a markup. In Korea, the chair decides which bills to bundle into an omnibus alternative. This is positive agenda power, deciding what legislation \textit{contains}, rather than negative agenda power, deciding what legislation \textit{exists}. The distinction maps onto the theoretical divide between \citet{cox2005}, who theorize the power to block, and \citet{shepsle1987}, who theorize the power to construct. The Korean committee chair more closely resembles the Shepsle-Weingast agenda setter.
+
+The formal result of \citet{ali2023}, that the agenda setter obtains her ideal outcome through proposal construction rather than through blocking, provides the theoretical foundation for this constructive mechanism. The 위원장 대안 is a near-perfect institutional instantiation of their model: the chair constructs a proposal by selectively incorporating elements from multiple legislator bills, and the plenary accepts it at nearly 100\%. The empirical gap, which I cannot fill with the present data, is the \textit{content} of the bundling decision: which specific provisions from which individual bills survive in the alternative.
+
+Second, the 법사위 bottleneck, while real for the diminishing share of bills that pass through it, applies to only about 13\% of processed legislation in the 22nd Assembly. The ``double veto'' structure that has been emphasized in the Korean literature \citep{ko2017} describes a shrinking institutional feature. For the vast majority of legislation, the standing committee chair's bundling decision is the sole effective gatekeeping step.
+
+Third, the 22nd Assembly's opposition supermajority exercises power through floor votes rather than committee obstruction. The 33 floor rejections, overwhelmingly targeting government-submitted bills, represent a mode of legislative conflict that the Cox-McCubbins framework does not anticipate. The cartel model assumes the majority prevents bills from reaching the floor; the 22nd Assembly's opposition \textit{allows} government bills to reach the floor and then publicly defeats them. This pattern is consistent with \citet{tsebelis2002}: with the opposition holding approximately the two-thirds threshold required to override presidential vetoes, floor rejection becomes a credible signal of dominance. Public defeat generates more political capital than silent absorption because it is visible to voters and media.
+
+\subsection{Constructive Power or No Power?}
+
+An alternative interpretation of the findings is that committee chairs exercise \textit{no} independent power at all. If bundling decisions are determined by inter-party negotiations rather than by the chair's independent judgment, then the chair functions as a recording secretary rather than a strategic actor. \citet{seoyoon2020} provide a game-theoretic model suggesting that chairs rationally avoid scheduling controversial bills, waiting for inter-party deals to be struck. Under this interpretation, the 99.7\% passage rate for chair alternatives reflects not the chair's power but the fact that alternatives are produced only after agreement has been reached.
+
+The rising absorption ratio (from fewer than two bills per alternative in the 17th Assembly to nearly five in the 22nd) does not resolve this ambiguity. It could reflect increasing chair power (chairs consolidating more bills under their authority) or increasing party centralization (party leaders negotiating broader omnibus deals that are channeled through the chair). \citet{lewallen2017} documents a parallel centralization trend in U.S. congressional lawmaking, where leadership-driven agenda control has reduced the space for individual committee action. A similar dynamic may be at work in the KNA, with the committee chair serving as a vehicle for party leadership decisions rather than as an independent agenda setter.
+
+Distinguishing between these accounts requires data on the \textit{content} of bundling decisions, specifically, a text-similarity analysis comparing individual absorbed bills to their corresponding chair alternatives. If the chair exercises partisan constructive power, opposition bills should achieve lower ``content survival'' in the alternative than ruling-party bills. If the chair is a non-partisan aggregator, content survival should be comparable regardless of sponsor party. This analysis is beyond the scope of the present paper but represents a clear direction for future research.
+
+\subsection{Connecting to Prior Korean Studies}
+
+The findings complement and qualify existing Korean research in several ways. \citet{parkshin2019} find that ruling-party membership and committee assignment predict bill passage, while co-sponsor count and seniority do not. My results are consistent with their ruling-party finding but provide a different explanation: the advantage reflects structural features of governing-party status rather than differential treatment by committee chairs. \citet{anparklee2025} identify sponsor-committee match as the strongest passage predictor using machine learning methods. This result is compatible with the bundling mechanism: chairs may find it easier to incorporate bills from members who sit on the committee and are thus more involved in the drafting of the alternative. If committee members participate in the informal negotiations that precede the creation of a chair alternative, their bills may be more likely to be incorporated simply because the chair is more familiar with their content.
+
+The finding that the 법사위 is largely bypassed qualifies \citet{ko2017}'s emphasis on the 법사위 as a critical bottleneck. Ko's analysis of the 19th Assembly documented that the primary source of 법사위 delay was 상정지연, the chair's decision not to schedule bills for review, and that bills spent an average exceeding one month waiting. This characterization remains valid for the subset of bills that do pass through 법사위 review, which are likely the most politically consequential. However, the institutional landscape has shifted: the share of legislation subject to 법사위 review has declined from approximately 27\% in the 17th Assembly to 13\% in the 22nd. The chair alternative route has become the dominant legislative pathway, and the 법사위's role in the modal legislative experience has diminished accordingly.
+
+\citet{kang2023}'s finding that minority-party committee leaders are selected based on party loyalty, while majority-party leaders are not, has an interesting implication in the 22nd Assembly context. When the opposition holds all chairs, the loyalty-based selection criterion may apply universally, producing chairs who are attentive to party leadership directives. This is consistent with the ``party vehicle'' interpretation of constructive bundling, where chairs implement party leadership decisions rather than exercising independent judgment. The Korean literature on 원구성 negotiations \citep{jung2018, leekim2022} reinforces this interpretation: chair allocation is a product of inter-party bargaining at the leadership level, not of individual legislators' committee preferences.
+
+The referral system documented by \citet{parkshin2021} adds another dimension to the chair's constructive role. Their case study of the Framework Act on Youth (청년기본법) showed that the bill bounced between committees for years because no chair wanted to accept jurisdiction. This pre-gatekeeping veto, the refusal to accept a bill before it enters the formal review process, represents a mode of chair power that is analytically distinct from both negative agenda control (blocking a bill within the committee) and constructive bundling (incorporating a bill's content into an alternative). Future research could examine whether referral avoidance varies by the partisan alignment between the bill sponsor and the committee chair.
+
+\subsection{The Floor-Rejection Puzzle}
+
+The 22nd Assembly's unprecedented rate of floor rejections raises a question that the existing literature does not directly address: why does the opposition supermajority prefer visible floor defeat over invisible committee absorption? \citet{seoyoon2020} provide a game-theoretic model in which committee chairs avoid acting on controversial bills because each party prefers to maintain its position and negotiate directly. This model predicts committee inaction on high-salience bills, not floor confrontation. The 22nd Assembly appears to operate under a different logic: the opposition brings government bills to the floor precisely \textit{in order to} defeat them publicly.
+
+One possible explanation draws on \citet{tsebelis2002}. With the opposition holding approximately the two-thirds threshold for overriding presidential vetoes, floor rejection becomes a credible demonstration of dominance. Committee absorption is invisible to the public: a bill that dies in committee generates no media attention or political credit for the opposition. Floor rejection, by contrast, generates headlines, forces recorded votes, and allows opposition legislators to demonstrate their alignment with the party position. For an opposition with override capacity, the political returns to visible confrontation may exceed the returns to silent obstruction, even though both achieve the same policy outcome of preventing the government's agenda from becoming law.
+
+This strategic calculus may also explain why the floor-rejection pattern is concentrated among government-submitted bills rather than individual legislator bills. Government bills carry the executive's imprimatur and are thus the most valuable targets for political signaling. Rejecting a government bill on the floor is a direct confrontation with the president; absorbing it in committee is merely administrative inaction. The opposition's choice of venue, floor rather than committee, thus appears to be strategic rather than institutional.
+
+\subsection{Limitations}
+
+Several limitations qualify these findings. First, the analysis cannot observe the \textit{content} of bundling decisions. Two bills may both receive 대안반영폐기 status, but one may have had the majority of its provisions incorporated while the other retained only a nominal mention. Without text-similarity analysis, I cannot determine whether constructive power is exercised in a partisan manner at the provision level even when it appears non-partisan at the bill level. This is the study's most important limitation.
+
+Second, committee chair party assignments are inferred from external knowledge of the 원구성 negotiations rather than from structured data fields. A proper test of Equation~\ref{eq:main} would require a committee-by-assembly panel with chair party coded from official records. The regression results in Table~\ref{tab:main} should be interpreted with this measurement caveat in mind.
+
+Third, the 22nd Assembly is still in progress. With approximately 72\% of bills still pending, the final disposition ratios may change substantially during the remaining term. End-of-term processing, when many pending bills are either rushed through or allowed to expire (임기만료폐기), could alter the patterns reported here. The results for the 22nd Assembly should be treated as preliminary.
+
+Fourth, I cannot rule out compositional confounding entirely. If ruling-party bills systematically cluster in less controversial policy domains, the passage-rate advantage could reflect bill characteristics rather than institutional treatment. Committee fixed effects partially address this concern by absorbing jurisdiction-level differences, but within-committee variation in bill content remains uncontrolled.
+
+Fifth, the low pseudo-$R^2$ values across all specifications (0.02--0.06) indicate that the covariates explain only a small share of the variation in bill passage. While this is common in bill-level analyses with large numbers of idiosyncratic determinants, it implies limited power to detect small effects. The null finding on the chair-party interaction should be interpreted accordingly: the data do not support the negative agenda power hypothesis, but a small effect that the design lacks the power to detect cannot be excluded.
+
+Sixth, the passage of independent and minor-party bills, which are excluded from the partisan analyses, may exhibit different patterns. If independents' bills have passage rates that differ systematically from the two main blocs, the binary classification may mask important variation.
+
+
+%% ============================================================
+%%  6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper set out to test whether committee chairs in the Korean National Assembly exercise negative agenda power in the manner predicted by the dominant American legislative theory. The evidence does not support this prediction. Across six assemblies with dramatically different committee chair configurations, the partisan gap in bill processing is small, stable, and inconsistent with the expectation that chair partisanship determines which bills survive. The 22nd Assembly, where the opposition controls all committee chairs with a supermajority, provides the strongest possible test: even under these conditions, ruling-party bills pass at comparable rates to opposition bills.
+
+The committee chair's power in the KNA operates through a different channel entirely. The 위원장 대안 mechanism, a form of constructive agenda power with no close American analogue, allows chairs to consolidate multiple individual bills into omnibus alternatives that pass at near-universal rates. The steady increase in the absorption ratio across six assemblies suggests that this constructive power has grown over time, centralizing the legislative process through the committee chair's bundling decision. Whether this centralization reflects increasing chair autonomy or increasing party leadership control remains an open question.
+
+These findings carry implications for the comparative study of legislative institutions. The Cox-McCubbins framework has shaped how scholars across countries conceptualize committee power, but its predictions rest on institutional features, particularly the U.S.-style committee hearing and markup process, that may not be present in other legislatures. The Korean 위원장 대안 system demonstrates that committee chairs can exercise substantial influence over legislative content without ever blocking a bill from reaching the floor. Future comparative research could examine whether similar constructive mechanisms exist in other legislatures and whether they produce the same pattern of apparent partisan neutrality at the bill level.
+
+A clear agenda for future work follows from the study's main limitation. The content-survival question, measuring how much of each individual bill's substantive provisions survive in the chair alternative, is answerable with text-similarity methods applied to the KNA's bill text data. Such an analysis would determine whether the constructive power documented here is truly non-partisan or whether partisan selection operates at the provision level, invisible to bill-level analysis. The answer would adjudicate between the Krehbiel informational account, which predicts non-partisan content aggregation, and the partisan constructive power account, which predicts systematic overrepresentation of the chair's co-partisans' policy preferences.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an
+experimental output. It has not been peer-reviewed or fact-checked.
+Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apalike}
+\bibliography{references_r11}
+
+\end{document}
