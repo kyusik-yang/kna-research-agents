@@ -1756,23 +1756,34 @@ def build_knowledge():
                 except Exception:
                     pass
 
-    # Try to get Vector DB stats
-    vectordb_count = 0
+    # Try to load full corpus from Vector DB (authoritative source)
+    vectordb_papers = []
     vectordb_path = Path.home() / "Desktop" / "kyusik-claude" / "tools" / "literature.lance"
     if vectordb_path.exists():
         try:
             import lancedb
             _db = lancedb.connect(str(vectordb_path))
             _tbl = _db.open_table("literature")
-            vectordb_count = _tbl.count_rows()
+            _df = _tbl.to_pandas()
+            for _, row in _df.iterrows():
+                vectordb_papers.append({
+                    "title": row.get("title", ""),
+                    "authors": [a.strip() for a in (row.get("authors", "") or "").split(",") if a.strip()],
+                    "year": int(row["year"]) if row.get("year") and row["year"] > 0 else None,
+                    "journal": row.get("journal", "") or "",
+                    "doi": row.get("doi", "") or "",
+                    "source": row.get("source", ""),
+                    "projects": row.get("projects", "") or "",
+                })
         except Exception:
             pass
 
-    if not abstracts and not log_entries:
-        inner = "<p><em>No literature scans yet. Run <code>python3 weekly_scan.py</code> and <code>python3 collect_abstracts.py</code> to start.</em></p>"
+    # Use Vector DB as primary source, fall back to JSONL
+    all_papers = vectordb_papers if vectordb_papers else (abstracts if abstracts else log_entries)
+
+    if not all_papers:
+        inner = "<p><em>No literature data yet. Run <code>python3 collect_abstracts.py</code> and build the Vector DB.</em></p>"
     else:
-        # Stats from abstracts (main corpus)
-        all_papers = abstracts if abstracts else log_entries
         years = [e.get("year") for e in all_papers if e.get("year")]
         year_range = f"{min(years)}-{max(years)}" if years else "N/A"
 
@@ -1790,8 +1801,7 @@ def build_knowledge():
 
         stats_html = f"""\
 <div class="stats-bar" style="margin-bottom:1rem; border-radius:6px;">
-  <div><span class="stat-val">{vectordb_count or len(all_papers):,}</span> in Vector DB</div>
-  <div><span class="stat-val">{len(all_papers):,}</span> abstracts</div>
+  <div><span class="stat-val">{len(all_papers):,}</span> papers in Vector DB</div>
   <div><span class="stat-val">{year_range}</span> year range</div>
   <div><span class="stat-val">{len(journals)}</span> journals</div>
 </div>"""
