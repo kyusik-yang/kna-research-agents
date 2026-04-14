@@ -97,18 +97,24 @@ def prepare_new_topic():
 
 
 def pick_new_topic():
-    """Use Claude to pick a new research topic, informed by agora demands + previous topics."""
+    """Use Claude to pick a new research topic, informed by agora demands,
+    live round summaries (topic: field), archived round summaries, and the
+    cumulative findings log (which verdicts the Critic already issued).
+    """
     AGORA_DIR = BASE / "agora" / "discussions"
+    FINDINGS = KNOWLEDGE / "findings.jsonl"
 
-    # Gather previous topics from archived summaries
+    # Gather previous topics from live summaries/ and archived forum_archive/
     prev_topics = []
-    if ARCHIVE.exists():
-        for d in sorted(ARCHIVE.iterdir()):
-            if d.is_dir():
-                for s in d.glob("round_*.md"):
-                    for line in s.read_text().split("\n"):
-                        if line.startswith("topic:"):
-                            prev_topics.append(line.split(":", 1)[1].strip().strip('"'))
+    for src in [SUMMARIES, ARCHIVE]:
+        if not src.exists():
+            continue
+        for s in sorted(src.rglob("round_*.md")):
+            for line in s.read_text().split("\n"):
+                if line.startswith("topic:"):
+                    t = line.split(":", 1)[1].strip().strip('"')
+                    if t and t not in prev_topics:
+                        prev_topics.append(t)
 
     # Gather citizen research demands from agora
     citizen_demands = []
@@ -121,19 +127,48 @@ def pick_new_topic():
             except:
                 pass
 
-    prev_str = ", ".join(prev_topics[:10]) if prev_topics else "none yet"
+    # Gather recent Critic verdicts from findings.jsonl (so the agenda-setter
+    # sees which directions were archived/revised vs. pursued)
+    verdict_lines = []
+    if FINDINGS.exists():
+        try:
+            raw = [json.loads(x) for x in FINDINGS.read_text().splitlines() if x.strip()]
+            seen = set()
+            for r in raw[-40:]:  # last 40 entries (~13 rounds)
+                key = (r.get("round"), r.get("verdict"))
+                if key in seen:
+                    continue
+                seen.add(key)
+                rnd = r.get("round")
+                verdict = r.get("verdict", "?")
+                finding = r.get("finding", "")[:160]
+                verdict_lines.append(f"- R{rnd} [{verdict}]: {finding}")
+        except Exception:
+            pass
+
+    prev_str = "\n".join(f"- {t}" for t in prev_topics) if prev_topics else "none yet"
     demands_str = "\n".join(f"- {d}" for d in citizen_demands[-10:]) if citizen_demands else "none yet"
+    verdict_str = "\n".join(verdict_lines[-20:]) if verdict_lines else "none yet"
 
     prompt = (
-        f"You are a political science research agenda setter. "
-        f"Previous forum topics were: {prev_str}. "
-        f"Recent citizen research demands from Yeouido Agora:\n{demands_str}\n\n"
+        f"You are a political science research agenda setter for a forum that has "
+        f"already run multiple rounds on Korean National Assembly politics.\n\n"
+        f"PREVIOUS FORUM TOPICS (do NOT propose variants or subtopics of these):\n"
+        f"{prev_str}\n\n"
+        f"RECENT CRITIC VERDICTS on those topics (pursue = paper written; "
+        f"revise = partial signal, needs reframe; archive = dead end):\n"
+        f"{verdict_str}\n\n"
+        f"RECENT CITIZEN RESEARCH DEMANDS from Yeouido Agora:\n{demands_str}\n\n"
         f"Suggest ONE specific, novel research question about the Korean National Assembly "
-        f"that is DIFFERENT from all previous topics. "
+        f"that is SUBSTANTIVELY DIFFERENT from every previous topic. "
+        f"Do not propose another angle on committee gatekeeping, special prosecutor / 특검, "
+        f"wealth-policy alignment, accountability bottlenecks, or women's descriptive/substantive "
+        f"representation if those are already on the list above. "
+        f"The question must probe a DIFFERENT institutional channel, actor set, or causal mechanism.\n\n"
         f"Two sources of inspiration: "
-        f"(1) Citizen demands from Yeouido Agora listed above, if any suggest an interesting empirical puzzle. "
+        f"(1) Citizen demands from Yeouido Agora, if any suggest an interesting empirical puzzle. "
         f"(2) Your own knowledge of political science literature, identifying gaps or untested theories. "
-        f"Either source is fine. Pick whichever yields the most promising question. "
+        f"Either is fine; pick whichever yields the most promising question.\n\n"
         f"Focus on something testable with bill data, roll call votes, "
         f"committee records, member metadata (party, district, committee, seniority, gender), "
         f"or hearing transcripts (9.9M speeches, 7.4M Q&A dyads). "
