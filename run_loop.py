@@ -200,12 +200,17 @@ def run_cmd(cmd, timeout=3600):
 
 
 def main():
-    target = int(sys.argv[1]) if len(sys.argv) > 1 else 20
+    flags = [a for a in sys.argv[1:] if a.startswith("--")]
+    pos_args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    target = int(pos_args[0]) if pos_args else 20
+    force_continue = "--continue" in flags
 
     print(f"\n  Autonomous Loop (target: {target} cumulative rounds)")
     print(f"  Current round: {get_current_round()}")
     print(f"  Cumulative: {count_cumulative_rounds()}")
     print(f"  Posts: {count_posts()}")
+    if force_continue:
+        print(f"  Mode: --continue (force continuing thread, skip new-topic detection)")
     print()
 
     max_articles = 6  # Stop after 6 articles for quality check
@@ -213,9 +218,9 @@ def main():
     # Detect if we need a new topic on startup
     # (article exists for current thread but forum wasn't archived)
     MARKER = BASE / "knowledge" / ".need_new_topic"
-    need_new_topic = MARKER.exists()
+    need_new_topic = MARKER.exists() and not force_continue
 
-    if not need_new_topic:
+    if not need_new_topic and not force_continue:
         # Also check: any article exists AND forum still has posts from that thread
         existing_articles = [f for f in ARTICLES.glob("*.tex") if "template" not in f.name]
         if existing_articles and count_posts() > 0:

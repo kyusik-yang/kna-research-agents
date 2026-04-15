@@ -1,38 +1,38 @@
 # Auto-generated figure for article
 Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
-# Figure 1: Legislative funnel by sponsor bloc, 22nd Assembly
-library(arrow); library(dplyr); library(ggplot2); library(tidyr)
-DATA <- "/Users/kyusik/Desktop/kyusik-github/kna/data/processed"
-bills <- read_parquet(file.path(DATA, "master_bills_22.parquet"))
-members <- read_parquet(file.path(DATA, "members_22.parquet"))
-bills_leg <- bills |> filter(ppsr_kind == "의원")
-bills_leg <- bills_leg |>
-  left_join(members |> select(mona_cd, party), by = c("rst_mona_cd" = "mona_cd"))
-ruling <- c("국민의힘", "국민의미래")
-bills_leg <- bills_leg |>
-  mutate(bloc = ifelse(party %in% ruling, "Ruling", "Opposition"))
-funnel <- bills_leg |>
-  filter(!is.na(bloc)) |>
-  group_by(bloc) |>
-  summarise(
-    N = n(),
-    `Committee assigned` = mean(!is.na(committee_nm), na.rm = TRUE),
-    `Presented` = mean(!is.na(cmt_present_dt), na.rm = TRUE),
-    `Committee processed` = mean(!is.na(cmt_proc_dt), na.rm = TRUE),
-    `Plenary processed` = mean(!is.na(proc_dt), na.rm = TRUE),
-    Passed = mean(passed == 1, na.rm = TRUE)
-  ) |>
-  pivot_longer(-c(bloc, N), names_to = "stage", values_to = "rate")
-funnel$stage <- factor(funnel$stage, levels = c(
-  "Committee assigned", "Presented", "Committee processed",
-  "Plenary processed", "Passed"))
-pal <- c("Ruling" = "#E69F00", "Opposition" = "#0072B2")
-ggplot(funnel, aes(x = stage, y = rate, fill = bloc)) +
-  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
-  scale_fill_manual(values = pal, name = "Sponsor Bloc") +
-  scale_y_continuous(labels = scales::percent_format(), limits = c(0, 1)) +
-  labs(x = NULL, y = "Share of Bills", title = NULL) +
+# Figure 1: Career coefficient plot before and after committee FE
+library(ggplot2); library(dplyr)
+
+coef_data <- data.frame(
+  career = rep(c("Prosecutor", "Lawyer", "Academic",
+                 "Journalist", "Military", "Activist"), 2),
+  estimate = c(0.183, 0.130, -0.020, -0.043, -0.028, -0.004,
+               0.006, 0.008, 0.003, -0.004, -0.009, 0.001),
+  se = c(0.003, 0.006, 0.005, 0.004, 0.005, 0.004,
+         0.003, 0.005, 0.004, 0.004, 0.004, 0.004),
+  model = rep(c("Without Committee FE", "With Committee FE"), each = 6)
+)
+coef_data$lower <- coef_data$estimate - 1.96 * coef_data$se
+coef_data$upper <- coef_data$estimate + 1.96 * coef_data$se
+coef_data$model <- factor(coef_data$model,
+  levels = c("Without Committee FE", "With Committee FE"))
+coef_data$career <- factor(coef_data$career,
+  levels = c("Prosecutor","Lawyer","Academic",
+             "Journalist","Military","Activist"))
+
+oi_colors <- c("#E69F00","#56B4E9","#009E73",
+               "#F0E442","#0072B2","#D55E00")
+
+ggplot(coef_data, aes(x = career, y = estimate, color = career)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+  geom_pointrange(aes(ymin = lower, ymax = upper), size = 0.6) +
+  facet_wrap(~model, scales = "free_y") +
+  scale_color_manual(values = oi_colors) +
   theme_bw(base_size = 11) +
-  theme(axis.text.x = element_text(angle = 25, hjust = 1),
-        legend.position = "top")
+  theme(axis.text.x = element_text(angle = 35, hjust = 1),
+        legend.position = "none",
+        strip.background = element_blank()) +
+  labs(x = NULL,
+       y = "Coefficient on Legal Keyword Indicator",
+       title = NULL)
 ggsave("/Users/kyusik/Desktop/kyusik-github/kna-research-agents/articles/figures/fig_1.pdf", width = 7, height = 4.5)
