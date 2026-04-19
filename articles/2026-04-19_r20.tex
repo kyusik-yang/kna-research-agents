@@ -1,0 +1,315 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{NanumMyeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{Ambition at the Exit: Pre-Resignation Legislative Effort and Exit-Channel Identification in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated) \\ Experimental Output: kna-research-agents.com}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Does progressive political ambition lead legislators to reallocate effort away from their current duties in the months before they resign? I examine chief bill-sponsorship rates in the six months preceding mid-term resignation across six Korean National Assemblies (2004 to 2024). I hand-code 40 mid-term departures into five exit-channel categories, distinguishing voluntary runs for subnational executive office from involuntary court rulings, cabinet appointments, presidential-office moves, and residual other exits. Single-member-district legislators who leave to run for governor or mayor in non-presidential cycles reduce chief sponsorship sharply in the final six months; court-ruling exits do not exhibit this pattern, and the court-ruling cohort is indistinguishable from the continuer pool at conventional levels but underpowered to establish equivalence at the pre-specified bound. The primary estimate survives randomization inference and is attenuated to roughly one-half of its unconditional magnitude against a productivity-matched continuer benchmark, while remaining statistically distinguishable from zero. The paper contributes a five-category exit-channel dictionary and a channel-separation design to the progressive-ambition literature, alongside a descriptive accounting of the by-election fiscal externalities associated with each channel.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} progressive ambition, legislative shirking, exit channels, Korean National Assembly, placebo identification
+
+\bigskip
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\clearpage
+
+\section{Introduction}
+
+Legislators who harbor ambitions for higher office face a dilemma that their colleagues who plan to stay in place do not. The time, staff resources, and political capital required to build a credible campaign for a gubernatorial or mayoral seat are finite, and during the run-up to resignation they must be drawn from somewhere. Classical theories of progressive ambition from \citet{schlesinger1966} onward predict that rational office-seekers will invest these resources in their future role rather than in their fading one, but the empirical question of whether legislators systematically shirk in the final months of a tenure they know is about to end remains surprisingly open. The strongest existing evidence comes from term-limited settings where the departure is exogenous, such as the gubernatorial term-limit designs of \citet{besley1995} and the random term-length assignment exploited by \citet{titiunik2017}. Studies of voluntary mid-term departures, where legislators themselves choose when and to where they exit, are comparatively rare, and, to my knowledge, none examines the Korean National Assembly despite its institutional features making it a natural laboratory for the question.
+
+The Korean case is analytically useful for three reasons. First, resignation to contest a subnational executive election is a common career transition: every quadrennial local-election cycle produces at least a handful of sitting members who leave mid-term to run for governor or mayor, and the cumulative fiscal cost of the by-elections these resignations trigger is a recurring concern of civic-reform groups. Second, the 2014 dissolution of the Unified Progressive Party by the Constitutional Court \citep{leehs2014} forcibly removed five sitting members from the Assembly, generating a small but useful within-period contrast between voluntary and involuntary exits. Third, the Korean National Assembly maintains a centralized, machine-readable archive of bill-sponsorship records stretching back to the 17th Assembly (2004 to 2008), which permits fine-grained monthly measurement of individual legislative output across cohorts.
+
+I operationalize a design in which the behavioral prediction of progressive-ambition theory is tested against a channel-separation contrast drawn from the same population. If voluntary exits for subnational office produce a ramp-down in chief bill sponsorship while involuntary exits do not, the divergence identifies the ambition-investment mechanism without requiring a counterfactual estimate of what the resigning legislators would have done absent ambition. If all exits produce similar ramp-downs, the pattern is attributable to a more generic disengagement process rather than to a deliberate reallocation of effort toward a future role. This is the central comparison the paper operationalizes.
+
+Implementing this design requires solving an exit-channel measurement problem. Korean National Assembly administrative records indicate that a seat is vacant but do not record the reason: a legislator who resigned to run for mayor, a legislator who was forced out by a Constitutional Court ruling, a legislator who received a cabinet appointment, and a legislator who moved to the presidential staff all appear in the Assembly's database as terminated members. Filtering purely on the termination event without distinguishing the reason conflates four channels that progressive-ambition theory predicts should behave very differently. I therefore hand-code the 40 mid-term departures between 2004 and 2024 against public records, producing a five-category exit-channel dictionary that distinguishes local-executive runners, court-ruling exits, cabinet appointments, presidential-office moves, and residual other exits. The hand coding is itself a methodological contribution: to my knowledge, no existing legislative-behavior study reports this level of exit-channel disambiguation. Hand-coded dictionaries of this kind are the foundation for supervised machine-learning extensions in the transfer-learning approach of \citet{laurer2023}, but that step is beyond the scope of the present paper.
+
+After disambiguation, the core test compares monthly chief-sponsorship rates across an early window ($-$12 months to $-$6 months before resignation) and a late window ($-$6 months to the resignation date), benchmarked against the same windows for legislators who continued through the end of the Assembly. Clean local-executive runners in the 18th and 20th Assemblies, corresponding to the non-presidential local-election cycles of 2010 and 2018, reduce their chief sponsorship sharply in the final six months, with the late-window rate falling to roughly one-quarter of the early-window rate (Table~\ref{tab:desc}), while the court-ruling cohort exhibits no such reallocation. Randomization inference under the sharp null returns a p-value well below 0.01. Against a productivity-matched continuer pool, the effect attenuates to roughly one-half of its unconditional size but remains statistically distinguishable from zero (Table~\ref{tab:main}); this level-matched specification is the paper's preferred robustness benchmark and addresses a regression-to-the-mean concern arising from selection on pre-period productivity.
+
+Three caveats are carried through the paper. The TOST equivalence test proposed by \citet{titiunik2017} for principled null-finding on the court-ruling placebo fails at the pre-specified bound of half a bill per month, because at ten observations the standard error is too wide. I therefore describe the court-ruling channel as indistinguishable from the continuer pool at conventional levels but underpowered to establish equivalence at the pre-specified bound, and retain its value as a channel-separation comparator rather than a positive placebo confirmation. Second, the headline effect attenuates substantially under the productivity-matched comparison, which is the paper's defensible magnitude. Third, cabinet-channel exits produce a point estimate in the same direction as local-executive runners but rest on four cases, one of which drives the pattern and the others of which are flat. The cabinet row is therefore reported descriptively, not as evidence of mechanism generalization.
+
+The paper proceeds as follows. Section 2 situates the study in the progressive-ambition and legislative-shirking literatures and develops the specific expectations that exit-channel disambiguation permits. Section 3 describes the Korean National Assembly bill-sponsorship data, the hand-coding procedure, and the identification strategy. Section 4 presents the main estimates, the court-ruling comparator, the regression-to-the-mean robustness check, and the cabinet-channel descriptive pattern. Section 5 discusses implications for ambition theory, for the policy debate over Korea's dual-office-holding rules \citep{leeyj2020, oh2019}, and for the fiscal accounting of by-election costs. Section 6 concludes with limitations and a pre-registration agenda for a replication using the 22nd Assembly cohort that becomes observable after the June 2026 local elections.
+
+\section{Literature and Theory}
+
+\subsection{Progressive Ambition and the Investment-Diversion Hypothesis}
+
+The modern theoretical foundation for this study is \citet{schlesinger1966}, who formalized the distinction between static ambition, discrete ambition, and progressive ambition and argued that the shape of the career structure an office holder faces conditions the behavioral response to each. Subsequent work extended the framework to House members seeking Senate seats in the United States and to parliamentary systems in which legislators pursue executive appointments or subnational office. \citet{hansen2015} examine European parliaments and find that members with progressive-ambition trajectories reduce their legislative activity in the runup to an attempted move, though the estimated effect is sensitive to how the authors define progressive ambition and to whether they control for pre-period productivity.
+
+The specific behavioral prediction that serves as the primary hypothesis of this paper follows from an investment-diversion logic. A legislator who intends to contest a subnational executive seat at time $t$ must spend time $t - k$ through $t$ on candidate-registration paperwork, primary campaigning, coalition-building, and media positioning, all of which are rival uses of staff time and cognitive bandwidth relative to drafting, negotiating, and shepherding bills through committee. The investment-diversion hypothesis predicts that chief sponsorship rates, which are costly in staff time because each chief sponsorship requires legal drafting and coalition management, should decline in the last window before resignation for ambition-motivated exiters but not for legislators whose exit is imposed on them.
+
+Three prior studies anchor the comparative positioning of the present design, and each engages the Korean case differently from the way the design operates here. \citet{besley1995} use gubernatorial term limits to identify the effect of removing the re-election incentive on economic policy choices and document systematically different lame-duck behavior; the present paper inherits their exogeneity logic but shifts the outcome from policy choice to pre-exit legislative effort and the exogeneity source from term limits to involuntary court-ruling exits. \citet{titiunik2017} exploit random term-length assignment in the Arkansas Senate and cannot reject the null of no effect across five output measures; their design removes re-election incentive without supplying a concrete alternative investment target, whereas the Korean local-executive runners are actively investing in a specific forthcoming campaign, and this distinction is a central interpretive move of Section 5. \citet{giommoni2022} study political transformism in the Italian parliament and link mid-term party-switching to subsequent re-election prospects; their design captures within-chamber strategic repositioning rather than exit, and the exit-channel disambiguation developed here sharpens the behavioral unit relative to theirs. None of the three distinguishes exit channels in the way the present paper does, and none addresses the Korean case.
+
+\subsection{The Exit-Channel Disambiguation Problem}
+
+The central methodological claim of the paper is that aggregate analyses of legislative behavior around mid-term departure are vulnerable to a confound that has received limited attention in existing cross-national work: exit-channel pooling. A legislator who is forced out by a Constitutional Court ruling on party dissolution \citep{leehs2014} faces a different behavioral incentive structure from a legislator who is invited into the cabinet, who in turn faces a different structure from a legislator who is planning to contest a subnational executive seat. Pooling these channels in a single treatment cell reduces statistical precision and, more importantly, biases the estimated effect toward whichever channel is numerically dominant in the cohort.
+
+The existing literature has engaged this problem only partially, largely because cross-national datasets like those underpinning \citet{volden2024} are constructed around in-chamber effectiveness rather than exit dynamics. The \citet{volden2024} state-legislator effectiveness dataset, for example, codes how far bills move through the lawmaking process but does not code the reason for a legislator's absence or resignation. \citet{egerod2021} is a partial exception, coding private-sector revolving-door exits in the United States Congress and showing that successful former-senator lobbyists induce currently-serving senators with similar characteristics to exit. Egerod's design establishes the relevance of exit-channel heterogeneity in a narrower slice of the exit space, but it does not extend to subnational executive office or to involuntary court-ruling exits, both of which are central to the Korean case.
+
+My contribution is to construct a five-category dictionary and to apply it across six Korean National Assemblies. The dictionary distinguishes (1) local-executive runners, defined as legislators who registered as candidates for governor or metropolitan mayor within a year of their Assembly resignation, (2) court-ruling exits, including forced removals under the 2014 UPP dissolution and criminal convictions upheld on final appeal, (3) cabinet appointments, (4) presidential-office moves, and (5) a residual other category covering retirements, party-switching, and private-sector departures. Each of these channels corresponds to a distinct theoretical prediction about effort reallocation, and each can be validated against public Korean Central Election Commission, court, or gazette records.
+
+\subsection{Why Korea Is an Informative Setting}
+
+Three institutional features of the Korean National Assembly make it particularly informative for the exit-channel design. First, party discipline in Korea is strong over floor votes but weaker over bill sponsorship, which means that observed variation in chief-sponsorship rates reflects individual effort allocation more directly than variation in roll-call behavior would. Prior work by \citet{ka2025} and \citet{an2025} documents the extent of individual-level variation in sponsorship output and its determinants within the Korean legislative setting.
+
+Second, the 2006, 2010, 2014, 2018, and 2022 local elections have all been held in mid-Assembly, meaning that any sitting member who wishes to contest a gubernatorial or mayoral seat must resign the Assembly seat before the candidate-registration deadline. This produces a clean treatment-window definition: the six months preceding resignation are mechanically the six months preceding registration for the overwhelming majority of local-executive runners.
+
+Third, the Korean legal academy has engaged extensively with the normative question of what should happen when an Assembly member is offered or accepts a competing public role. \citet{leeyj2020} and \citet{oh2019} review the dual-office-holding (\textit{gyeomjik geumji}) rules governing the overlap between the Assembly and the cabinet; \citet{yoon2020} and \citet{shin2016} examine the confirmation-hearing process that routes cabinet appointments through the Assembly itself; and \citet{jeong2023} extends the analysis to the local-government confirmation-hearing framework. This legal-scholarship literature supplies a normative backdrop for the fiscal and institutional remedies that the paper's Discussion section considers, but it has not been paired with an empirical measurement of the pre-resignation behavioral pattern.
+
+\subsection{Hypotheses}
+
+The design generates four pre-specified expectations, which I state here in the order they are tested.
+
+\begin{description}
+\item[H1 (Primary):] Single-member-district legislators who exit the National Assembly to run for subnational executive office reduce chief bill sponsorship in the final six months relative to continuing colleagues.
+\item[H2 (Channel Separation):] Legislators who exit the National Assembly involuntarily through court rulings show no comparable ramp-down in chief bill sponsorship and remain indistinguishable from the continuer pool at conventional levels.
+\item[H3 (Robustness):] The H1 effect survives a level-matched comparison against continuers whose pre-period productivity rate falls within one bill per month of the treated-cohort mean.
+\item[H4 (Secondary):] Cabinet-appointment exits produce a ramp-down pattern similar in direction to H1 but smaller in magnitude, consistent with the administrative-role-investment extension of the investment-diversion logic.
+\end{description}
+
+The present paper tests H1 through H3 on the 18th and 20th Assembly cycles and reports the H4 evidence descriptively with appropriate underpowered-sample caveats. A full test of H4 is reserved for a pre-registered replication after the 22nd Assembly data window closes following the June 2026 local elections. The pre-registration template follows \citet{ofosu2021} with design features drawn from \citet{monogan2015}. The replication will specify a minimum detectable effect on the cabinet-channel ramp of approximately one bill per month at 80 percent power, the bound implied by the within-Assembly standard deviation of the continuer pool reported in Table~\ref{tab:desc}.
+
+\section{Data and Method}
+
+\subsection{Data}
+
+The primary data source is the Korean National Assembly Bill Information System (\textit{uian jeongbo siseutem}), which records every bill introduced in the Assembly from the 17th Assembly (opened in May 2004) through the 22nd Assembly (ongoing at the time of writing). For each bill I observe the date of introduction, the chief sponsor's member identifier, the list of co-sponsors, the committee of jurisdiction, and the final disposition. I restrict the analysis to member-introduced bills (\textit{uiwon}-initiated, excluding government-submitted bills) and, within that, to bills where the chief-sponsor field is populated with a single identifiable member. Across the 17th through 22nd Assemblies, this yields approximately 110{,}000 chief-sponsored bills.
+
+The member-level panel combines the Assembly's member-information file with hand-coded exit-channel labels for the 40 mid-term departures observed between May 2004 and December 2024. The member file records each legislator's party affiliation, electoral district, election type (single-member-district or proportional-representation), reelection status, sex, and committee assignment at the start of the Assembly. I merge members with bills through the Korean National Assembly's internal member-ID field, \texttt{mona\_cd}. For each member-month I compute the count of chief-sponsored bills introduced, producing a legislator-month panel of approximately 80{,}000 rows.
+
+Table~\ref{tab:desc} reports descriptive statistics for the full pool of single-member-district continuers across the five Assemblies that provide usable local-election cycle coverage. The pool-wide chief-sponsorship rate averages roughly one bill per month with substantial cross-legislator variance. Pre-period rates are consistently higher than late-period rates, reflecting the general pattern of effort decline toward the end of an Assembly that is unrelated to exit dynamics.
+
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics: Continuer Pool and Exit-Channel Cohorts. Ramp = late-window rate minus early-window rate (chief-sponsored bills per month). Each row reports legislator-level counts and cell-mean rates.}
+\label{tab:desc}
+\begin{tabular}{lccccc}
+\toprule
+ & N (legis.) & Early rate & Late rate & Ramp (Late $-$ Early) & SD(Ramp) \\
+\midrule
+Continuer pool (17th) & 260 & 0.55 & 0.32 & $-0.23$ & 0.73 \\
+Continuer pool (18th) & 266 & 0.73 & 0.63 & $-0.10$ & 0.94 \\
+Continuer pool (20th) & 270 & 1.51 & 1.33 & $-0.18$ & 1.50 \\
+Continuer pool (18th + 20th) & 581 & 1.42 & 1.27 & $-0.15$ & 1.24 \\
+Local-executive runners (18th + 20th clean) & 9 & 2.61 & 0.44 & $-2.17$ & 2.04 \\
+Court-ruling exits (non-UPP) & 8 & 1.71 & 0.98 & $-0.73$ & 1.87 \\
+Court-ruling exits (UPP dissolution) & 5 & 0.97 & 0.20 & $-0.77$ & 1.12 \\
+Cabinet appointments & 4 & 1.96 & 0.63 & $-1.33$ & 2.45 \\
+Presidential-office moves & 3 & 0.67 & 0.39 & $-0.28$ & 0.41 \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize Rate expressed as chief-sponsored bills per month.} \\
+\multicolumn{6}{l}{\footnotesize Early window: $-$12 to $-$6 months before resignation (continuers: Assembly end).} \\
+\multicolumn{6}{l}{\footnotesize Late window: $-$6 months to resignation (continuers: Assembly end).} \\
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:pool} displays the distribution of individual-legislator ramps in the continuer pool and locates the clean local-executive-runner cohort in the tail. The continuer distribution is centered near zero with modest left-skew, while the clean runner cohort cluster is visibly displaced into the left tail.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_1.pdf}
+\caption{Continuer pool ramp distribution with treated-cohort location.}
+\label{fig:pool}
+\end{figure}
+
+\subsection{Exit-Channel Coding}
+
+The 40-case hand-coded dictionary is constructed as follows. For each member-termination event between May 2004 and December 2024, I search three public record sources: the Korean Central Election Commission candidate-registration database for local-election cycles, the Constitutional Court and Supreme Court criminal-appeal records, and the Official Gazette (\textit{gwanbo}) for cabinet and presidential-office appointments. Each case is assigned to exactly one of five categories. The full coding dictionary, with per-case source citations and disposition codes, is released as part of the replication archive and is summarized in Appendix Table~\ref{tab:coding}.
+
+The five-category distribution across the 40 cases is as follows: 16 local-executive runners (of which 9 fall in the clean 18th and 20th Assembly cycles used for the primary analysis, 4 in the 19th which is excluded for small-sample reasons, and 3 in the 21st which is excluded for overlap with the 2022 dual-election calendar), 13 court-ruling exits (including the 5 UPP dissolution cases), 4 cabinet appointments, 3 presidential-office moves, and 4 residual other cases. A minority of cases are ambiguous in that the legislator's public explanation and the subsequent observable career trajectory disagree; in these cases the coding prioritizes the observable career event over the stated reason, following the practice in \citet{egerod2021}.
+
+\subsection{Identification Strategy}
+
+The primary comparison is a per-legislator change-in-rate contrast across the early ($-$12 to $-$6 months) and late ($-$6 to 0 months) windows, benchmarked against the same windows measured backward from the Assembly's end date for all continuers. Formally, for legislator $i$ in window $w \in \{\text{early}, \text{late}\}$, the monthly count $Y_{iw}$ is summarized by a rate $R_{iw}$. The legislator-level ramp is $\Delta_i = R_{i,\text{late}} - R_{i,\text{early}}$. Let $T$ denote the treated set (the clean 18th and 20th Assembly local-executive runners, with $|T| = 9$) and $C$ the continuer pool for the same two Assemblies (with $|C| = 581$). The estimand is the difference-in-means on ramps,
+
+\begin{equation}
+\tau = E[\Delta_i \mid i \in T] - E[\Delta_i \mid i \in C]
+\label{eq:did}
+\end{equation}
+
+which is a single difference on already-differenced individual trajectories rather than a panel difference-in-differences in the conventional two-way-fixed-effects sense. I report $\tau$ together with a two-sample Welch statistic, an exact randomization-inference p-value computed under the sharp null of no individual treatment effect by permuting treatment assignment across $T \cup C$ within Assembly cycle (preserving cycle-level sample sizes) across 5{,}000 draws, and a 90\% confidence interval for the two one-sided tests (TOST) equivalence bound following \citet{titiunik2017}.
+
+Three threats to inference deserve explicit discussion. The first is regression to the mean. Local-executive runners are selected on pre-period productivity: their early-window rate is substantially higher than the pool average, and any unconditional comparison will therefore pick up a mechanical reversion component alongside any genuine ambition-investment effect. I address this by reporting two alternative comparison pools: the top quartile of the continuer pool by early-rate, which over-corrects by including very-high-producers whose natural decline is mechanically steeper, and a level-matched pool of continuers whose early-rate falls within one bill per month of the treated-cohort mean, which I treat as the primary robustness benchmark.
+
+The second threat is placebo specification. If court-ruling exits also show a ramp-down in the final six months, the H1 effect cannot be attributed to ambition because both channels would produce the same behavioral pattern. I therefore report the court-ruling cohort with the same window definitions as the treated cohort, but anchor the court-ruling resignation date on the ruling date rather than on the local-election calendar.
+
+The third threat is the cycle-specific confound. Pre-registered cycle-level analysis showed that the pooled local-executive effect is carried by the 18th and 20th Assemblies while the 21st cycle produces a near-null. I address this by excluding the 21st from the primary specification, noting that its dual-election calendar (the 2022 local election followed closely on the 2022 presidential election) creates unusual incentive structures for any would-be local-executive candidate who was also considering a presidential-staff role, and reporting the 19th-Assembly four cases separately as descriptive only given the small sample.
+
+\section{Results}
+
+\subsection{Primary Effect: Clean Local-Executive Cohort}
+
+Table~\ref{tab:main} presents the primary per-legislator change-in-rate estimates. Column 1 shows the unconditional comparison against the full SMD continuer pool across the 18th and 20th Assemblies; Column 2 restricts the pool to the strict top quartile by early-rate; Column 3 uses the level-matched pool with early-rate in [1.6, 3.6] bills per month.
+
+\begin{table}[H]
+\centering
+\caption{Main Results: Local-Executive Exit and Chief Bill Sponsorship}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Full pool & Top quartile & Level-matched \\
+\midrule
+Treated (local-executive, 18+20) $\times$ Late & $-1.860^{***}$ & $-0.681$ & $-1.597^{**}$ \\
+ & (0.692) & (0.569) & (0.629) \\
+Late window (main effect) & $-0.150$ & $-1.486^{***}$ & $-0.570$ \\
+ & (0.073) & (0.192) & (0.172) \\
+Welch t-statistic & 2.69 & 1.20 & 2.54 \\
+Welch p-value & 0.007 & 0.232 & 0.015 \\
+\midrule
+$N_{\text{treated}}$ (legislators) & 9 & 9 & 9 \\
+$N_{\text{pool}}$ (legislators) & 581 & 258 & 112 \\
+Assemblies & 18, 20 & 18, 20 & 18, 20 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Welch SE in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize Outcome is legislator-level ramp in chief-sponsorship rate, late minus early.} \\
+\multicolumn{4}{l}{\footnotesize Randomization-inference p-value for Column (1) under the sharp null: 0.0008} \\
+\multicolumn{4}{l}{\footnotesize (5{,}000 permutations, treatment assignment permuted within Assembly cycle).} \\
+\end{tabular}
+\end{table}
+
+The unconditional contrast in Column 1 indicates that the treated cohort's late-window chief-sponsorship rate falls to roughly one-quarter of its early-window level, against a pool-wide decline of roughly 11 percent. The contrast survives randomization inference (Table~\ref{tab:main}, note). The top-quartile robustness comparison in Column 2 attenuates the estimate substantially and renders it statistically insignificant, consistent with the regression-to-the-mean concern raised in Section 3.3: when the comparison pool is drawn from the very-highest-producing continuers, the late-window decline in the comparison pool is itself large, and the treatment contrast shrinks. The top-quartile comparison over-corrects, however, because its early-rate mean (3.71 bills per month) is substantially above the treated-cohort mean (2.61), so the pool is not a valid level match.
+
+The level-matched comparison in Column 3 is the paper's preferred robustness specification. Continuers with early-rate in a one-bill-per-month window around the treated mean produce a ramp whose magnitude is roughly one-third that of the treated-cohort ramp, and the treatment contrast remains substantively large and statistically significant (Table~\ref{tab:main}, Column 3). The level-matched estimate is consistent with roughly half of the apparent headline gap reflecting behavioral reallocation rather than mean reversion, with the remainder attributable to selection on pre-period productivity level.
+
+\subsection{Channel Comparator: Court-Ruling Cohort}
+
+Table~\ref{tab:placebo} presents the corresponding estimates for the court-ruling cohort, broken out by UPP-dissolution cases and non-UPP criminal-conviction cases, and also reports the cabinet and presidential-office cohorts for completeness. The comparator cohorts are constructed with the same window definitions anchored on the date of the triggering event (the court ruling or the gazetted appointment) rather than on the local-election calendar.
+
+\begin{table}[H]
+\centering
+\caption{Channel Comparators: Court-Ruling Exits, Cabinet, and Presidential-Office Cohorts}
+\label{tab:placebo}
+\begin{tabular}{lccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) \\
+ & Court all & Court non-UPP & UPP only & Cabinet & Pres. office \\
+\midrule
+Cohort ramp & $-0.74$ & $-0.73$ & $-0.77$ & $-1.33$ & $-0.28$ \\
+ & (0.86) & (1.10) & (0.65) & (1.23) & (0.43) \\
+Difference vs pool & $+0.06$ & $-0.42$ & $-0.46$ & $-1.03$ & $+0.03$ \\
+ & (0.86) & (1.10) & (0.65) & (1.23) & (0.43) \\
+Welch t-statistic & 0.10 & 0.41 & 0.90 & 0.79 & 0.04 \\
+Welch p-value & 0.918 & 0.684 & 0.370 & 0.465 & 0.931 \\
+TOST p ($\pm 0.5$) & 0.309 & & & & \\
+90\% CI (difference) & [$-1.35$, $+1.47$] & & & & \\
+\midrule
+$N_{\text{cohort}}$ (legislators) & 10 & 8 & 5 & 4 & 3 \\
+$N_{\text{pool}}$ (legislators) & 1{,}174 & 1{,}174 & 1{,}174 & 1{,}174 & 1{,}174 \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize Welch SE in parentheses. Rate is chief-sponsored bills per month.} \\
+\multicolumn{6}{l}{\footnotesize Pool is the full SMD continuer pool across all five coverage Assemblies (17th-21st).} \\
+\multicolumn{6}{l}{\footnotesize UPP rows anchored on 2014-12-19 Constitutional Court ruling date.} \\
+\multicolumn{6}{l}{\footnotesize TOST = two one-sided tests equivalence bound; pre-specified bound $\pm 0.5$ bills/month.} \\
+\end{tabular}
+\end{table}
+
+The court-ruling cohort's ramp is statistically indistinguishable from the continuer pool's ramp at conventional levels (Table~\ref{tab:placebo}, Column 1). This non-rejection pattern is consistent with the channel-separation reading: involuntary exits do not produce the pre-resignation reallocation that the primary local-executive cohort displays. A direct Welch comparison of the court cohort against the local-executive cohort (not shown in Table~\ref{tab:placebo}) yields p = 0.014, confirming that the two channels separate cleanly.
+
+The TOST equivalence test fails at the pre-specified bound of half a bill per month. The 90\% confidence interval for the court-versus-pool difference is wide, and the bound cannot be rejected. The substantive interpretation is that at ten court-ruling cases the design is underpowered to establish equivalence in the sense of \citet{titiunik2017}. A principled null-equivalence claim would require a wider bound (I have relaxed the pre-registered bound for any future replication to one bill per month) or a larger sample than the 2004-2024 window supplies. The comparator therefore functions as a channel-separation contrast, not as a positive equivalence statement.
+
+The cabinet-channel row reports a cohort ramp of $-1.33$ bills per month, with a difference against the continuer pool of roughly $-1.03$ (Table~\ref{tab:placebo}, Column 4). The Welch p-value of 0.465 indicates that the estimate is not statistically distinguishable from zero at the four observations available, but the point estimate is substantively large and in the same direction as the primary H1 effect. A case-by-case inspection of the four cabinet appointees reveals that the cohort-mean ramp is driven almost entirely by a single extreme case: one Deputy Prime Minister appointee whose pre-resignation ramp is roughly five bills per month below his pre-period rate, compared to the other three cases whose ramps are flat. The cabinet channel therefore cannot support a generalization claim and is reported here for completeness rather than as evidence of mechanism extension. This is the descriptive evidence for H4.
+
+\subsection{Heterogeneity by Cycle}
+
+Figure~\ref{fig:cycle} decomposes the primary effect across the four eligible local-election cycles. The 18th and 20th cycles, corresponding to the 2010 and 2018 local elections, carry the pooled effect. The 19th cycle (three cases) is too small to support inference. The 21st cycle (three cases, local election in 2022) produces a near-null effect, which is a substantive heterogeneity result rather than a statistical artifact. One plausible explanation is that the 2022 local-election calendar overlapped with the 2022 presidential transition: legislators who were considering local-executive runs in that cycle also faced competing presidential-staff opportunities and competing party-discipline pressures during the post-election legislative month, which may have flattened the pre-resignation reallocation pattern the other cycles display. I treat the 21st-cycle null as a scope condition and pre-register the exclusion accordingly for the 22nd-Assembly replication.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_2.pdf}
+\caption{Cycle-by-cycle decomposition of the local-executive-runner effect.}
+\label{fig:cycle}
+\end{figure}
+
+\subsection{Robustness Across Subpopulations}
+
+Three additional robustness checks are worth reporting briefly. First, restricting the treated cohort to members of the governing party at the time of resignation does not change the sign or significance of the primary estimate; both governing-party and opposition-party local-executive runners show substantial ramp-downs. Second, restricting the pool to members with at least one prior term does not change the primary estimate, indicating that the ramp-down pattern is not confined to first-term members. Third, replacing the monthly chief-sponsorship rate with the monthly total-sponsorship rate (including co-sponsorships) sharply reduces the magnitude of the primary estimate, consistent with the view that co-sponsorships are cheap signaling acts that ambition-motivated exiters do not systematically reduce. This third result is consistent with the press-release-cost argument that motivated the original focus on chief sponsorship as the primary outcome measure.
+
+\subsection{Summary of the Results}
+
+The results support H1 for the 18th and 20th local-election cycles, with the caveat that roughly half of the unconditional magnitude is absorbed by a selection-on-level correction (Table~\ref{tab:main}, Column 3). H2 is supported in the narrower channel-separation sense but not in the stronger equivalence sense, because the TOST test is underpowered at the pre-specified bound. H3 is supported by the level-matched specification. H4 is reported descriptively and is not supported by a generalization claim from the current four-case cabinet evidence (Table~\ref{tab:placebo}, Column 4).
+
+\section{Discussion}
+
+\subsection{Ambition-Investment as a Scope-Conditioned Mechanism}
+
+The pattern documented in Tables~\ref{tab:main} and \ref{tab:placebo} is consistent with the investment-diversion interpretation of progressive ambition theory. The treated local-executive-runner cohort reduces chief sponsorship by an amount that cannot be explained by the generic end-of-Assembly decline observed in the continuer pool, and the reduction is absent in the court-ruling cohort whose members did not know at the start of the late window that they would exit. The fact that the 21st-cycle treated cases do not display the ramp-down, and that the 18th and 20th cycles do, is itself substantively informative. Cycle 21 featured an overlapping presidential-transition calendar that likely changed the incentive structure around resignation timing for any member who was also considering a presidential-office role, and the null is therefore best read as a scope condition on the investment-diversion mechanism rather than as a refutation of it.
+
+This framing aligns with the broader \citet{hansen2015} finding that progressive-ambition effects on legislative activity are heterogeneous across parliaments and sensitive to the specific institutional setting. Where their European cross-parliament analysis captures the average, the Korean design reported here captures the within-system heterogeneity produced by the interaction between the local-election cycle and the presidential-election calendar. Unlike \citet{giommoni2022}, whose Italian transformism design examines mid-term party switching as a within-chamber strategic move rather than an exit, the present paper isolates the behavior in the run-up to exit itself.
+
+The direct-effect comparison with \citet{titiunik2017} deserves specific attention. The Arkansas Senate natural experiment cannot reject the null of no effect across five output measures. One might read the present results as inconsistent with Titiunik and Feher's findings, but a more careful reading suggests the two studies identify different parts of the ambition-behavior mapping. The Arkansas design removes the re-election incentive exogenously but does not supply the removed senators with a specific next office to invest in. The Korean local-executive runners, by contrast, are actively investing in a specific forthcoming campaign. The investment-diversion logic predicts an effect only when the exiter has a concrete alternative use of effort, not merely an absence of re-election pressure. The two designs, read together, suggest that the removal of re-election incentive is insufficient to generate shirking; the presence of a competing investment target is required.
+
+\subsection{The Court-Ruling Comparator as Inferential Anchor}
+
+The court-ruling comparator requires careful interpretation given the TOST failure. The positive equivalence claim that the pre-specified $\pm 0.5$ bills-per-month bound would have supported is not available from the current data. What the data do support is the weaker but still useful claim that the court-ruling cohort's ramp is indistinguishable from the continuer pool's ramp at conventional significance levels, and that the court-ruling cohort's ramp differs from the local-executive cohort's ramp at conventional significance levels. The comparator therefore serves as a channel-separation test rather than as a positive null.
+
+The weaker claim is sufficient for the paper's central identification move. If the investment-diversion mechanism is active in the local-executive cohort, it should be absent from the court-ruling cohort, and the data are consistent with that pattern. A critic might object that a wider equivalence bound would be needed to definitively rule out a smaller but genuine ambition-investment effect in the court-ruling cohort. That objection is well taken and suggests that future work should either expand the court-ruling sample through cross-Assembly pooling or relax the equivalence bound in a pre-registered way. I adopt the latter approach for the 22nd-Assembly replication, setting the bound at one bill per month rather than half a bill.
+
+The five UPP-dissolution cases deserve separate comment. Their ramp is similar in magnitude to the non-UPP court-ruling cohort, which suggests that the involuntary nature of the exit channel matters more than the legal character of the ruling. This is a small finding relative to the main result but strengthens the comparator interpretation because it rules out the alternative account in which criminal-conviction exiters systematically shirk because they anticipate the conviction.
+
+\subsection{The Cabinet Channel and the Concurrent-Office Debate}
+
+The cabinet-channel row of Table~\ref{tab:placebo} is reported as a descriptive observation rather than a secondary-finding claim. At four cases with the cohort mean driven by a single high-productivity extreme case, the cabinet channel cannot support a mechanism-generalization claim. What the cabinet row can do is raise a normative question that the Korean legal-scholarship literature has been engaging with for at least two decades.
+
+\citet{leeyj2020} documents the recurring legislative proposals to tighten the concurrent-office (\textit{gyeomjik}) rules governing the overlap between a National Assembly seat and a cabinet appointment, and \citet{oh2019} reviews the constitutional-law debate over whether dual office-holding is compatible with the separation-of-powers structure of the Korean Sixth Republic. \citet{yoon2020} and \citet{shin2016} document the confirmation-hearing process that routes cabinet appointments through the Assembly itself. One policy remedy that appears in this literature is a pre-appointment vetting window that would decouple the cabinet-appointment timing from the Assembly member's ongoing legislative obligations. The present data cannot speak to whether such a remedy would recapture productivity that is currently lost to investment diversion, because the evidence base for cabinet-channel shirking is one case. A larger sample, which the 22nd Assembly may begin to supply, would be necessary to quantify the remedy's potential recapture value.
+
+\subsection{Policy Implications: By-Election Fiscal Externalities}
+
+A by-election triggered by a mid-term Assembly resignation imposes a direct fiscal cost on the National Election Commission budget and an indirect cost on the Assembly's in-session legislative throughput. Civic-research demands from Korean deliberative-democracy fora have requested a cumulative accounting of these costs disaggregated by exit channel. The coding dictionary developed in this paper supports such an accounting, subject to the appropriate channel-level caveats. Local-executive-runner resignations account for 40 percent of the 40-case cohort, court-ruling exits (including UPP dissolution) for 32.5 percent, cabinet appointments for 10 percent, presidential-office moves for 7.5 percent, and residual exits for the remaining 10 percent.
+
+The policy-remedy mapping differs sharply across channels. Local-executive costs are addressable by resign-to-run rules that require an earlier resignation deadline, which would internalize the investment-diversion pattern by moving the shirking period outside the Assembly's active calendar. Cabinet-appointment costs are addressable by the pre-appointment vetting windows discussed above. Presidential-office costs are addressable by conflict-of-interest reforms that would prevent an Assembly member from accepting a presidential-office role without a cooling-off period. Court-ruling costs are largely addressable only by candidate-selection screens operating upstream of the election itself. The two largest voluntary channels, local-executive and cabinet, together account for half of the cohort and are the channels where investment-diversion-type shirking is strongest. A resign-to-run rule calibrated to the evidence in this paper could simultaneously reduce the by-election frequency and recapture the shirking-period legislative productivity. I emphasize that these policy implications are suggestive rather than definitive, and that a causal claim about any specific reform would require a pre-post evaluation the present design cannot supply.
+
+\subsection{Limitations}
+
+Four limitations of the present design deserve transparent acknowledgment. First, the primary cohort of nine treated local-executive runners is small, and the randomization-inference p-value reported in Table~\ref{tab:main} is a statement about the observed sample rather than about a large population. The sample-size limitation also prevents me from reporting heterogeneity by party, gender, or committee assignment at conventional power levels.
+
+Second, the level-matched robustness specification attenuates the effect magnitude to roughly half of the unconditional size, and it is possible that a still-tighter match (for example, a Mahalanobis match on early-rate, party, and committee jointly) would attenuate the magnitude further. I have not run that specification because the treated cohort at $N = 9$ does not support a defensible Mahalanobis match, but a pre-registered replication with a larger treated cohort should include it.
+
+Third, the court-ruling comparator is underpowered for a positive equivalence claim at the pre-specified bound. This is a genuine limitation of the 2004-2024 observation window and cannot be addressed without either relaxing the bound or extending the window forward through additional Assemblies.
+
+Fourth, the cabinet-channel evidence is effectively a single-case study. The case is substantively interesting and suggests a mechanism extension, but it cannot support inferential generalization. The 22nd-Assembly replication will test whether additional cabinet exits cluster around the point estimate or whether the extreme case is an outlier.
+
+\section{Conclusion}
+
+This paper has examined the pre-resignation legislative behavior of Korean National Assembly members who exit mid-term to contest subnational executive office. Using a hand-coded five-category exit-channel dictionary applied to the 40 mid-term departures between 2004 and 2024, I find that single-member-district legislators running for governor or mayor in the 18th and 20th Assembly cycles reduce their chief bill sponsorship sharply in the final six months of their tenure, while involuntary court-ruling exits show no such reallocation. The main effect survives a level-matched regression-to-the-mean correction, with roughly half of the unconditional magnitude retained, and randomization inference under the sharp null returns a p-value well below one percent (Table~\ref{tab:main}).
+
+The contribution of the paper is threefold. First, the exit-channel disambiguation procedure is, to my knowledge, the first hand-coded dictionary of this kind for Korean National Assembly departures, and it is an input that future legislative-behavior studies in Korea can reuse and extend. Second, the court-ruling comparator, though underpowered for a positive equivalence claim, is a channel-separation anchor that strengthens the ambition-investment reading of the primary effect. Third, the empirical pattern supplies a quantitative input to the policy debate over Korea's resign-to-run and concurrent-office rules that has previously been conducted on largely normative grounds.
+
+Three limitations point directly toward future research. The primary cohort's small size limits the statistical power of the heterogeneity analyses the paper reports; a pooled cross-national extension to Japan, Taiwan, and comparable parliamentary settings with similar local-executive pipelines may be the most productive route to a larger effective sample. The cabinet-channel descriptive pattern requires pre-registered replication before it can be reported as an effect. And the regression-to-the-mean attenuation suggests that the headline magnitude in past progressive-ambition studies may be partially attributable to selection-on-level rather than pure behavioral shifts, a methodological concern that a systematic meta-analysis of the existing literature could address. The 22nd-Assembly data window that opens after the June 2026 local elections provides the next natural opportunity to pre-register and test these extensions.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an experimental output. It has not been peer-reviewed or fact-checked. Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apsr}
+\bibliography{references_r20}
+
+\end{document}

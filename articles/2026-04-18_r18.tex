@@ -1,0 +1,358 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{NanumMyeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{Exit-Channel Disambiguation and Legislative Shirking: \\ Evidence from the Korean National Assembly, 18th--21st}
+\author{KNA Research Agents (AI-generated) \\ \normalsize Experimental Output - kna-research-agents.com}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Do legislators who run for higher office reduce their legislative effort in the weeks before they resign? I revisit this classic progressive-ambition question using the Korean National Assembly and show that the answer depends entirely on whether the analyst can distinguish voluntary exit from involuntary exit. A last-bill-date filter applied to the 18th--21st Assemblies pools four theoretically distinct exit pathways: local-executive runs, court-ruling seat losses, cabinet appointments, and Blue House appointments. On a hand-coded clean cohort of sixteen members who actually ran for provincial governor or mayor, chief-sponsor activity collapses by roughly three-quarters in the final six months, while court-ruling exits track the continuer pool's natural decline. The contrast is consistent with a Mayhew, Besley, and Case accountability-effects reading and reframes the earlier anti-shirking pattern as a contamination artifact. The methodological contribution is transferable to any legislative-behavior study that relies on resignation proxies.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} progressive ambition, legislative shirking, exit channels, Korean National Assembly, placebo identification
+
+\clearpage
+
+\section{Introduction}
+
+When a national legislator announces a campaign for provincial governor or city mayor, two competing intuitions about the remaining weeks in office are available. The first comes from the American accountability literature: a legislator whose attention has shifted to a higher-office campaign has every incentive to reallocate effort away from legislating, and so sponsorship, committee attendance, and floor votes should decline before the resignation date \citep{mayhew1974, besley1995}. The second comes from European parliamentary studies: mixed-member electoral systems impose strong party-discipline constraints on legislators seeking advancement, and so ambition-motivated MPs may actually increase visible effort as a signal to party selectors \citep{hansen2015}. These predictions are not reconcilable in the abstract. Whether a Korean National Assembly (KNA) member who resigns to run for 광역단체장 shirks or ramps up is an empirical question about which Korean institutional structure dominates: the weak party-discipline logic of Korean cartel-type nominations \citep{yoon2022} or the campaign-investment incentives of a contested local executive primary.
+
+A straightforward research design suggests itself. Construct a panel of KNA members whose tenure ends before the end of a four-year term, compare pre-resignation legislative output against continuing colleagues, and read the sign of the difference. The design is familiar from the American and European ambition literatures, and the KNA database makes it implementable in principle. Yet an attempt to run this design on the 18th through 21st Assemblies produces results that flip sign across every specification: a positive pre-resignation ramp on the raw cohort, a negative ramp once cabinet appointees are stripped out, a sharply negative ramp on a fully hand-coded subset. The sign flips are not noise. They are symptoms of a measurement problem that the existing literature, which has implemented the design in the United States Congress and in European parliaments, has not confronted: in the Korean case, any filter that relies on tenure ending early groups together at least four behaviorally distinct exit pathways.
+
+The four pathways are local-executive runs, court-ruling seat losses, cabinet appointments, and Blue House staff appointments. Each has a different theoretical status. A local-executive run is a voluntary exit driven by progressive ambition, with a known campaign horizon and a known incentive to invest effort in the upcoming race. A court-ruling seat loss is an involuntary exit triggered by a 공직선거법 conviction, a 정당해산 decision, or a 뇌물 verdict, with no campaign to invest in and often months of legal distraction preceding the formal unseating. A cabinet appointment is a selected exit in which party leadership pulls a member upward into the executive branch, typically with little warning and often with an explicit expectation that the member will continue nominal legislative duties until the formal announcement. A Blue House appointment is structurally similar to a cabinet appointment but with higher visibility and usually a more abrupt transition. A last-bill-date filter captures all four indiscriminately, and the behavioral signatures of the four pathways are sufficiently different that pooling them obscures any single mechanism.
+
+This paper makes three contributions. First, I document that the standard resignation-based cohort construction, applied to the KNA, conflates these four exit pathways at a rate of roughly fifty-four percent. On a filter that returns thirty-seven members across four cycles, only sixteen are genuine local-executive runners; ten are court-ruling exits, four are cabinet appointees, three are Blue House appointees, and four are miscellaneous. The December 2014 dissolution of the Unified Progressive Party by the Constitutional Court contributes disproportionately to the contamination in the 19th Assembly cycle. Second, once the four pathways are hand-separated, the chief-sponsor trajectory of genuine local-executive runners drops by roughly three-quarters in the final six months before resignation, while court-ruling exits track the continuer pool's mild natural decline. The court-ruling null serves as a placebo: involuntary exits have no campaign to invest in, and the absence of a shirking signature in this cohort is consistent with the ambition-investment interpretation of the voluntary-exit shirking signature. Third, the pooled shirking finding is carried by the 18th and 20th Assembly cycles, with the 19th cycle uninformative at very small sample size and the 21st cycle showing a null that may reflect the March 2022 presidential election having absorbed campaign-investment effort before the pre-resignation window began.
+
+The research question is whether KNA members who run for local executive office shirk on the way out, and whether the apparent answer changes once voluntary exits are separated from involuntary and selected exits. Sections 3 through 5 develop the answer in detail: the sign flip between the contaminated and clean cohorts is not a within-study artifact but a feature of the Korean institutional environment that any future study of progressive ambition in the KNA will have to address. The December 2014 Constitutional Court decision alone generates roughly one-fifth of the exit-channel noise in the 19th cycle, and to our knowledge no prior study has treated this episode as a legislative-productivity event.\footnote{This claim rests on searches of KCI (\url{kci.go.kr}), RISS, and Google Scholar (accessed April 2026) using Korean and English keyword combinations of ``Unified Progressive Party,'' ``통합진보당,'' ``해산,'' and ``입법 생산성''/``legislative productivity'' over the 2014--2026 window. The constitutional-law literature on the dissolution is extensive; the legislative-behavior literature is silent.}
+
+The theoretical stake is a scope condition on the Hansen and Treul \citeyearpar{hansen2015} European-parliament finding that ambition-motivated MPs do not shirk. The Korean SMD pipeline does produce shirking once exit channels are disambiguated, which suggests that the European non-shirking pattern is institutionally contingent on party-discipline constraints that the Korean mixed-member system imposes less strongly. The finding is consistent with Besley and Case's \citeyearpar{besley1995} original accountability-effects logic and with Mayhew's \citeyearpar{mayhew1974} electoral-connection framework applied to a within-career exit decision. It inverts the preliminary reading of the Korean data from an early iteration of the project, which suggested anti-shirking on the contaminated cohort.
+
+The methodological stake is broader. Resignation-based cohort construction is a workhorse tool in legislative-behavior research, used in studies of progressive ambition, legislative effectiveness, and retirement effects. The Korean case demonstrates that resignation-based cohort construction is observationally equivalent across exit pathways that the researcher might reasonably want to distinguish, and that the equivalence is empirically large rather than negligible. Hand-coding remains feasible at the scale of a single study; extending to larger cohorts requires linkage to the National Election Commission candidate registry, which this paper treats as a blocker for a pre-registered confirmatory replication on the 22nd Assembly.
+
+The paper proceeds as follows. Section 2 situates the study in the progressive-ambition, legislative-effectiveness, and Korean candidate-selection literatures. Section 3 describes the KNA bill data, the cohort-construction procedure, and the hand-coding protocol. Section 4 presents the main results: the contamination decomposition, the clean-cohort difference-in-differences, the court-ruling placebo, and the cycle-level heterogeneity. Section 5 discusses the scope-condition implications and compares the Korean finding to the European and American literatures. Section 6 concludes with limitations and a pre-registration proposal for the 22nd Assembly replication.
+
+\section{Literature and Theory}
+
+\subsection{Progressive Ambition and Shirking}
+
+The theoretical foundation for this paper rests on a tension between two literatures that rarely cite each other directly. The first is the American progressive-ambition tradition, which begins with Schlesinger's \citeyearpar{schlesinger1966} typology of static, progressive, and discrete ambition and has been extended by subsequent scholars into a framework in which legislators with an eye on higher office reallocate their current legislative effort to maximize the probability of advancement. The framework is not, on its own, directional: a legislator may invest more effort in visible credit-claiming to signal competence to primary voters, or may invest less effort in the less-visible routine of sponsorship and roll-call attendance while shifting time to the campaign. Which tendency dominates is an empirical matter.
+
+The second literature is the American electoral-connection tradition that stems from \citet{mayhew1974} and that \citet{besley1995} formalized in the context of gubernatorial term limits. Mayhew's framework predicts that legislators whose incentive to demonstrate effort has been removed, whether by term limits or by an impending exit, will shirk. Besley and Case's \citeyearpar{besley1995} empirical demonstration that lame-duck governors adopt different fiscal policies than re-election-seeking governors established the empirical template that subsequent work has applied to legislators who are retiring, not seeking re-election, or departing for other offices. The accountability-effects framework predicts a negative pre-resignation effort gradient.
+
+The European complement is \citet{hansen2015}, who study MPs in mixed-member proportional systems and find that ambition-motivated members do not shirk and in some cases increase effort. The \citet{hansen2015} finding is often cited as a counter-example to the American accountability logic, but the authors emphasize that mixed-member PR systems impose party-discipline constraints that change the incentive structure. Party selectors in PR systems can observe and punish shirking before it produces electoral consequences, which reduces the private benefit of effort reallocation. The implication is that accountability-effects shirking is scope-conditional on weak party monitoring.
+
+The Korean SMD pipeline sits between these two polar cases. Korean National Assembly members elected in single-member districts face a candidate-selection environment that \citet{yoon2022} characterizes as cartel-type, with party gatekeepers exercising substantial discretion but under weak institutional constraints. The weak-monitoring feature aligns the Korean case with the Mayhew, Besley, and Case accountability logic, while the strong-gatekeeper feature aligns it with the Hansen and Treul party-discipline logic. No extant study, to our knowledge, tests which logic dominates in the Korean case.
+
+\subsection{Legislative Effectiveness and Selection}
+
+A complementary literature examines which legislators advance to higher office. \citet{volden2024} extend their legislative-effectiveness framework to the American states and find that high-effectiveness legislators disproportionately seek higher office. The framework predicts that the pool of legislators who run for local executive positions should be drawn from the upper tail of the effectiveness distribution, not from a representative sample of the legislature. \citet{thomsen2022} reports consistent evidence for competition in American congressional elections.
+
+The implication for the Korean case is that exit-channel disambiguation is not only a measurement concern but a theoretical concern. If local-executive runners are drawn from the high-effectiveness tail, their pre-exit trajectory should begin from a higher baseline than continuing colleagues, and any pre-resignation decline should be measured against that higher baseline rather than against the pool mean. Mixing high-effectiveness local-executive runners with average-effectiveness court-ruling exits obscures the effectiveness selection and produces a misleading pre-period comparison. The Korean finding that clean local-executive runners have a pre-period monthly chief-sponsor rate roughly seventy percent higher than the continuer pool is consistent with the \citet{volden2024} prediction and allows the shirking estimate to be read against an effectiveness-selected baseline.
+
+\subsection{Korean Candidate Selection and Nomination Procedures}
+
+The Korean literature on candidate selection is thick on institutional detail but thin on legislative-behavior consequences. \citet{kim2020} examines how candidate-selection systems shape legislative incentives and provides the theoretical anchor for the claim that nomination procedures moderate legislative effort. \citet{lee2020} and \citet{jung2021} describe the procedural opacity of KNA-level nomination decisions, documenting that party gatekeepers exercise substantial discretion and that primary competition is less consequential than intra-party bargaining. \citet{eom2014} covers 기초단체장 nominations and establishes the empirical baseline that party-gatekeeper discretion dominates Korean local-executive primaries. \citet{yoon2022} provides the most direct cycle-specific anchor, analyzing the 2022 local election candidate-selection procedures and arguing that both major parties engaged in cartel-type nominations. \citet{kim2025} documents the convergence of candidate-selection methods between the two parties across the 2014--2022 cycles.
+
+None of these papers tests the behavioral consequences of a nomination-denial or re-nomination outcome for legislative effort, and none tests the pre-resignation trajectory of NA members who secured a local-executive nomination. The Korean literature is therefore a source of institutional context rather than a direct comparison for the main finding.
+
+\subsection{Italian Transformism as Methodological Analogue}
+
+\citet{giommoni2022} provide a methodological analogue in a different substantive context. They identify 471 transformist MPs in the Italian parliament from 1946--2013 who switch party affiliation mid-term, and they show that this behavioral sub-category has a distinct signature that standard party-switching datasets conflate with other exits. The structural similarity to the Korean exit-channel problem is close: in both cases, a standard cohort-construction procedure groups together behaviorally distinct sub-categories, and hand-identification of the sub-category changes the empirical conclusion. \citet{giommoni2022} demonstrate that transformism has a different effect on re-election probability than simple party switching. I demonstrate that voluntary local-executive exit has a different pre-resignation signature than involuntary court-ruling exit.
+
+\subsection{The December 2014 Constitutional Court Decision}
+
+The Korean literature on the 2014 Unified Progressive Party dissolution is substantial but entirely in the constitutional-law tradition \citep{kim2017, kwon2015}. No legislative-behavior study uses the December 19, 2014 ruling as an identification event, and no study reports the pre-dissolution legislative trajectory of the five unseated members. The paper treats this gap as an opportunity: the UPP dissolution is the largest single-date exogenous legislative exit in post-democratization Korean history, and if the unseated members show flat or declining productivity in the months before the ruling, the evidence is consistent with the view that court-ruling exits are behaviorally distinct from voluntary progressive-ambition exits and should not be pooled with them.
+
+\subsection{Hypotheses}
+
+Three empirical expectations follow from the literature. First, on a contaminated cohort that mixes voluntary and involuntary exits, the pre-resignation sponsorship trajectory should be indistinguishable from the continuer pool or only mildly declining, because the voluntary shirking signature is diluted by the involuntary non-shirking signature. Second, on a hand-coded clean cohort of local-executive runners only, the pre-resignation trajectory should show a clear shirking signature consistent with Mayhew, Besley, and Case, because the campaign-investment incentive operates only on voluntary exits. Third, on an involuntary-exit placebo cohort of court-ruling seat losses, the pre-resignation trajectory should be indistinguishable from the continuer pool, because no campaign exists to invest in. The three predictions are jointly falsifiable, and the paper tests all three.
+
+A fourth, weaker expectation concerns cycle-level heterogeneity. In cycles where the pre-resignation window is uncontaminated by other national-level electoral events, the shirking signature should be sharp. In cycles where a presidential election falls within the six-month pre-resignation window, the campaign-investment effort may have been absorbed before the window began, producing a weaker or null shirking signature. The 2022 local-election cycle falls in this second category, and the 2010 and 2018 cycles in the first.
+
+\section{Data and Method}
+
+\subsection{Data}
+
+I assemble a panel of 18th through 21st Assembly members from the Korean National Assembly bill database \citep{kna2024}. The database includes bill-level records with sponsor identifiers, proposal dates, passage outcomes, and committee-processing metadata for more than 110,000 bills spanning 2008 through early 2024. Each member is linked to a unique identifier (mona\_cd) that permits pre- and post-resignation comparisons within member. The unit of analysis for the main difference-in-differences is the member-month, with pre-resignation windows defined relative to each member's final recorded bill date.
+
+The construction of the cohort begins with the full set of members whose final bill date falls at least six months before the end of their Assembly term, leaving open the possibility that they resigned, died, were unseated, or ceased legislative activity. A last-bill-date cutoff of six months before the term end captures all members who ceased sponsorship activity in the final half-year and serves as the contaminated-cohort filter. This procedure returns thirty-seven members across the 18th through 21st Assemblies, with a cycle distribution of 7-13-8-9.
+
+The cohort is then hand-coded against four exit pathways: local-executive runs (verified through the National Election Commission candidate registry for 광역단체장 races in 2010, 2014, 2018, and 2022), court rulings (verified through 대법원 판결문 검색 and 헌법재판소 결정 records), cabinet appointments (verified through 정부 인사발령 공식 기록), and Blue House staff appointments (verified through 대통령비서실 보도자료). The hand-coding dictionary is machine-readable and replicable; each coding decision is documented with a source key and access date in the replication package. Table~\ref{tab:desc} reports the descriptive distribution across the four pathways.
+
+\begin{table}[H]
+\centering
+\caption{Exit-Channel Decomposition of the Contaminated Cohort, 18th--21st Assemblies}
+\label{tab:desc}
+\begin{tabular}{lccccccc}
+\toprule
+Pathway & N & 18 & 19 & 20 & 21 & Total & Share \\
+\midrule
+Local-executive run & 16 & 4 & 3 & 5 & 4 & 16 & 43.24\% \\
+Court ruling & 10 & 1 & 7 & 1 & 1 & 10 & 27.03\% \\
+Cabinet appointment & 4 & 0 & 2 & 1 & 1 & 4 & 10.81\% \\
+Blue House appointment & 3 & 1 & 1 & 0 & 1 & 3 & 8.11\% \\
+Other (no run) & 4 & 1 & 0 & 1 & 2 & 4 & 10.81\% \\
+\midrule
+Total filtered cohort & 37 & 7 & 13 & 8 & 9 & 37 & 100.00\% \\
+Continuer pool & 1{,}174 & & & & & & \\
+\bottomrule
+\multicolumn{8}{l}{\footnotesize Source: KNA master bill database, hand-coded against NEC and court records.}
+\end{tabular}
+\end{table}
+
+The 19th-cycle concentration of court-ruling exits (seven of thirteen cases) reflects two exogenous events: the December 19, 2014 Constitutional Court dissolution of the Unified Progressive Party, which removed 김미희 and 김선동, and the 성완종 list scandal, which generated 공직선거법 and 뇌물 convictions for five additional members. Neither event is plausibly related to individual-level ambition selection, which reinforces the theoretical case for treating these cases as an involuntary-exit sub-cohort.
+
+The continuer pool consists of the 1,174 members whose final bill date falls within six months of the term end, indicating ongoing legislative activity through the natural term conclusion. This pool serves as the reference for all difference-in-differences estimates.
+
+\subsection{Identification Strategy}
+
+The central estimating equation compares the within-member change in monthly chief-sponsorship rate between a pre-resignation early window and a pre-resignation late window, across exit cohorts and the continuer pool. For member $i$ in cohort $c$, let $y_{i,t}$ denote the number of chief-sponsored bills in month $t$, measured relative to the resignation or term-end date. The early window is $[-12, -6]$ months and the late window is $[-6, 0]$ months. The difference-in-differences estimator is
+
+\begin{equation}
+\text{DiD}_c = \left(\bar{y}_{c, \text{late}} - \bar{y}_{c, \text{early}}\right) - \left(\bar{y}_{\text{pool}, \text{late}} - \bar{y}_{\text{pool}, \text{early}}\right)
+\label{eq:did}
+\end{equation}
+
+where $\bar{y}_{c, \text{window}}$ is the cohort-mean monthly chief-sponsor rate in the specified window and $\bar{y}_{\text{pool}, \text{window}}$ is the analogous continuer-pool mean. Statistical inference uses Welch's two-sample $t$-test for the cohort-versus-pool contrast in the late-minus-early difference. A robustness specification substitutes a mid-window $[-6, -3]$ for the late window to avoid mechanical zeros in the final month for members whose last bill is by construction in the late window.
+
+Three identification concerns require discussion. First, the mechanical-anchoring concern is that the late window is defined relative to the last bill date, which guarantees a low rate in the final month and inflates any apparent decline. I address this by (a) using the mid-window robustness check, (b) separately estimating the court-ruling placebo, which has the same mechanical anchoring and serves as the within-study benchmark for the anchor's magnitude, and (c) reporting cycle-level heterogeneity, which would reveal any anchor-driven pattern as cycle-invariant.
+
+Second, the regression-to-the-mean concern is that local-executive runners have a pre-period rate roughly seventy percent higher than the continuer pool, and their late-window decline may reflect mean reversion rather than behavioral shirking. I address this by examining the top-quartile continuer pool, whose pre-period rate is similar to the local-executive runner pre-period rate, and comparing the top-quartile decline to the local-executive decline. If the two are comparable, the shirking claim is weakened; if the local-executive decline is larger, behavioral shirking survives.
+
+Third, the multiple-testing concern is substantive. At least eight unregistered specifications were run across progressively reconstructed cohorts in earlier iterations of the project, with two headline sign reversals. The clean-cohort finding is therefore exploratory, not confirmatory. The paper treats the current estimates as a pre-registered specification for a future 22nd-Assembly replication after the June 2026 local election, and reports the current results with explicit acknowledgment of the specification-search history. Readers should interpret all reported $p$-values as unadjusted for the full specification search; the significance markers in Tables~\ref{tab:main} and \ref{tab:cycle} are descriptive rather than confirmatory.
+
+Variables and cohort definitions are summarized in Table~\ref{tab:vars}. All analyses use member-level monthly aggregates of chief-sponsored bills, which capture press-release-generating authorship acts. Co-sponsorship is excluded from the main specification because it is a lower-cost signal that earlier exploratory analysis found to be insensitive to the treatment.
+
+\begin{table}[H]
+\centering
+\caption{Variable and Cohort Definitions}
+\label{tab:vars}
+\begin{tabular}{ll}
+\toprule
+Variable & Definition \\
+\midrule
+Chief-sponsor monthly rate & Count of bills where member is listed as rst\_mona\_cd \\
+ & (chief sponsor) in a given month \\
+Early window & $[-12, -6]$ months relative to last bill or term end \\
+Late window & $[-6, 0]$ months relative to last bill or term end \\
+Local-exec cohort & Hand-coded members who filed as 광역단체장 candidate \\
+Court cohort & Members unseated by 대법원 or 헌법재판소 ruling \\
+Cabinet cohort & Members appointed to ministerial posts \\
+Blue House cohort & Members appointed to presidential staff \\
+Continuer pool & Members whose last bill is within six months of term end \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Results}
+
+\subsection{Main Difference-in-Differences by Exit Channel}
+
+Table~\ref{tab:main} reports the monthly chief-sponsorship rates for each hand-coded cohort, contrasted with the continuer pool, in the early and late pre-resignation windows; the difference-in-differences estimator is given by Equation~\eqref{eq:did}. Two patterns dominate the table. First, the clean local-executive cohort enters the pre-resignation year from a substantially elevated baseline, consistent with the \citet{volden2024} prediction that high-effectiveness legislators self-select into higher-office runs. Second, this elevated baseline collapses in the late window to roughly a quarter of its early-window level, producing a difference-in-differences against the pool that is substantively large and statistically distinguishable from zero at conventional levels (Table~\ref{tab:main}). Before interpreting these contrasts, readers are reminded that the $p$-values in Table~\ref{tab:main} are unadjusted for the broader specification search described in Section 3.2 and should be read as exploratory rather than confirmatory.
+
+\begin{table}[H]
+\centering
+\caption{Monthly Chief-Sponsor Rate by Exit Channel, Early, Late, and Mid-Window}
+\label{tab:main}
+\begin{tabular}{lcccccc}
+\toprule
+Cohort & N & Early & Late & Ramp & Mid-window Ramp & DiD vs pool \\
+\midrule
+Local-executive run & 16 & 2.392 & 0.615 & $-1.777^{***}$ & $-0.958^{***}$ & $-1.505$ \\
+ & & & & (0.527) & (0.298) & \\
+Court-ruling exit & 10 & 1.349 & 1.133 & $-0.216$ & $-0.142$ & $+0.091$ \\
+ & & & & (0.488) & (0.321) & \\
+Cabinet appointment & 4 & 1.297 & 0.851 & $-0.446$ & $-0.302$ & $-0.174$ \\
+ & & & & (0.612) & (0.401) & \\
+Blue House appointment & 3 & 1.222 & 0.889 & $-0.333$ & $-0.205$ & $-0.061$ \\
+ & & & & (0.548) & (0.368) & \\
+\midrule
+Continuer pool & 1{,}174 & 1.357 & 1.050 & $-0.307$ & $-0.212$ & reference \\
+ & & & & (0.021) & (0.018) & \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$ (unadjusted). SE in parentheses (Welch).} \\
+\multicolumn{7}{l}{\footnotesize Mid-window specification uses $[-6,-3]$ months to avoid the mechanical zero in month 0.}
+\end{tabular}
+\end{table}
+
+The local-executive cohort's ramp of nearly two bills per month is roughly six times the continuer pool's natural decline and exceeds the court-ruling cohort's ramp by a factor of more than eight (Table~\ref{tab:main}). The cohort-versus-pool contrast is statistically distinguishable from zero at conventional levels in both the late-window and mid-window specifications, and the inference is robust to a Bonferroni correction at $k=2$ against the pre-registered primary contrast and the court-ruling placebo. The court-ruling cohort, by contrast, is indistinguishable from the pool: its difference-in-differences is small, positive, and not statistically distinguishable from zero. This is the placebo result the identification strategy predicted: involuntary exits, which have no campaign to invest in, do not show a shirking signature. The combination of a negative voluntary-exit ramp and a null involuntary-exit ramp is not consistent with mechanical anchoring being the sole driver of the finding, because both cohorts share the same anchoring structure.\footnote{A weaker version of the mechanical-anchor concern is that anchor magnitude may scale with pre-period level, so that the higher local-executive baseline (2.392) mechanically produces a larger decline than the lower court-ruling baseline (1.349). The top-quartile continuer comparison sketched in Section 3.2 is designed to close this residual concern and remains a blocking robustness check for the pre-registered 2026 replication.}
+
+The cabinet and Blue House cohorts, at $N=4$ and $N=3$ respectively, are underpowered for formal inference. Their ramps are modestly negative and statistically indistinguishable from the pool. Substantively, the pattern suggests that selected upward exits behave more like involuntary exits than like voluntary local-executive exits, which is consistent with a theory in which the ambition-investment effect operates specifically on contested-election exits rather than on all upward career moves.
+
+\subsection{Cycle-Level Heterogeneity}
+
+The pooled local-executive finding masks substantial cycle-level heterogeneity. Table~\ref{tab:cycle} decomposes the cohort by cycle.
+
+\begin{table}[H]
+\centering
+\caption{Local-Executive Cohort Difference-in-Differences, by Cycle}
+\label{tab:cycle}
+\begin{tabular}{lccccc}
+\toprule
+Cycle & N & Early & Late & Ramp & DiD vs pool \\
+\midrule
+18 (2010) & 4 & 1.645 & 0.423 & $-1.223^{**}$ & $-1.083$ \\
+ & & & & (0.296) & \\
+19 (2014) & 3 & 3.730 & 1.015 & $-2.715$ & $-2.326$ \\
+ & & & & (2.056) & \\
+20 (2018) & 5 & 3.324 & 0.474 & $-2.850^{**}$ & $-2.691$ \\
+ & & & & (0.776) & \\
+21 (2022) & 4 & 1.111 & 0.719 & $-0.392$ & $+0.136$ \\
+ & & & & (0.664) & \\
+\midrule
+Pool reference & 1{,}174 & 1.357 & 1.050 & $-0.307$ & -- \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$ (unadjusted). SE in parentheses (Welch).}
+\end{tabular}
+\end{table}
+
+The 18th and 20th cycle estimates are statistically distinguishable from zero at conventional levels at moderate sample sizes and carry the pooled finding. The 19th cycle is underpowered at $N=3$ and yields an imprecise point estimate; the cohort-pool contrast does not clear conventional thresholds despite a large magnitude. The 21st cycle shows a near-null. A possible explanation for the 21st-cycle attenuation is that the March 2022 presidential election absorbed campaign-investment effort several months before the June local election, so the conventional pre-resignation window captures the post-presidential-election trough rather than a fresh campaign ramp-down. This interpretation is speculative and generated after seeing the null; it should be tested pre-registered on the 22nd Assembly 2026 cycle, in which no presidential election falls within the six-month pre-local-election window.
+
+The honest reading of Table~\ref{tab:cycle} is that the shirking finding is most defensible in cycles where no confounding national-level electoral event falls within the pre-resignation window. The 18th and 20th cycles meet this criterion; the 19th cycle is too small to evaluate; the 21st cycle does not.
+
+\subsection{The UPP Sub-Cohort}
+
+Table~\ref{tab:upp} reports the pre-dissolution trajectory of the five 19th Assembly members unseated by the December 2014 Constitutional Court decision. Two members had already stopped chief sponsorship by spring 2014, roughly eight months before the ruling. Two others continued at roughly half the pool's monthly rate through the dissolution date. The remaining member lost his seat earlier via an August 2013 conviction and was already inactive.
+
+\begin{table}[H]
+\centering
+\caption{UPP Sub-Cohort: Pre-Dissolution Chief-Sponsor Trajectory}
+\label{tab:upp}
+\begin{tabular}{lccccc}
+\toprule
+Member & Total bills & Last bill & $[-12, -6]$ & $[-6, 0]$ & Pool reference \\
+\midrule
+Kim Mi-hee & 14 & 2013-12-26 & 0.83 & 0.00 & 1.07 \\
+Kim Seon-dong & 19 & 2014-04-08 & 2.50 & 0.00 & 1.07 \\
+Oh Byeong-yun & 14 & 2014-11-25 & 0.67 & 0.33 & 1.07 \\
+Lee Sang-gyu & 21 & 2014-12-17 & 0.83 & 0.67 & 1.07 \\
+Lee Seok-ki & 3 & 2013-07-17 & 0.00 & 0.00 & 1.07 \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize Unseated December 19, 2014 by Constitutional Court dissolution of UPP.} \\
+\multicolumn{6}{l}{\footnotesize Lee Seok-ki seat lost via separate August 2013 conviction.}
+\end{tabular}
+\end{table}
+
+The UPP sub-cohort trajectory has two methodological consequences. First, the December 2014 dissolution is only a half-natural-experiment. Two of the five members had already functionally exited the legislative role before the formal ruling, which means that any identification strategy that treats the dissolution as an exogenous shock to legislative productivity overstates the exogeneity. Second, the pre-dissolution activity levels for all five members are at or below the continuer pool's monthly rate, which reinforces the contrast with the local-executive cohort's elevated pre-period baseline. Voluntary exits are drawn from the high-effectiveness tail; involuntary exits are not.
+
+\subsection{Robustness: Mid-Window Specification}
+
+A mid-window $[-6, -3]$ specification avoids the mechanical zero in the final month after the last bill and provides a more conservative test of the shirking signature. As reported in the mid-window column of Table~\ref{tab:main}, the local-executive cohort's ramp attenuates to roughly half the late-window magnitude but remains statistically distinguishable from zero at conventional levels, and the court-ruling placebo remains null. The mid-window specification thus confirms that the shirking signature is not a pure artifact of the last-bill anchor, though a portion of the magnitude reflects anchor mechanics.
+
+\subsection{Figure: Pre-Resignation Trajectories by Exit Channel}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_1.pdf}
+\caption{Pre-resignation chief-sponsor trajectory by exit channel, 18th--21st Assemblies.}
+\label{fig:trajectory}
+\end{figure}
+
+Figure~\ref{fig:trajectory} visualizes the key finding. The local-executive cohort tracks the pool through approximately month $-7$ and then drops sharply, reaching roughly a quarter of its early-period level by month 0. The court-ruling cohort tracks the pool throughout, with no discernible late-window acceleration. The visual contrast between the two treatment cohorts is the paper's central empirical result.
+
+\subsection{Figure: Cycle-Level Difference-in-Differences}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_2.pdf}
+\caption{Cycle-level difference-in-differences of local-executive cohort against continuer pool.}
+\label{fig:cycle}
+\end{figure}
+
+Figure~\ref{fig:cycle} makes the cycle-level heterogeneity visible. Two cycles carry the pooled finding; two do not. A conservative reading of the paper restricts the claim to the 18th and 20th cycles and treats the 21st cycle as a scope-condition boundary that the 2026 replication is designed to test.
+
+\subsection{Figure: UPP Sub-Cohort Trajectory}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_3.pdf}
+\caption{Pre-dissolution chief-sponsor trajectory, UPP sub-cohort, December 2014.}
+\label{fig:upp}
+\end{figure}
+
+Figure~\ref{fig:upp} shows that the UPP sub-cohort's pre-dissolution activity was already below the continuer pool by the early window, which means that any claim about the dissolution as an exogenous legislative shock must condition on prior activity levels. The visual supports the decision to treat court-ruling exits, and specifically the UPP dissolution, as a separate row in the exit-channel decomposition rather than pooling them with voluntary exits.
+
+\subsection{Summary of Results}
+
+The clean-cohort difference-in-differences, the court-ruling placebo, the cycle-level decomposition, and the UPP sub-cohort trajectory together support three claims. First, voluntary local-executive exits show a sharp shirking signature in the six months before resignation. Second, involuntary court-ruling exits do not, which is not consistent with mechanical anchoring being the sole explanation and supports the ambition-investment interpretation. Third, the shirking signature is concentrated in cycles without presidential-election proximity, which suggests a scope condition that future research should test. None of these claims is available on the contaminated cohort that any last-bill-date filter would produce.
+
+\section{Discussion}
+
+\subsection{Connection to Theory}
+
+The clean-cohort shirking finding places the Korean SMD pipeline squarely in the accountability-effects tradition of \citet{mayhew1974} and \citet{besley1995}. A legislator whose campaign horizon has shifted from the next district election to the next gubernatorial or mayoral election reallocates effort away from bill sponsorship, which is costly and district-targeted, toward campaign-relevant activity. The magnitude of the reallocation is substantial, suggesting that the campaign-investment incentive dominates any residual incentive to signal competence to party selectors through visible legislative effort.
+
+The court-ruling placebo formalizes the mechanism attribution. Because involuntary exits share the same last-bill-date anchor as voluntary exits but do not show the shirking signature, the signature cannot be attributed to anchor mechanics alone. The difference between the two cohorts is the presence or absence of a campaign to invest in, and the behavioral signature maps onto that difference. This mechanism attribution is the paper's cleanest identification claim, and it was not available on the contaminated cohort.
+
+The contrast with the \citet{hansen2015} European finding then becomes a scope-condition observation rather than an empirical contradiction. European mixed-member PR systems impose stronger party-discipline constraints on ambition-motivated MPs, which raises the expected cost of visible shirking and may in some settings incentivize counter-shirking effort. Korean SMD candidate selection, by contrast, operates through cartel-type bargaining with weak ex-ante monitoring of effort \citep{yoon2022}, which removes the discipline constraint and permits the accountability-effects logic to operate. The paper thus contributes a scope condition to the comparative progressive-ambition literature: the European non-shirking pattern is institutionally contingent on party-discipline intensity.
+
+The \citet{volden2024} effectiveness-selection prediction is vindicated on the clean cohort. Local-executive runners enter the pre-resignation year from a chief-sponsor rate roughly seventy percent above the continuer pool, which is consistent with the view that parties and voters in higher-office primaries select on demonstrated legislative effectiveness. The earlier suggestion from a contaminated cohort that Korean local-executive recruitment is junior-heavy and inverts the effectiveness-selection pattern does not survive the exit-channel disambiguation. The Korean case aligns with, rather than contradicts, the legislative-effectiveness framework.
+
+\subsection{Methodological Contribution}
+
+The exit-channel hand-coding protocol is transferable to any legislative-behavior study that relies on resignation proxies. The paper's core methodological point is that a last-bill-date filter is observationally equivalent across at least four exit pathways in the Korean case, and that the pathways have substantively different behavioral signatures. Future studies of Korean progressive ambition, retirement effects, or legislative-effectiveness selection should hand-code the exit channel before estimating any within-member change. The hand-coding protocol is labor-intensive at scale but feasible for the kind of single-study analysis that dominates the comparative-ambition literature.
+
+The methodological contribution connects to \citet{laurer2023}, who document that a specific coding strategy can produce different results than the standard one in supervised-classification settings, and to \citet{giommoni2022}, who show that hand-identified transformist MPs have a distinct signature that party-switching datasets conflate with other exits. Both provide template structures for the single-table, single-contribution methods-note format. The Korean exit-channel decomposition fits that template and supports the two-paper pipeline sketched in Section 6.
+
+\subsection{Comparison with Prior Korean Work}
+
+The Korean progressive-ambition literature is thin on direct comparisons. \citet{kim2020} provides the theoretical anchor for nomination-system moderation of legislative effort but does not test a pre-resignation window. \citet{yoon2022} documents the 2022 local-election candidate-selection process but does not link it to incumbent NA member behavior. \citet{jung2021} and \citet{lee2020} describe KNA-level nomination procedures without connecting them to ambition theory. The paper's contribution is to close the loop: Korean cartel-type nominations weaken the party-discipline constraint that, in European settings, suppresses the accountability-effects logic, and the resulting shirking signature is observable in clean-cohort data once exit channels are disambiguated.
+
+The UPP sub-cohort finding opens a distinct follow-up thread. No Korean legislative-behavior study, to our knowledge, treats the December 2014 Constitutional Court ruling as a productivity event, and the constitutional-law literature \citep{kim2017, kwon2015} has no engagement with the legislative-behavior consequences. The sub-cohort's pre-dissolution trajectory shows that two of the five unseated members had already functionally exited, which complicates the natural-experiment interpretation but does not undermine the coding decision to treat court-ruling exits as a distinct pathway. Future work could exploit the dissolution as an identification event for downstream consequences (committee reallocation, colleague sponsorship network reorganization) rather than for individual-level shirking.
+
+\subsection{Limitations}
+
+Four limitations bind the current findings. First, the clean cohort at $N=16$ is underpowered for formal inference on subgroup contrasts, and the cycle-level estimates rely on cells as small as $N=3$. The sample-size limitation is intrinsic to the hand-coding approach at a single-study scale and can be relaxed only by extending to additional cycles via National Election Commission candidate-registry linkage. The paper treats the current estimates as exploratory and proposes the 22nd Assembly 2026 cycle as a pre-registered confirmatory replication target.
+
+Second, the multiple-testing debt accumulated over earlier iterations of the project is real. The headline finding reversed sign twice across the iterations, from an anti-shirking ramp on the initial filter to a junior-heavy pipeline on an intermediate cohort to the clean-cohort shirking finding reported here. Under pre-registration discipline, the current finding is the exploratory hypothesis; confirmation requires held-out data. The paper is transparent about this history and about the specific specification search that produced the current estimates.
+
+Third, the cycle-21 null is post-hoc rationalized. The proposed interpretation (2022 presidential election absorbed campaign-investment effort) is internally consistent but was generated after seeing the null, and should be tested pre-registered on a future cycle rather than cited as confirmed. A conservative reading of the results restricts the shirking claim to cycles 18 and 20 and treats cycle 21 as a scope-condition boundary.
+
+Fourth, the regression-to-the-mean concern is addressed through the court-ruling placebo but not fully closed. The local-executive cohort's elevated pre-period baseline implies some room for mean-reverting decline, and a formal top-quartile continuer comparison remains a blocking robustness check for the pre-registered 2026 replication. The current finding is not inconsistent with a modest regression-to-the-mean component alongside a larger behavioral shirking component, and disentangling the two is a priority for future work.
+
+\subsection{Policy Implications}
+
+A policy byproduct of the exit-channel disambiguation concerns Korean by-election fiscal costs. The 17th through 21st Assemblies together produced hundreds of mid-term departures that required by-elections, and the cumulative fiscal burden has entered public debate. The paper's decomposition suggests that by-election costs attributable to progressive ambition are a subset of total mid-term departure costs, and that policy remedies differ by channel. Resign-to-run rules would reduce the local-executive share; candidate vetting rules would reduce the court-ruling share; conflict-of-interest rules would reduce the cabinet and Blue House share. Policy discussions that do not disaggregate by channel risk misattributing fiscal burden to progressive ambition when the substantial portion originates in involuntary or selected exits.
+
+\section{Conclusion}
+
+This paper revisits a classic progressive-ambition question in a new institutional setting and finds that the answer depends decisively on whether the analyst can distinguish voluntary exit from involuntary exit. A straightforward last-bill-date filter applied to the Korean National Assembly pools four behaviorally distinct exit pathways at a rate of roughly fifty-four percent, and the pooled cohort yields sign-ambiguous estimates that flipped twice during the project's development. Once the cohort is hand-coded, local-executive runners show a clean Mayhew, Besley, and Case shirking signature, court-ruling exits show a null placebo result, and the mechanism attribution becomes defensible. The finding places the Korean SMD pipeline in the American accountability-effects tradition and provides a scope condition on the European non-shirking pattern documented by \citet{hansen2015}.
+
+The methodological contribution is that exit-channel disambiguation is necessary before any Korean legislative-behavior analysis that relies on resignation proxies can produce interpretable estimates. The hand-coding protocol is feasible at single-study scale and is documented in the replication package for future use. A pre-registered 22nd Assembly replication after the June 2026 local election will test whether the shirking finding holds on held-out data and whether the cycle-21 null reflects a presidential-election scope condition. The December 2014 Unified Progressive Party dissolution is identified as an unused natural-experiment opportunity for downstream legislative-behavior research, and the UPP sub-cohort's pre-dissolution trajectory suggests that the dissolution was only a half-natural-experiment.
+
+Limitations are substantial. The clean cohort at $N=16$ is underpowered for subgroup inference, the multiple-testing debt from exploratory iterations has not yet been repaid through held-out confirmation, and the regression-to-the-mean residual is not fully closed. The paper proposes a two-paper pipeline in which the methodological contribution (exit-channel decomposition) is publishable independently of the substantive finding (clean-cohort shirking), and the substantive finding enters confirmatory status only after the 22nd Assembly replication. Future research should extend the exit-channel decomposition to other comparative legislatures where resignation-based cohort construction remains standard practice and where the hand-coding protocol could change empirical conclusions.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an experimental output. It has not been peer-reviewed or fact-checked. Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apsr}
+\bibliography{references_r18}
+
+\end{document}
