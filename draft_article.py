@@ -32,6 +32,76 @@ import shutil
 
 CLAUDE = shutil.which("claude") or str(Path.home() / ".local" / "bin" / "claude")
 
+HAND_CODING_DIR = KNOWLEDGE_DIR / "hand_coding"
+
+
+# =============================================================================
+# Arc 2 reflection-commitment guardrails (C5 / C6).
+# Added 2026-04-20 per post_conference_reflection_2026-04-20.md.
+# =============================================================================
+
+def require_hand_coding_dictionary(round_num: int, bypass: bool = False) -> Path:
+    """C5 (R15 hand-coding bottleneck): any cohort-construction paper must
+    publish its dictionary to knowledge/hand_coding/round_{NN}.jsonl BEFORE
+    article drafting. Returns the dictionary path if present; raises if not.
+
+    Heuristic for "needs hand-coding": round summary mentions "hand-coded",
+    "hand coding", "manual reclassification", or "N=<small>" cohort."""
+    summary_file = SUMMARIES_DIR / f"round_{round_num:02d}.md"
+    if not summary_file.exists():
+        return None  # No summary → skip this check
+    text = summary_file.read_text().lower()
+    needs = any(k in text for k in [
+        "hand-coded", "hand coded", "hand coding", "manual reclassification",
+        "manually reclassified", "reclassify", "coding dictionary",
+    ])
+    if not needs:
+        return None  # Not a hand-coded paper; pass through
+    if bypass:
+        return None
+    HAND_CODING_DIR.mkdir(parents=True, exist_ok=True)
+    dict_path = HAND_CODING_DIR / f"round_{round_num:02d}.jsonl"
+    if not dict_path.exists() or dict_path.stat().st_size < 10:
+        raise SystemExit(
+            "[BLOCKED · Hand-Coding · C5]\n"
+            f"Round {round_num} introduces a hand-coded cohort but\n"
+            f"{dict_path} is missing or empty.\n"
+            "Fix: write the per-member coding dictionary (one JSON object per\n"
+            "line with at least member_id, category, source) before invoking\n"
+            "article drafting. Any cohort-construction paper must release the\n"
+            "dictionary BEFORE the article is drafted (R15 bottleneck remedy)."
+        )
+    return dict_path
+
+
+def check_claim_n(tex_content: str, n_threshold: int = 10) -> list[str]:
+    """C6 (R18 cabinet-channel lesson): scan drafted article for inferential
+    claims attached to cells with N < threshold. Returns a list of warnings.
+
+    Pattern targets: "(N = k)" or "N=k" or "n=k" where k < threshold,
+    appearing within 120 chars of a point-estimate or significance marker
+    (coefficient, p-value, confidence interval, percentage-point claim)."""
+    warnings = []
+    pattern = re.compile(r"\bN\s*[=:]\s*(\d+)\b|\(\s*[Nn]\s*[=:]\s*(\d+)\s*\)")
+    for m in pattern.finditer(tex_content):
+        n_val = int(m.group(1) or m.group(2))
+        if n_val >= n_threshold:
+            continue
+        # Grab surrounding 150-char window to check for inferential language
+        start = max(0, m.start() - 150)
+        end = min(len(tex_content), m.end() + 150)
+        window = tex_content[start:end].lower()
+        if any(kw in window for kw in [
+            "p <", "p =", "p-value", "confidence interval", "95% ci",
+            "coefficient", "estimate", "significant", "effect of",
+            "causes", "increases", "decreases",
+        ]):
+            warnings.append(
+                f"N={n_val} (<{n_threshold}) paired with inferential language "
+                f"near char {m.start()}: ...{tex_content[start:end].strip()[:180]}..."
+            )
+    return warnings
+
 
 def find_pursue_verdicts():
     """Find all rounds where Critic gave a 'pursue' verdict."""
@@ -88,6 +158,13 @@ def draft_article(round_num):
     """Generate a working paper draft from forum findings."""
     ARTICLES_DIR.mkdir(exist_ok=True)
     WORKSPACE_DIR.mkdir(exist_ok=True)
+
+    # C5 · Pre-flight hand-coding dictionary check. Refuses to draft cohort
+    # papers without a published dictionary. Bypass via KNA_BYPASS_HANDCODING=1.
+    bypass_hc = os.environ.get("KNA_BYPASS_HANDCODING") == "1"
+    dict_path = require_hand_coding_dictionary(round_num, bypass=bypass_hc)
+    if dict_path is not None:
+        print(f"  [Hand-Coding · C5] dictionary present: {dict_path}")
 
     ts = datetime.now().strftime("%Y-%m-%d")
     forum_context = get_all_forum_context(round_num)
@@ -410,6 +487,14 @@ def draft_article(round_num):
             full_tex = template.replace("%%TITLE%%", "").replace("%%CONTENT%%", content)
             tex_file.write_text(full_tex)
             print(f"  LaTeX: {tex_file.name}")
+
+            # C6 · N>=10 guardrail: scan for inferential claims attached to cells < N=10
+            n_warnings = check_claim_n(full_tex, n_threshold=10)
+            if n_warnings:
+                print(f"  [Claim Check · C6] {len(n_warnings)} small-N inferential claim(s) flagged:")
+                for w in n_warnings[:5]:
+                    print(f"    - {w[:200]}")
+                print("    → Demote to DESCRIPTIVE ONLY or document the override in topic_gate.md.")
 
             # Also save a markdown version for the website
             md_file = ARTICLES_DIR / f"{article_slug}.md"
