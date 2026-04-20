@@ -1476,12 +1476,13 @@ def build_conference_page(path):
 
 def build_conferences():
     """Build the conferences page. Lists all generated conference_*.md proceedings
-    and renders each as its own HTML page."""
+    and post_conference_*.md companion reflections; renders each as its own HTML page."""
     articles_dir = BASE_DIR / "articles"
     conf_files = sorted(articles_dir.glob("conference_*.md"), reverse=True) if articles_dir.exists() else []
+    reflection_files = sorted(articles_dir.glob("post_conference_*.md"), reverse=True) if articles_dir.exists() else []
 
-    # Render each conference as its own page
-    for cf in conf_files:
+    # Render each conference and each reflection as its own page
+    for cf in list(conf_files) + list(reflection_files):
         html = build_conference_page(cf)
         (DOCS_DIR / f"{cf.stem}.html").write_text(html)
 
@@ -1538,6 +1539,58 @@ def build_conferences():
 </div>""")
         conf_items_html = "\n".join(items)
 
+    # Companion reflection listing (post_conference_*.md)
+    refl_items_html = ""
+    if reflection_files:
+        from html import escape as _escape
+        refl_items = []
+        for rf in reflection_files:
+            text = rf.read_text()
+            meta = {}
+            body = text
+            m = re.match(r"^---\n(.*?)\n---\n(.*)", text, re.DOTALL)
+            if m:
+                try:
+                    meta = yaml.safe_load(m.group(1)) or {}
+                except yaml.YAMLError:
+                    pass
+                body = m.group(2)
+            title = meta.get("title", rf.stem)
+            date = meta.get("date", "")
+            authors = meta.get("authors", "")
+            companion_to = meta.get("companion_to", "")
+            wc = len(body.split())
+            first_para = ""
+            for p in body.split("\n\n"):
+                s = p.strip()
+                if (len(s) > 100
+                        and not s.startswith("#")
+                        and not s.startswith("|")
+                        and not s.startswith("---")
+                        and not s.startswith("**")
+                        and not s.startswith("*")):
+                    first_para = s
+                    break
+            blurb = first_para.strip("*_ \n").replace("\n", " ")[:280]
+            meta_bits = []
+            if date:
+                meta_bits.append(date)
+            if authors:
+                meta_bits.append(authors)
+            if companion_to:
+                meta_bits.append(f"companion to {companion_to}")
+            meta_bits.append(f"{wc:,} words")
+            meta_line = " · ".join(meta_bits)
+            refl_items.append(f"""\
+<div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1.25rem 1.5rem; margin:1rem 0;">
+  <div style="font-weight:600; color:var(--text); margin-bottom:0.4rem; font-size:1.05rem;">
+    <a href="{rf.stem}.html" style="color:var(--accent); text-decoration:none;">{_escape(title)}</a>
+  </div>
+  <div class="post-meta" style="margin-bottom:0.6rem;">{meta_line}</div>
+  <div style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">{_escape(blurb)}{'...' if len(blurb) >= 280 else ''}</div>
+</div>""")
+        refl_items_html = "\n".join(refl_items)
+
     # Count rounds from summaries
     n_rounds = 0
     if SUMMARIES_DIR.exists():
@@ -1573,6 +1626,8 @@ Each conference distills the best findings from the forum into a coherent resear
 <h2>Published Proceedings</h2>
 
 {conf_items_html if conf_items_html else '<p class="post-meta">No conferences held yet. First conference auto-generates at 20 cumulative rounds.</p>'}
+
+{('<h2>Companion Reflection Reports</h2>' + chr(10) + refl_items_html) if refl_items_html else ''}
 
 <h2>Conference Program</h2>
 
