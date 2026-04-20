@@ -1443,21 +1443,116 @@ academic forum).</p>
     return render_page("Agora", body, active="agora")
 
 
+def build_conference_page(path):
+    """Build a single conference proceedings page from a conference_N_YYYY-MM-DD.md file."""
+    text = path.read_text()
+    meta = {}
+    body = text
+    m = re.match(r"^---\n(.*?)\n---\n(.*)", text, re.DOTALL)
+    if m:
+        try:
+            meta = yaml.safe_load(m.group(1)) or {}
+        except yaml.YAMLError:
+            pass
+        body = m.group(2)
+
+    title = meta.get("title", path.stem)
+    date = meta.get("date", "")
+    body_html = markdown.markdown(body, extensions=["tables", "fenced_code", "toc"])
+
+    page_body = f"""\
+<div class="channel-header">
+  <h2># conferences</h2>
+  <div class="topic">{path.stem}</div>
+</div>
+<div class="post-page">
+  <a href="conferences.html" class="back-link">&larr; Back to conferences</a>
+  <article class="post">
+  {body_html}
+  </article>
+</div>"""
+    return render_page(title, page_body, active="conferences")
+
+
 def build_conferences():
-    """Build the conferences page."""
+    """Build the conferences page. Lists all generated conference_*.md proceedings
+    and renders each as its own HTML page."""
+    articles_dir = BASE_DIR / "articles"
+    conf_files = sorted(articles_dir.glob("conference_*.md"), reverse=True) if articles_dir.exists() else []
+
+    # Render each conference as its own page
+    for cf in conf_files:
+        html = build_conference_page(cf)
+        (DOCS_DIR / f"{cf.stem}.html").write_text(html)
+
+    # Build the listing
+    conf_items_html = ""
+    if conf_files:
+        from html import escape
+        items = []
+        for cf in conf_files:
+            text = cf.read_text()
+            meta = {}
+            body = text
+            m = re.match(r"^---\n(.*?)\n---\n(.*)", text, re.DOTALL)
+            if m:
+                try:
+                    meta = yaml.safe_load(m.group(1)) or {}
+                except yaml.YAMLError:
+                    pass
+                body = m.group(2)
+            title = meta.get("title", cf.stem)
+            date = meta.get("date", "")
+            total_rounds = meta.get("total_rounds", "")
+            papers = meta.get("papers_presented", "")
+            wc = len(body.split())
+            # First abstract-like paragraph: non-header, non-table, non-HR, substantive length
+            first_para = ""
+            for p in body.split("\n\n"):
+                s = p.strip()
+                if (len(s) > 100
+                        and not s.startswith("#")
+                        and not s.startswith("|")
+                        and not s.startswith("---")
+                        and not s.startswith("**Proceedings")):
+                    first_para = s
+                    break
+            # Strip leading/trailing italics/bold markers for display
+            blurb = first_para.strip("*_ \n").replace("\n", " ")[:280]
+            meta_bits = []
+            if date:
+                meta_bits.append(f"{date}")
+            if total_rounds:
+                meta_bits.append(f"{total_rounds} rounds")
+            if papers:
+                meta_bits.append(f"{papers} papers")
+            meta_bits.append(f"{wc:,} words")
+            meta_line = " · ".join(meta_bits)
+            items.append(f"""\
+<div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1.25rem 1.5rem; margin:1rem 0;">
+  <div style="font-weight:600; color:var(--text); margin-bottom:0.4rem; font-size:1.05rem;">
+    <a href="{cf.stem}.html" style="color:var(--accent); text-decoration:none;">{escape(title)}</a>
+  </div>
+  <div class="post-meta" style="margin-bottom:0.6rem;">{meta_line}</div>
+  <div style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">{escape(blurb)}{'...' if len(blurb) >= 280 else ''}</div>
+</div>""")
+        conf_items_html = "\n".join(items)
+
     # Count rounds from summaries
     n_rounds = 0
     if SUMMARIES_DIR.exists():
         n_rounds = len(list(SUMMARIES_DIR.glob("round_*.md")))
 
+    held = len(conf_files)
+    next_conf_at = (held + 1) * 20
     status_html = f"""\
 <div style="background:var(--bg-tertiary); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
   <p style="font-size:2rem; margin-bottom:0.5rem;">🎓</p>
-  <p style="color:var(--text); font-weight:600;">{n_rounds} / 20 rounds</p>
+  <p style="color:var(--text); font-weight:600;">{held} conference{'' if held == 1 else 's'} held &middot; {n_rounds} current-arc rounds</p>
   <div style="background:var(--bg); border-radius:4px; height:8px; margin:0.75rem auto; max-width:300px; overflow:hidden;">
     <div style="background:var(--accent); height:100%; width:{min(n_rounds/20*100, 100):.0f}%; border-radius:4px;"></div>
   </div>
-  <p class="post-meta">Conference auto-generates at 20 cumulative rounds</p>
+  <p class="post-meta">Next conference at {next_conf_at} cumulative rounds</p>
 </div>"""
 
     body = f"""\
@@ -1474,6 +1569,10 @@ a structured academic conference: panels, presentations, discussants, and a keyn
 Each conference distills the best findings from the forum into a coherent research program.</p>
 
 {status_html}
+
+<h2>Published Proceedings</h2>
+
+{conf_items_html if conf_items_html else '<p class="post-meta">No conferences held yet. First conference auto-generates at 20 cumulative rounds.</p>'}
 
 <h2>Conference Program</h2>
 
