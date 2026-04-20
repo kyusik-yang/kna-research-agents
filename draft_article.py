@@ -464,7 +464,11 @@ def repair_orphan_figures(tex_file, round_num):
     import re as _re
 
     content = tex_file.read_text()
-    fig_dir = tex_file.parent / "figures"
+    # Per-article namespace: figures/<article_stem>/fig_N.pdf prevents cross-article
+    # overwrites when multiple papers are drafted from the same articles/ dir.
+    stem = tex_file.stem
+    fig_dir = tex_file.parent / "figures" / stem
+    fig_dir.mkdir(parents=True, exist_ok=True)
 
     # Find orphan fbox placeholders (not yet replaced by includegraphics)
     orphans = list(_re.finditer(
@@ -477,7 +481,7 @@ def repair_orphan_figures(tex_file, round_num):
 
     print(f"\n  Found {len(orphans)} orphan figure placeholder(s). Generating R code...")
 
-    # Count existing figures to continue numbering
+    # Per-article namespace: start numbering at 1 each time
     existing_figs = sorted(fig_dir.glob("fig_*.pdf"))
     next_num = len(existing_figs) + 1
 
@@ -547,8 +551,8 @@ def repair_orphan_figures(tex_file, round_num):
             if pdf_path.exists() and pdf_path.stat().st_size > 1000:
                 print(f"  Figure generated: {pdf_name} ({pdf_path.stat().st_size // 1024} KB)")
 
-                # Replace this orphan fbox with includegraphics
-                incl = f'\\includegraphics[width=\\textwidth]{{figures/{pdf_name}}}'
+                # Replace this orphan fbox with includegraphics (per-article path)
+                incl = f'\\includegraphics[width=\\textwidth]{{figures/{stem}/{pdf_name}}}'
                 content = content.replace(match.group(0), incl, 1)
             else:
                 print(f"  R execution failed or empty output: {r_result.stderr[:200]}")
@@ -571,8 +575,10 @@ def execute_r_figures(tex_file):
     import re as _re
 
     content = tex_file.read_text()
-    fig_dir = tex_file.parent / "figures"
-    fig_dir.mkdir(exist_ok=True)
+    # Per-article namespace (same fix as repair_orphan_figures)
+    stem = tex_file.stem
+    fig_dir = tex_file.parent / "figures" / stem
+    fig_dir.mkdir(parents=True, exist_ok=True)
 
     # Find R code blocks in verbatim environments
     # Pattern: \begin{verbatim} ... R code with ggsave ... \end{verbatim}
@@ -634,7 +640,7 @@ def execute_r_figures(tex_file):
 
                 # Replace fbox placeholder with actual includegraphics
                 # Use lambda to avoid regex escape issues with \includegraphics
-                incl = f'\\includegraphics[width=\\textwidth]{{figures/{pdf_name}}}'
+                incl = f'\\includegraphics[width=\\textwidth]{{figures/{stem}/{pdf_name}}}'
                 content = _re.sub(
                     r'\\fbox\{\\parbox\{.*?\}\{.*?\}\}',
                     lambda m: incl,
