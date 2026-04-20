@@ -36,12 +36,12 @@ signed: YYYY-MM-DD
 
 ---
 
-## R21 — Arc 2 opening (PENDING)
+## R21 — Arc 2 opening: attendance-outcome replication of Paper B
 
-seed: <to be filled before R21>
+seed: Pre-resignation committee attendance drop: a non-anchored replication of the sponsorship shirking finding in Paper B
 
-identification: <to be filled>
+identification: Replicates Paper B's DiD using the R17 hand-coded cohort of 16 clean local-executive runners (18th-21st Assemblies). Outcome variable shifts from chief-sponsorship rate per member-month (mechanically anchored on the last-bill-date filter) to committee-meeting attendance rate per month (non-anchored, constructed from committee_meetings_{17-22}.parquet). Late window [-6m, resignation) vs. early window [-12m, -6m) comparison against the productivity-matched continuer pool. The court-ruling cohort (7 cases in the 19th Assembly) again serves as the channel-separation placebo. Because the outcome does not depend on the member's last recorded bill, the attendance specification is not vulnerable to the mechanical tilt that motivated the R15 sign flip, and the pre-registration analysis plan (PAP) filed 2026-05-16 will treat attendance as the paper's robustness anchor for the headline shirking claim.
 
-exclusion_criteria: <to be filled>
+exclusion_criteria: (1) Do NOT attempt to expand the N=16 clean cohort; the NEC machine-readable candidate registry remains unavailable (L2 in the reflection report). (2) Do NOT re-run the sponsorship analysis from Paper B; this round is about the attendance-outcome replication only. (3) Do NOT pivot into roll-call attendance (different concept, would require a separate PAP). (4) Do NOT generalize to an "attendance theory" of legislative shirking; the Korean committee-meeting attendance convention has specific institutional features (대리출석 etc.) that do not travel.
 
-signed: <to be filled>
+signed: 2026-04-20

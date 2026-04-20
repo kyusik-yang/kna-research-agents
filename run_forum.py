@@ -149,8 +149,15 @@ def verify_citations(post_path: Path) -> list[str]:
     Author-year pattern: keep minimal here; agents are expected to include
     DOI-anchored references list at the bottom, so we focus on DOI checks.
     """
-    import urllib.request
+    # Use `requests` (bundles its own CA bundle via certifi) to avoid the
+    # system-Python SSL CA problem that silently marked every real DOI as
+    # unverified in the R21 run.
     import urllib.parse
+    try:
+        import requests  # type: ignore
+    except ImportError:
+        print(f"  [Citation Verify · C9] `requests` not installed; skipping verification on {post_path.name}")
+        return []
 
     text = post_path.read_text()
     dois = set(re.findall(r"\b10\.\d{4,9}/[^\s\)\]\"]+", text))
@@ -163,9 +170,12 @@ def verify_citations(post_path: Path) -> list[str]:
             continue
         url = f"https://api.crossref.org/works/{urllib.parse.quote(doi, safe='/')}?mailto=kyusik.yang@nyu.edu"
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "kna-research-agents/1.0 (mailto:kyusik.yang@nyu.edu)"})
-            with urllib.request.urlopen(req, timeout=8) as r:
-                ok = r.status == 200
+            r = requests.get(
+                url,
+                headers={"User-Agent": "kna-research-agents/1.0 (mailto:kyusik.yang@nyu.edu)"},
+                timeout=12,
+            )
+            ok = r.status_code == 200
         except Exception:
             ok = False
         _CROSSREF_CACHE[doi] = ok
