@@ -45,6 +45,139 @@ def load_agents():
         return json.load(f)["agents"]
 
 
+# ==========================================================================
+# Arc 2 reflection-commitment guardrails (C2 / C3 / C9).
+# Added 2026-04-20 per post_conference_reflection_2026-04-20.md.
+# ==========================================================================
+
+TOPIC_GATE_FILE = BASE_DIR / "topic_gate.md"
+RETREATS_LEDGER = KNOWLEDGE_DIR / "retreats.jsonl"
+
+
+def check_topic_gate(seed_topic: str, start_round: int, total_existing: int, bypass: bool = False) -> None:
+    """C2 (Pepinsky 2026): refuse to open a new research thread without a
+    signed topic_gate.md entry for the current seed topic.
+
+    Triggers whenever a seed topic is supplied via --topic, on the grounds
+    that --topic is the explicit marker of a new research thread. The
+    researcher opts out by omitting --topic (continuation) or by passing
+    --bypass-topic-gate (explicit override).
+
+    Each entry in topic_gate.md is an H2 block beginning with "## " and
+    containing a line "seed: <seed_topic>" plus a "signed: <ISO-date>" line.
+    """
+    if bypass or not seed_topic:
+        return
+
+    if not TOPIC_GATE_FILE.exists():
+        raise SystemExit(
+            "[BLOCKED · Topic Gate · C2]\n"
+            "A new research thread (or fresh arc) cannot open without a signed\n"
+            f"topic_gate.md at the repo root.\n"
+            f"Seed topic: {seed_topic}\n"
+            f"Expected file: {TOPIC_GATE_FILE}\n"
+            "Fix: create topic_gate.md with an entry matching the seed topic\n"
+            "(see template in the file, or use --bypass-topic-gate to skip\n"
+            "under explicit researcher override)."
+        )
+
+    raw = TOPIC_GATE_FILE.read_text()
+    # Match an entry whose seed substring occurs + signed line present
+    import textwrap
+    normalized_seed = re.sub(r"\s+", " ", seed_topic.strip().lower())
+    entries = re.split(r"\n## ", raw)
+    for entry in entries:
+        lower = entry.lower()
+        if "signed:" not in lower:
+            continue
+        seed_line = re.search(r"^seed:\s*(.+)$", entry, re.MULTILINE | re.IGNORECASE)
+        if not seed_line:
+            continue
+        entry_seed = re.sub(r"\s+", " ", seed_line.group(1).strip().lower())
+        # Substring OK (researcher may abbreviate in gate); require reasonable overlap
+        if entry_seed in normalized_seed or normalized_seed in entry_seed:
+            print(f"  [Topic Gate · C2] Signed entry found for: {seed_topic[:80]}")
+            return
+
+    raise SystemExit(
+        "[BLOCKED · Topic Gate · C2]\n"
+        f"topic_gate.md exists but no signed entry matches seed topic:\n"
+        f"  {seed_topic}\n"
+        "Add a new H2 entry with `seed:` and `signed:` lines, or use\n"
+        "--bypass-topic-gate for an explicit researcher override."
+    )
+
+
+def log_retreat(
+    originating_round: int,
+    overturning_round: int,
+    flagged_by: str,
+    finding: str,
+    reason: str,
+    from_status: str = "preliminary",
+    to_status: str = "contested",
+) -> None:
+    """C3 (reflection report): append to the retreat ledger whenever a prior
+    finding is overturned. Called manually from agent posts (via Bash) or
+    from the orchestrator when summary diffs detect a status transition."""
+    RETREATS_LEDGER.parent.mkdir(parents=True, exist_ok=True)
+    from datetime import datetime as _dt
+    entry = {
+        "ts": _dt.now().isoformat(timespec="seconds"),
+        "originating_round": originating_round,
+        "overturning_round": overturning_round,
+        "flagged_by": flagged_by,
+        "from_status": from_status,
+        "to_status": to_status,
+        "finding": finding.strip(),
+        "reason": reason.strip(),
+    }
+    with open(RETREATS_LEDGER, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    print(f"  [Retreat · C3] R{originating_round} → R{overturning_round}: {finding[:60]}")
+
+
+_CROSSREF_CACHE: dict = {}
+
+
+def verify_citations(post_path: Path) -> list[str]:
+    """C9 (reflection report): scan a committed forum post for DOI and
+    author-year citations; Crossref-verify each; return list of
+    unverified citations as strings (empty list if all verified).
+
+    DOI pattern: 10.xxxx/yyyy form.
+    Author-year pattern: keep minimal here; agents are expected to include
+    DOI-anchored references list at the bottom, so we focus on DOI checks.
+    """
+    import urllib.request
+    import urllib.parse
+
+    text = post_path.read_text()
+    dois = set(re.findall(r"\b10\.\d{4,9}/[^\s\)\]\"]+", text))
+    unverified = []
+    for doi in sorted(dois):
+        doi = doi.rstrip(".,;)]}")
+        if doi in _CROSSREF_CACHE:
+            if not _CROSSREF_CACHE[doi]:
+                unverified.append(doi)
+            continue
+        url = f"https://api.crossref.org/works/{urllib.parse.quote(doi, safe='/')}?mailto=kyusik.yang@nyu.edu"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "kna-research-agents/1.0 (mailto:kyusik.yang@nyu.edu)"})
+            with urllib.request.urlopen(req, timeout=8) as r:
+                ok = r.status == 200
+        except Exception:
+            ok = False
+        _CROSSREF_CACHE[doi] = ok
+        if not ok:
+            unverified.append(doi)
+    if unverified:
+        print(f"  [Citation Verify · C9] {post_path.name}: {len(unverified)} unverified DOI(s)")
+        for d in unverified[:5]:
+            print(f"    - {d}")
+    return unverified
+
+
 def get_forum_posts():
     """Read all forum posts, sorted chronologically."""
     posts = sorted(FORUM_DIR.glob("*.md"))
@@ -631,6 +764,10 @@ def main():
     parser.add_argument("--resume", action="store_true", help="Keep existing posts")
     parser.add_argument("--dry-run", action="store_true", help="Preview prompts only")
     parser.add_argument("--comment", type=str, default=None, help="Add a human researcher comment")
+    parser.add_argument("--bypass-topic-gate", action="store_true",
+                        help="Override topic_gate.md requirement (C2). Use with researcher consent only.")
+    parser.add_argument("--skip-citation-verify", action="store_true",
+                        help="Skip Crossref verification of posted DOIs (C9). Default: verify.")
     args = parser.parse_args()
 
     for d in (FORUM_DIR, LOGS_DIR, WORKSPACE_DIR, SUMMARIES_DIR):
@@ -681,6 +818,17 @@ def main():
         print(f"  Topic:  {args.topic}")
     print()
 
+    # C2 · Topic-gate precheck (Pepinsky 2026). Runs before the first round;
+    # blocks if this run opens a fresh arc or crosses a topic_break without
+    # a signed entry in topic_gate.md.
+    if not args.dry_run:
+        check_topic_gate(
+            seed_topic=args.topic or "",
+            start_round=start_round,
+            total_existing=len(existing_agent_posts),
+            bypass=args.bypass_topic_gate,
+        )
+
     for i in range(args.rounds):
         rnd = start_round + i
         print(f"\n{'#' * 60}")
@@ -705,6 +853,15 @@ def main():
             if not success:
                 print(f"  FATAL: {agent['id']} failed 3 times. Stopping.")
                 sys.exit(1)
+
+            # C9 · Citation verification on the just-written post.
+            if not args.dry_run and not args.skip_citation_verify:
+                latest = sorted(FORUM_DIR.glob("*.md"))[-1] if any(FORUM_DIR.glob("*.md")) else None
+                if latest is not None:
+                    try:
+                        verify_citations(latest)
+                    except Exception as e:
+                        print(f"  [Citation Verify · C9] error (non-fatal): {e}")
 
         if not args.dry_run:
             generate_round_summary(
