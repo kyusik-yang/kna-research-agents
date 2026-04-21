@@ -36,6 +36,16 @@ signed: YYYY-MM-DD
 
 ---
 
+## R22 — NEC date ground-truthing + district-vs-PR moderator falsification
+
+seed: NEC registration-date ground-truthing and district-vs-PR moderator pre-registration for the 16-member local-executive cohort
+
+identification: Step 1 - extend knowledge/hand_coding/round_22.jsonl with a `nec_registration_date` field (YYYY-MM-DD) for each of the 16 clean local-executive runners. Sources: NEC (중앙선관위) candidate-registration archive, 선거관리위원회 보도자료, and news-archive cross-check for cases where NEC returns ambiguous records. Step 2 - compute the exact [-12m, -6m) early window and [-6m, registration_date) late window per-member rather than the approximate windows used in R15-R20, and re-run Paper B's sponsorship DiD on the corrected windows. Step 3 - pre-register a district-vs-PR moderator: the shirking prediction should be stronger for district-elected members (SMD) than for PR-list members because the local-executive campaign itself is district-based. If the moderator fails (PR and SMD show statistically indistinguishable ramps), the ambition-investment mechanism is weakened and we report a scope condition.
+
+exclusion_criteria: (1) Do NOT expand the cohort beyond the 16 clean local-executive runners; the L2 NEC-registry limit stands. (2) Do NOT re-open the committee-attendance outcome settled in R21 as not feasible on the processed corpus. (3) Do NOT promote roll-call participation (R21's pivot target) to the primary outcome; the PAP narrowing to sponsorship-specific shirking is locked. (4) Do NOT reintroduce court-ruling, cabinet, or Blue House exits into the treated set; they remain the channel-separation placebo.
+
+signed: 2026-04-20
+
 ## R21 — Arc 2 opening: attendance-outcome replication of Paper B
 
 seed: Pre-resignation committee attendance drop: a non-anchored replication of the sponsorship shirking finding in Paper B
