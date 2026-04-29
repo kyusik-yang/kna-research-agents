@@ -36,6 +36,16 @@ signed: YYYY-MM-DD
 
 ---
 
+## R23 — Arc 3 opening: committee chair allocation as legislative power distribution
+
+seed: Standing committee chair allocation as the primary legislative power distribution mechanism: who do major-party quota negotiations protect?
+
+identification: Hand-coded chair-tenure dataset for 18th-22nd National Assembly standing committees (17 standing committees x ~5 Assemblies x ~2 chair turnovers per term ~ 170 chair-spells). Exploit two design layers: (a) DiD on within-person chair-promotion events - members who became chairs vs. same-party-cohort non-chairs matched on seniority and committee tenure, pre/post chair appointment, on three outcomes (own bill sponsorship rate, own bill passage rate, committee bill bundling rate). (b) Cross-sectional placebo: chair of high-stakes committees (예결, 법사, 정무) vs. low-stakes committees (윤리, 운영) on the same outcomes - if the effect is concentrated in high-stakes committees, the mechanism is legislative power, not just additional workload. Chair appointment timing is treated as quasi-exogenous within the party's seniority-pool constraint; we will run sensitivity to a parallel-trends placebo in the [-12m, -6m) pre-window.
+
+exclusion_criteria: (1) Do NOT expand to special committees (특별위원회), 원내대표 selection, or 의장단 - the unit is standing committee chair only. (2) Do NOT promote faction (계파) effects above the institutional chair-allocation finding even if 계파 patterns appear; faction analysis stays a moderator, not the headline. (3) Do NOT pivot to chair APPLICATION data (신청 선호) when allocation data is incomplete; preference and allocation are different concepts. (4) Do NOT collapse the high-stakes vs low-stakes committee distinction into a single index; the placebo logic depends on the dichotomy.
+
+signed: 2026-04-28
+
 ## R22 — NEC date ground-truthing + district-vs-PR moderator falsification
 
 seed: NEC registration-date ground-truthing and district-vs-PR moderator pre-registration for the 16-member local-executive cohort
