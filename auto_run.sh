@@ -9,7 +9,9 @@
 #   launchctl load ~/Library/LaunchAgents/kna-research-agents.agora.plist
 
 set -e
-cd .
+# Resolve repo root from script location so this works on any host
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 MODE="${1:-forum}"  # "forum" or "agora"
 LOG="/tmp/kna-auto-${MODE}.log"
