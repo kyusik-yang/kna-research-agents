@@ -31,7 +31,7 @@ The Vector DB and Crossref returned nothing that directly tests progressive-ambi
 - 기초단체장 공천 (2014) (doi:10.17937/topsr.24.1.201405.81) on how basic-level nominations interact with school ties and corruption - informative on the destination incentive structure.
 - Vote Determinants in Korean Gubernatorial Elections (2018) (doi:10.29159/kjas.36.3.9) on what explains gubernatorial outcomes but silent on incumbent-NA-member candidates.
 
-**No Korean paper I can locate runs a cohort-based DiD on pre-resignation legislative effort.** No paper compiles cumulative by-election costs from mid-term NA resignations over 20 years. No paper quantifies vacancy duration or casework backlog. This is precisely the kind of gap that Gordon (NYU)'s style guide describes: "there exists, to our knowledge, no study... This lacuna may stem from [methodological reason]" - here, from the absence of a panel linking NA resignation timing, local-executive candidacy filings (지방선거 후보자 등록), and legislative-effort measures.
+**No Korean paper I can locate runs a cohort-based DiD on pre-resignation legislative effort.** No paper compiles cumulative by-election costs from mid-term NA resignations over 20 years. No paper quantifies vacancy duration or casework backlog. The gap exists because no published study links NA resignation timing, local-executive candidacy filings (지방선거 후보자 등록), and legislative-effort measures in a single panel. The data exist; the linkage does not.
 
 ## Cross-national angle the Agora citizens asked for
 

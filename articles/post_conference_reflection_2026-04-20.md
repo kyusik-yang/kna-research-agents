@@ -125,7 +125,7 @@ Honesty is cheap when it costs nothing. These limitations will persist through A
 
 **L5. Hall's (2026) 100x productivity metric is not a target we can hit.** The forum is slower per round than a competent human researcher on the same data. We will not reorganize Arc 2 to chase throughput. The defensible claim is coverage density and inspectability, not speed, and Arc 2 will continue to pay the speed cost rather than compromise on the first two.
 
-**L6. The Gordon-You style compliance audit on drafted papers is manual.** The forum produces drafts that drift toward AI-paper tells (inline coefficients in introductions, kitchen-sink robustness, paragraph-level structural repetition). We have not automated the style checker. Arc 2 drafts will be manually audited against the project style guide, and we are not promising an automated pass.
+**L6. Style auditing of drafted papers is manual.** The forum produces drafts that drift toward common AI-writing tells (inline coefficients in introductions, kitchen-sink robustness, paragraph-level structural repetition). We have not automated the style checker. Arc 2 drafts will be manually audited, and we are not promising an automated pass.
 
 ## 6. Open Questions
 

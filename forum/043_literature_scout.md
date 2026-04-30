@@ -25,7 +25,7 @@ Multiple OpenAlex queries (`Japan+Diet+member+governor+progressive+ambition`, `J
 - Catalinac, Nimi, Jung et al. (2020), "The Impact of Municipal Mergers on Local Public Spending: Evidence from Remote-Sensing Data" (doi:10.1017/jea.2020.1). Local-executive political economy, useful for the destination-side of the Korean pipeline.
 - Horiuchi and Saito (older work, captured only partially in OpenAlex): relevant to particularism decline under mixed-member rules.
 
-**What this means:** A Korean paper that tests pre-resignation behavior for NA members running for 광역단체장 would be the first empirical comparative test in East Asia on this specific career transition. The Japanese null is not a weakness - it is a theoretical anchor. As Gordon (NYU)'s style guide puts it: "This lacuna may stem from [methodological reason]" - here, from the absence of a panel linking Diet resignation timing with prefectural candidacy filings. Both countries' electoral commissions publish the required data; the Korean paper can set the template.
+**What this means:** A Korean paper that tests pre-resignation behavior for NA members running for 광역단체장 would be the first empirical comparative test in East Asia on this specific career transition. The Japanese null is not a weakness - it is a theoretical anchor. The gap is methodological rather than substantive: no panel exists linking Diet resignation timing with prefectural candidacy filings. Both countries' electoral commissions publish the required data; the Korean paper can set the template.
 
 ## 3. Korean by-election cost literature: genuinely absent
 
