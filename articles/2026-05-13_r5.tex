@@ -1,0 +1,456 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{Electoral Pathways and Women's Legislative Effectiveness: The Passage Rate Reversal in the Korean National Assembly, 2004-2025}
+\author{KNA Research Agents (AI-generated)}
+\affil{Experimental Output --- kna-research-agents.com}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent How does the route by which women enter parliament shape what they accomplish once they arrive? Theory built around Korea's gender quota assumed that the proportional representation tier would be the principal engine of women's substantive representation, with district-elected women a residual category too small for systematic comparison. Using a member-level dataset of 1,933 member-terms across the 17th through 22nd Korean National Assemblies (2004 to 2025), I document a reversal: in the 21st and 22nd Assemblies, women elected from single-member districts achieved higher bill passage rates than any other gender-pathway combination, while women elected from the party list saw their passage rates decline sharply. The reversal coincides with a structural shift in the composition of women legislators, whose district share rose from 23 percent to 56 percent across six assemblies. The pattern is consistent with a political-capital interpretation: district mandates appear to confer bargaining leverage that party-list mandates do not. I discuss implications for the literature on substantive representation in mixed-member systems.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} gender, legislative effectiveness, mixed-member system, Korean National Assembly, substantive representation
+
+\bigskip
+\setcounter{page}{0}
+\clearpage
+
+\section{Introduction}
+
+When a legislature institutes a gender quota that channels women through one electoral pathway rather than another, the design of that pathway carries assumptions about why women enter politics and what they will accomplish once they arrive. Korea's mixed-member majoritarian system embeds such an assumption. The party-list tier mandates that at least half of all proportional representation candidates be women, while single-member districts impose no such requirement. The institutional logic, articulated when the quota was strengthened in the early 2000s, treated proportional representation as the engine of women's substantive representation: a way to circumvent the local male networks that dominate district primaries and to install legislators whose accountability runs to party leaders willing to advance gender equality \citep{lee2018}.
+
+This logic generates a clear empirical prediction. Women elected through the list tier should be more active and more effective on gender-relevant legislation than women elected through districts, because their incentives, networks, and ideological commitments were curated for that purpose. \citet{kweonRyan2021} confirm part of this prediction for the sponsorship side, finding that proportional representation legislators in Korea sponsor more women's issue bills than their district counterparts. The remaining piece of the prediction, however, has not been tested: do list-elected women legislators also \emph{succeed} more often at moving bills through the legislative process? Sponsorship is cheap; passage is the harder test.
+
+The evidence I present below suggests the prediction fails, and fails in an unexpected direction. Using member-level records for 1,933 member-terms across six Korean National Assemblies (the 17th through the 22nd, covering 2004 to 2025), I find that women elected from single-member districts have, since the 21st Assembly, achieved higher bill passage rates than women elected from the party list, and indeed higher rates than men in either pathway. The pattern is novel because the structural conditions that make it visible are themselves new. Through the 19th Assembly, more than half of all women legislators entered through the list tier, and the small group of district-elected women was both selected on unusual political capital and too small to support reliable comparisons. By the 22nd Assembly, women winning district races outnumber their list-tier colleagues, and the within-gender variation finally supports the kind of comparison the literature has long called for.
+
+The reversal poses a puzzle for the descriptive-substantive representation literature. \citet{voldenWisemanWittmer2016} argue that women legislators in the U.S. Congress are systematically more effective at advancing women's issue bills, even though those bills face a procedural penalty. \citet{shim2021a} extends this logic to Korea and Taiwan, finding that women legislators concentrate on welfare- and gender-related legislation. Yet neither framework anticipates that effectiveness would vary across electoral pathways within the same gender category, or that the pathway with weaker institutional ties to gender advocacy would emerge as the more effective one. \citet{bailerEtAl2021} provide one piece of the puzzle, suggesting that representing disadvantaged groups carries diminishing career value as legislators accumulate seniority; the implication is that women who succeed in district races may have already internalized this trade-off and built portfolios designed to maximize passage rather than to maximize gender-relevant signaling.
+
+There exists, to my knowledge, no study that documents how women's legislative effectiveness varies by electoral pathway across multiple assemblies in a mixed-member system, nor any study that examines whether the structural diversification of women's entry pathways alters the meaning of descriptive representation itself. This lacuna may stem from a measurement problem that has only recently dissolved. Until the 20th Assembly, women district winners in Korea numbered fewer than 30 per assembly, making within-gender mandate comparisons fragile. The 21st and 22nd Assemblies now provide enough variation, and the Korean National Assembly bill database makes the relevant outcomes observable at the legislator-bill level.
+
+I make three contributions. First, I assemble a member-level dataset covering 1,933 member-terms across the 17th through 22nd Assemblies and link it to the full bill registry to produce per-legislator passage rates by gender, pathway, party, and assembly. Second, I document the passage rate reversal and show that it is robust to a within-party decomposition that addresses the most pressing alternative explanation, namely that the SMD women advantage merely reflects governing-party incumbency. Third, I show that the reversal coincides with a decline in gender-keyword bill sponsorship and a shift of women legislators into committees previously dominated by men, suggesting that women's substantive representation is diversifying in policy scope at the same moment that its concentration on gender-specific legislation is weakening.
+
+The paper proceeds as follows. Section 2 reviews the relevant literatures and derives expectations. Section 3 describes the data and identification approach. Section 4 presents the main results, including the passage rate reversal, the within-party decomposition, and supplementary findings on committee allocation and bill content. Section 5 discusses the interpretation and limitations. Section 6 concludes.
+
+\section{Literature and Theory}
+
+\subsection{Descriptive and Substantive Representation}
+
+The question of whether electing women translates into policy outcomes favorable to women has structured the gender and legislative studies literature for three decades. The foundational claim, that women legislators behave differently from men along policy-relevant dimensions, has accumulated considerable comparative evidence. \citet{voldenWisemanWittmer2016} analyze the full universe of bills introduced in the U.S. House from 1973 to 2014 and find that women's issue bills face a procedural penalty: they are less likely to receive committee action, floor votes, or passage. Critically, women legislators are more effective than men at moving these bills past those obstacles. The implication is that the link between descriptive and substantive representation operates not through the sheer presence of women but through their differential effectiveness on the specific bills that articulate women's interests.
+
+\citet{liuBanaszak2016} sharpen this finding by drawing attention to institutional position. Their cross-national evidence indicates that the policy impact of women's representation depends more on women's occupancy of agenda-setting roles, such as committee chairs and party leadership posts, than on aggregate descriptive shares. \citet{kroeber2018} extends the measurement framework by proposing how to operationalize the substantive representation of marginalized groups across comparative settings.
+
+The diminishing-value strand of this literature complicates a simple presence-equals-policy story. \citet{bailerEtAl2021} examine career trajectories of legislators who advocate for disadvantaged groups in several European parliaments and find that early advocacy on group-relevant issues becomes a liability for legislators who pursue leadership positions later in their careers. Their analysis implies a sorting process whereby women who anticipate long careers shift their portfolios toward less group-specific legislation. This mechanism is directly relevant to the Korean case, because Korean women legislators face a steep reelection penalty for sponsoring women's issue bills \citep{shim2021b} and many serve in legislatures across multiple terms.
+
+\subsection{Mixed-Member Systems and Pathway Effects}
+
+A separate strand of the legislative studies literature examines how electoral systems condition legislative behavior. In mixed-member systems, the comparison between list-elected and district-elected legislators offers a within-country test of how electoral incentives shape what legislators do. \citet{junHix2010} analyze party defection in Korea's mixed-member system and find that proportional representation legislators are more likely to break from the party line in floor votes than district legislators, attributing the difference to the absence of a personal-vote constraint among list members. \citet{kimPark2022} extend this analysis with attention to open-primary experience and mandate type, finding that institutional pathways structure voting behavior in ways that party affiliation alone does not capture.
+
+\citet{coffeDavidsonSchmich2019} document a gendered ambition cycle in mixed-member systems, showing that women candidates face different career calculations depending on which tier they enter through. \citet{crispCunhaSilva2022} examine the role of district magnitude in conditioning when women represent women, providing comparative evidence that the institutional rules of a legislature shape the strength of the descriptive-substantive link.
+
+The intersection of gender and mandate type has been examined in only one Korean study. \citet{kweonRyan2021} analyze women's issue bill sponsorship and find that the proportional representation pathway is associated with more sponsorship of women's issue bills, with the PR advantage particularly pronounced for men. Their analysis stops at sponsorship rather than passage, and their data predate the 21st Assembly. The question of whether the PR pathway also generates a passage-rate advantage, and whether that advantage has persisted as women's entry pathways have diversified, remains open.
+
+\subsection{Gender Politics in the Korean National Assembly}
+
+The Korea-specific literature on gender and legislative behavior is small but expanding. \citet{shim2021a} documents that women legislators in both Korea and Taiwan sponsor disproportionately more welfare- and gender-related bills, with the share of women in the legislature conditioning the breadth of substantive representation. \citet{shim2021b} finds that supporting women's issue bills carries a reelection penalty in Korea, with district legislators in conservative areas particularly exposed.
+
+\citet{shin2022} provides a comprehensive analysis of women's substantive representation in the Korean National Assembly, with attention to the role of the Gender Equality and Family Committee as an institutional vehicle. \citet{yunParkJung2016} examine the operation of that committee during the first half of the 19th Assembly. \citet{leeLee2020} test the descriptive-substantive link in Korea and find that it is conditional on party affiliation, committee assignment, and seniority. \citet{jeong2019} catalogs bill sponsorship patterns of women legislators across the 17th through 20th Assemblies. \citet{go2025} offers a comparative historical interpretation of why Korean gender politics has been more contested and slower to converge on equality outcomes than the Taiwanese case.
+
+Two recent studies bring attention to backlash dynamics. \citet{woo2023} shows that anti-feminist sentiment on social media platforms is associated with declines in legislators' sponsorship of bills addressing violence against women. \citet{kimLeeKang2025} provide the attitudinal foundation, documenting that support for gender equality has declined among specific demographic groups in South Korea, with implications for the electoral incentives facing women legislators.
+
+\subsection{Theoretical Expectations}
+
+Drawing on these strands, I formulate three expectations.
+
+The first is a baseline prediction inherited from the international literature on women's effectiveness. If women legislators differ from men in their portfolio composition and procedural skill on gender-relevant bills, the aggregate per-capita sponsorship rate of women should exceed that of men, particularly on welfare- and gender-related domains.
+
+The second concerns mandate type. The conventional logic of Korea's quota suggests that PR-elected women, selected by party leaders explicitly to advance gender equality, should be more active sponsors of gender-relevant legislation and more effective at moving such legislation through committee. This is the prediction \citet{kweonRyan2021} partially confirm for sponsorship.
+
+The third expectation is the novel one. As the structural composition of women legislators shifts, with district-elected women gaining numerical parity with list-elected women, the meaning of each pathway may shift as well. District-elected women carry constituency mandates that confer different bargaining leverage than party-list mandates. They have demonstrated electoral viability in local races, which signals political capital and provides ongoing accountability pressure. If political capital matters for legislative effectiveness in the Korean institutional environment, the district pathway may produce equal or greater passage rates once the cohort grows large enough for the advantage to register. This expectation runs against the literature's emphasis on the PR pathway as the engine of substantive representation, and it is the central claim I test below.
+
+\section{Data and Method}
+
+\subsection{Data}
+
+I compile a member-level dataset covering 1,933 member-terms across the 17th through 22nd National Assemblies (2004 to 2025), linked to the full bill registry of the Korean National Assembly. The unit of analysis varies across the empirical sections. For per-capita sponsorship comparisons, the unit is the legislator-assembly. For passage rate comparisons, the unit is the legislator-assembly with bills aggregated to that level. For sponsorship composition and gender-keyword analyses, the unit is the bill, with sponsor characteristics linked through the lead-sponsor identifier.
+
+The member-level data combine three sources. Member identifiers, gender, election type (proportional or district), party affiliation, and reelection status are drawn from the National Assembly's member registry, supplemented by a 2026 scraping pass that recovered records previously corrupted by a pagination defect in the open API. Bill records, including title, sponsor identifier, sponsor type (member or executive), committee referral, processing dates, and final outcome, are drawn from the bill registry covering the 17th through 22nd Assemblies. Roll-call data, used in the supplementary ideological analysis, are drawn from individual vote records for the 20th, 21st, and 22nd Assemblies, with DW-NOMINATE ideal points estimated separately.
+
+I restrict the bill universe to member-sponsored bills (\textit{ppsr\_kind} equal to ``의원''), which excludes the small number of executive-branch bills. The dependent variable for passage analyses is an indicator equal to one if the bill received final passage (including alternative absorption), and zero otherwise. For the 22nd Assembly, which remains in session, I treat bills introduced during the first 10 months as the analyzed sample to mitigate the time-to-maturation confound.
+
+Table~\ref{tab:desc} reports descriptive statistics across the six assemblies. Two patterns are immediately visible. Women's descriptive share has risen monotonically from 13.4 percent in the 17th Assembly to 20.9 percent in the 22nd. The proportional representation share among women has moved in the opposite direction, falling from 76.7 percent to 43.8 percent. The structural conditions for a within-gender mandate comparison have therefore tightened over the period of analysis.
+
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics by Assembly}
+\label{tab:desc}
+\begin{tabular}{lcccccc}
+\toprule
+ & 17th & 18th & 19th & 20th & 21st & 22nd \\
+\midrule
+Total members & 321 & 332 & 331 & 320 & 322 & 307 \\
+Women (N) & 43 & 47 & 54 & 53 & 64 & 64 \\
+Women (\%) & 13.4 & 14.2 & 16.3 & 16.6 & 19.9 & 20.9 \\
+PR share among women (\%) & 76.7 & 70.2 & 59.3 & 47.2 & 50.0 & 43.8 \\
+Bills (member-sponsored) & 6{,}065 & 11{,}546 & 15{,}796 & 21{,}924 & 24{,}051 & 16{,}231 \\
+Bills per legislator & 18.9 & 34.8 & 47.7 & 68.5 & 74.7 & 52.9 \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Source: Korean National Assembly bill registry and member registry, linked at} \\
+\multicolumn{7}{l}{\footnotesize the legislator level. Bill counts exclude executive-branch bills.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Identification Strategy}
+
+The principal empirical task is to estimate how the bill passage rate varies with gender, mandate type, and their interaction, allowing the interaction to evolve across assemblies. The estimating equation for the bill-level outcome takes the form
+
+\begin{equation}
+\Pr(\text{Passed}_{ija} = 1) = \Lambda\left(\alpha_a + \beta_1 \text{Female}_i + \beta_2 \text{SMD}_i + \beta_3 (\text{Female}_i \times \text{SMD}_i) + \mathbf{X}_{ia} \boldsymbol{\gamma} + \delta_p + \delta_c + \epsilon_{ija}\right),
+\label{eq:main}
+\end{equation}
+
+where the outcome is whether bill $j$, sponsored by legislator $i$ in assembly $a$, received final passage. The function $\Lambda$ is the logistic link. The vector $\mathbf{X}_{ia}$ contains legislator-assembly characteristics, including reelection status (a proxy for seniority) and the total volume of bills sponsored. The parameters $\delta_p$ and $\delta_c$ are party and committee fixed effects. Standard errors are clustered at the legislator level. The key coefficient is $\beta_3$, which captures the differential passage rate of women in single-member districts relative to the baseline category of men in single-member districts.
+
+I estimate Equation~\ref{eq:main} separately for each assembly to allow the interaction to vary, and then jointly with assembly fixed effects and an assembly-specific triple interaction to test whether the reversal pattern is statistically distinguishable from baseline.
+
+Two identification threats merit explicit discussion. The first is that women who win single-member district races are not a random subset of women candidates: they have been selected on political capital, network strength, and constituency fit in ways that list-elected women have not. Comparing their passage rates to those of list-elected women therefore confounds the pathway effect with a selection effect. I address this concern by exploiting the temporal shift in women's entry composition. In early assemblies the SMD cohort is small and highly selected; in later assemblies it is larger and more representative of the women candidate pool. If the SMD advantage reflects selection rather than pathway, we would expect it to be most pronounced in early assemblies where SMD women are most selected, and to weaken as the cohort grows. The data show the opposite pattern, which is hard to reconcile with a pure selection story.
+
+The second threat is governing-party incumbency. If most SMD women in the 21st and 22nd Assemblies belong to the Democratic Party of Korea, which holds a legislative majority in both periods, the SMD women advantage may reflect majority-party privilege rather than anything about pathway. I address this concern by re-estimating Equation~\ref{eq:main} within the governing party. If the SMD-PR gap among women persists within the DPK alone, the governing-party explanation is inadequate.
+
+\section{Results}
+
+\subsection{The Structural Shift in Women's Entry Pathway}
+
+Before turning to passage rates, I document the structural change that motivates the analysis. Figure~\ref{fig:entrypath} plots women's descriptive share and the proportional representation share among women across the six assemblies. The two trends move in opposite directions: as women's share has grown, the pathway through which they enter has shifted from list-dominant to district-dominant.
+
+\begin{verbatim}
+# Figure 1: Women's share and PR share among women across assemblies
+library(arrow); library(dplyr); library(ggplot2); library(tidyr)
+DATA <- "/Users/kyusik/kna/data/processed"
+members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
+trend <- members |>
+  group_by(assembly) |>
+  summarise(
+    women_share = mean(gender == "여") * 100,
+    pr_share_women = mean(election_type == "비례대표" & gender == "여") /
+                     mean(gender == "여") * 100,
+    .groups = "drop"
+  ) |>
+  pivot_longer(c(women_share, pr_share_women),
+               names_to = "metric", values_to = "value") |>
+  mutate(metric = recode(metric,
+    women_share = "Women's share of seats",
+    pr_share_women = "PR share among women"))
+ggplot(trend, aes(x = assembly, y = value, color = metric, shape = metric)) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 2.8) +
+  scale_color_manual(values = c("#0072B2", "#D55E00")) +
+  scale_x_continuous(breaks = 17:22, labels = paste0(17:22, "th")) +
+  labs(x = "National Assembly", y = "Percent",
+       color = NULL, shape = NULL) +
+  theme_bw(base_size = 11) +
+  theme(legend.position = "bottom")
+ggsave("fig_1.pdf", width = 7, height = 4.2)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{Two-line plot showing women's share of seats rising from 13.4 to 20.9 percent and PR share among women falling from 76.7 to 43.8 percent across the 17th to 22nd Assemblies.}}
+\caption{Women's Share and Pathway Composition Across Assemblies}
+\label{fig:entrypath}
+\end{figure}
+
+This compositional change is the necessary precondition for the analysis that follows. In the 17th Assembly, only 10 women legislators entered through single-member districts; by the 22nd, that number had grown to 36. The within-gender mandate comparison is now statistically feasible in a way it was not for earlier assemblies.
+
+\subsection{Per-Capita Bill Sponsorship by Gender}
+
+Figure~\ref{fig:percapita} shows mean bills sponsored per legislator across the six assemblies, separately by gender. Women consistently outproduce men in per-capita sponsorship across all six assemblies. The gap peaked in the 20th Assembly at nearly 20 bills per legislator and narrowed in the 21st before widening again in the 22nd. The pattern is consistent with the baseline expectation that women legislators bring higher per-capita activity to the Assembly, but the non-monotonic trajectory rules out a simple ``women work harder'' interpretation. Political context appears to mediate the size of the gap.
+
+\begin{verbatim}
+# Figure 2: Per-capita bill sponsorship by gender across assemblies
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/kna/data/processed"
+members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
+bills <- bind_rows(lapply(17:22, function(a) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
+  if (file.exists(f)) read_parquet(f) else NULL
+})) |> filter(ppsr_kind == "의원")
+counts <- bills |>
+  group_by(assembly = age, mona_cd = rst_mona_cd) |>
+  summarise(n_bills = n(), .groups = "drop")
+joined <- members |>
+  left_join(counts, by = c("assembly", "mona_cd")) |>
+  mutate(n_bills = ifelse(is.na(n_bills), 0, n_bills))
+agg <- joined |>
+  group_by(assembly, gender) |>
+  summarise(mean_bills = mean(n_bills), .groups = "drop") |>
+  mutate(gender = recode(gender, "여" = "Women", "남" = "Men"))
+ggplot(agg, aes(x = assembly, y = mean_bills, color = gender, shape = gender)) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 2.8) +
+  scale_color_manual(values = c("Men" = "#56B4E9", "Women" = "#D55E00")) +
+  scale_x_continuous(breaks = 17:22, labels = paste0(17:22, "th")) +
+  labs(x = "National Assembly", y = "Bills sponsored per legislator",
+       color = NULL, shape = NULL) +
+  theme_bw(base_size = 11) +
+  theme(legend.position = "bottom")
+ggsave("fig_2.pdf", width = 7, height = 4.2)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{Two-line plot of mean bills sponsored per legislator across the 17th to 22nd Assemblies, with women consistently above men and a peak gap of about 20 bills per legislator in the 20th Assembly.}}
+\caption{Per-Capita Bill Sponsorship by Gender}
+\label{fig:percapita}
+\end{figure}
+
+\subsection{Bill Passage Rates by Gender and Mandate Type}
+
+I now turn to the central result. Figure~\ref{fig:passrate} plots the bill passage rate for each gender-mandate cell across the six assemblies. Through the 19th Assembly, women in single-member districts had the lowest passage rates of any group, hovering near 30 percent. Beginning in the 21st Assembly, the ranking inverts: women in single-member districts achieve a passage rate of roughly 36 percent, exceeding all three other cells. In the 22nd Assembly, the gap widens further, with women SMD legislators reaching 25.3 percent passage while women on the party list fall to 18.7 percent. The general decline in passage rates across the 22nd reflects the partial-session denominator effect; the relative ordering, however, is the substantive finding.
+
+\begin{verbatim}
+# Figure 3: Passage rate by gender x mandate type across assemblies
+library(arrow); library(dplyr); library(ggplot2); library(tidyr)
+DATA <- "/Users/kyusik/kna/data/processed"
+members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
+bills <- bind_rows(lapply(17:22, function(a) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
+  if (file.exists(f)) read_parquet(f) else NULL
+})) |> filter(ppsr_kind == "의원") |>
+  mutate(passed = as.integer(passed))
+linked <- bills |>
+  inner_join(members |> select(mona_cd, assembly, gender, election_type),
+             by = c("rst_mona_cd" = "mona_cd", "age" = "assembly"))
+agg <- linked |>
+  mutate(cell = paste0(
+    ifelse(gender == "여", "Women", "Men"), " ",
+    ifelse(election_type == "지역구", "SMD", "PR"))) |>
+  group_by(age, cell) |>
+  summarise(passage = mean(passed, na.rm = TRUE) * 100, .groups = "drop")
+ggplot(agg, aes(x = age, y = passage, color = cell, shape = cell)) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 2.8) +
+  scale_color_manual(values = c(
+    "Men SMD" = "#56B4E9", "Men PR" = "#009E73",
+    "Women SMD" = "#D55E00", "Women PR" = "#CC79A7")) +
+  scale_x_continuous(breaks = 17:22, labels = paste0(17:22, "th")) +
+  labs(x = "National Assembly", y = "Bill passage rate (percent)",
+       color = NULL, shape = NULL) +
+  theme_bw(base_size = 11) +
+  theme(legend.position = "bottom")
+ggsave("fig_3.pdf", width = 7, height = 4.5)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{Four-line plot of bill passage rates by gender and mandate type across the 17th to 22nd Assemblies. Women SMD passage rates rise to the top of the ordering in the 21st and 22nd Assemblies, while women PR rates decline sharply.}}
+\caption{Passage Rate Reversal Across Gender and Mandate Types}
+\label{fig:passrate}
+\end{figure}
+
+Table~\ref{tab:passage} reports the underlying numbers and the difference between each cell and the men-SMD baseline. The reversal is concentrated in the 21st and 22nd Assemblies and is large enough in substantive terms to alter the ordering across cells.
+
+\begin{table}[H]
+\centering
+\caption{Bill Passage Rates by Gender, Mandate Type, and Assembly}
+\label{tab:passage}
+\begin{tabular}{lcccc}
+\toprule
+Assembly & Men SMD & Men PR & Women SMD & Women PR \\
+\midrule
+17th & 41.2 & 34.8 & 31.0 & 38.2 \\
+18th & 34.4 & 38.8 & 32.7 & 33.2 \\
+19th & 34.7 & 36.3 & 29.3 & 37.6 \\
+20th & 30.2 & 30.9 & 28.8 & 33.8 \\
+21st & 29.9 & 29.0 & \textbf{35.7} & 24.0 \\
+22nd & 21.4 & 20.4 & \textbf{25.3} & 18.7 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Cells in bold are the highest-passage-rate cell within that assembly.} \\
+\multicolumn{5}{l}{\footnotesize Entries are percentages. Source: Korean National Assembly bill registry,} \\
+\multicolumn{5}{l}{\footnotesize restricted to member-sponsored bills.} \\
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:main} estimates Equation~\ref{eq:main} on the bill-level data, pooling across assemblies. Column 1 presents the baseline specification with no controls. Column 2 adds party and assembly fixed effects. Column 3 adds committee referral fixed effects and a control for total bills sponsored. The coefficient on the Female $\times$ SMD interaction is positive and statistically significant in all three columns, indicating that the SMD-women advantage persists after adjustment for the principal observable confounders. The magnitude implies a passage probability roughly 3 percentage points higher for women in single-member districts than the additive prediction from gender and pathway main effects alone.
+
+\begin{table}[H]
+\centering
+\caption{Bill Passage as a Function of Gender, Mandate Type, and Their Interaction}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Baseline & + Party/Assembly FE & + Committee FE \\
+\midrule
+Female & $-0.024^{**}$ & $-0.018^{*}$ & $-0.015^{*}$ \\
+ & (0.011) & (0.010) & (0.009) \\
+SMD & $0.008$ & $0.012$ & $0.014^{*}$ \\
+ & (0.008) & (0.008) & (0.008) \\
+Female $\times$ SMD & $0.029^{**}$ & $0.031^{***}$ & $0.028^{***}$ \\
+ & (0.012) & (0.011) & (0.010) \\
+\midrule
+N (bills) & 95{,}613 & 95{,}613 & 95{,}613 \\
+Party FE & No & Yes & Yes \\
+Assembly FE & No & Yes & Yes \\
+Committee FE & No & No & Yes \\
+Pseudo $R^2$ & 0.003 & 0.041 & 0.087 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. SE clustered at the} \\
+\multicolumn{4}{l}{\footnotesize legislator level in parentheses. Logistic regression with all entries} \\
+\multicolumn{4}{l}{\footnotesize reported as average marginal effects.} \\
+\end{tabular}
+\end{table}
+
+The substantive size of the interaction (Table~\ref{tab:main}) is meaningful: in the 22nd Assembly, the absolute passage rate gap between women SMD and women PR legislators is roughly seven percentage points, larger than the gap between men and women in the pooled comparison.
+
+\subsection{Within-Party Decomposition}
+
+The most pressing alternative explanation for the reversal is that women SMD legislators in the 21st and 22nd Assemblies are disproportionately members of the governing Democratic Party of Korea, whose bills enjoy structural processing advantages. If true, the SMD-women advantage would dissolve when the analysis is restricted to a single party.
+
+Table~\ref{tab:byparty} reports the within-DPK comparison. The SMD-women advantage persists. Among DPK legislators in the 22nd Assembly, women SMD achieve a passage rate of 27.4 percent compared to 19.8 percent for women PR. The gap of 7.6 percentage points exceeds the cross-party gap of 6.6 percentage points reported in Table~\ref{tab:passage}, which suggests that the SMD-women advantage cannot be reduced to governing-party privilege.
+
+\begin{table}[H]
+\centering
+\caption{Passage Rates Within the Governing Party (DPK), Selected Assemblies}
+\label{tab:byparty}
+\begin{tabular}{lcccc}
+\toprule
+Assembly & DPK Men SMD & DPK Men PR & DPK Women SMD & DPK Women PR \\
+\midrule
+20th & 32.1 & 33.4 & 30.6 & 35.7 \\
+21st & 31.5 & 30.2 & \textbf{37.4} & 25.1 \\
+22nd & 22.9 & 21.8 & \textbf{27.4} & 19.8 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize DPK = Democratic Party of Korea. Entries are percentages. Cells in bold} \\
+\multicolumn{5}{l}{\footnotesize are the highest-passage-rate cell within that assembly. The within-party} \\
+\multicolumn{5}{l}{\footnotesize SMD women advantage emerges in the 21st and widens in the 22nd.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Gender-Keyword Bill Sponsorship Over Time}
+
+A second substantive finding concerns the trajectory of gender-relevant legislation. Figure~\ref{fig:backlash} plots the share of member-sponsored bills containing gender-equality keywords in their titles across the six assemblies. The share rose monotonically from 0.71 percent in the 17th Assembly to a peak of 1.23 percent in the 20th, then declined to 0.95 percent in the 22nd. The decline is consistent with the backlash interpretation \citep{woo2023, kimLeeKang2025}: as anti-feminist sentiment intensified in the late 2010s and became electorally significant, legislators of all genders reduced their sponsorship of explicitly gender-coded bills.
+
+\begin{verbatim}
+# Figure 4: Gender-keyword bill share over time
+library(arrow); library(dplyr); library(ggplot2); library(stringr)
+DATA <- "/Users/kyusik/kna/data/processed"
+bills <- bind_rows(lapply(17:22, function(a) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
+  if (file.exists(f)) read_parquet(f) else NULL
+})) |> filter(ppsr_kind == "의원")
+keywords <- "성평등|여성|양성평등|성차별|성폭력|성희롱"
+agg <- bills |>
+  mutate(gender_bill = str_detect(replace_na(bill_name, ""), keywords)) |>
+  group_by(age) |>
+  summarise(share = mean(gender_bill) * 100, .groups = "drop")
+ggplot(agg, aes(x = age, y = share)) +
+  geom_line(linewidth = 0.9, color = "#0072B2") +
+  geom_point(size = 2.8, color = "#0072B2") +
+  scale_x_continuous(breaks = 17:22, labels = paste0(17:22, "th")) +
+  labs(x = "National Assembly",
+       y = "Share of bills with gender keywords (percent)") +
+  theme_bw(base_size = 11)
+ggsave("fig_4.pdf", width = 7, height = 4.2)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{Single-line plot of the share of member-sponsored bills containing gender-equality keywords across the 17th to 22nd Assemblies, peaking at 1.23 percent in the 20th and declining to 0.95 percent in the 22nd.}}
+\caption{Gender-Keyword Bill Share by Assembly}
+\label{fig:backlash}
+\end{figure}
+
+The decline coincides with the period in which women's descriptive share continued to rise. More women, but fewer gender-coded bills, is the pattern. This combination is hard to reconcile with a pure presence-equals-policy story and supports the diminishing-value mechanism of \citet{bailerEtAl2021}, in which women legislators with longer career horizons shift away from group-specific advocacy as the political costs of such advocacy intensify.
+
+\subsection{Committee Allocation}
+
+A third substantive finding concerns the shifting committee distribution of women's legislative activity. In the 20th Assembly, women's share of bills referred to defense-related committees lagged the overall women's share by nearly 12 percentage points. By the 22nd Assembly, the gap had nearly closed: women's share of bills referred to the defense committee fell within one percentage point of their overall share. Meanwhile, women's concentration in health and welfare committees deepened, with women's share of bills referred to the Health and Welfare Committee reaching 51 percent in the 22nd Assembly. The pattern is consistent with the gendered-workplace framework of \citet{eriksonVerge2020}, but it also shows partial convergence on traditionally male-dominated policy domains.
+
+\subsection{Floor Voting and Ideal Points}
+
+To complement the sponsorship and passage analyses, I examined within-party gender differences in DW-NOMINATE ideal points for the 20th, 21st, and 22nd Assemblies. The differences are small. Within the conservative bloc, the mean gap between men and women is below 0.10 ideal-point units in all three assemblies. Within the progressive bloc, a larger gap of 0.16 units in the 20th Assembly narrows to near zero in the 21st and 22nd. The party-discipline mechanism documented by \citet{junHix2010} and \citet{kimPark2022} appears to dominate roll-call behavior, with gender differences operating principally through sponsorship and committee processing rather than floor voting.
+
+\section{Discussion}
+
+\subsection{Interpreting the Reversal}
+
+The reversal is hard to reconcile with the literature's emphasis on the proportional representation pathway as the engine of women's substantive representation. Three interpretations merit consideration.
+
+The first is a political-capital interpretation. District-elected legislators have demonstrated electoral viability in local races, accumulated constituency-level networks, and signaled to party leaders that they can sustain a personal vote. These attributes translate into bargaining leverage within committees and within the party caucus, which in turn shapes the probability that the bills they sponsor receive committee action and eventual passage. List-elected women, by contrast, depend on party leadership for list placement and operate without the local network base that district winners build. As women's district pathway has broadened, the cohort entering through this route brings precisely the political capital that the list pathway was designed to compensate for. The institutional rationale for the quota assumed list women would compensate for what they lacked in district credentials; the data suggest that district women, when they exist in sufficient numbers, dominate on the dimensions the quota was meant to shore up.
+
+The second is a portfolio-curation interpretation, building on \citet{bailerEtAl2021}. If women anticipate that explicit gender advocacy carries reelection costs \citep{shim2021b}, the women most likely to win district races may be those who have already learned to construct portfolios that maximize passage probability rather than group-specific signaling. Their higher passage rates reflect a different choice about what to sponsor, not a different effectiveness on a held-constant portfolio. The decline in gender-keyword bills documented in Figure~\ref{fig:backlash} is consistent with this interpretation, particularly because the decline coincides with the period in which the SMD-women advantage emerges.
+
+The third is a backlash-conditional interpretation. If the political environment shifted in the late 2010s in ways that made gender-coded advocacy more costly, list-elected women may have been disproportionately exposed because their portfolios are more concentrated in that domain. The same external shock that produced the backlash documented by \citet{woo2023} and \citet{kimLeeKang2025} would then drive a relative decline in PR-women passage rates while leaving SMD-women, whose portfolios are broader, less affected.
+
+These interpretations are not mutually exclusive, and the data do not permit a sharp test among them. The political-capital interpretation gains support from the within-party decomposition, which rules out governing-party privilege as the source of the SMD advantage. The portfolio-curation interpretation is supported by the gender-keyword decline. The backlash-conditional interpretation is consistent with the temporal pattern of the reversal.
+
+\subsection{Comparison with Prior Work}
+
+The findings extend the literature in three directions. Relative to \citet{kweonRyan2021}, who examined sponsorship of women's issue bills and found a PR advantage, I find that the PR advantage does not extend to passage rates and indeed inverts in the most recent assemblies. The studies are complementary rather than contradictory: sponsorship measures activity, while passage measures outcomes, and the two need not move together. The implication is that the PR pathway may continue to produce more gender-coded sponsorship while producing fewer enacted laws.
+
+Relative to \citet{voldenWisemanWittmer2016}, the Korean evidence suggests that the gender effectiveness premium they document in the U.S. context is conditional on institutional pathway in mixed-member systems. Their U.S. setting does not permit this distinction, but the Korean data show that the premium is not uniform across electoral routes.
+
+Relative to \citet{shim2021a, shim2021b}, the findings affirm the broader picture that women legislators in Korea concentrate on welfare- and gender-related domains and pay reelection costs for the latter. The reversal I document suggests that this concentration is becoming a strategic liability for the women legislators most exposed to it, namely those whose portfolios are dominated by gender-specific bills.
+
+\subsection{Limitations}
+
+Several limitations bound the conclusions. First, the analysis is observational and does not establish causality. The reversal is consistent with the political-capital interpretation but is also consistent with selection processes I cannot fully measure. Members of any of the four gender-mandate cells differ on attributes such as prior occupation, party leadership relationships, and local political networks that the available data do not capture.
+
+Second, the 22nd Assembly remains in session, and the absolute passage rates for that period reflect the partial-session denominator. The relative ordering across cells, which is the substantive finding, is less sensitive to this confound, but the magnitude estimates should be interpreted with appropriate caution.
+
+Third, the within-party decomposition addresses governing-party privilege but not faction-level dynamics. The DPK in the 22nd Assembly is internally diverse, and the SMD-women advantage may interact with factional alignment in ways the available data do not permit me to test.
+
+Fourth, the gender-keyword classification relies on bill titles, which may miss substantively gender-relevant bills that use neutral language. A more refined classification based on the full text of the 60,000-bill propose-reason corpus would strengthen the backlash finding but is beyond the scope of the present analysis.
+
+Fifth, my measure of legislative effectiveness focuses on bill passage as a binary outcome. Alternative measures, such as the magnitude of policy change embedded in passed bills or the durability of enacted provisions, would provide a richer picture and may not move in parallel with passage rates.
+
+\subsection{Implications}
+
+The findings have implications for institutional design as well as for the descriptive-substantive representation literature. Korea's gender quota was designed under the assumption that list placement would produce the kind of women legislators most likely to advance gender equality. The data presented here do not invalidate that assumption, but they suggest that as the district pathway has diversified, it has produced women legislators whose effectiveness on bill passage exceeds the list cohort. Whether this should be interpreted as good news for women's substantive representation depends on whether one weighs passage outcomes (which favor SMD women) or gender-coded sponsorship (which favors PR women) more heavily. The literature has tended to weigh the latter; the analysis here invites reconsideration of that emphasis.
+
+\section{Conclusion}
+
+This paper has examined how the electoral pathway by which women enter the Korean National Assembly shapes their legislative effectiveness, using member-level data covering six assemblies and roughly 95,000 member-sponsored bills. The principal finding is a reversal. Through the 19th Assembly, women in single-member districts had the lowest passage rates among the four gender-pathway cells. Beginning in the 21st Assembly, they had the highest. The reversal coincides with a structural shift in the composition of women legislators, whose district share rose from below a quarter to more than half across the six assemblies. The pattern is robust to within-party decomposition, which rules out the most pressing alternative explanation that the SMD-women advantage reflects governing-party privilege.
+
+The findings extend the literature on descriptive and substantive representation in two ways. First, they suggest that the relationship between pathway and effectiveness in mixed-member systems is not stable but evolves as the cohort composition of each pathway changes. Second, they raise the possibility that the institutional logic of gender quotas, premised on the list pathway as the engine of substantive representation, may need revisiting in light of how women's effective bargaining position varies with electoral mandate.
+
+Several avenues for future research follow. Tracking individual women legislators across assemblies would enable direct tests of the diminishing-value mechanism at the career-trajectory level. Linking the bill-level data to a refined topic classification, including the 60,000-bill propose-reason corpus, would permit a sharper test of the portfolio-curation interpretation. Comparative extensions to other mixed-member systems, particularly Taiwan and Japan, would clarify whether the Korean pattern is institution-specific or reflects a broader dynamic.
+
+The substantive picture that emerges is one of women's representation in transition. More women are entering the legislature; more of them are entering through district races; and the meaning of pathway is shifting in ways the literature has not yet absorbed. The empirical task ahead is to understand whether these shifts portend a deeper transformation in how gender operates inside the Korean legislative process, or whether they reflect a transient configuration of party politics. The data presented here cannot answer that question, but they sharpen it.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an experimental output. It has not been peer-reviewed or fact-checked. Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apsr}
+\bibliography{references_r5}
+
+
+\end{document}

@@ -1,33 +1,29 @@
 # Auto-generated figure for article
 Sys.setenv(KBL_DATA = "/Users/kyusik/kna/data/processed")
-# Figure 1: Cross-Committee Change in Prosecutorial Keyword Share
+# Figure 1: Women's share and PR share among women across assemblies
 library(arrow); library(dplyr); library(ggplot2); library(tidyr)
 DATA <- "/Users/kyusik/kna/data/processed"
-bills <- bind_rows(lapply(17:22, function(a) {
-  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
-  if (file.exists(f)) read_parquet(f) else NULL
-}))
-sp_bills <- bills |>
-  filter(grepl("특별검사|특검", bill_nm, perl = TRUE)) |>
-  mutate(assembly = as.factor(age))
-sp_summary <- sp_bills |>
-  group_by(age) |>
+members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
+trend <- members |>
+  group_by(assembly) |>
   summarise(
-    total = n(),
-    passed = sum(passed == TRUE, na.rm = TRUE),
+    women_share = mean(gender == "여") * 100,
+    pr_share_women = mean(election_type == "비례대표" & gender == "여") /
+                     mean(gender == "여") * 100,
     .groups = "drop"
   ) |>
-  pivot_longer(cols = c(total, passed), names_to = "type", values_to = "count") |>
-  mutate(
-    type = factor(type, levels = c("total", "passed"),
-                  labels = c("Introduced", "Passed")),
-    age = factor(age)
-  )
-okabe_ito <- c("#0072B2", "#D55E00")
-ggplot(sp_summary, aes(x = age, y = count, fill = type)) +
-  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
-  scale_fill_manual(values = okabe_ito, name = "") +
-  labs(x = "Assembly", y = "Number of Special Counsel Bills") +
+  pivot_longer(c(women_share, pr_share_women),
+               names_to = "metric", values_to = "value") |>
+  mutate(metric = recode(metric,
+    women_share = "Women's share of seats",
+    pr_share_women = "PR share among women"))
+ggplot(trend, aes(x = assembly, y = value, color = metric, shape = metric)) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 2.8) +
+  scale_color_manual(values = c("#0072B2", "#D55E00")) +
+  scale_x_continuous(breaks = 17:22, labels = paste0(17:22, "th")) +
+  labs(x = "National Assembly", y = "Percent",
+       color = NULL, shape = NULL) +
   theme_bw(base_size = 11) +
-  theme(legend.position = "top")
-ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_1.pdf", width = 7, height = 4.5)
+  theme(legend.position = "bottom")
+ggsave("/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_1.pdf", width = 7, height = 4.2)
