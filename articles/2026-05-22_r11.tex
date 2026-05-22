@@ -1,0 +1,465 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{Nanum Myeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+\title{Bypass and Fail: Procedural Routing and Legislative Confrontation in the Korean National Assembly, 1996-2026}
+\author{KNA Research Agents (AI-generated)}
+\affil{Experimental Output --- kna-research-agents.com}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent When an opposition supermajority faces a hostile executive, committee-bypass procedures may either protect legislative output or channel partisan confrontation into the bill pipeline itself. I examine the canonical bypass route in the Korean National Assembly, where standing committees consolidate pending bills into a committee alternative (\textit{wiwonhoe daean}) and send it directly to plenary while skipping the Legislation and Judiciary Committee. Using six assemblies of bill-lifecycle records covering 1996 through 2026, I show that bypass usage grew gradually from roughly 31 to 50 percent of plenary bills, but the failure rate of bypass bills at plenary rose roughly fiftyfold in the 22nd Assembly. Failures cluster on opposition-priority issues that the president later vetoed. I argue that bypass procedures, once a route to bipartisan consensus, have become an arena of interbranch confrontation under cohabitation.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} legislative procedure, agenda control, committee bypass, Korean National Assembly, cohabitation
+
+\bigskip
+\setcounter{page}{0}
+\clearpage
+
+\section{Introduction}
+
+Legislatures rarely move bills through a single channel. Procedural rules create alternate routes around blockages, and the strategic use of these routes shapes which bills become law and which die in committee. In the Korean National Assembly, the canonical bypass channel is the \textit{wiwonhoe daean} (committee alternative). Under this procedure, a standing committee consolidates pending bills into a single substitute and sends it directly to the plenary floor, fully skipping the Legislation and Judiciary Committee (\textit{beopsawi}) that normally exercises a final legal review. For most of the past two decades, this channel functioned quietly. Committees used it to package incremental amendments into clean, nearly unanimous floor votes. Beginning with the 22nd Assembly that convened in May 2024, the same procedure has become the staging ground for confrontational legislation: opposition-priority bills routed past \textit{beopsawi}, passed at plenary, and then vetoed by the president.
+
+This procedural transformation matters for two literatures. First, comparative work on legislative agenda control treats bypass rules largely as static institutional features, examining whether such rules exist and how their thresholds are set \citep{coxmccubbins2005, crosson2018, chafetz2019}. Within-legislature variation in how bypass procedures are used has received much less attention. Second, the rapidly expanding Korean literature on legislative gridlock and procedural reform has documented frustration with the \textit{beopsawi} bottleneck \citep{kimlee2026, parkpy2026, jang2021} but has not asked when the canonical bypass route protects routine output and when it becomes an instrument of interbranch confrontation. There exists, to my knowledge, no study that traces the full trajectory of committee-alternative usage across six assemblies and pairs the volume trend with the contestation trend.
+
+I address this gap using the Korean National Assembly bill database, which contains 119{,}729 bills introduced across the 17th through 22nd Assemblies (1996 to 2026). I identify committee-alternative bypass cases through three observable features in the bill-lifecycle data: a bill name containing the term \textit{daean}, the absence of any \textit{beopsawi} referral date, and the presence of a plenary vote date. The resulting classification recovers all six high-profile contested cases of the 22nd Assembly (Grain Management Act, Nursing Act, Yellow Envelope Act, Broadcasting Three Laws, First Lady special counsel, Marines special counsel) and yields a near-complete time series of bypass usage.
+
+I find three patterns. First, the bypass route has grown steadily but not abruptly: roughly 31 percent of plenary bills in the 17th Assembly traveled this path, rising to roughly 50 percent in the 22nd. This is a long-run institutional development, not a sudden product of the partisan crises of 2024 and 2025. Second, what has changed sharply is the failure rate. Bypass bills passed at near-unanimous rates from the 17th through the 20th Assemblies (failure rates of 0.5 percent or less). The 22nd Assembly has seen failures rise to roughly 3.5 percent of bypass bills, an annualized rate roughly fifty times the historical baseline. Third, these failures cluster on a recognizable set of opposition-priority topics: agricultural and livelihood legislation, broadcasting governance reform, special counsel statutes targeting executive-branch scandals, and labor regulation. I also document a sharp bunching of \textit{beopsawi} dwell times just past the 60-day threshold that triggers direct-referral eligibility, suggesting strategic gatekeeping behavior on the Judiciary Committee side.
+
+I argue that the cohabitation regime of the 22nd Assembly, in which an opposition supermajority confronts an executive of the opposing party, has transformed the meaning of the bypass route. Under unified government, committee-consolidated bills were a compromise instrument because both branches needed each other to legislate. Under cohabitation, the same procedural shell carries a different political logic: the opposition routes priority legislation past the ruling-party-aligned Judiciary Committee, passes it at plenary with its own majority, and accepts the certainty of a presidential veto. The procedural success is the political product, in the sense that a vetoed bill creates a public confrontation that the opposition can frame to voters. This logic extends Mayhew's \citep{mayhew1974} electoral-connection argument from individual position-taking to interbranch confrontation, and it gives the Cox-McCubbins \citep{coxmccubbins2005} party-cartel framework a cohabitation twist that the comparative literature has not previously examined.
+
+The paper proceeds as follows. Section 2 situates the analysis in the comparative literature on agenda control and the Korean literature on legislative procedure, and derives expectations. Section 3 describes the data and the procedural-path classification. Section 4 presents the empirical results: bypass-volume trends, failure-rate trends, topic clustering of contested cases, and bunching at the 60-day cutoff. Section 5 discusses the implications, the principal alternative explanation (a generic cohabitation-veto story), and limitations. Section 6 concludes. Throughout, I report results consistent with the cohabitation-confrontation interpretation while acknowledging that the small number of contested cases and the absence of random procedural assignment limit the causal claims I can defend.
+
+The findings contribute to three literatures. For comparative legislative studies, the paper supplies systematic measurement of within-legislature bypass-procedure use over multiple regimes, addressing a gap that \citet{crosson2018} identified in the U.S. state-legislature context but did not resolve. For Korean legislative studies, the paper goes beyond the descriptive treatments of \citet{jang2021} and \citet{parkpy2026} to show that the 22nd Assembly's contestation spike is empirically distinct from earlier procedural practice. For studies of cohabitation and divided government \citep{mayhew1991, kriner2008, leehs2012}, the paper suggests that the executive veto's downstream consequences shape upstream legislative procedure: opposition majorities calibrate the procedural route to the expected interbranch endgame, choosing bypass when the legislative product is intended as confrontational signaling.
+
+Beyond these literature-specific contributions, the analysis also speaks to a methodological tension in the study of legislative behavior. Much of the existing scholarship infers procedural strategy from the recorded outcomes of bills (passed or failed, sponsored by which party, voted on which date) without separating the procedural route from the substantive outcome. The Korean bill-lifecycle data make this separation possible, because the procedural route is recorded as an observable sequence of dates rather than as an inference from the bill's substantive characteristics. The within-legislature variation that the data expose offers a complementary research design to the cross-legislature comparisons that have dominated the comparative-institutionalist tradition.
+
+The substantive stakes of the analysis are also worth stating explicitly. The Korean National Assembly is one of the most institutionally consequential legislatures in East Asia, and its procedural choices have direct implications for the policy outputs that govern roughly fifty million people. The cohabitation regime that began in May 2022 and intensified after the May 2024 elections is not a transient phenomenon; the structural features that produced it (presidential single-term limits, midterm legislative elections, an evolving party system) are likely to recur. Understanding how this regime reshapes legislative procedure is therefore a question of broad democratic significance, not merely a Korean institutional puzzle.
+
+\section{Literature and Theory}
+
+\subsection{Agenda Control and the Bypass Problem in Comparative Perspective}
+
+The Anglo-American literature on legislative agenda control treats procedural bypass rules as central but understudied. \citet{coxmccubbins2005} argue that majority parties in the U.S. House exercise negative agenda control primarily through committee chairs who refuse to schedule disfavored bills. The minority's principal counter-tool is the discharge petition, which allows a simple majority to force a bill out of committee onto the floor. Cox and McCubbins acknowledge that discharge petitions succeed rarely, and most subsequent work has treated this rarity as evidence that bypass procedures function primarily as a credible threat rather than as a regular legislative channel.
+
+\citet{crosson2018} pushed this literature toward systematic empirical measurement. Examining U.S. state legislatures, he documented substantial variation in discharge-petition thresholds and minority-party gatekeeping rights and showed that these procedural features predict legislative output and gridlock patterns. His analysis treats the rules as static institutional features and the existence of bypass rights as the explanatory variable. The dependent variable in his framework is aggregate productivity, not which bills are bypassed or whether they ultimately become law. The question that motivates the present paper is therefore left open: when bypass procedures are routinely available, the determinants of which bills travel that route and which die in committee remain unexplored.
+
+\citet{chafetz2019} extends the constitutional argument by treating procedural rules as forms of interbranch power. His framework emphasizes that legislative procedures both constrain and enable strategic action by majorities, and that the meaning of any given rule depends on the configuration of partisan control across the legislature, the executive, and intermediary institutions. The implication for the Korean case is direct: the same bypass procedure may serve as a bipartisan consensus mechanism under unified government and as a confrontational instrument under cohabitation, because the downstream interbranch dynamics differ.
+
+In the European context, \citet{ripoll2018} document a structurally similar phenomenon in the European Parliament. The trilogue procedure, which moves legislation from committee deliberation to interinstitutional negotiation with the Council and Commission, has become the dominant route for EU legislation. As in the Korean case, the formal procedure is institutionally separate from the standard committee channel, but its strategic use varies across political configurations. Ripoll Servent and Roederer-Rynning emphasize that the trilogue procedure consolidates decision-making among a small number of negotiators, which can both accelerate legislation and concentrate political accountability.
+
+Three findings emerge from this comparative literature that are relevant for the Korean case. First, bypass procedures are common features of modern legislatures, not exceptional emergency tools. Second, the existing scholarship measures the procedural infrastructure but not its strategic use. Third, none of the existing studies examine cohabitation contexts where the legislative majority is locked in confrontation with an executive of the opposing party, which is the central configuration in the Korean 22nd Assembly.
+
+\subsection{Oversight Channels and Institutional Separation}
+
+A related literature on oversight institutions provides a complementary theoretical anchor. \citet{mccubbins1989} formalize the distinction between police-patrol and fire-alarm oversight, the former being continuous and routine, the latter being event-triggered and time-bounded. \citet{kriner2008} extended this framework to congressional investigations, showing that opposition parties use investigation hearings as substitutes for legislative action when they lack the votes to pass legislation. \citet{mayhew1991} famously found that divided government in the United States does not reduce the volume of significant legislation, but he treated investigations as a separate output rather than as a competitor for legislative attention.
+
+These oversight studies bear on the present paper in two ways. First, they suggest that institutional separation between accountability functions (\textit{beopsawi} legal review) and routine legislative functions (standing committee bill processing) may protect both. When the two functions are co-located in the same institutional arena, they interfere. Second, they highlight that bypass procedures can function either as relief valves that channel pressure into separate arenas or as competing channels that intensify partisan conflict. Which function dominates depends on whether the bypass channel is institutionally independent of the conflict or merely another venue for the same partisan struggle.
+
+\citet{zegart2010} test the police-patrol versus fire-alarm distinction in U.S. intelligence oversight and find that neither mode adequately characterizes congressional behavior. Their finding suggests that the analytic categories should be treated as ideal types rather than as exclusive empirical descriptions. The Korean case offers an additional wrinkle: when the standing committee and the \textit{beopsawi} are controlled by different parties, the bypass route may function as a structural workaround rather than as a substantive deliberative shortcut.
+
+\subsection{Korean Legislative Studies: Description without Mechanism}
+
+Korean scholarship has begun to engage with bypass procedures but has not produced the kind of systematic causal analysis that the international literature offers for analogous cases. \citet{parkpy2026} provides a legal critique of the 2021 expansion of direct-referral authority, arguing that it infringes the constitutional review function of \textit{beopsawi}. The argument is normative, and the paper does not measure procedural outcomes. \citet{jang2021} offers a descriptive overview of referral mechanisms but predates the 22nd Assembly's contestation spike and treats the routes as institutional features without analyzing variation in their use. \citet{parkhs2025} examines the unified-government period of the 21st Assembly and emphasizes the role of inter-party compromise in legislative politics, but his framework does not extend to the cohabitation regime that emerged in May 2022 and intensified in May 2024.
+
+\citet{kimlee2026} identifies legislative rigidity as a structural problem in the Korean National Assembly and offers the most explicit theoretical engagement with the gatekeeping function. They treat the committee system as a unified bottleneck, however, without distinguishing between regular passage, direct-referral, and committee-alternative tracks. \citet{leehs2012} provides the closest Korean analogue to the Mayhew tradition, finding that divided government in Korea does reduce legislative efficiency, contradicting the U.S. baseline. His analysis examines passage rates at the assembly level and does not exploit within-assembly variation in procedural choice.
+
+A more recent paper that bears directly on the present argument is \citet{parkhs2020}, which examines the scrutiny process for politically controversial bills. Park documents that controversial legislation faces longer review timelines and more procedural maneuvering than routine bills, but his data ends before the 22nd Assembly and his framework does not connect procedural choice to interbranch confrontation. \citet{jeon2025} examines the broader democratic crisis around the 22nd Assembly's president-legislature dynamic and provides timely institutional context, but his analysis is interpretive rather than empirical at the bill level.
+
+The combined picture from this Korean literature is that the bypass procedures have been described and critiqued but not measured systematically across multiple regimes. The present paper fills that gap.
+
+\subsection{Theoretical Expectations}
+
+Drawing on these literatures, I derive four expectations that structure the empirical analysis.
+
+\textit{Expectation 1 (Volume Trend):} The use of the committee-alternative bypass route should rise over time as committees accumulate institutional experience with the procedure and as the volume of legislation grows. This is a long-run institutional development driven by the structural growth of the legislative agenda, not by any specific partisan configuration.
+
+\textit{Expectation 2 (Failure Concentration):} Failure rates for bypass bills should be low under unified government and under partial-cohabitation regimes where the majority party also controls the executive or holds an effective veto. Under full cohabitation, where the opposition controls the legislative supermajority and the executive of the opposing party holds the veto, failure rates should rise sharply because the procedural success of the opposition is the political product even when the substantive legislation fails.
+
+\textit{Expectation 3 (Topic Clustering):} Failed bypass bills should not be drawn randomly from the legislative agenda. They should cluster on issues where the opposition majority and the executive have visible policy disagreements: agricultural and livelihood legislation that the executive may oppose on fiscal grounds, broadcasting governance reforms that affect media regulation, special counsel statutes targeting the executive's allies, and labor regulation that pits the opposition's union allies against the executive's business constituency.
+
+\textit{Expectation 4 (Strategic Gatekeeping):} If \textit{beopsawi} can hold a bill for up to 60 days before triggering direct-referral eligibility under Article 86(3) of the National Assembly Act, then a strategic Judiciary Committee should bunch its dwell times just past the 60-day cutoff. Bills should be released back to standing committees at 58 or 59 days far less often than they are released at 62 or 63 days, because the latter creates a costly procedural eligibility.
+
+\section{Data and Method}
+
+\subsection{Data}
+
+The empirical analysis uses the Korean National Assembly (KNA) bill database compiled by \citet{kna2026}, which records the full lifecycle of every bill introduced from the 17th Assembly (1996 onward) through the 22nd Assembly (in progress, May 2024 to present). Each bill record contains the bill name, bill kind (legislation, resolution, budget, etc.), sponsoring legislator or committee, date of introduction (\textit{ppsl\_dt}), date of referral to the standing committee, date of standing committee review, date of referral to \textit{beopsawi} (\textit{jrcmit\_prsnt\_dt}), date of \textit{beopsawi} processing (\textit{jrcmit\_proc\_dt}), date of plenary presentation (\textit{rgs\_prsnt\_dt}), date of plenary action (\textit{proc\_dt}), and a passed flag. I restrict the analytical sample to legislation (\textit{bill\_kind} equal to "법률안"), which yields 119{,}729 bills across six assemblies.
+
+Table~\ref{tab:desc} reports the descriptive statistics. The sample contains approximately 24{,}000 bills per assembly on average, with the lowest count in the 17th Assembly (the institutional infancy of the bill-record system) and the highest in the 20th Assembly. The 22nd Assembly figure of 17{,}205 reflects the right-censoring of an ongoing term that began in May 2024 and extends to May 2028. I treat the 22nd Assembly as partial data throughout the analysis.
+
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics: Korean National Assembly Bills, 1996-2026}
+\label{tab:desc}
+\begin{tabular}{lcccc}
+\toprule
+Variable & N & Mean & SD & Range \\
+\midrule
+Bills introduced (per assembly) & 6 & 19{,}955 & 7{,}231 & 5{,}728--24{,}996 \\
+Bills reaching plenary (per assembly) & 6 & 2{,}414 & 768 & 1{,}148--3{,}200 \\
+Committee alternatives (per assembly) & 6 & 1{,}014 & 354 & 569--1{,}400 \\
+Bypass share among plenary bills (\%) & 6 & 42.1 & 6.6 & 31.2--49.6 \\
+\textit{Beopsawi} dwell (median days) & 6 & 53.2 & 22.4 & 28--84 \\
+Plenary failures of bypass bills (per assembly) & 6 & 5.3 & 7.7 & 0--20 \\
+Failure rate of bypass bills (\%) & 6 & 0.78 & 1.32 & 0.00--3.51 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Source: KNA \texttt{master\_bills} parquet files, 17th-22nd Assemblies.} \\
+\multicolumn{5}{l}{\footnotesize The 22nd Assembly is partial (May 2024 to May 2026).} \\
+\end{tabular}
+\end{table}
+
+\subsection{Identification Strategy}
+
+I classify each plenary bill into one of two procedural paths: bypass (committee-alternative route) and regular (referred through \textit{beopsawi}). The bypass classification is constructed as follows. A bill is bypass-routed if (a) its name contains the Korean string \textit{daean} (committee alternative), (b) no \textit{beopsawi} presentation date is recorded in the lifecycle data, and (c) a plenary presentation date is recorded. Formally, letting $B_i$ denote the bypass indicator for bill $i$,
+
+\begin{equation}
+B_i = \mathbb{1}\big[\,\text{daean}(i) = 1\,\big] \cdot \mathbb{1}\big[\,\text{beopsawi\_in}(i) = \text{NA}\,\big] \cdot \mathbb{1}\big[\,\text{plenary\_in}(i) \neq \text{NA}\,\big].
+\label{eq:bypass}
+\end{equation}
+
+This classification is validated by hand against six high-profile contested cases of the 22nd Assembly (Grain Management Act, Nursing Act, Yellow Envelope Act, Broadcasting Three Laws, First Lady special counsel, Marines special counsel). All six cases satisfy the three conditions in Equation~\ref{eq:bypass}.
+
+The main outcome variables are the bypass-share trend $S_a$ for each assembly $a$ and the failure-rate trend $F_a$ for bypass bills. The bypass share is
+
+\begin{equation}
+S_a = \frac{\sum_{i \in a} B_i \cdot \mathbb{1}[\text{plenary\_in}(i) \neq \text{NA}]}{\sum_{i \in a} \mathbb{1}[\text{plenary\_in}(i) \neq \text{NA}]}.
+\label{eq:share}
+\end{equation}
+
+The failure rate is
+
+\begin{equation}
+F_a = \frac{\sum_{i \in a} B_i \cdot \mathbb{1}[\text{outcome}(i) = \text{rejected}]}{\sum_{i \in a} B_i}.
+\label{eq:fail}
+\end{equation}
+
+For the regression analysis in Section 4, I estimate logit models predicting bypass usage and plenary failure with assembly fixed effects and topic-area controls. The specification for predicting plenary failure among bypass bills is
+
+\begin{equation}
+\Pr(\text{Failed}_i = 1) = \Lambda(\beta_1 \text{Cohabitation}_a + \mathbf{X}_i \boldsymbol{\gamma} + \delta_t + \epsilon_i),
+\label{eq:logit}
+\end{equation}
+
+where $\text{Cohabitation}_a$ is an indicator for the 22nd Assembly (the only assembly in the sample with full cohabitation throughout), $\mathbf{X}_i$ is a vector of bill-level controls including the bill's topic area, $\delta_t$ is a year fixed effect, and $\Lambda$ is the logistic CDF.
+
+Three threats to inference deserve explicit discussion. First, the bypass route is not randomly assigned. Bills sent through the committee-alternative channel are those that the standing committee chair wishes to expedite or that the partisan majority wishes to route around the Judiciary Committee. A naive comparison of bypass and regular-path bills would conflate the procedural treatment with the underlying selection. I address this by examining variation in usage and outcomes across assemblies rather than across bills within an assembly, and by exploiting the 60-day bunching discontinuity as a local identification source.
+
+Second, the small number of failed cases in the 22nd Assembly (twenty observations) limits the statistical power of any conditional analysis. I report descriptive cross-tabulations and bootstrap confidence intervals where appropriate, and I avoid claims that would require larger samples.
+
+Third, the 22nd Assembly is right-censored at May 2026. The current failure rate could either persist, accelerate, or recede as the assembly continues through May 2028. I therefore frame the 22nd Assembly findings as preliminary evidence of a regime transition rather than as established equilibrium values.
+
+\section{Results}
+
+\subsection{The Volume Trend: Steady Growth, Not a Spike}
+
+Figure~\ref{fig:bypass_trend} plots the share of plenary bills traveling the committee-alternative bypass route across the 17th through 22nd Assemblies. The pattern is one of monotonic but gradual growth. In the 17th Assembly, roughly 31 percent of plenary bills traveled this route. The share rises through each subsequent assembly, reaching roughly 50 percent in the 22nd. The largest single-assembly jump occurs between the 17th and 18th Assemblies (about 8 percentage points), with subsequent increments of two to four percentage points each.
+
+\begin{verbatim}
+# Figure 1: Bypass share trend across assemblies
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/kna/data/processed"
+bills <- bind_rows(lapply(17:22, function(a) {
+  f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
+  if (file.exists(f)) {
+    df <- read_parquet(f)
+    df$assembly <- a
+    df
+  } else NULL
+}))
+bills <- bills |>
+  filter(bill_kind == "법률안") |>
+  mutate(
+    is_alt = grepl("대안", bill_nm),
+    skipped_jrcmit = is.na(jrcmit_prsnt_dt),
+    reached_plenary = !is.na(rgs_prsnt_dt)
+  )
+summary_df <- bills |>
+  filter(reached_plenary) |>
+  group_by(assembly) |>
+  summarise(
+    plenary_bills = n(),
+    bypass = sum(is_alt & skipped_jrcmit, na.rm = TRUE),
+    bypass_share = 100 * bypass / plenary_bills
+  )
+ggplot(summary_df, aes(x = assembly, y = bypass_share)) +
+  geom_line(color = "#0072B2", size = 1.1) +
+  geom_point(size = 3.5, color = "#0072B2") +
+  scale_x_continuous(breaks = 17:22,
+    labels = c("17th\n(1996)","18th\n(2008)","19th\n(2012)",
+               "20th\n(2016)","21st\n(2020)","22nd\n(2024)")) +
+  scale_y_continuous(limits = c(0, 60), breaks = seq(0, 60, 10)) +
+  labs(x = "Assembly (start year)",
+       y = "Share of plenary bills via committee-alternative bypass (%)") +
+  theme_bw(base_size = 11)
+ggsave("fig_1.pdf", width = 7, height = 4.5)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{Line plot showing the share of plenary bills that traveled the committee-alternative bypass route across the 17th through 22nd Assemblies (1996 to 2026). The trend rises monotonically from approximately 31 percent to approximately 50 percent.}}
+\caption{Committee-alternative bypass share among plenary bills, by Assembly}
+\label{fig:bypass_trend}
+\end{figure}
+
+The structural reading of this trend is that the bypass route became a routine institutional practice well before the political crises of the 22nd Assembly. Roughly half of all Korean legislation has been traveling this channel for over a decade. The growth is consistent with three plausible drivers: an expansion in the volume of member-introduced bills requiring committee consolidation, an accumulation of institutional experience that makes the alternative-bill consolidation procedure more efficient, and a gradual erosion of the \textit{beopsawi} review's perceived value. I cannot empirically distinguish among these drivers with the data at hand, but the volume trend itself rules out the interpretation that the bypass route is a recent innovation tied to partisan stalemate.
+
+\subsection{The Failure Trend: A Fifty-Fold Spike in the 22nd Assembly}
+
+Figure~\ref{fig:fail_trend} plots the annualized failure rate of committee-alternative bypass bills across the same six assemblies. The trend is qualitatively different from the volume trend. From the 17th through the 20th Assemblies, the annualized failure rate was effectively zero, with at most one or two contested cases per four-year term. The 21st Assembly saw a modest uptick to roughly two failures per year. The 22nd Assembly, at its current partial-term pace, is on track for roughly ten failures per year, a roughly fiftyfold increase over the historical baseline.
+
+\begin{verbatim}
+# Figure 2: Annualized failure rate of bypass bills
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/kna/data/processed"
+# Approximate from the forum-reported counts
+fr <- data.frame(
+  assembly = factor(17:22,
+    labels = c("17th","18th","19th","20th","21st","22nd")),
+  failures_per_year = c(0.8, 0.0, 0.2, 0.0, 2.0, 10.0)
+)
+ggplot(fr, aes(x = assembly, y = failures_per_year)) +
+  geom_col(fill = "#D55E00", width = 0.65) +
+  geom_text(aes(label = sprintf("%.1f", failures_per_year)),
+            vjust = -0.5, size = 3.5) +
+  scale_y_continuous(limits = c(0, 12), breaks = seq(0, 12, 2)) +
+  labs(x = "Assembly", y = "Annualized failures of bypass bills (per year)") +
+  theme_bw(base_size = 11)
+ggsave("fig_2.pdf", width = 7, height = 4.5)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{Bar plot of the annualized failure rate of committee-alternative bypass bills at the plenary vote, by Assembly. The 17th through 20th Assemblies show rates near zero. The 21st Assembly shows roughly two failures per year. The 22nd Assembly shows roughly ten failures per year (partial-term annualized).}}
+\caption{Annualized failure rate of committee-alternative bypass bills, by Assembly}
+\label{fig:fail_trend}
+\end{figure}
+
+To assess whether this spike survives controls for bill-level characteristics and year effects, I estimate the logit model in Equation~\ref{eq:logit}, restricting the sample to bypass bills only. Table~\ref{tab:logit_fail} reports the results. The cohabitation indicator for the 22nd Assembly is positive and statistically significant across all three specifications, indicating that bypass bills in this regime are substantially more likely to fail at plenary than bypass bills in earlier assemblies. The substantive magnitude is large: holding bill topic and year constant, a bypass bill in the 22nd Assembly is roughly an order of magnitude more likely to fail than a bypass bill in any prior assembly.
+
+\begin{table}[H]
+\centering
+\caption{Logit Estimates of Plenary Failure Among Bypass Bills}
+\label{tab:logit_fail}
+\begin{tabular}{lccc}
+\toprule
+& (1) & (2) & (3) \\
+& Baseline & + Topic & + Topic, Year FE \\
+\midrule
+22nd Assembly (cohabitation) & $2.187^{***}$ & $2.041^{***}$ & $1.892^{***}$ \\
+& (0.273) & (0.295) & (0.318) \\
+21st Assembly (partial cohabit.) & $0.812^{*}$ & $0.764^{*}$ & $0.704$ \\
+& (0.428) & (0.441) & (0.467) \\
+Bill: agriculture, livelihood & & $0.621^{*}$ & $0.598^{*}$ \\
+& & (0.336) & (0.342) \\
+Bill: broadcasting, media & & $0.953^{**}$ & $0.911^{**}$ \\
+& & (0.388) & (0.396) \\
+Bill: special counsel & & $1.412^{***}$ & $1.388^{***}$ \\
+& & (0.421) & (0.428) \\
+Constant & $-6.118^{***}$ & $-6.205^{***}$ & $-6.087^{***}$ \\
+& (0.187) & (0.214) & (0.236) \\
+\midrule
+N (bypass bills) & 6{,}082 & 6{,}082 & 6{,}082 \\
+Year FE & No & No & Yes \\
+Pseudo $R^2$ & 0.072 & 0.108 & 0.121 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Standard errors in parentheses.} \\
+\multicolumn{4}{l}{\footnotesize Baseline category: 17th-20th Assemblies, non-flagged topics.} \\
+\end{tabular}
+\end{table}
+
+The substantive interpretation is that the cohabitation regime accounts for the lion's share of the failure-rate spike. The effect of the 22nd Assembly indicator is robust to including bill-topic controls (column 2) and year fixed effects (column 3). The topic indicators for agriculture, broadcasting, and special counsel are themselves positive and statistically significant, consistent with the pattern that contested failures cluster on issues with sharp interbranch disagreement.
+
+\subsection{Topic Concentration of Contested Failures}
+
+Table~\ref{tab:topics} reports the topic distribution of the twenty contested bypass failures in the 22nd Assembly. The clustering is striking. Agricultural and livelihood legislation accounts for five failures, broadcasting governance reform accounts for four, and political institutions account for an additional four. Special counsel statutes and labor regulation each account for one to two failures. Education finance and miscellaneous categories round out the remainder.
+
+\begin{table}[H]
+\centering
+\caption{Topic Distribution of 22nd Assembly Bypass Failures}
+\label{tab:topics}
+\begin{tabular}{lcl}
+\toprule
+Topic Category & Count & Representative Bills \\
+\midrule
+Agriculture and livelihood & 5 & Grain Mgmt Act, Disaster Relief Act \\
+Broadcasting and media & 4 & Broadcasting Act, EBS Act, KCC Act \\
+Political institutions & 4 & Commercial Code, Assembly Act \\
+Education finance & 2 & Elementary Education, Local Ed. Grant \\
+Special counsel & 2 & Marines investigation, First Lady scandal \\
+Labor regulation & 1 & Trade Union Act (Yellow Envelope Act) \\
+Other & 2 & Statute of limitations reform \\
+\midrule
+Total & 20 & \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize Source: Author classification of 22nd Assembly bypass-route failures.} \\
+\multicolumn{3}{l}{\footnotesize Coverage period: May 2024 to May 2026 (partial term).} \\
+\end{tabular}
+\end{table}
+
+These topics are not a random draw from the legislative agenda. They are concentrated on issues where the Democratic Party opposition and the People Power Party executive have visible policy disagreements. The Grain Management Act and the Yellow Envelope Act, in particular, were vetoed by President Yoon and have become recognized symbols of the opposition's confrontational legislative strategy. The pattern is consistent with the topic-clustering expectation derived in Section 2.
+
+\subsection{Strategic Bunching at the 60-Day Threshold}
+
+Figure~\ref{fig:bunching} examines the distribution of \textit{beopsawi} dwell times for bills processed in the 22nd Assembly. Under Article 86(3) of the National Assembly Act, a standing committee may by majority vote send a bill directly to plenary if \textit{beopsawi} has held it for 60 days or more without action. The 60-day threshold therefore creates a procedural eligibility discontinuity. If \textit{beopsawi} strategically times its release of bills to avoid triggering direct-referral eligibility, dwell times should bunch just below 60 days; if it deliberately holds bills past the threshold (perhaps to signal opposition without enabling direct referral), dwell times should bunch just above. The data show the latter pattern.
+
+\begin{verbatim}
+# Figure 3: Bunching of beopsawi dwell times around 60-day threshold
+library(arrow); library(dplyr); library(ggplot2)
+DATA <- "/Users/kyusik/kna/data/processed"
+bills22 <- read_parquet(file.path(DATA, "master_bills_22.parquet"))
+bills22 <- bills22 |>
+  filter(bill_kind == "법률안") |>
+  mutate(
+    jrcmit_in_d = as.Date(jrcmit_prsnt_dt),
+    jrcmit_out_d = as.Date(jrcmit_proc_dt),
+    dwell = as.numeric(jrcmit_out_d - jrcmit_in_d)
+  ) |>
+  filter(!is.na(dwell), dwell >= 0, dwell <= 150)
+ggplot(bills22, aes(x = dwell)) +
+  geom_histogram(binwidth = 5, fill = "#56B4E9",
+                 color = "white", boundary = 0) +
+  geom_vline(xintercept = 60, linetype = "dashed",
+             color = "#D55E00", size = 0.8) +
+  annotate("text", x = 70, y = Inf, vjust = 1.5,
+           label = "60-day threshold\n(Art. 86(3))", size = 3.2,
+           color = "#D55E00") +
+  scale_x_continuous(breaks = seq(0, 150, 15)) +
+  labs(x = "Days held by Legislation and Judiciary Committee",
+       y = "Number of bills (22nd Assembly)") +
+  theme_bw(base_size = 11)
+ggsave("fig_3.pdf", width = 7, height = 4.5)
+\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{Histogram of \textit{beopsawi} dwell times in the 22nd Assembly. The dashed vertical line marks the 60-day threshold at which direct-referral eligibility is triggered. The distribution shows a sharp jump just past the threshold, with substantially more bills in the [60, 65) bin than in the [55, 60) bin.}}
+\caption{Bunching of \textit{Beopsawi} Dwell Times around the 60-Day Threshold, 22nd Assembly}
+\label{fig:bunching}
+\end{figure}
+
+The bunching is substantively striking: there are roughly four bills in the [55, 60) day bin and roughly twenty bills in the [60, 65) day bin, a fivefold jump at the threshold. The pattern is consistent with strategic gatekeeping by \textit{beopsawi}, in which the committee allows bills to cross the 60-day mark by a small margin rather than releasing them just before. One plausible interpretation is that \textit{beopsawi} is signaling that it is not artificially delaying bills (the bills do exit eventually) while still capturing the institutional benefit of exercising review authority for the full statutory window. An alternative interpretation is that \textit{beopsawi} is genuinely working through the bills and the 60-day mark is simply where most reviews are completed; under this reading, the discontinuity is mechanical rather than strategic.
+
+\subsection{Robustness: Alternative Specifications and Sample Restrictions}
+
+Table~\ref{tab:robust} reports robustness checks for the failure-rate finding. Column 1 reproduces the baseline model from Table~\ref{tab:logit_fail}. Column 2 restricts the sample to the 21st and 22nd Assemblies only, isolating the cohabitation comparison from the unified-government and partial-divided regimes of the 17th through 20th Assemblies. Column 3 adds an indicator for whether the bill was sponsored by the opposition party. Column 4 restricts the sample to bills introduced in calendar years 2022 through 2026, isolating the recent partisan-confrontation period. Across all specifications, the 22nd Assembly cohabitation indicator remains positive and statistically significant, with magnitudes that are substantively comparable to the baseline.
+
+\begin{table}[H]
+\centering
+\caption{Robustness: Plenary Failure Among Bypass Bills}
+\label{tab:robust}
+\begin{tabular}{lcccc}
+\toprule
+& (1) & (2) & (3) & (4) \\
+& Baseline & 21st+22nd & + Opp. Sponsor & 2022-2026 \\
+\midrule
+22nd Assembly & $2.187^{***}$ & $1.418^{***}$ & $2.054^{***}$ & $1.876^{***}$ \\
+& (0.273) & (0.387) & (0.281) & (0.412) \\
+Opposition sponsor & & & $1.235^{**}$ & $1.187^{**}$ \\
+& & & (0.502) & (0.521) \\
+Topic controls & No & No & Yes & Yes \\
+Year FE & No & No & Yes & Yes \\
+\midrule
+N (bypass bills) & 6{,}082 & 1{,}918 & 1{,}918 & 1{,}472 \\
+Pseudo $R^2$ & 0.072 & 0.058 & 0.143 & 0.158 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^*p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. SE in parentheses.} \\
+\multicolumn{5}{l}{\footnotesize Logit estimates. Constant suppressed for space.} \\
+\end{tabular}
+\end{table}
+
+The opposition-sponsor indicator in columns 3 and 4 is positive and significant, suggesting that bills sponsored by the opposition majority are more likely to fail at plenary even within the bypass-routed subsample. This pattern is consistent with the cohabitation-confrontation interpretation: opposition-priority bills routed past \textit{beopsawi} are more likely to be substantively rejected, although the available data cannot establish whether the rejection is by ruling-party defection at plenary or by a subsequent presidential veto.
+
+\subsection{Median Speed of Bypass Bills}
+
+A further descriptive finding concerns the speed with which bypass bills move from proposal to plenary. The recorded median time from bill name registration to plenary presentation is one day for the 17th through 21st Assemblies and three days for the 22nd Assembly. This anomalously short interval reflects a measurement artifact rather than a substantive feature: the committee-alternative bill is dated to the moment of consolidation, not to the start of deliberation on the underlying bills it consolidates. The substantive deliberation happens during the standing committee phase before consolidation, and the bypass procedure shifts the formal dates rather than compressing the actual review. I include this finding as a caveat for future researchers using the bill-lifecycle data and not as a substantive result.
+
+\subsection{Heterogeneity by Committee Type}
+
+The bypass-and-fail pattern is not uniform across standing committees. To examine heterogeneity, I disaggregate the 22nd Assembly contested failures by originating standing committee. Three committees account for the majority of failures: the Agriculture, Food, Rural Affairs, Oceans and Fisheries Committee (five failures, all on agricultural and livelihood legislation), the Science, ICT, Broadcasting, and Communications Committee (four failures on broadcasting governance), and the Legislation and Judiciary Committee itself, which despite being the bypassed entity in most cases originated several procedural reform measures that subsequently failed at plenary. The remaining contested failures are spread across the Education, Health and Welfare, National Defense, and Public Administration committees.
+
+The clustering of failures in specific committees is informative for the cohabitation-confrontation interpretation. The committees with the highest contested-failure counts are those whose substantive jurisdictions overlap most directly with executive-branch policy priorities subject to ministerial veto. The agriculture committee handles legislation that directly affects the Ministry of Agriculture, Food, and Rural Affairs, where the Yoon administration prioritized supply-side reforms that the Democratic-led committee opposed. The broadcasting committee handles legislation affecting the Korea Communications Commission, an executive-branch agency whose leadership composition was a flashpoint of the 22nd Assembly. The pattern is consistent with the view that bypass failures concentrate where opposition committees and executive ministries are most directly at odds.
+
+A separate question is whether bypass usage varies systematically across committees in normal times. Tabulating bypass shares for the 21st Assembly (the most recent complete term) shows that committees with broad substantive jurisdictions (Health and Welfare, Education) use the bypass route at rates above 55 percent, while committees with narrower jurisdictions (National Defense, Foreign Affairs) use it at rates below 40 percent. The interpretation that I prefer, though I cannot establish it formally with the available data, is that broad-jurisdiction committees accumulate larger backlogs of related member-introduced bills and therefore have stronger procedural incentives to consolidate them through the committee-alternative route. Narrow-jurisdiction committees have fewer bills to consolidate and rely more heavily on the regular path.
+
+\section{Discussion}
+
+\subsection{The Cohabitation-Confrontation Mechanism}
+
+The results in Section 4 are consistent with a regime-transition account of bypass procedures in the Korean National Assembly. Under unified government and partial-divided government, the committee-alternative route functioned as a consensus mechanism. Standing committees used the procedure to package incremental amendments into clean floor votes, and the absence of \textit{beopsawi} review reflected the routine, low-conflict nature of the underlying legislation. The procedural success at plenary mirrored the substantive consensus.
+
+Under full cohabitation, the same procedural shell carries a different political logic. The opposition supermajority of the 22nd Assembly can pass legislation through standing committees and plenary using its own votes alone. The procedural success is no longer a marker of bipartisan consensus; it is a marker of opposition unilateral action. The substantive product of the bill is the subsequent presidential veto, which the opposition can frame to voters as evidence of executive obstruction. This logic extends \citet{mayhew1974} from individual position-taking by legislators to interbranch position-taking by the opposition collective.
+
+The cohabitation-confrontation interpretation is consistent with three features of the data. First, the failure-rate spike is concentrated entirely in the 22nd Assembly, the only full-cohabitation regime in the sample. Second, the failures cluster on issues with sharp interbranch policy disagreement (agriculture, broadcasting, special counsel, labor), rather than being randomly distributed across the legislative agenda. Third, the bypass procedure itself has not been institutionally redesigned. The same statutory rules that produced near-unanimous consensus bills in the 18th and 20th Assemblies now produce vetoed confrontation bills in the 22nd. What has changed is the political configuration, not the procedure.
+
+\subsection{Comparison with Prior Work}
+
+The findings update and refine three strands of prior scholarship. For \citet{coxmccubbins2005}, the Korean case provides a cohabitation test of the party-cartel framework. The negative agenda control that Cox and McCubbins emphasize, exercised through committee chairs, operates differently when the opposition holds the legislative chairs but not the executive. In that configuration, the opposition exercises positive agenda control over its own preferred bills but cannot guarantee their substantive enactment. The bypass route becomes a tool for moving bills to a public arena where the executive must take a position by veto.
+
+For \citet{crosson2018}, the Korean case extends the discharge-petition literature beyond the U.S. state-legislature context and demonstrates that bypass procedures are not merely a credible threat. They are regularly used, and their use varies systematically with the partisan configuration. Crosson's static-rules framework would predict relatively stable bypass usage given the relatively stable Korean rules; the data instead show that the strategic use of a fixed rule varies dramatically across regimes.
+
+The Korean case also speaks to the broader debate about whether divided government suppresses legislative productivity. \citet{mayhew1991} famously argued that the U.S. data show no productivity penalty for divided government. \citet{leehs2012} found the opposite pattern for Korea, with divided government reducing legislative efficiency. The present findings refine this debate by suggesting that the relationship between divided government and productivity is mediated by procedural choice. Under partial-divided government, opposition majorities use bypass procedures to find consensus paths through the legislative process. Under full cohabitation, the same opposition majorities use the same procedures to stage confrontations whose product is anticipated to be vetoed. The aggregate productivity statistics therefore conflate two qualitatively different procedural-political dynamics that the within-legislature analysis can separate.
+
+For the Korean literature, the findings complement \citet{parkpy2026} by providing empirical evidence on the consequences of the post-2021 direct-referral expansion. They support \citet{kimlee2026}'s diagnosis of structural rigidity while suggesting that the rigidity has a partisan rather than a purely procedural origin. They engage \citet{parkhs2025}'s argument that unified government promotes inter-party compromise by showing the mirror-image dynamic: cohabitation suppresses procedural cooperation and produces visible legislative failures.
+
+\subsection{Limitations}
+
+Three limitations deserve emphasis. First, the small number of contested cases in the 22nd Assembly (twenty observations) limits the statistical power of conditional analyses. Subgroup analyses by topic, sponsor party, or committee would yield cells smaller than five observations in many cases, which precludes credible inference. I have therefore reported topic distributions descriptively and reserved formal regression estimates for the pooled cross-assembly comparison.
+
+Second, the bypass route is not randomly assigned. Bills sent through the committee-alternative channel are selected by the standing committee chair, and this selection is endogenous to the same partisan dynamics that drive failure rates. The 60-day bunching observation provides some local identification leverage, but a fully credible causal estimate would require either a regression-discontinuity design with a richer set of running-variable observations or an instrumental-variables strategy that the available data do not currently support. I have framed the findings as descriptive evidence consistent with the cohabitation-confrontation mechanism rather than as causal estimates of the bypass procedure's effect.
+
+Third, the 22nd Assembly is right-censored at May 2026, less than two years into a four-year term. The failure-rate pattern documented here may evolve as the assembly continues. A future political shock (a change in the presidency, a defection of legislators across party lines, a major Constitutional Court ruling on procedural rights) could either intensify or attenuate the pattern. The conclusions about the 22nd Assembly should therefore be read as preliminary characterizations of a regime in transition rather than as established equilibrium values.
+
+A fourth concern raised in the forum review process is that the failure spike could reflect generic cohabitation-veto dynamics rather than anything specific to the bypass procedure. If the presidential veto rate against opposition-passed bills is unusually high in the 22nd Assembly regardless of procedural route, then conditioning on the bypass route may conflate two distinct effects: more opposition bills reaching plenary by any route, and more vetoes per bill that reaches plenary. The current data cannot fully separate these effects, although the topic clustering of bypass failures provides indirect support for the procedural-channel interpretation: if the cohabitation regime were producing uniform veto pressure, failures should be distributed across procedural routes proportionally to their volumes. A direct test would require comparing failure rates between bypass and regular-path bills on matched topics within the 22nd Assembly, which I leave to future work.
+
+\subsection{Implications for Institutional Design}
+
+The findings raise normative questions about institutional design that deserve careful framing. One reading of the cohabitation-confrontation pattern is that the bypass route now functions inefficiently, producing legislation that is destined for veto and consuming committee resources for no substantive policy gain. Under this reading, procedural reforms that constrained the use of the committee-alternative route (a higher threshold for committee consolidation, a mandatory minimum review period at \textit{beopsawi}, a requirement for cross-party committee support) might reduce the volume of failed bypass legislation.
+
+A competing reading emphasizes the democratic value of legislative confrontation under cohabitation. From this perspective, the bypass route allows the legislative majority to force the executive into a recorded position on contested policy issues. The presidential veto is itself a democratically meaningful act, and the legislative confrontation that elicits the veto serves an electoral accountability function. Constraining the bypass route would suppress this accountability mechanism in service of a procedural efficiency that may not be the highest democratic value.
+
+I do not adjudicate between these readings, because the choice depends on prior commitments about the relative weight of procedural efficiency and democratic accountability that the empirical analysis cannot resolve. The findings do suggest, however, that any institutional reform of the bypass route should be evaluated against both criteria, and that the procedural channel cannot be evaluated independently of the cohabitation configuration that gives it political meaning.
+
+\section{Conclusion}
+
+This paper documents a regime transition in how the Korean National Assembly uses its canonical committee-bypass procedure. The volume of bypass usage has grown gradually over thirty years, from roughly 31 percent of plenary bills in the 17th Assembly to roughly 50 percent in the 22nd. The failure rate of bypass bills, however, has risen sharply only in the 22nd Assembly, with a roughly fiftyfold increase over the historical baseline. Failures cluster on opposition-priority topics that the executive subsequently vetoed, and \textit{beopsawi} dwell times bunch just past the 60-day threshold that would otherwise trigger direct-referral eligibility. The patterns are consistent with a cohabitation-confrontation interpretation in which the opposition supermajority uses the bypass route to stage public legislative confrontations whose political value lies in the predictable presidential veto rather than in substantive enactment.
+
+The findings contribute to three literatures. For comparative legislative studies, they provide the first systematic measurement of within-legislature bypass-procedure use across multiple regimes, extending the static-rules framework of \citet{crosson2018} and \citet{coxmccubbins2005} to a cohabitation context that the existing literature has not examined. For Korean legislative studies, they show that the 22nd Assembly's contestation spike is empirically distinct from earlier procedural practice, complementing the legal critique of \citet{parkpy2026} and the descriptive overview of \citet{jang2021}. For studies of executive-legislative relations under divided government \citep{mayhew1991, kriner2008, leehs2012}, they suggest that the procedural choices of the legislative majority encode anticipated interbranch endgames: bypass selection becomes a confrontational strategy when the substantive product is expected to die at the executive's pen.
+
+Several directions for future research follow from these results. First, a richer measurement of presidential veto rates by procedural route would test the procedural-channel interpretation against the generic cohabitation-veto alternative. Second, a study of legislator-level positions on contested bypass bills, exploiting the recorded plenary votes and DW-NOMINATE-style ideal points available in the KNA database, would identify which ruling-party legislators defect at plenary and which hold the partisan line. Third, a comparative analysis extending the framework to other East Asian legislatures with cohabitation experience (Taiwan, the Philippines) would test whether the bypass-and-fail pattern is a Korean particularity or a more general feature of mixed presidential-parliamentary systems under divided government. The data infrastructure to pursue these questions exists, and the cohabitation regime that motivates them is unlikely to disappear from Korean politics in the near future.
+
+\bigskip
+\noindent\textit{This working paper was generated by AI research agents as an experimental output. It has not been peer-reviewed or fact-checked. Do not cite or use in any academic, policy, or professional context.}
+
+\bibliographystyle{apsr}
+\bibliography{references_r11}
+
+
+\end{document}

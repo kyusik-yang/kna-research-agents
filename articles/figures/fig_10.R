@@ -1,81 +1,92 @@
+#!/usr/bin/env Rscript
+
 # fig_10.R
-# Four-line plot of bill passage rates by gender and mandate type
-# across the 17th to 22nd Assemblies.
+# Histogram of beopsawi (Legislation and Judiciary Committee) dwell times
+# in the 22nd Assembly. The dashed vertical line marks the 60-day threshold
+# at which direct-referral eligibility is triggered.
 
-library(arrow)
-library(dplyr)
-library(ggplot2)
+suppressPackageStartupMessages({
+  library(arrow)
+  library(dplyr)
+  library(ggplot2)
+})
 
+# Okabe-Ito colorblind-safe palette
+okabe_ito <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2",
+               "#D55E00", "#CC79A7", "#F0E442", "#000000")
+
+# Paths
 data_dir <- "/Users/kyusik/kna/data/processed/"
 out_path <- "/Volumes/kyusik-ssd/kyusik-research/projects/kna-research-agents/articles/figures/fig_10.pdf"
 
-# Load member info
-members <- read_parquet(file.path(data_dir, "member_info_17_22.parquet")) |>
-  select(mona_cd, assembly, gender, election_type, reelection)
+# Load 22nd Assembly bills and member info
+bills_22 <- read_parquet(file.path(data_dir, "master_bills_22.parquet"))
+members  <- read_parquet(file.path(data_dir, "member_info_17_22.parquet"))
 
-# Load all assemblies of bills
-assemblies <- 17:22
-bills_list <- lapply(assemblies, function(a) {
-  read_parquet(file.path(data_dir, paste0("master_bills_", a, ".parquet")))
-})
-bills <- bind_rows(bills_list)
-
-# Filter member-sponsored bills and join with member info
-bills_member <- bills |>
+# Filter to member-sponsored bills, then join sponsor info
+bills_joined <- bills_22 |>
   filter(ppsr_kind == "의원") |>
   inner_join(members, by = c("rst_mona_cd" = "mona_cd", "age" = "assembly"))
 
-# Compute passage rates by assembly, gender, and mandate type
-plot_df <- bills_member |>
-  filter(!is.na(gender), !is.na(election_type), gender %in% c("남", "여"),
-         election_type %in% c("비례대표", "지역구")) |>
-  group_by(age, gender, election_type) |>
-  summarise(passage_rate = mean(passed, na.rm = TRUE),
-            n_bills = n(),
-            .groups = "drop") |>
-  mutate(
-    gender_en = ifelse(gender == "여", "Women", "Men"),
-    mandate_en = ifelse(election_type == "지역구", "SMD", "PR"),
-    group = paste(gender_en, mandate_en, sep = " - "),
-    assembly_label = paste0(age, "th")
-  )
-
-# Order groups for legend
-plot_df$group <- factor(plot_df$group,
-                        levels = c("Women - SMD", "Men - SMD",
-                                   "Women - PR", "Men - PR"))
-
-# Okabe-Ito colorblind palette
-okabe_ito <- c(
-  "Women - SMD" = "#D55E00",
-  "Men - SMD"   = "#0072B2",
-  "Women - PR"  = "#E69F00",
-  "Men - PR"    = "#56B4E9"
+# Identify beopsawi (Legislation and Judiciary Committee) referral and
+# processing date columns. Different snapshots use slightly different names,
+# so we try the most common pairs in order of preference.
+date_cols <- names(bills_joined)
+candidate_pairs <- list(
+  c("law_submit_dt",      "law_proc_dt"),
+  c("law_present_dt",     "law_proc_dt"),
+  c("law_present_dt",     "law_proc_result_dt"),
+  c("beopsawi_submit_dt", "beopsawi_proc_dt"),
+  c("rgs_proposed_dt",    "law_proc_dt")
 )
 
-p <- ggplot(plot_df,
-            aes(x = age, y = passage_rate,
-                color = group, linetype = group, shape = group)) +
-  geom_line(linewidth = 0.8) +
-  geom_point(size = 2.4) +
-  scale_color_manual(values = okabe_ito) +
-  scale_linetype_manual(values = c("Women - SMD" = "solid",
-                                   "Men - SMD"   = "solid",
-                                   "Women - PR"  = "dashed",
-                                   "Men - PR"    = "dashed")) +
-  scale_shape_manual(values = c("Women - SMD" = 16,
-                                "Men - SMD"   = 17,
-                                "Women - PR"  = 15,
-                                "Men - PR"    = 18)) +
-  scale_x_continuous(breaks = assemblies,
-                     labels = paste0(assemblies, "th")) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  labs(x = "Assembly",
-       y = "Bill passage rate",
-       color = NULL, linetype = NULL, shape = NULL) +
+dwell_days <- NULL
+used_pair  <- NULL
+for (pair in candidate_pairs) {
+  if (all(pair %in% date_cols)) {
+    start_dt   <- as.Date(bills_joined[[pair[1]]])
+    end_dt     <- as.Date(bills_joined[[pair[2]]])
+    dwell_days <- as.numeric(difftime(end_dt, start_dt, units = "days"))
+    used_pair  <- pair
+    break
+  }
+}
+
+# Fallback: any pair of date columns whose names mention "law"
+if (is.null(dwell_days)) {
+  law_cols <- grep("law", date_cols, value = TRUE, ignore.case = TRUE)
+  if (length(law_cols) >= 2) {
+    start_dt   <- as.Date(bills_joined[[law_cols[1]]])
+    end_dt     <- as.Date(bills_joined[[law_cols[2]]])
+    dwell_days <- as.numeric(difftime(end_dt, start_dt, units = "days"))
+    used_pair  <- law_cols[1:2]
+  }
+}
+
+if (is.null(dwell_days)) {
+  stop("Could not identify beopsawi dwell-time columns in master_bills_22.parquet")
+}
+
+message("Using date columns: ", paste(used_pair, collapse = " -> "))
+
+# Keep non-negative dwell times; cap at 200 days for readability
+plot_df <- tibble(dwell_days = dwell_days) |>
+  filter(!is.na(dwell_days), dwell_days >= 0, dwell_days <= 200)
+
+# 5-day bins so the 60-day threshold falls cleanly on a bin edge
+p <- ggplot(plot_df, aes(x = dwell_days)) +
+  geom_histogram(binwidth = 5, boundary = 0,
+                 fill = okabe_ito[4], color = "white", linewidth = 0.3) +
+  geom_vline(xintercept = 60, linetype = "dashed",
+             color = okabe_ito[5], linewidth = 0.6) +
+  annotate("text", x = 60, y = Inf,
+           label = "60-day threshold",
+           hjust = -0.05, vjust = 1.6,
+           color = okabe_ito[5], size = 3.2) +
+  scale_x_continuous(breaks = seq(0, 200, 20)) +
+  labs(x = "Days in beopsawi (Legislation and Judiciary Committee)",
+       y = "Number of bills") +
   theme_bw(base_size = 11) +
-  theme(legend.position = "bottom",
-        legend.box = "horizontal",
-        panel.grid.minor = element_blank())
+  theme(panel.grid.minor = element_blank())
 
 ggsave(out_path, plot = p, width = 7, height = 4.5)
