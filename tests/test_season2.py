@@ -181,3 +181,13 @@ def test_arc_runner_decisions():
     assert d({"verdict": "pursue", "falsifier_tested": "yes"}, 3, 3, None)[0] == "draft_and_stop"
     assert d({"verdict": "revise", "falsifier_tested": "yes"}, 4, 3, None)[0] == "continue"
     assert d({"verdict": None, "falsifier_tested": None}, 1, 3, None)[0] == "continue"
+
+
+def test_draft_body_completeness_gate():
+    import draft_article as da
+    good = "\\title{X} " + ("w " * 3200) + " \\section{Conclusion} done \\bibliography{refs}"
+    ok, _ = da._body_ok(good)
+    assert ok
+    assert da._body_ok("and")[0] is False
+    assert da._body_ok(("w " * 3200) + " \\bibliography{refs}")[0] is False   # no conclusion
+    assert da._body_ok(("w " * 3200) + " \\section{Conclusion}")[0] is False  # no bibliography
