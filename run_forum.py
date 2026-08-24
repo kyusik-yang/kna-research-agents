@@ -810,10 +810,18 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
 
     except subprocess.TimeoutExpired:
         print(f"  TIMEOUT (>1 hour)")
-        log_file.write_text("TIMEOUT after 600s")
+        with open(log_file, "a") as lf:
+            lf.write("\nTIMEOUT after 3600s\n")
+        raise RuntimeError(f"{agent['id']} timed out")
+    except RuntimeError:
+        with open(log_file, "a") as lf:
+            lf.write("\nNO POST PRODUCED (see exit code above)\n")
+        raise
     except Exception as e:
         print(f"  ERROR: {e}")
-        log_file.write_text(f"ERROR: {e}")
+        with open(log_file, "a") as lf:
+            lf.write(f"\nERROR: {e}\n")
+        raise
 
 
 def add_human_comment(comment_text, topic=None):

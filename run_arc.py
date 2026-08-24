@@ -161,12 +161,23 @@ def main() -> None:
 
     topic = args.topic
     for i in range(args.max_rounds):
+        posts_before = len(list(FORUM_DIR.glob("*.md")))
         rc = run_round(topic, log_path)
         topic = None  # only the first round opens the arc
         rnd = current_round(n_agents)
         if rc != 0:
             write_status(state="stopped", reason=f"run_forum exit {rc} at R{rnd}", rounds_run=i + 1)
             raise SystemExit(f"  [arc] STOP: run_forum exited {rc} at R{rnd}; see {log_path}")
+        posts_after = len(list(FORUM_DIR.glob("*.md")))
+        if posts_after < posts_before + n_agents:
+            # A phantom round: run_forum returned 0 but the round is short of
+            # posts (R30 incident: API failures swallowed inside run_agent).
+            write_status(state="stopped",
+                         reason=f"round advanced only {posts_after - posts_before}/{n_agents} posts at R{rnd}",
+                         rounds_run=i + 1)
+            raise SystemExit(
+                f"  [arc] STOP: round produced {posts_after - posts_before}/{n_agents} posts "
+                f"(R{rnd}); researcher attention needed; see {log_path}")
         state = critic_state(rnd, n_agents)
         if state["source"] is None:
             write_status(state="stopped", reason=f"no Critic post in R{rnd}", rounds_run=i + 1)
