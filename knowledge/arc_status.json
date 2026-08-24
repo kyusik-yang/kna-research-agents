@@ -1,8 +1,12 @@
 {
-  "state": "paused",
-  "reason": "max rounds (5) reached",
-  "verdict": null,
-  "ts": "2026-08-24T09:58:07",
+  "state": "stopped",
+  "last_round": 30,
+  "verdict": "pursue",
+  "falsifier_tested": "yes",
+  "arc_depth": 3,
+  "action": "draft_and_stop",
+  "reason": "arc complete: Paper E drafted (manual completion after R30 API outage)",
+  "ts": "2026-08-24T12:52:57",
   "seed": "First-term legislative learning: does the bill passage-rate gap between first-term and re-elected members close over the assembly term?",
   "start_round": 28
 }

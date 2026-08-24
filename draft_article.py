@@ -242,6 +242,7 @@ def draft_article(round_num):
     tex_file = ARTICLES_DIR / f"{article_slug}.tex"
     content_file = ARTICLES_DIR / f"{article_slug}_content.tex"
 
+    kna_data = os.environ.get("KBL_DATA", str(Path.home() / "Desktop" / "kyusik-github" / "kna" / "data" / "processed"))
     prompt = textwrap.dedent(f"""\
     You are a research paper drafting agent. Based on the forum discussion below,
     draft a working paper as a LaTeX document body following APSR conventions
@@ -434,7 +435,7 @@ def draft_article(round_num):
     - The verbatim block must appear IMMEDIATELY before its \\begin{{figure}} float.
     - Each R script must be self-contained: load libraries, read data, plot, ggsave().
 
-    Data path for R: /Users/kyusik/kna/data/processed/
+    Data path for R: {kna_data}/ (resolved from the KBL_DATA environment variable)
     Available: member_info_17_22.parquet, master_bills_{{17-22}}.parquet
     Use arrow::read_parquet() to load. Key columns: mona_cd, assembly (=age in bills),
     gender (남/여), election_type (비례대표/지역구), reelection (초선/재선/3선/...),
@@ -447,7 +448,7 @@ def draft_article(round_num):
     \\begin{{verbatim}}
     # Figure N: [description]
     library(arrow); library(dplyr); library(ggplot2)
-    DATA <- "/Users/kyusik/kna/data/processed"
+    DATA <- "{kna_data}"
     members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
     bills <- bind_rows(lapply(17:22, function(a) {{
       f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
@@ -505,7 +506,7 @@ def draft_article(round_num):
     - members_{{17-22}}.parquet: member metadata (party, district, committee, sex, birth_date, election_type, reelection)
     - assets data: db.assets(assembly=22) - 2,928 member-year wealth observations
     - kr-hearings-data: 9.9M speeches + 7.4M Q&A dyads (separate download)
-    Data path: /Users/kyusik/kna/data/processed/
+    Data path: {kna_data}/
     R code for figures should use arrow::read_parquet() to load this data directly.
     - Valid LaTeX that compiles with xelatex
 
