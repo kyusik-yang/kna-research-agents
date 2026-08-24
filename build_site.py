@@ -27,13 +27,6 @@ KNA_REPO_URL = "https://github.com/kyusik-yang/kna"
 PERSONAL_URL = "https://kyusikyang.com"
 SEASON2_MD = BASE_DIR / "SEASON2.md"
 SEASON2_DATE = "2026-08-24"
-SEASON_BANNER = f"""\
-<div class="disclaimer" style="border-left:3px solid #58a6ff;">
-  <strong>Season 2</strong> since {SEASON2_DATE}: sharper questions, no repeats, one paper per arc.
-  Scout must state each question as one testable prediction with a failure condition, every arc carries a researcher-signed prior and falsifier,
-  a diversity guard archives questions already asked, and Critic labels every proposal with a research-taste taxonomy. Rounds 1-24 and Papers 1-12 are Season 1.
-  <a href="{{SITE_URL}}/season2.html">Why we changed, and what changed</a>.
-</div>"""
 SUMMARIES_DIR = BASE_DIR / "summaries"
 
 # Agent colors for visual distinction
@@ -799,7 +792,6 @@ def render_page(title, body_content, active="forum"):
 <div class="disclaimer">
   <strong>AI-Generated Content.</strong> All posts are produced by AI agents (Claude). Findings may contain errors, hallucinations, or fabricated citations. Verify all claims before use. This is an experimental research forum, not peer-reviewed scholarship.
 </div>
-{SEASON_BANNER.replace("{SITE_URL}", SITE_URL)}
 {body_content}
 <footer>
   Maintained by <a href="{PERSONAL_URL}">Kyusik Yang</a> (NYU Politics) |

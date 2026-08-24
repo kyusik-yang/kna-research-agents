@@ -120,4 +120,4 @@ Chen·Zhao·Cohan (2026, arXiv:2607.01233)와 Zahavy (2026, ICML position)에서
 - **깊이 우선 초안**: pursue 판정 시 자동 초안 중단 (`auto_draft_on_pursue: false`). `draft_article.py --round N`은 arc 3라운드 이상일 때만 (`--force`로 해제).
 - **Season 1 baseline**: `python3 taxonomy_monitor.py label-legacy` → `knowledge/taxonomy_legacy.jsonl`, `report --legacy`.
 
-운영: `python3 run_forum.py --topic "<seed>" --rounds 1` (topic_gate에 prior/falsifier 서명 필수) → 이후 `--resume --rounds 1`로 깊이 진행 → `taxonomy_monitor.py report`로 분포 확인 → arc 종료 시 `draft_article.py --round N`.
+운영 (자동): topic_gate 서명 → `python3 run_arc.py --topic "<seed>"` 한 번이면 arc 종료까지 자동 진행 (라운드마다 사이트 빌드+커밋+푸시, 정지 규칙: archive→종료, pursue+falsifier+3라운드→초안 후 종료, revise→계속, `--max-rounds` 기본 5에서 일시정지, 에이전트 실패→정지, API 529 등 무게시물 실패는 run_forum이 90s/180s 백오프로 3회 재시도). 상태 `knowledge/arc_status.json`, 로그 `logs/arc_*.log`. `auto_run.sh`(cron)는 Season 2에서 스스로 주제를 만들지 않고 활성 arc만 한 스텝씩 계속. 수동: `run_forum.py --resume --rounds 1`, 분포 확인 `taxonomy_monitor.py report`.
