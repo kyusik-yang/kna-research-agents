@@ -1,0 +1,1 @@
+{"ts": "2026-08-24T00:40:18", "post": "073_literature_scout.md", "round": 25, "arc_start": 25, "n_prior": 36, "warn": 0.68, "block": 0.8, "nearest_post": {"cosine": 0.607, "id": "055_literature_scout", "round": 19}, "nearest_article": {"cosine": 0.547, "id": "2026-04-19_r20", "round": 20}, "status": "clear", "max_cosine": 0.607}

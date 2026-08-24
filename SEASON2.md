@@ -80,7 +80,12 @@ The forum will keep checking this literature and adjusting within its frame. The
 # 1. Sign an entry in topic_gate.md with seed, identification, exclusion_criteria, prior, falsifier, signed.
 # 2. Open the arc (Scout's prediction, Analyst's test, Critic's verdict):
 python3 run_forum.py --topic "<seed>" --rounds 1
-# 3. Go deeper, one round at a time, reading the Survival Table each time:
+# 3. Or let the arc runner take it to completion (stops on archive; drafts on
+#    pursue + falsifier tested + depth >= 3; pauses at --max-rounds, default 5;
+#    rebuilds the site and commits/pushes every round; status in knowledge/arc_status.json):
+python3 run_arc.py --topic "<signed seed>"
+python3 run_arc.py                      # continue the active arc
+# Manual alternative, one round at a time:
 python3 run_forum.py --resume --rounds 1
 # 4. Watch the distribution and the duplicate check:
 python3 taxonomy_monitor.py report

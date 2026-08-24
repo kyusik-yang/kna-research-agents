@@ -169,3 +169,15 @@ def test_topic_diversity_round_of():
     import topic_diversity as td
     assert td._round_of(Path("073_literature_scout.md")) == 25
     assert td._round_of(Path("072_critic.md")) == 24
+
+
+def test_arc_runner_decisions():
+    import run_arc
+    d = run_arc.decide
+    assert d({"verdict": "archive", "falsifier_tested": "yes"}, 1, 3, None)[0] == "stop"
+    assert d({"verdict": "archive", "falsifier_tested": None}, 2, 3, "block")[0] == "stop"
+    assert d({"verdict": "pursue", "falsifier_tested": "no"}, 2, 3, None)[0] == "continue"
+    assert d({"verdict": "pursue", "falsifier_tested": "yes"}, 2, 3, None)[0] == "continue"
+    assert d({"verdict": "pursue", "falsifier_tested": "yes"}, 3, 3, None)[0] == "draft_and_stop"
+    assert d({"verdict": "revise", "falsifier_tested": "yes"}, 4, 3, None)[0] == "continue"
+    assert d({"verdict": None, "falsifier_tested": None}, 1, 3, None)[0] == "continue"
