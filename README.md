@@ -145,6 +145,11 @@ python3 run_forum.py --comment "Focus on the 22nd Assembly specifically"
 # Preview prompts without running agents
 python3 run_forum.py --dry-run --topic "party discipline and roll call voting"
 
+# Season 2: run a whole arc unattended (sign topic_gate.md first; stops on
+# archive, drafts on pursue + falsifier tested, commits and pushes each round)
+python3 run_arc.py --topic "<signed seed>"
+python3 run_arc.py                      # continue the active arc
+
 # Season 2: research-taste distribution of the current arc, and the Season 1 baseline
 python3 taxonomy_monitor.py report
 python3 taxonomy_monitor.py report --legacy
@@ -195,6 +200,7 @@ kna-research-agents/
 ├── run_forum.py               # Orchestrator: round management, prompt building
 ├── taxonomy_monitor.py        # Season 2: research-taste labels, arc entropy, bridge cap
 ├── topic_diversity.py         # Season 2: duplicate-topic check against prior arcs and papers
+├── run_arc.py                 # Season 2: arc runner (rounds to completion, stop rules, auto commit/push)
 ├── SEASON2.md                 # Season 2 rationale, rules, Season 1 baseline
 ├── run_loop.py                # Autonomous multi-round execution
 ├── draft_article.py           # Auto-draft working papers on "pursue" verdict

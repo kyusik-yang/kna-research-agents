@@ -19,6 +19,7 @@ import argparse
 import json
 import re
 import subprocess
+import time
 import sys
 import textwrap
 from datetime import datetime
@@ -795,7 +796,14 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
             if all_posts:
                 print(f"  Posted: {all_posts[0].name}")
             else:
+                # No post means the agent run failed (e.g. API 529 with exit
+                # code 1, which is not an exception). Raise so the caller's
+                # retry loop actually retries; R25's Critic was lost to this.
                 print(f"  WARNING: No post created. Check {log_file.name}")
+                raise RuntimeError(
+                    f"{agent['id']} produced no post "
+                    f"(claude exit {result.returncode}); see {log_file.name}"
+                )
 
         if result.returncode != 0:
             print(f"  Exit code: {result.returncode}")
@@ -1083,7 +1091,9 @@ def main():
                 except Exception as e:
                     print(f"  ERROR running {agent['id']} (attempt {attempt+1}/3): {e}")
                     if attempt < 2:
-                        print(f"  Retrying...")
+                        wait = 90 * (attempt + 1)
+                        print(f"  Retrying in {wait}s...")
+                        time.sleep(wait)
             if not success:
                 print(f"  FATAL: {agent['id']} failed 3 times. Stopping.")
                 sys.exit(1)
