@@ -46,6 +46,20 @@ line were signed in Season 1 and are kept as they were.
 
 ---
 
+## R28 — Season 2 Arc 5 opening: first-term legislative learning
+
+seed: First-term legislative learning: does the bill passage-rate gap between first-term and re-elected members close over the assembly term?
+
+identification: Within-assembly comparison of member-bill (의원발의) passage rates by proposal year (years 1-4 of each assembly), first-term (초선) vs re-elected (재선 이상) members, 17th-22nd Assemblies. The learning quantity is the interaction of first-term status with proposal year; pooling across six assemblies gives six internal replications. Controls: party bloc, election_type (지역구/비례), committee of referral. Censoring is handled by comparing groups WITHIN the same proposal year (both face the same time-to-expiry) and by a passage-within-12-months alternative outcome. Data: members_{17-22}.parquet (reelection, election_type), master_bills_{17-22}.parquet (rst_mona_cd, ppsl_dt, passed). N>=10 guardrail per member-year cell.
+
+exclusion_criteria: (1) Do NOT drift into a sponsorship-volume or productivity-count study; counts are descriptive context, passage rate is the outcome. (2) Do NOT open a cross-assembly ideology or polarization angle; ideal points are not part of this arc. (3) Do NOT promote a committee-assignment or mentorship mechanism to the headline before the learning gap itself is established. (4) Do NOT re-open women's legislative effectiveness (R5-6 paper); election_type is a control here, not the question.
+
+prior: First-term members' bills pass at a lower rate than re-elected members' bills early in the assembly, and the gap narrows by the third year as first-term members learn the institution (convergence toward the incumbent rate).
+
+falsifier: If the first-term passage gap does not shrink across proposal years within assemblies (the first-term x proposal-year interaction is indistinguishable from zero, or the gap widens), pooled across the 17th-22nd Assemblies with the within-year censoring control, the learning prior is overturned; the arc then reports whether the level gap itself exists and how large it is.
+
+signed: 2026-08-24
+
 ## R25 — Season 2 Arc 4 opening: confirmation-hearing conflict and subsequent ministry oversight
 
 seed: Confirmation hearing conflict and subsequent ministry oversight: do legislators who opposed a nominee at the confirmation hearing question that ministry more in the following national audit?
