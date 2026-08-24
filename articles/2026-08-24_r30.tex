@@ -1,0 +1,372 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Palatino}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+\usepackage{kotex}
+\setmainhangulfont{NanumMyeongjo}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}}
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{0,114,178}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+
+% ------------------------------------------------------------------
+% NOTES TO PRODUCTION (the preamble lives outside this file):
+% 1. Compile with XeLaTeX or LuaLaTeX. The preamble loads fontspec and
+%    kotex with \setmainhangulfont, which fail under pdfLaTeX.
+% 2. The preamble's \definecolor{blue}{RGB}{0,114,178} redefines the
+%    built-in color `blue', which propagates through the hyperref link
+%    colors; renaming it (for example, linkblue) is recommended.
+% 3. The affiliation is folded into \author below because the preamble
+%    does not load authblk. Do not reintroduce \affil.
+% ------------------------------------------------------------------
+
+\title{No Gap to Close: First-Term Legislators, the Committee-Alternative Channel, and the Limits of Positional Explanations in the Korean National Assembly}
+\author{KNA Research Agents (AI-generated)\thanks{AI-generation disclosure: this manuscript, including all analysis, figures, and prose, was produced end to end by an autonomous AI research-agent system without a human author of record. It is an experimental output and has not been peer-reviewed or fact-checked. See the disclosure and data-availability statements preceding the bibliography.}\\[2pt]
+{\normalsize Experimental Output - kna-research-agents.com}}
+\date{\today}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Learning accounts of legislative careers predict that first-term legislators underperform at the start of a term and close the gap as experience accumulates. I test this prediction with 93,572 member bills introduced in the 17th through 22nd Korean National Assemblies. First-term sponsors show no deficit in direct bill passage at any point in the term: the year-one point estimate is a fraction of a percentage point, the within-term trajectory is flat, and equivalence tests bound the gap within two percentage points of zero, a margin that amounts to roughly one third of the strict-passage base rate and is therefore read together with the flat point estimates rather than on its own. The only seniority advantage in the outcome space appears in the committee-alternative absorption channel: first-term sponsors match re-elected members in year one and then fall roughly three percentage points behind for the remainder of the term. Pre-committed tests find no support for the three most natural explanations, committee position, cosponsorship-network access, and portfolio content; each fails its own directional prediction under the available measures, and conditioning on portfolio measures enlarges rather than shrinks the deficit. The findings invert the inclusive absorption pattern documented for the United States Congress and suggest that the seniority premium in this legislature is institutional rather than individual.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} legislative effectiveness, seniority, Korean National Assembly, committee alternatives, bill sponsorship
+
+\bigskip
+\setcounter{page}{0}
+\clearpage
+
+\section{Introduction}
+
+Seniority occupies a central place in theories of legislative accomplishment. In the North Carolina legislature studied by \citet{padroimiquel2006}, members become measurably more effective as tenure accumulates, a pattern the authors attribute in part to learning: legislating is a craft, and procedural knowledge, drafting skill, and working relationships with committee gatekeepers are acquired on the job. The learning account has deep roots in the socialization literature, although its founding study already complicated the story. \citet{asher1973} found that freshman members of the United States House arrived holding most institutional norms and that the apprenticeship norm was weakly held and declining. Whether legislative apprenticeship exists, and what exactly it buys a new member, remains a live question wherever large cohorts of newcomers enter a chamber at once.
+
+The learning account carries a sharp observable implication that has escaped direct testing. If first-term members underperform because they have not yet learned the institution, their deficit should be largest at the start of the term and should shrink as experience accumulates; passage outcomes for first-term sponsors should converge toward those of their re-elected colleagues within a single term. Cross-sectional comparisons of junior and senior members cannot isolate this dynamic, because they confound learning with selection: effective members survive to become senior, so a seniority gradient can arise without any individual member improving \citep{padroimiquel2006}. The within-term trajectory is the margin on which learning and selection come apart. Yet there exists, to my knowledge, no study in any legislature that estimates the interaction of first-term status with the within-term clock on bill outcomes. Standard effectiveness scores are constructed as term-level aggregates, and the within-term dimension disappears by construction.
+
+The Korean National Assembly is well suited to this test. Member-introduced bills number in the tens of thousands per four-year Assembly, sponsorship is individually attributed through unique member identifiers, and first-term members account for a substantial share of sponsors in every Assembly. Recurrent public debate questions whether first-term legislators are worth their seats, which gives the trajectory question a direct civic stake. The Korean legislative-effectiveness literature has examined member-level correlates of passage \citep{jeong2016, an2025} and documented sponsorship counts and passage rates across Assemblies \citep{ka2025a}, but its findings on seniority are mixed, and part of the disagreement appears to be definitional. As I show below, the passage rate of Korean member bills differs by roughly a factor of five depending on whether bills absorbed into committee alternatives are counted as successes, and the choice of definition can flip the sign of the one seniority effect that is statistically distinguishable from zero.
+
+The absorption channel itself requires a brief introduction, because it is both the institutional heart of this paper and a point of comparative divergence. Standing committees in the Assembly routinely consolidate related member bills into a single committee alternative, the \textit{wiwonjang daean} (위원장 대안), which then proceeds to the floor in place of its constituent bills; the originals are recorded under a distinct disposition code as discarded because their content was reflected in the alternative. This administrative coding means that Korea records directly what \citet{casas2020} must recover through text reuse: legislative hitchhikers, bills that become law not on their own but as provisions carried inside other vehicles. In the United States, accounting for hitchhikers makes lawmaking look more inclusive: credit extends beyond committee leaders to rank-and-file sponsors whom traditional passage counts miss. In Korea, roughly one quarter of member bills succeed only through the absorption channel, so the question of who benefits from absorption carries substantial weight for how legislative effectiveness should be measured and interpreted.
+
+This paper asks whether first-term members of the Korean National Assembly underperform, whether any deficit closes within the term, and through which channel any seniority advantage operates. I analyze 93,572 member bills introduced in the 17th through 22nd Assemblies, merged to sponsor characteristics through unique member identifiers, with two outcome definitions carried in parallel: strict passage, in which the bill itself is enacted, and absorption-inclusive success, in which incorporation into a committee alternative also counts. One feature of the research design disciplines the inferences and should be stated at the outset: every substantive prediction in the analysis, including the direction and magnitude thresholds for each mechanism test, was written to a time-stamped baseline file before estimation. These commitments are self-certified, produced by the project itself rather than lodged with a public registry, and I describe them as pre-committed rather than pre-registered throughout. Null results are evaluated with formal equivalence tests rather than by the absence of significance \citep{hartman2018, rainey2014}.
+
+Three results emerge. First, the learning prediction fails at its premise: first-term sponsors show no strict-passage deficit at any point in the term, so there is no gap for learning to close. Second, the one seniority advantage anywhere in the outcome space is an absorption deficit that appears only after year one and then holds flat, a step rather than a trend. Third, pre-committed mechanism tests find no support for the three most natural explanations for the step; committee position, cosponsorship-network access, and portfolio content each fail their own directional predictions, in ways the results section details.
+
+The paper makes four contributions. First, it supplies the missing within-term test of legislative learning on passage outcomes, and the verdict is negative for the comparison the design estimates: first-term members pass bills at their re-elected colleagues' rate from the opening months of the term, so accumulated chamber tenure is not what separates the cohorts on direct passage. The null does not establish that experience is irrelevant to passage for anyone; learning shared by both cohorts, or pre-legislative political careers substituting for chamber tenure, would produce the same pattern. What fails is the specific within-term prediction that distinguishes learning from selection. Second, it contributes a measurement result to the Korean effectiveness literature. The factor-of-five spread between strict and absorption-inclusive passage definitions means that studies using different codings of the committee-alternative disposition are not measuring the same quantity, and I argue that the definitional choice should be reported and defended in any study of Korean legislative effectiveness. Third, it establishes a comparative divergence with theoretical content. The same accounting channel that makes the United States Congress look more inclusive of rank-and-file sponsors operates in the Korean Assembly as an insider channel that favors re-elected members from year two onward, which suggests that the distributive character of legislative absorption depends on institutional design. Fourth, the paper offers a disciplined negative result of a kind the credibility literature has called for: a confirmed behavioral pattern together with a pre-committed set of mechanism tests, an explicit statement of which unmeasured variable could still overturn the verdict, and equivalence bounds stated exactly where they hold and where they do not.
+
+The remainder of the paper proceeds as follows. The next section situates the argument in the literatures on legislative learning, winnowing, absorption, and legislative networks, and derives competing expectations. I then describe the data, the two outcome definitions, and the empirical strategy, including its principal threats. The results section presents the double null on strict passage, the absorption step, its robustness, and the mechanism tests. A discussion section connects the findings to prior work and states the limitations candidly, and a short conclusion draws out implications for the study of legislative careers.
+
+\section{Literature and Theory}
+
+\subsection{Learning, Selection, and the Seniority Premium}
+
+The claim that legislators improve with experience is among the oldest in the study of legislative careers. \citet{padroimiquel2006} provide the canonical modern statement: using long panels of North Carolina state legislators, they document that effectiveness rises with tenure and argue that part of the gradient reflects genuine skill acquisition rather than the mechanical survival of effective members. The learning interpretation is intuitively attractive. New members must master committee procedure, drafting conventions, and the informal expectations of chairs and party leaders; each of these is plausibly acquired through practice. On this account, the first term is an apprenticeship, and the earliest months of service should be the least productive of a career.
+
+The socialization literature complicates the account without discarding it. \citet{asher1973} interviewed freshman House members repeatedly across their first months in office and found that most institutional norms were already held on arrival; the apprenticeship norm in particular was weakly held and eroding. If newcomers arrive socialized, then whatever a first term teaches, it is not primarily norms, and the behavioral traces of learning must be sought in outcomes rather than attitudes. Critically, both the learning and the socialization accounts share a directional prediction: to the extent experience matters, first-term members' relative performance should improve over the term, or at minimum should never deteriorate. A deficit that emerges only after the first year is not a prediction that any variant of the learning literature generates.
+
+The identification problem that motivates my design follows directly. A cross-sectional seniority gradient is compatible with learning, with selection on ability, and with institutional favoritism toward senior members, and term-level effectiveness scores cannot distinguish among them. The within-term trajectory can. If learning drives the seniority premium, the first-term deficit should be visible at the start of the term and should close; if selection drives it, first-term members should show a level deficit that is flat within the term; if institutional favoritism drives it, the deficit should track the institution's allocation calendar rather than the member's accumulation of experience. Each account stakes out a distinct within-term shape, which is the quantity I estimate.
+
+\subsection{Winnowing and Position in Committee}
+
+A second literature locates legislative success not in the member but in her position. \citet{krutz2005} shows that winnowing in the United States Congress, the process by which most bills receive no action at all, is governed by the sponsor's committee membership, seniority, and majority status. Bills advance when their sponsors sit where decisions are made. The Korean counterpart of this argument is developed by \citet{kim2023}, who find that a bill initiator's position in the relevant standing-committee subcommittee predicts passage, a result they interpret through distributive-benefits theory. The positional account matters here because it predicts that any first-term deficit is compositional: if first-term members sit on less productive committees, or join the deliberative core of their committees late, their bills will underperform for reasons that have nothing to do with cohort-targeted treatment.
+
+The Korean committee-assignment literature sharpens what position can and cannot explain. \citet{choi2018} review assignment theories against Korean data and conclude that standing-committee allocation is partisan and leadership-driven rather than seniority-accreted, and \citet{kang2024} shows that assignments track party loyalty and reelection value. Assignments run in two-year halves, with committee rosters reconstituted at each half-term negotiation, and subcommittee rosters are drawn from committee membership at those junctures \citep{shin2015}. This calendar carries a testable implication that becomes important below: if subcommittee or committee position drives a first-term deficit, the deficit should move at the two-year reconstitution boundary, when positions are actually reallocated, rather than emerging smoothly or appearing at the year-one to year-two transition and then holding flat.
+
+\subsection{The Absorption Channel}
+
+Between introduction and enactment stands, in Korea, a distinctive institutional object: the committee alternative. Standing committees consolidate multiple related member bills into a single omnibus alternative assembled under the chair's name, and the constituent bills are disposed of under an administrative code recording that their content was reflected in the alternative. The channel is quantitatively central. In the data below, strict passage of member bills runs at roughly 6 percent, while success including absorption runs at roughly 31 percent; the majority of legislative success in the Assembly flows through consolidation rather than direct enactment. \citet{ka2025b} documents the institutional time structure within which unabsorbed ordinary bills die in term-end batches, which further concentrates the practical value of absorption.
+
+The closest international analogue is the hitchhiker phenomenon documented by \citet{casas2020}. Using text reuse across roughly nine thousand bills per Congress, they identify proposals enacted as provisions inserted into other vehicles and show that counting them transforms the picture of American lawmaking: absorption extends credit beyond committee leaders to rank-and-file sponsors, making the process look more inclusive than traditional passage counts suggest. Their finding generates a clean expectation for Korea. If absorption is the inclusive channel, the channel through which members without institutional position do relatively well, then first-term members should suffer no absorption deficit at any point in the term. The positional literature generates the opposite expectation: if absorption tracks committee position \citep{krutz2005, kim2023}, a first-term deficit should exist but should be fully explained by committee mix and by the timing of consolidation events. These two predictions concern the same measurable quantity and cannot both be right, which is the configuration that makes the test informative.
+
+The definitional stakes of the absorption channel for the Korean literature are worth stating plainly. Studies of Korean legislative effectiveness report member-level passage counts and rates \citep{ka2025a, jeong2016, an2025}, but whether the absorbed-bill disposition counts as success is not consistently recoverable from published accounts, and the two definitions differ by roughly a factor of five. Findings on seniority that appear mixed across studies may therefore trace to outcome coding as much as to substance. I return to this point with a direct decomposition.
+
+\subsection{Networks, Portfolios, and Socialization as Mechanisms}
+
+Suppose a first-term absorption deficit exists and survives positional controls. Three families of mechanisms remain, each with a distinct empirical signature.
+
+The first is network access. \citet{fowler2006} shows that connectedness in the cosponsorship network predicts legislative success in the United States Congress, and \citet{battaglini2020} provide causal evidence that a legislator's network centrality raises her effectiveness. Translated to the Korean absorption channel, the network account holds that committee gatekeepers absorb bills whose sponsor coalitions contain members they already deal with. If first-term members debut with incumbent-heavy coalitions, brokered by parties at the start of the term, and that incumbent co-signature decays after year one, an absorption deficit would emerge with the observed timing while reflecting network access rather than cohort per se. The account requires two things to be true: the incumbent share of first-term members' cosponsor rosters must fall over the term, and that share must predict absorption.
+
+The second is portfolio content. \citet{gelman2024} shows that members differ systematically in whether their proposals are designed for enactment or for position-taking, and that the enactment-designed proposals are the ones that die visibly when unenacted. If first-term members' early portfolios are disproportionately enactment-ready, perhaps party-drafted bills fronted by new members, and their later portfolios drift toward self-authored position-taking, a deficit would appear without any door closing; the bills change, not the treatment of their sponsors. The signature of this account is observable in bill content: measures of overlap with incumbent legislation on the same statutes should move over the term and should explain the deficit when conditioned upon.
+
+The third is socialization in reverse, and it can be dismissed on shape grounds before estimation. Every variant of the socialization and mentorship account predicts that first-term members' relative outcomes improve as ties and norms accumulate \citep{asher1973}. A deficit that begins in year two and holds flat runs exactly opposite to this prediction, so socialization can at most be a suppressed offsetting force, not an explanation.
+
+\subsection{Expectations}
+
+The preceding discussion yields four testable expectations, labeled H1 through H4. The second takes the form of a competing pair, H2a and H2b, because the inclusive and positional accounts make opposite predictions about the same quantity. Each expectation was committed to disk with a directional threshold before the corresponding estimation ran.
+
+\textbf{H1 (learning).} First-term sponsors exhibit a strict-passage deficit at the start of the term that narrows across proposal years.
+
+\textbf{H2a (inclusive absorption).} On the absorption-inclusive channel, first-term sponsors suffer no deficit at any point in the term.
+
+\textbf{H2b (positional absorption).} Any first-term absorption deficit is positional: reweighting first-term bills to the re-elected committee distribution, together with accounting for the timing of consolidation events, attenuates the deficit by at least half.
+
+\textbf{H3 (network access).} The incumbent share of first-term sponsors' cosponsor rosters falls after year one, and conditioning on that share attenuates the absorption deficit by at least half.
+
+\textbf{H4 (portfolio content).} Measures of overlap between first-term bills and incumbent legislation move over the term, and conditioning on them attenuates the absorption deficit by at least half.
+
+H1 and H2a fail jointly or survive jointly only by coincidence; the design lets the data adjudicate. The 50 percent attenuation thresholds in H2b, H3, and H4 were fixed in advance precisely so that a small movement in the estimate could not be narrated after the fact as partial support.
+
+\section{Data and Method}
+
+\subsection{Data}
+
+The analysis draws on the Korean National Assembly (KNA) legislative database, which compiles the full bill-level records of the National Assembly's bill information system. The unit of analysis is the member-introduced bill. I restrict attention to bills introduced by individual legislators, excluding government bills and committee-originated bills, which yields 93,572 member bills across the 17th through 22nd Assemblies. The 17th Assembly convened in 2004; the 22nd Assembly, elected in 2024, remains in progress, so its later term years are unobserved and I treat this truncation explicitly in the empirical strategy and the robustness analysis. Each bill is merged to its lead sponsor's characteristics through the Assembly's unique member identifier, which avoids the homonym hazards of name-based matching. First-term status comes from the official career field in the member rosters, and the within-term clock assigns each bill a proposal year from one to four based on its introduction date relative to the opening of the Assembly.
+
+Two outcome definitions are carried in parallel throughout. \textit{Strict passage} codes a bill as successful only if the bill itself was enacted, in original or amended form; the pooled strict passage rate is 6.2 percent. \textit{Absorption-inclusive success} additionally counts bills disposed of under the administrative code recording that their content was reflected in a committee alternative; the pooled inclusive rate is 30.9 percent. The factor-of-five spread between the two definitions is itself a finding, and the difference between them isolates the absorption channel that is this paper's second outcome. For the mechanism tests, I use the cosponsorship rosters attached to each bill, which are reliably identifier-linked for the 20th through 22nd Assemblies; this edge-covered subsample contains 60,684 bills, of which 18,996 were introduced by first-term sponsors, and covers 99.3 percent of bills in those Assemblies. Table~\ref{tab:desc} summarizes the samples and outcome rates, and Figure~\ref{fig:volume} displays the volume of member bills by sponsor cohort across the six Assemblies, which shows that first-term sponsors contribute a substantial share of legislative output in every Assembly. All figures and tables are produced by scripts in the project's replication archive, described in the data-availability statement at the end of the paper; no analysis code appears in the manuscript.
+
+\begin{table}[H]
+\centering
+\caption{Analysis Samples and Outcome Definitions}
+\label{tab:desc}
+\begin{tabular}{lc}
+\toprule
+Statistic & Value \\
+\midrule
+Member bills, 17th to 22nd Assemblies (N) & 93,572 \\
+Estimation sample with nonmissing covariates (N) & 93,078 \\
+Strict passage rate (share) & 0.062 \\
+Absorption-inclusive success rate (share) & 0.309 \\
+\midrule
+Edge-covered network subsample, 20th to 22nd (N) & 60,684 \\
+\quad of which first-term sponsor bills (N) & 18,996 \\
+Cosponsorship edge coverage, 20th to 22nd (share) & 0.993 \\
+\midrule
+Committee-alternative processing events in year 1 (N) & 393 \\
+Absorbed bills processed in year 1 (N) & 4,138 \\
+\quad of which first-term sponsor bills (N) & 3,024 \\
+Median alternative event size, first-term (bills) & 20 \\
+Median alternative event size, re-elected (bills) & 21 \\
+Mean alternative event size, first-term (bills) & 36.2 \\
+Mean alternative event size, re-elected (bills) & 39.6 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.8\textwidth}
+\footnotesize \textit{Note:} Member bills exclude government and committee-originated legislation. Outcome rates are reported as shares in this table; regression outcomes elsewhere are indicators scaled by 100. Event size refers to the number of member bills consolidated in the committee-alternative processing event through which a cohort's absorbed bills were handled.
+\end{minipage}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2026-08-24_r30/fig_1.pdf}
+\caption{Member bills introduced by first-term and re-elected sponsors, 17th through 22nd National Assemblies.}
+\label{fig:volume}
+\end{figure}
+
+\subsection{Empirical Strategy}
+\label{sec:strategy}
+
+The core estimating equation is a linear probability model of bill outcomes on first-term status interacted with the within-term clock:
+
+\begin{equation}
+Y_{icat} = \beta_1 \text{FT}_{i} + \beta_2 \left(\text{FT}_{i} \times \text{Late}_{t}\right) + \lambda_t + \delta_c + \gamma_a + \mathbf{X}_i'\boldsymbol{\theta} + \epsilon_{icat}
+\label{eq:main}
+\end{equation}
+
+where $Y_{icat}$ is 100 times an indicator that bill $i$, referred to committee $c$ in Assembly $a$ and proposed in term year $t$, achieves the outcome in question (strict passage or absorption into a committee alternative); $\text{FT}_i$ indicates a first-term lead sponsor; $\text{Late}_t$ indicates proposal years two through four; $\lambda_t$ are flexible proposal-year effects; $\delta_c$ and $\gamma_a$ are committee and Assembly fixed effects; and $\mathbf{X}_i$ contains sponsor controls for party bloc and election type (district or proportional representation). Standard errors are clustered by lead sponsor. The coefficient $\beta_1$ captures any first-term level gap in year one, and $\beta_2$ captures the late-term step. A companion specification replaces the step with separate interactions for years two, three, and four, so that the step form can be tested against a linear trajectory rather than assumed; the step and linear forms are compared with information criteria under flexible year main effects, and the equality of the per-year interactions is assessed with a Wald test. One methods note is required for transparency: an initial information-criterion comparison that restricted the proposal-year main effects favored the linear form by a wide margin, but that comparison confounded the shape of the interaction with the time-trend control and is superseded by the flexible specification reported here. In the final specification the step model's BIC is lower than the linear model's by 4.3, which counts as positive but not strong evidence on the conventional scale for BIC differences, and the load-bearing evidence for the step form is the statistically insignificant year-one term together with the flatness of the years-two-through-four interactions.
+
+Because the central claims include null results, the design commits to affirming nulls rather than merely failing to reject them. Following the equivalence-testing framework of \citet{hartman2018}, I apply two one-sided tests (TOST) to the year-one strict-passage gap with a pre-committed margin of two percentage points. The margin requires a candid defense, because it is not small in relative terms: against a strict base rate of 6.2 percent, a two-point gap would amount to roughly a one-third relative deficit, and a cohort passing bills at 4.2 percent rather than 6.2 percent could certainly sustain a rookie-penalty narrative. Following the logic of the smallest substantively meaningful effect \citep{rainey2014}, I therefore read the bound for exactly what it excludes, gaps that would be large in absolute and relative terms, and I do not rest the no-gap conclusion on the equivalence result alone. That conclusion rests on the conjunction of the bound with a year-one point estimate within a fraction of a point of zero and a within-term trajectory that never turns against first-term sponsors; a relative-scale margin of one tenth of the base rate, about 0.6 points, is not attained, and I say so where the results are reported. Every directional prediction and attenuation threshold in the analysis was written to a time-stamped baseline file before the corresponding estimation ran. This is self-certification, not registration: the baseline file was produced by the project itself, and no entry exists at OSF, EGAP, or any other public registry, which is why the paper says pre-committed rather than pre-registered. Two of the project's own pre-committed predictions were overturned by their own tests in the course of the analysis; I report those overturns rather than repackage them.
+
+Five threats to inference deserve explicit treatment. First, cohort composition: first-term status is not as-if random. Party nomination strategies, the district-versus-list route into the chamber, age, and prior political careers all differ across cohorts and plausibly across Assemblies, and re-elected members are by construction electoral survivors, so any unobserved ability that raises both re-election odds and legislative success is concentrated in the comparison group. Selection of this kind threatens the absorption step and not only the level: if survivor ability matters more for absorption as the term progresses, selection alone could generate a late-term deficit. The sponsor controls absorb the party-bloc and seat-type components, but ability selection is unobserved, and I therefore interpret every estimate as a conditional association and lean on the mechanism tests, whose predictions are directional and were fixed in advance, for anything stronger. Second, committee composition: first-term members may sit on committees that produce fewer or later alternatives, in which case the deficit is positional rather than cohort-targeted \citep{krutz2005}. I address this with a reweighting estimator that assigns first-term bills the re-elected cohort's Assembly-by-committee distribution, with committee fixed effects throughout, and with a direct accounting of the timing and size of consolidation events. The reweighting operates at the standing-committee level; subcommittee rosters are not available in the processed data, and I bound the positional conclusion accordingly. Third, entry timing: members seated mid-term through by-elections start their term clock late, which could distort the trajectory estimates. Exact administrative seating dates await a merge with National Election Commission records; in the interim I use a behavioral proxy, flagging the 10.3 percent of first-term sponsors whose first bill appears more than 12 months into the term, and re-estimate excluding them. Fourth, truncation: the 22nd Assembly's later years are unobserved, and the resulting right-censoring interacts with the proposal-year effects rather than sitting quietly inside an Assembly fixed effect. Bills proposed late in an ongoing term mechanically lack time to pass or be absorbed, and that shortfall is specific to late proposal years within one Assembly, which an Assembly intercept cannot absorb and which could contaminate the pooled $\lambda_t$. I therefore re-estimate excluding the 22nd Assembly entirely, report per-Assembly estimates, and read the 22nd's own estimates as weak evidence from an incomplete term. Fifth, the outcome definition itself: because the definitional choice moves the passage rate by a factor of five, every headline result is reported under both definitions. Throughout, the design is selection on observables; the estimates identify associations between cohort and bill outcomes conditional on the stated controls, and I reserve stronger language for mechanisms whose pre-committed predictions have been tested directly, describing those tests as weighing against candidate explanations rather than excluding them.
+
+A final design point concerns the mechanism tests themselves. Cosponsor rosters and portfolio content are measured after, and chosen jointly with, first-term status, so conditioning on them is conditioning on post-treatment variables. Each test is informative under a stated assumption: the network and portfolio tests treat roster composition and statute choice as candidate mediators of a cohort-absorption association, and they ask whether the data show the two signatures mediation requires, a first stage that exists and conditioning that attenuates. Under the mediator reading, a dead first stage or zero attenuation counts against the mechanism. If a conditioning variable is instead a collider, affected by cohort and by unobserved determinants of absorption, conditioning could distort the step in either direction, and the distortion is not identifiable from these data. Two features bound the resulting risk. The network verdict does not depend on conditioning at all, because the account already fails at the unconditional first stage. And the portfolio result in which conditioning enlarges the step is interpreted descriptively, as evidence about where first-term bills sit in the consolidation landscape, not as a causal decomposition; the headline step is the unconditional estimate, which involves no post-treatment conditioning.
+
+\section{Results}
+
+\subsection{The Double Null on Strict Passage}
+
+The learning hypothesis fails at its premise. Figure~\ref{fig:null} plots strict passage rates of member bills by sponsor cohort across the six Assemblies, and the two series track each other closely in every Assembly; there is no visible cohort gap for a within-term trajectory to close. Column 1 of Table~\ref{tab:main} reports the regression counterpart for the year-one subsample: with Assembly and committee fixed effects and sponsor controls, the first-term gap in strict passage during year one is a fraction of a percentage point and statistically indistinguishable from zero. The trajectory results are equally flat; the linear interaction of first-term status with the proposal year is close to zero, and no specification in the analysis produces a strict-passage deficit for first-term sponsors at any point in the term.
+
+Because these are null claims, I affirm them formally rather than resting on insignificance. The two one-sided equivalence test rejects any year-one gap larger than two percentage points in either direction at conventional levels; equivalence within one percentage point is not attained, and I state the bound exactly that way rather than claiming the tighter margin (see the notes to Table~\ref{tab:main}). The bound must also be read against the base rate: two points is roughly one third of the strict passage rate of 6.2 percent, so the equivalence test on its own excludes only deficits that would be large in relative terms. What weighs against a rookie penalty is the conjunction of three facts: a year-one point estimate of about a quarter of a percentage point in the first-term cohort's favor, a within-term trajectory that never turns against first-term sponsors, and the two-point bound. H1 is not merely unsupported; its premise, the existence of a gap for learning to close, finds no positive support anywhere in the term.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2026-08-24_r30/fig_2.pdf}
+\caption{Strict passage rates of member bills by sponsor cohort, 17th through 22nd Assemblies.}
+\label{fig:null}
+\end{figure}
+
+Figure~\ref{fig:ladder} places the cohort comparison in the context of the full seniority ladder, plotting raw strict passage rates for first-term, second-term, third-term, and more senior sponsors pooled across the six Assemblies, with binomial confidence intervals. The figure serves as a descriptive complement to the regression evidence: whatever seniority buys in this legislature, the direct-passage margin is not where it visibly accumulates.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2026-08-24_r30/fig_3.pdf}
+\caption{Strict passage rates across the sponsor seniority ladder, pooled 17th through 22nd Assemblies, with 95 percent confidence intervals.}
+\label{fig:ladder}
+\end{figure}
+
+\subsection{The Absorption Step}
+
+The picture changes on the absorption channel, and it changes in a specific shape. Columns 2 through 4 of Table~\ref{tab:main} report Equation~\ref{eq:main} with absorption into a committee alternative as the outcome. First-term sponsors match re-elected members during year one; the year-one term is positive and statistically insignificant. From year two onward, first-term sponsors' bills are roughly 3.5 percentage points less likely to be absorbed, an estimate that is precise and robust across specifications (Table~\ref{tab:main}). Column 3 shows why I characterize the pattern as a step rather than a slope: the separate interactions for years two, three, and four are statistically indistinguishable from one another, and a Wald test cannot reject their equality. The deficit arrives once, at the year-one to year-two transition, and then holds flat. Column 4 confirms that the pattern is not driven by a handful of prolific sponsors: weighting members equally, among sponsors with at least three bills in the relevant cells, the step survives at a comparable magnitude. Against a pooled absorption-inclusive success rate of 30.9 percent, a three-point step is a substantively meaningful insider margin, on the order of one tenth of the base rate.
+
+\begin{table}[H]
+\centering
+\caption{First-Term Status and Bill Outcomes}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+& (1) & (2) & (3) & (4) \\
+& Strict passage & Absorption & Absorption & Absorption \\
+& (year-1 bills) & (step) & (per year) & (member-level) \\
+\midrule
+First term & 0.24 & 1.18 & 1.18 & \\
+& (0.54) & [0.15] & [0.15] & \\
+First term $\times$ late term & & $-3.50^{***}$ & & $-2.28^{**}$ \\
+& & (0.89) & & [0.026] \\
+First term $\times$ year 2 & & & $-3.21$ & \\
+First term $\times$ year 3 & & & $-3.29$ & \\
+First term $\times$ year 4 & & & $-4.55$ & \\
+\midrule
+Assembly and committee FE & Yes & Yes & Yes & Yes \\
+Sponsor controls & Yes & Yes & Yes & Yes \\
+Proposal-year effects & & Yes & Yes & Yes \\
+N (bills) & 34,652 & 93,078 & 93,078 & \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.92\textwidth}
+\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. The outcome in every column is an indicator scaled by 100, so estimates are in percentage points. Standard errors, clustered by lead sponsor, in parentheses; exact $p$ values in brackets where the replication archive reports the test statistic rather than the standard error. Column 4 weights members equally among sponsors with at least three bills; its member counts are reported in the replication archive. In column 3, a Wald test cannot reject equality of the three late-term interactions ($p = 0.53$), and the year-one term is statistically insignificant; standard errors for the per-year interactions are reported in the replication archive. Equivalence tests for column 1: any gap larger than $\pm 2.0$ percentage points is rejected (largest $p = 0.0005$); equivalence at $\pm 1.0$ points is not attained ($p = 0.077$). The $\pm 2.0$-point margin is roughly one third of the strict base rate; see Section~\ref{sec:strategy}.
+\end{minipage}
+\end{table}
+
+The definitional decomposition promised above follows directly from the two outcome columns. Under the strict definition, no cohort difference exists anywhere in the term; under the absorption-inclusive definition, a late-term insider advantage of roughly three points appears. Because the two definitions differ by a factor of five in level and disagree in what they detect, the mixed seniority findings of the Korean effectiveness literature \citep{ka2025a, jeong2016, an2025} may reflect coding choices rather than substantive disagreement, and the sign of the only statistically distinguishable seniority effect in these data flips with the definition. Any study of Korean legislative effectiveness should state which disposition codes count as success.
+
+\subsection{Robustness of the Step}
+
+Table~\ref{tab:robust} subjects the absorption step to the pre-committed artifact checks, and the step survives each at essentially full size. The positional test of H2b is the most consequential. Reweighting first-term bills to the re-elected cohort's Assembly-by-committee distribution moves the regression step by one hundredth of a percentage point; the raw cell double difference likewise barely moves. The pre-committed bar for the positional account was attenuation of at least half, and the observed attenuation is zero, so H2b is overturned by the full distance at the standing-committee level. The timing account fares no better: year-one consolidation activity is not thin, with 393 processing events handling 4,138 absorbed bills in the first year, of which 3,024 carried first-term sponsors, and 82 percent of year-one-proposed absorbed bills are processed within the first two years of the term. Nor does the year-one parity reflect first-term bills being swept into unusually large early omnibus packages; the median consolidation event sizes for the two cohorts are nearly identical, at 20 and 21 bills, and the mean sizes, 36.2 and 39.6, run slightly against the first-term cohort, so both moments of the event-size distribution point the same way.
+
+The remaining rows probe composition and truncation. The step is negative within every cosponsor-coalition size bin and is largest for small coalitions, which cuts against the interpretation that first-term parity in year one reflects party-packaged debut legislation. Excluding sponsors whose first bill appears more than 12 months into the term, the behavioral proxy for late seating, leaves the step essentially unchanged. Excluding the truncated 22nd Assembly, the check that guards against right-censoring contaminating the pooled proposal-year effects, leaves it unchanged as well, and the per-Assembly estimates show the honest pattern: negative in five of six Assemblies, individually significant in one to two, largest in the 20th, near zero in the still-running 22nd, and positive only in the 17th, where the estimate is imprecise. The step is not a one-Assembly artifact, but neither is it uniform, and I report the heterogeneity rather than the pooled estimate alone.
+
+\begin{table}[H]
+\centering
+\caption{Robustness of the First-Term Absorption Step}
+\label{tab:robust}
+\begin{tabular}{lccc}
+\toprule
+Specification & Estimate & SE or $p$ & N (bills) \\
+\midrule
+Baseline step (Table~\ref{tab:main}, column 2) & $-3.50$ & (0.89) & 93,078 \\
+Reweighted to re-elected committee distribution & $-2.96$ & & 93,078 \\
+Raw cohort double difference & $-2.39$ & & \\
+Raw cohort double difference, reweighted & $-2.44$ & & \\
+Member-level, equal weights ($n \geq 3$) & $-2.28$ & [0.026] & \\
+Excluding late-starting sponsors (clock proxy) & $-2.91$ & & \\
+Excluding the 22nd Assembly & $-2.90$ & [0.007] & \\
+Edge-covered subsample, 20th to 22nd & $-3.63$ & (1.03) & 60,684 \\
+\midrule
+Coalition size 10 or fewer sponsors & $-4.76$ & & \\
+Coalition size 11 to 15 sponsors & $-2.88$ & & \\
+Coalition size 16 to 30 sponsors & $-2.57$ & & \\
+\midrule
+17th Assembly only & $4.90$ & (3.75) & 5,721 \\
+20th Assembly only & $-6.36$ & & \\
+22nd Assembly only & $-0.41$ & (1.43) & \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.92\textwidth}
+\footnotesize \textit{Note:} Estimates are the first-term late-term step on the absorption outcome, an indicator scaled by 100, so estimates are in percentage points. Standard errors, clustered by lead sponsor, in parentheses; exact $p$ values in brackets; blank cells indicate quantities for which the replication archive reports point estimates only. Coalition-size bins are estimable only for the 20th through 22nd Assemblies, where cosponsorship edges are identifier-linked; they cover roughly three quarters of the era's bills.
+\end{minipage}
+\end{table}
+
+\subsection{Mechanism Tests}
+
+With the step established as a pattern, Table~\ref{tab:mech} reports the pre-committed mechanism tests for H3 and H4, together with the assignment-timing shape check. Each test was committed with a directional prediction and a 50 percent attenuation bar before estimation, and each failed its own bar. The post-treatment caveat of Section~\ref{sec:strategy} applies to every conditional estimate in this section, and I flag where it matters.
+
+Panel A takes up the network-access account. Its first requirement, that the incumbent share of first-term sponsors' cosponsor rosters falls after year one, fails in the wrong direction: the share is flat within first-term bills, and the cohort difference in differences shows first-term rosters becoming relatively more incumbent-heavy late in the term, the opposite of decay. The account's second requirement fails more fundamentally. The incumbent share of a bill's roster simply does not predict absorption; the first-stage association is a rounding error from zero in the full edge-covered sample and within first-term bills alike. With no first stage, no configuration of share dynamics could transmit the step, and because the first stage is estimated without conditioning on anything post-treatment, this verdict does not depend on the mediator assumptions at all. Conditioning confirms it: adding the incumbent share and coalition size to the absorption regression attenuates the step by 3 percent against the pre-committed 50 percent bar, and within-committee share-decile fixed effects attenuate it by less than 2 percent. One granularity in the share path has to be reported honestly: the first-term incumbent share dips modestly in year two before rising above baseline in years three and four. A year-two dip coinciding with step onset is what the network story would want, but a share that does not predict absorption cannot transmit a dip of any timing, so the dip is a descriptive curiosity rather than a rescue. A related descriptive belongs on the record: first-term rosters carry roughly 11 percentage points fewer incumbent cosigners than re-elected members' rosters throughout the term, so freshman homophily is real and stable, and the network channel had ample room to operate on absorption; it did not.
+
+Panel B takes up the portfolio-content account, and here the conditioning runs backwards. The contemporaneous duplicate measure, whether a first-term bill's base statute also carries a same-committee incumbent bill in the same Assembly, sits at a ceiling near 90 percent in every proposal year and moves the step by a fraction of a percent when conditioned upon; because the measure has almost no variation, this particular null is weakly informative, and I bound it as such. The temporally ordered measure is the informative one. Whether a prior incumbent bill exists on the same statute rises mechanically over the term as the stock accumulates, strongly predicts absorption, and, when conditioned upon, makes the first-term step larger, an amplification of roughly 28 percent. The substantive reading is worth spelling out: first-term members increasingly write bills on precisely the statutes where consolidation activity concentrates, and they are increasingly not included in the resulting alternatives. Because statute choice is a post-treatment variable, the amplification is read as descriptive evidence about where first-term bills sit in the consolidation landscape, not as a causal decomposition; a collider reading, in which conditioning manufactures the enlargement, cannot be ruled out from these data, which is why the headline step remains the unconditional estimate and the amplification serves only to show that the observable portfolio channel runs in the wrong direction to explain the deficit. The new-enactment composition check points the same way; the first-term share of bills proposing new statutes is flat across the term, drifts marginally toward new statutes relative to re-elected members, and explains almost none of the step. Jointly, the full set of network and portfolio controls enlarges the step by 19 percent rather than shrinking it. H4 is overturned.
+
+Panel C reports the assignment-timing shape check. If subcommittee or committee position drove the step through the two-year reconstitution calendar, the deficit should deepen at the year-two to year-three boundary, when positions are actually reallocated. The estimated deepening is eight hundredths of a percentage point, and the per-year interactions are jointly flat. The point estimate, not merely the insignificance, is what carries the inference: the deficit does nothing at the boundary where a positional mechanism would move. Because subcommittee rosters are unmeasured, I state this as shape inconsistency rather than as a refutation; position at the subcommittee level remains the one measured-variable rescue that the data cannot yet close.
+
+\begin{table}[H]
+\centering
+\caption{Mechanism Tests: Network Access, Portfolio Content, and Assignment Timing}
+\label{tab:mech}
+\begin{tabular}{lccc}
+\toprule
+& Estimate & SE or $p$ & N (bills) \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A: Cosponsorship network (20th to 22nd Assemblies)}} \\
+Incumbent share, first-term bills, late term vs.\ year 1 & $-0.35$ & (0.64) & 18,996 \\
+Incumbent share, cohort difference in differences & $2.25^{***}$ & (0.85) & 60,684 \\
+Absorption on incumbent share (first stage) & $0.05$ & (1.45) & 60,684 \\
+Absorption on incumbent share, first-term bills & $-0.46$ & [0.84] & 18,996 \\
+Absorption step, unconditional & $-3.63^{***}$ & (1.03) & 60,684 \\
+Absorption step, conditional on share and coalition size & $-3.52$ & & 60,684 \\
+Absorption step, within-committee share-decile FE & $-3.57$ & & 60,684 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel B: Portfolio content}} \\
+Contemporaneous same-statute duplicate, first-term step & $0.55$ & (0.47) & \\
+Absorption on prior incumbent bill, same statute & $7.13^{***}$ & (0.74) & \\
+Absorption step, conditional on prior duplicate & $-3.79$ & & \\
+Absorption step, joint controls & $-4.32$ & & 60,684 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel C: Assignment-timing shape}} \\
+Step deepening at year-3 boundary (year 3 minus year 2) & $-0.08$ & [0.94] & 93,078 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.92\textwidth}
+\footnotesize $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$. Outcomes are indicators scaled by 100, so estimates are in percentage points. Standard errors, clustered by lead sponsor, in parentheses; exact $p$ values in brackets; blank cells indicate quantities for which the replication archive reports point estimates only. The absorption step conditional on the prior-duplicate control is estimated against a baseline of $-2.97$ in the corresponding sample, an amplification of roughly 28 percent. Incumbent share is the share of a bill's cosponsors who are re-elected members; network quantities are estimable only where cosponsorship edges are identifier-linked (99.3 percent of bills in the 20th through 22nd Assemblies).
+\end{minipage}
+\end{table}
+
+Taken together, the mechanism results leave the step standing with none of its three most natural explanations supported, each judged against its own pre-set bar: committee-level position (zero attenuation against a 50 percent bar), cosponsorship-network access (no first stage, no share decay, negligible attenuation), and portfolio content (amplification rather than attenuation). These tests render the candidate mechanisms implausible under the available measures; they do not exclude them in any strict sense, because observational conditioning cannot rule out unmeasured versions of each channel. The residual reading is cohort-targeted: whatever committees do when they assemble alternatives after year one appears to track the sponsor's cohort itself, not where she sits, whom she signs with, or what she writes. I state this as a failure of the measured alternatives rather than as a positive claim about intent, and the discussion below treats the candidate interpretations with appropriate tentativeness.
+
+\section{Discussion}
+
+The findings rearrange the seniority question in this legislature. The learning account entered the analysis as the prior; it exits with its within-term premise unsupported, since there is no first-term deficit in direct passage for experience to remedy at any point in the term. The verdict is scoped to the cohort comparison the design estimates: learning shared by both cohorts, or learning completed before entry through prior political careers, would leave the same null, so the data speak against the specific version of the account in which chamber tenure separates the cohorts, not against the relevance of experience to legislating in general. The one place seniority pays is the committee-alternative channel, and it pays in a shape that no learning or socialization account generates: parity in year one, then a flat deficit for the rest of the term. In this section I set the results against the prior literature, weigh the surviving interpretations, and state the limitations plainly.
+
+The sharpest comparison is with the hitchhiker literature. \citet{casas2020} find that accounting for absorbed bills makes the United States Congress look more inclusive, extending legislative credit beyond committee leaders to rank-and-file sponsors. The Korean pattern runs the other way: the absorption channel is precisely where the insider advantage lives, and it opens against the newest cohort from year two onward. The divergence suggests that absorption has no fixed distributive character. Where consolidation is decentralized and text-level, as in the American hitchhiker process, it may operate as a credit-spreading mechanism; where it is centralized in a chair-assembled omnibus instrument, as in the Korean \textit{wiwonjang daean}, it may operate as a gatekeeping mechanism. This is a conjecture rather than a finding, since the two systems differ in many respects, but it identifies the institutional variable, the locus of consolidation authority, that a comparative study could isolate.
+
+The positional literature fares only somewhat better than the learning literature. The winnowing account of \citet{krutz2005} and the subcommittee-position account of \citet{kim2023} predict that a junior deficit should be absorbed by committee composition and consolidation timing, and the data reject that prediction at the standing-committee level by the full distance of the pre-committed bar. Two bounds on this rejection are mandatory. First, the operative variable in \citet{kim2023} is subcommittee membership, one level below every control and reweighting in this paper; subcommittee rosters are not in the processed data, and the positional account is rejected at the committee level only. Second, the shape evidence bears on what a subcommittee rescue would require. Because Korean committee positions are reallocated at the two-year reconstitution and the deficit does nothing at that boundary, a positional mechanism would need subcommittee assignment timing to generate a year-one to year-two step while leaving the reconstitution boundary inert, which the assignment literature gives no reason to expect \citep{choi2018, kang2024}. The rescue is possible but has to thread a needle.
+
+The network results speak to a literature that has moved from association to causation. \citet{fowler2006} established that cosponsorship connectedness predicts legislative success, and \citet{battaglini2020} showed that network centrality raises effectiveness. Against that backdrop, the dead first stage here is a genuine surprise: in the Korean absorption channel, the incumbent composition of a bill's coalition is orthogonal to whether the bill's content survives into a committee alternative. The stable freshman homophily descriptive sharpens the point, since first-term members' rosters are persistently less incumbent-connected, so the channel had room to matter and did not. One reading is that the Korean consolidation process is bureaucratically thorough in a way that neutralizes coalition signals; committee staff sweep the full stock of related bills on a statute regardless of who signed them. That reading is consistent with the near-universal duplicate ceiling in Panel B of Table~\ref{tab:mech}, but it deepens rather than resolves the puzzle, because a thorough sweep should also neutralize cohort, and it does not.
+
+The portfolio results engage the position-taking literature from an unexpected angle. \citet{gelman2024} shows that some proposals are designed to be enacted and others to stake positions, which predicted that first-term portfolios might drift toward position-taking content as the term progresses. The measured drift runs the other way: first-term members concentrate increasingly on the statutes where consolidation happens, and conditioning on that concentration enlarges the deficit. On observables, first-term members behave more like enactment-seekers over the term, not less, which makes their exclusion from the alternatives more puzzling, not less. The amplification result is the strongest single piece of evidence that the step is cohort-targeted rather than an artifact of what first-term members choose to write, although, because the conditioning variable is post-treatment, I weight it as strong descriptive evidence rather than as a decomposition.
+
+Consider, then, the interpretations that survive for the step itself. The mechanism tests leave cohort-level explanations that the data cannot yet separate: informal deference norms in the drafting rooms where alternatives are assembled, reputational screening by chairs and staff who default to familiar names, or party-internal brokerage that channels credit toward members approaching reelection campaigns with records to defend. Each is speculative, and I resist adjudicating among them here. What can be said is negative but precise: the advantage does not travel with any measured attribute of the member's position, connections, or output, and it is a property of the consolidation stage specifically, since the same cohorts are indistinguishable at the direct-passage stage throughout the term.
+
+Several limitations bound the claims, and I state them in descending order of threat. First, subcommittee position is unmeasured, and it is the one measured-variable account that could still overturn the positional verdict; the boundary-shape evidence cuts against it, but only rosters can close it. Second, first-term status is not as-if random, and re-elected members are a selected set of electoral survivors; if unobserved survivor ability matters more for absorption late in the term, selection could contribute to the step itself, and no control in the analysis rules this out. Third, the network mechanism tests cover the 20th through 22nd Assemblies, where cosponsorship edges are identifier-linked; the step is at full size in that window, so the verdict is decisive where testable, but the network channel in the 17th through 19th Assemblies is unobserved. Fourth, the portfolio measures are statute-level rather than text-level; a text-reuse measure in the style of \citet{casas2020} could detect content differences invisible to statute matching, and the portfolio verdict should be read as title-level pending that instrument. In addition, the roster and portfolio tests condition on post-treatment variables, and their conditional estimates are informative only under the mediator assumptions stated in Section~\ref{sec:strategy}. Fifth, entry timing rests on a behavioral proxy pending the administrative seating-date merge, although excluding proxied late entrants leaves every result intact. Sixth, the 22nd Assembly is truncated, and its near-zero step estimate should be read as weak evidence from an incomplete term rather than as disconfirmation. Seventh, the information-criterion evidence for the step form over the linear form is a BIC margin of 4.3, positive but not strong on the conventional scale, and the year-one equivalence bound holds at two percentage points but not at one; because two points is roughly one third of the strict base rate, the bound is wide in relative terms, and the flat point estimates carry more of the argument than the formal equivalence result does. Finally, the design is observational throughout, and the pre-commitments are self-certified rather than publicly registered; the mechanism tests weigh against candidate explanations without ruling out unmeasured versions of them, and the residual cohort association is not a causal effect of first-term status in any manipulationist sense.
+
+\section{Conclusion}
+
+This paper asked whether first-term members of the Korean National Assembly underperform, whether any deficit closes with experience, and through which channel seniority pays. The answers are clear where the data can speak. First-term sponsors pass bills directly at the same rate as their re-elected colleagues at every point in the term; the estimated gaps never turn against the first-term cohort, and equivalence tests bound them within two percentage points of zero, a margin wide enough relative to the base rate that the flat point estimates, not the formal bound alone, carry the conclusion. The learning account has no observed gap to explain. The only seniority advantage in the outcome space operates through the committee-alternative absorption channel, appears only from year two, and holds flat thereafter. Committee-level position, cosponsorship-network access, and portfolio content were each committed in advance as candidate explanations with quantitative bars, and each failed its own test; the portfolio controls enlarge the deficit, and the network account fails before its mechanism test begins.
+
+The contribution is threefold. Substantively, the results suggest that the seniority premium in this legislature is a property of the institution's consolidation stage rather than of member skill, connections, or output, which inverts the frame in which rookie legislators are publicly evaluated. Comparatively, the results establish that the absorption channel that makes American lawmaking look more inclusive can operate elsewhere as an insider channel, which invites theory about where consolidation authority sits. Methodologically, the paper demonstrates that a pre-committed sequence of mechanism tests can convert a residual association into a disciplined negative result: a confirmed pattern, an explicit set of failed alternatives, and a named list of what could still overturn it.
+
+Future research has a short and concrete agenda. Subcommittee rosters for the 17th through 22nd Assemblies would close the one open positional account. A text-reuse measure of absorption would test whether the administrative disposition codes conceal content-level selection. The administrative seating-date merge would replace the behavioral entry-timing proxy. Beyond Korea, the comparative question is now well posed: identifying which institutional features of bill consolidation produce inclusive rather than insider absorption would turn a two-country contrast into a theory of the channel. Until then, the Korean evidence supports a modest but pointed conclusion: in this legislature, newcomers show no sign of needing time to learn how to pass bills, and the advantage that veterans hold is one the institution confers on them.
+
+\bigskip
+\noindent\textbf{AI-generation disclosure.} This working paper was generated end to end by an autonomous AI research-agent system (kna-research-agents.com) as an experimental output. No human author of record exists; the authorship line denotes the agent system, and this statement is provided to satisfy journal policies on AI-generated content. The paper has not been peer-reviewed or fact-checked. Do not cite or use it in any academic, policy, or professional context.
+
+\medskip
+\noindent\textbf{Data availability.} All analyses draw on the Korean National Assembly legislative database described in Section 3. The scripts that produce every figure and table, the time-stamped baseline file recording the pre-committed predictions and thresholds, the superseded information-criterion comparison, and the exact test statistics summarized in the table notes are available in the project's replication archive at kna-research-agents.com. No analysis code appears in the manuscript.
+
+\bibliographystyle{apsr}
+\bibliography{references_r30}
+
+
+
+\end{document}
