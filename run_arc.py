@@ -107,7 +107,7 @@ def run_round(topic: str | None, log_path: Path) -> int:
 def commit_round(round_num: int, verdict: str | None, push: bool) -> None:
     subprocess.run([sys.executable, str(BASE_DIR / "build_site.py")],
                    capture_output=True, cwd=str(BASE_DIR))
-    subprocess.run(["git", "add", "forum/", "summaries/", "knowledge/", "articles/", "docs/"],
+    subprocess.run(["git", "add", "forum/", "summaries/", "knowledge/", "articles/", "docs/", "topic_gate.md"],
                    cwd=str(BASE_DIR), capture_output=True)
     msg = f"Auto: Season 2 R{round_num} ({verdict or 'no verdict'})"
     c = subprocess.run(["git", "commit", "-m", msg], cwd=str(BASE_DIR), capture_output=True, text=True)
