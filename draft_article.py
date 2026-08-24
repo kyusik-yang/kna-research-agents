@@ -94,6 +94,22 @@ def require_hand_coding_dictionary(round_num: int, bypass: bool = False) -> Path
     HAND_CODING_DIR.mkdir(parents=True, exist_ok=True)
     dict_path = HAND_CODING_DIR / f"round_{round_num:02d}.jsonl"
     if not dict_path.exists() or dict_path.stat().st_size < 10:
+        # Season 2 arcs publish the dictionary in the round that BUILDS the
+        # cohort; later consolidation rounds of the same arc reference it.
+        # Accept the most recent dictionary from any earlier round of the
+        # active arc before blocking.
+        try:
+            arc = json.loads(ACTIVE_ARC_FILE.read_text()) if ACTIVE_ARC_FILE.exists() else {}
+            start = int(arc.get("start_round", 0) or 0)
+        except Exception:
+            start = 0
+        if start and start <= round_num:
+            for rn in range(round_num - 1, start - 1, -1):
+                cand = HAND_CODING_DIR / f"round_{rn:02d}.jsonl"
+                if cand.exists() and cand.stat().st_size >= 10:
+                    print(f"  [Hand-Coding · C5] Using arc dictionary {cand.name} "
+                          f"(cohort built in R{rn}, drafting R{round_num}).")
+                    return cand
         raise SystemExit(
             "[BLOCKED · Hand-Coding · C5]\n"
             f"Round {round_num} introduces a hand-coded cohort but\n"
@@ -184,6 +200,20 @@ def get_all_forum_context(up_to_round):
             context.append(f"--- {p.name} ---\n{p.read_text()}")
 
     return "\n\n".join(context)
+
+
+def _body_ok(text: str, min_words: int = 3000) -> tuple[bool, str]:
+    """Completeness gate for a generated LaTeX body. The R27 stub shipped
+    because a truncated body (ended mid-table) went through assembly and the
+    revise regex then reduced it to one word; nothing ever checked length."""
+    wc = len(text.split())
+    if wc < min_words:
+        return False, f"only {wc} words (< {min_words})"
+    if r"\section{Conclusion}" not in text and r"\section*{Conclusion}" not in text:
+        return False, "no Conclusion section"
+    if r"\bibliography" not in text and r"\section*{References}" not in text:
+        return False, "no bibliography or References section"
+    return True, f"{wc} words"
 
 
 def draft_article(round_num):
@@ -468,7 +498,7 @@ def draft_article(round_num):
     **KNA Data Available (check before writing Data section):**
     - master_bills_{{17-22}}.parquet: bill lifecycle (42+ columns)
     - roll_calls_all.parquet: 2.4M member-level votes
-    - dw_ideal_points_20_22.csv: DW-NOMINATE ideal points
+    - ideal_points_bridged.csv (default, cross-assembly) / ideal_points_wnominate.csv (within-assembly) / ideal_points_dwnominate.csv (pooled): name the series used
     - committee_meetings_{{17-22}}.parquet: committee meeting records
     - bill_texts_linked.parquet: 60K propose-reason texts
     - cosponsorship_edges.parquet: cosponsorship network
@@ -492,20 +522,32 @@ def draft_article(round_num):
 
     cmd = [
         CLAUDE, "-p",
-        "--allowedTools", "Write",
+        "--allowedTools", "Write,Edit,Read",
         "--dangerously-skip-permissions",
         "--system-prompt-file", str(prompt_file),
         "--output-format", "text",
-        f"Write the working paper draft now. Write TWO files: (1) the LaTeX content to {content_file} and (2) the BibTeX references to {ARTICLES_DIR}/references_r{round_num}.bib",
+        f"Write the working paper draft now. Write TWO files: (1) the LaTeX content to {content_file} and (2) the BibTeX references to {ARTICLES_DIR}/references_r{round_num}.bib. "
+        "IMPORTANT: build the content file INCREMENTALLY in at least four steps: first Write the file with title block, abstract, and Introduction; then APPEND (via Edit on the closing lines) Literature and Theory; then Data and Method plus Results; then Discussion, Conclusion, and the bibliography commands. Never emit the whole paper in a single Write call; a single giant Write gets truncated mid-table. After the last step, Read the file end to confirm it closes with the bibliography commands.",
     ]
 
     try:
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=3600,
-            cwd=str(WORKSPACE_DIR),
-        )
-        if content_file.exists():
-            content = content_file.read_text()
+        content = None
+        for attempt in range(2):
+            result = subprocess.run(
+                cmd, capture_output=True, text=True, timeout=3600,
+                cwd=str(WORKSPACE_DIR),
+            )
+            if not content_file.exists():
+                print(f"  Attempt {attempt+1}: no content file (claude exit {result.returncode})")
+                continue
+            candidate = content_file.read_text()
+            ok, why = _body_ok(candidate)
+            if ok:
+                content = candidate
+                break
+            print(f"  Attempt {attempt+1}: body incomplete ({why}); regenerating...")
+            content_file.unlink()
+        if content is not None:
             wc = len(content.split())
             print(f"  Content generated: {wc} words")
 
@@ -569,7 +611,7 @@ def draft_article(round_num):
 
             return tex_file
         else:
-            print(f"  WARNING: Article not generated")
+            print(f"  WARNING: Article not generated (body failed the completeness gate twice)")
             return None
     except subprocess.TimeoutExpired:
         print(f"  TIMEOUT")
@@ -911,8 +953,7 @@ def review_and_revise(tex_file):
     - If the reviewer found inline coefficients in wrong sections, rewrite those sentences
       to use substantive magnitude + table references instead
 
-    Write the revised content to: {tex_file.stem}_revised_content.tex
-    (in the same directory as the original: {ARTICLES_DIR}/)
+    Write the revised content to this exact path: {ARTICLES_DIR}/{tex_file.stem}_revised_content.tex
 
     ## Reviewer Feedback:
     {review_text}
@@ -927,11 +968,11 @@ def review_and_revise(tex_file):
     print(f"  Step 2: Revising article based on review...")
     cmd = [
         CLAUDE, "-p",
-        "--allowedTools", "Write",
+        "--allowedTools", "Write,Edit,Read",
         "--dangerously-skip-permissions",
         "--system-prompt-file", str(revise_file),
         "--output-format", "text",
-        "Revise the paper now. Fix all issues.",
+        "Revise the paper now. Fix all issues. Build the revised file incrementally in several Write/Edit steps, never one giant Write; finish by Reading the file end to confirm it is complete.",
     ]
 
     try:
@@ -946,10 +987,21 @@ def review_and_revise(tex_file):
         template = (ARTICLES_DIR / "template.tex").read_text()
         revised_content = revised_content_file.read_text()
 
-        # Extract content between \begin{document} and \end{document} if present
-        m = re.search(r'\\begin\{document\}(.*?)\\end\{document\}', revised_content, re.DOTALL)
-        if m:
-            revised_content = m.group(1).strip()
+        # Strip a full-document wrapper ONLY when one is actually present.
+        # (The old unconditional regex once matched the literal words
+        # "\begin{document} and \end{document}" inside an instruction echo
+        # and replaced the whole paper with the word "and".)
+        if r"\documentclass" in revised_content:
+            m = re.search(r'\\begin\{document\}(.*?)\\end\{document\}', revised_content, re.DOTALL)
+            if m:
+                revised_content = m.group(1).strip()
+
+        current_body = tex_file.read_text()
+        ok, why = _body_ok(revised_content)
+        if not ok or len(revised_content) < 0.5 * len(current_body):
+            print(f"  Revision REJECTED by sanity check ({why}); keeping the pre-revision paper.")
+            revised_content_file.rename(WORKSPACE_DIR / f"{tex_file.stem}_rejected_revision.tex")
+            return
 
         full_tex = template.replace("%%CONTENT%%", revised_content)
         tex_file.write_text(full_tex)
