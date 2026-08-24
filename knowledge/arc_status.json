@@ -1,0 +1,15 @@
+{
+  "state": "running",
+  "last_round": 26,
+  "verdict": "pursue",
+  "falsifier_tested": "yes",
+  "diversity": "clear",
+  "arc_depth": 2,
+  "action": "continue",
+  "reason": "pursue + falsifier tested, but arc depth 2/3: deepening",
+  "one_line": "Arc 4 closes its evidence phase as a pre-registered null with a self-correcting levels retreat: the paper's contribution is that confirmation conflict does not carry into audit allocation at either the party or the (bounded) individual margin, and audit attention follows committee jurisdiction, full stop.",
+  "rounds_run": 1,
+  "ts": "2026-08-24T07:08:31",
+  "seed": "Confirmation hearing conflict and subsequent ministry oversight: do legislators who opposed a nominee at the confirmation hearing question that ministry more in the following national audit?",
+  "start_round": 25
+}
