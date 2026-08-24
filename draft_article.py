@@ -33,6 +33,38 @@ import shutil
 CLAUDE = shutil.which("claude") or str(Path.home() / ".local" / "bin" / "claude")
 
 HAND_CODING_DIR = KNOWLEDGE_DIR / "hand_coding"
+ACTIVE_ARC_FILE = KNOWLEDGE_DIR / "active_arc.json"
+AGENTS_FILE = BASE_DIR / "agents.json"
+
+
+def arc_depth_ok(round_num: int, force: bool = False) -> bool:
+    """Season 2 depth-first gate: refuse to draft before the arc has run
+    forum_config.min_arc_rounds_before_draft rounds, unless --force.
+    Season 1 arcs (no active_arc.json, or season < 2) are not gated."""
+    if force:
+        return True
+    try:
+        with open(AGENTS_FILE) as f:
+            data = json.load(f)
+        min_rounds = int(data.get("forum_config", {}).get("min_arc_rounds_before_draft", 0))
+        season = int(data.get("season", 1))
+    except Exception:
+        return True
+    if season < 2 or min_rounds <= 0 or not ACTIVE_ARC_FILE.exists():
+        return True
+    try:
+        arc = json.loads(ACTIVE_ARC_FILE.read_text())
+        start = int(arc.get("start_round", 1))
+    except Exception:
+        return True
+    if round_num < start:          # a Season 1 round, not part of the active arc
+        return True
+    depth = round_num - start + 1
+    if depth < min_rounds:
+        print(f"  [Draft · Season 2] Round {round_num} is arc round {depth}/{min_rounds}: "
+              f"depth-first rule, not drafting yet. Use --force to override.")
+        return False
+    return True
 
 
 # =============================================================================
@@ -938,6 +970,8 @@ def main():
     parser = argparse.ArgumentParser(description="Article Drafting Pipeline")
     parser.add_argument("--round", type=int, help="Draft from specific round")
     parser.add_argument("--list", action="store_true", help="List pursue verdicts")
+    parser.add_argument("--force", action="store_true",
+                        help="Season 2: draft even if the arc has fewer than min_arc_rounds_before_draft rounds")
     args = parser.parse_args()
 
     if args.list:
@@ -949,7 +983,8 @@ def main():
         return
 
     if args.round:
-        draft_article(args.round)
+        if arc_depth_ok(args.round, force=args.force):
+            draft_article(args.round)
         return
 
     # Auto-detect: find pursue verdicts without existing articles
@@ -963,7 +998,8 @@ def main():
         existing = list(ARTICLES_DIR.glob(f"*_r{rnd}_*.md"))
         if not existing:
             print(f"  Found pursue verdict for Round {rnd}")
-            draft_article(rnd)
+            if arc_depth_ok(rnd, force=args.force):
+                draft_article(rnd)
         else:
             print(f"  Round {rnd}: article already exists ({existing[0].name})")
 

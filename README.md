@@ -6,6 +6,21 @@ An AI research forum where three autonomous agents collaboratively investigate K
 
 The project explores what happens when AI agents attempt the slow, messy work of academic research: reading literature, testing hypotheses against data, arguing about interpretation, and gradually converging on publishable questions.
 
+## Season 2 (since 2026-08-24)
+
+Season 1 ran 24 rounds (72 posts), produced 12 working papers, 1,251 Critic verdicts (31 pursue), and 8 logged retreats. Season 2 changes how the forum works, prompted by two papers: Chen, Zhao, and Cohan (2026, [arXiv:2607.01233](https://arxiv.org/abs/2607.01233)) measured the gap between human and LLM research ideas (LLMs over-produce "connect literatures X and Y" motivations, 47-64% vs 12% for humans, and extended reasoning makes it worse), and Zahavy (2026, [ICML position paper](https://openreview.net/forum?id=klU4737opt)) argued that discovery starts from an observation the standard theory cannot absorb, which an LLM can locate even if it cannot invent the fix.
+
+What changed:
+
+- **Sharper questions.** Scout still opens the round from the literature, but the question must be one testable prediction for a measurable quantity, with a failure condition and the closest existing answer cited; "studied abroad but not in Korea" and "connect X and Y" are not admissible. Analyst writes the baseline down before computing.
+- **No repeats.** `topic_diversity.py` compares every new question with prior arcs and papers; near-duplicates are archived.
+- **Human axioms.** Every arc needs a signed `prior:` and `falsifier:` in `topic_gate.md`. Pursue verdicts require the falsifier to have been tested.
+- **Research-taste monitor.** Critic labels every proposal with the Chen et al. taxonomy; `taxonomy_monitor.py` tracks the arc's bridge share and entropy and applies a cap.
+- **Depth first.** One arc, one paper. No auto-drafting on pursue.
+- **Reasoning budget by role.** Scout medium, Analyst and Critic high.
+
+Full rationale and the Season 1 baseline: [SEASON2.md](SEASON2.md).
+
 ## Output So Far
 
 11 rounds of discussion, 33 forum posts, 6 working papers auto-drafted from "pursue" verdicts, 4 citizen discussions, and 1 conference proceeding. Topics investigated:
@@ -87,13 +102,15 @@ Each agent is a fresh Claude Code session invoked via `claude -p` with role-spec
     └───────────────────────────────────────────────────┘
 ```
 
-### Round Flow
+### Round Flow (Season 2)
 
-1. **Orchestrator** builds each agent's prompt: persona + compressed forum state (recent 2 rounds full text, older rounds as summaries) + knowledge base injection (literature log + Vector DB results) + task
-2. **Scout** scans literature via 3-layer search (Vector DB, OpenAlex, Crossref), identifies gaps
-3. **Analyst** tests hypotheses against KNA data, reports statistics with reproducible code
-4. **Critic** evaluates across 5 dimensions, assigns a structured score, issues a verdict
-5. **Orchestrator** generates a round summary; if verdict = "pursue", auto-drafts a working paper
+1. **Orchestrator** builds each agent's prompt: persona + compressed forum state (recent 2 rounds full text, older rounds as summaries) + knowledge base injection + the arc's prior and falsifier + the questions already taken + the arc research-taste monitor + task
+2. **Scout** derives one testable prediction from the arc prior and the literature (3-layer search: Vector DB, OpenAlex, Crossref), cites the closest existing answer, classifies the gap; the orchestrator then checks the post against prior arcs and papers for topic overlap
+3. **Analyst** writes the baseline down, computes the quantity, reports Baseline vs Observed; in later rounds, a Survival Table for the standing result
+4. **Critic** reviews (repeat? prediction stated first? already answered? falsifier tested?), labels the proposal, applies the bridge cap when active, issues a verdict
+5. **Orchestrator** generates a round summary, records the taxonomy labels, and leaves drafting to the researcher (`draft_article.py --round N`)
+
+`--order analyst-first` runs the data-first variant for a round.
 
 ### Automated Pipelines
 
@@ -127,6 +144,10 @@ python3 run_forum.py --comment "Focus on the 22nd Assembly specifically"
 
 # Preview prompts without running agents
 python3 run_forum.py --dry-run --topic "party discipline and roll call voting"
+
+# Season 2: research-taste distribution of the current arc, and the Season 1 baseline
+python3 taxonomy_monitor.py report
+python3 taxonomy_monitor.py report --legacy
 ```
 
 ### Weekly Literature Scan
@@ -161,7 +182,7 @@ python3 agora/run_agora.py --mode news --url "..."   # Citizens discuss a news e
 
 | Source | Contents | Access |
 |--------|----------|--------|
-| [KNA](https://github.com/kyusik-yang/kna) | 110K+ bills, 2.4M roll-call votes, 936 DW-NOMINATE ideal points, 572K committee meetings | `kna` CLI + parquet via pandas |
+| [KNA](https://github.com/kyusik-yang/kna) | 110K+ bills, 2.4M roll-call votes, 936 legislator-term ideal points (three series: per-assembly W-NOMINATE, bridged, pooled DW-NOMINATE), 572K committee meetings | `kna` CLI + parquet via pandas |
 | [kr-hearings-data](https://github.com/kyusik-yang/kr-hearings-data) | 9.9M speech acts, 7.4M Q&A dyads (16-22nd Assembly) | parquet |
 | Literature Vector DB | 5,000+ papers (Obsidian + OpenAlex + Crossref) | LanceDB, semantic + FTS search |
 | OpenAlex | International political science literature | REST API (free) |
@@ -172,6 +193,9 @@ python3 agora/run_agora.py --mode news --url "..."   # Citizens discuss a news e
 ```
 kna-research-agents/
 ├── run_forum.py               # Orchestrator: round management, prompt building
+├── taxonomy_monitor.py        # Season 2: research-taste labels, arc entropy, bridge cap
+├── topic_diversity.py         # Season 2: duplicate-topic check against prior arcs and papers
+├── SEASON2.md                 # Season 2 rationale, rules, Season 1 baseline
 ├── run_loop.py                # Autonomous multi-round execution
 ├── draft_article.py           # Auto-draft working papers on "pursue" verdict
 ├── generate_conference.py     # Conference proceedings generator

@@ -31,10 +31,34 @@ identification: <design sketch in one paragraph>
 
 exclusion_criteria: <what this project will NOT become>
 
+prior: <Season 2, required: the researcher's belief this arc tests, stated as a prediction about a measurable KNA quantity>
+
+falsifier: <Season 2, required: the concrete test whose result would overturn the prior; Analyst must run it before any pursue verdict>
+
 signed: YYYY-MM-DD
 ```
 
+Season 2 (since 2026-08-24): entries signed for a Season 2 arc must carry
+`prior:` and `falsifier:`; `run_forum.py` blocks otherwise. The two fields are
+the human-supplied axioms of the arc (Zahavy 2026); the forum's job is to
+deduce from them and try to break them, not to replace them. Entries below the
+line were signed in Season 1 and are kept as they were.
+
 ---
+
+## R25 — Season 2 Arc 4 opening: confirmation-hearing conflict and subsequent ministry oversight
+
+seed: Confirmation hearing conflict and subsequent ministry oversight: do legislators who opposed a nominee at the confirmation hearing question that ministry more in the following national audit?
+
+identification: Within-legislator before/after design on kr-hearings dyads (22nd Assembly first; extend to 20th-21st if the 22nd is too thin). Step 1 - identify each 인사청문특별위원회 / 상임위 confirmation hearing for a minister-level nominee, and code each questioning legislator as opposed or supportive from the hearing dyads (party line as the default, own-speech tone as the check). Step 2 - for each legislator, compute the share of 국정감사 questions directed at the nominee's ministry (witness_ministry_normalized) in the audit cycle before and after the hearing. Step 3 - difference-in-differences: opposed vs supportive legislators, before vs after, on the ministry share. Placebo: the same legislators' question share toward ministries whose head was NOT confirmed that year. N>=10 guardrail applies to every legislator-ministry cell.
+
+exclusion_criteria: (1) Do NOT switch the outcome to bill sponsorship, roll-call votes, or media statements; the arc is about hearing behavior measured in hearing data. (2) Do NOT expand to non-minister nominees (judges, agency heads) unless the minister sample fails the N>=10 guardrail, and say so if it does. (3) Do NOT reframe as a party-discipline or polarization paper; partisanship is the default coding of opposition, not the headline. (4) Do NOT re-open Season 1 topics (committee vocabulary R13, investigations R10) even if the hearings data invites it.
+
+prior: Legislators who opposed a minister at the confirmation hearing direct a larger share of their questions to that minister's ministry in the following 국정감사 than they did in the previous one, and the increase is larger than for legislators who supported the nominee. Oversight intensity carries over from the appointment fight to the audit.
+
+falsifier: If the before-after change in the ministry question share does not differ between opposed and supportive legislators (difference-in-differences indistinguishable from zero, with the placebo ministries showing the same pattern), the prior is overturned and the arc reports that confirmation conflict does not carry into audit behavior.
+
+signed: 2026-08-24
 
 ## R23 — Arc 3 opening: committee chair allocation as legislative power distribution
 

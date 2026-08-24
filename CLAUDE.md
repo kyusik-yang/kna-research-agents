@@ -2,12 +2,12 @@
 
 ## Overview
 
-국회 데이터(11만+ 법안, 240만 표결, DW-NOMINATE 이념점수)를 활용한 멀티 에이전트 AI 연구 포럼.
+국회 데이터(11만+ 법안, 240만 표결, 이념점수 3계열: 대수별 W-NOMINATE·bridged·통합 DW-NOMINATE)를 활용한 멀티 에이전트 AI 연구 포럼.
 Scout(문헌), Analyst(데이터), Critic(이론) 3개 에이전트가 반복 토론.
 Yeouido Agora 모듈: 25명 시민 페르소나 시뮬레이션.
 
 - **웹사이트**: https://kna-research-agents.com
-- **상태**: Forum 4R + Agora 4토론, article pipeline 구현 필요
+- **상태**: **Season 2 (2026-08-24)**. Season 1 = R1-R24, 논문 12편, 판정 1,251건(pursue 31), 철회 8건. 상세는 `SEASON2.md`
 
 ## Architecture
 
@@ -106,3 +106,18 @@ $EDITOR knowledge/hand_coding/round_21.jsonl
 export KBL_DATA=/Users/kyusik/Desktop/kyusik-github/kna/data/processed
 python3 run_forum.py --rounds 1 --resume --topic "<R21 seed>"
 ```
+
+## Season 2 Workflow (2026-08-24, SEASON2.md)
+
+Chen·Zhao·Cohan (2026, arXiv:2607.01233)와 Zahavy (2026, ICML position)에서 착안한 개편. 핵심 변경:
+
+- **순서 유지 Scout → Analyst → Critic** (연구자 결정: 정치학에서 질문은 선행연구에서 나온다). 대신 Scout의 질문은 측정 가능한 KNA 수량에 대한 **검증 가능한 예측 1개**("Prediction to Test") + 가장 가까운 기존 답 인용 + gap 유형(a 표준예측 실패/b 신규측정/c 상반예측). "해외엔 있고 한국엔 없음"·"X와 Y 연결" 불허. Analyst는 baseline을 먼저 적고 Baseline vs Observed. `--order analyst-first`는 데이터 우선 변형.
+- **주제 중복 방지** `topic_diversity.py`: Scout 게시 직후 이전 arc의 Scout 게시물·논문과 코사인 비교(MiniLM), 결과를 Analyst·Critic 프롬프트에 주입. ≥0.80 block(Critic archive "duplicate topic"), 0.68-0.80 warn. Season 1로 보정(Arc 2 중복 논문 0.83-0.85, R7 주택 재탕 0.70, 별개 주제 0.33-0.66). 로그 `knowledge/topic_diversity.jsonl`.
+- **AI-scientist 문헌 추적 피드백** (사용자 요청 2026-08-24): 세션마다 최근 논의를 검색해 SEASON2.md "What the AI-scientist literature says"에 반영하고, 기존 틀 안에서 구조 조정 가능.
+- **topic_gate 필수 필드 추가**: `prior:`, `falsifier:`. Season 2에서는 둘이 없으면 `check_topic_gate`가 차단. 통과 시 `knowledge/active_arc.json`에 기록되어 모든 프롬프트에 주입.
+- **연구취향 라벨**: Critic scoring 블록에 `opportunity_pattern` / `method_paradigm` / `operation` / `falsifier_tested`. `taxonomy_monitor.py`가 `knowledge/taxonomy.jsonl`에 기록하고 arc별 bridge share·entropy를 Critic 프롬프트에 주입, 40% 이상이면 bridge cap.
+- **effort 분리**: Scout medium, Analyst high, Critic high (`agents.json` `effort`, `claude -p --effort`). `--effort`로 오버라이드.
+- **깊이 우선 초안**: pursue 판정 시 자동 초안 중단 (`auto_draft_on_pursue: false`). `draft_article.py --round N`은 arc 3라운드 이상일 때만 (`--force`로 해제).
+- **Season 1 baseline**: `python3 taxonomy_monitor.py label-legacy` → `knowledge/taxonomy_legacy.jsonl`, `report --legacy`.
+
+운영: `python3 run_forum.py --topic "<seed>" --rounds 1` (topic_gate에 prior/falsifier 서명 필수) → 이후 `--resume --rounds 1`로 깊이 진행 → `taxonomy_monitor.py report`로 분포 확인 → arc 종료 시 `draft_article.py --round N`.
