@@ -54,18 +54,21 @@ Member-level voting records from plenary sessions.
 
 **Total:** 2,425,113 vote records.
 
-#### DW-NOMINATE Ideal Points (`dw_ideal_points_20_22.csv`)
+#### Ideal Points (`ideal_points_bridged.csv`, `ideal_points_wnominate.csv`, `ideal_points_dwnominate.csv`)
 
-First-dimension ideal points estimated from roll call votes. Negative = liberal, positive = conservative.
+First-dimension ideal points estimated from roll call votes (20-22nd Assembly). Negative = liberal, positive = conservative.
+Three series are distributed; they answer different questions and are not interchangeable (see kna `CODEBOOK.md` and `CORRECTIONS.md`, 2026-07-18).
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `name` | str | Legislator name |
-| `party` | str | Party |
-| `term` | int | Assembly (20-22) |
-| `aligned` | float | 1st dimension ideal point |
+| File | Column | Method | Use for |
+|------|--------|--------|---------|
+| `ideal_points_bridged.csv` | `bridged_1d` | chained bridging alignment of per-assembly W-NOMINATE | cross-assembly comparison (default; `db.ideal_points()`) |
+| `ideal_points_wnominate.csv` | `wnom_1d` | per-assembly W-NOMINATE, 1-D fit | within-assembly comparison only |
+| `ideal_points_dwnominate.csv` | `dwnom_1d` | pooled DW-NOMINATE | cross-assembly; one constant per member, no individual movement |
 
-**Total:** 936 legislator-term observations.
+Common columns: `member_id`, `member_name`, `party`, `party_bloc`, `term`.
+`dw_ideal_points_20_22.csv` is deprecated: its `coord1D` was per-assembly W-NOMINATE with a sign flip, not DW-NOMINATE. Do not use it for new work.
+
+**Total:** 936 legislator-term observations per series.
 
 #### Committee Meetings (`committee_meetings_{17-22}.parquet`)
 
@@ -222,6 +225,6 @@ Each result includes: `title` (often bilingual), `author`, `container-title` (jo
 |--------|--------|------|----------|-------|
 | KNA bills | CLI + parquet | None (local) | 110K bills, 17-22nd Assembly | Analyst |
 | KNA votes | parquet | None (local) | 2.4M member-level votes | Analyst |
-| KNA ideal points | CSV | None (local) | 936 DW-NOMINATE estimates | Analyst |
+| KNA ideal points | CSV | None (local) | 936 legislator-terms, 3 series (bridged default) | Analyst |
 | OpenAlex | REST API | None | 250M+ works, international + Korean | Scout, Critic |
 | Crossref | REST API | None | Korean journals with DOIs (의정연구, 한국정치학회보, etc.) | Scout, Critic |

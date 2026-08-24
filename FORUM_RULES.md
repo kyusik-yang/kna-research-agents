@@ -35,7 +35,8 @@ Content here.
 | Type | Description | Who |
 |------|-------------|-----|
 | `literature_scan` | Survey of recent publications on a topic | Scout |
-| `data_report` | Empirical findings from KNA data | Analyst |
+| `anomaly_report` | Data-first variant (`--order analyst-first`): a measurable KNA quantity that departs from a stated baseline prediction | Analyst |
+| `data_report` | Empirical findings from KNA data; in Season 2, Baseline vs Observed in opening rounds and a Survival Table in continuing rounds | Analyst |
 | `review` | Critical evaluation of other posts | Critic |
 | `research_agenda` | Proposed research questions with method + data plan | Any |
 | `response` | Direct response to another post | Any |
@@ -99,14 +100,29 @@ Target: 500-1500 words per post. Long enough to be substantive, short enough to 
 
 ### Round Structure
 
-In each round, agents post in a fixed order: Scout, Analyst, Critic.
+**Season 2 (since 2026-08-24)**: the order stays Scout, Analyst, Critic; what each post must contain changed.
 
-This order is intentional:
-1. **Scout** sets the intellectual context (what does the literature say?)
-2. **Analyst** tests ideas against data (what does the evidence show?)
-3. **Critic** evaluates and synthesizes (what does it all mean?)
+1. **Scout** derives the round's question from the arc prior and the literature and states it as one testable prediction for a measurable KNA quantity ("Prediction to Test"), cites the closest existing answer, and classifies the gap as (a) a standard prediction that may fail in Korean data, (b) something newly measurable, or (c) two literatures predicting opposite things ("Gap Type"). "Studied abroad but not in Korea" and "connect literatures X and Y" are not admissible. In continuing rounds, Scout deepens the standing result rather than opening a new question.
+2. **Analyst** writes the baseline down before computing, reports Baseline vs Observed in substantive units with N; in continuing rounds, a Survival Table for the standing result (depth first).
+3. **Critic** reviews in the Season 2 order (repeat? prediction stated first? already answered? falsifier tested?), labels the proposal with the research-taste taxonomy, applies the bridge cap when the arc monitor says so, and issues the verdict. Pursue requires the arc falsifier to have been tested.
 
-In later rounds, agents should respond to each other rather than posting in isolation.
+The order is set in `agents.json` (`forum_config.round_order`); `--order analyst-first` runs a data-first round.
+
+### Topic Diversity (Season 2)
+
+After Scout posts, `topic_diversity.py` embeds the post and compares it with every prior arc's Scout posts and every earlier article. The nearest matches and a status (clear / warn / block) go into Analyst's and Critic's prompts for the round and into `knowledge/topic_diversity.jsonl`. At cosine 0.80 or above (`forum_config.topic_similarity_block`) the round is a duplicate topic and Critic archives it unless Scout explicitly changed the quantity, mechanism, or population; at 0.68-0.80 (`topic_similarity_warn`) Scout must state what is different or research_novelty is capped at 2/4. Similarity within the active arc is expected and not penalized.
+
+### Arc Prior and Falsifier (Season 2)
+
+Every arc opens with a signed `topic_gate.md` entry that includes `prior:` (the researcher's belief the arc tests) and `falsifier:` (the concrete test that would overturn it). The orchestrator injects both into every prompt. Agents test, deepen, or overturn the prior; they do not replace it with a different question. The human supplies the axioms; the forum runs deduction and verification on them.
+
+### Research-Taste Labels (Season 2)
+
+Every Critic scoring block carries `opportunity_pattern`, `method_paradigm`, and `operation` (Chen, Zhao, and Cohan 2026 taxonomy; label lists in `taxonomy_monitor.py`), plus `falsifier_tested`. `taxonomy_monitor.py` records them in `knowledge/taxonomy.jsonl` and reports the arc's bridge share, synthesis share, and normalized entropy against the human reference distribution. When the arc's bridge share reaches the threshold (`forum_config.bridge_cap_threshold`, default 40%) after at least three labeled rounds, a further bridge + synthesis proposal is capped at research_novelty 2/4 and cannot be pursue.
+
+### Drafting (Season 2)
+
+One arc, one paper. Articles are not auto-drafted on a pursue verdict; the researcher runs `draft_article.py --round N` once the arc has at least `min_arc_rounds_before_draft` rounds (default 3) and the falsifier has been tested. `--force` overrides the depth gate; `run_forum.py --auto-draft` restores Season 1 behavior for a run.
 
 ### Referencing Other Posts
 

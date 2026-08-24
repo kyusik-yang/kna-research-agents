@@ -40,9 +40,32 @@ KNA_CLI = shutil.which("kna") or "/usr/local/bin/kna"
 CLAUDE = shutil.which("claude") or str(Path.home() / ".local" / "bin" / "claude")
 
 
-def load_agents():
+ROUND_ORDER_OVERRIDE = None   # set from --order
+EFFORT_OVERRIDE = None        # set from --effort
+
+
+def load_config():
+    """forum_config block of agents.json plus the season number."""
     with open(AGENTS_FILE) as f:
-        return json.load(f)["agents"]
+        data = json.load(f)
+    cfg = dict(data.get("forum_config", {}))
+    cfg["season"] = data.get("season", 1)
+    return cfg
+
+
+def load_agents():
+    """Agents in posting order. Season 2 (2026-08-24) posts Analyst first
+    (forum_config.round_order); --order overrides at runtime."""
+    with open(AGENTS_FILE) as f:
+        data = json.load(f)
+    agents = data["agents"]
+    order = ROUND_ORDER_OVERRIDE or data.get("forum_config", {}).get("round_order")
+    if order:
+        by_id = {a["id"]: a for a in agents}
+        ordered = [by_id[i] for i in order if i in by_id]
+        ordered += [a for a in agents if a["id"] not in order]
+        agents = ordered
+    return agents
 
 
 # ==========================================================================
@@ -52,6 +75,32 @@ def load_agents():
 
 TOPIC_GATE_FILE = BASE_DIR / "topic_gate.md"
 RETREATS_LEDGER = KNOWLEDGE_DIR / "retreats.jsonl"
+ACTIVE_ARC_FILE = KNOWLEDGE_DIR / "active_arc.json"
+
+GATE_FIELDS = ("seed", "identification", "exclusion_criteria", "prior", "falsifier", "signed")
+
+
+def _parse_gate_entry(entry_text: str) -> dict:
+    """Parse one H2 block of topic_gate.md into a dict of its fields.
+    A field runs from 'name:' to the next field name or end of block."""
+    fields = {}
+    pattern = re.compile(
+        r"^(" + "|".join(GATE_FIELDS) + r"):\s*(.*?)(?=^\S+:\s|\Z)",
+        re.MULTILINE | re.DOTALL | re.IGNORECASE,
+    )
+    for m in pattern.finditer(entry_text):
+        fields[m.group(1).lower()] = re.sub(r"\s+", " ", m.group(2)).strip()
+    return fields
+
+
+def get_active_arc() -> dict:
+    """The topic_gate entry that opened the current arc (Season 2)."""
+    if ACTIVE_ARC_FILE.exists():
+        try:
+            return json.loads(ACTIVE_ARC_FILE.read_text())
+        except json.JSONDecodeError:
+            return {}
+    return {}
 
 
 def check_topic_gate(seed_topic: str, start_round: int, total_existing: int, bypass: bool = False) -> None:
@@ -83,9 +132,9 @@ def check_topic_gate(seed_topic: str, start_round: int, total_existing: int, byp
 
     raw = TOPIC_GATE_FILE.read_text()
     # Match an entry whose seed substring occurs + signed line present
-    import textwrap
     normalized_seed = re.sub(r"\s+", " ", seed_topic.strip().lower())
     entries = re.split(r"\n## ", raw)
+    season = load_config().get("season", 1)
     for entry in entries:
         lower = entry.lower()
         if "signed:" not in lower:
@@ -96,7 +145,29 @@ def check_topic_gate(seed_topic: str, start_round: int, total_existing: int, byp
         entry_seed = re.sub(r"\s+", " ", seed_line.group(1).strip().lower())
         # Substring OK (researcher may abbreviate in gate); require reasonable overlap
         if entry_seed in normalized_seed or normalized_seed in entry_seed:
+            fields = _parse_gate_entry(entry)
+            # Season 2: the human supplies the axioms. No arc opens without a
+            # stated prior and a falsifier (Zahavy 2026: axioms are the
+            # bottleneck; the forum runs deduction and verification on them).
+            if season >= 2:
+                missing = [k for k in ("prior", "falsifier") if not fields.get(k)]
+                if missing:
+                    raise SystemExit(
+                        "[BLOCKED · Topic Gate · Season 2]\n"
+                        f"Signed entry found for '{seed_topic[:60]}' but it lacks: {', '.join(missing)}.\n"
+                        "Season 2 arcs require `prior:` (the researcher's belief this arc tests)\n"
+                        "and `falsifier:` (the concrete test that would overturn it). Add both\n"
+                        "to the entry in topic_gate.md, or pass --bypass-topic-gate."
+                    )
+            fields["start_round"] = start_round
+            fields["opened"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+            fields["season"] = season
+            ACTIVE_ARC_FILE.parent.mkdir(parents=True, exist_ok=True)
+            ACTIVE_ARC_FILE.write_text(json.dumps(fields, ensure_ascii=False, indent=2))
             print(f"  [Topic Gate · C2] Signed entry found for: {seed_topic[:80]}")
+            if season >= 2:
+                print(f"  [Topic Gate · S2] prior: {fields['prior'][:70]}")
+                print(f"  [Topic Gate · S2] falsifier: {fields['falsifier'][:70]}")
             return
 
     raise SystemExit(
@@ -342,7 +413,27 @@ def get_findings_tracker():
                 pass
     if not findings:
         return ""
-    lines = ["\n## Cumulative Findings Tracker\n"]
+    # Season 2: the full ledger (1,200+ rows by R24) was 80% of every prompt
+    # and buried the task. Show the active arc in full plus, from earlier
+    # rounds, only what was not archived (pursue / revise / confirmed /
+    # contested). The complete ledger stays in knowledge/findings.jsonl.
+    cfg = load_config()
+    trimmed_note = ""
+    if cfg.get("season", 1) >= 2:
+        start = int(get_active_arc().get("start_round") or 10**9)
+        keep = []
+        for f in findings:
+            rnd = int(f.get("round") or 0)
+            if rnd >= start or f.get("verdict") in ("pursue", "revise") \
+                    or f.get("status") in ("confirmed", "contested"):
+                keep.append(f)
+        trimmed_note = (
+            f"(Season 2 view: {len(keep)} of {len(findings)} ledger rows shown: "
+            "the active arc in full, plus earlier pursue / revise / confirmed / contested findings. "
+            "Archived Season 1 verdicts are omitted.)\n"
+        )
+        findings = keep
+    lines = ["\n## Cumulative Findings Tracker\n", trimmed_note]
     lines.append("| # | Finding | Status | Round | Source |")
     lines.append("|---|---------|--------|-------|--------|")
     for i, f in enumerate(findings, 1):
@@ -449,12 +540,20 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     post_num = next_post_number()
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
     is_first_round = post_num <= n_agents
+    cfg = load_config()
+    season = cfg.get("season", 1)
+    order_ids = [a["id"] for a in load_agents()]
+    position = order_ids.index(agent["id"]) if agent["id"] in order_ids else 0
+    # An arc opens on the first round of the forum or whenever a seed topic is passed
+    is_opening = is_first_round or bool(seed_topic)
 
     topic_line = ""
     if seed_topic:
         topic_line = f"\nForum seed topic: **{seed_topic}**\nOrient your first post around this topic, but you may explore related threads.\n"
 
-    if is_first_round:
+    if season >= 2:
+        task_instruction = season2_task(agent, position, is_opening, order_ids)
+    elif is_first_round:
         task_instruction = (
             "This is the opening round. Start a new research thread based on your specialty. "
             "Be specific and substantive - pick a focused question, gather evidence, and report findings."
@@ -470,8 +569,50 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
             "Engage substantively with at least one previous post."
         )
 
+    arc_block = ""
+    taxonomy_block = ""
+    diversity_block = ""
+    if season >= 2:
+        try:
+            import topic_diversity
+            if agent["id"] == "literature_scout":
+                diversity_block = topic_diversity.prior_topics_for_scout()
+            else:
+                diversity_block = topic_diversity.format_for_prompt(round_num)
+        except Exception as e:  # guard must never block a round
+            print(f"  [Diversity] unavailable: {e}")
+        arc = get_active_arc()
+        if arc.get("prior") or arc.get("falsifier"):
+            arc_block = (
+                "\n## Arc Prior and Falsifier (set by the researcher in topic_gate.md)\n\n"
+                f"- **Seed**: {arc.get('seed', '')}\n"
+                f"- **Prior** (the belief this arc tests): {arc.get('prior', '')}\n"
+                f"- **Falsifier** (the test that would overturn it): {arc.get('falsifier', '')}\n"
+                f"- **Exclusion criteria**: {arc.get('exclusion_criteria', '')}\n"
+                f"- Arc opened at round {arc.get('start_round', '?')}, signed {arc.get('signed', '?')}.\n\n"
+                "The prior is the researcher's axiom, not yours to replace. Test it, deepen it, or overturn it. "
+                "Do not swap it for a different question.\n"
+            )
+        try:
+            import taxonomy_monitor
+            if agent["id"] == "critic":
+                taxonomy_block = taxonomy_monitor.format_for_prompt(
+                    threshold=float(cfg.get("bridge_cap_threshold", 0.40)))
+            else:
+                s = taxonomy_monitor.arc_summary()
+                if s["n"]:
+                    taxonomy_block = (
+                        f"\n(Arc research-taste monitor: {s['n']} labeled rounds, bridge share "
+                        f"{s['bridge_share']:.0%}, synthesis share {s['synthesis_share']:.0%}. "
+                        "Critic applies a cap when bridge share is high; propose narrow interventions, "
+                        "replace / decouple / measure, over integrate / unify.)\n"
+                    )
+        except Exception as e:  # monitor must never block a round
+            print(f"  [Taxonomy] monitor unavailable: {e}")
+
     # Inject runtime paths into agent prompt
-    agent_prompt = agent["prompt"].replace("{KNA_CLI}", KNA_CLI).replace("{KNA_DATA}", KNA_DATA)
+    agent_prompt = (agent["prompt"].replace("{KNA_CLI}", KNA_CLI).replace("{KNA_DATA}", KNA_DATA)
+                    .replace("{BASE_DIR}", str(BASE_DIR)))
 
     prompt = textwrap.dedent(f"""\
     # Research Forum - Round {round_num}/{total_rounds}
@@ -492,7 +633,7 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     ---
     author: "{agent['name']}"
     date: "{ts}"
-    type: [literature_scan / data_report / review / research_agenda / response / synthesis]
+    type: [literature_scan / anomaly_report / data_report / review / research_agenda / response / synthesis]
     references: []
     ---
 
@@ -518,8 +659,62 @@ def build_prompt(agent, round_num, total_rounds, seed_topic=None):
     {findings}
     {existing_articles}
     {human_context}
+    {arc_block}
+    {diversity_block}
+    {taxonomy_block}
     """)
     return prompt
+
+
+def season2_task(agent, position, is_opening, order_ids):
+    """Per-role task text for Season 2 (literature-first question, prediction
+    test, depth-first). See SEASON2.md for the rationale."""
+    aid = agent["id"]
+    if aid == "literature_scout":
+        if is_opening:
+            return (
+                "SEASON 2, OPENING ROUND OF AN ARC. Derive the arc's first question from the arc prior below "
+                "and the literature, and state it as ONE testable prediction for a measurable KNA quantity in a "
+                "'Prediction to Test' subsection: what the literature predicts, what would count as failure. "
+                "Cite the closest existing answer (DOI). Classify the gap as (a) standard prediction may fail in "
+                "Korean data, (b) newly measurable, or (c) two literatures predict opposite things, in a 'Gap "
+                "Type' subsection. Check the 'questions already taken' list: a restatement of a prior arc or "
+                "article is a duplicate. Tell Analyst exactly what to compute. 'Studied abroad but not in Korea' "
+                "and 'connect literatures X and Y' are not admissible. Use `type: research_agenda`."
+            )
+        return (
+            "SEASON 2, CONTINUING ROUND: DEPTH FIRST. Do not open a new question while the arc's prediction "
+            "is still being tested. Bring literature to bear on the standing result: the closest existing answer, "
+            "the mechanism the literature would offer for the observed discrepancy, and the one test (preferably "
+            "the arc falsifier) that would discriminate between explanations. Keep the 'Gap Type' subsection "
+            "current. Use `type: literature_scan` or `response`."
+        )
+    if aid == "data_analyst":
+        if is_opening:
+            return (
+                "SEASON 2, OPENING ROUND OF AN ARC: PREDICTION TEST. Read Scout's 'Prediction to Test'. Write "
+                "the baseline (Scout's predicted value or sign, and the arc prior below) down BEFORE computing. "
+                "Compute the quantity, code shown, and report baseline vs observed in substantive units with N in "
+                "a 'Baseline vs Observed' table. A confirmed prediction is a result; a failed one is the arc's "
+                "anomaly. Do not widen the question or add a second topic. If the Topic Diversity Check below says "
+                "BLOCK, test only what is genuinely new and report the overlap. Use `type: data_report`."
+            )
+        return (
+            "SEASON 2, CONTINUING ROUND: DEPTH FIRST. Attack the standing result with alternative measures, "
+            "subsamples, placebo periods, the N>=10 guardrail, and above all the arc falsifier below. Present a "
+            "'Survival Table' (test, what the prediction implied, result, survived / weakened / overturned). "
+            "If the finding dies, say so; a retreat is a result. Use `type: data_report`."
+        )
+    if aid == "critic":
+        return (
+            "SEASON 2: review in the Season 2 order given in your prompt: is the question a repeat (Topic "
+            "Diversity Check below), was the prediction stated before the data was touched and could the test "
+            "have failed, is it already answered in the literature, has the arc falsifier been tested, then "
+            "labels and verdict. Fill opportunity_pattern, method_paradigm, operation, and falsifier_tested in "
+            "the scoring block. Apply the bridge cap if the monitor says it is active. Pursue requires "
+            "falsifier_tested: yes. Depth first: if the finding stands, Next Steps deepen it. Log any retreat."
+        )
+    return "Read the existing posts and respond substantively to at least one."
 
 
 def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
@@ -539,12 +734,22 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
     print(f"  Tools: {tools_str}")
     print(f"{sep}")
 
-    if dry_run:
-        print(prompt_text[:600] + "\n  ... (truncated)")
-        return
-
     prompt_file = WORKSPACE_DIR / f"_prompt_{agent['id']}.md"
     prompt_file.write_text(prompt_text)
+
+    # Season 2: reasoning budget per role. Chen et al. (2026, Table 4) find
+    # that extended thinking sharpens the bridge/synthesis template in
+    # ideation, so the ideation-prone role (Scout) runs at medium and the
+    # verification roles (Analyst, Critic) at high. agents.json sets it;
+    # --effort overrides for a run.
+    effort = EFFORT_OVERRIDE or agent.get("effort")
+    if effort:
+        print(f"  Effort: {effort}")
+
+    if dry_run:
+        print(prompt_text[:600] + "\n  ... (truncated)")
+        print(f"  Full prompt written to {prompt_file}")
+        return
 
     log_file = LOGS_DIR / f"r{round_num:02d}_{post_num:03d}_{agent['id']}.log"
 
@@ -555,8 +760,12 @@ def run_agent(agent, round_num, total_rounds, seed_topic=None, dry_run=False):
         "--dangerously-skip-permissions",
         "--system-prompt-file", str(prompt_file),
         "--output-format", "text",
-        "Execute your research task now. Read the system prompt, query data or literature, write your forum post.",
     ]
+    if effort:
+        cmd += ["--effort", effort]
+    cmd.append(
+        "Execute your research task now. Read the system prompt, query data or literature, write your forum post."
+    )
 
     print(f"  Running...")
     try:
@@ -778,7 +987,22 @@ def main():
                         help="Override topic_gate.md requirement (C2). Use with researcher consent only.")
     parser.add_argument("--skip-citation-verify", action="store_true",
                         help="Skip Crossref verification of posted DOIs (C9). Default: verify.")
+    parser.add_argument("--order", choices=["analyst-first", "scout-first"], default=None,
+                        help="Posting order for this run. Season 2 default: analyst-first (agents.json).")
+    parser.add_argument("--effort", choices=["low", "medium", "high", "xhigh", "max"], default=None,
+                        help="Override every agent's reasoning effort for this run (default: per-agent in agents.json).")
+    parser.add_argument("--auto-draft", action="store_true",
+                        help="Draft an article immediately on a pursue verdict (Season 1 behavior). "
+                             "Season 2 default is depth-first: draft manually with draft_article.py --round N.")
     args = parser.parse_args()
+
+    global ROUND_ORDER_OVERRIDE, EFFORT_OVERRIDE
+    if args.order == "analyst-first":
+        ROUND_ORDER_OVERRIDE = ["data_analyst", "literature_scout", "critic"]
+    elif args.order == "scout-first":
+        ROUND_ORDER_OVERRIDE = ["literature_scout", "data_analyst", "critic"]
+    EFFORT_OVERRIDE = args.effort
+    cfg = load_config()
 
     for d in (FORUM_DIR, LOGS_DIR, WORKSPACE_DIR, SUMMARIES_DIR):
         d.mkdir(exist_ok=True)
@@ -820,7 +1044,7 @@ def main():
 
     agent_names = ", ".join(a["name"] for a in agents)
     tools_info = " | ".join(f"{a['id']}:{','.join(a.get('allowed_tools', []))}" for a in agents)
-    print(f"\n  Research Forum")
+    print(f"\n  Research Forum (Season {cfg.get('season', 1)})")
     print(f"  Agents: {agent_names}")
     print(f"  Tools:  {tools_info}")
     print(f"  Rounds: {args.rounds} (starting from round {start_round})")
@@ -873,15 +1097,41 @@ def main():
                     except Exception as e:
                         print(f"  [Citation Verify · C9] error (non-fatal): {e}")
 
+            # Season 2 · Topic-diversity check on a fresh Scout post; the result
+            # is injected into Analyst's and Critic's prompts this round.
+            if not args.dry_run and cfg.get("season", 1) >= 2 and agent["id"] == "literature_scout":
+                latest = sorted(FORUM_DIR.glob("*_literature_scout.md"))[-1] \
+                    if any(FORUM_DIR.glob("*_literature_scout.md")) else None
+                if latest is not None:
+                    try:
+                        import topic_diversity
+                        r = topic_diversity.check_post(latest)
+                        print(f"  [Diversity] {latest.name}: {r['status'].upper()} "
+                              f"(max cosine {r.get('max_cosine', 0):.2f}, prior items {r['n_prior']})")
+                    except Exception as e:
+                        print(f"  [Diversity] check failed (non-fatal): {e}")
+
         if not args.dry_run:
             generate_round_summary(
                 rnd, topic=args.topic if i == 0 else None,
             )
             update_findings_tracker(rnd)
+            if cfg.get("season", 1) >= 2:
+                try:
+                    import taxonomy_monitor
+                    taxonomy_monitor.record_round(rnd)
+                except Exception as e:
+                    print(f"  [Taxonomy] record failed (non-fatal): {e}")
 
-            # Auto-draft article if Critic gave a "pursue" verdict
+            # Auto-draft article if Critic gave a "pursue" verdict.
+            # Season 2 is depth-first: drafting waits for the researcher
+            # (or --auto-draft) so one arc yields one paper, not one per pursue.
             verdict = _extract_verdict(rnd)
-            if verdict == "pursue":
+            auto_draft = args.auto_draft or cfg.get("auto_draft_on_pursue", True)
+            if verdict == "pursue" and not auto_draft:
+                print(f"\n  Verdict: PURSUE - Season 2 depth-first: not auto-drafting. "
+                      f"When the arc is done: python3 draft_article.py --round {rnd}")
+            elif verdict == "pursue":
                 print(f"\n  Verdict: PURSUE - auto-drafting article...")
                 try:
                     result = subprocess.run(
