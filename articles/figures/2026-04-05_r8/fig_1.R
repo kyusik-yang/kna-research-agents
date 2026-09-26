@@ -7,7 +7,9 @@ suppressPackageStartupMessages({
   library(arrow); library(dplyr); library(ggplot2); library(stringr); library(tidyr)
 })
 
-DATA <- Sys.getenv("KBL_DATA")
+DATA <- Sys.getenv("KNA_DATA_V060")  # published figure: pinned to the kna v0.6.0 data
+if (!dir.exists(DATA)) stop("KNA_DATA_V060 must name the data/processed folder of kna v0.6.0. ",
+                             "Run scripts/setup_kna_v060.sh (see KNA_070_PUBLISHED.md).")
 OUT  <- "articles/figures/2026-04-05_r8/fig_1.pdf"
 
 # Housing/real estate keywords for bill_nm classification
