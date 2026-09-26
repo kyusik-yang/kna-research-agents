@@ -4,7 +4,7 @@ kna 0.7.0 (2026-09-26) corrected ten defects, labeled (a) to (j), in the data sh
 
 ## Which data the published papers used
 
-Every kna file these papers read is identical in kna v0.3.1 (2026-03-30) and v0.6.0 (tag `v0.6.0`, commit 4e28c1e), because the releases in between only added files. The 35 kna files whose sha256 the Arc 5 replication manifest records for Paper E are byte-identical to the v0.6.0 files, and 28 of the 29 published figures that read kna data regenerate byte for byte from the v0.6.0 data (next section).
+Every kna file these papers read is identical in kna v0.3.1 (2026-03-30) and v0.6.0 (tag `v0.6.0`, commit 4e28c1e), because the releases in between only added files. The 35 kna files whose sha256 the Arc 5 replication manifest (built on 2026-09-26 from the kna data at commit 3d8d55d) records for Paper E are byte-identical to the v0.6.0 files, and 28 of the 29 published figures that read kna data regenerate byte for byte from the v0.6.0 data (next section).
 
 ## Reproducing a published figure
 
@@ -16,7 +16,7 @@ export KNA_DATA_V060=<new directory>/data/processed
 Rscript articles/figures/<paper>/fig_N.R
 ```
 
-The setup script adds a detached worktree of the kna repository at `v0.6.0`, pulls its Git LFS files and writes `member_info_17_22.parquet`, which kna never tracked. Most of these scripts still write their PDF to an absolute path, so check the output path before running one.
+The setup script adds a detached worktree of the kna repository at `v0.6.0`, pulls its Git LFS files and writes `member_info_17_22.parquet`, which kna never tracked. Check each script's output path before running it. Depending on the version of the script, it writes over its published PDF or to an absolute path of an earlier repository location.
 
 Check run on 2026-09-26 with R 4.4.1 and ggplot2 4.0.1, outputs written to a scratch folder. The 29 figure scripts that read kna data were run on the pinned v0.6.0 data and, for comparison, on the 0.7.0 data. PDFs were compared byte for byte after removing the creation and modification dates.
 
