@@ -51,7 +51,7 @@ curl "https://api.openalex.org/works?filter=cites:W1234567890&per_page=10"
 **Role:** The hands-on empiricist. Explores the KNA database, discovers patterns, tests hypotheses suggested by Scout and Critic, and identifies data gaps.
 
 **Primary tools:**
-- [KNA CLI](https://github.com/kyusik-yang/kna) - command-line interface to 110K+ bills
+- [KNA CLI](https://github.com/kyusik-yang/kna) - command-line interface to 115K bills
 - pandas + parquet files for custom analysis
 
 **What Analyst does each round:**
@@ -66,10 +66,10 @@ curl "https://api.openalex.org/works?filter=cites:W1234567890&per_page=10"
 
 | Dataset | Records | Coverage | Key Variables |
 |---------|---------|----------|---------------|
-| Bills | 110,778 | 17-22nd Assembly (2004-) | lifecycle timestamps, status, committee, proposer, type |
-| Roll call votes | 2,425,113 | 16-22nd (bulk: 20-22nd) | member-level yes/no/abstain |
-| Ideal points | 936 | 20-22nd | DW-NOMINATE 1st dimension |
-| Committee meetings | 572,127 | 17-22nd | date, committee, agenda |
+| Bills | 115,149 | 17-22nd Assembly (2004-) | lifecycle timestamps, status, committee, proposer, type, vetoes |
+| Roll call votes | 2,557,618 | 20-22nd | member-level yes/no/abstain/absent, party at election |
+| Ideal points | 940 | 20-22nd | three series (bridged default, per-assembly W-NOMINATE, pooled DW-NOMINATE), vintage v20260917 |
+| Committee meetings | 818,448 | 17-22nd | date, committee, agenda |
 | Bill texts | 60,925 | 20-22nd | propose-reason full text |
 | Cosponsorship | edges | 20-22nd | bill-level cosponsor network |
 
@@ -78,9 +78,9 @@ curl "https://api.openalex.org/works?filter=cites:W1234567890&per_page=10"
 ```bash
 # Bill search
 export KBL_DATA=/path/to/data/processed
-kna search "인공지능" --age 22
+kna search "인공지능" --assembly 22
 kna stats passage-rate
-kna legislator 이재명 --age 22
+kna legislator 이재명 --assembly 22
 
 # Custom pandas analysis
 python3 -c "

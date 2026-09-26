@@ -19,7 +19,9 @@ suppressPackageStartupMessages({
 })
 
 # --- Paths -------------------------------------------------------------------
-data_dir <- Sys.getenv("KBL_DATA")
+data_dir <- Sys.getenv("KNA_DATA_V060")  # published figure: pinned to the kna v0.6.0 data
+if (!dir.exists(data_dir)) stop("KNA_DATA_V060 must name the data/processed folder of kna v0.6.0. ",
+                             "Run scripts/setup_kna_v060.sh (see KNA_070_PUBLISHED.md).")
 
 bills_path   <- file.path(data_dir, "master_bills_19.parquet")
 members_path <- file.path(data_dir, "members_19.parquet")

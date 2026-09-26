@@ -27,7 +27,9 @@ suppressPackageStartupMessages({
   library(tidyr)
 })
 
-DATA_DIR  <- Sys.getenv("KBL_DATA")
+DATA_DIR  <- Sys.getenv("KNA_DATA_V060")  # published figure: pinned to the kna v0.6.0 data
+if (!dir.exists(DATA_DIR)) stop("KNA_DATA_V060 must name the data/processed folder of kna v0.6.0. ",
+                             "Run scripts/setup_kna_v060.sh (see KNA_070_PUBLISHED.md).")
 OUT_PATH  <- "articles/figures/2026-04-19_r19/fig_3.pdf"
 dir.create(dirname(OUT_PATH), recursive = TRUE, showWarnings = FALSE)
 

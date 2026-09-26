@@ -436,10 +436,13 @@ def draft_article(round_num):
     - Each R script must be self-contained: load libraries, read data, plot, ggsave().
 
     Data path for R: {kna_data}/ (resolved from the KBL_DATA environment variable)
-    Available: member_info_17_22.parquet, master_bills_{{17-22}}.parquet
-    Use arrow::read_parquet() to load. Key columns: mona_cd, assembly (=age in bills),
-    gender (남/여), election_type (비례대표/지역구), reelection (초선/재선/3선/...),
-    rst_mona_cd (sponsor), ppsr_kind (의원=member bill), passed (0/1).
+    Available: members_{{17-22}}.parquet, master_bills_{{17-22}}.parquet (kna 0.7.0)
+    Use arrow::read_parquet() to load. Key columns: mona_cd, age (assembly, in members and bills),
+    sex (남/여), election_type (비례대표/지역구), term_number (1 = first term at that assembly),
+    seniority (초선/재선/3선/... at that assembly), party (party at election),
+    rst_mona_cd (sponsor), ppsr_kind (의원=member bill), passed (0/1, counts 대안반영폐기 too),
+    enacted (0/1, 원안가결 or 수정가결). Never use reelection for first-term status or
+    seniority, because it is the lifetime count at data collection, not seniority at that assembly.
 
     R packages: ggplot2, dplyr, tidyr, arrow, fixest
     Style: theme_bw(base_size = 11), Okabe-Ito palette, PDF output
@@ -449,7 +452,9 @@ def draft_article(round_num):
     # Figure N: [description]
     library(arrow); library(dplyr); library(ggplot2)
     DATA <- "{kna_data}"
-    members <- read_parquet(file.path(DATA, "member_info_17_22.parquet"))
+    members <- bind_rows(lapply(17:22, function(a) {{
+      read_parquet(file.path(DATA, sprintf("members_%d.parquet", a)))
+    }}))  # one row per member-term, joined to bills on rst_mona_cd = mona_cd and age
     bills <- bind_rows(lapply(17:22, function(a) {{
       f <- file.path(DATA, sprintf("master_bills_%d.parquet", a))
       if (file.exists(f)) read_parquet(f) else NULL
@@ -497,13 +502,13 @@ def draft_article(round_num):
     - APSR style throughout
 
     **KNA Data Available (check before writing Data section):**
-    - master_bills_{{17-22}}.parquet: bill lifecycle (42+ columns)
-    - roll_calls_all.parquet: 2.4M member-level votes
+    - master_bills_{{17-22}}.parquet: bill lifecycle (67 columns in every assembly, one row per vetoed bill, promulgated, law_reflected)
+    - roll_calls_all.parquet: 2.56M member-level votes, 20th-22nd (party = party at election)
     - ideal_points_bridged.csv (default, cross-assembly) / ideal_points_wnominate.csv (within-assembly) / ideal_points_dwnominate.csv (pooled): name the series used
     - committee_meetings_{{17-22}}.parquet: committee meeting records
     - bill_texts_linked.parquet: 60K propose-reason texts
-    - cosponsorship_edges.parquet: cosponsorship network
-    - members_{{17-22}}.parquet: member metadata (party, district, committee, sex, birth_date, election_type, reelection)
+    - cosponsorship_edges.parquet: cosponsorship network, 17th-22nd, role = 대표발의/공동발의/찬성
+    - members_{{17-22}}.parquet: member metadata (party at election, district, committee, sex, birth_date, election_type, term_number and seniority at that assembly, reelection as the lifetime count)
     - assets data: db.assets(assembly=22) - 2,928 member-year wealth observations
     - kr-hearings-data: 9.9M speeches + 7.4M Q&A dyads (separate download)
     Data path: {kna_data}/
@@ -660,15 +665,18 @@ def repair_orphan_figures(tex_file, round_num):
 
         Requirements:
         - Load data from: $KBL_DATA/
-        - Available files: member_info_17_22.parquet, master_bills_{{17-22}}.parquet
-        - Key columns: mona_cd, assembly (in members) = age (in bills), gender (남/여),
-          election_type (비례대표/지역구), reelection (초선/재선/3선/...),
-          rst_mona_cd (sponsor in bills), ppsr_kind (의원 = member bill), passed (0/1)
+        - Available files: members_{{17-22}}.parquet, master_bills_{{17-22}}.parquet
+        - Key columns: mona_cd, age (in members and bills), sex (남/여),
+          election_type (비례대표/지역구), term_number (1 = first term at that assembly),
+          seniority (초선/재선/3선/... at that assembly), party (party at election),
+          rst_mona_cd (sponsor in bills), ppsr_kind (의원 = member bill),
+          passed (0/1, counts 대안반영폐기 too), enacted (0/1, 원안가결 or 수정가결)
+        - Never use reelection for first-term status, because it is the lifetime count at data collection
         - Use: library(arrow), library(dplyr), library(ggplot2)
         - Style: theme_bw(base_size = 11), Okabe-Ito colorblind palette
         - Save with: ggsave("{pdf_path}", width = 7, height = 4.5)
         - Filter bills: ppsr_kind == "의원"
-        - Join members to bills: by rst_mona_cd = mona_cd AND age = assembly
+        - Join members to bills: by rst_mona_cd = mona_cd AND age = age
 
         Write ONLY the R code to: {r_file}
         No explanation, no markdown, just the .R file.
