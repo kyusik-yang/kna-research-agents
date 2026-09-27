@@ -71,7 +71,7 @@ curl "https://api.openalex.org/works?filter=cites:W1234567890&per_page=10"
 | Ideal points | 940 | 20-22nd | three series (bridged default, per-assembly W-NOMINATE, pooled DW-NOMINATE), vintage v20260917 |
 | Committee meetings | 818,448 | 17-22nd | date, committee, agenda |
 | Bill texts | 60,925 | 20-22nd | propose-reason full text |
-| Cosponsorship | edges | 20-22nd | bill-level cosponsor network |
+| Cosponsorship | 1,379,763 | 17-22nd | bill-member edges, role 대표발의/공동발의/찬성 |
 
 **Typical Analyst queries:**
 
