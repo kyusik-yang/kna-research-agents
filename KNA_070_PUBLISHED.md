@@ -35,7 +35,7 @@ The scripts of R13, R24, R27 and the R22 sensitivity figure read no kna data and
 
 ## Papers that used a field corrected in 0.7.0
 
-Sources: the figure scripts at commit e1cc0a4 and the data sections of the papers. The round scripts of Season 1 were never published, so a paper may also have used corrected fields that neither source shows. Letters refer to the 2026-09-26 entry of kna `CORRECTIONS.md`.
+The sources are the figure scripts at commit e1cc0a4 and the data sections of the papers. The round scripts of Season 1 were never published, so a paper may also have used corrected fields that neither source shows. Letters refer to the 2026-09-26 entry of kna `CORRECTIONS.md`.
 
 | Round, date | Paper | Corrected field it used | Corrections |
 |---|---|---|---|
@@ -58,7 +58,7 @@ Only Paper E was re-estimated. The other rows record exposure, not a changed res
 
 ## Paper E: the first-term comparison rerun
 
-`scripts/kna070_paper_e_rerun.py` rebuilds the round 28 panel (member law bills of the 17th-22nd, lead sponsor merged on MONA_CD) and refits the round 29 models: the year-one strict-passage gap with its equivalence tests (Table 2, column 1) and the absorption step with proposal-year effects and per-year interactions (Table 2, columns 2 and 3). Standard errors are clustered by lead sponsor. The code is the published code. Only the data and the first-term definition change.
+`scripts/kna070_paper_e_rerun.py` rebuilds the round 28 panel (member law bills of the 17th-22nd, lead sponsor merged on MONA_CD) and refits the round 29 models. These are the year-one strict-passage gap with its equivalence tests (Table 2, column 1) and the absorption step with proposal-year effects and per-year interactions (Table 2, columns 2 and 3). Standard errors are clustered by lead sponsor. The code is the published code. Only the data and the first-term definition change.
 
 - A: v0.6.0 data, first term = `reelection == '초선'` (the published coding)
 - B: 0.7.0 data, first term = `term_number == 1`
