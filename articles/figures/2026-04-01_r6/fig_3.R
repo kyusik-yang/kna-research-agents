@@ -1,8 +1,16 @@
 #!/usr/bin/env Rscript
-# fig_3.R
-# Seniority composition by gender and mandate type, 20th-22nd Assemblies.
-# Data: members_{20,21,22}.parquet from KNA processed data.
-# All counts/shares are computed from parquet; nothing is hardcoded.
+# fig_3.R (Version 2, 2026-09-27)
+# Seniority composition by gender and mandate type, 20th-22nd Assemblies,
+# with seniority measured at each Assembly. Member-terms from the member files.
+#
+# Version 1 classified members as first-term when the member-file field
+# `reelection` read 초선. That field is the member's lifetime term count at data
+# collection and has the same value in every Assembly, so it is not seniority at
+# an Assembly. This version follows kna_seniority.derive() in the repository
+# root: with L the lifetime count, n the number of member files 17-22 the member
+# appears in and k the rank of Assembly a among them, the term number at a is
+# L - n + k. First-term means a term number of 1.
+# All counts and shares are computed from the parquet files.
 
 suppressPackageStartupMessages({
   library(arrow)
@@ -17,68 +25,59 @@ if (!dir.exists(data_dir)) stop("KNA_DATA_V060 must name the data/processed fold
 
 out_path <- "articles/figures/2026-04-01_r6/fig_3.pdf"
 
-# --- Load members for the three assemblies --------------------------------
-load_members <- function(age) {
-  p <- file.path(data_dir, sprintf("members_%d.parquet", age))
-  arrow::read_parquet(p) %>%
-    mutate(assembly = age)
+lifetime_count <- function(x) {
+  x <- trimws(as.character(x))
+  out <- suppressWarnings(as.integer(sub("\\s*\uc120$", "", x)))
+  out[x == "\ucd08\uc120"] <- 1L
+  out[x == "\uc7ac\uc120"] <- 2L
+  out
 }
 
-members <- bind_rows(lapply(20:22, load_members))
+# --- Member files 17-22 and the term number at each Assembly ---------------
+members <- bind_rows(lapply(17:22, function(a) {
+  read_parquet(file.path(data_dir, sprintf("members_%d.parquet", a)),
+               col_select = c("mona_cd", "sex", "election_type", "reelection")) %>%
+    mutate(assembly = a)
+})) %>%
+  mutate(L = lifetime_count(reelection)) %>%
+  arrange(mona_cd, assembly) %>%
+  group_by(mona_cd) %>%
+  mutate(n_files = n(), k = row_number(), term_number = L - n_files + k) %>%
+  ungroup()
+stopifnot(!any(is.na(members$term_number)), all(members$term_number >= 1))
 
-# --- Clean and classify ---------------------------------------------------
-# sex: 남 = Male, 여 = Female
-# election_type: 지역구 = SMD, 비례대표 = PR
-# reelection: 초선 = first-term; anything else (재선/3선/4선/...) = multi-term
 members <- members %>%
-  filter(!is.na(sex), !is.na(election_type), !is.na(reelection)) %>%
+  filter(assembly %in% 20:22) %>%
   mutate(
-    gender   = ifelse(sex == "여", "Women", "Men"),
+    gender   = ifelse(sex == "\uc5ec", "Women", "Men"),
     mandate  = case_when(
-      election_type == "지역구"   ~ "SMD",
-      election_type == "비례대표" ~ "PR",
+      election_type == "\uc9c0\uc5ed\uad6c"         ~ "SMD",
+      election_type == "\ube44\ub840\ub300\ud45c" ~ "PR",
       TRUE ~ NA_character_
     ),
-    seniority = ifelse(reelection == "초선", "First-term", "Multi-term")
+    seniority = ifelse(term_number == 1, "First term", "Second term or later")
   ) %>%
   filter(!is.na(mandate))
 
-# --- Aggregate: counts and shares by assembly x gender x mandate ----------
+# --- Counts and shares by Assembly x gender x mandate -----------------------
 comp <- members %>%
-  group_by(assembly, gender, mandate, seniority) %>%
-  summarise(n = n(), .groups = "drop") %>%
+  count(assembly, gender, mandate, seniority, name = "n") %>%
+  complete(assembly, gender, mandate, seniority, fill = list(n = 0)) %>%
   group_by(assembly, gender, mandate) %>%
-  mutate(
-    total = sum(n),
-    share = n / total
-  ) %>%
+  mutate(total = sum(n), share = n / total) %>%
   ungroup() %>%
   mutate(
-    group_label = paste(gender, mandate),
-    group_label = factor(group_label,
-                         levels = c("Women PR", "Women SMD",
-                                    "Men PR",   "Men SMD")),
-    seniority   = factor(seniority, levels = c("First-term", "Multi-term")),
-    assembly_lab = factor(sprintf("%dth Assembly", assembly),
-                          levels = c("20th Assembly",
-                                     "21st Assembly",
-                                     "22nd Assembly"))
+    group_label = factor(paste(gender, mandate),
+                         levels = c("Women PR", "Women SMD", "Men PR", "Men SMD")),
+    seniority = factor(seniority, levels = c("First term", "Second term or later")),
+    assembly_lab = factor(c("20" = "20th Assembly", "21" = "21st Assembly", "22" = "22nd Assembly")[as.character(assembly)],
+                          levels = c("20th Assembly", "21st Assembly", "22nd Assembly"))
   )
+print(comp %>% select(assembly, group_label, seniority, n, total) %>% arrange(assembly, group_label, seniority),
+      n = 50)
 
-# Fix ordinal labels (20 -> "20th", 21 -> "21st", 22 -> "22nd")
-comp$assembly_lab <- factor(
-  dplyr::recode(as.character(comp$assembly),
-                "20" = "20th Assembly",
-                "21" = "21st Assembly",
-                "22" = "22nd Assembly"),
-  levels = c("20th Assembly", "21st Assembly", "22nd Assembly")
-)
+totals <- comp %>% distinct(assembly_lab, group_label, total)
 
-# Totals per bar (for annotation above the bar)
-totals <- comp %>%
-  distinct(assembly_lab, group_label, total)
-
-# --- Plot -----------------------------------------------------------------
 okabe <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2",
            "#D55E00", "#CC79A7", "#000000")
 
@@ -98,13 +97,14 @@ p <- ggplot(comp, aes(x = group_label, y = share, fill = seniority)) +
   ) +
   facet_wrap(~ assembly_lab, nrow = 1) +
   scale_y_continuous(
+    breaks = seq(0, 1, 0.25),
     labels = scales::percent_format(accuracy = 1),
     expand = expansion(mult = c(0, 0.12)),
     limits = c(0, 1.1)
   ) +
-  scale_fill_manual(values = c("First-term" = okabe[2],
-                               "Multi-term" = okabe[5]),
-                    name = "Seniority") +
+  scale_fill_manual(values = c("First term" = okabe[2],
+                               "Second term or later" = okabe[5]),
+                    name = "Term at that Assembly") +
   labs(x = NULL, y = "Share within cohort") +
   theme_bw(base_size = 11) +
   theme(
@@ -117,6 +117,8 @@ p <- ggplot(comp, aes(x = group_label, y = share, fill = seniority)) +
     legend.title       = element_text(face = "bold")
   )
 
-# --- Save -----------------------------------------------------------------
 dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
-ggsave(out_path, p, width = 7, height = 4.5)
+pdf(out_path, width = 7, height = 4.5, useDingbats = FALSE)
+print(p)
+invisible(dev.off())
+cat("Wrote:", out_path, "\n")
