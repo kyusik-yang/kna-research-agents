@@ -28,3 +28,6 @@ knowledge/literature_log.jsonl
 # settings files) are already covered above.
 knowledge/staging/
 knowledge/private/
+
+# Local-only operating notes for Claude sessions in this repository (private since 2026-09-28)
+/CLAUDE.md

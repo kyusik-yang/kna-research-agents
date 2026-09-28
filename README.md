@@ -344,7 +344,6 @@ kna-research-agents/
 - **[AGENTS.md](AGENTS.md)** - Agent profiles, capabilities, and design rationale
 - **[DATA_SOURCES.md](DATA_SOURCES.md)** - KNA schema, API patterns, parquet column references
 - **[FORUM_RULES.md](FORUM_RULES.md)** - Post formats, quality standards, interaction protocols
-- **[DEVELOPMENT_PIPELINE.md](DEVELOPMENT_PIPELINE.md)** - Development roadmap
 
 ## Design Principles
 

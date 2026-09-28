@@ -1,7 +1,7 @@
 """Public docs stay in step with the v2.1 code (verifier findings V-05, V-06, V-13).
 
-Read-only checks on README.md, SEASON2.md, CLAUDE.md, DEVELOPMENT_PIPELINE.md
-and FORUM_RULES.md, cross-checked against the code where the docs describe it.
+Read-only checks on the public docs README.md, SEASON2.md and FORUM_RULES.md,
+cross-checked against the code where the docs describe it.
 Nothing here writes a file."""
 
 import re
@@ -10,7 +10,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
-DOCS = ("README.md", "SEASON2.md", "CLAUDE.md", "DEVELOPMENT_PIPELINE.md", "FORUM_RULES.md")
+DOCS = ("README.md", "SEASON2.md", "FORUM_RULES.md")
 
 
 def _read(name: str) -> str:
@@ -38,7 +38,7 @@ CLAUSE_COLON = re.compile(r"[\w.)]: [a-z]")
 @pytest.mark.parametrize("name", DOCS)
 def test_comment_examples_name_their_author(name):
     text = _read(name)
-    # The quoted note may span lines (DEVELOPMENT_PIPELINE.md), so match the
+    # The quoted note may span lines, so match the
     # quote as a unit and look at the rest of the command line after it.
     for m in re.finditer(r'run_forum\.py --comment "[^"]*"([^\n]*)', text):
         assert "--by" in m.group(1), f"{name}: --comment example without --by: {m.group(0)[:80]!r}"

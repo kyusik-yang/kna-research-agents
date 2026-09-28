@@ -159,7 +159,7 @@ def test_tally_prefers_verdicts_of_record(tmp_path):
     assert t["seasons"]["season2"]["archive"] == 1
 
 
-PUBLIC_DOCS = ["SEASON2.md", "README.md", "CLAUDE.md", "docs/season2.html"]
+PUBLIC_DOCS = ["SEASON2.md", "README.md", "docs/season2.html"]
 
 
 def test_stale_ledger_figures_removed_from_public_docs():
