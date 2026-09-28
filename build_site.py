@@ -1798,6 +1798,37 @@ def _disclosure_html(stem, escape):
             f'<table><tr>{head}</tr>{"".join(rows)}</table></details>')
 
 
+def _article_correction(stem):
+    """(version, corrected date) from the article's .md companion frontmatter,
+    or None when the article has not been corrected (version below 2 or no
+    corrected date)."""
+    md = ARTICLES_DIR / f"{stem}.md"
+    if not md.exists():
+        return None
+    meta = forum_index.read_frontmatter(md)
+    try:
+        version = int(meta.get("version") or 1)
+    except (TypeError, ValueError):
+        return None
+    corrected = str(meta.get("corrected") or "").strip()
+    if version < 2 or not corrected:
+        return None
+    return version, corrected
+
+
+def _correction_badge_html(stem, escape):
+    """A small label next to the title of a corrected article."""
+    corr = _article_correction(stem)
+    if not corr:
+        return ""
+    version, corrected = corr
+    return (f' <span style="display:inline-block; margin-left:0.4rem; padding:0.05rem 0.45rem; '
+            f'border:1px solid rgba(210,153,34,0.55); border-radius:4px; background:rgba(210,153,34,0.12); '
+            f'color:#e3b341; font-size:0.72rem; font-weight:600; vertical-align:middle;" '
+            f'title="See the dated correction notice at the top of the paper">'
+            f'Version {version} · corrected {escape(corrected)}</span>')
+
+
 def _build_article_list():
     """Generate HTML for articles from articles/ directory."""
     articles_dir = ARTICLES_DIR
@@ -1854,7 +1885,7 @@ def _build_article_list():
 
         items.append(f"""\
 <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem 1.25rem; margin:0.75rem 0;">
-  <div style="font-weight:600; color:var(--text); margin-bottom:0.3rem;">{escape(title)}</div>
+  <div style="font-weight:600; color:var(--text); margin-bottom:0.3rem;">{escape(title)}{_correction_badge_html(tex.stem, escape)}</div>
   <div class="post-meta">Round {source} | {date} | {wc} words{pdf_link}</div>
   {kw_html}
   {_disclosure_html(tex.stem, escape)}
