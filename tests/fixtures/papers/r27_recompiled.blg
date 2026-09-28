@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: 2026-08-24_r27.aux
+The style file: apsr.bst
+Database file #1: references_r27.bib
+Warning--I didn't find a database entry for "mccubbins1984"
+Warning--I didn't find a database entry for "aberbach1990"
+Warning--I didn't find a database entry for "mayhew1974"
+Warning--I didn't find a database entry for "martin2011"
+You've used 11 entries,
+            2874 wiz_defined-function locations,
+            712 strings with 6942 characters,
+and the built_in function-call counts, 61968 in all, are:
+= -- 10264
+> -- 753
+< -- 0
++ -- 4983
+- -- 262
+* -- 5464
+:= -- 12183
+add.period$ -- 44
+call.type$ -- 11
+change.case$ -- 143
+chr.to.int$ -- 11
+cite$ -- 11
+duplicate$ -- 161
+empty$ -- 361
+format.name$ -- 278
+if$ -- 11118
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 11
+newline$ -- 47
+num.names$ -- 126
+pop$ -- 29
+preamble$ -- 1
+purify$ -- 165
+quote$ -- 0
+skip$ -- 152
+stack$ -- 0
+substring$ -- 14754
+swap$ -- 22
+text.length$ -- 154
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 44
+warning$ -- 0
+while$ -- 256
+width$ -- 0
+write$ -- 155
+(There were 4 warnings)

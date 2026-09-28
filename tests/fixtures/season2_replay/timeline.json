@@ -1,0 +1,58 @@
+{
+  "rounds": {
+    "25": {
+      "card_committed_at": "2026-08-24T00:33:30-04:00",
+      "analyst_start": "2026-08-24T00:34:00-04:00",
+      "results_at": "2026-08-24T00:39:00-04:00"
+    },
+    "26": {
+      "card_committed_at": "2026-08-24T06:55:30-04:00",
+      "analyst_start": "2026-08-24T06:56:00-04:00",
+      "results_at": "2026-08-24T06:57:30-04:00"
+    },
+    "27": {
+      "card_committed_at": "2026-08-24T07:08:30-04:00",
+      "analyst_start": "2026-08-24T07:09:00-04:00",
+      "results_at": "2026-08-24T07:09:50-04:00"
+    },
+    "28": {
+      "card_committed_at": "2026-08-24T09:25:30-04:00",
+      "analyst_start": "2026-08-24T09:26:00-04:00",
+      "results_at": "2026-08-24T09:27:30-04:00"
+    },
+    "29": {
+      "card_committed_at": "2026-08-24T09:37:30-04:00",
+      "analyst_start": "2026-08-24T09:38:00-04:00",
+      "results_at": "2026-08-24T09:39:30-04:00"
+    },
+    "30": {
+      "card_committed_at": "2026-08-24T09:48:30-04:00",
+      "analyst_start": "2026-08-24T09:49:00-04:00",
+      "results_at": "2026-08-24T09:51:00-04:00"
+    }
+  },
+  "gates": {
+    "arc4": {
+      "seed": "Confirmation hearing conflict and subsequent ministry oversight",
+      "start_round": 25,
+      "signed": "2026-08-24",
+      "drafted_by": "orchestrating Claude session (claude-fable-5)",
+      "signed_by": "researcher, selected from a Claude-drafted menu on 2026-08-24"
+    },
+    "arc5": {
+      "seed": "First-term legislative learning",
+      "start_round": 28,
+      "signed": "2026-08-24",
+      "drafted_by": "orchestrating Claude session (claude-fable-5)",
+      "signed_by": "researcher, selected from a Claude-drafted menu on 2026-08-24"
+    }
+  },
+  "critic_headline": {
+    "25": "carryover_did",
+    "26": "carryover_did",
+    "27": "carryover_did",
+    "28": "absorption_step",
+    "29": "absorption_step",
+    "30": "absorption_step"
+  }
+}

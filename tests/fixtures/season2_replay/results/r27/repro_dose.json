@@ -1,0 +1,13 @@
+{
+  "spec_id": "repro_dose",
+  "estimate": 1.28,
+  "se": null,
+  "ci_low": -0.14,
+  "ci_high": 2.69,
+  "n": 138,
+  "script": "workspace/r26/dose_baseline.py",
+  "output": "workspace/r27/results/repro_dose.json",
+  "created_at": "2026-08-24T07:09:50-04:00",
+  "quantity_id": "dose_slope",
+  "source": "080 Section 3 row 13"
+}

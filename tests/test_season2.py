@@ -1,5 +1,8 @@
 """Season 2 guardrails: topic gate fields, posting order, taxonomy parsing,
-and order-agnostic round grouping on the site."""
+and order-agnostic round grouping on the site.
+
+Every test that calls into run_forum points all of its path constants at
+tmp_path first (_isolate), so no test writes to the real knowledge/ or forum/."""
 
 import json
 import sys
@@ -30,6 +33,10 @@ prior: chairs of high-stakes committees pass their own bills at a higher rate th
 
 falsifier: if the within-person passage-rate change after promotion is indistinguishable from the matched cohort, the prior is overturned.
 
+drafted_by: orchestrating Claude session (claude-opus-5-5)
+
+signed_by: orchestrating Claude session, signed under the researcher's standing delegation of 2026-09-25
+
 signed: 2026-08-24
 """
 
@@ -45,6 +52,27 @@ exclusion_criteria: (1) no special committees.
 
 signed: 2026-08-24
 """
+
+
+RUN_FORUM_PATHS = {
+    "BASE_DIR": "", "FORUM_DIR": "forum", "LOGS_DIR": "logs", "WORKSPACE_DIR": "workspace",
+    "SUMMARIES_DIR": "summaries", "KNOWLEDGE_DIR": "knowledge", "TOPIC_GATE_FILE": "topic_gate.md",
+    "RETREATS_LEDGER": "knowledge/retreats.jsonl", "ACTIVE_ARC_FILE": "knowledge/active_arc.json",
+    "ARC_STATUS_FILE": "knowledge/arc_status.json", "HUMAN_CONTEXT_FILE": "knowledge/human_context.md",
+    "WAIVERS_FILE": "knowledge/waivers.jsonl", "GATE_EVENTS_FILE": "knowledge/gate_events.jsonl",
+    "GATE_CANDIDATES_FILE": "knowledge/gate_candidates.jsonl", "ARCHIVE_DIR": "knowledge/archive",
+}
+
+
+def _isolate(tmp_path, monkeypatch, season=2, order=None):
+    """Point every run_forum path at tmp_path and return the agents file."""
+    for name, rel in RUN_FORUM_PATHS.items():
+        monkeypatch.setattr(run_forum, name, tmp_path / rel if rel else tmp_path)
+    (tmp_path / "forum").mkdir(exist_ok=True)
+    (tmp_path / "knowledge").mkdir(exist_ok=True)
+    f = _agents_file(tmp_path, season=season, order=order)
+    monkeypatch.setattr(run_forum, "AGENTS_FILE", f)
+    return f
 
 
 def _agents_file(tmp_path, season=2, order=None):
@@ -69,12 +97,24 @@ def test_parse_gate_entry_reads_all_fields():
     assert fields["prior"].startswith("chairs of high-stakes")
     assert fields["falsifier"].startswith("if the within-person")
     assert fields["signed"] == "2026-08-24"
+    assert fields["drafted_by"] == "orchestrating Claude session (claude-opus-5-5)"
+    assert fields["signed_by"].startswith("orchestrating Claude session, signed under")
+
+
+def test_parse_gate_entry_keeps_multiline_free_text():
+    """M08 (2): a field ends only at a line that starts with a known field name."""
+    entry = ("seed: chair tenure\n\nhuman_rationale: The arc matters for two reasons.\n"
+             "Why: because chairs gatekeep bills.\nNote: a second line.\n\n"
+             "prior: chairs pass more bills.\nsigned: 2026-09-26\n\n---\n")
+    fields = run_forum._parse_gate_entry(entry)
+    assert fields["human_rationale"] == ("The arc matters for two reasons. Why: because chairs gatekeep bills. "
+                                         "Note: a second line.")
+    assert fields["prior"] == "chairs pass more bills."
+    assert fields["signed"] == "2026-09-26"
 
 
 def test_topic_gate_blocks_without_prior_and_falsifier_in_season2(tmp_path, monkeypatch):
-    monkeypatch.setattr(run_forum, "AGENTS_FILE", _agents_file(tmp_path, season=2))
-    monkeypatch.setattr(run_forum, "TOPIC_GATE_FILE", tmp_path / "topic_gate.md")
-    monkeypatch.setattr(run_forum, "ACTIVE_ARC_FILE", tmp_path / "active_arc.json")
+    _isolate(tmp_path, monkeypatch, season=2)
     (tmp_path / "topic_gate.md").write_text(GATE_MISSING)
     with pytest.raises(SystemExit) as exc:
         run_forum.check_topic_gate("committee chair tenure and bill passage", 25, 72)
@@ -82,21 +122,20 @@ def test_topic_gate_blocks_without_prior_and_falsifier_in_season2(tmp_path, monk
 
 
 def test_topic_gate_passes_and_records_active_arc(tmp_path, monkeypatch):
-    monkeypatch.setattr(run_forum, "AGENTS_FILE", _agents_file(tmp_path, season=2))
-    monkeypatch.setattr(run_forum, "TOPIC_GATE_FILE", tmp_path / "topic_gate.md")
-    monkeypatch.setattr(run_forum, "ACTIVE_ARC_FILE", tmp_path / "active_arc.json")
+    _isolate(tmp_path, monkeypatch, season=2)
     (tmp_path / "topic_gate.md").write_text(GATE_OK)
     run_forum.check_topic_gate("committee chair tenure and bill passage", 25, 72)
-    arc = json.loads((tmp_path / "active_arc.json").read_text())
+    arc = json.loads((tmp_path / "knowledge" / "active_arc.json").read_text())
     assert arc["start_round"] == 25
     assert arc["prior"].startswith("chairs of high-stakes")
     assert arc["season"] == 2
+    assert arc["drafted_by"] == "orchestrating Claude session (claude-opus-5-5)"
+    assert arc["arc_id"] == "6" and arc["arc"] == 6
+    assert "model" in arc and "claude_code_version" in arc
 
 
 def test_topic_gate_season1_does_not_require_prior(tmp_path, monkeypatch):
-    monkeypatch.setattr(run_forum, "AGENTS_FILE", _agents_file(tmp_path, season=1))
-    monkeypatch.setattr(run_forum, "TOPIC_GATE_FILE", tmp_path / "topic_gate.md")
-    monkeypatch.setattr(run_forum, "ACTIVE_ARC_FILE", tmp_path / "active_arc.json")
+    _isolate(tmp_path, monkeypatch, season=1)
     (tmp_path / "topic_gate.md").write_text(GATE_MISSING)
     run_forum.check_topic_gate("committee chair tenure and bill passage", 25, 72)
 
@@ -161,7 +200,9 @@ def test_topic_diversity_prompt_block(tmp_path, monkeypatch):
            "nearest_article": {"id": "2026-04-20_r22", "round": 22, "cosine": 0.81}}
     (tmp_path / "topic_diversity.jsonl").write_text(json.dumps(row) + "\n")
     block = td.format_for_prompt(25)
-    assert "BLOCK" in block and "2026-04-20_r22" in block and "duplicate topic" in block
+    assert "BLOCK" in block and "2026-04-20_r22" in block
+    # E2E-06: uncalibrated thresholds give no archive instruction or score cap.
+    assert "duplicate topic" not in block and "cap research_novelty" not in block
     assert td.format_for_prompt(26) == ""
 
 

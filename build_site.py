@@ -7,6 +7,8 @@ Usage:
     python3 build_site.py
 """
 
+import json
+import os
 import re
 import shutil
 from datetime import datetime
@@ -15,10 +17,17 @@ from pathlib import Path
 import markdown
 import yaml
 
+import forum_index
+
 BASE_DIR = Path(__file__).parent
 FORUM_DIR = BASE_DIR / "forum"
 KNOWLEDGE_DIR = BASE_DIR / "knowledge"
 DOCS_DIR = BASE_DIR / "docs"
+ARTICLES_DIR = BASE_DIR / "articles"
+# Drafts that failed the paper gates live here (gitignored) and are never
+# rendered. Gate reports of published drafts are private under logs/.
+FAILED_DRAFTS_DIR = BASE_DIR / "workspace" / "failed_drafts"
+GATE_REPORTS_DIR = BASE_DIR / "logs" / "paper_gates"
 
 SITE_TITLE = "KNA Research Agents"
 SITE_URL = "https://kna-research-agents.com"
@@ -28,6 +37,37 @@ PERSONAL_URL = "https://kyusikyang.com"
 SEASON2_MD = BASE_DIR / "SEASON2.md"
 SEASON2_DATE = "2026-08-24"
 SUMMARIES_DIR = BASE_DIR / "summaries"
+# The maintainer's literature vector DB tool (private, optional). It is located
+# the way scripts/litdb.sh locates it, from KNA_LITDB_TOOL or else from the
+# first non-comment line of this gitignored file.
+LITDB_PATH_FILE = KNOWLEDGE_DIR / "private" / "litdb_path.txt"
+
+
+def _first_setting_line(path: Path) -> str:
+    """First line that is neither blank nor a # comment, or ""."""
+    try:
+        for line in path.read_text(encoding="utf-8").splitlines():
+            s = line.strip()
+            if s and not s.startswith("#"):
+                return s
+    except (OSError, UnicodeDecodeError):
+        pass
+    return ""
+
+
+def litdb_store_path() -> Path | None:
+    """Return the literature vector DB store, from KNA_LITDB_STORE or else the
+    single LanceDB directory (*.lance) beside the vector DB tool. Return None
+    when neither is configured. The knowledge page then falls back to
+    knowledge/abstracts.jsonl, or to the scan log."""
+    store = os.environ.get("KNA_LITDB_STORE", "").strip()
+    if store:
+        return Path(store).expanduser()
+    tool = os.environ.get("KNA_LITDB_TOOL", "").strip() or _first_setting_line(LITDB_PATH_FILE)
+    if not tool:
+        return None
+    stores = sorted(p for p in Path(tool).expanduser().parent.glob("*.lance") if p.is_dir())
+    return stores[0] if len(stores) == 1 else None
 
 # Agent colors for visual distinction
 AGENT_COLORS = {
@@ -820,10 +860,17 @@ def render_page(title, body_content, active="forum"):
 
 
 def group_rounds(posts):
-    """Group posts into rounds. A round closes with the Critic's post, so the
-    grouping works for the Season 1 order (Scout, Analyst, Critic) and the
-    Season 2 order (Analyst, Scout, Critic) alike. Human posts attach to the
-    round in progress."""
+    """Group posts into rounds. From v2.1 the round comes from forum_index
+    (orchestrator frontmatter, or the legacy mapping for posts 001-090), set
+    on each post by main(). Posts without it fall back to the sequence rule:
+    a round closes with the Critic's post, so the grouping works for the
+    Season 1 order (Scout, Analyst, Critic) and the Season 2 order (Analyst,
+    Scout, Critic) alike. Human posts attach to the round in progress."""
+    if posts and all(p.get("round") for p in posts):
+        by_round = {}
+        for p in posts:
+            by_round.setdefault(p["round"], []).append(p)
+        return by_round
     rounds_data = {}
     current_rnd = 1
     prev_agent = None
@@ -839,7 +886,7 @@ def build_index(posts):
     """Build the index page with Slack-like message feed."""
     n_posts = len(posts)
     n_agents = len(set(p["agent_id"] for p in posts))
-    n_rounds = (n_posts // 3) + (1 if n_posts % 3 else 0) if n_posts else 0
+    n_rounds = len(group_rounds(posts)) if n_posts else 0
 
     stats = f"""\
 <div class="stats-bar">
@@ -1711,15 +1758,57 @@ and Q&amp;A transcripts. Published as standalone pages.</p>
     return render_page("Conferences", body, active="conferences")
 
 
+def _article_blocked(stem):
+    """True when a paper's private gate report says a blocking gate failed.
+    Papers published before the gates existed have no report and render."""
+    report = GATE_REPORTS_DIR / f"{stem}.gates.json"
+    if report.exists():
+        try:
+            return not json.loads(report.read_text()).get("ok", False)
+        except (OSError, ValueError):
+            return True
+    return False
+
+
+def _in_failed_drafts(path):
+    try:
+        path.resolve().relative_to(FAILED_DRAFTS_DIR.resolve())
+        return True
+    except ValueError:
+        return False
+
+
+def _disclosure_html(stem, escape):
+    """The M21 appendix table for an article entry, when disclosure.py wrote one."""
+    f = ARTICLES_DIR / f"{stem}.disclosure.json"
+    if not f.exists():
+        return ""
+    try:
+        data = json.loads(f.read_text())
+    except (OSError, ValueError):
+        return ""
+    head = "".join(f"<th>{h}</th>" for h in ("Round", "Date", "Role", "Model", "CLI", "Turns", "Attempts", "Outcome"))
+    rows = []
+    for r in data.get("rows", []):
+        cells = [r.get("round"), r.get("date"), r.get("role"), r.get("model") or "unrecorded",
+                 r.get("cli_version") or "unrecorded", r.get("turns"), r.get("attempts"), r.get("outcome")]
+        rows.append("<tr>" + "".join(f"<td>{escape('' if c is None else str(c))}</td>" for c in cells) + "</tr>")
+    return (f'<details style="margin-top:0.5rem;"><summary class="post-meta" style="cursor:pointer;">'
+            f'AI use and oversight</summary><p class="post-meta">{escape(data.get("footnote", ""))}</p>'
+            f'<table><tr>{head}</tr>{"".join(rows)}</table></details>')
+
+
 def _build_article_list():
     """Generate HTML for articles from articles/ directory."""
-    articles_dir = BASE_DIR / "articles"
+    articles_dir = ARTICLES_DIR
     if not articles_dir.exists():
         articles_dir.mkdir(exist_ok=True)
 
     # Look for .tex files (primary) and .md files (fallback)
     tex_files = sorted(articles_dir.glob("*.tex"), reverse=True)
     tex_files = [t for t in tex_files if "template" not in t.name and "content" not in t.name and "compile" not in t.name and "test" not in t.name]
+    tex_files = [t for t in tex_files if ".disclosure" not in t.name
+                 and not _in_failed_drafts(t) and not _article_blocked(t.stem)]
 
     if not tex_files:
         return """\
@@ -1768,6 +1857,7 @@ def _build_article_list():
   <div style="font-weight:600; color:var(--text); margin-bottom:0.3rem;">{escape(title)}</div>
   <div class="post-meta">Round {source} | {date} | {wc} words{pdf_link}</div>
   {kw_html}
+  {_disclosure_html(tex.stem, escape)}
 </div>""")
 
     return "\n".join(items)
@@ -1779,7 +1869,7 @@ def _sync_article_pdfs():
     dst = DOCS_DIR / "articles"
     dst.mkdir(exist_ok=True)
     for pdf in src.glob("*.pdf"):
-        if "template" in pdf.name:
+        if "template" in pdf.name or _in_failed_drafts(pdf) or _article_blocked(pdf.stem):
             continue
         dest = dst / pdf.name
         if not dest.exists() or pdf.stat().st_mtime > dest.stat().st_mtime:
@@ -1951,8 +2041,8 @@ def build_knowledge():
 
     # Try to load full corpus from Vector DB (authoritative source)
     vectordb_papers = []
-    vectordb_path = Path.home() / "Desktop" / "<workspace>" / "tools" / "<literature-db-store>"
-    if vectordb_path.exists():
+    vectordb_path = litdb_store_path()
+    if vectordb_path is not None and vectordb_path.exists():
         try:
             import lancedb
             _db = lancedb.connect(str(vectordb_path))
@@ -2120,12 +2210,19 @@ def build_season2():
 def main():
     DOCS_DIR.mkdir(exist_ok=True)
 
-    # Parse all forum posts
+    # Parse all forum posts. Round, arc and role come from forum_index.
+    meta_by_name = {m["path"].name: m for m in forum_index.index(forum_dir=FORUM_DIR)}
     posts = []
     for p in sorted(FORUM_DIR.glob("*.md")):
         if p.name == ".gitkeep":
             continue
-        posts.append(parse_post(p))
+        post = parse_post(p)
+        meta = meta_by_name.get(p.name)
+        if meta:
+            post["round"], post["arc"] = meta["round"], meta["arc"]
+            if meta["role"] in AGENT_COLORS:
+                post["agent_id"] = meta["role"]
+        posts.append(post)
 
     # Build pages
     (DOCS_DIR / "index.html").write_text(build_about())

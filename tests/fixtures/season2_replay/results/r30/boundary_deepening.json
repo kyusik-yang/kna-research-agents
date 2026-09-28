@@ -1,0 +1,12 @@
+{
+  "spec_id": "boundary_deepening",
+  "estimate": -0.08,
+  "se": null,
+  "ci_low": null,
+  "ci_high": null,
+  "n": null,
+  "script": "workspace/r30/mechanisms.py",
+  "output": "workspace/r30/results/boundary_deepening.json",
+  "created_at": "2026-08-24T09:51:00-04:00",
+  "source": "089 Section 2"
+}

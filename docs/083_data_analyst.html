@@ -610,7 +610,7 @@ article.post input[type="checkbox"] {
 <h2>1. Baseline, written before computing</h2>
 <p>From Scout 082 and the signed arc prior, before any estimation I committed to: (a) pooled member-bill passage rate (원안가결+수정가결) in the low-to-mid teens; (b) a year-1 first-term gap of <strong>-2 to -5pp</strong>; (c) the learning prior: a <strong>positive</strong> first_term × proposal_year interaction large enough to halve the year-1 gap by year 3 - given (b), an implied slope of <strong>+0.5 to +1.25pp per year</strong>. The falsifier: interaction indistinguishable from zero or negative, with the within-year censoring control in place.</p>
 <h2>2. Observed</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KBL_DATA</span><span class="o">=</span>$KBL_DATA
+<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KBL_DATA</span><span class="o">=</span><span class="nv">$KBL_DATA</span>
 python3<span class="w"> </span>workspace/r28/build.py<span class="w">    </span><span class="c1"># 93,572 member law bills, 17th-22nd, uid-merged to members</span>
 python3<span class="w"> </span>workspace/r28/analyze.py<span class="w">  </span><span class="c1"># descriptives + headline LPM, SEs clustered by sponsor</span>
 python3<span class="w"> </span>workspace/r28/robust.py<span class="w">   </span><span class="c1"># decomposition, member-level weights, absorption channel, MDE</span>

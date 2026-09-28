@@ -1,0 +1,395 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "card.v1",
+  "title": "Prediction card",
+  "description": "Committed before the Analyst runs. The validator in prediction_card.py adds the conditional rules (one primary spec, at most six specs, sanity specs for effect claims, gap evidence, threshold supersession).",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": [
+        "prediction",
+        "reproduction"
+      ]
+    },
+    "claim_id": {
+      "type": "string",
+      "description": "Stable id of the claim within the arc."
+    },
+    "quantity_id": {
+      "type": "string",
+      "description": "Id of the measured quantity in knowledge/quantities.jsonl."
+    },
+    "quantity": {
+      "type": "string",
+      "description": "The measurable KNA quantity in words."
+    },
+    "population": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    },
+    "comparison": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "positive",
+        "negative",
+        "nonzero",
+        "zero"
+      ]
+    },
+    "supporting_result": {
+      "type": "string"
+    },
+    "decisive_metric": {
+      "type": "string"
+    },
+    "falsifying_result": {
+      "type": "string"
+    },
+    "threshold": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      ],
+      "description": "Number, or [low, high], in the stated units."
+    },
+    "units": {
+      "type": "string"
+    },
+    "decision_rule_quoted": {
+      "type": "string",
+      "description": "Verbatim copy of the gate's decision_rule."
+    },
+    "equivalence_bound": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Bound for any null this claim could report, in the stated units. Defaults to the gate's sesoi."
+    },
+    "claim_scope": {
+      "type": "string"
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "claim_id whose threshold this claim replaces."
+    },
+    "gap": {
+      "type": "object",
+      "properties": {
+        "gap_type": {
+          "type": "string",
+          "enum": [
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        "evidence": {
+          "type": "object",
+          "properties": {
+            "lit_a": {
+              "type": "object",
+              "properties": {
+                "doi": {
+                  "type": "string"
+                },
+                "quoted_prediction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "A verbatim sentence from the source."
+                },
+                "location": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "abstract, page N or section N."
+                },
+                "quantity_match": {
+                  "type": "string",
+                  "enum": [
+                    "exact",
+                    "analogous",
+                    "inferred"
+                  ]
+                }
+              },
+              "required": [
+                "doi",
+                "quoted_prediction",
+                "location",
+                "quantity_match"
+              ]
+            },
+            "lit_b": {
+              "type": "object",
+              "properties": {
+                "doi": {
+                  "type": "string"
+                },
+                "quoted_prediction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "A verbatim sentence from the source."
+                },
+                "location": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "abstract, page N or section N."
+                },
+                "quantity_match": {
+                  "type": "string",
+                  "enum": [
+                    "exact",
+                    "analogous",
+                    "inferred"
+                  ]
+                }
+              },
+              "required": [
+                "doi",
+                "quoted_prediction",
+                "location",
+                "quantity_match"
+              ]
+            },
+            "own_derivation": {
+              "type": "boolean"
+            },
+            "theory_source": {
+              "type": "string"
+            },
+            "quoted_prediction": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "location": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "magnitude": {
+              "type": "string"
+            },
+            "measure": {
+              "type": "string"
+            },
+            "why_unavailable": {
+              "type": "string"
+            },
+            "available_since": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "gap_type",
+        "evidence"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "description": "Stable id of the claim within the arc."
+          },
+          "quantity_id": {
+            "type": "string",
+            "description": "Id of the measured quantity in knowledge/quantities.jsonl."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "The measurable KNA quantity in words."
+          },
+          "population": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "comparison": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "negative",
+              "nonzero",
+              "zero"
+            ]
+          },
+          "supporting_result": {
+            "type": "string"
+          },
+          "decisive_metric": {
+            "type": "string"
+          },
+          "falsifying_result": {
+            "type": "string"
+          },
+          "threshold": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ],
+            "description": "Number, or [low, high], in the stated units."
+          },
+          "units": {
+            "type": "string"
+          },
+          "decision_rule_quoted": {
+            "type": "string",
+            "description": "Verbatim copy of the gate's decision_rule."
+          },
+          "equivalence_bound": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Bound for any null this claim could report, in the stated units. Defaults to the gate's sesoi."
+          },
+          "claim_scope": {
+            "type": "string"
+          },
+          "supersedes": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "claim_id whose threshold this claim replaces."
+          }
+        },
+        "required": [
+          "claim_id",
+          "quantity_id",
+          "quantity",
+          "population",
+          "period",
+          "comparison",
+          "direction",
+          "supporting_result",
+          "decisive_metric",
+          "falsifying_result",
+          "threshold"
+        ]
+      }
+    },
+    "spec_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "spec_id": {
+            "type": "string",
+            "description": "Identifier. x_ ids are reserved for exploratory results."
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "robustness",
+              "placebo",
+              "reproduction",
+              "calibration",
+              "sanity"
+            ]
+          },
+          "claim_id": {
+            "type": "string",
+            "description": "Claim the spec tests. Defaults to the card's claim_id."
+          },
+          "outcome_def": {
+            "type": "string"
+          },
+          "sample_def": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "expected_n": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "what_result_would_mean": {
+            "type": "string",
+            "description": "The alternative explanation this spec rules out. Required for every role."
+          },
+          "sanity_kind": {
+            "type": "string",
+            "enum": [
+              "permutation",
+              "subsample"
+            ]
+          },
+          "draws": {
+            "type": "integer"
+          },
+          "source": {
+            "type": "object",
+            "description": "Calibration specs only: the cited DOI and table or page."
+          }
+        },
+        "required": [
+          "spec_id",
+          "role",
+          "outcome_def",
+          "sample_def",
+          "model",
+          "expected_n",
+          "what_result_would_mean"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 6
+    }
+  },
+  "required": [
+    "claim_id",
+    "kind",
+    "spec_plan"
+  ]
+}

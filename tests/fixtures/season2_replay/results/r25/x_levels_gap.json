@@ -1,0 +1,13 @@
+{
+  "spec_id": "x_levels_gap",
+  "estimate": 4.61,
+  "se": null,
+  "ci_low": null,
+  "ci_high": null,
+  "n": 194,
+  "script": "workspace/r25/analyze.py",
+  "output": "workspace/r25/results/x_levels_gap.json",
+  "created_at": "2026-08-24T00:39:00-04:00",
+  "quantity_id": "levels_gap",
+  "source": "077 Section 2 (raw cohort-1 gap)"
+}

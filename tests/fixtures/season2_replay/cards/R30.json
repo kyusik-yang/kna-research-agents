@@ -1,0 +1,126 @@
+{
+  "claim_id": "network_channel",
+  "quantity_id": "inc_share_step",
+  "quantity": "Change in the incumbent co-sponsor share on first-term bills from year 1 to years 2-4 (pp).",
+  "population": "First-term member bills with cosponsor edges, 17th-22nd.",
+  "period": "Proposal years 1-4.",
+  "comparison": "Years 2-4 vs year 1.",
+  "direction": "negative",
+  "supporting_result": "Share falls by 2 to 3pp in a step.",
+  "decisive_metric": "Step estimate and 95 percent interval.",
+  "falsifying_result": "Share is flat across the term.",
+  "threshold": [
+    -3.0,
+    -2.0
+  ],
+  "units": "pp",
+  "equivalence_bound": 1.0,
+  "claim_scope": "Cosponsor rosters only.",
+  "supersedes": null,
+  "kind": "prediction",
+  "gap": {
+    "gap_type": "c",
+    "evidence": {
+      "lit_a": {
+        "doi": "10.1111/ajps.12518",
+        "quoted_prediction": null,
+        "location": null,
+        "quantity_match": "inferred"
+      },
+      "lit_b": {
+        "doi": "10.1177/10659129241246003",
+        "quoted_prediction": null,
+        "location": null,
+        "quantity_match": "inferred"
+      },
+      "own_derivation": true
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "absorption_step",
+      "quantity_id": "absorption_deficit",
+      "quantity": "First-term absorption deficit in proposal years 2-4 relative to year 1 (pp).",
+      "population": "Member bills, 17th-22nd Assemblies.",
+      "period": "Proposal years 1-4.",
+      "comparison": "First-term vs re-elected sponsors, step form.",
+      "direction": "negative",
+      "supporting_result": "Year-1 indicator near zero and years 2-4 indicator between -3 and -2pp.",
+      "decisive_metric": "Step interaction and 95 percent interval, flexible year effects.",
+      "falsifying_result": "Linear form fits better than the step, or year-1 indicator beyond 1pp in magnitude.",
+      "threshold": [
+        -3.0,
+        -2.0
+      ],
+      "units": "pp",
+      "equivalence_bound": 1.0,
+      "claim_scope": "Absorption into committee alternatives only.",
+      "supersedes": null
+    }
+  ],
+  "spec_plan": [
+    {
+      "spec_id": "inc_share_step",
+      "role": "primary",
+      "outcome_def": "incumbent co-sponsor share",
+      "sample_def": "first-term bills with cosponsor edges",
+      "model": "OLS share ~ years2to4 + assembly, bloc, election_type, committee FE",
+      "expected_n": 19000,
+      "what_result_would_mean": "A flat share would mean the network channel has no first link."
+    },
+    {
+      "spec_id": "step_cond_incshare",
+      "role": "robustness",
+      "claim_id": "absorption_step",
+      "outcome_def": "absorbed into a committee alternative",
+      "sample_def": "edge-covered member bills",
+      "model": "LPM absorbed ~ first_term x years2to4 + year FE + assembly FE + bloc + election_type + committee FE, clustered by sponsor + incumbent share + log coalition size",
+      "expected_n": 60684,
+      "what_result_would_mean": "A step that shrinks by half would mean network access explains the deficit."
+    },
+    {
+      "spec_id": "boundary_deepening",
+      "role": "robustness",
+      "claim_id": "absorption_step",
+      "outcome_def": "absorbed into a committee alternative",
+      "sample_def": "member bills 17th-22nd",
+      "model": "per-year interactions, year 3 minus year 2 contrast",
+      "expected_n": 93000,
+      "what_result_would_mean": "Deepening at year 3 would mean the committee reassignment boundary drives the step."
+    },
+    {
+      "spec_id": "step_cond_prior_dup",
+      "role": "robustness",
+      "claim_id": "absorption_step",
+      "outcome_def": "absorbed into a committee alternative",
+      "sample_def": "member bills 17th-22nd",
+      "model": "LPM absorbed ~ first_term x years2to4 + year FE + assembly FE + bloc + election_type + committee FE, clustered by sponsor + prior incumbent bill on the same base law",
+      "expected_n": 93000,
+      "what_result_would_mean": "A step that shrinks by half would mean portfolio content explains the deficit."
+    },
+    {
+      "spec_id": "sanity_permutation",
+      "role": "sanity",
+      "claim_id": "network_channel",
+      "sanity_kind": "permutation",
+      "draws": 200,
+      "outcome_def": "incumbent co-sponsor share, permuted within assembly term",
+      "sample_def": "first-term bills with cosponsor edges",
+      "model": "OLS share ~ years2to4",
+      "expected_n": null,
+      "what_result_would_mean": "An estimate of similar size on permuted outcomes would mean the primary estimate is produced by the specification, not the data."
+    },
+    {
+      "spec_id": "sanity_subsample",
+      "role": "sanity",
+      "claim_id": "network_channel",
+      "sanity_kind": "subsample",
+      "draws": 50,
+      "outcome_def": "incumbent co-sponsor share",
+      "sample_def": "first-term bills with cosponsor edges, 90 percent legislator subsamples",
+      "model": "OLS share ~ years2to4",
+      "expected_n": null,
+      "what_result_would_mean": "A sign that flips across subsamples would mean a few legislators carry the estimate."
+    }
+  ]
+}

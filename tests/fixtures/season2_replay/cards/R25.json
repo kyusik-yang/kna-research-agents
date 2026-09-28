@@ -1,0 +1,98 @@
+{
+  "claim_id": "carryover_did",
+  "quantity_id": "carryover_did",
+  "quantity": "Opposed-minus-supportive difference-in-differences in the share of a legislator's audit question dyads directed at the confirmed nominee's ministry (percentage points).",
+  "population": "Legislator-ministry pairs present in the same committee's audit before and after a minister-level confirmation hearing, 21st Assembly.",
+  "period": "Cohort 1 hearings Dec 2020 to May 2021 (audits Oct 2020 and Oct 2021) and cohort 2 hearings May to Oct 2023 (audits Oct 2022 and Oct 2023).",
+  "comparison": "Opposed vs supportive questioners, after minus before.",
+  "direction": "positive",
+  "supporting_result": "Pooled DiD of at least +5pp.",
+  "decisive_metric": "Pooled DiD point estimate and 95 percent interval, committee FE, SEs clustered by legislator.",
+  "falsifying_result": "95 percent interval excludes +5pp and includes zero, with placebo agencies showing the same before-after pattern.",
+  "threshold": 5.0,
+  "units": "pp",
+  "equivalence_bound": 5.0,
+  "claim_scope": "Audit allocation toward the confirmed ministry only, party-line opposition coding.",
+  "supersedes": null,
+  "kind": "prediction",
+  "gap": {
+    "gap_type": "c",
+    "evidence": {
+      "lit_a": {
+        "doi": "10.1111/lsq.12440",
+        "quoted_prediction": "Contrary to the conventional wisdom that confrontation crowds out information, we show that members of the president's party engage in less confrontational oversight and reveal no more or less information than their peers.",
+        "location": "abstract",
+        "quantity_match": "inferred"
+      },
+      "lit_b": {
+        "doi": "10.18854/kpsr.2008.42.2.008",
+        "quoted_prediction": null,
+        "location": null,
+        "quantity_match": "inferred"
+      },
+      "own_derivation": true
+    }
+  },
+  "spec_plan": [
+    {
+      "spec_id": "pooled_did",
+      "role": "primary",
+      "outcome_def": "change in confirmed-ministry share of audit question dyads",
+      "sample_def": "cohorts 1 and 2 pooled, units present in both audits",
+      "model": "OLS of the before-after change in share on opposed, committee FE, SEs clustered by legislator",
+      "expected_n": 278,
+      "what_result_would_mean": "A pooled DiD below +5pp with an interval including zero would mean hearing opposition does not carry into audit allocation."
+    },
+    {
+      "spec_id": "placebo_did",
+      "role": "placebo",
+      "outcome_def": "change in share directed at same-committee named agencies whose head was not confirmed",
+      "sample_def": "cohorts 1 and 2 pooled, units present in both audits",
+      "model": "OLS of the before-after change in share on opposed, committee FE, SEs clustered by legislator",
+      "expected_n": 278,
+      "what_result_would_mean": "The same movement on placebo agencies would mean any main-effect shift is a generic audit trend, not carry-over."
+    },
+    {
+      "spec_id": "cohort1_did",
+      "role": "robustness",
+      "outcome_def": "change in confirmed-ministry share of audit question dyads",
+      "sample_def": "cohort 1 only",
+      "model": "OLS of the before-after change in share on opposed, committee FE, SEs clustered by legislator",
+      "expected_n": 194,
+      "what_result_would_mean": "A different sign in cohort 1 alone would mean pooling hides cohort heterogeneity."
+    },
+    {
+      "spec_id": "alt_treatment_did",
+      "role": "robustness",
+      "outcome_def": "change in confirmed-ministry share of audit question dyads",
+      "sample_def": "cohorts 1 and 2 pooled, own-speech opposition coding",
+      "model": "OLS of the before-after change in share on opposed, committee FE, SEs clustered by legislator",
+      "expected_n": 278,
+      "what_result_would_mean": "A positive DiD under own-speech coding would mean party-line coding masks individual position taking."
+    },
+    {
+      "spec_id": "sanity_permutation",
+      "role": "sanity",
+      "claim_id": "carryover_did",
+      "sanity_kind": "permutation",
+      "draws": 200,
+      "outcome_def": "change in confirmed-ministry share, permuted within assembly term",
+      "sample_def": "cohorts 1 and 2 pooled",
+      "model": "OLS of the before-after change in share on opposed, committee FE, SEs clustered by legislator",
+      "expected_n": null,
+      "what_result_would_mean": "An estimate of similar size on permuted outcomes would mean the primary estimate is produced by the specification, not the data."
+    },
+    {
+      "spec_id": "sanity_subsample",
+      "role": "sanity",
+      "claim_id": "carryover_did",
+      "sanity_kind": "subsample",
+      "draws": 50,
+      "outcome_def": "change in confirmed-ministry share",
+      "sample_def": "cohorts 1 and 2 pooled, 90 percent legislator subsamples",
+      "model": "OLS of the before-after change in share on opposed, committee FE, SEs clustered by legislator",
+      "expected_n": null,
+      "what_result_would_mean": "A sign that flips across subsamples would mean a few legislators carry the estimate."
+    }
+  ]
+}

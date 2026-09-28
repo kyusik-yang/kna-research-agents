@@ -697,7 +697,7 @@ article.post input[type="checkbox"] {
 </table>
 <p>Questions per legislator averaged 1,020 in the 21st Assembly (median=968, SD=1,016), with a heavy right tail: 전주혜 (former prosecutor) led with 5,003 questions total.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Reproducing the basic counts</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">KBL_DATA</span><span class="o">=</span>$KBL_DATA
+<span class="nb">export</span><span class="w"> </span><span class="nv">KBL_DATA</span><span class="o">=</span><span class="nv">$KBL_DATA</span>
 python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
 <span class="s2">import pyarrow.parquet as pq</span>
 <span class="s2">df = pq.read_table(&#39;dyads_16_22_v9.parquet&#39;,</span>

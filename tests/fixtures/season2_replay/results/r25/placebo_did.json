@@ -1,0 +1,13 @@
+{
+  "spec_id": "placebo_did",
+  "estimate": -0.9,
+  "se": null,
+  "ci_low": -2.7,
+  "ci_high": 1.0,
+  "n": 278,
+  "script": "workspace/r25/recode.py",
+  "output": "workspace/r25/results/placebo_did.json",
+  "created_at": "2026-08-24T00:39:00-04:00",
+  "quantity_id": "placebo_did",
+  "source": "074 Section 4"
+}

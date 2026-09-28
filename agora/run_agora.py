@@ -24,7 +24,6 @@ Usage:
 import argparse
 import json
 import random
-import subprocess
 import sys
 import textwrap
 from datetime import datetime
@@ -34,12 +33,24 @@ BASE_DIR = Path(__file__).parent.parent
 AGORA_DIR = Path(__file__).parent
 PERSONAS_FILE = AGORA_DIR / "personas.json"
 OUTPUT_DIR = AGORA_DIR / "discussions"
-LOGS_DIR = AGORA_DIR / "logs"
 
-import os
-import shutil
+# Every claude call goes through the forum wrapper (pinned model, effort
+# forum_config.effort_by_task.agora, no tools, prompt kept under logs/prompts/).
+sys.path.insert(0, str(BASE_DIR))
+import claude_cli  # noqa: E402
 
-CLAUDE = shutil.which("claude") or str(Path.home() / ".local" / "bin" / "claude")
+
+class UsageLimitReached(RuntimeError):
+    """A usage limit blocks every model until reset, so the discussion stops."""
+
+
+def ask_claude(prompt_text, user_message, timeout_s):
+    """One single-attempt agora call. Raises UsageLimitReached on a usage limit."""
+    res = claude_cli.run_claude("agora", prompt_text, user_message=user_message, tools=[],
+                                timeout_s=timeout_s, max_continuations=0)
+    if res.failure == "usage_limit":
+        raise UsageLimitReached(f"usage limit, resets {res.resume_at or 'at an unknown time'}")
+    return res
 
 
 def load_personas(n=10):
@@ -171,44 +182,32 @@ def build_report_prompt(stimulus, stimulus_type, reactions, demands):
 
 
 def run_persona(persona, prompt_text, dry_run=False):
-    """Execute one persona via claude -p."""
+    """Execute one persona through claude_cli.run_claude."""
     if dry_run:
         return f"[DRY RUN] {persona['name']} would react here"
 
-    prompt_file = LOGS_DIR / f"_prompt_{persona['id']}.md"
-    prompt_file.write_text(prompt_text)
-
-    cmd = [
-        CLAUDE,
-        "-p",
-        "--allowedTools", "Write",
-        "--dangerously-skip-permissions",
-        "--system-prompt-file", str(prompt_file),
-        "--output-format", "text",
-        f"React as {persona['name']}. Korean only. 2-4 sentences.",
-    ]
-
     try:
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=600,
-        )
-        # Extract the actual reaction (strip tool use artifacts)
-        output = result.stdout.strip()
-        # Clean up any markdown artifacts
-        for prefix in ["```", "---"]:
-            if output.startswith(prefix):
-                output = output.split("\n", 1)[-1] if "\n" in output else output
-        return output[:500]  # Cap length
-    except subprocess.TimeoutExpired:
-        return f"[{persona['name']} timeout]"
+        res = ask_claude(prompt_text, f"React as {persona['name']}. Korean only. 2-4 sentences.", 600)
+    except (UsageLimitReached, claude_cli.ClaudeCLIError):
+        raise  # a usage limit or a config error stops the whole discussion
     except Exception as e:
         return f"[{persona['name']} error: {e}]"
+    if res.failure == "timeout":
+        return f"[{persona['name']} timeout]"
+    if not res.ok:
+        return f"[{persona['name']} error: {res.failure}]"
+    # Extract the actual reaction (strip tool use artifacts)
+    output = res.text.strip()
+    # Clean up any markdown artifacts
+    for prefix in ["```", "---"]:
+        if output.startswith(prefix):
+            output = output.split("\n", 1)[-1] if "\n" in output else output
+    return output[:500]  # Cap length
 
 
 def run_discussion(stimulus, stimulus_type="news", n_personas=10, dry_run=False):
     """Run a full citizen discussion."""
     OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
-    LOGS_DIR.mkdir(exist_ok=True, parents=True)
 
     personas = load_personas(n_personas)
     ts = datetime.now().strftime("%Y-%m-%d_%H%M")
@@ -256,22 +255,14 @@ def run_discussion(stimulus, stimulus_type="news", n_personas=10, dry_run=False)
     # Phase 3: Report
     print(f"\n  Phase 3: Generating report...")
     report_prompt = build_report_prompt(stimulus, stimulus_type, reactions, demands)
-    report_file = LOGS_DIR / "_prompt_report.md"
-    report_file.write_text(report_prompt)
 
     report_text = ""
     if not dry_run:
-        cmd = [
-            CLAUDE, "-p",
-            "--allowedTools", "Write",
-            "--dangerously-skip-permissions",
-            "--system-prompt-file", str(report_file),
-            "--output-format", "text",
-            "Write the discussion report now.",
-        ]
         try:
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
-            report_text = result.stdout.strip()
+            res = ask_claude(report_prompt, "Write the discussion report now.", 3600)
+            report_text = res.text.strip() if res.ok else f"Report generation failed: {res.failure}"
+        except UsageLimitReached:
+            raise
         except Exception as e:
             report_text = f"Report generation failed: {e}"
 
@@ -341,13 +332,21 @@ def main():
     stimulus = args.news or args.finding
     stimulus_type = "news" if args.news else "finding"
 
-    run_discussion(
-        stimulus=stimulus,
-        stimulus_type=stimulus_type,
-        n_personas=min(args.personas, 25),
-        dry_run=args.dry_run,
-    )
+    try:
+        run_discussion(
+            stimulus=stimulus,
+            stimulus_type=stimulus_type,
+            n_personas=min(args.personas, 25),
+            dry_run=args.dry_run,
+        )
+    except UsageLimitReached as e:
+        print(f"\n  Agora stopped: {e}. Nothing was saved.", file=sys.stderr)
+        return claude_cli.EXIT_USAGE_LIMIT
+    except claude_cli.ClaudeCLIError as e:
+        print(f"\n  Agora stopped: {e}", file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -1,0 +1,8 @@
+{
+  "round_25.v2.jsonl": {
+    "created": "2026-09-26T09:22:18",
+    "note": "written by the Paper D Version 2 correction (make_dictionary_v2.py), not by a staging run. The created time is the file's modification time.",
+    "run_id": "paper_d_v2_correction_2026-09-26",
+    "sha256": "ccd3a7214cb9705822359915c9cd05f8d885d83eb70d72e9684f638b5216333a"
+  }
+}

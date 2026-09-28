@@ -1,0 +1,15 @@
+{
+  "spec_id": "tost_yr1_strict",
+  "estimate": 0.24,
+  "se": 0.54,
+  "ci_low": null,
+  "ci_high": null,
+  "n": 34652,
+  "script": "workspace/r29/depth.py",
+  "output": "workspace/r29/results/tost_yr1_strict.json",
+  "created_at": "2026-08-24T09:39:30-04:00",
+  "quantity_id": "yr1_gap_strict",
+  "equivalence_margin": 2.0,
+  "tost_p": 0.0005,
+  "source": "086 Section 2"
+}

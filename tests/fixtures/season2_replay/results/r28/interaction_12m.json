@@ -1,0 +1,12 @@
+{
+  "spec_id": "interaction_12m",
+  "estimate": -0.04,
+  "se": null,
+  "ci_low": null,
+  "ci_high": null,
+  "n": null,
+  "script": "workspace/r28/robust.py",
+  "output": "workspace/r28/results/interaction_12m.json",
+  "created_at": "2026-08-24T09:27:30-04:00",
+  "source": "083 Section 3"
+}

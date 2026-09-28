@@ -47,21 +47,23 @@ def test_repair_orphan_figures_uses_per_article_subdir(tmp_path, monkeypatch):
     b_tex = articles_dir / "2026-05-02_rY.tex"
     b_tex.write_text(r"\fbox{\parbox{1cm}{placeholder B}}")
 
-    # Monkeypatch the Claude call so we don't actually run an LLM; we
-    # just need the directory-resolution logic under test.
+    # Patch the wrapper so no LLM (and no stub binary) runs; we just need
+    # the directory-resolution logic under test. Every claude call in
+    # draft_article.py goes through claude_cli.run_claude (M01).
     called = []
 
-    def fake_run(cmd, **kw):
-        called.append(cmd)
-        # Return a fake success with an empty R script; the repair function
-        # will find the file not existing and skip the Rscript step.
-        class R:
-            returncode = 0
-            stdout = ""
-            stderr = ""
-        return R()
+    def fake_run_claude(task, prompt_text, **kw):
+        called.append((task, kw.get("expect_file")))
+        # No R script is written, so the repair function skips Rscript.
+        return mod.claude_cli.CallResult(
+            ok=False, failure="no_post", text="", structured=None, run_id="test",
+            session_id="test", attempts=1, sidecar_path=tmp_path / "sidecar.json")
 
-    monkeypatch.setattr(mod.subprocess, "run", fake_run)
+    def no_subprocess(*a, **kw):
+        raise AssertionError("repair_orphan_figures must not spawn a process directly")
+
+    monkeypatch.setattr(mod.claude_cli, "run_claude", fake_run_claude)
+    monkeypatch.setattr(mod.subprocess, "run", no_subprocess)
 
     mod.repair_orphan_figures(a_tex, round_num=1)
     mod.repair_orphan_figures(b_tex, round_num=2)
@@ -73,6 +75,10 @@ def test_repair_orphan_figures_uses_per_article_subdir(tmp_path, monkeypatch):
     # no fig_*.pdf stragglers
     flat_stragglers = list((articles_dir / "figures").glob("fig_*.pdf"))
     assert flat_stragglers == [], f"flat-namespace regression: {flat_stragglers}"
+    # One figures-task call per orphan, each expecting its own per-article R file
+    assert [t for t, _ in called] == ["figures", "figures"]
+    assert called[0][1] == articles_dir / "figures" / "2026-05-01_rX" / "fig_1.R"
+    assert called[1][1] == articles_dir / "figures" / "2026-05-02_rY" / "fig_1.R"
 
 
 def test_check_claim_n_flags_small_cohorts():
@@ -124,6 +130,30 @@ def test_require_hand_coding_dictionary_blocks_when_missing(tmp_path, monkeypatc
     (hc / "round_25.jsonl").write_text('{"member_id":"TEST","category":"cabinet"}\n')
     path = mod.require_hand_coding_dictionary(25, bypass=False)
     assert path is not None and path.name == "round_25.jsonl"
+
+
+def test_require_hand_coding_dictionary_fails_closed_without_summary(tmp_path, monkeypatch):
+    """F7: in a Season 2 arc a missing round summary blocks the draft instead
+    of skipping the C5 check. Rounds before the active arc pass through."""
+    import json
+    mod = _load_draft_module()
+    agents = tmp_path / "agents.json"
+    agents.write_text(json.dumps({"season": 2}))
+    active = tmp_path / "active_arc.json"
+    active.write_text(json.dumps({"start_round": 31}))
+    monkeypatch.setattr(mod, "SUMMARIES_DIR", tmp_path / "summaries")
+    monkeypatch.setattr(mod, "HAND_CODING_DIR", tmp_path / "hand_coding")
+    monkeypatch.setattr(mod, "AGENTS_FILE", agents)
+    monkeypatch.setattr(mod, "ACTIVE_ARC_FILE", active)
+    try:
+        mod.require_hand_coding_dictionary(33, bypass=False)
+        assert False, "expected SystemExit when the summary is missing"
+    except SystemExit as e:
+        assert "C5" in str(e) and "round_33.md is missing" in str(e)
+    assert mod.require_hand_coding_dictionary(33, bypass=True) is None
+    assert mod.require_hand_coding_dictionary(30, bypass=False) is None    # before the arc
+    agents.write_text(json.dumps({"season": 1}))
+    assert mod.require_hand_coding_dictionary(33, bypass=False) is None
 
 
 if __name__ == "__main__":

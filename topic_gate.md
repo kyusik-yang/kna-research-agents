@@ -1,19 +1,23 @@
-# Topic Gate — KNA Research Agents Forum
+# Topic Gate - KNA Research Agents Forum
 
-Reflection commitment **C2** (Pepinsky 2026): no fresh arc or mid-arc
+Reflection commitment **C2** (Pepinsky 2026). No fresh arc or mid-arc
 research thread opens without a signed entry below. Each entry is an
-H2 block with the four required fields: `seed`, `identification`,
-`exclusion_criteria`, `signed`. The orchestrator (`run_forum.py`)
-reads this file before starting any topic-break or fresh-arc round.
+H2 block with the required fields `seed`, `identification`,
+`exclusion_criteria`, `drafted_by`, `signed_by` and `signed`, plus `prior`
+and `falsifier` in Season 2. The orchestrator (`run_forum.py`) reads this
+file before starting any topic-break or fresh-arc round.
 
-- `seed`: the seed topic as typed in `--topic`. Free text; substring
-  match against the runtime flag is used.
+- `seed`: the seed topic as typed in `--topic`. Free text. The runtime flag
+  is matched against it as a substring.
 - `identification`: one-paragraph sketch of the proposed empirical
   strategy. If observational, name the design (DiD, RD, IV, placebo,
   hand-coded cohort).
 - `exclusion_criteria`: what the project will NOT become if evidence
-  pushes back. Prevents scope drift of the R12-R13 kind.
-- `signed`: `YYYY-MM-DD` the researcher reviewed and approved.
+  pushes back. Prevents scope drift of the R12-R13 kind. New entries number
+  the items inline as `(X1) text (X2) text`, so the Critic can check each by id.
+- `drafted_by`: who wrote the entry text.
+- `signed_by`: who approved the entry, and under what authority.
+- `signed`: `YYYY-MM-DD` the entry was signed.
 
 Bypass (only under explicit researcher override):
 `python3 run_forum.py --bypass-topic-gate ...`
@@ -29,20 +33,55 @@ seed: <the exact seed topic you will pass via --topic>
 
 identification: <design sketch in one paragraph>
 
-exclusion_criteria: <what this project will NOT become>
+exclusion_criteria: (X1) <what this project will NOT become> (X2) <another exclusion>
 
-prior: <Season 2, required: the researcher's belief this arc tests, stated as a prediction about a measurable KNA quantity>
+prior: <Season 2, required. The belief this arc tests, stated as a prediction about a measurable KNA quantity>
 
-falsifier: <Season 2, required: the concrete test whose result would overturn the prior; Analyst must run it before any pursue verdict>
+falsifier: <Season 2, required. The concrete test whose result would overturn the prior. Analyst must run it before any pursue verdict>
+
+decision_rule: <Stage 2, optional until the Stage 2 switches are on. In words, which result of which test makes the headline pass or fail>
+
+decision_rule_expr: <optional. An expression over quantity ids in knowledge/quantities.jsonl, for example ci_low(q1) > 0>
+
+sesoi: <Stage 2. The smallest effect of interest in substantive units, with one sentence on why a smaller effect would not matter>
+
+null_paper: <Stage 2. yes or no, whether an overturned prior with an equivalence result against sesoi becomes the arc's paper>
+
+premise: <Stage 2. The factual premise the prior rests on, stated as a checkable quantity>
+
+premise_source: <optional. DOI and table or page of a published value that establishes the premise, in place of a premise check>
+
+premise_override: <optional. Why the arc may open although the premise check failed>
+
+human_rationale: <optional. One or more sentences in the researcher's own words on why this arc is worth running>
+
+drafted_by: <who wrote the entry text, for example "researcher" or "orchestrating Claude session (model id)">
+
+signed_by: <who approved it, for example "researcher" or "orchestrating Claude session, signed under the researcher's standing delegation of 2026-09-25">
 
 signed: YYYY-MM-DD
 ```
 
-Season 2 (since 2026-08-24): entries signed for a Season 2 arc must carry
-`prior:` and `falsifier:`; `run_forum.py` blocks otherwise. The two fields are
-the human-supplied axioms of the arc (Zahavy 2026); the forum's job is to
-deduce from them and try to break them, not to replace them. Entries below the
-line were signed in Season 1 and are kept as they were.
+Season 2 (since 2026-08-24). Entries signed for a Season 2 arc must carry
+`prior:` and `falsifier:`, and `run_forum.py` blocks otherwise. The two fields
+are the axioms of the arc (Zahavy 2026). The forum's job is to deduce from them
+and try to break them, not to replace them. Entries below the line were signed
+in Season 1 and are kept as they were.
+
+Provenance (since 2026-09-25). Every new entry records `drafted_by` and
+`signed_by`. The orchestrating Claude session may draft and sign an entry under
+the researcher's standing delegation of 2026-09-25, and the two fields must
+then say so. Agent prompts repeat the provenance exactly as recorded here and
+never describe a condition as set by the researcher unless `signed_by` names
+the researcher. Entries without the two fields read as `unrecorded`. The two
+Season 2 entries (R25 and R28) were annotated on 2026-09-25 with the provenance
+the researcher stated, and their other text is unchanged.
+
+The Stage 2 fields (`decision_rule`, `decision_rule_expr`, `sesoi`,
+`null_paper`, `premise`, `premise_source`, `premise_override`) are optional
+until the Stage 2 switches in `agents.json` are turned on. Which of them block
+an entry, and whether `human_rationale` becomes mandatory, are open researcher
+decisions.
 
 ---
 
@@ -60,6 +99,10 @@ falsifier: If the first-term passage gap does not shrink across proposal years w
 
 signed: 2026-08-24
 
+drafted_by: orchestrating Claude session (claude-fable-5)
+
+signed_by: researcher, selected from a Claude-drafted menu on 2026-08-24
+
 ## R25 — Season 2 Arc 4 opening: confirmation-hearing conflict and subsequent ministry oversight
 
 seed: Confirmation hearing conflict and subsequent ministry oversight: do legislators who opposed a nominee at the confirmation hearing question that ministry more in the following national audit?
@@ -73,6 +116,10 @@ prior: Legislators who opposed a minister at the confirmation hearing direct a l
 falsifier: If the before-after change in the ministry question share does not differ between opposed and supportive legislators (difference-in-differences indistinguishable from zero, with the placebo ministries showing the same pattern), the prior is overturned and the arc reports that confirmation conflict does not carry into audit behavior.
 
 signed: 2026-08-24
+
+drafted_by: orchestrating Claude session (claude-fable-5)
+
+signed_by: researcher, selected from a Claude-drafted menu on 2026-08-24
 
 ## R23 — Arc 3 opening: committee chair allocation as legislative power distribution
 

@@ -1,0 +1,142 @@
+{
+  "claim_id": "absorption_step",
+  "quantity_id": "absorption_deficit",
+  "quantity": "First-term absorption deficit in proposal years 2-4 relative to year 1 (pp).",
+  "population": "Member bills, 17th-22nd Assemblies.",
+  "period": "Proposal years 1-4.",
+  "comparison": "First-term vs re-elected sponsors, step form.",
+  "direction": "negative",
+  "supporting_result": "Year-1 indicator near zero and years 2-4 indicator between -3 and -2pp.",
+  "decisive_metric": "Step interaction and 95 percent interval, flexible year effects.",
+  "falsifying_result": "Linear form fits better than the step, or year-1 indicator beyond 1pp in magnitude.",
+  "threshold": [
+    -3.0,
+    -2.0
+  ],
+  "units": "pp",
+  "equivalence_bound": 1.0,
+  "claim_scope": "Absorption into committee alternatives only.",
+  "supersedes": null,
+  "kind": "prediction",
+  "gap": {
+    "gap_type": "c",
+    "evidence": {
+      "lit_a": {
+        "doi": "10.1111/ajps.12472",
+        "quoted_prediction": "Counting these “hitchhiker” bills as additional cases of bill sponsorship success reveals a more productive, less hierarchical, and less partisan lawmaking process.",
+        "location": "abstract",
+        "quantity_match": "analogous"
+      },
+      "lit_b": {
+        "doi": "10.1111/j.0092-5853.2005.00125.x",
+        "quoted_prediction": null,
+        "location": null,
+        "quantity_match": "inferred"
+      },
+      "own_derivation": true
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "positional_attenuation",
+      "quantity_id": "absorption_deficit",
+      "quantity": "Absorption step after reweighting first-term bills to the re-elected committee distribution (pp).",
+      "population": "Member bills, 17th-22nd Assemblies.",
+      "period": "Proposal years 1-4.",
+      "comparison": "Reweighted vs raw step.",
+      "direction": "zero",
+      "supporting_result": "Reweighted step attenuates by at least half (at or above -1.49pp).",
+      "decisive_metric": "Reweighted step point estimate against the raw step.",
+      "falsifying_result": "Step survives reweighting at more than half its raw size.",
+      "threshold": -1.49,
+      "units": "pp",
+      "equivalence_bound": 1.49,
+      "claim_scope": "Committee-level position only.",
+      "supersedes": null
+    },
+    {
+      "claim_id": "premise_gap",
+      "quantity_id": "yr1_gap_strict",
+      "quantity": "First-term minus re-elected strict passage rate among year-1 member bills (pp).",
+      "population": "Member bills, 17th-22nd Assemblies.",
+      "period": "Year-1 proposals of each assembly.",
+      "comparison": "First-term vs re-elected sponsors.",
+      "direction": "negative",
+      "supporting_result": "Gap between -5 and -2pp.",
+      "decisive_metric": "Adjusted year-1 gap and 95 percent interval.",
+      "falsifying_result": "Interval excludes the -5 to -2pp range.",
+      "threshold": [
+        -5.0,
+        -2.0
+      ],
+      "units": "pp",
+      "equivalence_bound": 2.0,
+      "claim_scope": "Direct passage (original or amended) only.",
+      "supersedes": null
+    }
+  ],
+  "spec_plan": [
+    {
+      "spec_id": "step_model",
+      "role": "primary",
+      "outcome_def": "absorbed into a committee alternative",
+      "sample_def": "member bills 17th-22nd",
+      "model": "LPM absorbed ~ first_term x years2to4 + year FE + assembly FE + bloc + election_type + committee FE, clustered by sponsor",
+      "expected_n": 93000,
+      "what_result_would_mean": "A linear trajectory would mean the deficit is gradual, not a step."
+    },
+    {
+      "spec_id": "step_reweighted",
+      "role": "robustness",
+      "claim_id": "positional_attenuation",
+      "outcome_def": "absorbed into a committee alternative",
+      "sample_def": "member bills 17th-22nd, first-term bills reweighted to the re-elected assembly x committee distribution",
+      "model": "LPM absorbed ~ first_term x years2to4 + year FE + assembly FE + bloc + election_type + committee FE, clustered by sponsor",
+      "expected_n": 93000,
+      "what_result_would_mean": "A step that shrinks by half would mean committee mix explains the deficit."
+    },
+    {
+      "spec_id": "step_member_level",
+      "role": "robustness",
+      "outcome_def": "absorbed into a committee alternative",
+      "sample_def": "member-year cells with at least 3 bills, equal weights",
+      "model": "LPM absorbed ~ first_term x years2to4 + year FE + assembly FE + bloc + election_type + committee FE, clustered by sponsor",
+      "expected_n": 6000,
+      "what_result_would_mean": "No step at the member level would mean prolific sponsors carry the bill-level estimate."
+    },
+    {
+      "spec_id": "tost_yr1_strict",
+      "role": "robustness",
+      "claim_id": "premise_gap",
+      "outcome_def": "passed (original or amended)",
+      "sample_def": "year-1 member bills",
+      "model": "TOST on the adjusted year-1 gap, margin 2pp",
+      "expected_n": 34652,
+      "what_result_would_mean": "An interval outside the margin would mean the premise null cannot be called equivalent to zero."
+    },
+    {
+      "spec_id": "sanity_permutation",
+      "role": "sanity",
+      "claim_id": "absorption_step",
+      "sanity_kind": "permutation",
+      "draws": 200,
+      "outcome_def": "absorbed into a committee alternative, permuted within assembly term",
+      "sample_def": "member bills 17th-22nd",
+      "model": "LPM absorbed ~ first_term x years2to4 + year FE + assembly FE + bloc + election_type + committee FE, clustered by sponsor",
+      "expected_n": null,
+      "what_result_would_mean": "An estimate of similar size on permuted outcomes would mean the primary estimate is produced by the specification, not the data."
+    },
+    {
+      "spec_id": "sanity_subsample",
+      "role": "sanity",
+      "claim_id": "absorption_step",
+      "sanity_kind": "subsample",
+      "draws": 50,
+      "outcome_def": "absorbed into a committee alternative",
+      "sample_def": "member bills 17th-22nd, 90 percent legislator subsamples",
+      "model": "LPM absorbed ~ first_term x years2to4 + year FE + assembly FE + bloc + election_type + committee FE, clustered by sponsor",
+      "expected_n": null,
+      "what_result_would_mean": "A sign that flips across subsamples would mean a few legislators carry the estimate."
+    }
+  ]
+}

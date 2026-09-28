@@ -1,0 +1,401 @@
+{
+ "10.1017/cbo9781139032360": {
+  "abstract": "This book explores why some members of Congress are more effective than others at navigating the legislative process and what this means for how Congress is organized and what policies it produces. Craig Volden and Alan E. Wiseman develop a new metric of individual legislator effectiveness (the Legislative Effectiveness Score) that will be of interest to scholars, voters, and politicians alike. They use these scores to study party influence in Congress, the successes or failures of women and African Americans in Congress, policy gridlock, and the specific strategies that lawmakers employ to advance their agendas.",
+  "first_author": "Volden",
+  "found": true,
+  "resolved_as": "10.1017/cbo9781139032360",
+  "source": "crossref",
+  "title": "Legislative Effectiveness in the United States Congress",
+  "years": [
+   2014
+  ]
+ },
+ "10.1017/s0003055424001242": {
+  "abstract": "Oversight, scholars argue, allows Congress to control the executive agents it empowers to implement law. Yet the tools of oversight are rather limited and debate continues as to how much influence oversight provides. How well can members of Congress motivate bureaucratic performance? To measure the efficacy of oversight, we create a new dataset matching oversight efforts to a bureaucratic deficiency Congress has sought to reduce since the early 2000s: improperly made payments to contractors and clients. We estimate the effect of congressional hearings, one of the most important tools of congressional oversight, as well as correspondence, appropriation committee reports, statutes, and executive action. We find that hearings lead to subsequent declines in improper payments. The magnitude of the effect, however, is small relative to the scope of the problem, suggesting strong limits on the efficacy of oversight. Our findings imply that America’s elected officials struggle to effectively manage implementation of policy.",
+  "first_author": "BAN",
+  "found": true,
+  "resolved_as": "10.1017/s0003055424001242",
+  "source": "crossref",
+  "title": "Efficacy of Congressional Oversight",
+  "years": [
+   2025
+  ]
+ },
+ "10.1017/s0007123425101221": {
+  "abstract": "Abstract Legislative oversight is an important element of the relationship between parliament and government. However, little research explores how the characteristics of ministers incentivize MPs to oversee some more thoroughly than others. This article studies whether and why the oversight activities of parliamentarians are shaped by ministers’ gender. We argue that legislators control women ministers more tightly than men due to stereotypical competence ascriptions and perceptions of lower trustworthiness of women. Studying original data for five European democracies since 1990, we show that legislators ask more written and oral questions to women compared to men ministers. Moreover, we underpin the causal mechanisms behind this pattern using semi-structured interviews with thirty-two parliamentarians inquiring about a specific replacement in that country. Revealing gender bias in legislative oversight has broader implications for women in government and parliamentary democracies.",
+  "first_author": "Kroeber",
+  "found": true,
+  "resolved_as": "10.1017/s0007123425101221",
+  "source": "crossref",
+  "title": "Gender Bias in Legislative Oversight: Do Parliamentarians Control Women Ministers More Tightly than Men Ministers?",
+  "years": [
+   2026
+  ]
+ },
+ "10.1017/s0143814x98000038": {
+  "abstract": null,
+  "first_author": "BIRKLAND",
+  "found": true,
+  "resolved_as": "10.1017/s0143814x98000038",
+  "source": "crossref",
+  "title": "Focusing Events, Mobilization, and Agenda Setting",
+  "years": [
+   1998
+  ]
+ },
+ "10.1080/12294659.2016.1266835": {
+  "abstract": null,
+  "first_author": "Shin",
+  "found": true,
+  "resolved_as": "10.1080/12294659.2016.1266835",
+  "source": "crossref",
+  "title": "Institutional characteristics and effects of confirmation hearing in Korea",
+  "years": [
+   2016
+  ]
+ },
+ "10.1093/pan/mpl002": {
+  "abstract": "Using large-scale network analysis I map the cosponsorship networks of all 280,000 pieces of legislation proposed in the U.S. House and Senate from 1973 to 2004. In these networks, a directional link can be drawn from each cosponsor of a piece of legislation to its sponsor. I use a number of statistics to describe these networks such as the quantity of legislation sponsored and cosponsored by each legislator, the number of legislators cosponsoring each piece of legislation, the total number of legislators who have cosponsored bills written by a given legislator, and network measures of closeness, betweenness, and eigenvector centrality. I then introduce a new measure I call “connectedness” which uses information about the frequency of cosponsorship and the number of cosponsors on each bill to make inferences about the social distance between legislators. Connectedness predicts which members will pass more amendments on the floor, a measure that is commonly used as a proxy for legislative influence. It also predicts roll call vote choice even after controlling for ideology and partisanship.",
+  "first_author": "Fowler",
+  "found": true,
+  "resolved_as": "10.1093/pan/mpl002",
+  "source": "crossref",
+  "title": "Connecting the Congress: A Study of Cosponsorship Networks",
+  "years": [
+   2006,
+   2017
+  ]
+ },
+ "10.1111/1475-6765.12134": {
+  "abstract": "Abstract A growing body of work has examined the relationship between media and politics from an agenda‐setting perspective: Is attention for issues initiated by political elites with the media following suit, or is the reverse relation stronger? A long series of single‐country studies has suggested a number of general agenda‐setting patterns but these have never been confirmed in a comparative approach. In a comparative, longitudinal design including comparable media and politics evidence for seven European countries (Belgium, Denmark, France, Netherlands, Spain, Switzerland and the United Kingdom), this study highlights a number of generic patterns. Additionally, it shows how the political system matters. Overall, the media are a stronger inspirer of political action in countries with single‐party governments compared to those with multiple‐party governments for opposition parties. But, government parties are more reactive to media under multiparty governments.",
+  "first_author": "Vliegenthart",
+  "found": true,
+  "resolved_as": "10.1111/1475-6765.12134",
+  "source": "crossref",
+  "title": "Do the media set the parliamentary agenda? A comparative study in seven countries",
+  "years": [
+   2016,
+   2026
+  ]
+ },
+ "10.1111/ajps.12102": {
+  "abstract": "Political scientists often theorize that an explanatory variable should have “no effect” and support this claim by demonstrating that its coefficient's estimate is not statistically significant. This empirical argument is quite weak, but I introduce applied researchers to simple, powerful tools that can strengthen their arguments for this hypothesis. With several supporting examples, I illustrate that researchers can use 90% confidence intervals to argue against meaningful effects and provide persuasive evidence for their hypothesis.",
+  "first_author": "Rainey",
+  "found": true,
+  "resolved_as": "10.1111/ajps.12102",
+  "source": "crossref",
+  "title": "Arguing for a Negligible Effect",
+  "years": [
+   2014
+  ]
+ },
+ "10.1111/ajps.12387": {
+  "abstract": "Abstract Recent emphasis on credible causal designs has led to the expectation that scholars justify their research designs by testing the plausibility of their causal identification assumptions, often through balance and placebo tests. Yet current practice is to use statistical tests with an inappropriate null hypothesis of no difference, which can result in equating nonsignificant differences with significant homogeneity. Instead, we argue that researchers should begin with the initial hypothesis that the data are inconsistent with a valid research design, and provide sufficient statistical evidence in favor of a valid design. When tests are correctly specified so that difference is the null and equivalence is the alternative, the problems afflicting traditional tests are alleviated. We argue that equivalence tests are better able to incorporate substantive considerations about what constitutes good balance on covariates and placebo outcomes than traditional tests. We demonstrate these advantages with applications to natural experiments.",
+  "first_author": "Hartman",
+  "found": true,
+  "resolved_as": "10.1111/ajps.12387",
+  "source": "crossref",
+  "title": "An Equivalence Approach to Balance and Placebo Tests",
+  "years": [
+   2018
+  ]
+ },
+ "10.1111/ajps.12472": {
+  "abstract": "Abstract For more than half a century, scholars have been studying legislative effectiveness using a single metric—whether the bills a member sponsors progress through the legislative process. We investigate a less orthodox form of effectiveness—bill proposals that become law as provisions of other bills. Counting these “hitchhiker” bills as additional cases of bill sponsorship success reveals a more productive, less hierarchical, and less partisan lawmaking process. We argue that agenda and procedural constraints are central to understanding why lawmakers pursue hitchhiker strategies. We also investigate the legislative vehicles that attract hitchhikers and find, among other things, that more Senate bills are enacted as hitchhikers on House laws than become law on their own.",
+  "first_author": "Casas",
+  "found": true,
+  "resolved_as": "10.1111/ajps.12472",
+  "source": "crossref",
+  "title": "More Effective Than We Thought: Accounting for Legislative Hitchhikers Reveals a More Inclusive and Productive Lawmaking Process",
+  "years": [
+   2019,
+   2020
+  ]
+ },
+ "10.1111/ajps.12518": {
+  "abstract": "Abstract Important work has been done to measure legislative effectiveness in the U.S. Congress and to explain the individual characteristics that drive it. Much less attention, however, has been devoted to study the extent to which legislative effectiveness depends on the legislators' social connections. We address this issue with a new model of legislative effectiveness that formalizes the role of social connections, and we test its predictions using the network of cosponsorship links in the 109th–113th Congresses. We propose a new empirical strategy that addresses network endogeneity by implementing a two‐step Heckman correction based on an original instrument: the legislators' alumni connections. We find that social connections are a significant determinant of legislative effectiveness. We also study the influence of legislators' characteristics in shaping the network effects. In doing so, we provide new insights into how social connectedness interacts with factors such as seniority, partisanship, and legislative leadership in determining legislators' effectiveness.",
+  "first_author": "Battaglini",
+  "found": true,
+  "resolved_as": "10.1111/ajps.12518",
+  "source": "crossref",
+  "title": "Effectiveness of Connected Legislators",
+  "years": [
+   2020
+  ]
+ },
+ "10.1111/gove.70032": {
+  "abstract": "ABSTRACT We examine how legislative hearings, mandatory in the appointment process for top executives, shape presidential management of cabinet. Research on legislative confirmation suggests that such a requirement generates a trade‐off in choosing between loyalty and competence types. Building on this insight, we argue that the appointees' career paths after entering presidential cabinets differ significantly after legislative hearings are adopted, according to which type they are. Using a quasi‐experimental identification strategy, we analyze original data on the careers of over 560 ministers from South Korea appointed pre‐ and post‐hearings. We find that competence types are more likely to be retained than loyalty types after legislative hearings. However, loyalty types are more likely to receive promotion—that is, transfer from their initial cabinet appointment to a higher‐prestige post—than competence types after legislative hearings. Additionally, we find that agency performance is better under competence types than under loyalty types.",
+  "first_author": "Lee",
+  "found": true,
+  "resolved_as": "10.1111/gove.70032",
+  "source": "crossref",
+  "title": "Legislative Hearings and Presidential Cabinet Management",
+  "years": [
+   2025
+  ]
+ },
+ "10.1111/j.0092-5853.2005.00125.x": {
+  "abstract": "“Winnowing” is the pre‐floor process by which Congress determines the small percentage of bills that will receive committee attention. The vast majority of proposals languish in this vital agenda‐setting stage, yet our understanding of winnowing is nascent. Why do some bills move forward while most fail? I examine that question here by developing and testing a theoretical framework of winnowing grounded in bounded rationality, which includes institutional and sponsor cues and also incorporates the unique issue milieu. A heteroskedastic probit model is utilized to analyze the winnowing fate of all bills introduced across five issue areas in the House and Senate from 1991 to 1998. The findings counter much received wisdom and suggest that the process is indeed cue based. The majority party helps structure this critical process in both chambers, though party effects appear stronger in the House. Contrary to recent work on the rise of Senate individualism, the seniority of the sponsor has significant effects in both the Senate and House, but again exhibits a stronger effect in the House. Surprisingly, presidential proposals are no more likely to survive than typical bills. The findings further suggest that the entrepreneurial efforts of bill sponsors breathe life into this process .",
+  "first_author": "Krutz",
+  "found": true,
+  "resolved_as": "10.1111/j.0092-5853.2005.00125.x",
+  "source": "crossref",
+  "title": "Issues and Institutions: “Winnowing” in the U.S. Congress",
+  "years": [
+   2005
+  ]
+ },
+ "10.1111/j.1540-5907.2005.00126.x": {
+  "found": false,
+  "resolved_as": null,
+  "source": "crossref+openalex"
+ },
+ "10.1111/lsq.12440": {
+  "abstract": "Committees can use oversight hearings to collect and communicate the information Congress needs to oversee the bureaucracy, but many worry that members instead focus on scoring political points by lambasting witnesses. We leverage the collective judgment of congressional staff to measure how exchanges between legislators and witnesses vary on two separable dimensions: information and confrontation. Contrary to the conventional wisdom that confrontation crowds out information, we show that members of the president's party engage in less confrontational oversight and reveal no more or less information than their peers.",
+  "first_author": "Eldes",
+  "found": true,
+  "resolved_as": "10.1111/lsq.12440",
+  "source": "crossref",
+  "title": "Information and Confrontation in Legislative Oversight",
+  "years": [
+   2023,
+   2024
+  ]
+ },
+ "10.1177/0010414006299098": {
+  "abstract": "Do mass media determine or codetermine the political agenda? Available answers on this question are mixed and contradictory. Results vary in terms of the type of political agenda under scrutiny, the kind of media taken into account, and the type of issues covered. This article enhances knowledge of the media's political agenda-setting power by addressing each of these topics, drawing on extensive longitudinal measures of issue attentiveness in media, Parliament, and government in Belgium in the 1990s. Relying on time-series, cross-section analyses, the authors ascertain that although Belgium is characterized by a closed political system, the media do to some extent determine the agenda of Parliament and government. There is systematic variation in media effects, however. Newspapers exert more influence than does television, Parliament is somewhat more likely to follow media than government, and media effects are larger for certain issues (law and order, environment) than for others (foreign policy, economic issues).",
+  "first_author": "Walgrave",
+  "found": true,
+  "resolved_as": "10.1177/0010414006299098",
+  "source": "crossref",
+  "title": "The Mass Media's Political Agenda-Setting Power",
+  "years": [
+   2007,
+   2008
+  ]
+ },
+ "10.1177/10659129241246003": {
+  "abstract": "Research on lawmaking generally examines why lawmakers enact certain policy ideas. However, most ideas in the United States Congress never become law. Eventually, members stop introducing them altogether. This process, where policies are proposed, not acted on, and no longer advocated for is, by far, the most common legislative outcome. The literature pays it little attention. Yet, how ideas die is important in understanding why some measures stop being realistic alternatives, the importance of policy entrepreneurship, and how policy windows affect the supply of ideas. This paper analyzes why congressional ideas die. I argue and find that the proposals designed to be enacted, especially by legislators with more issue expertise and agenda-setting powers, are less likely to persist across terms. I also show that ideas disappear more often when their sponsors leave Congress, but do not find a similar pattern for when policy windows close and lawmaking conditions worsen.",
+  "first_author": "Gelman",
+  "found": true,
+  "resolved_as": "10.1177/10659129241246003",
+  "source": "crossref",
+  "title": "The Deaths of Ideas in Congress",
+  "years": [
+   2024
+  ]
+ },
+ "10.1177/13691481231189381": {
+  "abstract": "Questioning mechanisms such as Prime Minister’s Questions in the United Kingdom and Question Time in Australia are notoriously adversarial. Much less is known about whether and how questioning facilitates conflict in other legislatures. This question is particularly important given the criticism that excessive adversarialism may hinder the performance of accountability, and hence may be detrimental to the work of legislatures. Building on legislative studies literature, this article presents the first comparative study of conflict in oral parliamentary questions; in so doing, it explores patterns of conflictual remarks in questions addressed to prime ministers in Canada, Australia, the United Kingdom and Ireland. It posits that institutional culture, party discipline, government and opposition status and the authority of the Speaker are key factors in explaining the performance of conflict, and that rules of procedure alone are not enough to curb the manifestation of conflict in legislatures where questioning is a known opportunity for criticism.",
+  "first_author": "Serban",
+  "found": true,
+  "resolved_as": "10.1177/13691481231189381",
+  "source": "crossref",
+  "title": "Conflictual behaviour in legislatures: Exploring and explaining adversarial remarks in oral questions to prime ministers",
+  "years": [
+   2023,
+   2024
+  ]
+ },
+ "10.1177/1465116516662155": {
+  "abstract": "The scrutiny exerted by opposition parties in European Union (EU) affairs crucially contributes to the functioning of democratic accountability in the EU. While our knowledge about the extent of control activities has increased, we know little about their content. This article investigates the policy issues that opposition parties address in parliamentary questions about the EU. I argue that Eurosceptic opposition parties follow vote-maximizing strategies and selectively scrutinize very general aspects of the EU. My expectation is tested using a unique data collection of written questions in the Danish Folketing (1973–2013). I find evidence that the content of questions has been broadened over time and that Eurosceptic parties strongly emphasize general EU matters. The results point to the importance of political parties in making democratic accountability in the EU work.",
+  "first_author": "Senninger",
+  "found": true,
+  "resolved_as": "10.1177/1465116516662155",
+  "source": "crossref",
+  "title": "Issue expansion and selective scrutiny – how opposition parties used parliamentary questions about the European Union in the national arena from 1973 to 2013",
+  "years": [
+   2016,
+   2017
+  ]
+ },
+ "10.15617/psc.2016.02.19.1.243": {
+  "abstract": null,
+  "first_author": "Jeong",
+  "found": true,
+  "resolved_as": "10.15617/psc.2016.02.19.1.243",
+  "source": "crossref",
+  "title": "The Effect of Legislators' Individual-level Factors on Legislative Effectiveness",
+  "years": [
+   2016
+  ]
+ },
+ "10.18808/jopr.2018.2.1": {
+  "abstract": null,
+  "first_author": "연세대학교 석사과정, 정치학",
+  "found": true,
+  "resolved_as": "10.18808/jopr.2018.2.1",
+  "source": "crossref",
+  "title": "Analyzing the National Assembly-Government Relationship with Topic Modeling Methods : Focusing on Prime Minister’s Confirmation Hearings",
+  "years": [
+   2018
+  ]
+ },
+ "10.18808/jopr.2019.2.5": {
+  "abstract": null,
+  "first_author": "공주대학교 교수, 행정학",
+  "found": true,
+  "resolved_as": "10.18808/jopr.2019.2.5.",
+  "source": "crossref",
+  "title": "A study of influence factors on Standing Committee Hearings, National Assembly of Republic of Korea",
+  "years": [
+   2019
+  ]
+ },
+ "10.18854/kpsr.2008.42.2.008": {
+  "abstract": null,
+  "first_author": "JunYoungChoi",
+  "found": true,
+  "resolved_as": "10.18854/kpsr.2008.42.2.008",
+  "source": "crossref",
+  "title": "The Executive-Legislative Relationship Reflected in the Prime Minister Confirmation Hearings:A Content Analysis of the Confirmation Committee Sessions",
+  "years": [
+   2008
+  ]
+ },
+ "10.18854/kpsr.2020.54.2.004": {
+  "abstract": null,
+  "first_author": "Yoon",
+  "found": true,
+  "resolved_as": "10.18854/kpsr.2020.54.2.004",
+  "source": "crossref",
+  "title": "Politics of Confirmation Herings : What Makes the National Assembly Approve or Reject Candidates for High Office in South Korea?",
+  "years": [
+   2020
+  ]
+ },
+ "10.18854/kpsr.2023.57.1.005": {
+  "abstract": null,
+  "first_author": "Kim",
+  "found": true,
+  "resolved_as": "10.18854/kpsr.2023.57.1.005",
+  "source": "crossref",
+  "title": "An Analysis of the Impact of Bill Initiators’ Position in Subcommittees on the Passage of Bills: From the Perspective of the Distributive Benefits Theory",
+  "years": [
+   2023
+  ]
+ },
+ "10.21487/jrm.2024.3.9.1.75": {
+  "abstract": null,
+  "first_author": "Kang",
+  "found": true,
+  "resolved_as": "10.21487/jrm.2024.3.9.1.75",
+  "source": "crossref",
+  "title": "Which Legislators are Assigned to Committees Favorable for Reelection? : Focusing on Party Loyalty, Committee Assignment Experience, and Electoral Stability",
+  "years": [
+   2024
+  ]
+ },
+ "10.21487/jrm.2025.11.10.3.1": {
+  "abstract": null,
+  "first_author": "Ka",
+  "found": true,
+  "resolved_as": "10.21487/jrm.2025.11.10.3.1",
+  "source": "crossref",
+  "title": "Analyzing Legislative Activities and Behavior of National Assembly Members: Focusing on the Number of Bill Proposals, Bills Passed, and the Passage Rate",
+  "years": [
+   2025
+  ]
+ },
+ "10.2307/1958780": {
+  "abstract": "The paper focuses on the learning of legislative norms on the part of freshman members elected to the United States House of Representatives in November, 1968. Since a research interest in learning is a longitudinal concern, a two-page panel design was employed, the first set of interviews conducted in late January and February of 1969 and the second set the following May. As the concept of a norm involves the notion of shared expectations, a sample of the nonfreshman members of the 91st Congress was also interviewed. The main finding of the paper is that the amount of norm learning was surprisingly low; it appeared that freshmen largely knew the general House norms prior to entering Congress. And the extent of attitude change toward the norms once in office was minimal. Freshmen and nonfreshmen generally expressed similar attitudes toward the norms. Support for the norm of apprenticeship was found to be weak, suggesting the need to revise the traditional image of the freshman representative.",
+  "first_author": "Asher",
+  "found": true,
+  "resolved_as": "10.2307/1958780",
+  "source": "crossref",
+  "title": "The Learning of Legislative Norms",
+  "years": [
+   1973,
+   2014
+  ]
+ },
+ "10.29152/koiks.2018.49.2.293": {
+  "abstract": null,
+  "first_author": "the National Assembly Research Service",
+  "found": true,
+  "resolved_as": "10.29152/koiks.2018.49.2.293",
+  "source": "crossref",
+  "title": "South Korea’s Annual State Inspection, Double-Edged Sword",
+  "years": [
+   2018
+  ]
+ },
+ "10.30992/kpsr.2018.12.17.4.69": {
+  "abstract": null,
+  "first_author": "Choi",
+  "found": true,
+  "resolved_as": "10.30992/kpsr.2018.12.17.4.69",
+  "source": "crossref",
+  "title": "The Partisan Nature of Standing Committees A Critical Review of Committee Assignment Theories, and Empirical Evidence in the Korean National Assembly",
+  "years": [
+   2018
+  ]
+ },
+ "10.30992/kpsr.2020.06.19.2.131": {
+  "abstract": null,
+  "first_author": "Lee",
+  "found": true,
+  "resolved_as": "10.30992/kpsr.2020.06.19.2.131",
+  "source": "crossref",
+  "title": "A Study on the Conflict Structure of the Standing Committee through Topic Analysis of the National Assembly Minutes : Health and Welfare Committee in the First Half of the 20th National Assembly",
+  "years": [
+   2020
+  ]
+ },
+ "10.30992/kpsr.2025.6.24.2.5": {
+  "abstract": null,
+  "first_author": "Ka",
+  "found": true,
+  "resolved_as": "10.30992/kpsr.2025.6.24.2.5",
+  "source": "crossref",
+  "title": "Analysis of Lapsed Bills Within the Institutional Time Structure of the National Assembly",
+  "years": [
+   2025
+  ]
+ },
+ "10.3162/036298006x201841": {
+  "abstract": "We studied an underutilized source of data on legislative effectiveness and exploited its panel structure to uncover several interesting patterns. We found that effectiveness rises sharply with tenure, at least for the first few terms, even when we control for legislators' institutional positions, party affiliation, and other factors. Effectiveness never declines with tenure, even out to nine terms. The increase in effectiveness is not simply due to electoral attrition and selective retirement, but to learning‐by‐doing. We also found evidence that a significant amount of “positive sorting” occurs in the legislature, with highly talented legislators moving more quickly into positions of responsibility and power. Finally, effectiveness has a positive impact on incumbents' electoral success and on the probability of legislators moving to higher office. These findings have important implications for arguments about term limits, the incumbency advantage, and seniority rule.",
+  "first_author": "MIQUEL",
+  "found": true,
+  "resolved_as": "10.3162/036298006x201841",
+  "source": "crossref",
+  "title": "Legislative Effectiveness and Legislative Careers",
+  "years": [
+   2006,
+   2011
+  ]
+ },
+ "10.3386/w24442": {
+  "abstract": null,
+  "first_author": "Battaglini",
+  "found": true,
+  "resolved_as": "10.3386/w24442",
+  "source": "crossref",
+  "title": "Effectiveness of Connected Legislators",
+  "years": [
+   2018
+  ]
+ },
+ "10.35505/slj.2015.02.4.1.155": {
+  "abstract": null,
+  "first_author": "Shin",
+  "found": true,
+  "resolved_as": "10.35505/slj.2015.02.4.1.155",
+  "source": "crossref",
+  "title": "The principle of open sessions of the National Assembly and the subcommittee system",
+  "years": [
+   2015
+  ]
+ },
+ "10.46330/jkps.2025.03.25.1.115": {
+  "abstract": null,
+  "first_author": "An",
+  "found": true,
+  "resolved_as": "10.46330/jkps.2025.03.25.1.115",
+  "source": "crossref",
+  "title": "A Study on the Factors Influencing the Passage of Legislation in the 20th and 21st National Assembly: Focusing on Bill Sponsors",
+  "years": [
+   2025
+  ]
+ }
+}

@@ -2,8 +2,12 @@
 # weekly_update.sh - Weekly literature DB maintenance
 #
 # Updates the literature vector DB from two sources:
-# 1. New/modified verified-paper notes in a private reference library
+# 1. New or modified verified-paper notes in the maintainer's private reference library
 # 2. New abstracts from OpenAlex/Crossref APIs
+#
+# The vector DB tool is located the way scripts/litdb.sh locates it, from the
+# environment variable KNA_LITDB_TOOL or else from the first non-comment line
+# of the gitignored knowledge/private/litdb_path.txt.
 #
 # Cron (every Sunday 10am):
 #   0 10 * * 0 /path/to/kna-research-agents/weekly_update.sh >> /tmp/literature_weekly.log 2>&1
@@ -11,7 +15,20 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-VECTORDB="${KNA_LITDB_TOOL:?set KNA_LITDB_TOOL to the literature vector DB tool}"
+PATH_FILE="$SCRIPT_DIR/knowledge/private/litdb_path.txt"
+VECTORDB="${KNA_LITDB_TOOL:-}"
+if [ -z "$VECTORDB" ] && [ -f "$PATH_FILE" ]; then
+    VECTORDB="$(grep -v '^[[:space:]]*#' "$PATH_FILE" | grep -v '^[[:space:]]*$' | head -1 || true)"
+    VECTORDB="${VECTORDB#"${VECTORDB%%[![:space:]]*}"}"
+    VECTORDB="${VECTORDB%"${VECTORDB##*[![:space:]]}"}"
+fi
+case "$VECTORDB" in
+    "~/"*) VECTORDB="$HOME/${VECTORDB#\~/}" ;;
+esac
+if [ -z "$VECTORDB" ] || [ ! -f "$VECTORDB" ]; then
+    echo "vector DB tool not configured: set KNA_LITDB_TOOL or knowledge/private/litdb_path.txt" >&2
+    exit 3
+fi
 COLLECT="$SCRIPT_DIR/collect_abstracts.py"
 ABSTRACTS="$SCRIPT_DIR/knowledge/abstracts.jsonl"
 

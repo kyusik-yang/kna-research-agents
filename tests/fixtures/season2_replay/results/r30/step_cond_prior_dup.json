@@ -1,0 +1,12 @@
+{
+  "spec_id": "step_cond_prior_dup",
+  "estimate": -3.79,
+  "se": null,
+  "ci_low": null,
+  "ci_high": null,
+  "n": null,
+  "script": "workspace/r30/mechanisms2.py",
+  "output": "workspace/r30/results/step_cond_prior_dup.json",
+  "created_at": "2026-08-24T09:51:00-04:00",
+  "source": "089 Section 2"
+}

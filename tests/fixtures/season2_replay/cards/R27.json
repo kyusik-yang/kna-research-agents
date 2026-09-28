@@ -1,0 +1,34 @@
+{
+  "claim_id": "carryover_did",
+  "kind": "reproduction",
+  "spec_plan": [
+    {
+      "spec_id": "repro_pooled_did",
+      "role": "reproduction",
+      "outcome_def": "change in confirmed-ministry share of audit question dyads",
+      "sample_def": "cohorts 1 and 2 pooled, units present in both audits",
+      "model": "OLS of the before-after change in share on opposed, committee FE, SEs clustered by legislator",
+      "expected_n": 278,
+      "what_result_would_mean": "A different estimate on rerun would mean the R25 pipeline is not reproducible."
+    },
+    {
+      "spec_id": "repro_dose",
+      "role": "reproduction",
+      "claim_id": "carryover_did",
+      "outcome_def": "change in confirmed-ministry share",
+      "sample_def": "opposition units, cohorts 1 and 2",
+      "model": "OLS on standardized dose, committee FE, clustered by legislator",
+      "expected_n": 138,
+      "what_result_would_mean": "A different slope on rerun would mean the R26 dose pipeline is not reproducible."
+    },
+    {
+      "spec_id": "placebo_tost",
+      "role": "reproduction",
+      "outcome_def": "change in placebo-agency share",
+      "sample_def": "cohorts 1 and 2 pooled",
+      "model": "TOST on the R25 placebo fit, 90 percent interval",
+      "expected_n": 278,
+      "what_result_would_mean": "An interval outside the margin would mean the placebo cannot be called equivalent to zero."
+    }
+  ]
+}

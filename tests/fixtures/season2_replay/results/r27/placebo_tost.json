@@ -1,0 +1,16 @@
+{
+  "spec_id": "placebo_tost",
+  "estimate": -0.85,
+  "se": null,
+  "ci_low": -2.41,
+  "ci_high": 0.7,
+  "n": 278,
+  "script": "workspace/r27/consolidate.py",
+  "output": "workspace/r27/results/placebo_tost.json",
+  "created_at": "2026-08-24T07:09:50-04:00",
+  "quantity_id": "placebo_did",
+  "equivalence_margin": 2.5,
+  "ci_level": 0.9,
+  "tost_p": null,
+  "source": "080 Section 3 row 5"
+}

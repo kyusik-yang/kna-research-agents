@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "critic_verdict.v1",
+  "title": "Critic verdict of record",
+  "description": "Returned by the Critic run as structured output. It is the verdict of record. The YAML scoring block in the post is kept for the site.",
+  "type": "object",
+  "properties": {
+    "research_novelty": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "0 to 4."
+    },
+    "empirical_rigor": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "0 to 4."
+    },
+    "theoretical_connection": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "0 to 4."
+    },
+    "actionability": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "0 to 4."
+    },
+    "opportunity_pattern": {
+      "type": "string",
+      "enum": [
+        "puzzle_contradiction",
+        "explanation_gap",
+        "scope_mismatch",
+        "evidence_gap",
+        "bridge_opportunity",
+        "failure_risk_gap",
+        "resource_bottleneck"
+      ],
+      "description": "Kept for comparison only."
+    },
+    "method_paradigm": {
+      "type": "string",
+      "enum": [
+        "synthesis_unification",
+        "relax_extend_scope",
+        "robustification",
+        "formal_derivation",
+        "empirical_mapping",
+        "artifact_system",
+        "optimization_search"
+      ],
+      "description": "Kept for comparison only."
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "integrate",
+        "unify",
+        "extend",
+        "replace",
+        "decouple",
+        "formalize",
+        "measure",
+        "other"
+      ],
+      "description": "Kept for comparison only."
+    },
+    "falsifier_tested": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "not_applicable"
+      ],
+      "description": "yes when the gate's falsifier test has been run as committed in this arc, no when it has not been run, not_applicable when the round tests no arc claim."
+    },
+    "prior_status": {
+      "type": "string",
+      "enum": [
+        "supported",
+        "overturned",
+        "inconclusive",
+        "not_tested"
+      ],
+      "description": "supported when the falsifier test ran and the prior's prediction held, overturned when the falsifier test fired, inconclusive when the test ran but cannot decide, not_tested when the falsifier has not been run."
+    },
+    "headline_basis": {
+      "type": "string",
+      "enum": [
+        "prespecified",
+        "exploratory"
+      ],
+      "description": "prespecified when the headline claim and its test were committed in a card or in the gate before its estimate was seen, exploratory when the headline emerged from the data."
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "pursue",
+        "revise",
+        "archive"
+      ],
+      "description": "pursue means the headline claim as scoped is confirmatory and has passed every kill test the gate's decision rule names in this arc, so drafting is recommended if the arc ended now. revise means the arc should continue, and one_line names the next kill test. archive means close the arc without a paper (fatal flaw, already answered, duplicate topic, or an overturned prior). The one exception is an arc whose block lists a null result as the paper. There an overturned prior is revise."
+    },
+    "one_line": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "One sentence stating the headline claim and, for revise, the next kill test."
+    },
+    "headline_claim_id": {
+      "type": "string",
+      "description": "Optional. claim_id of the headline claim on the committed card."
+    },
+    "decision_rule_quoted": {
+      "type": "string",
+      "description": "Optional. Verbatim copy of the gate's decision_rule."
+    },
+    "exclusions_checked": {
+      "type": "array",
+      "description": "Optional. One item per numbered gate exclusion.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "quoted_text": {
+            "type": "string"
+          },
+          "respected": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "needs_amendment"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "respected"
+        ]
+      }
+    }
+  },
+  "required": [
+    "research_novelty",
+    "empirical_rigor",
+    "theoretical_connection",
+    "actionability",
+    "opportunity_pattern",
+    "method_paradigm",
+    "operation",
+    "falsifier_tested",
+    "prior_status",
+    "headline_basis",
+    "verdict",
+    "one_line"
+  ],
+  "additionalProperties": false
+}

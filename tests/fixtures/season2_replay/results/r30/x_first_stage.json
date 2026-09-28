@@ -1,0 +1,13 @@
+{
+  "spec_id": "x_first_stage",
+  "estimate": 0.05,
+  "se": 1.45,
+  "ci_low": null,
+  "ci_high": null,
+  "n": 60684,
+  "script": "workspace/r30/mechanisms2.py",
+  "output": "workspace/r30/results/x_first_stage.json",
+  "created_at": "2026-08-24T09:51:00-04:00",
+  "quantity_id": "inc_share_first_stage",
+  "source": "089 Section 2"
+}

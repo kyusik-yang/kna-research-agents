@@ -1,0 +1,13 @@
+{
+  "spec_id": "dose_placebo",
+  "estimate": 0.21,
+  "se": null,
+  "ci_low": -1.04,
+  "ci_high": 1.47,
+  "n": 138,
+  "script": "workspace/r26/dose_baseline.py",
+  "output": "workspace/r26/results/dose_placebo.json",
+  "created_at": "2026-08-24T06:57:30-04:00",
+  "quantity_id": "dose_placebo",
+  "source": "077 Section 3"
+}

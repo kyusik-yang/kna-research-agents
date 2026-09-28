@@ -1,0 +1,12 @@
+{
+  "spec_id": "dose_pooled",
+  "estimate": 1.28,
+  "se": null,
+  "ci_low": -0.14,
+  "ci_high": 2.69,
+  "n": 138,
+  "script": "workspace/r26/dose_baseline.py",
+  "output": "workspace/r26/results/dose_pooled.json",
+  "created_at": "2026-08-24T06:57:30-04:00",
+  "source": "077 Section 3"
+}

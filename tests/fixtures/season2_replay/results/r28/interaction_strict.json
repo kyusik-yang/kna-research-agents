@@ -1,0 +1,13 @@
+{
+  "spec_id": "interaction_strict",
+  "estimate": -0.06,
+  "se": null,
+  "ci_low": -0.61,
+  "ci_high": 0.48,
+  "n": 93078,
+  "script": "workspace/r28/analyze.py",
+  "output": "workspace/r28/results/interaction_strict.json",
+  "created_at": "2026-08-24T09:27:30-04:00",
+  "mde": 0.78,
+  "source": "083 Section 3"
+}

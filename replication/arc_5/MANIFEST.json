@@ -1,0 +1,1262 @@
+{
+ "arc": 5,
+ "rounds": [
+  28,
+  29,
+  30
+ ],
+ "built": "2026-09-26T21:40:11",
+ "publishes": "scripts and cards only (D-17 default); derived data available on request",
+ "files": [
+  {
+   "path": "r28/analyze.py",
+   "sha256": "31b049199c2bed38bba64ccb7165b50a68ec6ee511ce249411b0def334e473b7",
+   "source_sha256": "c8d38e77f64bbcebb7b901adc3af7ab0cbe79d769d63147907adc1a2d0ccd469",
+   "round": 28,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r28/build.py",
+   "sha256": "e184239dd112b1207d9b18adbaa3629f4d39a5e4c675cb6d1bab489478e8fc5b",
+   "source_sha256": "c69e4006850ba478a9a0ecb209f2cde13f96351db8ba42827478bbb41694f16e",
+   "round": 28,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r28/robust.py",
+   "sha256": "66444194aee1163250a65d3c1f35b221da5db95ca7da14633089609c118f23ec",
+   "source_sha256": "eab481400638bf2e65e256e478ad9daa12b1304582b2354d4fefdf4a1407a8ae",
+   "round": 28,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r29/depth.py",
+   "sha256": "1f6fc51656a57c8b8ddc29646c66b333e154615bd3306e77809239b66c6ebb6e",
+   "source_sha256": "f3096c1967b7a26e4b53c74cce16b46324cbb1653cf781066e9b5708a46a7c66",
+   "round": 29,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r29/depth2.py",
+   "sha256": "4bde41a692b3e3e160b8fb33b827f9fca5cf349b7263b34466a931ebbbad91c7",
+   "source_sha256": "b12a8af8beeb7147db6de52797c350f29120a50283028e593bd1d803cbbe7bee",
+   "round": 29,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r30/mechanisms.py",
+   "sha256": "3e2731e0de2a35752e6406a0ee69825517d085d9190b6de70a31f652302e3cdc",
+   "source_sha256": "c081b3185db2fcc8a5ef91e7075d77fe6ea8383b753136cbcbd754544d4ea831",
+   "round": 30,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r30/mechanisms2.py",
+   "sha256": "03c05cb44c7813d88d78d41c5e77e3b80379537ffd09caa02af5371774e7a84e",
+   "source_sha256": "984f057ce6575b65121562ea7eb797796616813457001cab9f022b08800c0721",
+   "round": 30,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "figures/2026-08-24_r30/fig_1.R",
+   "sha256": "128042e1d2e572d26a1d7fb34b2b6c628f5f13726005de9cb0df6fcdc2aabfc2",
+   "source_sha256": "128042e1d2e572d26a1d7fb34b2b6c628f5f13726005de9cb0df6fcdc2aabfc2",
+   "round": 30,
+   "kind": "figure_script",
+   "producing_role": "drafter",
+   "run_id": null
+  },
+  {
+   "path": "figures/2026-08-24_r30/fig_2.R",
+   "sha256": "5a5fefe0a4ec225fe82148c94cbc6f341faf4a1429624c28fc6d09745d4c50d0",
+   "source_sha256": "5a5fefe0a4ec225fe82148c94cbc6f341faf4a1429624c28fc6d09745d4c50d0",
+   "round": 30,
+   "kind": "figure_script",
+   "producing_role": "drafter",
+   "run_id": null
+  },
+  {
+   "path": "figures/2026-08-24_r30/fig_3.R",
+   "sha256": "84169e2d5ebdd6fed08ea33885d93c90e0c06751b32197796e7415d670150430",
+   "source_sha256": "84169e2d5ebdd6fed08ea33885d93c90e0c06751b32197796e7415d670150430",
+   "round": 30,
+   "kind": "figure_script",
+   "producing_role": "drafter",
+   "run_id": null
+  },
+  {
+   "path": "v2/seniority_check.py",
+   "sha256": "ec5814c468b2f89e3f3e3955ef10306054a1ede3a2ecee0ba46baad50fbe7254",
+   "source_sha256": "ec5814c468b2f89e3f3e3955ef10306054a1ede3a2ecee0ba46baad50fbe7254",
+   "round": null,
+   "kind": "correction_script",
+   "producing_role": "orchestrating Claude session, Paper E Version 2 (2026-09-26)",
+   "run_id": null
+  },
+  {
+   "path": "v2/tables_v2.py",
+   "sha256": "ec9b941c4b34f63038dfe95702cd29ecc0aa09d146fb81c80d6fdf39d1353f34",
+   "source_sha256": "ec9b941c4b34f63038dfe95702cd29ecc0aa09d146fb81c80d6fdf39d1353f34",
+   "round": null,
+   "kind": "correction_script",
+   "producing_role": "orchestrating Claude session, Paper E Version 2 (2026-09-26)",
+   "run_id": null
+  },
+  {
+   "path": "v2/recode_tables_v2.py",
+   "sha256": "e79157c51a78b9ead113f541fd0f03b76552078c94b7238652a8ebf9df8fad3e",
+   "source_sha256": "e79157c51a78b9ead113f541fd0f03b76552078c94b7238652a8ebf9df8fad3e",
+   "round": null,
+   "kind": "correction_script",
+   "producing_role": "orchestrating Claude session, Paper E Version 2 (2026-09-26)",
+   "run_id": null
+  },
+  {
+   "path": "v2/key_values.py",
+   "sha256": "2b42303fa15815ddff60cc50e88a6aecc0a78ab9c9a96e2c4aab813a7a4f729a",
+   "source_sha256": "2b42303fa15815ddff60cc50e88a6aecc0a78ab9c9a96e2c4aab813a7a4f729a",
+   "round": null,
+   "kind": "correction_script",
+   "producing_role": "orchestrating Claude session, Paper E Version 2 (2026-09-26)",
+   "run_id": null
+  }
+ ],
+ "path_rewrites": [
+  {
+   "path": "r28/analyze.py",
+   "line": 6,
+   "kind": "forum_workspace"
+  },
+  {
+   "path": "r28/build.py",
+   "line": 7,
+   "kind": "kna_data_prefix"
+  },
+  {
+   "path": "r28/build.py",
+   "line": 49,
+   "kind": "forum_workspace"
+  },
+  {
+   "path": "r28/robust.py",
+   "line": 6,
+   "kind": "forum_workspace"
+  },
+  {
+   "path": "r29/depth.py",
+   "line": 8,
+   "kind": "kna_data_prefix"
+  },
+  {
+   "path": "r29/depth.py",
+   "line": 9,
+   "kind": "forum_workspace"
+  },
+  {
+   "path": "r29/depth2.py",
+   "line": 5,
+   "kind": "kna_data_prefix"
+  },
+  {
+   "path": "r29/depth2.py",
+   "line": 6,
+   "kind": "forum_workspace"
+  },
+  {
+   "path": "r30/mechanisms.py",
+   "line": 8,
+   "kind": "kna_data_prefix"
+  },
+  {
+   "path": "r30/mechanisms.py",
+   "line": 9,
+   "kind": "forum_workspace"
+  },
+  {
+   "path": "r30/mechanisms2.py",
+   "line": 7,
+   "kind": "kna_data_prefix"
+  },
+  {
+   "path": "r30/mechanisms2.py",
+   "line": 8,
+   "kind": "forum_workspace"
+  }
+ ],
+ "data_inputs": [
+  {
+   "source": "KNA (KBL_DATA)",
+   "name": "cosponsorship_edges.parquet",
+   "files": [
+    {
+     "file": "cosponsorship_edges.parquet",
+     "bytes": 4837638,
+     "sha256": "a01fc03eb1749c7d20f1e6fac67c705752290e02deec7f770ffab0d96bf30355"
+    }
+   ]
+  },
+  {
+   "source": "KNA (KBL_DATA)",
+   "name": "master_bills_{a}.parquet",
+   "files": [
+    {
+     "file": "master_bills_17.parquet",
+     "bytes": 1264514,
+     "sha256": "f1551cd3d283474b573bd4c748ef7546d61885c28f131efd6f1ebbe7f1fdea7d"
+    },
+    {
+     "file": "master_bills_17_lite.parquet",
+     "bytes": 1161832,
+     "sha256": "7e6d27e3271359a778e0ff350cce38942eb56b6099744982e7d66832ffcb5082"
+    },
+    {
+     "file": "master_bills_18.parquet",
+     "bytes": 2659155,
+     "sha256": "4582a511dffeed572023a9159b6d09602e854736d0f4b722822d9fdf565fb3c2"
+    },
+    {
+     "file": "master_bills_18_lite.parquet",
+     "bytes": 2534093,
+     "sha256": "982f99ffd22b0c6b10a1ee25cef58aadf2320d95e75cea5f0efa456dd4bf99bd"
+    },
+    {
+     "file": "master_bills_19.parquet",
+     "bytes": 3392975,
+     "sha256": "94354cc7a9bc0bc6ccfe6e3952ed9602170299689147826112733c875b16b2f9"
+    },
+    {
+     "file": "master_bills_19_lite.parquet",
+     "bytes": 3255584,
+     "sha256": "06cccc86e8cc69f3918af37001b6149533695092cb859e8ce9f7b390e85f3d5f"
+    },
+    {
+     "file": "master_bills_20.parquet",
+     "bytes": 4460428,
+     "sha256": "797aa15fdc6aebb9aac9b8377b9d9f4a0a8e2a47e533715d20a46d427c83c0a0"
+    },
+    {
+     "file": "master_bills_20_lite.parquet",
+     "bytes": 4267254,
+     "sha256": "0442b080f0b7ec354874296443bfab475d91a62ad77c8a5a5cbe8caf6cb7b4cf"
+    },
+    {
+     "file": "master_bills_21.parquet",
+     "bytes": 4946294,
+     "sha256": "fcca58e140186c62449e47e8c745f44e0bb6f8dbc9ebfe43a686cbff873fd6f9"
+    },
+    {
+     "file": "master_bills_21_lite.parquet",
+     "bytes": 4756242,
+     "sha256": "ca8c1424f6847668f172ac405d6b530bf33738ed69b365bce33ed1d9e3321729"
+    },
+    {
+     "file": "master_bills_22.parquet",
+     "bytes": 3227858,
+     "sha256": "938cab7aefd4978c0246eedd28a2e36b303af078c500443b0fe1a337f146d522"
+    }
+   ]
+  },
+  {
+   "source": "KNA (KBL_DATA)",
+   "name": "master_bills_{n}.parquet",
+   "files": [
+    {
+     "file": "master_bills_17.parquet",
+     "bytes": 1264514,
+     "sha256": "f1551cd3d283474b573bd4c748ef7546d61885c28f131efd6f1ebbe7f1fdea7d"
+    },
+    {
+     "file": "master_bills_17_lite.parquet",
+     "bytes": 1161832,
+     "sha256": "7e6d27e3271359a778e0ff350cce38942eb56b6099744982e7d66832ffcb5082"
+    },
+    {
+     "file": "master_bills_18.parquet",
+     "bytes": 2659155,
+     "sha256": "4582a511dffeed572023a9159b6d09602e854736d0f4b722822d9fdf565fb3c2"
+    },
+    {
+     "file": "master_bills_18_lite.parquet",
+     "bytes": 2534093,
+     "sha256": "982f99ffd22b0c6b10a1ee25cef58aadf2320d95e75cea5f0efa456dd4bf99bd"
+    },
+    {
+     "file": "master_bills_19.parquet",
+     "bytes": 3392975,
+     "sha256": "94354cc7a9bc0bc6ccfe6e3952ed9602170299689147826112733c875b16b2f9"
+    },
+    {
+     "file": "master_bills_19_lite.parquet",
+     "bytes": 3255584,
+     "sha256": "06cccc86e8cc69f3918af37001b6149533695092cb859e8ce9f7b390e85f3d5f"
+    },
+    {
+     "file": "master_bills_20.parquet",
+     "bytes": 4460428,
+     "sha256": "797aa15fdc6aebb9aac9b8377b9d9f4a0a8e2a47e533715d20a46d427c83c0a0"
+    },
+    {
+     "file": "master_bills_20_lite.parquet",
+     "bytes": 4267254,
+     "sha256": "0442b080f0b7ec354874296443bfab475d91a62ad77c8a5a5cbe8caf6cb7b4cf"
+    },
+    {
+     "file": "master_bills_21.parquet",
+     "bytes": 4946294,
+     "sha256": "fcca58e140186c62449e47e8c745f44e0bb6f8dbc9ebfe43a686cbff873fd6f9"
+    },
+    {
+     "file": "master_bills_21_lite.parquet",
+     "bytes": 4756242,
+     "sha256": "ca8c1424f6847668f172ac405d6b530bf33738ed69b365bce33ed1d9e3321729"
+    },
+    {
+     "file": "master_bills_22.parquet",
+     "bytes": 3227858,
+     "sha256": "938cab7aefd4978c0246eedd28a2e36b303af078c500443b0fe1a337f146d522"
+    }
+   ]
+  },
+  {
+   "source": "KNA (KBL_DATA)",
+   "name": "members_{a}.parquet",
+   "files": [
+    {
+     "file": "members_17.parquet",
+     "bytes": 45308,
+     "sha256": "b09aac4e52bfed936d060ce5c610bfd38fb32ddfe5e159323f2903d306ccdd61"
+    },
+    {
+     "file": "members_18.parquet",
+     "bytes": 46575,
+     "sha256": "545c0904e3b6e24d06ef429145364d99d18f46445532b0cc78e6452ba8cd2109"
+    },
+    {
+     "file": "members_19.parquet",
+     "bytes": 45338,
+     "sha256": "bf75f5eb706b6a129bdfeabeb8062dd1afe076ae96ad50b534e12d898ef355cf"
+    },
+    {
+     "file": "members_20.parquet",
+     "bytes": 43216,
+     "sha256": "ec766567ddf3509b9e2af7757f3e5054161ceffdf95a3f988739f01fcebdd96b"
+    },
+    {
+     "file": "members_21.parquet",
+     "bytes": 42027,
+     "sha256": "1068b40505262cbeed993ff7d6fd0443b0a8b5d2a3cf77426f3079683821f5a6"
+    },
+    {
+     "file": "members_22.parquet",
+     "bytes": 49178,
+     "sha256": "921f366d75263d7ba95b75dbadebc732e088e12b016464cb9e18e39db43e21de"
+    }
+   ]
+  },
+  {
+   "source": "KNA (KBL_DATA)",
+   "name": "members_{n}.parquet",
+   "files": [
+    {
+     "file": "members_17.parquet",
+     "bytes": 45308,
+     "sha256": "b09aac4e52bfed936d060ce5c610bfd38fb32ddfe5e159323f2903d306ccdd61"
+    },
+    {
+     "file": "members_18.parquet",
+     "bytes": 46575,
+     "sha256": "545c0904e3b6e24d06ef429145364d99d18f46445532b0cc78e6452ba8cd2109"
+    },
+    {
+     "file": "members_19.parquet",
+     "bytes": 45338,
+     "sha256": "bf75f5eb706b6a129bdfeabeb8062dd1afe076ae96ad50b534e12d898ef355cf"
+    },
+    {
+     "file": "members_20.parquet",
+     "bytes": 43216,
+     "sha256": "ec766567ddf3509b9e2af7757f3e5054161ceffdf95a3f988739f01fcebdd96b"
+    },
+    {
+     "file": "members_21.parquet",
+     "bytes": 42027,
+     "sha256": "1068b40505262cbeed993ff7d6fd0443b0a8b5d2a3cf77426f3079683821f5a6"
+    },
+    {
+     "file": "members_22.parquet",
+     "bytes": 49178,
+     "sha256": "921f366d75263d7ba95b75dbadebc732e088e12b016464cb9e18e39db43e21de"
+    }
+   ]
+  }
+ ],
+ "versions": {
+  "python": "3.12.9",
+  "kna": "0.7.0",
+  "pandas": "2.2.3",
+  "pyarrow": "22.0.0",
+  "statsmodels": "0.14.6"
+ },
+ "versions_note": "versions in MANIFEST.json records the software installed when the package was built. Its kna entry is the version of the kna software package, not of the data. The data inputs are pinned by data_inputs, which lists each input file (with its sha256 when the package was built with --hash-inputs).",
+ "provenance": {
+  "28": {
+   "source": "reconstructed from session transcripts read on 2026-09-24",
+   "model": "claude-fable-5",
+   "cli_version": "2.1.241"
+  },
+  "29": {
+   "source": "reconstructed from session transcripts read on 2026-09-24",
+   "model": "claude-fable-5",
+   "cli_version": "2.1.241"
+  },
+  "30": {
+   "source": "reconstructed from session transcripts read on 2026-09-24",
+   "model": "claude-fable-5",
+   "cli_version": "2.1.241"
+  }
+ },
+ "commands": [
+  {
+   "cmd": "python3 r28/build.py",
+   "round": 28
+  },
+  {
+   "cmd": "python3 r28/analyze.py",
+   "round": 28
+  },
+  {
+   "cmd": "python3 r28/robust.py",
+   "round": 28
+  },
+  {
+   "cmd": "python3 r29/depth.py",
+   "round": 29
+  },
+  {
+   "cmd": "python3 r29/depth2.py",
+   "round": 29
+  },
+  {
+   "cmd": "python3 r30/mechanisms.py",
+   "round": 30
+  },
+  {
+   "cmd": "python3 r30/mechanisms2.py",
+   "round": 30
+  },
+  {
+   "cmd": "python3 v2/seniority_check.py",
+   "round": null
+  },
+  {
+   "cmd": "python3 v2/recode_tables_v2.py",
+   "round": null
+  },
+  {
+   "cmd": "python3 v2/tables_v2.py",
+   "round": null
+  },
+  {
+   "cmd": "python3 v2/key_values.py",
+   "round": null
+  },
+  {
+   "cmd": "Rscript figures/2026-08-24_r30/fig_1.R",
+   "round": 30
+  },
+  {
+   "cmd": "Rscript figures/2026-08-24_r30/fig_2.R",
+   "round": 30
+  },
+  {
+   "cmd": "Rscript figures/2026-08-24_r30/fig_3.R",
+   "round": 30
+  }
+ ],
+ "order": {
+  "method": "writers before readers (string literals in the rewritten scripts) and dependencies declared by the package builder, then round, then build-before-analyze by file name, then path",
+  "edges": [
+   {
+    "before": "r28/build.py",
+    "after": "r28/analyze.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "r28/build.py",
+    "after": "r28/robust.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "r28/build.py",
+    "after": "r29/depth.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "r28/build.py",
+    "after": "r29/depth2.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "r28/build.py",
+    "after": "r30/mechanisms.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "r28/build.py",
+    "after": "r30/mechanisms2.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "r28/build.py",
+    "after": "v2/recode_tables_v2.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "v2/seniority_check.py",
+    "after": "v2/recode_tables_v2.py",
+    "via": "seniority_derived.csv"
+   },
+   {
+    "before": "r28/build.py",
+    "after": "v2/tables_v2.py",
+    "via": "r28/bills_panel.csv"
+   },
+   {
+    "before": "v2/recode_tables_v2.py",
+    "after": "v2/key_values.py",
+    "via": "recode_tables_v2.json"
+   },
+   {
+    "before": "v2/tables_v2.py",
+    "after": "v2/key_values.py",
+    "via": "tables_v2.json"
+   }
+  ],
+  "cycle_broken": []
+ },
+ "workdirs": [
+  "r28"
+ ],
+ "outputs": [
+  {
+   "path": "r28/bills_panel.csv",
+   "sha256": "dff8ef73aa8652717db504c28c67decaece84dc20bf32ea326612daf30426532"
+  },
+  {
+   "path": "v2/key_values.json",
+   "values": {
+    "r.counts.bills": 93572,
+    "r.counts.bills_ft_assembly": 47363,
+    "r.counts.bills_ft_assembly_later_reelected": 18969,
+    "r.counts.bills_ft_lifetime": 28394,
+    "r.counts.members_by_assembly.17.ft_assembly": 205,
+    "r.counts.members_by_assembly.17.ft_lifetime": 97,
+    "r.counts.members_by_assembly.17.member_terms": 322,
+    "r.counts.members_by_assembly.18.ft_assembly": 159,
+    "r.counts.members_by_assembly.18.ft_lifetime": 99,
+    "r.counts.members_by_assembly.18.member_terms": 331,
+    "r.counts.members_by_assembly.19.ft_assembly": 171,
+    "r.counts.members_by_assembly.19.ft_lifetime": 97,
+    "r.counts.members_by_assembly.19.member_terms": 332,
+    "r.counts.members_by_assembly.20.ft_assembly": 150,
+    "r.counts.members_by_assembly.20.ft_lifetime": 88,
+    "r.counts.members_by_assembly.20.member_terms": 320,
+    "r.counts.members_by_assembly.21.ft_assembly": 168,
+    "r.counts.members_by_assembly.21.ft_lifetime": 96,
+    "r.counts.members_by_assembly.21.member_terms": 322,
+    "r.counts.members_by_assembly.22.ft_assembly": 137,
+    "r.counts.members_by_assembly.22.ft_lifetime": 137,
+    "r.counts.members_by_assembly.22.member_terms": 306,
+    "r.counts.strict_rate": 0.06151412815799598,
+    "r.ft_assembly.absorb_linear.clusters": 1128,
+    "r.ft_assembly.absorb_linear.est": -0.8938826230862985,
+    "r.ft_assembly.absorb_linear.n": 93078,
+    "r.ft_assembly.absorb_linear.p": 0.02850107197129074,
+    "r.ft_assembly.absorb_linear.se": 0.4081060383925477,
+    "r.ft_assembly.absorb_step.clusters": 1128,
+    "r.ft_assembly.absorb_step.est": -1.5086979292001155,
+    "r.ft_assembly.absorb_step.n": 93078,
+    "r.ft_assembly.absorb_step.p": 0.0903173767876322,
+    "r.ft_assembly.absorb_step.se": 0.8907568289974876,
+    "r.ft_assembly.absorb_step_A17.clusters": 310,
+    "r.ft_assembly.absorb_step_A17.est": 4.353001598374076,
+    "r.ft_assembly.absorb_step_A17.n": 5721,
+    "r.ft_assembly.absorb_step_A17.p": 0.17624945066051922,
+    "r.ft_assembly.absorb_step_A17.se": 3.218738796852647,
+    "r.ft_assembly.absorb_step_A18.clusters": 325,
+    "r.ft_assembly.absorb_step_A18.est": -4.186779699979016,
+    "r.ft_assembly.absorb_step_A18.n": 10818,
+    "r.ft_assembly.absorb_step_A18.p": 0.08735346661320571,
+    "r.ft_assembly.absorb_step_A18.se": 2.44908732966372,
+    "r.ft_assembly.absorb_step_A19.clusters": 329,
+    "r.ft_assembly.absorb_step_A19.est": -2.4249612576022823,
+    "r.ft_assembly.absorb_step_A19.n": 15435,
+    "r.ft_assembly.absorb_step_A19.p": 0.19425128387320256,
+    "r.ft_assembly.absorb_step_A19.se": 1.8680780113545619,
+    "r.ft_assembly.absorb_step_A20.clusters": 320,
+    "r.ft_assembly.absorb_step_A20.est": -1.672742508622613,
+    "r.ft_assembly.absorb_step_A20.n": 21590,
+    "r.ft_assembly.absorb_step_A20.p": 0.3977905602070003,
+    "r.ft_assembly.absorb_step_A20.se": 1.9782336645056682,
+    "r.ft_assembly.absorb_step_A21.clusters": 322,
+    "r.ft_assembly.absorb_step_A21.est": -2.192440341072832,
+    "r.ft_assembly.absorb_step_A21.n": 23624,
+    "r.ft_assembly.absorb_step_A21.p": 0.16525634371959919,
+    "r.ft_assembly.absorb_step_A21.se": 1.5800138227969638,
+    "r.ft_assembly.absorb_step_A22.clusters": 303,
+    "r.ft_assembly.absorb_step_A22.est": -0.4101802757591262,
+    "r.ft_assembly.absorb_step_A22.n": 15890,
+    "r.ft_assembly.absorb_step_A22.p": 0.774180167805632,
+    "r.ft_assembly.absorb_step_A22.se": 1.429640954585251,
+    "r.ft_assembly.absorb_step_lateonly.clusters": 1128,
+    "r.ft_assembly.absorb_step_lateonly.est": -1.508797509540465,
+    "r.ft_assembly.absorb_step_lateonly.n": 93078,
+    "r.ft_assembly.absorb_step_lateonly.p": 0.08893979074838355,
+    "r.ft_assembly.absorb_step_lateonly.se": 0.886997301891008,
+    "r.ft_assembly.absorb_step_lateonly_excl22.clusters": 993,
+    "r.ft_assembly.absorb_step_lateonly_excl22.est": -2.095352133257175,
+    "r.ft_assembly.absorb_step_lateonly_excl22.n": 77188,
+    "r.ft_assembly.absorb_step_lateonly_excl22.p": 0.03658872433927843,
+    "r.ft_assembly.absorb_step_lateonly_excl22.se": 1.0024055369541751,
+    "r.ft_assembly.absorb_step_member_cells.clusters": 1104,
+    "r.ft_assembly.absorb_step_member_cells.est": -1.993642024558153,
+    "r.ft_assembly.absorb_step_member_cells.n": 3423,
+    "r.ft_assembly.absorb_step_member_cells.p": 0.044513125198937686,
+    "r.ft_assembly.absorb_step_member_cells.se": 0.9922435756337432,
+    "r.ft_assembly.absorb_year1.clusters": 1128,
+    "r.ft_assembly.absorb_year1.est": 0.4556558499117874,
+    "r.ft_assembly.absorb_year1.n": 93078,
+    "r.ft_assembly.absorb_year1.p": 0.5600861468988712,
+    "r.ft_assembly.absorb_year1.se": 0.7819551240660565,
+    "r.ft_assembly.absorb_year2.clusters": 1128,
+    "r.ft_assembly.absorb_year2.est": -0.8606120540666411,
+    "r.ft_assembly.absorb_year2.n": 93078,
+    "r.ft_assembly.absorb_year2.p": 0.406508092309276,
+    "r.ft_assembly.absorb_year2.se": 1.0368141816808798,
+    "r.ft_assembly.absorb_year3.clusters": 1128,
+    "r.ft_assembly.absorb_year3.est": -1.5110173578033834,
+    "r.ft_assembly.absorb_year3.n": 93078,
+    "r.ft_assembly.absorb_year3.p": 0.19166912907733624,
+    "r.ft_assembly.absorb_year3.se": 1.157284818680164,
+    "r.ft_assembly.absorb_year4.clusters": 1128,
+    "r.ft_assembly.absorb_year4.est": -2.8855269774814016,
+    "r.ft_assembly.absorb_year4.n": 93078,
+    "r.ft_assembly.absorb_year4.p": 0.029032964461011907,
+    "r.ft_assembly.absorb_year4.se": 1.3217938162821539,
+    "r.ft_assembly.absorb_years_equal_wald_p": 0.2760285254379516,
+    "r.ft_assembly.bic_step_minus_linear": 4.557536585140042,
+    "r.ft_assembly.cells_absorbed.1_0": 0.28709508881922674,
+    "r.ft_assembly.cells_absorbed.1_1": 0.29886539453326455,
+    "r.ft_assembly.cells_absorbed.2_0": 0.23290789366718154,
+    "r.ft_assembly.cells_absorbed.2_1": 0.23505889195870291,
+    "r.ft_assembly.cells_absorbed.3_0": 0.2507535358219337,
+    "r.ft_assembly.cells_absorbed.3_1": 0.24270568649785332,
+    "r.ft_assembly.cells_absorbed.4_0": 0.1719187675070028,
+    "r.ft_assembly.cells_absorbed.4_1": 0.15090634441087614,
+    "r.ft_assembly.cells_strict.1_0": 0.07445141065830721,
+    "r.ft_assembly.cells_strict.1_1": 0.07355595667870037,
+    "r.ft_assembly.cells_strict.2_0": 0.05845053247703439,
+    "r.ft_assembly.cells_strict.2_1": 0.0572197179002472,
+    "r.ft_assembly.cells_strict.3_0": 0.057848365406909345,
+    "r.ft_assembly.cells_strict.3_1": 0.0588802243056164,
+    "r.ft_assembly.cells_strict.4_0": 0.04009103641456583,
+    "r.ft_assembly.cells_strict.4_1": 0.042749244712990936,
+    "r.ft_assembly.strict_interaction_A17.clusters": 310,
+    "r.ft_assembly.strict_interaction_A17.est": -3.658749531299485,
+    "r.ft_assembly.strict_interaction_A17.n": 5721,
+    "r.ft_assembly.strict_interaction_A17.p": 0.06810252648814452,
+    "r.ft_assembly.strict_interaction_A17.se": 1.998510231955985,
+    "r.ft_assembly.strict_interaction_A18.clusters": 325,
+    "r.ft_assembly.strict_interaction_A18.est": -0.9925291885342911,
+    "r.ft_assembly.strict_interaction_A18.n": 10818,
+    "r.ft_assembly.strict_interaction_A18.p": 0.08595213564521031,
+    "r.ft_assembly.strict_interaction_A18.se": 0.5762492202894037,
+    "r.ft_assembly.strict_interaction_A19.clusters": 329,
+    "r.ft_assembly.strict_interaction_A19.est": -0.20603549705869867,
+    "r.ft_assembly.strict_interaction_A19.n": 15435,
+    "r.ft_assembly.strict_interaction_A19.p": 0.6628426893585684,
+    "r.ft_assembly.strict_interaction_A19.se": 0.4721388309922762,
+    "r.ft_assembly.strict_interaction_A20.clusters": 320,
+    "r.ft_assembly.strict_interaction_A20.est": 1.1436287412347423,
+    "r.ft_assembly.strict_interaction_A20.n": 21590,
+    "r.ft_assembly.strict_interaction_A20.p": 0.024106695922569782,
+    "r.ft_assembly.strict_interaction_A20.se": 0.5046386069446908,
+    "r.ft_assembly.strict_interaction_A21.clusters": 322,
+    "r.ft_assembly.strict_interaction_A21.est": 0.16939346581488304,
+    "r.ft_assembly.strict_interaction_A21.n": 23624,
+    "r.ft_assembly.strict_interaction_A21.p": 0.6741878461941879,
+    "r.ft_assembly.strict_interaction_A21.se": 0.4025577407213489,
+    "r.ft_assembly.strict_interaction_A22.clusters": 303,
+    "r.ft_assembly.strict_interaction_A22.est": -0.014499999084943292,
+    "r.ft_assembly.strict_interaction_A22.n": 15890,
+    "r.ft_assembly.strict_interaction_A22.p": 0.9801058541717911,
+    "r.ft_assembly.strict_interaction_A22.se": 0.5810024907283136,
+    "r.ft_assembly.strict_linear_interaction.clusters": 1128,
+    "r.ft_assembly.strict_linear_interaction.est": 0.009094669778960654,
+    "r.ft_assembly.strict_linear_interaction.n": 93078,
+    "r.ft_assembly.strict_linear_interaction.p": 0.9699918685426985,
+    "r.ft_assembly.strict_linear_interaction.se": 0.241706953909821,
+    "r.ft_assembly.y1_strict_gap.clusters": 1051,
+    "r.ft_assembly.y1_strict_gap.est": -0.21409229550412487,
+    "r.ft_assembly.y1_strict_gap.n": 34652,
+    "r.ft_assembly.y1_strict_gap.p": 0.6454485706485986,
+    "r.ft_assembly.y1_strict_gap.se": 0.4653226924282102,
+    "r.ft_assembly.y1_strict_gap.tost_1pp_max_p": 0.045614311885085246,
+    "r.ft_assembly.y1_strict_gap.tost_2pp_max_p": 6.202066929550387e-05,
+    "r.ft_lifetime.absorb_linear.clusters": 1128,
+    "r.ft_lifetime.absorb_linear.est": -1.5244374891804464,
+    "r.ft_lifetime.absorb_linear.n": 93078,
+    "r.ft_lifetime.absorb_linear.p": 0.00018710213959652244,
+    "r.ft_lifetime.absorb_linear.se": 0.40805933028373786,
+    "r.ft_lifetime.absorb_step.clusters": 1128,
+    "r.ft_lifetime.absorb_step.est": -3.49988026140884,
+    "r.ft_lifetime.absorb_step.n": 93078,
+    "r.ft_lifetime.absorb_step.p": 7.952256167640755e-05,
+    "r.ft_lifetime.absorb_step.se": 0.8869810297614457,
+    "r.ft_lifetime.absorb_step_A17.clusters": 310,
+    "r.ft_lifetime.absorb_step_A17.est": 4.896766777208591,
+    "r.ft_lifetime.absorb_step_A17.n": 5721,
+    "r.ft_lifetime.absorb_step_A17.p": 0.19122556711170002,
+    "r.ft_lifetime.absorb_step_A17.se": 3.7466783434644464,
+    "r.ft_lifetime.absorb_step_A18.clusters": 325,
+    "r.ft_lifetime.absorb_step_A18.est": -2.910367341075843,
+    "r.ft_lifetime.absorb_step_A18.n": 10818,
+    "r.ft_lifetime.absorb_step_A18.p": 0.24902357585087265,
+    "r.ft_lifetime.absorb_step_A18.se": 2.5247731942515275,
+    "r.ft_lifetime.absorb_step_A19.clusters": 329,
+    "r.ft_lifetime.absorb_step_A19.est": -2.9333888292988024,
+    "r.ft_lifetime.absorb_step_A19.n": 15435,
+    "r.ft_lifetime.absorb_step_A19.p": 0.18958279591951754,
+    "r.ft_lifetime.absorb_step_A19.se": 2.23613114315844,
+    "r.ft_lifetime.absorb_step_A20.clusters": 320,
+    "r.ft_lifetime.absorb_step_A20.est": -6.355035325868866,
+    "r.ft_lifetime.absorb_step_A20.n": 21590,
+    "r.ft_lifetime.absorb_step_A20.p": 0.0014572501506225132,
+    "r.ft_lifetime.absorb_step_A20.se": 1.996514616003649,
+    "r.ft_lifetime.absorb_step_A21.clusters": 322,
+    "r.ft_lifetime.absorb_step_A21.est": -2.16801187774781,
+    "r.ft_lifetime.absorb_step_A21.n": 23624,
+    "r.ft_lifetime.absorb_step_A21.p": 0.23533383414356623,
+    "r.ft_lifetime.absorb_step_A21.se": 1.8268776152129975,
+    "r.ft_lifetime.absorb_step_A22.clusters": 303,
+    "r.ft_lifetime.absorb_step_A22.est": -0.4101802757591262,
+    "r.ft_lifetime.absorb_step_A22.n": 15890,
+    "r.ft_lifetime.absorb_step_A22.p": 0.774180167805632,
+    "r.ft_lifetime.absorb_step_A22.se": 1.429640954585251,
+    "r.ft_lifetime.absorb_step_lateonly.clusters": 1128,
+    "r.ft_lifetime.absorb_step_lateonly.est": -2.970574168972446,
+    "r.ft_lifetime.absorb_step_lateonly.n": 93078,
+    "r.ft_lifetime.absorb_step_lateonly.p": 0.0007474453129577333,
+    "r.ft_lifetime.absorb_step_lateonly.se": 0.8810689078401549,
+    "r.ft_lifetime.absorb_step_lateonly_excl22.clusters": 993,
+    "r.ft_lifetime.absorb_step_lateonly_excl22.est": -2.9011397769095315,
+    "r.ft_lifetime.absorb_step_lateonly_excl22.n": 77188,
+    "r.ft_lifetime.absorb_step_lateonly_excl22.p": 0.006718997261224065,
+    "r.ft_lifetime.absorb_step_lateonly_excl22.se": 1.070349639688136,
+    "r.ft_lifetime.absorb_step_member_cells.clusters": 1104,
+    "r.ft_lifetime.absorb_step_member_cells.est": -2.282209366549614,
+    "r.ft_lifetime.absorb_step_member_cells.n": 3423,
+    "r.ft_lifetime.absorb_step_member_cells.p": 0.025586598129379762,
+    "r.ft_lifetime.absorb_step_member_cells.se": 1.022298573786212,
+    "r.ft_lifetime.absorb_year1.clusters": 1128,
+    "r.ft_lifetime.absorb_year1.est": 1.4191580825816392,
+    "r.ft_lifetime.absorb_year1.n": 93078,
+    "r.ft_lifetime.absorb_year1.p": 0.08545921396581704,
+    "r.ft_lifetime.absorb_year1.se": 0.8251625583583653,
+    "r.ft_lifetime.absorb_year2.clusters": 1128,
+    "r.ft_lifetime.absorb_year2.est": -3.2121003771232877,
+    "r.ft_lifetime.absorb_year2.n": 93078,
+    "r.ft_lifetime.absorb_year2.p": 0.0015293655684239134,
+    "r.ft_lifetime.absorb_year2.se": 1.01358370426647,
+    "r.ft_lifetime.absorb_year3.clusters": 1128,
+    "r.ft_lifetime.absorb_year3.est": -3.29288490739503,
+    "r.ft_lifetime.absorb_year3.n": 93078,
+    "r.ft_lifetime.absorb_year3.p": 0.004053735629549334,
+    "r.ft_lifetime.absorb_year3.se": 1.145769860702779,
+    "r.ft_lifetime.absorb_year4.clusters": 1128,
+    "r.ft_lifetime.absorb_year4.est": -4.5545909476697135,
+    "r.ft_lifetime.absorb_year4.n": 93078,
+    "r.ft_lifetime.absorb_year4.p": 0.0004603696626887653,
+    "r.ft_lifetime.absorb_year4.se": 1.3002660380475104,
+    "r.ft_lifetime.absorb_years_equal_wald_p": 0.528673805879077,
+    "r.ft_lifetime.bic_step_minus_linear": -4.283116684353445,
+    "r.ft_lifetime.cells_absorbed.1_0": 0.2919645057924575,
+    "r.ft_lifetime.cells_absorbed.1_1": 0.2933074684772066,
+    "r.ft_lifetime.cells_absorbed.2_0": 0.2450134142073953,
+    "r.ft_lifetime.cells_absorbed.2_1": 0.21293074419126726,
+    "r.ft_lifetime.cells_absorbed.3_0": 0.2505787443002455,
+    "r.ft_lifetime.cells_absorbed.3_1": 0.2353042876901798,
+    "r.ft_lifetime.cells_absorbed.4_0": 0.16716750139120756,
+    "r.ft_lifetime.cells_absorbed.4_1": 0.1431132357334927,
+    "r.ft_lifetime.cells_strict.1_0": 0.07649330375482705,
+    "r.ft_lifetime.cells_strict.1_1": 0.06828322017458778,
+    "r.ft_lifetime.cells_strict.2_0": 0.06275516155371515,
+    "r.ft_lifetime.cells_strict.2_1": 0.048265798630598274,
+    "r.ft_lifetime.cells_strict.3_0": 0.05738337425464749,
+    "r.ft_lifetime.cells_strict.3_1": 0.06103042876901798,
+    "r.ft_lifetime.cells_strict.4_0": 0.041513633834168055,
+    "r.ft_lifetime.cells_strict.4_1": 0.04152972811472961,
+    "r.ft_lifetime.strict_interaction_A17.clusters": 310,
+    "r.ft_lifetime.strict_interaction_A17.est": -2.737300127921677,
+    "r.ft_lifetime.strict_interaction_A17.n": 5721,
+    "r.ft_lifetime.strict_interaction_A17.p": 0.032731149630300285,
+    "r.ft_lifetime.strict_interaction_A17.se": 1.2761228131639255,
+    "r.ft_lifetime.strict_interaction_A18.clusters": 325,
+    "r.ft_lifetime.strict_interaction_A18.est": -0.7471311595506707,
+    "r.ft_lifetime.strict_interaction_A18.n": 10818,
+    "r.ft_lifetime.strict_interaction_A18.p": 0.19986188042590236,
+    "r.ft_lifetime.strict_interaction_A18.se": 0.5816217644628889,
+    "r.ft_lifetime.strict_interaction_A19.clusters": 329,
+    "r.ft_lifetime.strict_interaction_A19.est": 0.5010435984261968,
+    "r.ft_lifetime.strict_interaction_A19.n": 15435,
+    "r.ft_lifetime.strict_interaction_A19.p": 0.40111234008726193,
+    "r.ft_lifetime.strict_interaction_A19.se": 0.595963405792043,
+    "r.ft_lifetime.strict_interaction_A20.clusters": 320,
+    "r.ft_lifetime.strict_interaction_A20.est": 1.2248564741198855,
+    "r.ft_lifetime.strict_interaction_A20.n": 21590,
+    "r.ft_lifetime.strict_interaction_A20.p": 0.0795423797075534,
+    "r.ft_lifetime.strict_interaction_A20.se": 0.6963511725702554,
+    "r.ft_lifetime.strict_interaction_A21.clusters": 322,
+    "r.ft_lifetime.strict_interaction_A21.est": -0.18209501133742936,
+    "r.ft_lifetime.strict_interaction_A21.n": 23624,
+    "r.ft_lifetime.strict_interaction_A21.p": 0.6865272233151879,
+    "r.ft_lifetime.strict_interaction_A21.se": 0.4507993167743952,
+    "r.ft_lifetime.strict_interaction_A22.clusters": 303,
+    "r.ft_lifetime.strict_interaction_A22.est": -0.014499999084943292,
+    "r.ft_lifetime.strict_interaction_A22.n": 15890,
+    "r.ft_lifetime.strict_interaction_A22.p": 0.9801058541717911,
+    "r.ft_lifetime.strict_interaction_A22.se": 0.5810024907283136,
+    "r.ft_lifetime.strict_linear_interaction.clusters": 1128,
+    "r.ft_lifetime.strict_linear_interaction.est": -0.06358519133846903,
+    "r.ft_lifetime.strict_linear_interaction.n": 93078,
+    "r.ft_lifetime.strict_linear_interaction.p": 0.8185760394113146,
+    "r.ft_lifetime.strict_linear_interaction.se": 0.27714370451800946,
+    "r.ft_lifetime.y1_strict_gap.clusters": 1051,
+    "r.ft_lifetime.y1_strict_gap.est": 0.23639411676806063,
+    "r.ft_lifetime.y1_strict_gap.n": 34652,
+    "r.ft_lifetime.y1_strict_gap.p": 0.6589800016158442,
+    "r.ft_lifetime.y1_strict_gap.se": 0.5356501396583174,
+    "r.ft_lifetime.y1_strict_gap.tost_1pp_max_p": 0.07699648946231319,
+    "r.ft_lifetime.y1_strict_gap.tost_2pp_max_p": 0.0004965776781336029,
+    "t.absorbed_only_rate_pooled": 0.24864092481574593,
+    "t.absorbed_processed_year1": 4138,
+    "t.absorbed_processed_year1_first_term": 1158,
+    "t.bic_step_minus_linear": -4.283116684353445,
+    "t.bins_share_of_era_bills": 0.6519693160575002,
+    "t.clusters_estimation": 1128,
+    "t.cosponsor_rows_matched_share": 1.0,
+    "t.dup_inc_share_ft_by_year.1": 90.84384093113482,
+    "t.dup_inc_share_ft_by_year.2": 90.66112919519587,
+    "t.dup_inc_share_ft_by_year.3": 91.21715076071922,
+    "t.dup_inc_share_ft_by_year.4": 89.8416492381237,
+    "t.dup_prior_share_ft_by_year.1": 76.31425800193986,
+    "t.dup_prior_share_ft_by_year.2": 85.92434616679762,
+    "t.dup_prior_share_ft_by_year.3": 89.2807745504841,
+    "t.dup_prior_share_ft_by_year.4": 89.00507917538094,
+    "t.edge_coverage_20_22": 0.9931264728986646,
+    "t.edge_coverage_by_assembly.17": 0.0,
+    "t.edge_coverage_by_assembly.18": 0.0,
+    "t.edge_coverage_by_assembly.19": 0.0,
+    "t.edge_coverage_by_assembly.20": 1.0,
+    "t.edge_coverage_by_assembly.21": 1.0,
+    "t.edge_coverage_by_assembly.22": 0.973568281938326,
+    "t.edge_panel_n": 60684,
+    "t.edge_panel_n_first_term": 18996,
+    "t.estimation_rows": 93078,
+    "t.event_size_prop_year1.0.count": 7107.0,
+    "t.event_size_prop_year1.0.mean": 39.64302800056282,
+    "t.event_size_prop_year1.0.median": 21.0,
+    "t.event_size_prop_year1.1.count": 3024.0,
+    "t.event_size_prop_year1.1.mean": 36.17791005291005,
+    "t.event_size_prop_year1.1.median": 20.0,
+    "t.event_size_prop_year2.0.count": 4201.0,
+    "t.event_size_prop_year2.0.mean": 45.68507498214711,
+    "t.event_size_prop_year2.0.median": 26.0,
+    "t.event_size_prop_year2.1.count": 1897.0,
+    "t.event_size_prop_year2.1.mean": 41.95571955719557,
+    "t.event_size_prop_year2.1.median": 22.0,
+    "t.events_processed_year1": 393,
+    "t.first_term_sponsor_terms": 604,
+    "t.inc_share_by_year_cohort.1.0": 65.3758521651542,
+    "t.inc_share_by_year_cohort.1.1": 54.11351490134565,
+    "t.inc_share_by_year_cohort.2.0": 63.750714115000505,
+    "t.inc_share_by_year_cohort.2.1": 53.071217914138266,
+    "t.inc_share_by_year_cohort.3.0": 69.73529708852303,
+    "t.inc_share_by_year_cohort.3.1": 64.55140923911654,
+    "t.inc_share_by_year_cohort.4.0": 69.85138647749034,
+    "t.inc_share_by_year_cohort.4.1": 65.65751686609165,
+    "t.inclusive_rate_pooled": 0.308842388748771,
+    "t.late_starters": 62,
+    "t.new_law_share_by_year_cohort.1.0": 7.185112151836333,
+    "t.new_law_share_by_year_cohort.1.1": 5.703200775945684,
+    "t.new_law_share_by_year_cohort.2.0": 6.298845211711186,
+    "t.new_law_share_by_year_cohort.2.1": 5.746997418341004,
+    "t.new_law_share_by_year_cohort.3.0": 4.9736934408979305,
+    "t.new_law_share_by_year_cohort.3.1": 5.10027662517289,
+    "t.new_law_share_by_year_cohort.4.0": 5.442404006677797,
+    "t.new_law_share_by_year_cohort.4.1": 6.423662981774723,
+    "t.panel_rows": 93572,
+    "t.step_lateonly_first_term.clusters": 1128,
+    "t.step_lateonly_first_term.est": 1.1764147640231932,
+    "t.step_lateonly_first_term.n": 93078,
+    "t.step_lateonly_first_term.p": 0.15200363455323074,
+    "t.step_lateonly_first_term.se": 0.8212376730083232,
+    "t.step_lateonly_ft_x_late.clusters": 1128,
+    "t.step_lateonly_ft_x_late.est": -2.970574168972446,
+    "t.step_lateonly_ft_x_late.n": 93078,
+    "t.step_lateonly_ft_x_late.p": 0.0007474453129577333,
+    "t.step_lateonly_ft_x_late.se": 0.8810689078401549,
+    "t.strict_linear_excl_late_starters.est": -0.13365250756156632,
+    "t.strict_linear_excl_late_starters.n": 92067,
+    "t.strict_linear_excl_late_starters.p": 0.6422029400755649,
+    "t.strict_linear_excl_late_starters.se": 0.2876592475978756,
+    "t.strict_rate_pooled": 0.06151412815799598,
+    "t.t2_c1_first_term.clusters": 1051,
+    "t.t2_c1_first_term.est": 0.23639411676806063,
+    "t.t2_c1_first_term.n": 34652,
+    "t.t2_c1_first_term.p": 0.6589800016158442,
+    "t.t2_c1_first_term.se": 0.5356501396583174,
+    "t.t2_c1_first_term.tost_1pp_max_p": 0.07699648946231319,
+    "t.t2_c1_first_term.tost_2pp_max_p": 0.0004965776781336029,
+    "t.t2_c2_first_term.clusters": 1128,
+    "t.t2_c2_first_term.est": 1.4191580825816392,
+    "t.t2_c2_first_term.n": 93078,
+    "t.t2_c2_first_term.p": 0.08545921396581704,
+    "t.t2_c2_first_term.se": 0.8251625583583653,
+    "t.t2_c2_ft_x_late.clusters": 1128,
+    "t.t2_c2_ft_x_late.est": -3.49988026140884,
+    "t.t2_c2_ft_x_late.n": 93078,
+    "t.t2_c2_ft_x_late.p": 7.952256167640755e-05,
+    "t.t2_c2_ft_x_late.se": 0.8869810297614457,
+    "t.t2_c3_first_term.clusters": 1128,
+    "t.t2_c3_first_term.est": 1.4193405146290345,
+    "t.t2_c3_first_term.n": 93078,
+    "t.t2_c3_first_term.p": 0.08556423959435974,
+    "t.t2_c3_first_term.se": 0.8255457653695687,
+    "t.t2_c3_ft_x_year2.clusters": 1128,
+    "t.t2_c3_ft_x_year2.est": -3.2121003771232877,
+    "t.t2_c3_ft_x_year2.n": 93078,
+    "t.t2_c3_ft_x_year2.p": 0.0015293655684239134,
+    "t.t2_c3_ft_x_year2.se": 1.01358370426647,
+    "t.t2_c3_ft_x_year3.clusters": 1128,
+    "t.t2_c3_ft_x_year3.est": -3.29288490739503,
+    "t.t2_c3_ft_x_year3.n": 93078,
+    "t.t2_c3_ft_x_year3.p": 0.004053735629549334,
+    "t.t2_c3_ft_x_year3.se": 1.145769860702779,
+    "t.t2_c3_ft_x_year4.clusters": 1128,
+    "t.t2_c3_ft_x_year4.est": -4.5545909476697135,
+    "t.t2_c3_ft_x_year4.n": 93078,
+    "t.t2_c3_ft_x_year4.p": 0.0004603696626887653,
+    "t.t2_c3_ft_x_year4.se": 1.3002660380475104,
+    "t.t2_c3_wald_equal_p": 0.528673805879077,
+    "t.t2_c4_first_term.clusters": 1104,
+    "t.t2_c4_first_term.est": 1.2985324510206868,
+    "t.t2_c4_first_term.n": 3423,
+    "t.t2_c4_first_term.p": 0.17404266936613744,
+    "t.t2_c4_first_term.se": 0.9552752782437903,
+    "t.t2_c4_ft_x_late.bills_in_cells": 92800,
+    "t.t2_c4_ft_x_late.clusters": 1104,
+    "t.t2_c4_ft_x_late.est": -2.282209366549614,
+    "t.t2_c4_ft_x_late.n": 3423,
+    "t.t2_c4_ft_x_late.p": 0.025586598129379762,
+    "t.t2_c4_ft_x_late.se": 1.022298573786212,
+    "t.t3_assembly_17.clusters": 310,
+    "t.t3_assembly_17.est": 4.896766777208591,
+    "t.t3_assembly_17.n": 5721,
+    "t.t3_assembly_17.p": 0.19122556711170002,
+    "t.t3_assembly_17.se": 3.7466783434644464,
+    "t.t3_assembly_18.clusters": 325,
+    "t.t3_assembly_18.est": -2.910367341075843,
+    "t.t3_assembly_18.n": 10818,
+    "t.t3_assembly_18.p": 0.24902357585087265,
+    "t.t3_assembly_18.se": 2.5247731942515275,
+    "t.t3_assembly_19.clusters": 329,
+    "t.t3_assembly_19.est": -2.9333888292988024,
+    "t.t3_assembly_19.n": 15435,
+    "t.t3_assembly_19.p": 0.18958279591951754,
+    "t.t3_assembly_19.se": 2.23613114315844,
+    "t.t3_assembly_20.clusters": 320,
+    "t.t3_assembly_20.est": -6.355035325868866,
+    "t.t3_assembly_20.n": 21590,
+    "t.t3_assembly_20.p": 0.0014572501506225132,
+    "t.t3_assembly_20.se": 1.996514616003649,
+    "t.t3_assembly_21.clusters": 322,
+    "t.t3_assembly_21.est": -2.16801187774781,
+    "t.t3_assembly_21.n": 23624,
+    "t.t3_assembly_21.p": 0.23533383414356623,
+    "t.t3_assembly_21.se": 1.8268776152129975,
+    "t.t3_assembly_22.clusters": 303,
+    "t.t3_assembly_22.est": -0.4101802757591262,
+    "t.t3_assembly_22.n": 15890,
+    "t.t3_assembly_22.p": 0.774180167805632,
+    "t.t3_assembly_22.se": 1.429640954585251,
+    "t.t3_bin_11-15.clusters": 656,
+    "t.t3_bin_11-15.est": -2.8781607375297518,
+    "t.t3_bin_11-15.n": 28263,
+    "t.t3_bin_11-15.p": 0.025202956167723698,
+    "t.t3_bin_11-15.se": 1.2858819222578763,
+    "t.t3_bin_16-30.clusters": 567,
+    "t.t3_bin_16-30.est": -2.5739661105857015,
+    "t.t3_bin_16-30.n": 5692,
+    "t.t3_bin_16-30.p": 0.35228605243398603,
+    "t.t3_bin_16-30.se": 2.7672167903737743,
+    "t.t3_bin_31+.n": 996,
+    "t.t3_bin_<=10.clusters": 646,
+    "t.t3_bin_<=10.est": -4.755515268500567,
+    "t.t3_bin_<=10.n": 25733,
+    "t.t3_bin_<=10.p": 0.006682914817949335,
+    "t.t3_bin_<=10.se": 1.7533500874719659,
+    "t.t3_excl_22nd.clusters": 993,
+    "t.t3_excl_22nd.est": -2.9011397769095315,
+    "t.t3_excl_22nd.n": 77188,
+    "t.t3_excl_22nd.p": 0.006718997261224065,
+    "t.t3_excl_22nd.se": 1.070349639688136,
+    "t.t3_excl_late_starters.clusters": 1066,
+    "t.t3_excl_late_starters.est": -2.914485341142876,
+    "t.t3_excl_late_starters.n": 92067,
+    "t.t3_excl_late_starters.p": 0.0010360158350152344,
+    "t.t3_excl_late_starters.se": 0.8884111873763612,
+    "t.t3_raw_dd.clusters": 1128,
+    "t.t3_raw_dd.est": -2.3850979282448757,
+    "t.t3_raw_dd.n": 93078,
+    "t.t3_raw_dd.p": 0.007975535529677936,
+    "t.t3_raw_dd.se": 0.8989840446861663,
+    "t.t3_raw_dd_cellmeans": -2.3850979282452696,
+    "t.t3_raw_dd_rw.clusters": 1128,
+    "t.t3_raw_dd_rw.est": -2.4446848536368733,
+    "t.t3_raw_dd_rw.n": 93078,
+    "t.t3_raw_dd_rw.p": 0.007752864799659501,
+    "t.t3_raw_dd_rw.se": 0.9181407277962452,
+    "t.t3_raw_dd_rw_cellmeans": -2.444684853637108,
+    "t.t3_reweighted.clusters": 1128,
+    "t.t3_reweighted.est": -2.963252502119198,
+    "t.t3_reweighted.n": 93078,
+    "t.t3_reweighted.p": 0.0009643372455310017,
+    "t.t3_reweighted.se": 0.8977567789938974,
+    "t.t4_a_first_stage_all.est": 0.052253937587038585,
+    "t.t4_a_first_stage_all.n": 60684,
+    "t.t4_a_first_stage_all.p": 0.9713422152582533,
+    "t.t4_a_first_stage_all.se": 1.4545312579964105,
+    "t.t4_a_first_stage_ft.est": -0.4620932677394027,
+    "t.t4_a_first_stage_ft.n": 18996,
+    "t.t4_a_first_stage_ft.p": 0.8396311975615657,
+    "t.t4_a_first_stage_ft.se": 2.283461619626569,
+    "t.t4_a_share_dd.clusters": 660,
+    "t.t4_a_share_dd.est": 2.2452502584166547,
+    "t.t4_a_share_dd.n": 60684,
+    "t.t4_a_share_dd.p": 0.008373125318994827,
+    "t.t4_a_share_dd.se": 0.8515568760940806,
+    "t.t4_a_share_ft_late.clusters": 319,
+    "t.t4_a_share_ft_late.est": -0.35044037873764455,
+    "t.t4_a_share_ft_late.n": 18996,
+    "t.t4_a_share_ft_late.p": 0.5855887610607136,
+    "t.t4_a_share_ft_late.se": 0.6427273425942925,
+    "t.t4_a_share_ft_year2.est": -1.857019388661733,
+    "t.t4_a_share_ft_year2.n": 18996,
+    "t.t4_a_share_ft_year2.p": 0.002478793187143297,
+    "t.t4_a_share_ft_year2.se": 0.6137044163862568,
+    "t.t4_a_share_ft_year3.est": 1.6922020864514928,
+    "t.t4_a_share_ft_year3.n": 18996,
+    "t.t4_a_share_ft_year3.p": 0.10170068188255707,
+    "t.t4_a_share_ft_year3.se": 1.0339336734098525,
+    "t.t4_a_share_ft_year4.est": 2.457517214942931,
+    "t.t4_a_share_ft_year4.n": 18996,
+    "t.t4_a_share_ft_year4.p": 0.053998591334833514,
+    "t.t4_a_share_ft_year4.se": 1.2754080117908735,
+    "t.t4_a_step_cond_share.attenuation_pct": 3.017575789356164,
+    "t.t4_a_step_cond_share.est": -3.51692350508534,
+    "t.t4_a_step_cond_share.n": 60684,
+    "t.t4_a_step_cond_share.p": 0.0006691425856525786,
+    "t.t4_a_step_cond_share.se": 1.0338055151298398,
+    "t.t4_a_step_decile.attenuation_pct": 1.492704279997037,
+    "t.t4_a_step_decile.est": -3.5722207045227563,
+    "t.t4_a_step_decile.n": 60683,
+    "t.t4_a_step_decile.p": 0.0005252149193960758,
+    "t.t4_a_step_decile.se": 1.0301840932456938,
+    "t.t4_a_step_uncond.clusters": 660,
+    "t.t4_a_step_uncond.est": -3.6263514071855476,
+    "t.t4_a_step_uncond.n": 60684,
+    "t.t4_a_step_uncond.p": 0.00044458606425069967,
+    "t.t4_a_step_uncond.se": 1.0325317413556228,
+    "t.t4_b_absorb_on_dup_prior.est": 7.1257115897516,
+    "t.t4_b_absorb_on_dup_prior.n": 93078,
+    "t.t4_b_absorb_on_dup_prior.p": 8.485405980653518e-22,
+    "t.t4_b_absorb_on_dup_prior.se": 0.7427370603511149,
+    "t.t4_b_absorb_on_new_law.est": -5.288486482942826,
+    "t.t4_b_absorb_on_new_law.n": 93078,
+    "t.t4_b_absorb_on_new_law.p": 1.8581177769128334e-17,
+    "t.t4_b_absorb_on_new_law.se": 0.6220038802984962,
+    "t.t4_b_dup_contemp_ft_late.clusters": 604,
+    "t.t4_b_dup_contemp_ft_late.est": 0.5462412002525119,
+    "t.t4_b_dup_contemp_ft_late.n": 28350,
+    "t.t4_b_dup_contemp_ft_late.p": 0.24056929502938595,
+    "t.t4_b_dup_contemp_ft_late.se": 0.4654545646499304,
+    "t.t4_b_dup_prior_ft_late.clusters": 604,
+    "t.t4_b_dup_prior_ft_late.est": 13.266247476106916,
+    "t.t4_b_dup_prior_ft_late.n": 28350,
+    "t.t4_b_dup_prior_ft_late.p": 8.226633882367003e-87,
+    "t.t4_b_dup_prior_ft_late.se": 0.6717520502342349,
+    "t.t4_b_new_law_dd.est": 1.4420216678338817,
+    "t.t4_b_new_law_dd.n": 93078,
+    "t.t4_b_new_law_dd.p": 0.00037756124026088015,
+    "t.t4_b_new_law_dd.se": 0.405598794310317,
+    "t.t4_b_step_cond_dup_contemp.attenuation_pct": 0.18296154460072378,
+    "t.t4_b_step_cond_dup_contemp.est": -2.9651391605893838,
+    "t.t4_b_step_cond_dup_contemp.n": 93078,
+    "t.t4_b_step_cond_dup_contemp.p": 0.0007266823512446672,
+    "t.t4_b_step_cond_dup_contemp.se": 0.8774394427856814,
+    "t.t4_b_step_cond_dup_prior.attenuation_pct": -27.570185777045353,
+    "t.t4_b_step_cond_dup_prior.est": -3.7895669860030705,
+    "t.t4_b_step_cond_dup_prior.n": 93078,
+    "t.t4_b_step_cond_dup_prior.p": 1.779258110545405e-05,
+    "t.t4_b_step_cond_dup_prior.se": 0.8831573430476615,
+    "t.t4_b_step_cond_new_law.attenuation_pct": 2.567218209234856,
+    "t.t4_b_step_cond_new_law.est": -2.894313047987758,
+    "t.t4_b_step_cond_new_law.n": 93078,
+    "t.t4_b_step_cond_new_law.p": 0.000992742932366594,
+    "t.t4_b_step_cond_new_law.se": 0.8790423127054559,
+    "t.t4_b_step_joint.attenuation_pct": -19.02704977086902,
+    "t.t4_b_step_joint.est": -4.3163390942973505,
+    "t.t4_b_step_joint.n": 60684,
+    "t.t4_b_step_joint.p": 2.9637451490604276e-05,
+    "t.t4_b_step_joint.se": 1.0335481087958298,
+    "t.t4_b_step_uncond_edge_joint_sample.est": -3.6263514071855476,
+    "t.t4_b_step_uncond_edge_joint_sample.n": 60684,
+    "t.t4_b_step_uncond_edge_joint_sample.p": 0.00044458606425069967,
+    "t.t4_b_step_uncond_edge_joint_sample.se": 1.0325317413556228,
+    "t.t4_b_step_uncond_full.est": -2.970574168972446,
+    "t.t4_b_step_uncond_full.n": 93078,
+    "t.t4_b_step_uncond_full.p": 0.0007474453129577333,
+    "t.t4_b_step_uncond_full.se": 0.8810689078401549,
+    "t.t4_c_deepening.est": -0.0807845302717422,
+    "t.t4_c_deepening.n": 93078,
+    "t.t4_c_deepening.p": 0.943338117430563,
+    "t.t4_c_deepening.se": 1.1366106960517939,
+    "t.t4_c_flatness_p": 0.5288642715070584,
+    "t.year1_proposed_absorbed_first_term": 3024,
+    "t.year1_proposed_absorbed_processed_within_2y_share": 0.8216365610502419,
+    "t.year1_proposed_absorbed_rate_first_term": 0.2933074684772066,
+    "t.year1_proposed_absorbed_rate_reelected": 0.2919645057924575,
+    "t.year1_proposed_absorbed_reelected": 7107
+   },
+   "tolerance": 1e-06
+  }
+ ],
+ "dictionary_key_map": null,
+ "build": {
+  "ok": true,
+  "errors": []
+ },
+ "verify": {
+  "passed": true,
+  "ran": "2026-09-26T21:40:11",
+  "commands": [
+   {
+    "cmd": "python3 r28/build.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r28/analyze.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r28/robust.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r29/depth.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r29/depth2.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r30/mechanisms.py",
+    "returncode": 0,
+    "stderr_tail": "<package>/r30/mechanisms.py:146: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)\n  print(f\"year3 - year2 deepening: {float(h.effect)*100:+.2f}pp, p={float(h.pvalue):.3f}\")\n"
+   },
+   {
+    "cmd": "python3 r30/mechanisms2.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 v2/seniority_check.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 v2/recode_tables_v2.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 v2/tables_v2.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 v2/key_values.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "Rscript figures/2026-08-24_r30/fig_1.R",
+    "returncode": 0,
+    "stderr_tail": "\nAttaching package: ‘arrow’\n\nThe following object is masked from ‘package:utils’:\n\n    timestamp\n\nWarning message:\npackage ‘arrow’ was built under R version 4.4.3 \n\nAttaching package: ‘dplyr’\n\nThe following objects are masked from ‘package:stats’:\n\n    filter, lag\n\nThe following objects are masked from ‘package:base’:\n\n    intersect, setdiff, setequal, union\n\nWarning message:\npackage ‘ggplot2’ was built under R version 4.4.3 \n"
+   },
+   {
+    "cmd": "Rscript figures/2026-08-24_r30/fig_2.R",
+    "returncode": 0,
+    "stderr_tail": "\nAttaching package: ‘arrow’\n\nThe following object is masked from ‘package:utils’:\n\n    timestamp\n\nWarning message:\npackage ‘arrow’ was built under R version 4.4.3 \n\nAttaching package: ‘dplyr’\n\nThe following objects are masked from ‘package:stats’:\n\n    filter, lag\n\nThe following objects are masked from ‘package:base’:\n\n    intersect, setdiff, setequal, union\n\nWarning message:\npackage ‘ggplot2’ was built under R version 4.4.3 \n"
+   },
+   {
+    "cmd": "Rscript figures/2026-08-24_r30/fig_3.R",
+    "returncode": 0,
+    "stderr_tail": "\nAttaching package: ‘arrow’\n\nThe following object is masked from ‘package:utils’:\n\n    timestamp\n\nWarning message:\npackage ‘arrow’ was built under R version 4.4.3 \n\nAttaching package: ‘dplyr’\n\nThe following objects are masked from ‘package:stats’:\n\n    filter, lag\n\nThe following objects are masked from ‘package:base’:\n\n    intersect, setdiff, setequal, union\n\nWarning message:\npackage ‘ggplot2’ was built under R version 4.4.3 \n"
+   }
+  ],
+  "outputs": [
+   {
+    "path": "r28/bills_panel.csv",
+    "ok": true,
+    "sha256": "dff8ef73aa8652717db504c28c67decaece84dc20bf32ea326612daf30426532"
+   },
+   {
+    "path": "v2/key_values.json",
+    "ok": true,
+    "differs": {}
+   }
+  ]
+ },
+ "additions": {
+  "by": "orchestrating Claude session, Paper E Version 2, at the researcher's request",
+  "builder": "workspace/redesign_2026-09/v2_work/paper_e/build_arc5.py (not shipped)",
+  "replaces": "an earlier build of 2026-09-26 09:46 whose manifest was edited by hand to move r28/build.py first, because replicate.py then ordered commands by file name",
+  "why": [
+   "the v2/ scripts produce the Version 2 numbers of Paper E",
+   "declared outputs: the rebuilt panel by sha256 and 593 values of v2/key_values.json",
+   "data_inputs hashes the KNA files of commit 3d8d55d (KBL_DATA pointed at that copy)"
+  ]
+ }
+}

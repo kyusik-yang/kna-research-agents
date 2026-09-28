@@ -22,3 +22,9 @@ __pycache__/
 
 # Knowledge base (large, auto-generated)
 knowledge/literature_log.jsonl
+
+# v2.1 forum run state (private): staged agent side effects, private lint patterns.
+# logs/ (prompts, transcripts, sidecars) and workspace/ (failed_drafts, step 2
+# settings files) are already covered above.
+knowledge/staging/
+knowledge/private/

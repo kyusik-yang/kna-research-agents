@@ -1,0 +1,1083 @@
+{
+ "arc": 4,
+ "rounds": [
+  25,
+  26,
+  27
+ ],
+ "built": "2026-09-26T21:40:11",
+ "publishes": "scripts and cards only (D-17 default); derived data available on request",
+ "files": [
+  {
+   "path": "r25/analyze.py",
+   "sha256": "88c31fb7181c923d68aa62c0bee48a71848bd0839c60f2f54a111ffc8b59d589",
+   "source_sha256": "c2a6eab810a7447f32293c9a817a7a7c3e950170b785d4277ff1a47e5cd8be0f",
+   "round": 25,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r25/build.py",
+   "sha256": "7c5c250dfa39ebcd53cf3e2c941abec72fd79aa8cc740d3d6ec950a5b7d48bf8",
+   "source_sha256": "28f6dd35417d733f4c56fb5874b9c402241566c4d647dc17cfc262741d1b1898",
+   "round": 25,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r25/recode.py",
+   "sha256": "54ce0ad89b3464ff4cc0f50d1c67ad45b1adaf7791ab72e10505823b89ce42c0",
+   "source_sha256": "2fabfb36864a9580a55494fccd13c80983f930724346fb267aec499a73f24df5",
+   "round": 25,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r25/robust.py",
+   "sha256": "fdb7720ed20c5725ad6dc493b1363bf546b33c3aaab23eef9d721f456dee410f",
+   "source_sha256": "85cde3ea19ad58e2e82632dcc2a9bc5872758a3b5b04c186b8b93a096ba3ef48",
+   "round": 25,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r26/build_cohort3.py",
+   "sha256": "078f24f47e06e83a07d1e5226263dca0b3bd94b244a9a28a1e41fc92040a3fdd",
+   "source_sha256": "9fe69263ac3d95633e1f6369d39643acce206a66614c19e3ac959e644fe9c9f0",
+   "round": 26,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r26/dose_baseline.py",
+   "sha256": "c30f46b97031644ca0f091fbccafe7207a0e6cea04bce0e5f6c77a876da26ac7",
+   "source_sha256": "4898d8b018071ffec6147054e726af6909849f3cbf95789af21b40aac3b1aea9",
+   "round": 26,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "r27/consolidate.py",
+   "sha256": "1a26cea0ebaa222c2428228647aa2a3f5233252d8eb1735efcfe2a9c4b34b7ad",
+   "source_sha256": "f1f9e4d429cfb88f83771f13fb77ed7cea6343563912ac04a7cca70a432c79e1",
+   "round": 27,
+   "kind": "script",
+   "producing_role": "data_analyst",
+   "run_id": null
+  },
+  {
+   "path": "figures/2026-08-24_r27/fig_1.R",
+   "sha256": "8196409cd578f3322b0daa71e928d5990fe96c1360badbc4183a95fae1fdf1b8",
+   "source_sha256": "8196409cd578f3322b0daa71e928d5990fe96c1360badbc4183a95fae1fdf1b8",
+   "round": 27,
+   "kind": "figure_script",
+   "producing_role": "drafter",
+   "run_id": null
+  },
+  {
+   "path": "figures/2026-08-24_r27/fig_2.R",
+   "sha256": "cec619bbe768498d242208e4040b679ba4e3038276c99f74d58eddd0b62dd88d",
+   "source_sha256": "cec619bbe768498d242208e4040b679ba4e3038276c99f74d58eddd0b62dd88d",
+   "round": 27,
+   "kind": "figure_script",
+   "producing_role": "drafter",
+   "run_id": null
+  },
+  {
+   "path": "figures/2026-08-24_r27/fig_3.R",
+   "sha256": "acf3ba33199e2fe4e4d17bdd63fc0df4f41842ab12c76af1a63ff6d42688fc17",
+   "source_sha256": "acf3ba33199e2fe4e4d17bdd63fc0df4f41842ab12c76af1a63ff6d42688fc17",
+   "round": 27,
+   "kind": "figure_script",
+   "producing_role": "drafter",
+   "run_id": null
+  },
+  {
+   "path": "v2/prep_dyads21_meta.py",
+   "sha256": "4be98c13e59307e101ad5fe940b9ed291d5e1ff3354b15695dc015dadfa24d7e",
+   "source_sha256": "4be98c13e59307e101ad5fe940b9ed291d5e1ff3354b15695dc015dadfa24d7e",
+   "round": null,
+   "kind": "prep_script",
+   "producing_role": "orchestrating Claude session, Paper D Version 2 (2026-09-26)",
+   "run_id": null
+  },
+  {
+   "path": "v2/rerun.py",
+   "sha256": "9ef960721ace4a9b5cbbb78f4eb02d822d39f6f2efa13a510c611271e3351f46",
+   "source_sha256": "9ef960721ace4a9b5cbbb78f4eb02d822d39f6f2efa13a510c611271e3351f46",
+   "round": null,
+   "kind": "correction_script",
+   "producing_role": "orchestrating Claude session, Paper D Version 2 (2026-09-26)",
+   "run_id": null
+  }
+ ],
+ "path_rewrites": [
+  {
+   "path": "r25/analyze.py",
+   "line": 2,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/analyze.py",
+   "line": 2,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/analyze.py",
+   "line": 30,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/build.py",
+   "line": 2,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/build.py",
+   "line": 74,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/build.py",
+   "line": 75,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/recode.py",
+   "line": 2,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/recode.py",
+   "line": 10,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/recode.py",
+   "line": 25,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/robust.py",
+   "line": 2,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r25/robust.py",
+   "line": 2,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r26/build_cohort3.py",
+   "line": 6,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r26/build_cohort3.py",
+   "line": 88,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r26/dose_baseline.py",
+   "line": 5,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r26/dose_baseline.py",
+   "line": 6,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r27/consolidate.py",
+   "line": 14,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r27/consolidate.py",
+   "line": 22,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r27/consolidate.py",
+   "line": 30,
+   "kind": "repo_relative_workspace"
+  },
+  {
+   "path": "r27/consolidate.py",
+   "line": 50,
+   "kind": "repo_relative_workspace"
+  }
+ ],
+ "data_inputs": [
+  {
+   "source": "kr-hearings release (repository data/)",
+   "name": "data/dyads_16_22_v9.parquet",
+   "bytes": 1034539481,
+   "sha256": "e27382a5a9bae399193c245a9d761093f694041de27533a46d66816201fa8866"
+  },
+  {
+   "source": "intermediate produced inside the package",
+   "name": "dyads21_meta.parquet",
+   "produced_by": "v2/prep_dyads21_meta.py"
+  }
+ ],
+ "versions": {
+  "python": "3.12.9",
+  "kna": "0.7.0",
+  "pandas": "2.2.3",
+  "pyarrow": "22.0.0",
+  "statsmodels": "0.14.6"
+ },
+ "versions_note": "versions in MANIFEST.json records the software installed when the package was built. Its kna entry is the version of the kna software package, not of the data. The data inputs are pinned by data_inputs, which lists each input file (with its sha256 when the package was built with --hash-inputs).",
+ "provenance": {
+  "25": {
+   "source": "reconstructed from session transcripts read on 2026-09-24",
+   "model": "claude-fable-5",
+   "cli_version": "2.1.241"
+  },
+  "26": {
+   "source": "reconstructed from session transcripts read on 2026-09-24",
+   "model": "claude-fable-5",
+   "cli_version": "2.1.241"
+  },
+  "27": {
+   "source": "reconstructed from session transcripts read on 2026-09-24",
+   "model": "claude-fable-5",
+   "cli_version": "2.1.241"
+  }
+ },
+ "commands": [
+  {
+   "cmd": "python3 v2/prep_dyads21_meta.py",
+   "round": null
+  },
+  {
+   "cmd": "python3 r25/build.py",
+   "round": 25
+  },
+  {
+   "cmd": "python3 r25/analyze.py",
+   "round": 25
+  },
+  {
+   "cmd": "python3 r25/recode.py",
+   "round": 25
+  },
+  {
+   "cmd": "python3 r25/robust.py",
+   "round": 25
+  },
+  {
+   "cmd": "python3 r26/build_cohort3.py",
+   "round": 26
+  },
+  {
+   "cmd": "python3 r26/dose_baseline.py",
+   "round": 26
+  },
+  {
+   "cmd": "python3 r27/consolidate.py",
+   "round": 27
+  },
+  {
+   "cmd": "python3 v2/rerun.py",
+   "round": null
+  },
+  {
+   "cmd": "Rscript figures/2026-08-24_r27/fig_1.R",
+   "round": 27
+  },
+  {
+   "cmd": "Rscript figures/2026-08-24_r27/fig_2.R",
+   "round": 27
+  },
+  {
+   "cmd": "Rscript figures/2026-08-24_r27/fig_3.R",
+   "round": 27
+  }
+ ],
+ "order": {
+  "method": "writers before readers (string literals in the rewritten scripts) and dependencies declared by the package builder, then round, then build-before-analyze by file name, then path",
+  "edges": [
+   {
+    "before": "v2/prep_dyads21_meta.py",
+    "after": "r25/build.py",
+    "via": "dyads21_meta.parquet"
+   },
+   {
+    "before": "r25/build.py",
+    "after": "r25/analyze.py",
+    "via": "r25/panel.csv"
+   },
+   {
+    "before": "r25/build.py",
+    "after": "r25/recode.py",
+    "via": "r25/panel.csv"
+   },
+   {
+    "before": "v2/prep_dyads21_meta.py",
+    "after": "r25/recode.py",
+    "via": "dyads21_meta.parquet"
+   },
+   {
+    "before": "r25/analyze.py",
+    "after": "r25/robust.py",
+    "via": "r25/analysis_sample.csv"
+   },
+   {
+    "before": "r25/build.py",
+    "after": "r25/robust.py",
+    "via": "r25/panel.csv"
+   },
+   {
+    "before": "v2/prep_dyads21_meta.py",
+    "after": "r26/build_cohort3.py",
+    "via": "dyads21_meta.parquet"
+   },
+   {
+    "before": "r25/build.py",
+    "after": "r26/dose_baseline.py",
+    "via": "r25/roster.csv"
+   },
+   {
+    "before": "r25/recode.py",
+    "after": "r26/dose_baseline.py",
+    "via": "r25/analysis_sample_corrected.csv"
+   },
+   {
+    "before": "r25/build.py",
+    "after": "r27/consolidate.py",
+    "via": "knowledge/hand_coding/round_25.jsonl"
+   },
+   {
+    "before": "r25/recode.py",
+    "after": "r27/consolidate.py",
+    "via": "r25/analysis_sample_corrected.csv"
+   },
+   {
+    "before": "r26/build_cohort3.py",
+    "after": "r27/consolidate.py",
+    "via": "knowledge/hand_coding/round_26.jsonl"
+   },
+   {
+    "before": "r25/analyze.py",
+    "after": "v2/rerun.py",
+    "via": "r25/analysis_sample.csv"
+   },
+   {
+    "before": "r25/build.py",
+    "after": "v2/rerun.py",
+    "via": "r25/panel.csv"
+   },
+   {
+    "before": "r25/recode.py",
+    "after": "v2/rerun.py",
+    "via": "r25/analysis_sample_corrected.csv"
+   },
+   {
+    "before": "r26/build_cohort3.py",
+    "after": "v2/rerun.py",
+    "via": "knowledge/hand_coding/round_26.jsonl"
+   },
+   {
+    "before": "v2/prep_dyads21_meta.py",
+    "after": "v2/rerun.py",
+    "via": "dyads21_meta.parquet"
+   }
+  ],
+  "cycle_broken": []
+ },
+ "workdirs": [
+  "knowledge/hand_coding",
+  "r25",
+  "r26"
+ ],
+ "outputs": [
+  {
+   "path": "r25/roster.csv",
+   "sha256": "4e067090f754b49ffea25b2fd49a4107ac06601b6161def52dd8c377908c8a0c"
+  },
+  {
+   "path": "r25/panel.csv",
+   "sha256": "f41c0a4755ed875ac7ed954095aeeb9872eac402110ff6a0d3cf904210868697"
+  },
+  {
+   "path": "r25/analysis_sample.csv",
+   "sha256": "f11a374f5ad0e4e488a7d98aeab38f64dca0312791ee79eb2aedb67fc4541c13"
+  },
+  {
+   "path": "r25/analysis_sample_corrected.csv",
+   "sha256": "05bb0da2afbdd6e70a8261af067b3bf1c57d8c94c20e4596a07f8bdcf337363f"
+  },
+  {
+   "path": "r26/cohort3_panel.csv",
+   "sha256": "a8fd2abfb26945cd793d10ae2e1238f315d99f1324d094ffc800c246a9af4ad7"
+  },
+  {
+   "path": "knowledge/hand_coding/round_25.jsonl",
+   "sha256": "a746c03b9afbe4fc9768f024bc44609cb398172ac35a4c20c538eb55ea7d5623"
+  },
+  {
+   "path": "knowledge/hand_coding/round_26.jsonl",
+   "sha256": "4f935380edf6f739670abfd8c5ff8db369d46b8ae14e0c43a6bb3a9bc183ed00"
+  },
+  {
+   "path": "v2/key_values.json",
+   "values": {
+    "audit_gaps/1/max_days": 302,
+    "audit_gaps/1/max_months": 9.9,
+    "audit_gaps/1/min_days": 150,
+    "audit_gaps/1/min_months": 4.9,
+    "audit_gaps/1/nominees": 12,
+    "audit_gaps/2/max_days": 141,
+    "audit_gaps/2/max_months": 4.6,
+    "audit_gaps/2/min_days": 5,
+    "audit_gaps/2/min_months": 0.2,
+    "audit_gaps/2/nominees": 5,
+    "audit_gaps/3/max_days": 167,
+    "audit_gaps/3/max_months": 5.5,
+    "audit_gaps/3/min_days": 145,
+    "audit_gaps/3/min_months": 4.8,
+    "audit_gaps/3/nominees": 16,
+    "cluster_check_uid_equals_name": 1,
+    "cohort3/main/b": 0.09416938961867571,
+    "cohort3/main/clusters": 87,
+    "cohort3/main/hi90": 3.366282298447044,
+    "cohort3/main/hi95": 3.9931324034512756,
+    "cohort3/main/lo90": -3.1779435192096925,
+    "cohort3/main/lo95": -3.804793624213924,
+    "cohort3/main/n": 125,
+    "cohort3/main/p": 0.9622439444074377,
+    "cohort3/main/se": 1.9893033977088983,
+    "cohort3/placebo/b": 0.14375063052407605,
+    "cohort3/placebo/clusters": 87,
+    "cohort3/placebo/hi90": 2.602559621497514,
+    "cohort3/placebo/hi95": 3.073602252703336,
+    "cohort3/placebo/lo90": -2.315058360449362,
+    "cohort3/placebo/lo95": -2.786100991655184,
+    "cohort3/placebo/n": 125,
+    "cohort3/placebo/p": 0.923390374371901,
+    "cohort3/placebo/se": 1.4948497244283856,
+    "corpus/dyads": 7429413,
+    "corpus/speech_acts": 9906444,
+    "miraehanguk/cohort1/b": -1.0664092631914688,
+    "miraehanguk/cohort1/clusters": 150,
+    "miraehanguk/cohort1/hi90": 1.0371035801411448,
+    "miraehanguk/cohort1/hi95": 1.4400808866892065,
+    "miraehanguk/cohort1/lo90": -3.1699221065240826,
+    "miraehanguk/cohort1/lo95": -3.572899413072144,
+    "miraehanguk/cohort1/n": 194,
+    "miraehanguk/cohort1/p": 0.4043459682843896,
+    "miraehanguk/cohort1/se": 1.2788450041182133,
+    "miraehanguk/cohort2/b": 1.0871768853884438,
+    "miraehanguk/cohort2/clusters": 84,
+    "miraehanguk/cohort2/hi90": 4.843716465980809,
+    "miraehanguk/cohort2/hi95": 5.563369881421796,
+    "miraehanguk/cohort2/lo90": -2.669362695203921,
+    "miraehanguk/cohort2/lo95": -3.389016110644908,
+    "miraehanguk/cohort2/n": 84,
+    "miraehanguk/cohort2/p": 0.634048964570268,
+    "miraehanguk/cohort2/se": 2.2838139023681006,
+    "miraehanguk/descriptives/clusters_by_name": 191,
+    "miraehanguk/descriptives/clusters_pooled": 191,
+    "miraehanguk/descriptives/cohort1_opposed": 80,
+    "miraehanguk/descriptives/cohort1_supportive": 114,
+    "miraehanguk/descriptives/cohort2_opposed": 52,
+    "miraehanguk/descriptives/cohort2_supportive": 32,
+    "miraehanguk/descriptives/cohort3_opposed": 75,
+    "miraehanguk/descriptives/cohort3_supportive": 50,
+    "miraehanguk/descriptives/dose_median_c1_opp": 31.0,
+    "miraehanguk/descriptives/dose_q25_c1_opp": 17.0,
+    "miraehanguk/descriptives/dose_q75_c1_opp": 51.0,
+    "miraehanguk/descriptives/pairs_cohort1": 194,
+    "miraehanguk/descriptives/pairs_cohort2": 84,
+    "miraehanguk/descriptives/pairs_cohort3": 125,
+    "miraehanguk/descriptives/pairs_pooled": 278,
+    "miraehanguk/descriptives/roster_rows_c1c2": 400,
+    "miraehanguk/descriptives/roster_rows_c1c2_withdrawn": 35,
+    "miraehanguk/descriptives/roster_rows_c3": 325,
+    "miraehanguk/descriptives/roster_rows_c3_withdrawn": 23,
+    "miraehanguk/descriptives/speech_coded_opposed_pairs": 42,
+    "miraehanguk/descriptives/speech_vs_party_agree_pairs": 170,
+    "miraehanguk/dose/cohort1_raw/b": 0.10956160185650463,
+    "miraehanguk/dose/cohort1_raw/clusters": 60,
+    "miraehanguk/dose/cohort1_raw/hi90": 0.2009205543591886,
+    "miraehanguk/dose/cohort1_raw/hi95": 0.21842250816245448,
+    "miraehanguk/dose/cohort1_raw/lo90": 0.018202649353820658,
+    "miraehanguk/dose/cohort1_raw/lo95": 0.0007006955505547453,
+    "miraehanguk/dose/cohort1_raw/n": 80,
+    "miraehanguk/dose/cohort1_raw/p": 0.04854348883634679,
+    "miraehanguk/dose/cohort1_raw/se": 0.05554229933030955,
+    "miraehanguk/dose/cohort1_z/b": 1.781104846252029,
+    "miraehanguk/dose/cohort1_z/clusters": 60,
+    "miraehanguk/dose/cohort1_z/hi90": 3.3742927870232657,
+    "miraehanguk/dose/cohort1_z/hi95": 3.679505368554116,
+    "miraehanguk/dose/cohort1_z/lo90": 0.18791690548079187,
+    "miraehanguk/dose/cohort1_z/lo95": -0.11729567605005854,
+    "miraehanguk/dose/cohort1_z/n": 80,
+    "miraehanguk/dose/cohort1_z/p": 0.06593511655941517,
+    "miraehanguk/dose/cohort1_z/se": 0.9685894931113166,
+    "miraehanguk/dose/excl_gender_family_z/b": 1.1126377119917752,
+    "miraehanguk/dose/excl_gender_family_z/clusters": 109,
+    "miraehanguk/dose/excl_gender_family_z/hi90": 2.381295876058513,
+    "miraehanguk/dose/excl_gender_family_z/hi95": 2.6243371541311777,
+    "miraehanguk/dose/excl_gender_family_z/lo90": -0.15602045207496265,
+    "miraehanguk/dose/excl_gender_family_z/lo95": -0.3990617301476273,
+    "miraehanguk/dose/excl_gender_family_z/n": 125,
+    "miraehanguk/dose/excl_gender_family_z/p": 0.14914209082686086,
+    "miraehanguk/dose/excl_gender_family_z/se": 0.7712893982050155,
+    "miraehanguk/dose/mde_pooled_z": 2.0607374320383536,
+    "miraehanguk/dose/n_opposition": 132,
+    "miraehanguk/dose/placebo_z/b": 0.35913192639391317,
+    "miraehanguk/dose/placebo_z/clusters": 111,
+    "miraehanguk/dose/placebo_z/hi90": 1.4517968486528336,
+    "miraehanguk/dose/placebo_z/hi95": 1.661122486348416,
+    "miraehanguk/dose/placebo_z/lo90": -0.7335329958650072,
+    "miraehanguk/dose/placebo_z/lo95": -0.9428586335605896,
+    "miraehanguk/dose/placebo_z/n": 132,
+    "miraehanguk/dose/placebo_z/p": 0.5887676738548009,
+    "miraehanguk/dose/placebo_z/se": 0.6642931044776529,
+    "miraehanguk/dose/pooled_logdose/b": 1.4270502496925943,
+    "miraehanguk/dose/pooled_logdose/clusters": 111,
+    "miraehanguk/dose/pooled_logdose/hi90": 2.5233253046146884,
+    "miraehanguk/dose/pooled_logdose/hi95": 2.733342548040893,
+    "miraehanguk/dose/pooled_logdose/lo90": 0.33077519477050044,
+    "miraehanguk/dose/pooled_logdose/lo95": 0.12075795134429551,
+    "miraehanguk/dose/pooled_logdose/n": 132,
+    "miraehanguk/dose/pooled_logdose/p": 0.03226198445442658,
+    "miraehanguk/dose/pooled_logdose/se": 0.666487909294337,
+    "miraehanguk/dose/pooled_raw/b": 0.07837504457554698,
+    "miraehanguk/dose/pooled_raw/clusters": 111,
+    "miraehanguk/dose/pooled_raw/hi90": 0.16468847451254634,
+    "miraehanguk/dose/pooled_raw/hi95": 0.18122383992530558,
+    "miraehanguk/dose/pooled_raw/lo90": -0.007938385361452416,
+    "miraehanguk/dose/pooled_raw/lo95": -0.024473750774211635,
+    "miraehanguk/dose/pooled_raw/n": 132,
+    "miraehanguk/dose/pooled_raw/p": 0.13528705529642238,
+    "miraehanguk/dose/pooled_raw/se": 0.05247483941593661,
+    "miraehanguk/dose/pooled_z/b": 1.2949817825040855,
+    "miraehanguk/dose/pooled_z/clusters": 111,
+    "miraehanguk/dose/pooled_z/hi90": 2.50555729653371,
+    "miraehanguk/dose/pooled_z/hi95": 2.7374714783572034,
+    "miraehanguk/dose/pooled_z/lo90": 0.08440626847446078,
+    "miraehanguk/dose/pooled_z/lo95": -0.14750791334903288,
+    "miraehanguk/dose/pooled_z/n": 132,
+    "miraehanguk/dose/pooled_z/p": 0.07848591064530588,
+    "miraehanguk/dose/pooled_z/se": 0.7359776542994121,
+    "miraehanguk/dose/top_tercile_cohort1/b": 1.862057603066085,
+    "miraehanguk/dose/top_tercile_cohort1/clusters": 60,
+    "miraehanguk/dose/top_tercile_cohort1/hi90": 5.231885755428194,
+    "miraehanguk/dose/top_tercile_cohort1/hi95": 5.8774555111218545,
+    "miraehanguk/dose/top_tercile_cohort1/lo90": -1.5077705492960238,
+    "miraehanguk/dose/top_tercile_cohort1/lo95": -2.153340304989685,
+    "miraehanguk/dose/top_tercile_cohort1/n": 80,
+    "miraehanguk/dose/top_tercile_cohort1/p": 0.36340676844510267,
+    "miraehanguk/dose/top_tercile_cohort1/se": 2.0487100475971585,
+    "miraehanguk/dose/top_tercile_pooled/b": -0.39013897854040835,
+    "miraehanguk/dose/top_tercile_pooled/clusters": 111,
+    "miraehanguk/dose/top_tercile_pooled/hi90": 2.4649924623959745,
+    "miraehanguk/dose/top_tercile_pooled/hi95": 3.011959970370111,
+    "miraehanguk/dose/top_tercile_pooled/lo90": -3.2452704194767907,
+    "miraehanguk/dose/top_tercile_pooled/lo95": -3.792237927450928,
+    "miraehanguk/dose/top_tercile_pooled/n": 132,
+    "miraehanguk/dose/top_tercile_pooled/p": 0.8221653936577662,
+    "miraehanguk/dose/top_tercile_pooled/se": 1.7357966655233679,
+    "miraehanguk/homonym/rows_with_different_dose": 1,
+    "miraehanguk/homonym/those_rows_opposed/0": 0,
+    "miraehanguk/levels/cohort1/b": 0.6888174959459434,
+    "miraehanguk/levels/cohort1/clusters": 150,
+    "miraehanguk/levels/cohort1/hi90": 2.095720649461982,
+    "miraehanguk/levels/cohort1/hi95": 2.36524600328851,
+    "miraehanguk/levels/cohort1/lo90": -0.7180856575700951,
+    "miraehanguk/levels/cohort1/lo95": -0.9876110113966228,
+    "miraehanguk/levels/cohort1/n": 194,
+    "miraehanguk/levels/cohort1/p": 0.4206363929547796,
+    "miraehanguk/levels/cohort1/se": 0.8553363840182883,
+    "miraehanguk/levels/gf_cohort1_mean_share_before": 0.9629518872939925,
+    "miraehanguk/levels/gf_cohort1_opposed": 7,
+    "miraehanguk/levels/gf_cohort1_pairs": 11,
+    "miraehanguk/levels/pooled/b": 1.4715872969247892,
+    "miraehanguk/levels/pooled/clusters": 191,
+    "miraehanguk/levels/pooled/hi90": 2.811947881683414,
+    "miraehanguk/levels/pooled/hi95": 3.068725443066626,
+    "miraehanguk/levels/pooled/lo90": 0.1312267121661645,
+    "miraehanguk/levels/pooled/lo95": -0.12555084921704804,
+    "miraehanguk/levels/pooled/n": 278,
+    "miraehanguk/levels/pooled/p": 0.07093529889257637,
+    "miraehanguk/levels/pooled/se": 0.8148813747292599,
+    "miraehanguk/levels/pooled_placebo/b": 2.6380206809979585,
+    "miraehanguk/levels/pooled_placebo/clusters": 191,
+    "miraehanguk/levels/pooled_placebo/hi90": 4.343868973846221,
+    "miraehanguk/levels/pooled_placebo/hi95": 4.67066429273884,
+    "miraehanguk/levels/pooled_placebo/lo90": 0.9321723881496959,
+    "miraehanguk/levels/pooled_placebo/lo95": 0.6053770692570765,
+    "miraehanguk/levels/pooled_placebo/n": 278,
+    "miraehanguk/levels/pooled_placebo/p": 0.010968679341174584,
+    "miraehanguk/levels/pooled_placebo/se": 1.0370821238421295,
+    "miraehanguk/levels/raw_gap_cohort1": 4.605498929454247,
+    "miraehanguk/levels/raw_gap_cohort1_excl_gf": 0.6124430631258171,
+    "miraehanguk/main_minus_placebo_abs": 0.3654822189729986,
+    "miraehanguk/mde": 3.199329420424669,
+    "miraehanguk/own_speech/b": -1.5552106654847997,
+    "miraehanguk/own_speech/clusters": 191,
+    "miraehanguk/own_speech/hi90": 1.1785223592402079,
+    "miraehanguk/own_speech/hi95": 1.702233148369426,
+    "miraehanguk/own_speech/lo90": -4.288943690209807,
+    "miraehanguk/own_speech/lo95": -4.812654479339026,
+    "miraehanguk/own_speech/n": 278,
+    "miraehanguk/own_speech/p": 0.349401312754985,
+    "miraehanguk/own_speech/se": 1.6619916690043937,
+    "miraehanguk/placebo/b": -1.0902570348907479,
+    "miraehanguk/placebo/clusters": 191,
+    "miraehanguk/placebo/hi90": 0.42766935817629187,
+    "miraehanguk/placebo/hi95": 0.7184638219967574,
+    "miraehanguk/placebo/lo90": -2.6081834279577873,
+    "miraehanguk/placebo/lo95": -2.898977891778253,
+    "miraehanguk/placebo/n": 278,
+    "miraehanguk/placebo/p": 0.23743470331095884,
+    "miraehanguk/placebo/se": 0.9228337210042964,
+    "miraehanguk/pooled/b": -0.7247748159177493,
+    "miraehanguk/pooled/clusters": 191,
+    "miraehanguk/pooled/hi90": 1.154663970152989,
+    "miraehanguk/pooled/hi95": 1.5147146264793065,
+    "miraehanguk/pooled/lo90": -2.6042136019884876,
+    "miraehanguk/pooled/lo95": -2.964264258314805,
+    "miraehanguk/pooled/n": 278,
+    "miraehanguk/pooled/p": 0.5258779524559667,
+    "miraehanguk/pooled/se": 1.1426176501516676,
+    "miraehanguk/retention/cohort2_disagree_with_snapshot": 94,
+    "miraehanguk/retention/cohort2_units": 97,
+    "miraehanguk/retention/opposed_rate": 0.8571428571428571,
+    "miraehanguk/retention/opposed_units": 154,
+    "miraehanguk/retention/supportive_rate": 0.8342857142857143,
+    "miraehanguk/retention/supportive_units": 175,
+    "miraehanguk/secondary/log_count/b": 0.09522898679212732,
+    "miraehanguk/secondary/log_count/clusters": 191,
+    "miraehanguk/secondary/log_count/hi90": 0.22054316599813947,
+    "miraehanguk/secondary/log_count/hi95": 0.24455004124436536,
+    "miraehanguk/secondary/log_count/lo90": -0.030085192413884826,
+    "miraehanguk/secondary/log_count/lo95": -0.05409206766011071,
+    "miraehanguk/secondary/log_count/n": 278,
+    "miraehanguk/secondary/log_count/p": 0.2113140637867741,
+    "miraehanguk/secondary/log_count/se": 0.07618561138371086,
+    "miraehanguk/secondary/named_share/b": 3.0328399808110142,
+    "miraehanguk/secondary/named_share/clusters": 191,
+    "miraehanguk/secondary/named_share/hi90": 6.217543580384523,
+    "miraehanguk/secondary/named_share/hi95": 6.827648378545302,
+    "miraehanguk/secondary/named_share/lo90": -0.15186361876249366,
+    "miraehanguk/secondary/named_share/lo95": -0.761968416923273,
+    "miraehanguk/secondary/named_share/n": 278,
+    "miraehanguk/secondary/named_share/p": 0.11725073298157263,
+    "miraehanguk/secondary/named_share/se": 1.936162310974718,
+    "miraehanguk/tost/placebo_2.5": 0,
+    "miraehanguk/tost/placebo_5.0": 1,
+    "miraehanguk/tost/pooled_2.5": 0,
+    "miraehanguk/tost/pooled_5.0": 1,
+    "original/cohort1/b": -1.0664092631914688,
+    "original/cohort1/clusters": 150,
+    "original/cohort1/hi90": 1.0371035801411448,
+    "original/cohort1/hi95": 1.4400808866892065,
+    "original/cohort1/lo90": -3.1699221065240826,
+    "original/cohort1/lo95": -3.572899413072144,
+    "original/cohort1/n": 194,
+    "original/cohort1/p": 0.4043459682843896,
+    "original/cohort1/se": 1.2788450041182133,
+    "original/cohort2/b": 1.269326646452703,
+    "original/cohort2/clusters": 84,
+    "original/cohort2/hi90": 5.2665754161804,
+    "original/cohort2/hi95": 6.032342332190961,
+    "original/cohort2/lo90": -2.7279221232749937,
+    "original/cohort2/lo95": -3.493689039285555,
+    "original/cohort2/n": 84,
+    "original/cohort2/p": 0.6014451845838189,
+    "original/cohort2/se": 2.430154698406868,
+    "original/descriptives/clusters_by_name": 191,
+    "original/descriptives/clusters_pooled": 191,
+    "original/descriptives/cohort1_opposed": 80,
+    "original/descriptives/cohort1_supportive": 114,
+    "original/descriptives/cohort2_opposed": 58,
+    "original/descriptives/cohort2_supportive": 26,
+    "original/descriptives/cohort3_opposed": 75,
+    "original/descriptives/cohort3_supportive": 50,
+    "original/descriptives/dose_median_c1_opp": 31.0,
+    "original/descriptives/dose_q25_c1_opp": 17.0,
+    "original/descriptives/dose_q75_c1_opp": 51.0,
+    "original/descriptives/pairs_cohort1": 194,
+    "original/descriptives/pairs_cohort2": 84,
+    "original/descriptives/pairs_cohort3": 125,
+    "original/descriptives/pairs_pooled": 278,
+    "original/descriptives/roster_rows_c1c2": 400,
+    "original/descriptives/roster_rows_c1c2_withdrawn": 35,
+    "original/descriptives/roster_rows_c3": 325,
+    "original/descriptives/roster_rows_c3_withdrawn": 23,
+    "original/descriptives/speech_coded_opposed_pairs": 42,
+    "original/descriptives/speech_vs_party_agree_pairs": 166,
+    "original/dose/cohort1_raw/b": 0.10956160185650463,
+    "original/dose/cohort1_raw/clusters": 60,
+    "original/dose/cohort1_raw/hi90": 0.2009205543591886,
+    "original/dose/cohort1_raw/hi95": 0.21842250816245448,
+    "original/dose/cohort1_raw/lo90": 0.018202649353820658,
+    "original/dose/cohort1_raw/lo95": 0.0007006955505547453,
+    "original/dose/cohort1_raw/n": 80,
+    "original/dose/cohort1_raw/p": 0.04854348883634679,
+    "original/dose/cohort1_raw/se": 0.05554229933030955,
+    "original/dose/cohort1_z/b": 1.781104846252029,
+    "original/dose/cohort1_z/clusters": 60,
+    "original/dose/cohort1_z/hi90": 3.3742927870232657,
+    "original/dose/cohort1_z/hi95": 3.679505368554116,
+    "original/dose/cohort1_z/lo90": 0.18791690548079187,
+    "original/dose/cohort1_z/lo95": -0.11729567605005854,
+    "original/dose/cohort1_z/n": 80,
+    "original/dose/cohort1_z/p": 0.06593511655941517,
+    "original/dose/cohort1_z/se": 0.9685894931113166,
+    "original/dose/excl_gender_family_z/b": 1.0978958380620507,
+    "original/dose/excl_gender_family_z/clusters": 111,
+    "original/dose/excl_gender_family_z/hi90": 2.3429062300464847,
+    "original/dose/excl_gender_family_z/hi95": 2.581417221779423,
+    "original/dose/excl_gender_family_z/lo90": -0.1471145539223836,
+    "original/dose/excl_gender_family_z/lo95": -0.38562554565532164,
+    "original/dose/excl_gender_family_z/n": 131,
+    "original/dose/excl_gender_family_z/p": 0.14692129287619649,
+    "original/dose/excl_gender_family_z/se": 0.7569125736080866,
+    "original/dose/mde_pooled_z": 2.025974746723423,
+    "original/dose/n_opposition": 138,
+    "original/dose/placebo_z/b": 0.2139777466144013,
+    "original/dose/placebo_z/clusters": 113,
+    "original/dose/placebo_z/hi90": 1.2678208847557686,
+    "original/dose/placebo_z/hi95": 1.4697092975973796,
+    "original/dose/placebo_z/lo90": -0.8398653915269662,
+    "original/dose/placebo_z/lo95": -1.041753804368577,
+    "original/dose/placebo_z/n": 138,
+    "original/dose/placebo_z/p": 0.7383949791213281,
+    "original/dose/placebo_z/se": 0.6406911355963827,
+    "original/dose/pooled_logdose/b": 1.3439861245591234,
+    "original/dose/pooled_logdose/clusters": 113,
+    "original/dose/pooled_logdose/hi90": 2.4142522792950283,
+    "original/dose/pooled_logdose/hi95": 2.6192869068192057,
+    "original/dose/pooled_logdose/lo90": 0.27371996982321867,
+    "original/dose/pooled_logdose/lo95": 0.06868534229904094,
+    "original/dose/pooled_logdose/n": 138,
+    "original/dose/pooled_logdose/p": 0.03887344510387577,
+    "original/dose/pooled_logdose/se": 0.650675620735632,
+    "original/dose/pooled_raw/b": 0.07732798114418839,
+    "original/dose/pooled_raw/clusters": 113,
+    "original/dose/pooled_raw/hi90": 0.16575812571598625,
+    "original/dose/pooled_raw/hi95": 0.18269899754862096,
+    "original/dose/pooled_raw/lo90": -0.011102163427609463,
+    "original/dose/pooled_raw/lo95": -0.028043035260244174,
+    "original/dose/pooled_raw/n": 138,
+    "original/dose/pooled_raw/p": 0.15033569599485036,
+    "original/dose/pooled_raw/se": 0.05376171053936996,
+    "original/dose/pooled_z/b": 1.273174102175542,
+    "original/dose/pooled_z/clusters": 113,
+    "original/dose/pooled_z/hi90": 2.4633283558398675,
+    "original/dose/pooled_z/hi95": 2.691330365448959,
+    "original/dose/pooled_z/lo90": 0.08301984851121647,
+    "original/dose/pooled_z/lo95": -0.14498216109787454,
+    "original/dose/pooled_z/n": 138,
+    "original/dose/pooled_z/p": 0.078477132076524,
+    "original/dose/pooled_z/se": 0.7235624095440796,
+    "original/dose/top_tercile_cohort1/b": 1.862057603066085,
+    "original/dose/top_tercile_cohort1/clusters": 60,
+    "original/dose/top_tercile_cohort1/hi90": 5.231885755428194,
+    "original/dose/top_tercile_cohort1/hi95": 5.8774555111218545,
+    "original/dose/top_tercile_cohort1/lo90": -1.5077705492960238,
+    "original/dose/top_tercile_cohort1/lo95": -2.153340304989685,
+    "original/dose/top_tercile_cohort1/n": 80,
+    "original/dose/top_tercile_cohort1/p": 0.36340676844510267,
+    "original/dose/top_tercile_cohort1/se": 2.0487100475971585,
+    "original/dose/top_tercile_pooled/b": -0.5853253985252163,
+    "original/dose/top_tercile_pooled/clusters": 113,
+    "original/dose/top_tercile_pooled/hi90": 2.085807707555902,
+    "original/dose/top_tercile_pooled/hi95": 2.597526011502442,
+    "original/dose/top_tercile_pooled/lo90": -3.256458504606335,
+    "original/dose/top_tercile_pooled/lo95": -3.768176808552874,
+    "original/dose/top_tercile_pooled/n": 138,
+    "original/dose/top_tercile_pooled/p": 0.7185205289827435,
+    "original/dose/top_tercile_pooled/se": 1.6239336207877204,
+    "original/homonym/rows_with_different_dose": 1,
+    "original/homonym/those_rows_opposed/0": 0,
+    "original/levels/cohort1/b": 0.6888174959459434,
+    "original/levels/cohort1/clusters": 150,
+    "original/levels/cohort1/hi90": 2.095720649461982,
+    "original/levels/cohort1/hi95": 2.36524600328851,
+    "original/levels/cohort1/lo90": -0.7180856575700951,
+    "original/levels/cohort1/lo95": -0.9876110113966228,
+    "original/levels/cohort1/n": 194,
+    "original/levels/cohort1/p": 0.4206363929547796,
+    "original/levels/cohort1/se": 0.8553363840182883,
+    "original/levels/gf_cohort1_mean_share_before": 0.9629518872939925,
+    "original/levels/gf_cohort1_opposed": 7,
+    "original/levels/gf_cohort1_pairs": 11,
+    "original/levels/pooled/b": 1.5299082997818654,
+    "original/levels/pooled/clusters": 191,
+    "original/levels/pooled/hi90": 2.849679655076515,
+    "original/levels/pooled/hi95": 3.1025128658180896,
+    "original/levels/pooled/lo90": 0.2101369444872157,
+    "original/levels/pooled/lo95": -0.04269626625435889,
+    "original/levels/pooled/n": 278,
+    "original/levels/pooled/p": 0.05655285263116559,
+    "original/levels/pooled/se": 0.8023640120128371,
+    "original/levels/pooled_placebo/b": 2.225630790195451,
+    "original/levels/pooled_placebo/clusters": 191,
+    "original/levels/pooled_placebo/hi90": 3.946556877241153,
+    "original/levels/pooled_placebo/hi95": 4.2762407018605755,
+    "original/levels/pooled_placebo/lo90": 0.5047047031497491,
+    "original/levels/pooled_placebo/lo95": 0.1750208785303263,
+    "original/levels/pooled_placebo/n": 278,
+    "original/levels/pooled_placebo/p": 0.033399468310988396,
+    "original/levels/pooled_placebo/se": 1.0462487718346225,
+    "original/levels/raw_gap_cohort1": 4.605498929454247,
+    "original/levels/raw_gap_cohort1_excl_gf": 0.6124430631258171,
+    "original/main_minus_placebo_abs": 0.003174367240694198,
+    "original/mde": 3.084958400015911,
+    "original/own_speech/b": -1.5552106654847997,
+    "original/own_speech/clusters": 191,
+    "original/own_speech/hi90": 1.1785223592402079,
+    "original/own_speech/hi95": 1.702233148369426,
+    "original/own_speech/lo90": -4.288943690209807,
+    "original/own_speech/lo95": -4.812654479339026,
+    "original/own_speech/n": 278,
+    "original/own_speech/p": 0.349401312754985,
+    "original/own_speech/se": 1.6619916690043937,
+    "original/placebo/b": -0.8523161328592985,
+    "original/placebo/clusters": 191,
+    "original/placebo/hi90": 0.7007100356287034,
+    "original/placebo/hi95": 0.998228686089823,
+    "original/placebo/lo90": -2.4053423013473005,
+    "original/placebo/lo95": -2.7028609518084203,
+    "original/placebo/n": 278,
+    "original/placebo/p": 0.36667879200533604,
+    "original/placebo/se": 0.9441728692700392,
+    "original/pooled/b": -0.8554905000999927,
+    "original/pooled/clusters": 191,
+    "original/pooled/hi90": 0.9567612903502147,
+    "original/pooled/hi95": 1.3039406991269697,
+    "original/pooled/lo90": -2.6677422905502004,
+    "original/pooled/lo95": -3.014921699326955,
+    "original/pooled/n": 278,
+    "original/pooled/p": 0.4374723403427251,
+    "original/pooled/se": 1.1017708571485396,
+    "original/retention/cohort2_disagree_with_snapshot": 88,
+    "original/retention/cohort2_units": 97,
+    "original/retention/opposed_rate": 0.8625,
+    "original/retention/opposed_units": 160,
+    "original/retention/supportive_rate": 0.8284023668639053,
+    "original/retention/supportive_units": 169,
+    "original/secondary/log_count/b": 0.056482902974024564,
+    "original/secondary/log_count/clusters": 191,
+    "original/secondary/log_count/hi90": 0.18471558018545728,
+    "original/secondary/log_count/hi95": 0.20928156229386277,
+    "original/secondary/log_count/lo90": -0.07174977423740816,
+    "original/secondary/log_count/lo95": -0.09631575634581366,
+    "original/secondary/log_count/n": 278,
+    "original/secondary/log_count/p": 0.4687514896151539,
+    "original/secondary/log_count/se": 0.07795993218502716,
+    "original/secondary/named_share/b": 2.3039594461172985,
+    "original/secondary/named_share/clusters": 191,
+    "original/secondary/named_share/hi90": 5.440905281803782,
+    "original/secondary/named_share/hi95": 6.041860958237563,
+    "original/secondary/named_share/lo90": -0.8329863895691847,
+    "original/secondary/named_share/lo95": -1.4339420660029663,
+    "original/secondary/named_share/n": 278,
+    "original/secondary/named_share/p": 0.22701716303023123,
+    "original/secondary/named_share/se": 1.9071276521427716,
+    "original/tost/placebo_2.5": 1,
+    "original/tost/placebo_5.0": 1,
+    "original/tost/pooled_2.5": 0,
+    "original/tost/pooled_5.0": 1,
+    "pair_diff_original_vs_v2/0/cohort": 2,
+    "pair_diff_original_vs_v2/0/t1": 1,
+    "pair_diff_original_vs_v2/0/t2": 0,
+    "pair_diff_original_vs_v2/1/cohort": 2,
+    "pair_diff_original_vs_v2/1/t1": 1,
+    "pair_diff_original_vs_v2/1/t2": 0,
+    "pair_diff_original_vs_v2/2/cohort": 2,
+    "pair_diff_original_vs_v2/2/t1": 1,
+    "pair_diff_original_vs_v2/2/t2": 0,
+    "pair_diff_original_vs_v2/3/cohort": 2,
+    "pair_diff_original_vs_v2/3/t1": 1,
+    "pair_diff_original_vs_v2/3/t2": 0,
+    "pair_diff_original_vs_v2/4/cohort": 2,
+    "pair_diff_original_vs_v2/4/t1": 1,
+    "pair_diff_original_vs_v2/4/t2": 0,
+    "pair_diff_original_vs_v2/5/cohort": 2,
+    "pair_diff_original_vs_v2/5/t1": 1,
+    "pair_diff_original_vs_v2/5/t2": 0,
+    "snapshot_retention/opposed_rate": 0.8636363636363636,
+    "snapshot_retention/opposed_units": 132,
+    "snapshot_retention/supportive_rate": 0.8324873096446701,
+    "snapshot_retention/supportive_units": 197,
+    "snapshot_table3/log_count/b": -0.04102199395404926,
+    "snapshot_table3/log_count/clusters": 191,
+    "snapshot_table3/log_count/hi90": 0.08991227659636314,
+    "snapshot_table3/log_count/hi95": 0.114995812381981,
+    "snapshot_table3/log_count/lo90": -0.17195626450446166,
+    "snapshot_table3/log_count/lo95": -0.19703980029007953,
+    "snapshot_table3/log_count/n": 278,
+    "snapshot_table3/log_count/p": 0.6063180743000819,
+    "snapshot_table3/log_count/se": 0.07960238431250719,
+    "snapshot_table3/named_share/b": 0.24938512597749152,
+    "snapshot_table3/named_share/clusters": 191,
+    "snapshot_table3/named_share/hi90": 3.532529023483061,
+    "snapshot_table3/named_share/hi95": 4.161492373538205,
+    "snapshot_table3/named_share/lo90": -3.0337587715280776,
+    "snapshot_table3/named_share/lo95": -3.6627221215832213,
+    "snapshot_table3/named_share/n": 278,
+    "snapshot_table3/named_share/p": 0.9005695968950077,
+    "snapshot_table3/named_share/se": 1.9960097626379445
+   },
+   "tolerance": 1e-09
+  }
+ ],
+ "dictionary_key_map": {
+  "dictionary": "knowledge/hand_coding/round_25.v2.jsonl",
+  "skip_header": true,
+  "sample": "workspace/r25/analysis_sample_corrected.csv",
+  "sample_recode": [
+   {
+    "when": {
+     "cohort": "2",
+     "party": "미래한국당"
+    },
+    "set": {
+     "opposed": "0"
+    }
+   }
+  ],
+  "keys": [
+   "cohort",
+   "nominee",
+   "leg_member_uid"
+  ],
+  "coded_field": "opposed",
+  "note": "Paper D Version 2 (2026-09-26) coding. The stored sample holds the Version 1 coding, and the recode moves the six cohort-2 pairs labelled 미래한국당 to the ruling bloc. round_25.jsonl is left unchanged and holds the term-snapshot coding."
+ },
+ "build": {
+  "ok": true,
+  "errors": []
+ },
+ "verify": {
+  "passed": true,
+  "ran": "2026-09-26T21:40:13",
+  "commands": [
+   {
+    "cmd": "python3 v2/prep_dyads21_meta.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r25/build.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r25/analyze.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r25/recode.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r25/robust.py",
+    "returncode": 0,
+    "stderr_tail": "<package>/r25/robust.py:31: UserWarning: This pattern is interpreted as a regular expression, and has match groups. To actually get the groups, use str.extract.\n  hit=sp.leg_speech.fillna('').str.contains(pat)\n"
+   },
+   {
+    "cmd": "python3 r26/build_cohort3.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r26/dose_baseline.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 r27/consolidate.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "python3 v2/rerun.py",
+    "returncode": 0,
+    "stderr_tail": ""
+   },
+   {
+    "cmd": "Rscript figures/2026-08-24_r27/fig_1.R",
+    "returncode": 0,
+    "stderr_tail": "Warning message:\npackage ‘ggplot2’ was built under R version 4.4.3 \n"
+   },
+   {
+    "cmd": "Rscript figures/2026-08-24_r27/fig_2.R",
+    "returncode": 0,
+    "stderr_tail": "Warning message:\npackage ‘ggplot2’ was built under R version 4.4.3 \n"
+   },
+   {
+    "cmd": "Rscript figures/2026-08-24_r27/fig_3.R",
+    "returncode": 0,
+    "stderr_tail": "Warning message:\npackage ‘ggplot2’ was built under R version 4.4.3 \n"
+   }
+  ],
+  "outputs": [
+   {
+    "path": "r25/roster.csv",
+    "ok": true,
+    "sha256": "4e067090f754b49ffea25b2fd49a4107ac06601b6161def52dd8c377908c8a0c"
+   },
+   {
+    "path": "r25/panel.csv",
+    "ok": true,
+    "sha256": "f41c0a4755ed875ac7ed954095aeeb9872eac402110ff6a0d3cf904210868697"
+   },
+   {
+    "path": "r25/analysis_sample.csv",
+    "ok": true,
+    "sha256": "f11a374f5ad0e4e488a7d98aeab38f64dca0312791ee79eb2aedb67fc4541c13"
+   },
+   {
+    "path": "r25/analysis_sample_corrected.csv",
+    "ok": true,
+    "sha256": "05bb0da2afbdd6e70a8261af067b3bf1c57d8c94c20e4596a07f8bdcf337363f"
+   },
+   {
+    "path": "r26/cohort3_panel.csv",
+    "ok": true,
+    "sha256": "a8fd2abfb26945cd793d10ae2e1238f315d99f1324d094ffc800c246a9af4ad7"
+   },
+   {
+    "path": "knowledge/hand_coding/round_25.jsonl",
+    "ok": true,
+    "sha256": "a746c03b9afbe4fc9768f024bc44609cb398172ac35a4c20c538eb55ea7d5623"
+   },
+   {
+    "path": "knowledge/hand_coding/round_26.jsonl",
+    "ok": true,
+    "sha256": "4f935380edf6f739670abfd8c5ff8db369d46b8ae14e0c43a6bb3a9bc183ed00"
+   },
+   {
+    "path": "v2/key_values.json",
+    "ok": true,
+    "differs": {}
+   }
+  ]
+ },
+ "additions": {
+  "by": "orchestrating Claude session, Paper D Version 2, at the researcher's request",
+  "builder": "workspace/redesign_2026-09/v2_work/paper_d/arc4/build_arc4.py (not shipped)",
+  "why": [
+   "dyads21_meta.parquet was built without a saved script, so v2/prep_dyads21_meta.py rebuilds it",
+   "v2/rerun.py produces the Version 2 numbers of Paper D",
+   "declared outputs: 7 files by sha256 and 502 values of v2/key_values.json"
+  ]
+ }
+}

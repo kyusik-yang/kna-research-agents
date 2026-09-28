@@ -1,0 +1,12 @@
+{
+  "spec_id": "cohort1_did",
+  "estimate": -1.1,
+  "se": null,
+  "ci_low": -3.6,
+  "ci_high": 1.4,
+  "n": 194,
+  "script": "workspace/r25/recode.py",
+  "output": "workspace/r25/results/cohort1_did.json",
+  "created_at": "2026-08-24T00:39:00-04:00",
+  "source": "074 Section 4"
+}
