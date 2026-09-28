@@ -1,4 +1,4 @@
-"""kna_blocs: date-indexed party-bloc coding and the three data-pitfall checks."""
+"""kna_blocs: date-indexed party-bloc coding and the data-pitfall checks."""
 
 import datetime as dt
 import sys
@@ -273,3 +273,11 @@ def test_pitfall_passage_definitions():
     assert kb.check_passage_definition(rows, flag="enacted")["matches"] == "strict"
     rows[0]["passed"] = 0
     assert kb.check_passage_definition(rows)["matches"] == "neither"
+
+
+def test_pitfall_edge_roles():
+    new = [{"role": "대표발의"}, {"role": "공동발의"}, {"role": "공동발의"}, {"role": "찬성"}]
+    out = kb.check_edge_roles(new)
+    assert out["unknown_or_missing"] == 0 and out["counts"]["공동발의"] == 2 and out["n"] == 4
+    old = [{"role": "대표발의"}, {"role": None}, {"role": "1인발의"}]
+    assert kb.check_edge_roles(old)["unknown_or_missing"] == 2

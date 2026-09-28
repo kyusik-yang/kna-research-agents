@@ -1163,7 +1163,7 @@
  },
  "verify": {
   "passed": true,
-  "ran": "2026-09-26T21:40:11",
+  "ran": "2026-09-27T22:14:59",
   "commands": [
    {
     "cmd": "python3 r28/build.py",
@@ -1247,7 +1247,8 @@
     "ok": true,
     "differs": {}
    }
-  ]
+  ],
+  "kna_data_env": "KNA_DATA_V060"
  },
  "additions": {
   "by": "orchestrating Claude session, Paper E Version 2, at the researcher's request",

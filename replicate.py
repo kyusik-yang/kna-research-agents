@@ -93,6 +93,21 @@ SETENV_KBL_RE = re.compile(r"^\s*Sys\.setenv\(\s*KBL_DATA\s*=.*\)\s*$")
 DATA_NAME_RE = re.compile(r"[A-Za-z0-9_{}\-]+\.(?:parquet|csv|jsonl|json|feather|rds)")
 
 
+# Arcs published before kna 0.7.0 (2026-09-26). kna 0.7.0 corrected fields
+# their papers used (KNA_070_PUBLISHED.md), so their packages run on the kna
+# v0.6.0 data named by this environment variable (scripts/setup_kna_v060.sh).
+# verify sets KBL_DATA to the same directory.
+DATA_PINS = {arc: "KNA_DATA_V060" for arc in (1, 2, 3, 4, 5)}
+
+
+def kna_data_env(arc) -> str:
+    """Name of the environment variable that holds an arc's KNA data."""
+    try:
+        return DATA_PINS.get(int(arc), "KBL_DATA")
+    except (TypeError, ValueError):
+        return "KBL_DATA"
+
+
 def _sha256_bytes(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
 
@@ -230,12 +245,13 @@ def data_inputs(texts: dict) -> dict:
     return {"kna": sorted(kna), "repo_data": sorted(repo_data), "outside_package": sorted(outside)}
 
 
-def _describe_inputs(names: dict, hash_inputs: bool, produced: dict | None = None) -> list[dict]:
+def _describe_inputs(names: dict, hash_inputs: bool, produced: dict | None = None,
+                     data_dir: str | None = None) -> list[dict]:
     """produced: {package-relative file: script that writes it}. An outside
     intermediate that a packaged script writes is listed as produced inside."""
     rows = []
     produced = produced or {}
-    kbl = os.environ.get("KBL_DATA")
+    kbl = data_dir or os.environ.get("KBL_DATA")
     for nm in names["kna"]:
         row = {"source": "KNA (KBL_DATA)", "name": nm, "files": []}
         if kbl and Path(kbl).is_dir():
@@ -473,7 +489,10 @@ def _readme(arc, manifest: dict) -> str:
         "",
         "## Run",
         "",
-        "From this directory" + (", with KBL_DATA set" if kbl else "") + ", in this order:",
+        "From this directory" + ((", with KBL_DATA set" if kna_data_env(arc) == "KBL_DATA" else
+                                 f", with KBL_DATA and {kna_data_env(arc)} both set to the data/processed "
+                                 "folder of kna v0.6.0 (scripts/setup_kna_v060.sh in the forum repository, "
+                                 "see KNA_070_PUBLISHED.md)") if kbl else "") + ", in this order:",
         "",
         "```",
     ]
@@ -787,7 +806,8 @@ def build(arc, *, out_root: Path | None = None, workspace_dir: Path | None = Non
         "publishes": "scripts and cards only (D-17 default); derived data available on request",
         "files": files,
         "path_rewrites": rewrites,
-        "data_inputs": _describe_inputs(data_inputs(texts), hash_inputs, produced),
+        "data_inputs": _describe_inputs(data_inputs(texts), hash_inputs, produced,
+                                      data_dir=os.environ.get(kna_data_env(arc))),
         "versions": _versions(),
         "versions_note": VERSIONS_NOTE.replace("`", ""),
         "provenance": prov,
@@ -864,7 +884,8 @@ def _safe_rel_dir(d: str) -> bool:
 
 def verify(arc, *, out_root: Path | None = None, timeout_s: int = 3600) -> dict:
     """Copy the package to a temporary directory, run its commands (with
-    KBL_DATA set when the package reads KNA data), compare declared outputs,
+    KBL_DATA set when the package reads KNA data, from DATA_PINS for a pinned
+    arc), compare declared outputs,
     and record verify in MANIFEST.json. Never writes outside the temporary
     copy except the manifest's verify block."""
     pkg = package_dir(arc, out_root)
@@ -872,9 +893,14 @@ def verify(arc, *, out_root: Path | None = None, timeout_s: int = 3600) -> dict:
     manifest = json.loads(mpath.read_text(encoding="utf-8"))
     result = {"passed": False, "ran": datetime.now().isoformat(timespec="seconds"), "commands": [],
               "outputs": []}
-    kbl = os.environ.get("KBL_DATA")
+    var = kna_data_env(arc)
+    kbl = os.environ.get(var)
+    result["kna_data_env"] = var
     if needs_kbl_data(manifest) and (not kbl or not Path(kbl).is_dir()):
-        result["error"] = "KBL_DATA is not set to a directory"
+        result["error"] = f"{var} is not set to a directory"
+        if var != "KBL_DATA":
+            result["error"] += (f" (arc {arc} is pinned to the kna v0.6.0 data, see "
+                                "KNA_070_PUBLISHED.md and scripts/setup_kna_v060.sh)")
     elif not manifest.get("build", {}).get("ok"):
         result["error"] = "build did not pass"
     else:
@@ -890,6 +916,7 @@ def verify(arc, *, out_root: Path | None = None, timeout_s: int = 3600) -> dict:
             env = {**os.environ}
             if kbl:
                 env["KBL_DATA"] = kbl
+                env[var] = kbl
             ok = True
             for c in manifest.get("commands", []):
                 try:

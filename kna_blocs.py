@@ -49,10 +49,11 @@ confirms them. Outside tests, bloc() refuses to use an unconfirmed row unless
 the caller passes allow_unconfirmed=True, which a caller should only do for a
 report that says the coding is provisional.
 
-The module also holds the check functions for the three pitfalls registered in
+The module also holds the check functions for the pitfalls registered in
 knowledge/data_pitfalls.md: check_snapshot_labels (term-snapshot party fields),
-check_name_identity (merging members by name) and check_passage_definition
-(strict versus absorption-inclusive passage).
+check_name_identity (merging members by name), check_passage_definition
+(strict versus absorption-inclusive passage) and check_edge_roles
+(cosponsorship roles).
 
 Usage:
     python3 kna_blocs.py LABEL DATE [--allow-unconfirmed]   # print the side and the chain
@@ -399,6 +400,28 @@ def check_passage_definition(records, *, flag="passed", status="status"):
                if pairs and all(bool(int(f)) == (str(s).strip() in members) for f, s in pairs)]
     return {"column": flag, "matches": matches[0] if matches else "neither",
             "all_matches": matches, "rates": passage_rates(statuses), "n": len(pairs)}
+
+
+EDGE_ROLES = ("대표발의", "공동발의", "찬성")
+
+
+def check_edge_roles(records, *, role="role"):
+    """Pitfall 5 (cosponsorship roles).
+
+    Count edges per role. Rows whose role is missing or not one of 대표발의,
+    공동발의 and 찬성 come from a pre-0.7.0 edge file, where co-proposers and
+    supporters were not separated.
+    """
+    counts = defaultdict(int)
+    unknown = 0
+    for _, rec in _records(records):
+        v = rec.get(role)
+        key = None if _missing(v) else str(v).strip()
+        counts[key] += 1
+        if key not in EDGE_ROLES:
+            unknown += 1
+    return {"column": role, "counts": {str(k): v for k, v in counts.items()},
+            "unknown_or_missing": unknown, "n": sum(counts.values())}
 
 
 def _main(argv):

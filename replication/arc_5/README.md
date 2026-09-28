@@ -6,7 +6,7 @@ This package holds the analysis scripts only. It contains no data. The scripts r
 
 ## Run
 
-From this directory, with KBL_DATA set, in this order:
+From this directory, with KBL_DATA and KNA_DATA_V060 both set to the data/processed folder of kna v0.6.0 (scripts/setup_kna_v060.sh in the forum repository, see KNA_070_PUBLISHED.md), in this order:
 
 ```
 python3 r28/build.py

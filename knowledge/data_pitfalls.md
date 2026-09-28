@@ -14,17 +14,21 @@ Any ruling or opposition coding must come from `kna_blocs.bloc(party_label, date
 
 **Limit.** The coding is by label lineage, not by the individual. Members elected on a satellite list who returned to a partner party (the four 더불어민주연합 members of 2024) are coded by the label in the data. A coding by individual affiliation needs a member-level source.
 
+**A related trap in the KNA roll calls.** From kna 0.7.0, `party` in `roll_calls_all` and in the ideal-point files is the party at election, and `party_api` is the API's current-party label, written onto every past vote. Up to kna 0.6.0 `party` held that current label. Never use `party_api` as the party at the time of a vote. Code sides with `kna_blocs.bloc(party, date)`.
+
 ## 2. Merging members by name
 
 **What goes wrong.** Names are not unique. The 21st Assembly seats two legislators named 이수진 (member uids 7553 and 7554), and both questioned the same nominee at one hearing. A name-keyed merge in Round 26 gave one supportive-side row a contaminated dose value (forum post 080). The same failure happens when one person appears under several ids.
 
-**Rule.** Merge, group and cluster on `leg_member_uid` (or the member code of the source table), never on the name. Assert uniqueness of the key after every merge.
+The KNA files have the same problem. Two members share a name in the 20th (김성태, 최경환), the 21st (김병욱, 이수진) and the 22nd (박지원) Assemblies, among others. Up to kna 0.6.0 the roll calls dropped the votes of one member of each 20th and 21st pair. From kna 0.7.0 a legislator lookup by name raises `kna.queries.AmbiguousLegislator` (CLI `--mona`).
+
+**Rule.** Merge, group and cluster on `leg_member_uid` (or the member code of the source table, `mona_cd` or `member_id` in KNA), never on the name. Assert uniqueness of the key after every merge.
 
 **Check.** `kna_blocs.check_name_identity(records, name="leg_name", uid="leg_member_uid", within=("term",))` returns one flag per name that maps to more than one id within a term. Any flag means a name key is unsafe for that data.
 
 ## 3. Strict versus absorption-inclusive passage
 
-**What goes wrong.** "Passed" has at least three definitions, and the rates differ by a factor of about five. In the Round 28 bill panel (member-sponsored law bills, 17th to 22nd Assemblies, 93,572 bills) the strict rate (원안가결 or 수정가결) is 6.2 percent and the absorption-inclusive rate (adding 대안반영폐기 and 수정안반영폐기) is 30.9 percent (forum post 083). A premise stated at the wrong rate made the Round 28 baseline wrong by a factor of two. The `passed` column of the KNA bill tables counts 원안가결, 수정가결 and 대안반영폐기 as passed and 수정안반영폐기 as not passed (checked on the 21st Assembly table), so it matches none of the two definitions above.
+**What goes wrong.** "Passed" has at least three definitions, and the rates differ by a factor of about five. In the Round 28 bill panel (member-sponsored law bills, 17th to 22nd Assemblies, 93,572 bills on the kna 0.6.0 data) the strict rate (원안가결 or 수정가결) is 6.2 percent and the absorption-inclusive rate (adding 대안반영폐기 and 수정안반영폐기) is 30.9 percent (forum post 083). The same code on the kna 0.7.0 data gives 97,046 bills, 6.2 and 31.1 percent. A premise stated at the wrong rate made the Round 28 baseline wrong by a factor of two. The `passed` column of the KNA bill tables counts 원안가결, 수정가결 and 대안반영폐기 as passed and 수정안반영폐기 as not passed (checked on the 21st Assembly table), so it matches none of the two definitions above.
 
 **Rule.** State which definition an analysis uses, name the status values it counts, and report the other definition alongside it.
 
@@ -37,6 +41,14 @@ Any ruling or opposition coding must come from `kna_blocs.bloc(party_label, date
 **Rule.** Take seniority at an Assembly from `kna_seniority.term_number(mona_cd, assembly)` (or the table from `kna_seniority.term_numbers()`), or from the `term_number` and `seniority` fields that kna version 0.7.0 added to the member files. Never compare `reelection` with 초선 to code first-term status.
 
 **Check.** `python3 kna_seniority.py --check` derives the term number of every member-term from the member files and compares it with kna's `term_number` where the field exists. `kna_seniority.check_against_kna(table)` returns the counts and the disagreeing rows. On the kna 0.7.0 member files the derivation agrees with kna's field for all 1,948 member-terms, and on the files pinned for Paper E it gives 205 first-term members in the 17th Assembly where `reelection` reads 초선 for 97 (`python3 kna_seniority.py --check`, run on 2026-09-26).
+
+## 5. Cosponsorship roles
+
+**What goes wrong.** Up to kna 0.6.0 `cosponsorship_edges.role` was empty for co-proposers (공동발의) and supporters (찬성) alike, the file covered only the 20th to 22nd Assemblies, and it kept at most 100 names per bill. Round 30 counted every non-lead edge as a cosponsor. kna 0.7.0 covers the 17th to 22nd, and 107,129 of its 1,379,763 edges are supporters.
+
+**Rule.** Filter on `role` (대표발의, 공동발의 or 찬성) and say whether supporters are included.
+
+**Check.** `kna_blocs.check_edge_roles(records, role="role")` counts the edges per role and the rows whose role is missing or unknown. Any such row means a pre-0.7.0 edge file.
 
 ## Machine-readable registry
 
@@ -78,9 +90,16 @@ run_forum scans the code blocks of every Analyst post with the regular expressio
     {
       "id": "deprecated_ideal_points",
       "section": null,
-      "description": "dw_ideal_points_20_22.csv is deprecated, because its coord1D is per-Assembly W-NOMINATE with a sign flip, not DW-NOMINATE (DATA_SOURCES.md).",
+      "description": "dw_ideal_points_20_22.csv is removed in kna 0.7.0. It was deprecated because its coord1D is per-Assembly W-NOMINATE with a sign flip, not DW-NOMINATE (DATA_SOURCES.md).",
       "regex": "dw_ideal_points_20_22|\\bcoord1D\\b",
       "alternative": "ideal_points_bridged.csv (bridged_1d) for cross-Assembly comparison, ideal_points_wnominate.csv (wnom_1d) within one Assembly, ideal_points_dwnominate.csv (dwnom_1d) for one constant per member."
+    },
+    {
+      "id": "edge_roles",
+      "section": 5,
+      "description": "Up to kna 0.6.0 cosponsorship_edges.role did not separate co-proposers (공동발의) from supporters (찬성), the file covered only the 20th-22nd Assemblies, and it kept at most 100 names per bill.",
+      "regex": "\\bcosponsorship_edges\\b",
+      "alternative": "the kna >= 0.7.0 edges filtered on role (대표발의, 공동발의, 찬성), saying whether 찬성 rows are included, checked with kna_blocs.check_edge_roles."
     }
   ]
 }
