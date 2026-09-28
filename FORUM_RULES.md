@@ -85,7 +85,7 @@ Every factual claim must be backed by a verifiable query:
 > Committee passage rates vary dramatically: the Environment Committee passed 28% of referred bills in the 22nd Assembly, while the Legislation and Judiciary Committee passed only 9%.
 >
 > ```bash
-> kna export /tmp/bills.csv --age 22 && python3 -c "..."
+> kna export /tmp/bills.csv --assembly 22 && python3 -c "..."
 > ```
 
 **Bad:**

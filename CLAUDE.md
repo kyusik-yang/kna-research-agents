@@ -43,8 +43,11 @@ scripts/litdb.sh      # 문헌 Vector DB shim (Scout용)
 ## Data
 
 - `speeches.parquet` (1.1GB, 9.9M speech acts, 16-22대)
-- `master_bills_17-22.parquet`, `roll_calls_all.parquet`, `members_17-22.parquet`
-- 이념점수는 `ideal_points_bridged.csv`(대수 간 비교 기본값). `dw_ideal_points_20_22.csv`는 폐기(DATA_SOURCES.md)
+- kna 0.7.0 (2026-09-26): `master_bills_17-22.parquet` (115,149건), `roll_calls_all.parquet` (20-22대만, 2,557,618행, `party` = 당선 당시 정당, `party_api` = API 현재 정당)
+- `ideal_points_bridged.csv` (기본) · `ideal_points_wnominate.csv` · `ideal_points_dwnominate.csv` (각 940 이념점수, vintage v20260917). `dw_ideal_points_20_22.csv`는 0.7.0에서 삭제
+- `members_{17-22}.parquet`: 초선 여부는 `term_number`/`seniority`(해당 대수 기준). `reelection`은 수집 시점 누적 선수라 대수별 초선 판정에 쓰지 않는다
+- `cosponsorship_edges.parquet`: 17-22대, `role` = 대표발의/공동발의/찬성
+- 게시된 논문 재현은 kna v0.6.0 데이터로 고정 (`KNA_DATA_V060`, `scripts/setup_kna_v060.sh`, `KNA_070_PUBLISHED.md`)
 - Requires: `export KBL_DATA=/path/to/kna/data/processed` (dry run 외 모든 실행에서 필수, 기본값 없음)
 - 알려진 데이터 함정은 `knowledge/data_pitfalls.md`에 있다(선수 필드, 임기 시작 시점 정당 필드, 이름 기준 병합, passed 컬럼, 폐기된 이념점수). 끝의 JSON 레지스트리가 Analyst 코드 스캔에 쓰인다
 

@@ -90,7 +90,7 @@ This project watches that process unfold with AI agents, making the boundary bet
 | Agent | Role | What It Does | Tools |
 |-------|------|-------------|-------|
 | **Scout** | Literature | Searches a 5,000+ paper Vector DB, OpenAlex, and Crossref; identifies gaps; maps methodologies | Bash, Read, Write |
-| **Analyst** | Data | Queries the KNA database (110K+ bills, 2.4M votes, 936 ideal points) via CLI and pandas; tests hypotheses | Bash, Read, Write, Glob, Grep |
+| **Analyst** | Data | Queries the KNA database (115K bills, 2.56M votes, 940 ideal points) via CLI and pandas; tests hypotheses | Bash, Read, Write, Glob, Grep |
 | **Critic** | Theory & Methods | Reviews findings across 5 perspectives; scores novelty/rigor/theory/actionability; issues pursue/revise/archive verdicts | Bash, Read, Write |
 
 Each agent is a fresh Claude Code session started through `claude_cli.py`, which runs `claude -p` with the pinned model, a role-specific system prompt, the role's tools only, no MCP servers, and no user or project instruction files. Tool lists are enforced with `--tools`. Agents have no memory between rounds. They rely on the forum posts and the context the orchestrator injects.
@@ -120,7 +120,7 @@ Each agent is a fresh Claude Code session started through `claude_cli.py`, which
     │  Knowledge Layer                                   │
     │  · Literature Vector DB (LanceDB, 5K+ papers)     │
     │  · OpenAlex / Crossref APIs                        │
-    │  · KNA CLI + parquet (110K bills, 2.4M votes)     │
+    │  · KNA CLI + parquet (115K bills, 2.56M votes)    │
     │  · abstracts.jsonl (growing corpus)                │
     └───────────────────────┬───────────────────────────┘
                             │
@@ -264,7 +264,7 @@ python3 agora/run_agora.py --mode news --url "..."   # Citizens discuss a news e
 
 | Source | Contents | Access |
 |--------|----------|--------|
-| [KNA](https://github.com/kyusik-yang/kna) | 110K+ bills, 2.4M roll-call votes, 936 legislator-term ideal points (three series: per-assembly W-NOMINATE, bridged, pooled DW-NOMINATE), 572K committee meetings | `kna` CLI + parquet via pandas |
+| [KNA](https://github.com/kyusik-yang/kna) | 115K bills, 2.56M roll-call votes (20-22nd), 940 legislator-term ideal points (three series: per-assembly W-NOMINATE, bridged, pooled DW-NOMINATE), 818K committee meetings | `kna` CLI + parquet via pandas |
 | [kr-hearings-data](https://github.com/kyusik-yang/kr-hearings-data) | 9.9M speech acts, 7.4M Q&A dyads (16-22nd Assembly) | parquet |
 | Literature Vector DB | 5,000+ papers (personal library + OpenAlex + Crossref) | LanceDB, semantic + FTS search, through `scripts/litdb.sh` |
 | OpenAlex | International political science literature | REST API (free) |

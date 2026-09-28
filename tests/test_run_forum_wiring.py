@@ -206,6 +206,7 @@ def repo(tmp_path, monkeypatch):
     monkeypatch.setattr(topic_diversity, "prior_topics_for_scout", lambda: "")
     monkeypatch.setattr(topic_diversity, "format_for_prompt", lambda round_num=None: "")
     monkeypatch.setattr(run_forum, "verify_citations", lambda p: [])
+    monkeypatch.setattr(run_forum, "check_kna_setup", lambda *a, **k: [])
 
     counter = {"n": 0}
 

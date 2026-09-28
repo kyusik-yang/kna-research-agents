@@ -76,6 +76,43 @@ ROUND_ORDER_OVERRIDE = None   # set from --order
 EFFORT_OVERRIDE = None        # set from --effort
 
 
+def _version_tuple(v):
+    """'0.7.0' -> (0, 7, 0). Non-numeric parts are ignored."""
+    return tuple(int(x) for x in re.findall(r"\d+", str(v))[:3])
+
+
+def check_kna_setup(min_version="0.7.0", cli=None, data_dir=None):
+    """Problems that stop a forum run before any agent starts, as a list of
+    strings (empty when the setup is usable). An older kna CLI runs without
+    error on the 0.7.0 files but misreports them (ideal points, same-name
+    members, funnel stages), and a pre-0.7.0 data directory lacks the
+    per-assembly seniority columns the prompts rely on."""
+    cli = cli or shutil.which("kna") or str(KNA_CLI_FALLBACK)
+    data_dir = data_dir or os.environ.get("KBL_DATA")
+    problems = []
+    if not data_dir:
+        return ["KBL_DATA is not set. Point it at the kna processed-data directory"]
+    data_dir = Path(data_dir)
+    try:
+        out = subprocess.run([str(cli), "--version"], capture_output=True, text=True, timeout=60)
+        m = re.search(r"(\d+\.\d+\.\d+)", out.stdout + out.stderr)
+        if not m or _version_tuple(m.group(1)) < _version_tuple(min_version):
+            found = m.group(1) if m else "no version"
+            problems.append(f"the kna CLI ({cli}) reports {found}, and kna >= {min_version} is required "
+                            "(pip install -U kna)")
+    except (OSError, subprocess.TimeoutExpired) as e:
+        problems.append(f"the kna CLI ({cli}) could not be run: {e}")
+    members = data_dir / "members_22.parquet"
+    try:
+        import pyarrow.parquet as pq
+        if "term_number" not in pq.read_schema(members).names:
+            problems.append("KBL_DATA holds pre-0.7.0 data (members_22.parquet has no term_number). "
+                            f"Point it at kna >= {min_version} data")
+    except Exception as e:  # missing file or unreadable schema
+        problems.append(f"cannot read members_22.parquet in KBL_DATA: {type(e).__name__}")
+    return problems
+
+
 def load_config():
     """forum_config block of agents.json plus the season number."""
     with open(AGENTS_FILE) as f:
@@ -2542,6 +2579,12 @@ def main(argv=None):
     if args.topic:
         print(f"  Topic:  {args.topic}")
     print()
+
+    # kna 0.7.0: refuse to run agents against an older CLI or older data.
+    if not args.dry_run:
+        kna_problems = check_kna_setup(cfg.get("kna_min_version", "0.7.0"))
+        if kna_problems:
+            raise SystemExit("kna setup check failed:\n  - " + "\n  - ".join(kna_problems))
 
     # C2 · Topic-gate precheck (Pepinsky 2026). Runs before the first round
     # and blocks if this run opens a fresh arc without a signed entry in

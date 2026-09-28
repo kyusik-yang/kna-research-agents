@@ -20,8 +20,10 @@ library(arrow)
 library(dplyr)
 library(ggplot2)
 
-data_dir <- Sys.getenv("KBL_DATA")
-if (data_dir == "") stop("Set KBL_DATA to the KNA processed-data directory")
+data_dir <- Sys.getenv("KNA_DATA_V060")  # published figure: pinned to the kna v0.6.0 data
+if (!dir.exists(data_dir)) stop("KNA_DATA_V060 must name the data/processed folder of kna v0.6.0. ",
+                             "Run scripts/setup_kna_v060.sh (see KNA_070_PUBLISHED.md).")
+fig_path <- "articles/figures/2026-08-24_r30/fig_1.pdf"
 
 lifetime_count <- function(x) {
   ifelse(x == "초선", 1L, ifelse(x == "재선", 2L, suppressWarnings(as.integer(sub("선$", "", x)))))

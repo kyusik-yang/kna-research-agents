@@ -623,12 +623,23 @@ def scratch(tmp_path):
         (repo / "forum" / f"{n:03d}_{role}.md").write_text(body, encoding="utf-8")
     data = tmp_path / "kbl"
     data.mkdir()
-    (data / "members_22.parquet").write_bytes(b"PAR1 scratch members PAR1")
+    # run_forum's kna setup check reads the members schema and the CLI
+    # version, so the scratch data carries a real members file with the
+    # kna 0.7.0 term_number column and PATH gets a stub kna 0.7.0 CLI.
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    pq.write_table(pa.table({"mona_cd": ["M1"], "term_number": [1], "seniority": ["초선"]}),
+                   data / "members_22.parquet")
     (data / "master_bills_22.parquet").write_bytes(b"PAR1 scratch bills PAR1")
+    kna_bin = tmp_path / "kna_bin"
+    kna_bin.mkdir()
+    (kna_bin / "kna").write_text("#!/bin/sh\necho 'kna, version 0.7.0'\n", encoding="utf-8")
+    (kna_bin / "kna").chmod(0o755)
     wrapper = tmp_path / "claude_wrapper.py"
     wrapper.write_text(PREMISE_WRAPPER.format(python=sys.executable, stub=str(STUB)), encoding="utf-8")
     wrapper.chmod(0o755)
     env = {k: v for k, v in os.environ.items() if not k.startswith(("KNA_", "STUB_", "GIT_"))}
+    env["PATH"] = f"{kna_bin}{os.pathsep}{env.get('PATH', '')}"
     env.update(KNA_CLAUDE_BIN=str(wrapper), STUB_CLAUDE_STATE=str(tmp_path / "stub_state"),
                STUB_CLAUDE_PLAN=str(tmp_path / "plan.json"), CLAUDE_CONFIG_DIR=str(tmp_path / "claude_config"),
                PREMISE_RESULTS=str(tmp_path / "premise_results.json"), KBL_DATA=str(data), KNA_NO_SLEEP="1",
